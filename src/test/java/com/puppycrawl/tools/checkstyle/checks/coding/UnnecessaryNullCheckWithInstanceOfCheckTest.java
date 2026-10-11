@@ -1,0 +1,249 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.coding;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheckWithInstanceOfCheck.MSG_UNNECESSARY_NULLCHECK;
+
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+
+public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/unnecessarynullcheckwithinstanceof";
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceof() throws Exception {
+
+        final String[] expected = {
+            "12:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "15:39: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "24:14: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "54:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "57:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "60:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "69:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "74:26: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "78:14: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "80:30: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "86:19: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath(
+            "InputUnnecessaryNullCheckWithInstanceOfOne.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofClass() throws Exception {
+
+        final String[] expected = {
+            "14:21: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "28:24: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath(
+            "InputUnnecessaryNullCheckWithInstanceOfAnonymousClass.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofConditions() throws Exception {
+
+        final String[] expected = {
+            "12:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "17:31: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "22:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "27:54: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "36:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "36:55: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "50:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath(
+            "InputUnnecessaryNullCheckWithInstanceOfMultipleConditions.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofNested() throws Exception {
+
+        final String[] expected = {
+            "11:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "18:21: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "26:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath(
+            "InputUnnecessaryNullCheckWithInstanceOfNestedIf.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofLambda() throws Exception {
+
+        final String[] expected = {
+            "17:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "23:45: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "26:33: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath(
+            "InputUnnecessaryNullCheckWithInstanceOfLambda.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofSwitch() throws Exception {
+
+        final String[] expected = {
+            "13:21: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "35:21: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath(
+            "InputUnnecessaryNullCheckWithInstanceOfSwitch.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofTernary() throws Exception {
+
+        final String[] expected = {
+            "11:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "18:25: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "23:24: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "26:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "27:20: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "33:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "34:19: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "43:24: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "43:61: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "49:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath(
+            "InputUnnecessaryNullCheckWithInstanceOfTernary.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofTryCatch() throws Exception {
+
+        final String[] expected = {
+            "11:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "23:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "33:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath(
+            "InputUnnecessaryNullCheckWithInstanceOfTryCatch.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofTryVariable() throws Exception {
+
+        final String[] expected = {
+            "12:27: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "19:36: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath(
+            "InputUnnecessaryNullCheckWithInstanceOfVariableAssignment.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofPattern() throws Exception {
+
+        final String[] expected = {
+            "12:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(
+                getPath(
+                "InputUnnecessaryNullCheckWithInstanceOfTwo.java"),
+            expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofPair() throws Exception {
+
+        final String[] expected = {
+            "15:56: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(
+                getPath(
+                "InputUnnecessaryNullCheckWithInstanceOfPair.java"),
+            expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        final UnnecessaryNullCheckWithInstanceOfCheck check =
+            new UnnecessaryNullCheckWithInstanceOfCheck();
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofComplexCases() throws Exception {
+
+        final String[] expected = {
+            "14:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "19:27: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "22:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "27:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "34:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "39:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "61:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "66:25: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath(
+                "InputUnnecessaryNullCheckWithInstanceOfComplexCases.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofMutationKiller() throws Exception {
+
+        final String[] expected = {
+            "24:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "28:29: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "35:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "39:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "46:14: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "56:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "75:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "79:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "86:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "90:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "97:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath(
+                "InputUnnecessaryNullCheckWithInstanceOfMutationKiller.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofMutationKillerTwo() throws Exception {
+
+        final String[] expected = {
+            "12:39: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "16:59: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "23:39: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "27:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath(
+                "InputUnnecessaryNullCheckWithInstanceOfMutationKillerTwo.java"), expected);
+    }
+
+}

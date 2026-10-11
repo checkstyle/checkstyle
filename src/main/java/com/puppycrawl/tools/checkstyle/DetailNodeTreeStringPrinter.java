@@ -1,0 +1,169 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+
+import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
+import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseStatus;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
+
+/**
+ * Parses file as javadoc DetailNode tree and prints to system output stream.
+ */
+public final class DetailNodeTreeStringPrinter {
+
+    /** OS specific line separator. */
+    private static final String LINE_SEPARATOR = System.lineSeparator();
+
+    /** Prevent instances. */
+    private DetailNodeTreeStringPrinter() {
+        // no code
+    }
+
+    /**
+     * Parse a file and print the parse tree.
+     *
+     * @param file the file to print.
+     * @return parse tree as a string
+     * @throws IOException if the file could not be read.
+     */
+    public static String printFileAst(File file) throws IOException {
+        return printTree(parseFile(file), "", "");
+    }
+
+    /**
+     * Parse block comment DetailAST as Javadoc DetailNode tree.
+     *
+     * @param blockComment DetailAST
+     * @return DetailNode tree
+     * @throws IllegalArgumentException if there is an error parsing the Javadoc.
+     */
+    public static DetailNode parseJavadocAsDetailNode(DetailAST blockComment) {
+        final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
+        final ParseStatus status = parser.parseJavadocComment(blockComment);
+        final ParseErrorMessage parseErrorMessage = status.getParseErrorMessage();
+        if (parseErrorMessage != null) {
+            throw new IllegalArgumentException(getParseErrorMessage(parseErrorMessage));
+        }
+        return status.getTree();
+    }
+
+    /**
+     * Builds violation base on ParseErrorMessage's violation key, its arguments, etc.
+     *
+     * @param parseErrorMessage ParseErrorMessage
+     * @return error violation
+     */
+    private static String getParseErrorMessage(ParseErrorMessage parseErrorMessage) {
+        final LocalizedMessage message = new LocalizedMessage(
+                "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
+                DetailNodeTreeStringPrinter.class,
+                parseErrorMessage.getMessageKey(),
+                parseErrorMessage.getMessageArguments());
+        return "[ERROR:" + parseErrorMessage.getLineNumber() + "] " + message.getMessage();
+    }
+
+    /**
+     * Print AST.
+     *
+     * @param ast the root AST node.
+     * @param rootPrefix prefix for the root node
+     * @param prefix prefix for other nodes
+     * @return string AST.
+     */
+    public static String printTree(DetailNode ast, String rootPrefix, String prefix) {
+        final StringBuilder messageBuilder = new StringBuilder(1024);
+        DetailNode node = ast;
+        while (node != null) {
+            if (node.getType() == JavadocCommentsTokenTypes.JAVADOC_CONTENT) {
+                messageBuilder.append(rootPrefix);
+            }
+            else {
+                messageBuilder.append(prefix);
+            }
+            messageBuilder.append(getIndentation(node))
+                    .append(JavadocUtil.getTokenName(node.getType())).append(" -> ")
+                    .append(JavadocUtil.escapeAllControlChars(node.getText())).append(" [")
+                    .append(node.getLineNumber()).append(':').append(node.getColumnNumber() + 1)
+                    .append(']').append(LINE_SEPARATOR)
+                    .append(printTree(node.getFirstChild(), rootPrefix, prefix));
+            node = node.getNextSibling();
+        }
+        return messageBuilder.toString();
+    }
+
+    /**
+     * Get indentation for a node.
+     *
+     * @param node the DetailNode to get the indentation for.
+     * @return the indentation in String format.
+     */
+    private static String getIndentation(DetailNode node) {
+        final boolean isLastChild = node.getNextSibling() == null;
+        DetailNode currentNode = node;
+        final StringBuilder indentation = new StringBuilder(1024);
+        DetailNode parent = currentNode.getParent();
+        while (parent != null) {
+            currentNode = parent;
+            parent = currentNode.getParent();
+            if (parent == null) {
+                if (isLastChild) {
+                    // only ASCII symbols must be used due to
+                    // problems with running tests on Windows
+                    indentation.append("`--");
+                }
+                else {
+                    indentation.append("|--");
+                }
+            }
+            else {
+                if (currentNode.getNextSibling() == null) {
+                    indentation.insert(0, "    ");
+                }
+                else {
+                    indentation.insert(0, "|   ");
+                }
+            }
+        }
+        return indentation.toString();
+    }
+
+    /**
+     * Parse a file and return the parse tree.
+     *
+     * @param file the file to parse.
+     * @return the root node of the parse tree.
+     * @throws IOException if the file could not be read.
+     */
+    private static DetailNode parseFile(File file) throws IOException {
+        final FileText text = new FileText(file, Charset.defaultCharset().name());
+        final DetailAST comment = ParserUtil.createBlockCommentNode(text.getFullText().toString());
+        return parseJavadocAsDetailNode(comment);
+    }
+
+}

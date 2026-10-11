@@ -1,0 +1,192 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.modifier;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck.MSG_KEY;
+
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+
+public class ClassMemberImpliedModifierCheckTest
+    extends AbstractModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/modifier/classmemberimpliedmodifier";
+    }
+
+    @Test
+    public void testMethodsOnClass() throws Exception {
+        final String[] expected = {
+            "52:9: " + getCheckMessage(MSG_KEY, "static"),
+            "60:9: " + getCheckMessage(MSG_KEY, "static"),
+            "65:5: " + getCheckMessage(MSG_KEY, "static"),
+            "73:9: " + getCheckMessage(MSG_KEY, "static"),
+            "81:9: " + getCheckMessage(MSG_KEY, "static"),
+            "89:5: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputClassMemberImpliedModifierOnClass.java"),
+            expected);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        final ClassMemberImpliedModifierCheck check = new ClassMemberImpliedModifierCheck();
+        final int[] actual = check.getRequiredTokens();
+        final int[] expected = {
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.RECORD_DEF,
+        };
+        assertWithMessage("Required tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
+    }
+
+    @Test
+    public void testMethodsOnClassNoImpliedStaticEnum() throws Exception {
+        final String[] expected = {
+            "60:9: " + getCheckMessage(MSG_KEY, "static"),
+            "79:9: " + getCheckMessage(MSG_KEY, "static"),
+            "87:5: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputClassMemberImpliedModifierOnClassSetEnumFalse.java"),
+            expected);
+    }
+
+    @Test
+    public void testMethodsOnClassNoImpliedStaticInterface() throws Exception {
+        final String[] expected = {
+            "53:9: " + getCheckMessage(MSG_KEY, "static"),
+            "65:5: " + getCheckMessage(MSG_KEY, "static"),
+            "73:9: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputClassMemberImpliedModifierOnClassSetInterfaceFalse.java"),
+            expected);
+    }
+
+    @Test
+    public void testMethodsOnClassNoViolationsChecked() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputClassMemberImpliedModifierOnClassNoViolations.java"),
+            expected);
+    }
+
+    @Test
+    public void testMethodsOnInterface() throws Exception {
+        final String[] expected = {
+            "61:13: " + getCheckMessage(MSG_KEY, "static"),
+            "69:13: " + getCheckMessage(MSG_KEY, "static"),
+            "74:9: " + getCheckMessage(MSG_KEY, "static"),
+            "82:13: " + getCheckMessage(MSG_KEY, "static"),
+            "90:13: " + getCheckMessage(MSG_KEY, "static"),
+            "98:9: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputClassMemberImpliedModifierOnInterface.java"),
+            expected);
+    }
+
+    @Test
+    public void testClassMemberImpliedModifierRecords() throws Exception {
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_KEY, "static"),
+            "20:5: " + getCheckMessage(MSG_KEY, "static"),
+            "24:5: " + getCheckMessage(MSG_KEY, "static"),
+            "29:9: " + getCheckMessage(MSG_KEY, "static"),
+            "33:9: " + getCheckMessage(MSG_KEY, "static"),
+            "37:9: " + getCheckMessage(MSG_KEY, "static"),
+            "42:9: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputClassMemberImpliedModifierRecords.java"),
+                expected);
+    }
+
+    @Test
+    public void testClassMemberImpliedModifierNoViolationRecords() throws Exception {
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_KEY, "static"),
+            "20:5: " + getCheckMessage(MSG_KEY, "static"),
+            "33:9: " + getCheckMessage(MSG_KEY, "static"),
+            "37:9: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputClassMemberImpliedModifierNoViolationRecords.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_KEY, "static"),
+            "14:1: " + getCheckMessage(MSG_KEY, "static"),
+            "17:1: " + getCheckMessage(MSG_KEY, "static"),
+            "19:1: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "compact/InputClassMemberImpliedModifierCompactSource.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFilePropertiesDisabled() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "compact/InputClassMemberImpliedModifierCompactSourceCustom.java"),
+                expected);
+    }
+
+    @Test
+    public void testIllegalState() {
+        final DetailAstImpl init = new DetailAstImpl();
+        init.setType(TokenTypes.STATIC_INIT);
+        final DetailAstImpl objBlock = new DetailAstImpl();
+        objBlock.setType(TokenTypes.OBJBLOCK);
+        objBlock.addChild(init);
+        final DetailAstImpl interfaceAst = new DetailAstImpl();
+        interfaceAst.setType(TokenTypes.CLASS_DEF);
+        interfaceAst.addChild(objBlock);
+        final ClassMemberImpliedModifierCheck check =
+            new ClassMemberImpliedModifierCheck();
+        final IllegalStateException exc =
+            TestUtil.getExpectedThrowable(
+                IllegalStateException.class, () -> {
+                    check.visitToken(init);
+                });
+        assertWithMessage("Error message is unexpected")
+            .that(exc.getMessage())
+            .isEqualTo(init.toString());
+    }
+
+}

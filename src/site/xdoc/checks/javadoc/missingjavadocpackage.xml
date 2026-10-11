@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MissingJavadocPackage</title>
+  </head>
+  <body>
+    <section name="MissingJavadocPackage">
+      <p>Since Checkstyle 8.22</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MissingJavadocPackage_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MissingJavadocPackage_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#MissingJavadocPackage_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">To catch block comments</a></li>
+            </ul>
+          </li>
+          <li><a href="#MissingJavadocPackage_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MissingJavadocPackage_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MissingJavadocPackage_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MissingJavadocPackage_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="MissingJavadocPackage_Description">
+        <div>
+          Checks for missing package definition Javadoc comments in package-info.java files.
+        </div>
+
+        <p>
+          Rationale: description and other related documentation for a package can be written up
+          in the package-info.java file and it gets used in the production of the Javadocs.
+          See <a
+          href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#packagecomment"
+          >link</a> for more info.
+        </p>
+
+        <p>
+          This check specifically only validates package definitions. It will not validate any methods or
+          interfaces declared in the package-info.java file.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="MissingJavadocPackage_Examples">
+        <p id="Example1-config">
+            To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocPackage"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * Provides API classes
+ */
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.example1;
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="MissingJavadocPackage_Use_Cases">
+        <p id="UseCase1-config">
+            To catch block comments:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocPackage"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/*
+ * Block comment is not a javadoc
+ */
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.usecase1;
+// violation above 'Missing javadoc for package-info.java file'
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="MissingJavadocPackage_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocPackage">
+                Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocPackage">
+                Documentation Comments Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="MissingJavadocPackage_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22package.javadoc.missing%22">
+              package.javadoc.missing
+            </a>
+          </li>
+        </ul>
+        <p>
+            All messages can be customized if the default message doesn't suit you.
+            Please <a href="../../config.html#Custom_messages">see the documentation</a>
+            to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="MissingJavadocPackage_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck</p>
+        <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="MissingJavadocPackage_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

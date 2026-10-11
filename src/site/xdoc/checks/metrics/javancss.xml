@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavaNCSS</title>
+  </head>
+  <body>
+    <section name="JavaNCSS">
+      <p>Since Checkstyle 3.5</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavaNCSS_Description">Description</a></li>
+          <li><a href="#JavaNCSS_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavaNCSS_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With 4 allowed non commented lines for a method</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Set limit of non commented lines in class to 10</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Set limit of non commented lines in file to 10</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Set limit of non commented lines in record to 5</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavaNCSS_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavaNCSS_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavaNCSS_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavaNCSS_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="JavaNCSS_Description">
+        <div>
+          Determines complexity of methods, classes and files by counting
+          the Non Commenting Source Statements (NCSS). This check adheres to the
+          <a href="http://www.kclee.de/clemens/java/javancss/#specification">specification</a>
+          for the <a href="http://www.kclee.de/clemens/java/javancss/">JavaNCSS-Tool</a>
+          written by <b>Chr. Clemens Lee</b>.
+        </div>
+
+        <p>
+          Roughly said the NCSS metric is calculated by counting the source lines which are
+          not comments, (nearly) equivalent to counting the semicolons and opening curly braces.
+        </p>
+
+        <p>
+          The NCSS for a class is summarized from the NCSS of all its methods, the NCSS
+          of its nested classes and the number of member variable declarations.
+        </p>
+
+        <p>
+          The NCSS for a file is summarized from the ncss of all its top level classes,
+          the number of imports and the package declaration.
+        </p>
+
+        <p>
+          Rationale: Too large methods and classes are hard to read and costly to maintain.
+          A large NCSS number often means that a method or class has too many responsibilities
+          and/or functionalities which should be decomposed into smaller units.
+        </p>
+
+        <p>
+          Here is a breakdown of what exactly is counted and not counted:
+        </p>
+        <div class="wrapper">
+        <table>
+        <caption>JavaNCSS metrics</caption>
+        <thead><tr><th>Structure</th><th>NCSS Count</th><th>Notes</th></tr></thead>
+        <tbody>
+        <tr><td>Package declaration</td><td>1</td>
+        <td>Counted at the terminating semicolon.</td></tr>
+        <tr><td>Import declaration</td><td>1</td>
+        <td>Each single, static, or wildcard import counts as 1.</td></tr>
+        <tr><td>Class, Interface, Annotation (<code>@interface</code>)</td><td>1</td>
+        <td>Counted at the opening curly brace of the body.</td></tr>
+        <tr><td>Method, Constructor</td><td>1</td>
+        <td>Counted at the declaration.</td></tr>
+        <tr><td>Static initializer, Instance initializer</td><td>1</td>
+        <td>Both <code>static {}</code> and bare <code>{}</code> initializer blocks count as 1.</td></tr>
+        <tr><td>Annotation type member</td><td>1</td>
+        <td>Each method-like member declaration inside <code>@interface</code> counts as 1.
+          A standalone <code>;</code> inside <code>@interface</code> also counts as 1.</td></tr>
+        <tr><td>Variable declaration</td><td>1</td>
+        <td>1 per statement regardless of how many variables are declared on that line.
+          <code>int x, y;</code> counts as 1.</td></tr>
+        <tr><td><code>if</code></td><td>1</td>
+        <td>The <code>if</code> keyword counts as 1.</td></tr>
+        <tr><td><code>else</code>, <code>else if</code></td><td>1</td>
+        <td>The <code>else</code> keyword counts as 1, separate from the <code>if</code> count.</td></tr>
+        <tr><td><code>while</code>, <code>do</code>, <code>for</code></td><td>1</td>
+        <td>The keyword header counts as 1.</td></tr>
+        <tr><td><code>switch</code></td><td>1</td>
+        <td>The <code>switch</code> keyword counts as 1.</td></tr>
+        <tr><td><code>case</code>, <code>default</code></td><td>1</td>
+        <td>Every case and default label adds 1.</td></tr>
+        <tr><td><code>try</code></td><td>0</td>
+        <td>The <code>try</code> keyword itself does not count.</td></tr>
+        <tr><td><code>catch</code></td><td>1</td>
+        <td>Each catch block counts as 1.</td></tr>
+        <tr><td><code>finally</code></td><td>1</td>
+        <td>The finally block counts as 1.</td></tr>
+        <tr><td><code>synchronized</code></td><td>1</td>
+        <td>The synchronized statement counts as 1.</td></tr>
+        <tr><td><code>return</code>, <code>break</code>, <code>continue</code>, <code>throw</code></td><td>1</td>
+        <td>Each counts as 1.</td></tr>
+        <tr><td><code>assert</code></td><td>1</td>
+        <td>Each assert statement counts as 1, with or without a message expression.</td></tr>
+        <tr><td>Labeled statement</td><td>1</td>
+        <td><code>label: statement</code> counts as 1.</td></tr>
+        <tr><td>Explicit constructor invocation</td><td>1</td>
+        <td><code>this()</code> or <code>super()</code> calls inside a constructor body
+          each count as 1.</td></tr>
+        <tr><td>Expression statements (assignments, method calls)</td><td>1</td>
+        <td>Statement-level expressions terminated by <code>;</code> count as 1.
+          A method call inside a <code>return</code> does not add an extra count.</td></tr>
+        <tr><td>Empty blocks {}</td><td>0</td>
+        <td>Empty curly braces do not increase the count.</td></tr>
+        <tr><td>Empty statements ;</td><td>0</td>
+        <td>Standalone semicolons outside of <code>@interface</code> do not increase
+          the count.</td></tr>
+        </tbody>
+        </table>
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="JavaNCSS_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="classMaximum"/><a href="#classMaximum">classMaximum</a></td>
+              <td>Specify the maximum allowed number of non commenting lines in a class.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>1500</code></td>
+              <td>3.5</td>
+            </tr>
+            <tr>
+              <td><a id="fileMaximum"/><a href="#fileMaximum">fileMaximum</a></td>
+              <td>Specify the maximum allowed number of non commenting lines in a file including all top level and nested classes.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>2000</code></td>
+              <td>3.5</td>
+            </tr>
+            <tr>
+              <td><a id="methodMaximum"/><a href="#methodMaximum">methodMaximum</a></td>
+              <td>Specify the maximum allowed number of non commenting lines in a method.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>50</code></td>
+              <td>3.5</td>
+            </tr>
+            <tr>
+              <td><a id="recordMaximum"/><a href="#recordMaximum">recordMaximum</a></td>
+              <td>Specify the maximum allowed number of non commenting lines in a record.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>150</code></td>
+              <td>8.36</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="JavaNCSS_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavaNCSS"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Example1:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
+
+class Example1 {
+
+  public void testMethod1() {
+    System.out.println("m-1:Line 1");
+    System.out.println("m-1:Line 2");
+    System.out.println("m-1:Line 3");
+    System.out.println("m-1:Line 4");
+    System.out.println("m-1:Line 5");
+  }
+
+  // ok, NCSS for this record is 5 (max allowed is 10)
+  record ValidRecord(int a, int b) {
+    public ValidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+    }
+  }
+
+  // ok, NCSS for this record is 6 (max allowed is 10)
+  record InvalidRecord(int x, int y) {
+    public InvalidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+      System.out.println("Line 4");
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check with 4 allowed non commented lines for a method:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavaNCSS"&gt;
+      &lt;property name="methodMaximum" value="4"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Example2:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
+
+class Example2 {
+  // violation below 'NCSS for this method is 6 (max allowed is 4)'
+  public void testMethod1() {
+    System.out.println("m-1:Line 1");
+    System.out.println("m-1:Line 2");
+    System.out.println("m-1:Line 3");
+    System.out.println("m-1:Line 4");
+    System.out.println("m-1:Line 5");
+  }
+
+  // ok, NCSS for this record is 5 (max allowed is 10)
+  record ValidRecord(int a, int b) {
+    public ValidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+    }
+  }
+
+  // violation 2 lines below 'NCSS for this method is 5 (max allowed is 4)'
+  record InvalidRecord(int x, int y) {
+    public InvalidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+      System.out.println("Line 4");
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to set limit of non commented lines in class to 10:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavaNCSS"&gt;
+      &lt;property name="classMaximum" value="10"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example3:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
+
+class Example3 {
+  // violation above 'NCSS for this class is 18 (max allowed is 10)'
+  public void testMethod1() {
+    System.out.println("m-1:Line 1");
+    System.out.println("m-1:Line 2");
+    System.out.println("m-1:Line 3");
+    System.out.println("m-1:Line 4");
+    System.out.println("m-1:Line 5");
+  }
+
+  // ok, NCSS for this record is 5 (max allowed is 10)
+  record ValidRecord(int a, int b) {
+    public ValidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+    }
+  }
+
+  // ok, NCSS for this record is 6 (max allowed is 10)
+  record InvalidRecord(int x, int y) {
+    public InvalidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+      System.out.println("Line 4");
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to set limit of non commented lines in file to 10:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavaNCSS"&gt;
+      &lt;property name="fileMaximum" value="10"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Example4:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
+// violation above 'NCSS for this file is 19 (max allowed is 10)'
+class Example4 {
+
+  public void testMethod1() {
+    System.out.println("m-1:Line 1");
+    System.out.println("m-1:Line 2");
+    System.out.println("m-1:Line 3");
+    System.out.println("m-1:Line 4");
+    System.out.println("m-1:Line 5");
+  }
+
+  // ok, NCSS for this record is 5 (max allowed is 10)
+  record ValidRecord(int a, int b) {
+    public ValidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+    }
+  }
+
+  // ok, NCSS for this record is 6 (max allowed is 10)
+  record InvalidRecord(int x, int y) {
+    public InvalidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+      System.out.println("Line 4");
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to set limit of non commented lines in record to 5:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavaNCSS"&gt;
+      &lt;property name="recordMaximum" value="5"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example5:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
+
+class Example5 {
+
+  public void testMethod1() {
+    System.out.println("m-1:Line 1");
+    System.out.println("m-1:Line 2");
+    System.out.println("m-1:Line 3");
+    System.out.println("m-1:Line 4");
+    System.out.println("m-1:Line 5");
+  }
+
+  // ok, NCSS for this record is 5 (max allowed is 5)
+  record ValidRecord(int a, int b) {
+    public ValidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+    }
+  }
+
+  // violation below 'NCSS for this record is 6 (max allowed is 5)'
+  record InvalidRecord(int x, int y) {
+    public InvalidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+      System.out.println("Line 4");
+    }
+  }
+}
+</code></pre></div>
+
+      </subsection>
+      <subsection name="Example of Usage" id="JavaNCSS_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavaNCSS">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="JavaNCSS_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.class%22">
+              ncss.class
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.file%22">
+              ncss.file
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.method%22">
+              ncss.method
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.record%22">
+              ncss.record
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="JavaNCSS_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="JavaNCSS_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

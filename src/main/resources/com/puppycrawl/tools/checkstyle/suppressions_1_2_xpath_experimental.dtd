@@ -1,0 +1,23 @@
+<!-- Add the following to any file that is to be validated against this DTD:
+
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd">
+-->
+
+<!ELEMENT suppressions (suppress|suppress-xpath)*>
+
+<!ELEMENT suppress EMPTY>
+<!ATTLIST suppress files CDATA #IMPLIED
+                   checks CDATA #IMPLIED
+                   message CDATA #IMPLIED
+                   id CDATA #IMPLIED
+                   lines CDATA #IMPLIED
+                   columns CDATA #IMPLIED>
+
+<!ELEMENT suppress-xpath EMPTY>
+<!ATTLIST suppress-xpath files CDATA #IMPLIED
+                   checks CDATA #IMPLIED
+                   message CDATA #IMPLIED
+                   id CDATA #IMPLIED
+                   query CDATA #IMPLIED>

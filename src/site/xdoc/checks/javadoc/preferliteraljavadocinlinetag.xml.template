@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>PreferJavadocInlineTags</title>
+  </head>
+  <body>
+    <section name="PreferLiteralJavadocInlineTag">
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/PreferLiteralJavadocInlineTagCheck.java"/>
+      </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/PreferLiteralJavadocInlineTagCheck.java"/>
+      </macro>
+      <subsection name="Description" id="PreferLiteralJavadocInlineTag_Description">
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/PreferLiteralJavadocInlineTagCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Properties" id="PreferLiteralJavadocInlineTag_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/PreferLiteralJavadocInlineTagCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="PreferLiteralJavadocInlineTag_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/preferliteraljavadocinlinetag/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/preferliteraljavadocinlinetag/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="PreferLiteralJavadocInlineTag_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+PreferLiteralJavadocInlineTag">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PreferLiteralJavadocInlineTag">
+            OpenJDK Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="PreferLiteralJavadocInlineTag_Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="PreferLiteralJavadocInlineTag"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name"
+          id="PreferLiteralJavadocInlineTag_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.PreferLiteralJavadocInlineTagCheck</p>
+      </subsection>
+
+      <subsection name="Parent Module" id="PreferLiteralJavadocInlineTag_Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="PreferLiteralJavadocInlineTag"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

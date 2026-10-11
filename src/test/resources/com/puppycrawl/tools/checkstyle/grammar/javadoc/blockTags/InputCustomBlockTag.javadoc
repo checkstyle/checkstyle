@@ -1,0 +1,5 @@
+* @apiNote This method uses the same rules as {@link Math#max}.
+* @implSpec This implementation returns a read-only iterator.
+* @customTag This method is optimized for <i> parallel execution </i> in production.
+* @reviewedBy John Smith on 2025-07-01
+* @test

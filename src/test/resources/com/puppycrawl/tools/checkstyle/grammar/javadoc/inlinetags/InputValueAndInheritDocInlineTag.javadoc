@@ -1,0 +1,16 @@
+* Example 1: {@value} — refers to the value of this constant.
+* Example 2: {@value #CONSTANT} — refers to another constant in the same class.
+* Example 3: {@value com.example.Constants#TIMEOUT_MS} — fully qualified constant reference.
+* Example 4: {@value %.2f} — formats this constant with two decimal places.
+* Example 5: {@value %.2f com.example.Constants#PI} — formatted reference to an external constant.
+* Example 6: {@value Constants#ENCODING} — class reference using unqualified class name (must be imported or in same package).
+* Example 7: {@value %.1f Constants#MEMORY_MB} — formatted with thousands separator and one decimal place.
+* Example 8: {@value %.2f
+*               com.example.Constants#PI} — formatted reference to an external constant.
+* Example 9: {@value
+*               %.2f
+*               com.example.Constants#PI} — formatted reference to an external constant.
+* {@inheritDoc java.util.List}
+* {@inheritDoc}
+* {@inheritDoc
+*           java.util.List}

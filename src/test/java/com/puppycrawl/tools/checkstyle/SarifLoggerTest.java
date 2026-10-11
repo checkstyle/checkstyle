@@ -1,0 +1,684 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.Serial;
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
+
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
+
+public class SarifLoggerTest extends AbstractModuleTestSupport {
+
+    /**
+     * Output stream to hold the test results. The IntelliJ IDEA issues the AutoCloseableResource
+     * warning here, so it needs to be suppressed. The {@code ByteArrayOutputStream} does not hold
+     * any resources that need to be released.
+     */
+    private final CloseAndFlushTestByteArrayOutputStream outStream =
+        new CloseAndFlushTestByteArrayOutputStream();
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/sariflogger";
+    }
+
+    /**
+     * Executes the common logging steps for SARIF logging tests.
+     * This method mimic of natural execution at is done by Checker.
+     *
+     * <p>
+     * It starts file auditing, adds an error, and completes the audit process.
+     * </p>
+     *
+     * @param instance  the current instance of {@code SarifLoggerTest}, used for context
+     * @param logger    the {@code SarifLogger} instance to log errors
+     * @param fileName  the name of the file being audited
+     * @param violation the {@code Violation} object containing error details
+     */
+    public final void executeLogger(
+        SarifLoggerTest instance, SarifLogger logger, String fileName, Violation violation) {
+        final AuditEvent event = new AuditEvent(this, "Test.java", violation);
+        logger.fileStarted(event);
+        logger.addError(event);
+        logger.fileFinished(event);
+        logger.auditFinished(null);
+    }
+
+    @Test
+    public void testEscape() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeAll.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeAll.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapeWithMessageKey() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeMessageKey.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeMessageKey.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testSingleError() throws Exception {
+        final String inputFile = "InputSarifLoggerSingleError.java";
+        final String expectedReportFile = "ExpectedSarifLoggerSingleError.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testAddErrorAtColumn1() throws Exception {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        final String inputFile = "InputSarifLoggerSingleErrorColumn1.java";
+        final String expectedOutput = "ExpectedSarifLoggerSingleErrorColumn1.sarif";
+        verifyWithInlineConfigParserAndLogger(getPath(inputFile),
+                getPath(expectedOutput), logger, outStream);
+    }
+
+    @Test
+    public void testAddErrorAtColumn0() throws Exception {
+        final String inputFile = "InputSarifLoggerErrorColumn0.java";
+        final String expectedReportFile = "ExpectedSarifLoggerSingleErrorColumn0.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testAddErrorWithWarningLevel() throws Exception {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        final String inputFile = "InputSarifLoggerSingleWarning.java";
+        final String expectedOutput = "ExpectedSarifLoggerSingleWarning.sarif";
+        verifyWithInlineConfigParserAndLogger(getPath(inputFile),
+                getPath(expectedOutput), logger, outStream);
+    }
+
+    @Test
+    public void testDoubleError() throws Exception {
+        final SarifLogger logger =
+                new SarifLogger(outStream, OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath("InputSarifLoggerDoubleError.java"),
+                getPath("ExpectedSarifLoggerDoubleError.sarif"),
+                logger,
+                outStream
+        );
+    }
+
+    @Test
+    public void testAddException() throws Exception {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath("InputSarifLoggerSingleException.java"),
+                getPath("ExpectedSarifLoggerSingleException.sarif"),
+                logger,
+                outStream
+        );
+    }
+
+    /**
+     * VerifyWithInlineConfigParserAndLogger uses Checker.process(...) and reaches
+     * logger callbacks through Checker.fireErrors(...), which triggers addError(AuditEvent).
+     * This test must call addException(AuditEvent, Throwable) directly with controlled events,
+     * including one event with a null fileName, because that exception path is not produced by
+     * the normal Checker.process(...) file-auditing flow.
+     */
+    @Test
+    public void testAddExceptions() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "null", null, null,
+                        getClass(), "found an error");
+        final AuditEvent ev = new AuditEvent(this, null, violation);
+        final Violation violation2 =
+                new Violation(1, 1,
+                        "messages.properties", "null", null, null,
+                        getClass(), "found an error");
+        final AuditEvent ev2 = new AuditEvent(this, "Test.java", violation2);
+        logger.fileStarted(ev);
+        logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
+        logger.fileFinished(ev);
+        logger.fileStarted(ev2);
+        logger.addException(ev2, new TestException("msg2", new RuntimeException("msg2")));
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyContent(getPath("ExpectedSarifLoggerDoubleException.sarif"), outStream);
+    }
+
+    @Test
+    public void testLineOnly() throws Exception {
+        final String inputFile = "InputSarifLoggerLineOnly.java";
+        final String expectedReportFile = "ExpectedSarifLoggerLineOnly.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+            OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream
+        );
+    }
+
+    @Test
+    public void testEmpty() throws Exception {
+        final String inputFile = "InputSarifLoggerEmpty.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEmpty.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream
+        );
+    }
+
+    @Test
+    public void testAddErrorWithSpaceInPath() throws Exception {
+        final String inputFile = "InputSarifLogger Space.java";
+        final String expectedReportFile = "ExpectedSarifLoggerSpaceInPath.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testAddErrorWithAbsoluteLinuxPath() throws Exception {
+        final String inputFile = "InputSarifLoggerAbsoluteLinuxPath.java";
+        final String expectedReportFile = "ExpectedSarifLoggerAbsoluteLinuxPath.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    /**
+     * VerifyWithInlineConfigParserAndLogger goes through Checker.process(...), where
+     * Checker.fireErrors(...) creates AuditEvent file names from real File objects and then
+     * normalizes them via relativizePathWithCatch(...), which delegates to
+     * CommonUtil.relativizePath(...). That flow does not produce synthetic "./Test.java",
+     * so this test keeps manual AuditEvent construction.
+     */
+    @Test
+    public void testAddErrorWithRelativeLinuxPath() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error");
+        final AuditEvent ev = new AuditEvent(this, "./Test.java", violation);
+        logger.fileStarted(ev);
+        logger.addError(ev);
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyContent(getPath("ExpectedSarifLoggerRelativeLinuxPath.sarif"), outStream);
+    }
+
+    /**
+     * The file name may contain the literal text of a report placeholder such as
+     * {@code ${message}}. Its braces are percent-encoded in the SARIF URI, which still
+     * identifies the original file name when decoded. Template substitution happens in a
+     * single pass, so the file name cannot splice the message object into the URI string.
+     */
+    @Test
+    public void testAddErrorWithPlaceholderInPath() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error");
+        final AuditEvent ev = new AuditEvent(this, "report${message}.java", violation);
+        logger.fileStarted(ev);
+        logger.addError(ev);
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyContent(getPath("ExpectedSarifLoggerPlaceholderInPath.sarif"), outStream);
+    }
+
+    /**
+     * A violation message can carry the literal text of a placeholder such as {@code ${uri}},
+     * for instance when a check reports the text it matched. Every placeholder is filled in a
+     * single pass, so the file name is not pulled into the message text.
+     */
+    @Test
+    public void testAddErrorWithPlaceholderInMessage() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", new Object[] {"found ${uri} here"},
+                        SeverityLevel.ERROR, null, getClass(), "{0}");
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
+        logger.fileStarted(ev);
+        logger.addError(ev);
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyContent(getPath("ExpectedSarifLoggerPlaceholderInMessage.sarif"), outStream);
+    }
+
+    /**
+     * Checker.process(...) obtains file paths from the current runtime File API, and
+     * Checker.fireErrors(...) passes those paths through relativizePathWithCatch(...)
+     * / CommonUtil.relativizePath(...). On Linux CI, File.getAbsolutePath() cannot produce
+     * a native "C:\\..." Windows absolute path, so this Windows-specific case is manual.
+     */
+    @Test
+    public void testAddErrorWithAbsoluteWindowsPath() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error");
+        final AuditEvent ev =
+                new AuditEvent(this, "C:\\Users\\SomeUser\\Code\\Test.java", violation);
+        logger.fileStarted(ev);
+        logger.addError(ev);
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyContent(getPath("ExpectedSarifLoggerAbsoluteWindowsPath.sarif"), outStream);
+    }
+
+    /**
+     * VerifyWithInlineConfigParserAndLogger relies on Checker.process(...), where path strings
+     * are OS-dependent and produced from File semantics before Checker.fireErrors(...) calls
+     * relativizePathWithCatch(...) / CommonUtil.relativizePath(...). A Linux run will not emit
+     * ".\\Test.java", so this test must construct the AuditEvent manually.
+     */
+    @Test
+    public void testAddErrorWithRelativeWindowsPath() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error");
+        final AuditEvent ev = new AuditEvent(this, ".\\Test.java", violation);
+        logger.fileStarted(ev);
+        logger.addError(ev);
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyContent(getPath("ExpectedSarifLoggerRelativeWindowsPath.sarif"), outStream);
+    }
+
+    /**
+     * A file name can contain a double quote on POSIX filesystems, and that character is not
+     * produced by the normal Checker.process(...) file-auditing flow, so the event is built
+     * manually to assert the rendered URI stays inside its JSON string instead of breaking out.
+     */
+    @Test
+    public void testAddErrorWithQuoteInPath() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error");
+        final AuditEvent ev = new AuditEvent(this, "Test\".java", violation);
+        logger.fileStarted(ev);
+        logger.addError(ev);
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyContent(getPath("ExpectedSarifLoggerQuoteInPath.sarif"), outStream);
+    }
+
+    @Test
+    public void testAddErrorWithReservedCharactersInPath() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream, OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error");
+        // The non-ASCII character U+00E9 (LATIN SMALL LETTER E WITH ACUTE) is built from
+        // its code point to keep this source file ASCII-only.
+        final String fileName = "Test#1?%<" + (char) 0xE9 + ".java";
+        logger.addError(new AuditEvent(this, fileName, violation));
+        logger.auditFinished(null);
+
+        final String uri = "file:Test%231%3F%25%3C%C3%A9.java";
+        assertWithMessage("SARIF URI should encode reserved characters")
+                .that(outStream.toString(StandardCharsets.UTF_8))
+                .contains("\"uri\": \"" + uri + "\"");
+        assertWithMessage("SARIF URI should resolve to the original file name")
+                .that(URI.create(uri).getSchemeSpecificPart())
+                .isEqualTo(fileName);
+    }
+
+    /**
+     * A file name that starts with a colon cannot be parsed into a valid URI reference,
+     * so the logger must fail loudly instead of writing a broken URI into the SARIF report.
+     */
+    @Test
+    public void testAddErrorWithInvalidFileName() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream, OutputStreamOptions.CLOSE);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error");
+        final IllegalArgumentException exception =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> logger.addError(new AuditEvent(this, ":invalid.java", violation)),
+                        "IllegalArgumentException was expected");
+        assertWithMessage("Invalid error message")
+                .that(exception.getMessage())
+                .isEqualTo("Invalid file name: :invalid.java");
+    }
+
+    /**
+     * We keep this test for 100% coverage. Until #12873.
+     */
+    @Test
+    public void testCtorWithTwoParametersCloseStreamOptions() throws IOException {
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final SarifLogger logger = new SarifLogger(infoStream,
+                AutomaticBean.OutputStreamOptions.CLOSE);
+        final boolean closeStream = TestUtil.getInternalState(logger, "closeStream", Boolean.class);
+
+        assertWithMessage("closeStream should be true")
+                .that(closeStream)
+                .isTrue();
+    }
+
+    /**
+     * We keep this test for 100% coverage. Until #12873.
+     */
+    @Test
+    public void testCtorWithTwoParametersNoneStreamOptions() throws IOException {
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final SarifLogger logger = new SarifLogger(infoStream,
+                AutomaticBean.OutputStreamOptions.NONE);
+        final boolean closeStream = TestUtil.getInternalState(logger, "closeStream", Boolean.class);
+
+        assertWithMessage("closeStream should be false")
+                .that(closeStream)
+                .isFalse();
+    }
+
+    /**
+     * This test can't use verifyWithInlineConfigParserAndLogger because it
+     * checks for an exception during the logger's creation. Since the constructor
+     * fails immediately with a null parameter, we never get a logger instance
+     * to use in the inline verification process.
+     */
+    @Test
+    public void testNullOutputStreamOptions() {
+        final IllegalArgumentException exception =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    final SarifLogger logger =
+                            new SarifLogger(outStream, (OutputStreamOptions) null);
+                    // assert required to calm down eclipse's
+                    // 'The allocated object is never used' violation
+                    assertWithMessage("Null instance")
+                        .that(logger)
+                        .isNotNull();
+                }, "Exception was expected");
+        assertWithMessage("Invalid error message")
+            .that(exception.getMessage())
+            .isEqualTo("Parameter outputStreamOptions can not be null");
+    }
+
+    @Test
+    public void testCloseStream() throws Exception {
+        final String inputFile = "InputSarifLoggerEmpty.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEmpty.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(1);
+    }
+
+    @Test
+    public void testNoCloseStream() throws Exception {
+        final String inputFile = "InputSarifLoggerEmpty.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEmpty.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.NONE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(0);
+        assertWithMessage("Invalid flush count")
+            .that(outStream.getFlushCount())
+            .isEqualTo(1);
+    }
+
+    @Test
+    public void testFinishLocalSetup() throws Exception {
+        final String inputFile = "InputSarifLoggerEmpty.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEmpty.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        logger.finishLocalSetup();
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    /**
+     * SarifLogger.readResource(String) is a static utility method that loads
+     * classpath resources directly. Passing an invalid name triggers an IOException
+     * that is not reachable through the normal Checker.process(...) and
+     * Checker.fireErrors(...) execution flow, so this test must call the method
+     * directly rather than using verifyWithInlineConfigParserAndLogger.
+     */
+    @Test
+    public void testReadResourceWithInvalidName() {
+        final IOException exception =
+                getExpectedThrowable(IOException.class, () -> {
+                    SarifLogger.readResource("random");
+                }, "Exception expected");
+        assertWithMessage("Exception message must match")
+            .that(exception.getMessage())
+            .isEqualTo("Cannot find the resource random");
+    }
+
+    @Test
+    public void testMultipleRules() throws Exception {
+        final String inputFile = "InputSarifLoggerMultipleRules.java";
+        final String expectedReportFile = "ExpectedSarifLoggerMultipleRules.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testModuleIdSuffix() throws Exception {
+        final String inputFile = "InputSarifLoggerModuleId.java";
+        final String expectedReportFile = "ExpectedSarifLoggerModuleId.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testMultipleMessageStrings() throws Exception {
+        final String inputFile = "InputSarifLoggerMultipleMessages.java";
+        final String expectedReportFile = "ExpectedSarifLoggerMultipleMessages.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    /**
+     * This test injects ruleMetadata via reflection to force ClassNotFoundException handling
+     * during logger.auditFinished(...). That reflective state mutation is outside the normal
+     * Checker.process(...) and Checker.fireErrors(...) helper flow.
+     */
+    @Test
+    public void testGetMessagesWithClassNotFoundException() throws Exception {
+        final SarifLogger logger = new SarifLogger(outStream, OutputStreamOptions.CLOSE);
+
+        final ModuleDetails fakeModule = new ModuleDetails();
+        fakeModule.setName("FakeCheck");
+        fakeModule.setFullQualifiedName("com.fake.NonExistentCheck");
+        fakeModule.setDescription("Fake check for testing");
+        fakeModule.addToViolationMessages("fake.message.key");
+
+        @SuppressWarnings("unchecked")
+        final Map<Object, ModuleDetails> ruleMetadata =
+                TestUtil.getInternalState(logger, "ruleMetadata", Map.class);
+        final Class<?> ruleKeyClass = TestUtil.getInnerClassType(SarifLogger.class, "RuleKey");
+        final Object ruleKey =
+                TestUtil.instantiate(ruleKeyClass, "com.fake.NonExistentCheck", null);
+        ruleMetadata.put(ruleKey, fakeModule);
+
+        logger.auditFinished(null);
+
+        verifyContent(getPath("ExpectedSarifLoggerClassNotFoundException.sarif"), outStream);
+    }
+
+    /**
+     * This test uses reflection to inject ruleMetadata and trigger MissingResourceException
+     * handling in logger.auditFinished(...). That reflective path is not reachable through
+     * the standard Checker.process(...) / Checker.fireErrors(...) execution.
+     */
+    @Test
+    public void testGetMessagesWithMissingResourceException() throws Exception {
+        final SarifLogger logger = new SarifLogger(outStream, OutputStreamOptions.CLOSE);
+
+        final ModuleDetails fakeModule = new ModuleDetails();
+        fakeModule.setName("SarifLoggerTest");
+        fakeModule.setFullQualifiedName("com.puppycrawl.tools.checkstyle.SarifLoggerTest");
+        fakeModule.setDescription("Test class without resource bundle");
+        fakeModule.addToViolationMessages("nonexistent.message.key");
+
+        @SuppressWarnings("unchecked")
+        final Map<Object, ModuleDetails> ruleMetadata =
+                TestUtil.getInternalState(logger, "ruleMetadata", Map.class);
+        final Class<?> ruleKeyClass = TestUtil.getInnerClassType(SarifLogger.class, "RuleKey");
+        final Object ruleKey =
+                TestUtil.instantiate(ruleKeyClass,
+                        "com.puppycrawl.tools.checkstyle.SarifLoggerTest", null);
+        ruleMetadata.put(ruleKey, fakeModule);
+
+        logger.auditFinished(null);
+
+        verifyContent(getPath("ExpectedSarifLoggerMissingResourceException.sarif"), outStream);
+    }
+
+    /**
+     * Tests that all severity levels (ERROR, WARNING, INFO, IGNORE) are correctly
+     * rendered in SARIF output to kill the switch statement mutation in renderSeverityLevel.
+     * This test uses realistic input with inline configuration rather than manual mocking
+     * to ensure proper integration testing.
+     *
+     * @throws Exception if an error occurs during verification
+     */
+    @Test
+    public void testRenderSeverityLevelAllLevels() throws Exception {
+        final String inputFile = "InputSarifLoggerAllSeverityLevels.java";
+        final String expectedReportFile = "ExpectedSarifLoggerAllSeverityLevels.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    private static void verifyContent(
+            String expectedOutputFile,
+            ByteArrayOutputStream actualOutputStream)
+                    throws IOException {
+        final String expectedContent = readFile(expectedOutputFile);
+        final String actualContent =
+                toLfLineEnding(actualOutputStream.toString(StandardCharsets.UTF_8));
+        assertWithMessage("sarif content should match")
+            .that(actualContent)
+            .isEqualTo(expectedContent);
+    }
+
+    private static final class TestException extends RuntimeException {
+
+        @Serial
+        private static final long serialVersionUID = 1L;
+
+        private TestException(String msg, Throwable cause) {
+            super(msg, cause);
+        }
+
+        @Override
+        public void printStackTrace(PrintWriter printWriter) {
+            printWriter.print("stackTrace\nexample");
+        }
+
+    }
+
+}

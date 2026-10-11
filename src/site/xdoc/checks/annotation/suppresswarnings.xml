@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SuppressWarnings</title>
+  </head>
+  <body>
+    <section xmlns="http://maven.apache.org/XDOC/2.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="SuppressWarnings">
+      <p>Since Checkstyle 5.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#SuppressWarnings_Description">Description</a></li>
+          <li><a href="#SuppressWarnings_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SuppressWarnings_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that the "unchecked" and "unused" warnings cannot be suppressed on anything but variable and parameter declarations.</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that the "unchecked" and "unused" warnings cannot be suppressed at any location</a></li>
+            </ul>
+          </li>
+          <li><a href="#SuppressWarnings_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#SuppressWarnings_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#SuppressWarnings_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#SuppressWarnings_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="SuppressWarnings_Description">
+        <div>
+          Allows to specify what warnings that
+          <code>@SuppressWarnings</code> is not allowed to suppress.
+          You can also specify a list of TokenTypes that
+          the configured warning(s) cannot be suppressed on.
+        </div>
+
+        <p>
+          Limitations:  This check does not consider conditionals
+          inside the &#64;SuppressWarnings annotation.
+        </p>
+
+        <p>
+          For example:
+          <code>@SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")</code>.
+          According to the above example, the "unused" warning is being suppressed
+          not the "unchecked" or "foo" warnings.  All of these warnings will be
+          considered and matched against regardless of what the conditional
+          evaluates to.
+          The check also does not support code like <code>@SuppressWarnings("un" + "used")</code>,
+          <code>@SuppressWarnings((String) "unused")</code> or
+          <code>@SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})</code>.
+        </p>
+
+        <p>
+          By default, any warning specified will be disallowed on
+          all legal TokenTypes unless otherwise specified via
+          the tokens property.
+        </p>
+
+        <p>
+          Also, by default warnings that are empty strings or all
+          whitespace (regex: ^$|^\s+$) are flagged.  By specifying,
+          the format property these defaults no longer apply.
+        </p>
+
+        <p>This check can be configured so that the "unchecked"
+          and "unused" warnings cannot be suppressed on
+          anything but variable and parameter declarations.
+          See below of an example.
+        </p>
+      </subsection>
+      <subsection name="Properties" id="SuppressWarnings_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="format"/><a href="#format">format</a></td>
+              <td>Specify the RegExp to match against warnings. Any warning being suppressed matching this pattern will be flagged.</td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
+              <td><code>^\s*+$</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                    ANNOTATION_FIELD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                    ENUM_CONSTANT_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+                    PARAMETER_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                    COMPACT_CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                    PATTERN_VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MODULE_DEF">
+                    MODULE_DEF</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                    ANNOTATION_FIELD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                    ENUM_CONSTANT_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+                    PARAMETER_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                    COMPACT_CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                    PATTERN_VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MODULE_DEF">
+                    MODULE_DEF</a>
+                  .
+              </td>
+              <td>5.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+      <subsection name="Examples" id="SuppressWarnings_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWarnings"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation below 'The warning '' cannot be suppressed at this location'
+@SuppressWarnings("")
+class Example1 {
+  // violation below 'The warning '' cannot be suppressed at this location'
+  @SuppressWarnings("")
+  final int num1 = 1;
+  // ok below as default format only checks for a blank or empty string
+  @SuppressWarnings("all")
+  final int num2 = 2;
+  // ok below as default format only checks for a blank or empty string
+  @SuppressWarnings("unused")
+  final int num3 = 3;
+
+  void foo1(@SuppressWarnings("unused") int param) {}
+
+  @SuppressWarnings("all")
+  void foo2(int param) {}
+
+  @SuppressWarnings("unused")
+  void foo3(int param) {}
+
+  @SuppressWarnings(true?"all":"unused")
+  void foo4(int param) {}
+}
+// ok below as default format only checks for a blank or empty string
+@SuppressWarnings("unchecked")
+class Test1 {}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check so that the &quot;unchecked&quot; and &quot;unused&quot;
+          warnings cannot be suppressed on anything
+          but variable and parameter declarations.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWarnings"&gt;
+      &lt;property name="format"
+          value="^unchecked$|^unused$"/&gt;
+      &lt;property name="tokens"
+        value="
+        CLASS_DEF,INTERFACE_DEF,ENUM_DEF,
+        ANNOTATION_DEF,ANNOTATION_FIELD_DEF,
+        ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
+        "/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// ok below, since we are only checking for '^unchecked$|^unused$'
+@SuppressWarnings("")
+class Example2 {
+  // ok below as VARIABLE_DEF is not configured in tokens to check
+  @SuppressWarnings("")
+  final int num1 = 1;
+
+  @SuppressWarnings("all")
+  final int num2 = 2;
+
+  @SuppressWarnings("unused")
+  final int num3 = 3;
+  // ok below as PARAMETER_DEF is not configured in tokens to check
+  void foo1(@SuppressWarnings("unused") int param) {}
+  // ok below, since we are only checking for '^unchecked$|^unused$'
+  @SuppressWarnings("all")
+  void foo2(int param) {}
+  // violation below 'The warning 'unused' cannot be suppressed at this location'
+  @SuppressWarnings("unused")
+  void foo3(int param) {}
+  // violation below 'The warning 'unused' cannot be suppressed at this location'
+  @SuppressWarnings(true?"all":"unused")
+  void foo4(int param) {}
+}
+// violation below 'The warning 'unchecked' cannot be suppressed at this location'
+@SuppressWarnings("unchecked")
+class Test2 {}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check so that the &quot;unchecked&quot; and &quot;unused&quot;
+          warnings cannot be suppressed at any location:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWarnings"&gt;
+      &lt;property name="format"
+          value="^unchecked$|^unused$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// ok below, since we are only checking for '^unchecked$|^unused$'
+@SuppressWarnings("")
+class Example3 {
+  // ok below, since we are only checking for '^unchecked$|^unused$'
+  @SuppressWarnings("")
+  final int num1 = 1;
+  // ok below as default format only checks for a blank or empty string
+  @SuppressWarnings("all")
+  final int num2 = 2;
+  // violation below 'The warning 'unused' cannot be suppressed at this location'
+  @SuppressWarnings("unused")
+  final int num3 = 3;
+  // violation below 'The warning 'unused' cannot be suppressed at this location'
+  void foo1(@SuppressWarnings("unused") int param) {}
+
+  @SuppressWarnings("all")
+  void foo2(int param) {}
+  // violation below 'The warning 'unused' cannot be suppressed at this location'
+  @SuppressWarnings("unused")
+  void foo3(int param) {}
+  // violation below 'The warning 'unused' cannot be suppressed at this location'
+  @SuppressWarnings(true?"all":"unused")
+  void foo4(int param) {}
+}
+// violation below 'The warning 'unchecked' cannot be suppressed at this location'
+@SuppressWarnings("unchecked")
+class Test3 {}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="SuppressWarnings_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarnings">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="SuppressWarnings_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22suppressed.warning.not.allowed%22">
+              suppressed.warning.not.allowed
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">
+          see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="SuppressWarnings_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="SuppressWarnings_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

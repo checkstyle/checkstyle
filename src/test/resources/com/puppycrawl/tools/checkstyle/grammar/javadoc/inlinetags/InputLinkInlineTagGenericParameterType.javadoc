@@ -1,0 +1,7 @@
+* {@link #b(List<Integer>)}
+* {@link #b(List<?>)}
+* {@link #b(Class<? extends Number>)}
+* {@link #b(int, List<String>)}
+* {@link #b(Map<String, List<Integer>>)}
+* {@link #b(ArrayList<Integer>, int)}
+* {@link #otherMethod(Map<String, StringBuilder>, double)}

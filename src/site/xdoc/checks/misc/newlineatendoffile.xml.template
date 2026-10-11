@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>NewlineAtEndOfFile</title>
+  </head>
+  <body>
+    <section name="NewlineAtEndOfFile">
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java"/>
+      </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java"/>
+      </macro>
+      <subsection name="Description" id="NewlineAtEndOfFile_Description">
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Notes" id="NewlineAtEndOfFile_Notes">
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Properties" id="NewlineAtEndOfFile_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="NewlineAtEndOfFile_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Correct Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example2-code">Violation Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example3-config">
+          To configure the check to always use Unix-style line separators:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example4-config">
+          To configure the check to work only on Java, XML and Cpp files:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example4.cpp"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Cpp file <code>Example4.cpp</code>:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example4.cpp"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example6-code">Text file <code>Example6.txt</code>:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="NewlineAtEndOfFile_Use_Cases">
+        <p id="UseCase1-config">Special message if line separator is defined:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="NewlineAtEndOfFile_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NewlineAtEndOfFile">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NewlineAtEndOfFile">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="NewlineAtEndOfFile_Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="NewlineAtEndOfFile"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="NewlineAtEndOfFile_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</p>
+        <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="NewlineAtEndOfFile_Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="NewlineAtEndOfFile"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

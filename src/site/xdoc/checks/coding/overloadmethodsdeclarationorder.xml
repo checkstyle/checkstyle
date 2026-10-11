@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>OverloadMethodsDeclarationOrder</title>
+  </head>
+  <body>
+    <section name="OverloadMethodsDeclarationOrder">
+      <p>Since Checkstyle 5.8</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#OverloadMethodsDeclarationOrder_Description">Description</a></li>
+          <li><a href="#OverloadMethodsDeclarationOrder_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#OverloadMethodsDeclarationOrder_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">According to OpenJDK guidelines, where overloaded methods should be grouped together and ordered by increasing parameter count</a></li>
+            </ul>
+          </li>
+          <li><a href="#OverloadMethodsDeclarationOrder_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#OverloadMethodsDeclarationOrder_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#OverloadMethodsDeclarationOrder_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#OverloadMethodsDeclarationOrder_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="OverloadMethodsDeclarationOrder_Description">
+        <div>
+          Checks that overloaded methods are grouped together. Overloaded methods have the same
+          name but different signatures where the signature can differ by the number of
+          input parameters or type of input parameters or both.
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="OverloadMethodsDeclarationOrder_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="orderByIncreasingParameterCount"/><a href="#orderByIncreasingParameterCount">orderByIncreasingParameterCount</a></td>
+              <td>Control whether to enforce order by increasing parameter count (arity) or not.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.7.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="OverloadMethodsDeclarationOrder_Examples">
+        <p id="Example1-config">To configure the check:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OverloadMethodsDeclarationOrder"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  void same(int i) {}
+  void same(String s, int i, int k) {}
+  // comments between overloaded methods are allowed.
+  void same(String s) {}
+
+  void same(int i, String s) {}
+
+  void notSame() {}
+  interface notSame{}
+
+  void otherSame(String s) {}
+  void foo() {}
+  // violation 2 lines below """All overloaded methods should be placed next
+  //  to each other. Previous overloaded method located at line '24'."""
+  void otherSame(String s, int i) {}
+
+  public enum ExampleEnum {
+    VALUE_ONE,
+    VALUE_TWO;
+
+    public void example() {}
+    public void example(String s, int i) {}
+
+    void foo() {}
+
+    // violation 2 lines below """All overloaded methods should be placed next
+    //  to each other. Previous overloaded method located at line '35'."""
+    public void example(String s) {}
+
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">To configure the check according to
+          <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-class-structure">
+          OpenJDK guidelines</a>, where
+          overloaded methods should be grouped together and ordered by increasing parameter count:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OverloadMethodsDeclarationOrder"&gt;
+        &lt;property name="orderByIncreasingParameterCount" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 {
+  void same(int i) {}
+  void same(String s, int i, int k) {}
+  // comments between overloaded methods are allowed.
+  void same(String s) {}
+  // violation above 'Overloaded methods should be ordered by increasing parameter count.'
+  void same(int i, String s) {}
+  // violation above 'Overloaded methods should be ordered by increasing parameter count.'
+  void notSame() {}
+  interface notSame{}
+
+  void otherSame(String s) {}
+  void foo() {}
+  // violation 2 lines below """All overloaded methods should be placed next
+  //  to each other. Previous overloaded method located at line '24'."""
+  void otherSame(String s, int i) {}
+
+  public enum ExampleEnum {
+    VALUE_ONE,
+    VALUE_TWO;
+
+    public void example() {}
+    public void example(String s, int i) {}
+
+    void foo() {}
+
+    // violation 2 lines below """All overloaded methods should be placed next
+    //  to each other. Previous overloaded method located at line '35'."""
+    public void example(String s) {}
+    // violation above 'Overloaded methods should be ordered by increasing parameter count.'
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="OverloadMethodsDeclarationOrder_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OverloadMethodsDeclarationOrder">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OverloadMethodsDeclarationOrder">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OverloadMethodsDeclarationOrder">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="OverloadMethodsDeclarationOrder_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22overload.methods.declaration%22">
+              overload.methods.declaration
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22overload.methods.declaration.order%22">
+              overload.methods.declaration.order
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name"
+                   id="OverloadMethodsDeclarationOrder_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="OverloadMethodsDeclarationOrder_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

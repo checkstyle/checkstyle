@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>AnnotationOnSameLine</title>
+  </head>
+  <body>
+    <section xmlns="http://maven.apache.org/XDOC/2.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="AnnotationOnSameLine">
+      <p>Since Checkstyle 8.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#AnnotationOnSameLine_Description">Description</a></li>
+          <li><a href="#AnnotationOnSameLine_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#AnnotationOnSameLine_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Check for annotations applied on interfaces, variables and constructors</a></li>
+            </ul>
+          </li>
+          <li><a href="#AnnotationOnSameLine_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#AnnotationOnSameLine_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#AnnotationOnSameLine_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#AnnotationOnSameLine_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="AnnotationOnSameLine_Description">
+        <div>
+          Checks that annotations are located on the same line with their targets.
+          Verifying with this check is not good practice, but it is using by some style guides.
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="AnnotationOnSameLine_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+                    PARAMETER_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
+                    TYPECAST</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_THROWS">
+                    LITERAL_THROWS</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPLEMENTS_CLAUSE">
+                    IMPLEMENTS_CLAUSE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPE_ARGUMENT">
+                    TYPE_ARGUMENT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+                    LITERAL_NEW</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
+                    DOT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                    ANNOTATION_FIELD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                    COMPACT_CTOR_DEF</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                    COMPACT_CTOR_DEF</a>
+                  .
+              </td>
+              <td>8.2</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="AnnotationOnSameLine_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationOnSameLine"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+
+  // violation below "should be on the same line with its target."
+  @SuppressWarnings("deprecation")
+  public Example1() {
+  }
+
+  @SuppressWarnings("unchecked") public void fun2() {}
+
+  public void fun1() {}
+
+  // violation below "should be on the same line with its target."
+  @Nullable
+  String s;
+}
+
+@SuppressWarnings("unchecked") class Test1 {
+
+  @Deprecated public Test1() {}
+  // violation below "should be on the same line with its target."
+  @Before
+  public void fun1() {}
+  // violation below "should be on the same line with its target."
+  @Before
+  @SuppressWarnings("unchecked") public void fun2() {}
+  // violation below "should be on the same line with its target."
+  @SuppressWarnings("deprecation")
+  @Before public void fun3() {
+  }
+
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to check for annotations applied on
+          interfaces, variables and constructors:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationOnSameLine"&gt;
+      &lt;property name="tokens"
+                value="INTERFACE_DEF, VARIABLE_DEF, CTOR_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 {
+
+  // violation below "should be on the same line with its target."
+  @SuppressWarnings("deprecation")
+  public Example2() {
+  }
+
+  @SuppressWarnings("unchecked") public void fun2() {}
+
+  public void fun1() {}
+
+  // violation below "should be on the same line with its target."
+  @Nullable
+  String s;
+}
+
+@SuppressWarnings("unchecked") class Test2 {
+
+  @Deprecated public Test2() {}
+  // ok below, @Before is not in tokens to check
+  @Before
+  public void fun1() {}
+  // ok below, @Before is not in tokens to check
+  @Before
+  @SuppressWarnings("unchecked") public void fun2() {}
+  // ok below, @SuppressWarnings is not in tokens to check
+  @SuppressWarnings("deprecation")
+  @Before public void fun3() {
+  }
+
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="AnnotationOnSameLine_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationOnSameLine">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="AnnotationOnSameLine_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.same.line%22">
+              annotation.same.line
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">
+          see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="AnnotationOnSameLine_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="AnnotationOnSameLine_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

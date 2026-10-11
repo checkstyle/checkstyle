@@ -1,0 +1,49 @@
+/*
+AbbreviationAsWordInName
+allowedAbbreviationLength = 1
+allowedAbbreviations = XML
+ignoreFinal = (default)true
+ignoreStatic = (default)true
+ignoreStaticFinal = (default)true
+ignoreOverriddenMethods = (default)true
+tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF, \
+         PARAMETER_DEF, VARIABLE_DEF, METHOD_DEF, PATTERN_VARIABLE_DEF, RECORD_DEF, \
+         RECORD_COMPONENT_DEF
+
+
+*/
+
+
+package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
+
+import java.util.*;
+import java.util.Locale;
+
+public class InputAbbreviationAsWordInNameCheckEnhancedInstanceofAllowXmlLength1 {
+
+    public void t(Object o1, Object o2) {
+        // violation below 'Abbreviation in name 'STRING''
+        if (!(o1 instanceof String STRING)
+                // violation below 'Abbreviation in name 'INTEGER''
+                && (o2 instanceof Integer INTEGER)) {}
+
+        List<Integer> arrayList = new ArrayList<Integer>();
+        if (arrayList instanceof ArrayList<Integer> aXML) { // ok, allowed XML
+            System.out.println("Blah");
+        }
+
+        boolean result = (o1 instanceof String a1) ?
+                // violation below 'Abbreviation in name 'aTXT''
+                (o1 instanceof String aTXT) :
+                // violation below 'Abbreviation in name 'ssSTRING''
+                (!(o1 instanceof String ssSTRING));
+
+        String formatted;
+        // violation below 'Abbreviation in name 'XMLHTTP''
+        if (o1 instanceof Integer XMLHTTP) formatted =
+                String.format("int %d", XMLHTTP);
+        else if (o1 instanceof Byte bYT) formatted = String.format("byte %d", bYT);
+        else formatted = String.format("Something else "+ o1.toString());
+
+    }
+}

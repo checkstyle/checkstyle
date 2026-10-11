@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>HideUtilityClassConstructor</title>
+  </head>
+  <body>
+    <section name="HideUtilityClassConstructor">
+      <p>Since Checkstyle 3.1</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#HideUtilityClassConstructor_Description">Description</a></li>
+          <li><a href="#HideUtilityClassConstructor_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#HideUtilityClassConstructor_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Ignore classes annotated with <code>SpringBootApplication</code> or <code>java.lang.Deprecated</code>.</a></li>
+            </ul>
+          </li>
+          <li><a href="#HideUtilityClassConstructor_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#HideUtilityClassConstructor_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#HideUtilityClassConstructor_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#HideUtilityClassConstructor_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="HideUtilityClassConstructor_Description">
+        <div>
+          Makes sure that utility classes (classes that contain only static methods or fields in their API)
+          do not have a public constructor.
+        </div>
+
+        <p>
+          Rationale: Instantiating utility classes does not make sense.
+          Hence, the constructors should either be private or (if you want to allow subclassing) protected.
+          A common mistake is forgetting to hide the default constructor.
+        </p>
+
+        <p>
+          If you make the constructor protected you may want to consider the following constructor
+          implementation technique to disallow instantiating subclasses:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+public class StringUtils // not final to allow subclassing
+{
+  protected StringUtils() {
+    // prevents calls from subclass
+    throw new UnsupportedOperationException();
+  }
+
+  public static int count(char c, String s) {
+    // ...
+  }
+}
+        </code></pre></div>
+      </subsection>
+
+      <subsection name="Properties" id="HideUtilityClassConstructor_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="ignoreAnnotatedBy"/><a href="#ignoreAnnotatedBy">ignoreAnnotatedBy</a></td>
+              <td>Ignore classes annotated with the specified annotation(s). Annotation names provided in this property must exactly match the annotation names on the classes. If the target class has annotations specified with their fully qualified names (including package), the annotations in this property should also be specified with their fully qualified names. Similarly, if the target class has annotations specified with their simple names, this property should contain the annotations with the same simple names.</td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
+              <td><code>{}</code></td>
+              <td>10.20.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="HideUtilityClassConstructor_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="HideUtilityClassConstructor"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation below 'should not have a public or default constructor'
+@java.lang.Deprecated
+class Example1 {
+
+  public Example1() {
+  }
+
+  public static void fun() {
+  }
+}
+
+class Foo {
+
+  private Foo() {
+  }
+
+  static int n;
+}
+
+class Bar {
+
+  protected Bar() {
+    // prevents calls from subclass
+    throw new UnsupportedOperationException();
+  }
+}
+
+@Deprecated // violation 'should not have a public or default constructor'
+class UtilityClass {
+
+  static float f;
+}
+// violation below 'should not have a public or default constructor'
+@SpringBootApplication
+class Application1 {
+
+  public static void main(String[] args) {
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to ignore classes annotated with <code>SpringBootApplication</code>
+          or <code>java.lang.Deprecated</code>.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="HideUtilityClassConstructor"&gt;
+      &lt;property name="ignoreAnnotatedBy"
+        value="SpringBootApplication, java.lang.Deprecated" /&gt;
+    &lt;/module&gt;
+   &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// ok below, skipped by annotation
+@java.lang.Deprecated
+class Example2 {
+
+  public Example2() {
+  }
+
+  public static void fun() {
+  }
+}
+
+class Foo2 {
+
+  private Foo2() {
+  }
+
+  static int n;
+}
+
+class Bar2 {
+
+  protected Bar2() {
+    // prevents calls from subclass
+    throw new UnsupportedOperationException();
+  }
+}
+
+@Deprecated // violation 'should not have a public or default constructor'
+class UtilityClass2 {
+
+  static float f;
+}
+// ok below, skipped by annotation
+@SpringBootApplication
+class Application2 {
+
+  public static void main(String[] args) {
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="HideUtilityClassConstructor_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HideUtilityClassConstructor">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+HideUtilityClassConstructor">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="HideUtilityClassConstructor_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22hide.utility.class%22">
+              hide.utility.class
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="HideUtilityClassConstructor_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="HideUtilityClassConstructor_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

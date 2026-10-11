@@ -1,0 +1,321 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.indentation;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+/**
+ * <div>
+ * Checks correct indentation of Java code.
+ * </div>
+ *
+ * <p>
+ * The idea behind this is that while
+ * pretty printers are sometimes convenient for bulk reformats of
+ * legacy code, they often either aren't configurable enough or
+ * just can't anticipate how format should be done. Sometimes this is
+ * personal preference, other times it is practical experience. In any
+ * case, this check should just ensure that a minimal set of indentation
+ * rules is followed.
+ * </p>
+ *
+ * <p>
+ * Basic offset indentation is used for indentation inside code blocks.
+ * For any lines that span more than 1, line wrapping indentation is used for those lines
+ * after the first. Brace adjustment, case, and throws indentations are all used only if
+ * those specific identifiers start the line. If, for example, a brace is used in the
+ * middle of the line, its indentation will not take effect. All indentations have an
+ * accumulative/recursive effect when they are triggered. If during a line wrapping, another
+ * code block is found and it doesn't end on that same line, then the subsequent lines
+ * afterwards, in that new code block, are increased on top of the line wrap and any
+ * indentations above it.
+ * </p>
+ *
+ * <p>
+ * Example:
+ * </p>
+ * {@snippet :
+ * if ((condition1 && condition2)
+ *         || (condition3 && condition4)    // line wrap with bigger indentation
+ *         ||!(condition5 && condition6)) { // line wrap with bigger indentation
+ *   field.doSomething()                    // basic offset
+ *       .doSomething()                     // line wrap
+ *       .doSomething( c -> {               // line wrap
+ *         return c.doSome();               // basic offset
+ *       });
+ * }
+ * }
+ *
+ * @since 3.1
+ */
+@FileStatefulCheck
+public class IndentationCheck extends AbstractCheck {
+
+    /*  -- Implementation --
+     *
+     *  Basically, this check requests visitation for all handled token
+     *  types (those tokens registered in the HandlerFactory).  When visitToken
+     *  is called, a new ExpressionHandler is created for the AST and pushed
+     *  onto the handlers stack.  The new handler then checks the indentation
+     *  for the currently visiting AST.  When leaveToken is called, the
+     *  ExpressionHandler is popped from the stack.
+     *
+     *  While on the stack the ExpressionHandler can be queried for the
+     *  indentation level it suggests for children as well as for other
+     *  values.
+     *
+     *  While an ExpressionHandler checks the indentation level of its own
+     *  AST, it typically also checks surrounding ASTs.  For instance, a
+     *  while loop handler checks the while loop as well as the braces
+     *  and immediate children.
+     *
+     *   - handler class -to-&gt; ID mapping kept in Map
+     *   - parent passed in during construction
+     *   - suggest child indent level
+     *   - allows for some tokens to be on same line (ie inner classes OBJBLOCK)
+     *     and not increase indentation level
+     *   - looked at using double dispatch for getSuggestedChildIndent(), but it
+     *     doesn't seem worthwhile, at least now
+     *   - both tabs and spaces are considered whitespace in front of the line...
+     *     tabs are converted to spaces
+     *   - block parents with parens -- for, while, if, etc... -- are checked that
+     *     they match the level of the parent
+     */
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_ERROR = IndentationContext.MSG_ERROR;
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_ERROR_MULTI = IndentationContext.MSG_ERROR_MULTI;
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_CHILD_ERROR = IndentationContext.MSG_CHILD_ERROR;
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_CHILD_ERROR_MULTI =
+        IndentationContext.MSG_CHILD_ERROR_MULTI;
+
+    /** Default indentation amount - based on Sun. */
+    private static final int DEFAULT_INDENTATION = 4;
+
+    /** Handlers currently in use. */
+    private final Deque<AbstractExpressionHandler> handlers = new ArrayDeque<>();
+
+    /** Factory from which handlers are distributed. */
+    private final HandlerFactory handlerFactory = new HandlerFactory();
+
+    /** Lines logged as having incorrect indentation. */
+    private final Set<Integer> incorrectIndentationLines = new HashSet<>();
+
+    /** Context handed to handlers for this file; rebuilt in {@link #beginTree}. */
+    private IndentationContext context;
+
+    /** Specify how far new indentation level should be indented when on the next line. */
+    private int basicOffset = DEFAULT_INDENTATION;
+
+    /** Specify how far a case label should be indented when on next line. */
+    private int caseIndent = DEFAULT_INDENTATION;
+
+    /** Specify how far a braces should be indented when on the next line. */
+    private int braceAdjustment;
+
+    /** Specify how far a throws clause should be indented when on next line. */
+    private int throwsIndent = DEFAULT_INDENTATION;
+
+    /** Specify how far an array initialization should be indented when on next line. */
+    private int arrayInitIndent = DEFAULT_INDENTATION;
+
+    /** Specify how far continuation line should be indented when line-wrapping is present. */
+    private int lineWrappingIndentation = DEFAULT_INDENTATION;
+
+    /**
+     * Force strict indent level in line wrapping case. If value is true, line wrap indent
+     * have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent
+     * could be bigger on any value user would like.
+     */
+    private boolean forceStrictCondition;
+
+    /**
+     * Creates a new {@code IndentationCheck} instance.
+     */
+    public IndentationCheck() {
+        // no code by default
+    }
+
+    /**
+     * Setter to force strict indent level in line wrapping case. If value is true, line wrap indent
+     * have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent
+     * could be bigger on any value user would like.
+     *
+     * @param value user's value of forceStrictCondition.
+     * @since 6.3
+     */
+    public void setForceStrictCondition(boolean value) {
+        forceStrictCondition = value;
+    }
+
+    /**
+     * Setter to specify how far new indentation level should be indented when on the next line.
+     *
+     * @param basicOffset   the number of tabs or spaces to indent
+     * @since 3.1
+     */
+    public void setBasicOffset(int basicOffset) {
+        this.basicOffset = basicOffset;
+    }
+
+    /**
+     * Setter to specify how far a braces should be indented when on the next line.
+     *
+     * @param adjustmentAmount   the brace offset
+     * @since 3.1
+     */
+    public void setBraceAdjustment(int adjustmentAmount) {
+        braceAdjustment = adjustmentAmount;
+    }
+
+    /**
+     * Setter to specify how far a case label should be indented when on next line.
+     *
+     * @param amount   the case indentation level
+     * @since 3.1
+     */
+    public void setCaseIndent(int amount) {
+        caseIndent = amount;
+    }
+
+    /**
+     * Setter to specify how far a throws clause should be indented when on next line.
+     *
+     * @param throwsIndent the throws indentation level
+     * @since 5.7
+     */
+    public void setThrowsIndent(int throwsIndent) {
+        this.throwsIndent = throwsIndent;
+    }
+
+    /**
+     * Setter to specify how far an array initialization should be indented when on next line.
+     *
+     * @param arrayInitIndent the array initialization indentation level
+     * @since 5.8
+     */
+    public void setArrayInitIndent(int arrayInitIndent) {
+        this.arrayInitIndent = arrayInitIndent;
+    }
+
+    /**
+     * Setter to specify how far continuation line should be indented when line-wrapping is present.
+     *
+     * @param lineWrappingIndentation the line-wrapping indentation level
+     * @since 5.9
+     */
+    public void setLineWrappingIndentation(int lineWrappingIndentation) {
+        this.lineWrappingIndentation = lineWrappingIndentation;
+    }
+
+    @Override
+    public int[] getDefaultTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return handlerFactory.getHandledTypes();
+    }
+
+    @Override
+    public void beginTree(DetailAST ast) {
+        clearState();
+        final LineWrappingHandler lineWrappingHandler = new LineWrappingHandler();
+        context = new IndentationContext(
+            basicOffset, braceAdjustment, caseIndent, throwsIndent,
+            arrayInitIndent, lineWrappingIndentation, forceStrictCondition,
+            getTabWidth(),
+            this::getLine,
+            handlerFactory,
+            lineWrappingHandler,
+            this::logIndentation);
+        lineWrappingHandler.setContext(context);
+        handlers.push(new PrimordialHandler(context));
+    }
+
+    @Override
+    public void visitToken(DetailAST ast) {
+        final AbstractExpressionHandler handler = handlerFactory.getHandler(context, ast,
+            handlers.peek());
+        handlers.push(handler);
+        handler.checkIndentation();
+    }
+
+    @Override
+    public void leaveToken(DetailAST ast) {
+        handlers.pop();
+    }
+
+    /**
+     * Log a violation, deduplicating by line number so each line only produces
+     * one indentation error. Invoked by handlers through {@link IndentationLogger}.
+     *
+     * @param ast the AST for which the error is logged
+     * @param key the message key
+     * @param args message arguments
+     */
+    private void logIndentation(DetailAST ast, String key, Object... args) {
+        if (!incorrectIndentationLines.contains(ast.getLineNo())) {
+            incorrectIndentationLines.add(ast.getLineNo());
+            log(ast, key, args);
+        }
+    }
+
+    /**
+     * Clears internal state for memory management between files.
+     */
+    private void clearState() {
+        handlerFactory.clearCreatedHandlers();
+        handlers.clear();
+        incorrectIndentationLines.clear();
+    }
+
+}

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Header</title>
+  </head>
+  <body>
+    <section name="Header">
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/HeaderCheck.java"/>
+      </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/HeaderCheck.java"/>
+      </macro>
+      <subsection name="Description" id="Header_Description">
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/HeaderCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Notes" id="Header_Notes">
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/HeaderCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Properties" id="Header_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/HeaderCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Header_Examples">
+        <p id="Example1-raw">
+          To configure the check such that no violations arise.
+          Default values of properties are used.
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example1.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example1-code">Example1:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-raw">
+          To configure the check to use header file <code>"java.header"</code> and
+          ignore lines <code>2</code>, <code>3</code>, and <code> 4</code> and only process Java
+          files. 'ignoreLines' property is very useful for supporting headers that contain
+          copyright dates or other content that slightly different in some files:
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example2.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="java-raw">content of "java.header" file:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/java.header"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example2-code">Example2:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-raw">
+          Without the need for an external header file:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example3.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example3-code">Example3:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-raw">
+          In case target file is less in size than header file:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example4.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Header_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+Header">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Header_Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="Header"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+       <subsection name="Fully Qualified Name" id="Header_Fully_Qualified_Name">
+         <p> com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck</p>
+         <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+         </p>
+       </subsection>
+
+      <subsection name="Parent Module" id="Header_Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="Header"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,0 +1,343 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "downloadUri": "https://github.com/checkstyle/checkstyle/releases/",
+          "fullName": "Checkstyle",
+          "informationUri": "https://checkstyle.org/",
+          "language": "en",
+          "name": "Checkstyle",
+          "organization": "Checkstyle",
+          "rules": [
+            {
+              "id": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck",
+              "messageStrings": {
+                "illegal.token.text": {
+                  "text": "Token text matches the illegal pattern ''{0}''."
+                }
+              },
+              "shortDescription": {
+                "text": "IllegalTokenText"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks specified tokens text for matching an illegal pattern.\n By default, no tokens are specified.\n <\/div>"
+              }
+            },
+            {
+              "id": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck",
+              "messageStrings": {
+                "illegal.token": {
+                  "text": "Using ''{0}'' is not allowed."
+                }
+              },
+              "shortDescription": {
+                "text": "IllegalToken"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks for illegal tokens. By default, labels are prohibited.\n <\/div>\n\n <p>\n Rationale: Certain language features can harm readability, lead to\n confusion or are not obvious to novice developers. Other features\n may be discouraged in certain frameworks, such as not having\n native methods in Enterprise JavaBeans components.\n <\/p>"
+              }
+            }
+          ],
+          "semanticVersion": "null",
+          "version": "null"
+        }
+      },
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeAll.java"
+                },
+                "region": {
+                  "startColumn": 13,
+                  "startLine": 41
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\t"
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeAll.java"
+                },
+                "region": {
+                  "startColumn": 13,
+                  "startLine": 41
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\r"
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeAll.java"
+                },
+                "region": {
+                  "startColumn": 13,
+                  "startLine": 41
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"\\\\ \\n"
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeAll.java"
+                },
+                "region": {
+                  "startColumn": 20,
+                  "startLine": 42
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "illegal.token",
+            "text": "Using '\"\/\"' is not allowed."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeAll.java"
+                },
+                "region": {
+                  "startColumn": 20,
+                  "startLine": 42
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "illegal.token.text",
+            "text": "Token text matches the illegal pattern '\/'."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeAll.java"
+                },
+                "region": {
+                  "startColumn": 20,
+                  "startLine": 43
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "illegal.token",
+            "text": "Using '\" \"' is not allowed."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeAll.java"
+                },
+                "region": {
+                  "startColumn": 20,
+                  "startLine": 43
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "illegal.token.text",
+            "text": "Token text matches the illegal pattern ' '."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeAll.java"
+                },
+                "region": {
+                  "startColumn": 22,
+                  "startLine": 44
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "illegal.token",
+            "text": "Using '\"bar1234\"' is not allowed."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeAll.java"
+                },
+                "region": {
+                  "startColumn": 22,
+                  "startLine": 44
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "illegal.token.text",
+            "text": "Token text matches the illegal pattern 'bar1234'."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeAll.java"
+                },
+                "region": {
+                  "startColumn": 29,
+                  "startLine": 45
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "illegal.token",
+            "text": "Using '\"\b\"' is not allowed."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeAll.java"
+                },
+                "region": {
+                  "startColumn": 29,
+                  "startLine": 46
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "illegal.token",
+            "text": "Using '\"\f\"' is not allowed."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeAll.java"
+                },
+                "region": {
+                  "startColumn": 29,
+                  "startLine": 47
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "illegal.token",
+            "text": "Using '\"\u0010\"' is not allowed."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeAll.java"
+                },
+                "region": {
+                  "startColumn": 29,
+                  "startLine": 48
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "illegal.token",
+            "text": "Using '\"\u001E\"' is not allowed."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeAll.java"
+                },
+                "region": {
+                  "startColumn": 29,
+                  "startLine": 49
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "illegal.token",
+            "text": "Using '\"\u001F\"' is not allowed."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>EmptyCatchBlock</title>
+  </head>
+  <body>
+    <section name="EmptyCatchBlock">
+      <p>Since Checkstyle 6.4</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#EmptyCatchBlock_Description">Description</a></li>
+          <li><a href="#EmptyCatchBlock_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#EmptyCatchBlock_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Suppress empty catch block if exception's variable name is <code>expected</code> or <code>ignore</code> or there's any comment inside</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Suppress empty catch block if single-line comment inside is "This is expected"</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#EmptyCatchBlock_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Suppress empty catch block if single-line comment inside is "This is expected"</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Suppress empty catch block if exception's variable name is "myException"</a></li>
+            </ul>
+          </li>
+          <li><a href="#EmptyCatchBlock_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#EmptyCatchBlock_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#EmptyCatchBlock_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#EmptyCatchBlock_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="EmptyCatchBlock_Description">
+        <div>
+          Checks for empty catch blocks.
+          By default, check allows empty catch block with any comment inside.
+        </div>
+      </subsection>
+
+      <subsection name="Notes" id="EmptyCatchBlock_Notes">
+        <p>
+          There are two options to make validation more precise: <b>exceptionVariableName</b> and
+          <b>commentFormat</b>.
+          If both options are specified - they are applied by <b>any of them is matching</b>.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="EmptyCatchBlock_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="commentFormat"/><a href="#commentFormat">commentFormat</a></td>
+              <td>Specify the RegExp for the first comment inside empty catch block. If check meets comment inside empty catch block matching specified format - empty block is suppressed. If it is multi-line comment - only its first line is analyzed.</td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
+              <td><code>.*</code></td>
+              <td>6.4</td>
+            </tr>
+            <tr>
+              <td><a id="exceptionVariableName"/><a href="#exceptionVariableName">exceptionVariableName</a></td>
+              <td>Specify the RegExp for the name of the variable associated with exception. If check meets variable name matching specified value - empty block is suppressed.</td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
+              <td><code>^$</code></td>
+              <td>6.4</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="EmptyCatchBlock_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyCatchBlock"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Such empty blocks would be both suppressed:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  private void exampleMethod1() {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException expected) {
+    } // violation above 'Empty catch block'
+  }
+
+  private void exampleMethod2() {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException ignore) {
+      // no handling
+    } // ok, catch block has comment
+  }
+
+  private void exampleMethod3 () {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException o) {
+    } // violation above 'Empty catch block'
+  }
+
+  private void exampleMethod4 () {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException ex) {
+      // This is expected
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to suppress empty catch block if exception's variable name is
+          <code>expected</code> or <code>ignore</code> or there's any comment inside:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyCatchBlock"&gt;
+      &lt;property name="exceptionVariableName" value="expected|ignore"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Such empty blocks would be both suppressed:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+  private void exampleMethod1() {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException expected) {
+    }
+  }
+
+  private void exampleMethod2() {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException ignore) {
+      // no handling
+    }
+  }
+
+  private void exampleMethod3 () {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException o) {
+    } // violation above 'Empty catch block'
+  }
+
+  private void exampleMethod4 () {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException ex) {
+      // This is expected
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to suppress empty catch block if single-line comment inside
+           is &quot;This is expected&quot;:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyCatchBlock"&gt;
+      &lt;property name="commentFormat" value="This is expected"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Such empty blocks would be both suppressed:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+  private void exampleMethod1() {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException expected) {
+    } // violation above 'Empty catch block'
+  }
+
+  private void exampleMethod2() {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException ignore) {
+      // no handling
+    } // violation 2 lines above 'Empty catch block'
+  }
+
+  private void exampleMethod3 () {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException o) {
+    } // violation above 'Empty catch block'
+  }
+
+  private void exampleMethod4 () {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException ex) {
+      // This is expected
+    }
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="EmptyCatchBlock_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check to suppress empty catch block if single-line comment inside
+          is &quot;This is expected&quot;:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyCatchBlock"&gt;
+      &lt;property name="commentFormat" value="This is expected"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Such empty blocks would be both suppressed:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase1 {
+  private void exampleMethod1() {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException e) {
+      //This is expected
+    }
+  }
+
+  private void exampleMethod2() {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException e) {
+      //   This is expected
+    }
+  }
+
+  private void exampleMethod3 () {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException e) {
+      // This is expected
+      // some another comment
+    }
+  }
+
+  private void exampleMethod4 () {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException e) {
+      /* This is expected */
+    }
+  }
+
+  private void exampleMethod5() {
+    try {
+      throw new RuntimeException();
+      // violation below 'Empty catch block'
+    } catch (RuntimeException e) {
+      /*
+       *
+       * This is expected
+       * some another comment */
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          To configure the check to suppress empty catch block if
+          exception's variable name is &quot;myException&quot;:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyCatchBlock"&gt;
+      &lt;property name="exceptionVariableName" value="myException"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">Such empty blocks would be both suppressed:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase2 {
+  private void exampleMethod1() {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException e) {
+    } // violation above 'Empty catch block'
+  }
+
+  private void exampleMethod2() {
+    try {
+      throw new RuntimeException();
+    } catch (RuntimeException myException) {
+    }
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="EmptyCatchBlock_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyCatchBlock">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyCatchBlock">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="EmptyCatchBlock_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22catch.block.empty%22">
+              catch.block.empty
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="EmptyCatchBlock_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="EmptyCatchBlock_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,0 +1,95 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.whitespace;
+
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+/**
+ * <div>
+ * Checks the policy on the padding of parentheses for typecasts. That is, whether a space
+ * is required after a left parenthesis and before a right parenthesis, or such
+ * spaces are forbidden.
+ * </div>
+ *
+ * @since 3.2
+ */
+public class TypecastParenPadCheck extends AbstractParenPadCheck {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_WS_FOLLOWED = "ws.followed";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_WS_PRECEDED = "ws.preceded";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
+
+    /**
+     * Creates a new {@code TypecastParenPadCheck} instance.
+     */
+    public TypecastParenPadCheck() {
+        super(MSG_WS_FOLLOWED, MSG_WS_NOT_FOLLOWED, MSG_WS_PRECEDED, MSG_WS_NOT_PRECEDED);
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return new int[] {TokenTypes.RPAREN, TokenTypes.TYPECAST};
+    }
+
+    @Override
+    public int[] getDefaultTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public void visitToken(DetailAST ast) {
+        // Strange logic in this method to guard against checking RPAREN tokens
+        // that are not associated with a TYPECAST token.
+        if (ast.getType() == TokenTypes.TYPECAST) {
+            processLeft(ast);
+        }
+        else if (ast.getParent().getType() == TokenTypes.TYPECAST
+                 && ast.getParent().findFirstToken(TokenTypes.RPAREN) == ast) {
+            processRight(ast);
+        }
+    }
+
+}

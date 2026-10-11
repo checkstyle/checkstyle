@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MethodName</title>
+  </head>
+  <body>
+    <section name="MethodName">
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/MethodNameCheck.java"/>
+      </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/MethodNameCheck.java"/>
+      </macro>
+      <subsection name="Description" id="MethodName_Description">
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/MethodNameCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Properties" id="MethodName_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/MethodNameCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="MethodName_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by at least 7 letters or digits is:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+          An example of how to configure the check to allow method names to be equal to the
+          residing class name is:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          An example of how to suppress the check to public methods:
+        </p>
+        <macro name="example">
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Code Example:</p>
+        <macro name="example">
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          An example of how to suppress the check to protected methods:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      <hr class="example-separator"/>
+      <p id="Example6-config">
+        An example of how to suppress the check to private methods:
+      </p>
+      <macro name="example">
+        <param name="path"
+               value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example6.java"/>
+        <param name="type" value="config"/>
+      </macro>
+      <p id="Example6-code">Code Example:</p>
+      <macro name="example">
+        <param name="path"
+               value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example6.java"/>
+        <param name="type" value="code"/>
+      </macro><hr class="example-separator"/>
+      <p id="Example7-config">
+        An example of how to suppress the check to package-private methods:
+      </p>
+      <macro name="example">
+        <param name="path"
+               value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example7.java"/>
+        <param name="type" value="config"/>
+      </macro>
+      <p id="Example7-code">Code Example:</p>
+      <macro name="example">
+        <param name="path"
+               value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example7.java"/>
+        <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="MethodName_Use_Cases">
+        <p id="UseCase1-config">
+          An example of how to configure the check to disallow method names to be equal to the
+          residing class name is:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/UseCase1.java"/>
+          <param name="type" value="code"/>
+      </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="MethodName_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="MethodName_Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="MethodName"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="MethodName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="MethodName_Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="MethodName"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

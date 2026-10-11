@@ -1,0 +1,36 @@
+<!-- Add the following to any file that is to be validated against this DTD:
+
+<!DOCTYPE module PUBLIC
+    "-//Checkstyle//DTD Checkstyle Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/configuration_1_2.dtd">
+-->
+
+<!ELEMENT module (module|property|metadata)*>
+<!ATTLIST module name NMTOKEN #REQUIRED>
+
+<!ELEMENT property EMPTY>
+<!ATTLIST property
+    name NMTOKEN #REQUIRED
+    value CDATA #REQUIRED
+    default CDATA #IMPLIED
+>
+
+<!--
+
+   Used to store metadata in the Checkstyle configuration file. This
+   information is ignored by Checkstyle. This may be useful if you want to
+   store plug-in specific information.
+
+   To avoid name clashes between different tools/plug-ins you are *strongly*
+   encouraged to prefix all names with your domain name. For example, use the
+   name "com.mycompany.parameter" instead of "parameter".
+
+   The prefix "com.puppycrawl." is reserved for Checkstyle.
+
+-->
+
+<!ELEMENT metadata EMPTY>
+<!ATTLIST metadata
+    name NMTOKEN #REQUIRED
+    value CDATA #REQUIRED
+>

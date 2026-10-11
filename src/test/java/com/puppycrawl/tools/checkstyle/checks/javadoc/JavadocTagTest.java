@@ -1,0 +1,114 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc;
+
+import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth.assertWithMessage;
+
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.api.LineColumn;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.TagInfo;
+
+public class JavadocTagTest {
+
+    @Test
+    public void testToString() {
+        final JavadocTag javadocTag = new JavadocTag(0, 1, "author", "firstArg");
+
+        final String result = javadocTag.toString();
+
+        assertWithMessage("Invalid toString result")
+            .that(result)
+            .isEqualTo("JavadocTag[tag='author' lineNo=0, columnNo=1, firstArg='firstArg']");
+    }
+
+    @Test
+    public void testJavadocTagReferenceImports() {
+        assertThat(new JavadocTag(0, 0, "see", null).canReferenceImports()).isTrue();
+        assertThat(new JavadocTag(0, 0, "link", null).canReferenceImports()).isTrue();
+        assertThat(new JavadocTag(0, 0, "value", null).canReferenceImports()).isTrue();
+        assertThat(new JavadocTag(0, 0, "linkplain", null).canReferenceImports()).isTrue();
+        assertThat(new JavadocTag(0, 0, "throws", null).canReferenceImports()).isTrue();
+        assertThat(new JavadocTag(0, 0, "exception", null).canReferenceImports()).isTrue();
+    }
+
+    @Test
+    public void testJavadocTagReferenceImportsInvalid() {
+        assertThat(new JavadocTag(0, 0, "author", null).canReferenceImports())
+                .isFalse();
+    }
+
+    @Test
+    public void testJavadocTagIsInlineTag() {
+        assertThat(new JavadocTag(0, 0, "link", null).isInlineTag()).isTrue();
+        assertThat(new JavadocTag(0, 0, "value", null).isInlineTag()).isTrue();
+        assertThat(new JavadocTag(0, 0, "see", null).isInlineTag()).isFalse();
+
+    }
+
+    @Test
+    public void testInvalidJavadocTagLegacyGetters() {
+        final InvalidJavadocTag tag = new InvalidJavadocTag(1, 2, "test");
+        assertWithMessage("Invalid line number")
+            .that(tag.getLine())
+            .isEqualTo(1);
+        assertWithMessage("Invalid column number")
+            .that(tag.getCol())
+            .isEqualTo(2);
+        assertWithMessage("Invalid tag name")
+            .that(tag.getName())
+            .isEqualTo("test");
+        assertWithMessage("Invalid line number")
+            .that(tag.line())
+            .isEqualTo(1);
+        assertWithMessage("Invalid column number")
+            .that(tag.col())
+            .isEqualTo(2);
+        assertWithMessage("Invalid tag name")
+            .that(tag.name())
+            .isEqualTo("test");
+    }
+
+    @Test
+    public void testTagInfoLegacyGetters() {
+        final LineColumn position = new LineColumn(1, 2);
+        final TagInfo tagInfo = new TagInfo("name", "value", position);
+        assertWithMessage("Invalid name")
+            .that(tagInfo.getName())
+            .isEqualTo("name");
+        assertWithMessage("Invalid value")
+            .that(tagInfo.getValue())
+            .isEqualTo("value");
+        assertWithMessage("Invalid position")
+            .that(tagInfo.getPosition())
+            .isEqualTo(position);
+        assertWithMessage("Invalid name")
+            .that(tagInfo.name())
+            .isEqualTo("name");
+        assertWithMessage("Invalid value")
+            .that(tagInfo.value())
+            .isEqualTo("value");
+        assertWithMessage("Invalid position")
+            .that(tagInfo.position())
+            .isEqualTo(position);
+    }
+
+}

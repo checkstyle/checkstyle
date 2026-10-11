@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Indentation</title>
+  </head>
+  <body>
+    <section name="Indentation">
+      <p>Since Checkstyle 3.1</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#Indentation_Description">Description</a></li>
+          <li><a href="#Indentation_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#Indentation_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Enforce the indentation style recommended by Oracle</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Enforce strict condition in line-wrapping validation.</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">With custom basicOffset (2 spaces instead of default 4)</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">With custom lineWrappingIndentation (8 spaces instead of default 4)</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">With custom throwsIndent (8 spaces instead of default 4)</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">With custom arrayInitIndent (2 spaces instead of default 4)</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">With custom braceAdjustment (2 spaces instead of default 0)</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#Indentation_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">But if forceStrictCondition = false, this code is valid</a></li>
+            </ul>
+          </li>
+          <li><a href="#Indentation_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#Indentation_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#Indentation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#Indentation_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="Indentation_Description">
+        <div>
+          Checks correct indentation of Java code.
+        </div>
+
+        <p>
+          The idea behind this is that while
+          pretty printers are sometimes convenient for bulk reformats of
+          legacy code, they often either aren't configurable enough or
+          just can't anticipate how format should be done. Sometimes this is
+          personal preference, other times it is practical experience. In any
+          case, this check should just ensure that a minimal set of indentation
+          rules is followed.
+        </p>
+
+        <p>
+          Basic offset indentation is used for indentation inside code blocks.
+          For any lines that span more than 1, line wrapping indentation is used for those lines
+          after the first. Brace adjustment, case, and throws indentations are all used only if
+          those specific identifiers start the line. If, for example, a brace is used in the
+          middle of the line, its indentation will not take effect. All indentations have an
+          accumulative/recursive effect when they are triggered. If during a line wrapping, another
+          code block is found and it doesn't end on that same line, then the subsequent lines
+          afterwards, in that new code block, are increased on top of the line wrap and any
+          indentations above it.
+        </p>
+
+        <p>
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+if ((condition1 &amp;&amp; condition2)
+        || (condition3 &amp;&amp; condition4)    // line wrap with bigger indentation
+        ||!(condition5 &amp;&amp; condition6)) { // line wrap with bigger indentation
+  field.doSomething()                    // basic offset
+      .doSomething()                     // line wrap
+      .doSomething( c -&gt; {               // line wrap
+        return c.doSome();               // basic offset
+      });
+}
+        </code></pre></div>
+      </subsection>
+
+      <subsection name="Properties" id="Indentation_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="arrayInitIndent"/><a href="#arrayInitIndent">arrayInitIndent</a></td>
+              <td>Specify how far an array initialization should be indented when on next line.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>4</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td><a id="basicOffset"/><a href="#basicOffset">basicOffset</a></td>
+              <td>Specify how far new indentation level should be indented when on the next line.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>4</code></td>
+              <td>3.1</td>
+            </tr>
+            <tr>
+              <td><a id="braceAdjustment"/><a href="#braceAdjustment">braceAdjustment</a></td>
+              <td>Specify how far a braces should be indented when on the next line.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>3.1</td>
+            </tr>
+            <tr>
+              <td><a id="caseIndent"/><a href="#caseIndent">caseIndent</a></td>
+              <td>Specify how far a case label should be indented when on next line.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>4</code></td>
+              <td>3.1</td>
+            </tr>
+            <tr>
+              <td><a id="forceStrictCondition"/><a href="#forceStrictCondition">forceStrictCondition</a></td>
+              <td>Force strict indent level in line wrapping case. If value is true, line wrap indent have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent could be bigger on any value user would like.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.3</td>
+            </tr>
+            <tr>
+              <td><a id="lineWrappingIndentation"/><a href="#lineWrappingIndentation">lineWrappingIndentation</a></td>
+              <td>Specify how far continuation line should be indented when line-wrapping is present.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>4</code></td>
+              <td>5.9</td>
+            </tr>
+            <tr>
+              <td><a id="throwsIndent"/><a href="#throwsIndent">throwsIndent</a></td>
+              <td>Specify how far a throws clause should be indented when on next line.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>4</code></td>
+              <td>5.7</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Indentation_Examples">
+        <p id="Example1-config">
+          To configure the default check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Example of Compliant code for default configuration
+          (in comment name of property that controls indentations):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+    int a;                      // ok, basicOffset = 4
+    boolean x, y;
+    String field = "example";
+    int[] values = {
+        1, 2, 3                 // ok, arrayInitIndent = 4
+    };
+    int[] values2 = {
+  10 // violation 'level 2, expected level should be 8'
+    };
+
+    void method2()
+        throws Exception {
+        switch (a) {
+            case 1:             // ok, caseIndent = 4
+                break;
+            case 2:
+                break;
+        }
+    }
+    void method3(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method3(a, b);
+        }
+    }
+
+    void handleValue(String aFooString,
+                     int aFooInt) {
+
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        if (cond1
+                || cond2) {
+            field = field.toUpperCase()
+                    .concat(" TASK");
+        }
+    }
+
+    void methodBrace()
+    {
+    }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to enforce the indentation style recommended by
+          Oracle:
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"&gt;
+      &lt;property name="caseIndent" value="0"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Example of Compliant code for default configuration
+          (in comment name of property that controls indentation):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 {
+    int a;
+    boolean x, y;
+    String field = "example";
+    int[] values = {
+        1, 2, 3
+    };
+    int[] values2 = {
+  10 // violation 'level 2, expected level should be 8'
+    };
+
+    void method2()
+        throws Exception {
+        switch (a) {
+            case 1:             // violation 'level 12, expected level should be 8'
+                break;          // violation 'level 16, expected level should be 12'
+            case 2:             // violation 'level 12, expected level should be 8'
+                break;          // violation 'level 16, expected level should be 12'
+        }
+    }
+    void method3(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method3(a, b);
+        }
+    }
+
+    void handleValue(String aFooString,
+                     int aFooInt) {
+
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        if (cond1
+                || cond2) {
+            field = field.toUpperCase()
+                    .concat(" TASK");
+        }
+    }
+
+    void methodBrace()
+    {
+    }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the Check to enforce strict condition in line-wrapping validation.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"&gt;
+      &lt;property name="forceStrictCondition" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+          Such config doesn't allow next cases
+          even code is aligned further to the right for better reading:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3 {
+    int a;
+    boolean x, y;
+    String field = "example";
+    int[] values = {
+        1, 2, 3
+    };
+    int[] values2 = {
+  10 // violation 'level 2, expected level should be 8'
+    };
+
+    void method2()
+        throws Exception {
+        switch (a) {
+            case 1:             // ok, caseIndent = 4
+                break;
+            case 2:
+                break;
+        }
+    }
+    void method3(int a,
+                 int b) {       // violation 'level 17, expected level should be 8'
+        if (x
+                &amp;&amp; y) {         // violation 'level 16, expected level should be 12'
+            method3(a, b);
+        }
+    }
+    // violation 2 lines below 'level 21, expected level should be 8'
+    void handleValue(String aFooString,
+                     int aFooInt) {
+
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        if (cond1
+                || cond2) { // violation 'level 16, expected level should be 12'
+            field = field.toUpperCase()
+                    .concat(" TASK");
+        }
+    }
+
+    void methodBrace()
+    {
+    }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check with custom basicOffset (2 spaces instead of default 4):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"&gt;
+      &lt;property name="basicOffset" value="2"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+          Example of code with basicOffset set to 2:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+    int a;             // violation 'level 4, expected level should be 2'
+    boolean x, y;      // violation 'level 4, expected level should be 2'
+    String field = "example"; // violation 'level 4, expected level should be 2'
+    int[] values = {   // violation 'level 4, expected level should be 2'
+        1, 2, 3
+    };
+    int[] values2 = {  // violation 'level 4, expected level should be 2'
+  10 // violation 'level 2, expected level should be one of the following: 8, 23, 24'
+    };
+
+    void method2()     // violation 'level 4, expected level should be 2'
+        throws Exception {
+        switch (a) {   // violation 'level 8, expected level should be 4'
+            case 1:    // violation 'level 12, expected level should be 8'
+                break; // violation 'level 16, expected level should be 10'
+            case 2:    // violation 'level 12, expected level should be 8'
+                break; // violation 'level 16, expected level should be 10'
+        }              // violation 'level 8, expected level should be 4'
+    }                  // violation 'level 4, expected level should be 2'
+    void method3(int a,  // violation 'level 4, expected level should be 2'
+                 int b) {
+        if (x            // violation 'level 8, expected level should be 4'
+                &amp;&amp; y) {
+            method3(a, b); // violation 'level 12, expected level should be 6'
+        }                  // violation 'level 8, expected level should be 4'
+    }                      // violation 'level 4, expected level should be 2'
+                           // violation below 'level 4, expected level should be 2'
+    void handleValue(String aFooString,
+                     int aFooInt) {
+        // violation below 'level 8, expected level should be 4'
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+        // violation below 'level 8, expected level should be 4'
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        if (cond1        // violation 'level 8, expected level should be 4'
+                || cond2) { // violation below 'level 12, expected level should be 6'
+            field = field.toUpperCase()
+                    .concat(" TASK");
+        }                // violation 'level 8, expected level should be 4'
+    }                    // violation 'level 4, expected level should be 2'
+
+    void methodBrace()   // violation 'level 4, expected level should be 2'
+    {                    // violation 'level 4, expected level should be 2'
+    }                    // violation 'level 4, expected level should be 2'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check with custom lineWrappingIndentation
+          (8 spaces instead of default 4):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"&gt;
+      &lt;property name="lineWrappingIndentation" value="8"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">
+          Example of code with lineWrappingIndentation set to 8:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+    int a;
+    boolean x, y;
+    String field = "example";
+    int[] values = {
+        1, 2, 3
+    };
+    int[] values2 = {
+  10 // violation 'level 2, expected level should be one of the following: 8, 12'
+    };
+
+    void method2()
+        throws Exception {
+        switch (a) {
+            case 1:
+                break;
+            case 2:
+                break;
+        }
+    }
+    void method3(int a,
+                 int b) {   // ok, lineWrappingIndentation = 8
+        if (x
+                &amp;&amp; y) {
+            method3(a, b);
+        }
+    }
+
+    void handleValue(String aFooString,
+                     int aFooInt) {
+
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        if (cond1
+                || cond2) {
+            field = field.toUpperCase()
+                    .concat(" TASK");
+        }
+    }
+
+    void methodBrace()
+    {
+    }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure the check with custom throwsIndent (8 spaces instead of default 4):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"&gt;
+      &lt;property name="throwsIndent" value="8"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">
+          Example of code with throwsIndent set to 8.
+          Method 'processValues' has throws on a new line with only 4-space indent,
+          which violates the configured 8-space throwsIndent.
+          Method 'demonstrateSwitch' has throws on a new line with correct 8-space indent:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example6 {
+    int a;
+    boolean x, y;
+    String field = "example";
+    int[] values = {
+        1, 2, 3
+    };
+    int[] values2 = {
+  10 // violation 'level 2, expected level should be 8'
+    };
+
+    void method2()
+        throws Exception {   // violation 'level 8, expected level should be 12'
+        switch (a) {
+            case 1:
+                break;
+            case 2:
+                break;
+        }
+    }
+    void method3(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method3(a, b);
+        }
+    }
+
+    void handleValue(String aFooString,
+                     int aFooInt) {
+
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        if (cond1
+                || cond2) {
+            field = field.toUpperCase()
+                    .concat(" TASK");
+        }
+    }
+
+    void methodBrace()
+    {
+    }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check with custom arrayInitIndent (2 spaces instead of default 4):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"&gt;
+      &lt;property name="arrayInitIndent" value="2"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">
+          Example of code with arrayInitIndent set to 2:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example7 {
+    int a;
+    boolean x, y;
+    String field = "example";
+    int[] values = {
+        1, 2, 3
+    };
+    int[] values2 = {
+  10 // violation 'level 2, expected level should be one of'
+    };
+
+    void method2()
+        throws Exception {
+        switch (a) {
+            case 1:
+                break;
+            case 2:
+                break;
+        }
+    }
+    void method3(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method3(a, b);
+        }
+    }
+
+    void handleValue(String aFooString,
+                     int aFooInt) {
+
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        if (cond1
+                || cond2) {
+            field = field.toUpperCase()
+                    .concat(" TASK");
+        }
+    }
+
+    void methodBrace()
+    {
+    }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check with custom braceAdjustment (2 spaces instead of default 0):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"&gt;
+      &lt;property name="braceAdjustment" value="2"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">
+          Example of code with braceAdjustment set to 2:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example8 {
+    int a;
+    boolean x, y;
+    String field = "example";
+    int[] values = {
+        1, 2, 3
+    };
+    int[] values2 = {
+  10 // violation 'level 2, expected level should be 8'
+    };
+
+    void method2()
+        throws Exception {
+        switch (a) {
+            case 1:            // ok, caseIndent = 4
+                break;
+            case 2:
+                break;
+        }
+    }
+    void method3(int a,
+                 int b) {
+        if (x
+                &amp;&amp; y) {
+            method3(a, b);
+        }
+    }
+
+    void handleValue(String aFooString,
+                     int aFooInt) {
+
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        if (cond1
+                || cond2) {
+            field = field.toUpperCase()
+                    .concat(" TASK");
+        }
+    }
+
+    void methodBrace()
+    {                       // violation 'level 4, expected level should be 6'
+    }                       // violation 'level 4, expected level should be 6'
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="Indentation_Use_Cases">
+        <p id="UseCase1-config">
+          But if forceStrictCondition = false, this code is valid:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1 {
+      int a;               // violation 'level 6, expected level should be 4'
+
+    void method() {
+        int b = 0;
+          int c = 1;       // violation 'level 10, expected level should be 8'
+    }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Indentation_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Indentation_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22indentation.child.error%22">
+              indentation.child.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22indentation.child.error.multi%22">
+              indentation.child.error.multi
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22indentation.error%22">
+              indentation.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22indentation.error.multi%22">
+              indentation.error.multi
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="Indentation_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck</p>
+        <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Indentation_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

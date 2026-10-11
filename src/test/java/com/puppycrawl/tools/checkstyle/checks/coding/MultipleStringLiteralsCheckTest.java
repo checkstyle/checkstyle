@@ -1,0 +1,180 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.coding;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck.MSG_KEY;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+
+public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals";
+    }
+
+    @Test
+    public void testIt() throws Exception {
+
+        final String[] expected = {
+            "15:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+            "19:17: " + getCheckMessage(MSG_KEY, "\"\"", 4),
+            "22:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleStringLiterals.java"),
+               expected);
+    }
+
+    @Test
+    public void testItIgnoreEmpty() throws Exception {
+
+        final String[] expected = {
+            "15:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+            "21:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleStringLiterals2.java"),
+               expected);
+    }
+
+    @Test
+    public void testMultipleInputs() throws Exception {
+        final String firstInput = getPath("InputMultipleStringLiterals3.java");
+        final String secondInput = getPath("InputMultipleStringLiteralsNoWarnings.java");
+
+        final List<String> expectedFirstInput = Arrays.asList(
+            "15:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+            "21:23: " + getCheckMessage(MSG_KEY, "\", \"", 3)
+        );
+        final List<String> expectedSecondInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
+
+        verifyWithInlineConfigParser(firstInput, secondInput,
+                expectedFirstInput, expectedSecondInput);
+    }
+
+    @Test
+    public void testItIgnoreEmptyAndComspace() throws Exception {
+
+        final String[] expected = {
+            "15:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleStringLiterals4.java"),
+               expected);
+    }
+
+    @Test
+    public void testItWithoutIgnoringAnnotations() throws Exception {
+
+        final String[] expected = {
+            "29:23: " + getCheckMessage(MSG_KEY, "\"unchecked\"", 4),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleStringLiterals5.java"),
+               expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        final MultipleStringLiteralsCheck check = new MultipleStringLiteralsCheck();
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
+    }
+
+    @Test
+    public void testDefaultConfiguration() throws Exception {
+        final String[] expected = {
+            "15:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+            "18:17: " + getCheckMessage(MSG_KEY, "\"DoubleString\"", 2),
+            "22:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleStringLiterals6.java"),
+            expected);
+    }
+
+    @Test
+    public void testIgnores() throws Exception {
+        final String[] expected = {
+            "29:23: " + getCheckMessage(MSG_KEY, "\"unchecked\"", 4),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleStringLiterals7.java"),
+            expected);
+    }
+
+    @Test
+    public void testMultipleStringLiteralsTextBlocks1() throws Exception {
+        final String[] expected = {
+            "15:22: " + getCheckMessage(MSG_KEY, "\"string\"", 3),
+            "21:25: " + getCheckMessage(MSG_KEY, "\"other string\"", 2),
+            "26:25: " + getCheckMessage(MSG_KEY, "\"other string\\n\"", 2),
+            "33:25: " + getCheckMessage(MSG_KEY, "\"<html>\\u000D\\u000A\\n\\u2000\\n "
+                + "   <body>\\u000D\\u000A\\n\\u2000\\n        <p>Hello, world</p>\\u000D\\"
+                + "u000A\\n\\u2000\\n    </body>\\u000D\\u000A\\n\\u2000\\n</html>\\u000D\\"
+                + "u000A\\u2000\\n\"", 2),
+            "41:34: " + getCheckMessage(MSG_KEY, "\"fun with\\n\\n whitespace\\t"
+                + "\\r\\n and other escapes \\\"\"\"\\n\"", 2),
+            "47:34: " + getCheckMessage(MSG_KEY, "\"\\b \\f \\\\ \\0 \\1 \\2 "
+                + "\\r \\r\\n \\\\r\\\\n \\\\''\\n\\\\11 \\\\57 \\n\\\\n\\n\\\\\\n\\n \\\\ \"\"a "
+                + "\"a\\n\\\\' \\\\\\' \\'\\n\"", 2),
+            "71:20: " + getCheckMessage(MSG_KEY, "\"foo\"", 4),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleStringLiteralsTextBlocks1.java"),
+            expected);
+    }
+
+    @Test
+    public void testMultipleStringLiteralsTextBlocks2() throws Exception {
+        final String[] expected = {
+            "15:19: " + getCheckMessage(MSG_KEY, "\"another test\"", 2),
+            "20:20: " + getCheckMessage(MSG_KEY, "\"\"", 6),
+            "31:23: " + getCheckMessage(MSG_KEY, "\"        .\\n         .\\n.\\n\"", 2),
+            "47:24: " + getCheckMessage(MSG_KEY, "\"             foo\\n\\n\\n "
+                + "       bar\"", 2),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleStringLiteralsTextBlocks2.java"),
+            expected);
+    }
+
+}

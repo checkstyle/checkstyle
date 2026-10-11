@@ -1,0 +1,91 @@
+/*
+SuppressWarnings
+format = ^unchecked$*|^unused$*|.*
+tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF, \
+         ENUM_CONSTANT_DEF, PARAMETER_DEF, VARIABLE_DEF, METHOD_DEF, CTOR_DEF, \
+         COMPACT_CTOR_DEF, RECORD_DEF, PATTERN_VARIABLE_DEF, MODULE_DEF
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
+
+import java.lang.annotation.Documented;
+// 2 violations 3 lines below:
+// 'cannot be suppressed at this location'
+// 'cannot be suppressed at this location'
+@SuppressWarnings(value={"unchecked", "unused"})
+public class InputSuppressWarningsExpanded7
+{
+    // violation below 'The warning '   ' cannot be suppressed at this location'
+    @SuppressWarnings(value={"   "})
+    class Empty {
+        // 2 violations 3 lines below:
+        // 'cannot be suppressed at this location'
+        // 'cannot be suppressed at this location'
+        @SuppressWarnings(value={"unchecked", ""})
+        public Empty() {
+
+        }
+    }
+
+    // violation below 'The warning 'unused' cannot be suppressed at this location'
+    @SuppressWarnings(value={"unused"})
+    enum Duh {
+        // 2 violations 3 lines below:
+        // 'cannot be suppressed at this location'
+        // 'cannot be suppressed at this location'
+        @SuppressWarnings(value={"unforgiven", "    un"})
+        D;
+
+        public static void foo() {
+
+            // violation below 'The warning 'unused' cannot be suppressed at this location'
+            @SuppressWarnings(value={"unused"})
+            Object o = new InputSuppressWarningsExpanded7() {
+
+                // violation 2 lines below 'The warning 'unchecked' cannot be suppressed'
+                @Override
+                @SuppressWarnings(value={"unchecked"})
+                public String toString() {
+                    return "";
+                }
+            };
+        }
+    }
+
+    // violation below 'The warning 'invalid' cannot be suppressed at this location'
+    @SuppressWarnings(value={"invalid"})
+    @Documented
+    @interface Sweet {
+        int cool();
+    }
+
+    // violation 2 lines below 'The warning '' cannot be suppressed at this location'
+    @Documented
+    @SuppressWarnings(value={})
+    @interface MoreSweetness {
+        // 2 violations 3 lines below:
+        // 'cannot be suppressed at this location'
+        // 'cannot be suppressed at this location'
+        @SuppressWarnings(value={"unused", "ignore"})
+        int cool();
+    }
+
+    public class Junk {
+
+        // violation below 'The warning '' cannot be suppressed at this location'
+        @SuppressWarnings(value={})
+        int a = 1;
+
+        // violation below 'The warning 'unchecked' cannot be suppressed at this location'
+        @SuppressWarnings(value={"unchecked"})
+        @Deprecated
+        int b = 1;
+        void doFoo(String s, @SuppressWarnings(value={"unchecked"})String y) {
+            // violation above 'The warning 'unchecked' cannot be suppressed at this location'
+
+        }
+    }
+
+}

@@ -1,0 +1,9 @@
+^/\*$
+^ \* \w+$
+^ \*$
+^ \* Version \d+\.\d+$
+^ \*$
+^ \* \d{2}/\d{2}/\d{4}$
+^ \*$
+^ \* Copyright \(c\) \d{4} [A-Za-z0-9 .,]+\. All rights reserved\.$
+^ \*/$

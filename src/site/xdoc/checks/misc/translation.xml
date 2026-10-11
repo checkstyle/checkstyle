@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Translation</title>
+  </head>
+  <body>
+    <section name="Translation">
+      <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#Translation_Description">Description</a></li>
+          <li><a href="#Translation_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#Translation_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">With default settings (only the existence of the default translation file is checked)</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Check existence of Japanese and French translations</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">An example of how to configure the check to validate only bundles which base names start with &quot;ButtonLabels&quot;</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Check only files which have '.properties' and '.translations' extensions</a></li>
+            </ul>
+          </li>
+          <li><a href="#Translation_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#Translation_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#Translation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#Translation_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="Translation_Description">
+        <div>
+          Ensures the correct translation of code by checking property files for consistency
+          regarding their keys. Two property files describing one and the same context
+          are consistent if they contain the same keys. TranslationCheck also can check
+          an existence of required translations which must exist in project, if
+          <code>requiredTranslations</code> option is used.
+        </div>
+
+      </subsection>
+
+      <subsection name="Notes" id="Translation_Notes">
+        <p>
+          Language code for the property <code>requiredTranslations</code> is composed of
+          the lowercase, two-letter codes as defined by
+          <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>.
+          Default value is empty String Set which means that only the existence of default
+          translation is checked. Note, if you specify language codes (or just one
+          language code) of required translations the check will also check for existence
+          of default translation files in project.
+        </p>
+
+        <p>
+          Note: If your project uses preprocessed translation files and the original files do not have the
+          <code>properties</code> extension, you can specify additional file extensions
+          via the <code>fileExtensions</code> property.
+        </p>
+
+        <p>
+          Attention: the check will perform the validation of ISO codes if the option
+          is used. So, if you specify, for example, "mm" for language code,
+          TranslationCheck will rise violation that the language code is incorrect.
+        </p>
+
+        <p>
+          Attention: this Check could produce false-positives if it is used with
+          <a href="https://checkstyle.org/config.html#Checker">Checker</a> that use cache
+          (property "cacheFile") This is known design problem, will be addressed at
+          <a href="https://github.com/checkstyle/checkstyle/issues/3539">issue</a>.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Translation_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="baseName"/><a href="#baseName">baseName</a></td>
+              <td>Specify <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ResourceBundle.html">
+ Base name</a> of resource bundles which contain message resources. It helps the check to distinguish config and localization resources.</td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
+              <td><code>^messages.*$</code></td>
+              <td>6.17</td>
+            </tr>
+            <tr>
+              <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
+              <td>Specify the file extensions of the files to process.</td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
+              <td><code>.properties</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td><a id="requiredTranslations"/><a href="#requiredTranslations">requiredTranslations</a></td>
+              <td>Specify language codes of required translations which must exist in project.</td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
+              <td><code>{}</code></td>
+              <td>6.11</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Translation_Examples">
+        <p>
+          Note, that files with the same path and base name but which have different
+          extensions will be considered as files that belong to different resource bundles.
+        </p>
+        <p id="Example1-config">
+          To configure the check with default settings (only the existence of the
+          default translation file is checked):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="Translation"/&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-file">Example1 (target folder structure, missing default translation file):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        messages_de.properties
+        </code></pre></div>
+        <p id="messages_de-raw">Contents of messages_de.properties file:</p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+hello=Hallo
+</code></pre></div>
+        <p id="Example1-code">Validation for Example1:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+messages_de.properties
+// violation above 'Properties file 'messages.properties' missing.'
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to check existence of Japanese and French translations:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="Translation"&gt;
+    &lt;property name="requiredTranslations" value="es, fr"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-file">Example2 (target folder structure):</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+messages.properties
+messages_fr.properties
+messages_es.properties
+        </code></pre></div>
+        <p id="messages-raw">Contents of messages.properties file:</p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+hello=Hello
+cancel=Cancel
+</code></pre></div>
+        <p id="messages_es-raw">Contents of messages_es.properties file:</p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+greeting=Saludo
+age=Edad
+</code></pre></div>
+        <p id="messages_fr-raw">Contents of messages_fr.properties file:</p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+greeting=Bonjour
+name=Nom
+</code></pre></div>
+        <p id="Example2-code">Validation for Example2:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+messages.properties     // violation 'Key 'age', 'name' and 'greeting' missing.'
+messages_fr.properties  // violation 'Key 'age', 'cancel' and 'hello' missing.'
+messages_es.properties  // violation 'Key 'cancel', 'name' and 'hello' missing.'
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          An example of how to configure the check to validate only bundles which base names
+          start with &quot;ButtonLabels&quot;:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="Translation"&gt;
+    &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
+    &lt;property name="requiredTranslations" value="fr"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-file">Example3 (target folder structure):</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ButtonLabels.properties
+ButtonLabels_fr.properties
+        </code></pre></div>
+        <p id="ButtonLabels-raw">Contents of ButtonLabels.properties file:</p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+hello=Hello
+cancel=Cancel
+</code></pre></div>
+        <p id="ButtonLabels_fr-raw">Contents of ButtonLabels_fr.properties file:</p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+hello=Bonjour
+name=Nom
+</code></pre></div>
+        <p id="Example3-code">Validation for Example3:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ButtonLabels.properties     // violation 'Key 'name' is missing.'
+ButtonLabels_fr.properties  // violation 'Key 'cancel' is missing.'
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to check only files which have '.properties' and '.translations'
+          extensions:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="Translation"&gt;
+    &lt;property name="fileExtensions" value="properties"/&gt;
+    &lt;property name="fileExtensions" value="translations"/&gt;
+    &lt;property name="requiredTranslations" value="fr"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-file">Example4 no messages_home_fr.* files (target folder structure):</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+messages_home.properties
+messages_home.translations
+        </code></pre></div>
+        <p id="messages_home-raw">Contents of messages_home.properties file:</p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+hello=Hello
+cancel=Cancel
+</code></pre></div>
+        <p id="messages_home-code">Contents of messages_home.translations file:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+hello=Hallo
+ok=OK
+</code></pre></div>
+        <p id="Example4-code">Validation for Example4:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+messages_home.properties
+// violation above 'Properties file 'messages_home_fr.properties' missing.'
+messages_home.translations
+// violation above 'Properties file 'messages_home_fr.translations' missing.'
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Translation_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Translation">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+Translation">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Translation_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22translation.missingKey%22">
+              translation.missingKey
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22translation.missingTranslationFile%22">
+              translation.missingTranslationFile
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="Translation_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.TranslationCheck</p>
+        <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Translation_Parent_Module">
+        <p>
+          <a href="../../config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

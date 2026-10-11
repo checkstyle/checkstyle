@@ -1,0 +1,317 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.indentation;
+
+import javax.annotation.Nullable;
+
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
+/**
+ * Handler for lambda expressions.
+ *
+ */
+public class LambdaHandler extends AbstractExpressionHandler {
+
+    /**
+     * Checks whether the lambda is correctly indented, this variable get its value from checking
+     * the lambda handler's indentation, and it is being used in aligning the lambda's children.
+     * A true value depicts lambda is correctly aligned without giving any errors.
+     * This is updated to false where there is any Indentation error log.
+     */
+    private boolean isLambdaCorrectlyIndented = true;
+
+    /**
+     * Construct an instance of this handler with the given indentation context,
+     * abstract syntax tree, and parent handler.
+     *
+     * @param context      the indentation check
+     * @param ast the abstract syntax tree
+     * @param parent the parent handler
+     */
+    public LambdaHandler(IndentationContext context,
+                         DetailAST ast, AbstractExpressionHandler parent) {
+        super(context, "lambda", ast, parent);
+    }
+
+    @Override
+    public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
+        IndentLevel childIndent = getIndent();
+        if (isLambdaCorrectlyIndented) {
+            // If the lambda is correctly indented, include its line start as acceptable to
+            // avoid false positives. When "forceStrictCondition" is off, we allow indents
+            // larger than expected (e.g., 12 instead of 6 or 8). These larger indents are
+            // accepted but not recorded, so child indent suggestions may be inaccurate.
+            // Adding the actual line start ensures the tool recognizes the lambda’s real indent
+            // context.
+            childIndent = IndentLevel.addAcceptable(childIndent, getLineStart(getMainAst()));
+
+            if (isSameLineAsSwitch(child.getMainAst()) || child instanceof SlistHandler) {
+                // Lambda with block body (enclosed in {})
+                childIndent = IndentLevel.addAcceptable(childIndent,
+                    getLineStart(getMainAst().getFirstChild()));
+            }
+            else {
+                // Single-expression lambda (no {} block):
+                // assume line wrapping and add additional indentation
+                // for the statement in the next line.
+                childIndent = new IndentLevel(childIndent,
+                        getContext().getLineWrappingIndentation());
+            }
+        }
+
+        return childIndent;
+    }
+
+    /**
+     * {@inheritDoc}.
+     *
+     * @noinspection MethodWithMultipleReturnPoints
+     * @noinspectionreason MethodWithMultipleReturnPoints - indentation is complex and
+     *      tightly coupled, thus making this method difficult to refactor
+     */
+    @Override
+    protected IndentLevel getIndentImpl() {
+        if (getParent() instanceof MethodCallHandler) {
+            return getParent().getSuggestedChildIndent(this);
+        }
+
+        final IndentLevel result;
+        final DetailAST enumConstDef = findParentEnumConstantDef();
+        if (enumConstDef != null) {
+            result = getEnumConstantBasedIndent(enumConstDef);
+        }
+        else {
+            DetailAST parent = getMainAst().getParent();
+            if (getParent() instanceof NewHandler) {
+                parent = parent.getParent();
+            }
+
+            // Use the start of the parent's line as the reference indentation level.
+            IndentLevel level = new IndentLevel(getLineStart(parent));
+
+            // If the start of the lambda is the first element on the line;
+            // assume line wrapping with respect to its parent.
+            final DetailAST firstChild = getMainAst().getFirstChild();
+            if (getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
+                level = new IndentLevel(level, getContext().getLineWrappingIndentation());
+            }
+            result = level;
+        }
+
+        return result;
+    }
+
+    @Override
+    public void checkIndentation() {
+        final DetailAST mainAst = getMainAst();
+        final DetailAST firstChild = mainAst.getFirstChild();
+
+        // If the "->" has no children, it is a switch
+        // rule lambda (i.e. 'case ONE -> 1;')
+        final boolean isSwitchRuleLambda = firstChild == null;
+
+        if (!isSwitchRuleLambda
+            && getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
+            final int firstChildColumnNo = expandedTabsColumnNo(firstChild);
+            final IndentLevel level = getIndent();
+
+            if (isNonAcceptableIndent(firstChildColumnNo, level)) {
+                isLambdaCorrectlyIndented = false;
+                logError(firstChild, "arguments", firstChildColumnNo, level);
+            }
+        }
+
+        // If the "->" is the first element on the line, assume line wrapping.
+        final int mainAstColumnNo = expandedTabsColumnNo(mainAst);
+        final boolean isLineWrappedLambda = mainAstColumnNo == getLineStart(mainAst);
+        if (isLineWrappedLambda) {
+            checkLineWrappedLambda(isSwitchRuleLambda, mainAstColumnNo);
+        }
+
+        final DetailAST nextSibling = mainAst.getNextSibling();
+
+        if (isSwitchRuleLambda
+                && nextSibling.getType() == TokenTypes.EXPR
+                && !TokenUtil.areOnSameLine(mainAst, nextSibling)) {
+            // Likely a single-statement switch rule lambda without curly braces, e.g.:
+            // case ONE ->
+            //      1;
+            checkSingleStatementSwitchRuleIndentation(isLineWrappedLambda);
+        }
+        else if (!isSwitchRuleLambda) {
+            checkSingleExpressionBodyIndentation();
+        }
+    }
+
+    /**
+     * Checks the indentation of a single-expression lambda body when the body is placed
+     * on a line separate from the {@code ->} operator. This ensures that continuation
+     * lines like:
+     * {@snippet lang="text" :
+     * return (String s) ->
+     * s.length();
+     * }
+     * receive a wrapping-indent violation instead of being silently accepted.
+     */
+    private void checkSingleExpressionBodyIndentation() {
+        final DetailAST mainAst = getMainAst();
+        final DetailAST body = mainAst.getLastChild();
+        final boolean isInReturn =
+                mainAst.getParent().getType() == TokenTypes.LITERAL_RETURN;
+        final boolean bodyIsOnNextLine = body.getType() != TokenTypes.SLIST
+                && !TokenUtil.areOnSameLine(mainAst, body);
+        if (isInReturn && bodyIsOnNextLine) {
+            final DetailAST firstToken = getFirstAstNode(body);
+            final boolean firstTokenHasOwnHandler = getContext()
+                    .getHandlerFactory().isHandledType(firstToken.getType());
+            if (!firstTokenHasOwnHandler) {
+                final int bodyColumnNo = expandedTabsColumnNo(firstToken);
+                final IndentLevel bodyIndent = new IndentLevel(getIndent(),
+                        getContext().getLineWrappingIndentation());
+                if (isNonAcceptableIndent(bodyColumnNo, bodyIndent)) {
+                    logError(firstToken, "", bodyColumnNo, bodyIndent);
+                }
+            }
+        }
+    }
+
+    /**
+     * Checks that given indent is acceptable or not.
+     *
+     * @param astColumnNo indent value to check
+     * @param level indent level
+     * @return true if indent is not acceptable
+     */
+    private boolean isNonAcceptableIndent(int astColumnNo, IndentLevel level) {
+        return astColumnNo < level.getFirstIndentLevel()
+            || getContext().isForceStrictCondition()
+               && !level.isAcceptable(astColumnNo);
+    }
+
+    /**
+     * This method checks a line wrapped lambda, whether it is a lambda
+     * expression or switch rule lambda.
+     *
+     * @param isSwitchRuleLambda if mainAst is a switch rule lambda
+     * @param mainAstColumnNo the column number of the lambda we are checking
+     */
+    private void checkLineWrappedLambda(final boolean isSwitchRuleLambda,
+                                        final int mainAstColumnNo) {
+        final IndentLevel level;
+        final DetailAST mainAst = getMainAst();
+
+        if (isSwitchRuleLambda) {
+            // We check the indentation of the case literal or default literal
+            // on the previous line and use that to determine the correct
+            // indentation for the line wrapped "->"
+            final DetailAST previousSibling = mainAst.getPreviousSibling();
+            final int previousLineStart = getLineStart(previousSibling);
+
+            level = new IndentLevel(new IndentLevel(previousLineStart),
+                    getContext().getLineWrappingIndentation());
+        }
+        else {
+            level = new IndentLevel(getIndent(),
+                getContext().getLineWrappingIndentation());
+        }
+
+        if (isNonAcceptableIndent(mainAstColumnNo, level)) {
+            isLambdaCorrectlyIndented = false;
+            logError(mainAst, "", mainAstColumnNo, level);
+        }
+    }
+
+    /**
+     * Checks the indentation of statements inside a single-statement switch rule
+     * when the statement is not on the same line as the lambda operator ({@code ->}).
+     * This applies to single-statement switch rules without curly braces {@code {}}.
+     * Example:
+     * {@snippet lang="text" :
+     * case ONE ->
+     *     1;
+     * }
+     *
+     * @param isLambdaFirstInLine if {@code ->} is the first element on the line
+     */
+    private void checkSingleStatementSwitchRuleIndentation(boolean isLambdaFirstInLine) {
+        final DetailAST mainAst = getMainAst();
+        IndentLevel level = getParent().getSuggestedChildIndent(this);
+
+        if (isLambdaFirstInLine) {
+            // If the lambda operator (`->`) is at the start of the line, assume line wrapping
+            // and add additional indentation for the statement in the next line.
+            level = new IndentLevel(level, getContext().getLineWrappingIndentation());
+        }
+
+        // The first line should not match if the switch rule statement starts on the same line
+        // as "->" but continues onto the next lines as part of a single logical expression.
+        final DetailAST nextSibling = mainAst.getNextSibling();
+        final boolean firstLineMatches = getFirstLine(nextSibling) != mainAst.getLineNo();
+        checkExpressionSubtree(nextSibling, level, firstLineMatches, false);
+    }
+
+    /**
+     * Checks if the current LAMBDA node is placed on the same line
+     * as the given SWITCH_LITERAL node.
+     *
+     * @param node the SWITCH_LITERAL node to compare with
+     * @return true if the current LAMBDA node is on the same line
+     *     as the given SWITCH_LITERAL node
+     */
+    private boolean isSameLineAsSwitch(DetailAST node) {
+        return node.getType() == TokenTypes.LITERAL_SWITCH
+            && TokenUtil.areOnSameLine(getMainAst(), node);
+    }
+
+    /**
+     * Finds the parent ENUM_CONSTANT_DEF node if this lambda is an argument of an enum constant.
+     *
+     * @return the ENUM_CONSTANT_DEF node if found, null otherwise
+     */
+    @Nullable
+    private DetailAST findParentEnumConstantDef() {
+        DetailAST result = null;
+        DetailAST parent = getMainAst().getParent();
+        while (parent != null) {
+            if (parent.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+                result = parent;
+                break;
+            }
+            parent = parent.getParent();
+        }
+        return result;
+    }
+
+    /**
+     * Calculates the expected indentation for a lambda inside enum constant arguments.
+     * The expected indent is the enum constant's indent plus line wrapping indentation.
+     *
+     * @param enumConstDef the ENUM_CONSTANT_DEF node
+     * @return the expected indentation level
+     */
+    private IndentLevel getEnumConstantBasedIndent(DetailAST enumConstDef) {
+        final int enumConstIndent = getLineStart(enumConstDef);
+        final IndentLevel baseLevel = new IndentLevel(enumConstIndent);
+        return new IndentLevel(baseLevel, getContext().getLineWrappingIndentation());
+    }
+
+}

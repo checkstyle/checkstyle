@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineWrappingInBlockCheck"
+             name="EmptyLineWrappingInBlock"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks the empty line right after the opening brace and right before the closing
+ brace of a block.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ &lt;code&gt;topSeparator&lt;/code&gt; controls the line after the opening brace and
+ &lt;code&gt;bottomSeparator&lt;/code&gt; controls the line before the closing brace.
+ Both accept the following values:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;code&gt;empty_line&lt;/code&gt; - exactly one empty line is required;&lt;/li&gt;
+ &lt;li&gt;&lt;code&gt;empty_line_allowed&lt;/code&gt; - not validated, an empty line may be present or absent;&lt;/li&gt;
+ &lt;li&gt;&lt;code&gt;no_empty_line&lt;/code&gt; - an empty line is forbidden.&lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <properties>
+            <property default-value="empty_line"
+                      name="bottomSeparator"
+                      type="com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorOption">
+               <description>Specify the policy for the empty line before the closing brace.</description>
+            </property>
+            <property default-value="CLASS_DEF,INTERFACE_DEF,ANNOTATION_DEF,ENUM_DEF,ENUM_CONSTANT_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+            <property default-value="empty_line"
+                      name="topSeparator"
+                      type="com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorOption">
+               <description>Specify the policy for the empty line after the opening brace.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="empty.line.wrapping.bottom.no"/>
+            <message-key key="empty.line.wrapping.bottom.one"/>
+            <message-key key="empty.line.wrapping.top.no"/>
+            <message-key key="empty.line.wrapping.top.one"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

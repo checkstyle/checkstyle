@@ -1,0 +1,86 @@
+/*
+TextBlockGoogleStyleFormatting
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.coding.textblockgooglestyleformatting;
+
+public class InputTextBlockGoogleStyleFormatting10 {
+    public static void textFun() {
+        // violation 2 lines below 'Each line of text in the text block must be indented'
+        final String simpleScript =
+            """
+     Less Indentation than expected
+     Violation is expected here.
+            """;
+
+        final String simpleScript1 =
+            """
+                More indentation than the quotes, ok.
+            """;
+
+        // violation 4 lines below 'Each line of text in the text block must be indented'
+        final String simpleScript2 =
+                simpleScript +
+                simpleScript1 +
+                """
+     Less Indentation than expected
+                and each line has a different indentation value
+                        Violation is expected here.
+                """;
+
+        final String simpleScript3 = simpleScript +
+            simpleScript1 +
+"""
+         this is simple script
+""";
+
+        final String simpleScript4 = simpleScript +
+            simpleScript3.endsWith(
+                """
+                this is a simple sentence
+                    this is a simple sentence
+                       this is a simple sentence
+                """);
+
+        // violation 2 lines below 'Each line of text in the text block must be indented'
+        final String simpleScript5 =
+                """
+     test       """;
+        // violation above '(""") of text-block should not be preceded by non-whitespace characte'
+
+        final String simpleScript6 =
+"""
+""";
+
+        final String simpleScript7 =
+                """
+                test
+                
+                
+                """;
+
+        final String simpleScript8 =
+                """
+                
+                
+                test
+                
+                
+                """;
+
+        final String simpleScript9 =
+                """
+                
+                test1
+                
+                test2
+                
+                """;
+
+        final String simpleScript10 =
+                """
+                """;
+    }
+}

@@ -1,0 +1,401 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.filters;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.jupiter.api.Test;
+import org.xml.sax.InputSource;
+
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.FilterSet;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+
+/**
+ * Tests SuppressionsLoader.
+ */
+public class SuppressionsLoaderTest extends AbstractPathTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/filters/suppressionsloader";
+    }
+
+    @Test
+    public void testNoSuppressions() throws Exception {
+        final FilterSet fc =
+            SuppressionsLoader.loadSuppressions(getPath("InputSuppressionsLoaderNone.xml"));
+        final FilterSet fc2 = new FilterSet();
+        assertWithMessage("No suppressions should be loaded, but found: %s", fc.getFilters().size())
+            .that(fc.getFilters())
+            .isEqualTo(fc2.getFilters());
+    }
+
+    @Test
+    public void testLoadFromUrl() throws Exception {
+        final String[] urlCandidates = {
+            "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/"
+                + "files/suppressions_none.xml",
+            "https://checkstyle.org/files/suppressions_none.xml",
+        };
+        FilterSet actualFilterSet = null;
+
+        for (String url : urlCandidates) {
+            actualFilterSet = loadFilterSet(url);
+
+            if (actualFilterSet != null) {
+                break;
+            }
+        }
+
+        assumeTrue(actualFilterSet != null, "No Internet connection.");
+        final FilterSet expectedFilterSet = new FilterSet();
+        assertWithMessage("Failed to load from url")
+            .that(actualFilterSet.getFilters())
+            .isEqualTo(expectedFilterSet.getFilters());
+    }
+
+    @Test
+    public void testLoadFromMalformedUrl() {
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadSuppressions("http"));
+        assertWithMessage("Invalid error message")
+            .that(exc.getMessage())
+            .isEqualTo("Unable to find: http");
+    }
+
+    @Test
+    public void testLoadFromNonExistentUrl() {
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadSuppressions("/non/existent/file.xml"));
+        assertWithMessage("Invalid error message")
+            .that(exc.getMessage())
+            .isEqualTo("Unable to find: /non/existent/file.xml");
+    }
+
+    @Test
+    public void testMultipleSuppression() throws Exception {
+        final FilterSet fc =
+            SuppressionsLoader.loadSuppressions(getPath("InputSuppressionsLoaderMultiple.xml"));
+        final FilterSet fc2 = new FilterSet();
+
+        final SuppressFilterElement se0 =
+                new SuppressFilterElement("file0", "check0", null, null, null, null);
+        fc2.addFilter(se0);
+        final SuppressFilterElement se1 =
+                new SuppressFilterElement("file1", "check1", null, null, "1,2-3", null);
+        fc2.addFilter(se1);
+        final SuppressFilterElement se2 =
+                new SuppressFilterElement("file2", "check2", null, null, null, "1,2-3");
+        fc2.addFilter(se2);
+        final SuppressFilterElement se3 =
+                new SuppressFilterElement("file3", "check3", null, null, "1,2-3", "1,2-3");
+        fc2.addFilter(se3);
+        final SuppressFilterElement se4 =
+                new SuppressFilterElement(null, null, "message0", null, null, null);
+        fc2.addFilter(se4);
+        assertWithMessage("Multiple suppressions were loaded incorrectly")
+            .that(fc.getFilters())
+            .isEqualTo(fc2.getFilters());
+    }
+
+    @Test
+    public void testNoFile() throws IOException {
+        final String fn = getPath("InputSuppressionsLoaderNoFile.xml");
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadSuppressions(fn));
+        final String messageStart = "Unable to parse " + fn;
+        assertWithMessage("Exception message should start with: %s", messageStart)
+                .that(exc.getMessage())
+                .startsWith("Unable to parse " + fn);
+        assertWithMessage("Exception message should contain \"files\"")
+                .that(exc.getMessage())
+                .contains("\"files\"");
+        assertWithMessage("Exception message should contain \"suppress\"")
+                .that(exc.getMessage())
+                .contains("\"suppress\"");
+    }
+
+    @Test
+    public void testNoCheck() throws IOException {
+        final String fn = getPath("InputSuppressionsLoaderNoCheck.xml");
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadSuppressions(fn));
+        final String messageStart = "Unable to parse " + fn;
+        assertWithMessage("Exception message should start with: %s", messageStart)
+                .that(exc.getMessage())
+                .startsWith(messageStart);
+        assertWithMessage("Exception message should contain \"checks\"")
+                .that(exc.getMessage())
+                .contains("\"checks\"");
+        assertWithMessage("Exception message should contain \"suppress\"")
+                .that(exc.getMessage())
+                .contains("\"suppress\"");
+    }
+
+    @Test
+    public void testBadInt() throws IOException {
+        final String fn = getPath("InputSuppressionsLoaderBadInt.xml");
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadSuppressions(fn));
+        assertWithMessage(exc.getMessage())
+            .that(exc.getMessage())
+            .startsWith("Number format exception " + fn + " - For input string: \"a\"");
+    }
+
+    private static FilterSet loadFilterSet(String url) throws Exception {
+        FilterSet filterSet = null;
+
+        if (isUrlReachable(url)) {
+            int attemptCount = 0;
+            final int attemptLimit = 5;
+
+            while (attemptCount <= attemptLimit) {
+                try {
+                    filterSet = SuppressionsLoader.loadSuppressions(url);
+                    break;
+                }
+                catch (CheckstyleException exc) {
+                    if (attemptCount < attemptLimit && exc.getMessage()
+                            .contains("Unable to read")) {
+                        attemptCount++;
+                        // wait for bad/disconnection time to pass
+                        TimeUnit.SECONDS.sleep(1);
+                    }
+                    else {
+                        throw exc;
+                    }
+                }
+            }
+        }
+        return filterSet;
+    }
+
+    private static boolean isUrlReachable(String url) {
+        boolean result = true;
+        try {
+            final URL verifiableUrl = URI.create(url).toURL();
+            final HttpURLConnection urlConnect = (HttpURLConnection) verifiableUrl.openConnection();
+            urlConnect.getContent();
+        }
+
+        catch (IOException ignored) {
+            result = false;
+        }
+        return result;
+    }
+
+    @Test
+    public void testUnableToFindSuppressions() {
+        final String sourceName = "InputSuppressionsLoaderNone.xml";
+        final ReflectiveOperationException exc =
+                getExpectedThrowable(ReflectiveOperationException.class,
+                        () -> {
+                            TestUtil.invokeVoidStaticMethod(SuppressionsLoader.class,
+                                    "loadSuppressions",
+                                    new InputSource(sourceName), sourceName);
+                        });
+        assertWithMessage("Invalid exception cause message")
+            .that(exc)
+                .hasCauseThat()
+                    .hasMessageThat()
+                    .isEqualTo("Unable to find: " + sourceName);
+    }
+
+    @Test
+    public void testUnableToReadSuppressions() {
+        final String sourceName = "InputSuppressionsLoaderNone.xml";
+        final ReflectiveOperationException exc =
+                getExpectedThrowable(ReflectiveOperationException.class,
+                        () -> {
+                            TestUtil.invokeVoidStaticMethod(SuppressionsLoader.class,
+                                    "loadSuppressions",
+                                    new InputSource(), sourceName);
+                        });
+        assertWithMessage("Invalid exception cause message")
+            .that(exc)
+                .hasCauseThat()
+                    .hasMessageThat()
+                    .isEqualTo("Unable to read " + sourceName);
+    }
+
+    @Test
+    public void testNoCheckNoId() throws IOException {
+        final String fn = getPath("InputSuppressionsLoaderNoCheckAndId.xml");
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadSuppressions(fn));
+        assertWithMessage("Invalid error message")
+            .that(exc.getMessage())
+            .isEqualTo("Unable to parse " + fn
+                    + " - missing checks or id or message attribute");
+    }
+
+    @Test
+    public void testNoCheckYesId() throws Exception {
+        final String fn = getPath("InputSuppressionsLoaderId.xml");
+        final FilterSet set = SuppressionsLoader.loadSuppressions(fn);
+
+        assertWithMessage("Invalid number of filters")
+            .that(set.getFilters())
+            .hasSize(1);
+    }
+
+    @Test
+    public void testInvalidFileFormat() throws IOException {
+        final String fn = getPath("InputSuppressionsLoaderInvalidFile.xml");
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadSuppressions(fn));
+        assertWithMessage("Invalid error message")
+            .that(exc.getMessage())
+            .isEqualTo("Unable to parse " + fn
+                    + " - invalid files or checks or message format for checks: abc");
+    }
+
+    @Test
+    public void testLoadFromClasspath() throws Exception {
+        final FilterSet fc =
+            SuppressionsLoader.loadSuppressions(getPath("InputSuppressionsLoaderNone.xml"));
+        final FilterSet fc2 = new FilterSet();
+        assertWithMessage("Suppressions were not loaded")
+            .that(fc.getFilters())
+            .isEqualTo(fc2.getFilters());
+    }
+
+    @Test
+    public void testSettingModuleId() throws Exception {
+        final FilterSet fc =
+                SuppressionsLoader.loadSuppressions(getPath("InputSuppressionsLoaderWithId.xml"));
+        final SuppressFilterElement suppressElement = (SuppressFilterElement) fc.getFilters()
+                .toArray()[0];
+
+        final String id = TestUtil.getInternalState(suppressElement, "moduleId", String.class);
+        assertWithMessage("Id has to be defined")
+            .that(id)
+            .isEqualTo("someId");
+    }
+
+    @Test
+    public void testXpathSuppressions() throws Exception {
+        final String fn = getPath("InputSuppressionsLoaderXpathCorrect.xml");
+        final Set<TreeWalkerFilter> filterSet = SuppressionsLoader.loadXpathSuppressions(fn);
+
+        final Set<TreeWalkerFilter> expectedFilterSet = new HashSet<>();
+        final XpathFilterElement xf0 =
+                new XpathFilterElement("file1", "test", null, "id1", "//CLASS_DEF");
+        expectedFilterSet.add(xf0);
+        final XpathFilterElement xf1 =
+                new XpathFilterElement(null, null, "message1", null, "//CLASS_DEF");
+        expectedFilterSet.add(xf1);
+        assertWithMessage("Multiple xpath suppressions were loaded incorrectly")
+            .that(filterSet)
+            .isEqualTo(expectedFilterSet);
+    }
+
+    @Test
+    public void testXpathInvalidFileFormat() throws IOException {
+        final String fn = getPath("InputSuppressionsLoaderXpathInvalidFile.xml");
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadXpathSuppressions(fn));
+        assertWithMessage("Invalid error message")
+            .that(exc.getMessage())
+            .isEqualTo("Unable to parse " + fn
+                    + " - invalid files or checks or message format for suppress-xpath: abc");
+    }
+
+    @Test
+    public void testXpathNoCheckNoId() throws IOException {
+        final String fn =
+                getPath("InputSuppressionsLoaderXpathNoCheckAndId.xml");
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> SuppressionsLoader.loadXpathSuppressions(fn));
+        assertWithMessage("Invalid error message")
+            .that(exc.getMessage())
+            .isEqualTo("Unable to parse " + fn
+                    + " - missing checks or id or message attribute for suppress-xpath");
+    }
+
+    @Test
+    public void testXpathNoCheckYesId() throws Exception {
+        final String fn = getPath("InputSuppressionsLoaderXpathId.xml");
+        final Set<TreeWalkerFilter> filterSet = SuppressionsLoader.loadXpathSuppressions(fn);
+
+        assertWithMessage("Invalid number of filters")
+            .that(filterSet)
+            .hasSize(1);
+    }
+
+    @Test
+    public void testXpathSuppressionsExperimentalPuppyCrawl11() throws Exception {
+        final String fn = getPath("InputSuppressionsLoaderXpathExperimentalPuppyCrawl11.xml");
+        final Set<TreeWalkerFilter> filterSet = SuppressionsLoader.loadXpathSuppressions(fn);
+        assertWithMessage("Invalid number of filters")
+            .that(filterSet)
+            .hasSize(1);
+    }
+
+    @Test
+    public void testXpathSuppressionsExperimentalPuppyCrawl12() throws Exception {
+        final String fn = getPath("InputSuppressionsLoaderXpathExperimentalPuppyCrawl12.xml");
+        final Set<TreeWalkerFilter> filterSet = SuppressionsLoader.loadXpathSuppressions(fn);
+        assertWithMessage("Invalid number of filters")
+            .that(filterSet)
+            .hasSize(1);
+    }
+
+    @Test
+    public void testXpathSuppressionsExperimentalCheckstyle11() throws Exception {
+        final String fn = getPath("InputSuppressionsLoaderXpathExperimentalCheckstyle11.xml");
+        final Set<TreeWalkerFilter> filterSet = SuppressionsLoader.loadXpathSuppressions(fn);
+        assertWithMessage("Invalid number of filters")
+            .that(filterSet)
+            .hasSize(1);
+    }
+
+    @Test
+    public void testXpathSuppressionsExperimentalCheckstyle12() throws Exception {
+        final String fn = getPath("InputSuppressionsLoaderXpathExperimentalCheckstyle12.xml");
+        final Set<TreeWalkerFilter> filterSet = SuppressionsLoader.loadXpathSuppressions(fn);
+        assertWithMessage("Invalid number of filters")
+            .that(filterSet)
+            .hasSize(1);
+    }
+
+}

@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MissingJavadocMethod</title>
+  </head>
+  <body>
+    <section name="MissingJavadocMethod">
+      <p>Since Checkstyle 8.21</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MissingJavadocMethod_Description">Description</a></li>
+          <li><a href="#MissingJavadocMethod_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MissingJavadocMethod_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For <code>private</code> scope</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">For methods which are in <code>private</code>, but not in <code>protected</code> scope</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">For ignoring methods named <code>foo(),foo1(),foo2()</code>, etc.</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">For ignoring missing javadoc for accessor methods</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">With annotations that allow missed documentation</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">Allow missing Javadoc for methods with 2 (<code>minLineCount</code>) or fewer lines</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">For <code>METHOD_DEF</code> tokens only</a></li>
+            </ul>
+          </li>
+          <li><a href="#MissingJavadocMethod_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MissingJavadocMethod_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MissingJavadocMethod_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MissingJavadocMethod_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="MissingJavadocMethod_Description">
+        <div>
+          Checks for missing Javadoc comments for a method or constructor. The scope to verify is
+          specified using the <code>Scope</code> class and defaults to <code>Scope.PUBLIC</code>. To verify
+          another scope, set property scope to a different
+          <a href="https://checkstyle.org/property-types.html#Scope">scope</a>.
+        </div>
+
+        <p>
+          Javadoc is not required on a method that is tagged with the <code>@Override</code> annotation.
+          However, under Java 5 it is not possible to mark a method required for an interface (this
+          was <i>corrected</i> under Java 6). Hence, Checkstyle supports using the convention of using
+          a single <code>{@inheritDoc}</code> tag instead of all the other tags.
+        </p>
+
+        <p>
+          For getters and setters for the property <code>allowMissingPropertyJavadoc</code>, the methods must
+          match exactly the structures below.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+public void setNumber(final int number)
+{
+    mNumber = number;
+}
+
+public int getNumber()
+{
+    return mNumber;
+}
+
+public boolean isSomething()
+{
+    return false;
+}
+        </code></pre></div>
+      </subsection>
+
+      <subsection name="Properties" id="MissingJavadocMethod_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="allowMissingPropertyJavadoc"/><a href="#allowMissingPropertyJavadoc">allowMissingPropertyJavadoc</a></td>
+              <td>Control whether to allow missing Javadoc on accessor methods for properties (setters and getters).</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.21</td>
+            </tr>
+            <tr>
+              <td><a id="allowedAnnotations"/><a href="#allowedAnnotations">allowedAnnotations</a></td>
+              <td>Configure annotations that allow missed documentation.</td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
+              <td><code>Override</code></td>
+              <td>8.21</td>
+            </tr>
+            <tr>
+              <td><a id="excludeScope"/><a href="#excludeScope">excludeScope</a></td>
+              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
+              <td><a href="../../property-types.html#Scope">Scope</a></td>
+              <td><code>null</code></td>
+              <td>8.21</td>
+            </tr>
+            <tr>
+              <td><a id="ignoreMethodNamesRegex"/><a href="#ignoreMethodNamesRegex">ignoreMethodNamesRegex</a></td>
+              <td>Ignore method whose names are matching specified regex.</td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
+              <td>8.21</td>
+            </tr>
+            <tr>
+              <td><a id="minLineCount"/><a href="#minLineCount">minLineCount</a></td>
+              <td>Control the minimal amount of lines in method to allow no documentation.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>-1</code></td>
+              <td>8.21</td>
+            </tr>
+            <tr>
+              <td><a id="scope"/><a href="#scope">scope</a></td>
+              <td>Specify the visibility scope where Javadoc comments are checked.</td>
+              <td><a href="../../property-types.html#Scope">Scope</a></td>
+              <td><code>public</code></td>
+              <td>8.21</td>
+            </tr>
+            <tr>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                    ANNOTATION_FIELD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                    COMPACT_CTOR_DEF</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                    ANNOTATION_FIELD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                    COMPACT_CTOR_DEF</a>
+                  .
+              </td>
+              <td>8.21</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="MissingJavadocMethod_Examples">
+        <p id="Example1-config">
+          To configure the default check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocMethod"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  public Example1() {} // violation 'Missing a Javadoc comment for 'Example1'.'
+  // violation below 'Missing a Javadoc comment for 'testMethod1'.'
+  public void testMethod1() {}
+  /**
+   * Some description here.
+   */
+  public void testMethod2() {}
+
+  @Override
+  public String toString() {
+    return "Some string";
+  }
+
+  // ok, private method is not checked by default
+  private void testMethod3() {}
+  // ok, protected method is not checked by default
+  protected void testMethod4() {}
+  void testMethod5() {}
+
+  // violation below 'Missing a Javadoc comment for 'testMethod6'.'
+  public void testMethod6() {
+    System.out.println("line 1");
+    System.out.println("line 2");
+    System.out.println("line 3");
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check for <code>private</code>
+          scope:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocMethod"&gt;
+      &lt;property name="scope" value="private"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+  public Example2() {} // violation 'Missing a Javadoc comment for 'Example2'.'
+  // violation below 'Missing a Javadoc comment for 'testMethod1'.'
+  public void testMethod1() {}
+  /**
+   * Some description here.
+   */
+  public void testMethod2() {}
+
+  @Override
+  public String toString() {
+    return "Some string";
+  }
+
+  // violation below 'Missing a Javadoc comment for 'testMethod3'.'
+  private void testMethod3() {}
+  // violation below 'Missing a Javadoc comment for 'testMethod4'.'
+  protected void testMethod4() {}
+  void testMethod5() {} // violation 'Missing a Javadoc comment for 'testMethod5'.'
+
+  // violation below 'Missing a Javadoc comment for 'testMethod6'.'
+  public void testMethod6() {
+    System.out.println("line 1");
+    System.out.println("line 2");
+    System.out.println("line 3");
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check for methods which are in <code>private</code>,
+          but not in <code>protected</code> scope:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocMethod"&gt;
+      &lt;property name="scope" value="private"/&gt;
+      &lt;property name="excludeScope" value="protected"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+  public Example3() {} // violation 'Missing a Javadoc comment for 'Example3'.'
+  // violation below 'Missing a Javadoc comment for 'testMethod1'.'
+  public void testMethod1() {}
+  /**
+   * Some description here.
+   */
+  public void testMethod2() {}
+
+  @Override
+  public String toString() {
+    return "Some string";
+  }
+
+  // violation below 'Missing a Javadoc comment for 'testMethod3'.'
+  private void testMethod3() {}
+  // ok, protected method is excluded by excludeScope
+  protected void testMethod4() {}
+  void testMethod5() {} // violation 'Missing a Javadoc comment for 'testMethod5'.'
+
+  // violation below 'Missing a Javadoc comment for 'testMethod6'.'
+  public void testMethod6() {
+    System.out.println("line 1");
+    System.out.println("line 2");
+    System.out.println("line 3");
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check for ignoring methods named <code>foo(),foo1(),foo2()</code>, etc.:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocMethod"&gt;
+      &lt;property name="ignoreMethodNamesRegex" value="^testMethod.*$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example4 {
+  public Example4() {} // violation 'Missing a Javadoc comment for 'Example4'.'
+  // ok, method name matches ignoreMethodNamesRegex
+  public void testMethod1() {}
+  /**
+   * Some description here.
+   */
+  public void testMethod2() {}
+
+  @Override
+  public String toString() {
+    return "Some string";
+  }
+
+  // ok, method name matches ignoreMethodNamesRegex
+  private void testMethod3() {}
+  // ok, method name matches ignoreMethodNamesRegex
+  protected void testMethod4() {}
+  void testMethod5() {}
+
+  // ok, method name matches ignoreMethodNamesRegex
+  public void testMethod6() {
+    System.out.println("line 1");
+    System.out.println("line 2");
+    System.out.println("line 3");
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check for ignoring missing javadoc for accessor methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocMethod"&gt;
+      &lt;property name="allowMissingPropertyJavadoc" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 {
+  public Example5() {} // violation 'Missing a Javadoc comment for 'Example5'.'
+  // violation below 'Missing a Javadoc comment for 'testMethod1'.'
+  public void testMethod1() {}
+  /**
+   * Some description here.
+   */
+  public void testMethod2() {}
+
+  @Override
+  public String toString() {
+    return "Some string";
+  }
+
+  // ok, private method is not checked by default
+  private void testMethod3() {}
+  // ok, protected method is not checked by default
+  protected void testMethod4() {}
+  void testMethod5() {}
+
+  // violation below 'Missing a Javadoc comment for 'testMethod6'.'
+  public void testMethod6() {
+    System.out.println("line 1");
+    System.out.println("line 2");
+    System.out.println("line 3");
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure the check with annotations that allow missed documentation:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocMethod"&gt;
+      &lt;property name="allowedAnnotations" value="Override,Deprecated"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example6 {
+  public Example6() {} // violation 'Missing a Javadoc comment for 'Example6'.'
+  // violation below 'Missing a Javadoc comment for 'testMethod1'.'
+  public void testMethod1() {}
+  /**
+   * Some description here.
+   */
+  public void testMethod2() {}
+
+  @Override
+  public String toString() {
+    return "Some string";
+  }
+
+  // ok, private method is not checked by default
+  private void testMethod3() {}
+  // ok, protected method is not checked by default
+  protected void testMethod4() {}
+  void testMethod5() {}
+
+  // violation below 'Missing a Javadoc comment for 'testMethod6'.'
+  public void testMethod6() {
+    System.out.println("line 1");
+    System.out.println("line 2");
+    System.out.println("line 3");
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check to allow missing Javadoc for methods with 2
+          (<code>minLineCount</code>) or fewer lines:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocMethod"&gt;
+      &lt;property name="minLineCount" value="2"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example7 {
+  public Example7() {}
+  // ok, method has fewer lines than minLineCount
+  public void testMethod1() {}
+  /**
+   * Some description here.
+   */
+  public void testMethod2() {}
+
+  @Override
+  public String toString() {
+    return "Some string";
+  }
+
+  // ok, private method is not checked by default
+  private void testMethod3() {}
+  // ok, protected method is not checked by default
+  protected void testMethod4() {}
+  void testMethod5() {}
+
+  // violation below 'Missing a Javadoc comment for 'testMethod6'.'
+  public void testMethod6() {
+    System.out.println("line 1");
+    System.out.println("line 2");
+    System.out.println("line 3");
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check for <code>METHOD_DEF</code> tokens only:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocMethod"&gt;
+      &lt;property name="tokens" value="METHOD_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example8 {
+  public Example8() {}
+  // violation below 'Missing a Javadoc comment for 'testMethod1'.'
+  public void testMethod1() {}
+  /**
+   * Some description here.
+   */
+  public void testMethod2() {}
+
+  @Override
+  public String toString() {
+    return "Some string";
+  }
+
+  // ok, private method is not checked by default
+  private void testMethod3() {}
+  // ok, protected method is not checked by default
+  protected void testMethod4() {}
+  void testMethod5() {}
+
+  // violation below 'Missing a Javadoc comment for 'testMethod6'.'
+  public void testMethod6() {
+    System.out.println("line 1");
+    System.out.println("line 2");
+    System.out.println("line 3");
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="MissingJavadocMethod_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
+            Documentation Comments Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="MissingJavadocMethod_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing.named%22">
+              javadoc.missing.named
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="MissingJavadocMethod_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck</p>
+        <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="MissingJavadocMethod_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SingleSpaceSeparator</title>
+  </head>
+  <body>
+    <section name="SingleSpaceSeparator">
+      <p>Since Checkstyle 6.19</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#SingleSpaceSeparator_Description">Description</a></li>
+          <li><a href="#SingleSpaceSeparator_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SingleSpaceSeparator_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that it validates comments</a></li>
+            </ul>
+          </li>
+          <li><a href="#SingleSpaceSeparator_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#SingleSpaceSeparator_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#SingleSpaceSeparator_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#SingleSpaceSeparator_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="SingleSpaceSeparator_Description">
+        <div>
+          Checks that non-whitespace characters are separated by no more than one
+          whitespace. Separating characters by tabs or multiple spaces will be
+          reported. Currently, the check doesn't permit horizontal alignment. To inspect
+          whitespaces before and after comments, set the property
+          <code>validateComments</code> to true.
+        </div>
+
+        <p>
+          Setting <code>validateComments</code> to false will ignore cases like:
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+int i;  &#47;&#47; Multiple whitespaces before comment tokens will be ignored.
+private void foo(int  &#47;* whitespaces before and after block-comments will be
+ignored *&#47;  i) {
+        </code></pre></div>
+
+        <p>
+          Sometimes, users like to space similar items on different lines to the same
+          column position for easier reading. This feature isn't supported by this
+          check, so both braces in the following case will be reported as violations.
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code>
+public long toNanos(long d)  { return d;             } // 2 violations
+public long toMicros(long d) { return d / (C1 / C0); }
+        </code></pre></div>
+      </subsection>
+
+      <subsection name="Properties" id="SingleSpaceSeparator_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="validateComments"/><a href="#validateComments">validateComments</a></td>
+              <td>Control whether to validate whitespaces surrounding comments.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.19</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="SingleSpaceSeparator_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SingleSpaceSeparator"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  int foo()   { // violation 'Use a single space'
+    return  1;  // violation 'Use a single space'
+  }
+
+  void fun1() {}
+
+
+  // violation below 'Use a single space'
+  void  fun2() { return; }  /* 2 whitespaces before the comment starts */
+
+  /* 2 whitespaces after the comment ends */  int a;
+
+  String s; /* OK, 1 whitespace */
+
+  /**
+   * This is a Javadoc comment
+   */  int b;
+
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check so that it validates comments:
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SingleSpaceSeparator"&gt;
+      &lt;property name="validateComments" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 {
+  int foo()   { // violation 'Use a single space'
+    return  1; // violation 'Use a single space'
+  }
+
+  void fun1() {}
+  // 2 violations 3 lines below:
+  // 'Use a single space to separate non-whitespace characters.'
+  // 'Use a single space to separate non-whitespace characters.'
+  void  fun2() { return; }  /* 2 whitespaces before the comment starts */
+  // violation below 'Use a single space'
+  /* 2 whitespaces after the comment ends */  int a;
+
+  String s; /* OK, 1 whitespace */
+
+  /**
+   * This is a Javadoc comment
+   */  int b;
+  // violation above 'Use a single space'
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="SingleSpaceSeparator_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleSpaceSeparator">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleSpaceSeparator">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleSpaceSeparator">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="SingleSpaceSeparator_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22single.space.separator%22">
+              single.space.separator
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="SingleSpaceSeparator_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="SingleSpaceSeparator_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

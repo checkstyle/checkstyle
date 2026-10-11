@@ -1,0 +1,70 @@
+/*
+InnerTypeLast
+
+
+*/
+
+
+package com.puppycrawl.tools.checkstyle.checks.design.innertypelast;
+
+public class InputInnerTypeLastRecords {
+    record Test() {
+        private static String s;
+
+        record InnerTest1() {
+        }
+
+        // violation below 'Init blocks, constructors, fields and methods should be.*'
+        public void test() {
+        }
+    }
+
+    // violation below 'Init blocks, constructors, fields and methods should be.*'
+    public void test() {
+    }
+
+    record Test3() {
+        private static String s;
+
+        class InnerTest1 {
+        }
+
+        // violation below 'Init blocks, constructors, fields and methods should be.*'
+        public void test() {
+        }
+    }
+
+    record Test4() {
+        private static String s;
+
+        record MyInnerRecord() {
+            void foo() {}
+            class InnerInnerClass{}
+            // violation below 'Init blocks, constructors, fields and methods should be.*'
+            public MyInnerRecord{}
+        }
+
+        class MyInnerClass {
+            void foo (){}
+            class InnerInnerClass{}
+            // violation below 'Init blocks, constructors, fields and methods should be.*'
+            public MyInnerClass(){}
+
+        }
+
+        // violation below 'Init blocks, constructors, fields and methods should be.*'
+        static Test3 innerRecord = new Test3();
+
+        // violation below 'Init blocks, constructors, fields and methods should be.*'
+        public void test() {
+        }
+    }
+
+    record Test5() {
+        private static String s;
+        static Test3 myRecordTest = new Test3();
+
+        public void test() {
+        }
+    }
+}

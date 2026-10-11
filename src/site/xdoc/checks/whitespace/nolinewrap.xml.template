@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>NoLineWrap</title>
+  </head>
+  <body>
+    <section name="NoLineWrap">
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoLineWrapCheck.java"/>
+      </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoLineWrapCheck.java"/>
+      </macro>
+      <subsection name="Description" id="NoLineWrap_Description">
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoLineWrapCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Properties" id="NoLineWrap_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoLineWrapCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="NoLineWrap_Examples">
+        <p id="Example1-config">
+          To configure the check to force no line-wrapping
+          in package and import statements (default values):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Examples of line-wrapped statements (bad case):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to force no line-wrapping only
+          in import statements:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check for Java 21+ (default values):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
+          Example of line-wrapped statements for Java 21+ (bad case):
+        </p>
+        <macro name="example">
+          <param name="path"
+          value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to force no line-wrapping annotations:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+      </subsection>
+
+      <subsection name="Use Cases" id="NoLineWrap_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check to force no line-wrapping only
+          in class, method and constructor definitions:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="NoLineWrap_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrap">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrap">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrap">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="NoLineWrap_Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="NoLineWrap"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="NoLineWrap_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="NoLineWrap_Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="NoLineWrap"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

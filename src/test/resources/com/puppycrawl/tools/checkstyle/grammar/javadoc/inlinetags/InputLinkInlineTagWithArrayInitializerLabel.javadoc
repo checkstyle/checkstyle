@@ -1,0 +1,8 @@
+* {@link #wrap(ByteBuffer[], int, int, ByteBuffer) engine.wrap(new ByteBuffer[] { src }, 0, 1, dst);}
+* {@link #wrap(ByteBuffer[], int, int, ByteBuffer) engine.wrap(new ByteBuffer[] { { src }, { dst } }, 0, 2, out);}
+* {@link #wrap(ByteBuffer[], int, int, ByteBuffer) engine.wrap(new ByteBuffer[] { src }, new ByteBuffer[] { src }, dst);}
+* {@link #wrap(ByteBuffer[], int, int, ByteBuffer) text {@code a { b }} end}
+* {@link #wrap(ByteBuffer[], int, int, ByteBuffer) text {@code a { b }} end { c }}
+* {@link #wrap(ByteBuffer[], int, int, ByteBuffer) text { before {@code a { b }} after } end}
+* {@link #wrap(ByteBuffer[], int, int, ByteBuffer) text { before {@value #field} after } end}
+* {@link #wrap(ByteBuffer[], int, int, ByteBuffer) text { before {@link #wrap(ByteBuffer[], int, int, ByteBuffer) inner} after } end}

@@ -1,0 +1,53 @@
+/*
+BooleanExpressionComplexity
+max = (default)3
+tokens = (default)CTOR_DEF,METHOD_DEF,EXPR,LAND,BAND,LOR,BOR,BXOR,COMPACT_CTOR_DEF
+
+
+*/
+
+
+package com.puppycrawl.tools.checkstyle.checks.metrics.booleanexpressioncomplexity;
+
+public class InputBooleanExpressionComplexityRecordsAndCompactCtors {
+
+    record MyRecord1(boolean a, boolean b) {
+        private boolean myBool() {
+           return  (a & b) ^ (a || b) | a;
+           // violation above 'Boolean expression complexity is 4 (max allowed is 3).'
+        }
+    }
+
+    record MyRecord2(String myString, boolean a, boolean b) {
+
+        // in compact ctor
+        public MyRecord2{
+            boolean d = (a & b) ^ (a || b) | a;
+            // violation above 'Boolean expression complexity is 4 (max allowed is 3).'
+        }
+    }
+
+    record MyRecord3(int x) {
+
+        // in ctor
+        MyRecord3(){
+            this(3);
+            boolean b = true;
+            boolean a = true;
+            boolean d = (a & b) ^ (a || b) | a;
+            // violation above 'Boolean expression complexity is 4 (max allowed is 3).'
+        }
+    }
+
+    record MyRecord4(int y) {
+        private record MyRecord5(int z) {
+            // in nested record in compact ctor
+            public MyRecord5{
+                boolean b = false;
+                boolean a = true;
+                boolean d = (a & b) ^ (a || b) | a;
+                // violation above 'Boolean expression complexity is 4 (max allowed is 3).'
+            }
+        }
+    }
+}

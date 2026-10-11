@@ -1,0 +1,13 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MissingJavadocPackage"/>
+  </module>
+</module>
+*/
+// xdoc section - start
+/**
+ * Provides API classes
+ */
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.example1;
+// xdoc section - end

@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>TrailingComment</title>
+  </head>
+  <body>
+    <section name="TrailingComment">
+      <p>Since Checkstyle 3.4</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#TrailingComment_Description">Description</a></li>
+          <li><a href="#TrailingComment_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#TrailingComment_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Enforce only comment on a line</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that a trailing comment matching legalComment is suppressed</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#TrailingComment_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Check so that trailing comment starting with "SUPPRESS CHECKSTYLE", "NOPMD", "NOSONAR" are suppressed</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Allow trailing comments that match a specific pattern</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">Allow trailing multiline comments that match a specific pattern</a></li>
+            </ul>
+          </li>
+          <li><a href="#TrailingComment_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#TrailingComment_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#TrailingComment_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#TrailingComment_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="TrailingComment_Description">
+        <div>
+          The check to ensure that lines with code do not end with comment.
+          For the case of <code>//</code> comments that means that the only thing that should precede
+          it is whitespace. It doesn't check comments if they do not end a line; for example,
+          it accepts the following: <code>Thread.sleep( 10 /*some comment here* / );</code>
+          Format property is intended to deal with the <code>} // while</code> example.
+        </div>
+
+        <p>
+          Rationale: Steve McConnell in <cite>Code Complete</cite> suggests that endline
+          comments are a bad practice. An end line comment would be one that is on
+          the same line as actual code. For example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+a = b + c;      // Some insightful comment
+d = e / f;      /* Some insightful block comment * /
+        </code></pre></div>
+
+        <p>
+          Quoting <cite>Code Complete</cite> for the justification:
+        </p>
+        <ul>
+        <li>
+          "The comments have to be aligned so that they do not interfere with the visual
+          structure of the code. If you don't align them neatly, they'll make your listing
+          look like it's been through a washing machine."
+        </li>
+        <li>
+          "Endline comments tend to be hard to format...It takes time to align them.
+          Such time is not spent learning more about the code; it's dedicated solely
+          to the tedious task of pressing the spacebar or tab key."
+        </li>
+        <li>
+          "Endline comments are also hard to maintain. If the code on any line containing
+          an endline comment grows, it bumps the comment farther out, and all the other
+          endline comments will have to bumped out to match. Styles that are hard to
+          maintain aren't maintained...."
+        </li>
+        <li>
+          "Endline comments also tend to be cryptic. The right side of the line doesn't
+          offer much room and the desire to keep the comment on one line means the comment
+          must be short. Work then goes into making the line as short as possible instead
+          of as clear as possible. The comment usually ends up as cryptic as possible...."
+        </li>
+        <li>
+          "A systemic problem with endline comments is that it's hard to write a meaningful
+          comment for one line of code. Most endline comments just repeat the line of code,
+          which hurts more than it helps."
+        </li>
+        </ul>
+
+        <p>
+          McConnell's comments on being hard to maintain when the size of the line changes
+          are even more important in the age of automated refactorings.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="TrailingComment_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="format"/><a href="#format">format</a></td>
+              <td>Specify pattern for strings allowed before the comment.</td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
+              <td><code>^[\s});]*$</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td><a id="legalComment"/><a href="#legalComment">legalComment</a></td>
+              <td>Define pattern for text allowed in trailing comments. This pattern will not be applied to multiline comments.</td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
+              <td>4.2</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="TrailingComment_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TrailingComment"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="Example1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  int a;
+  int b;
+  int c;
+  int d; // ok, SUPPRESS CHECKSTYLE
+  // violation above 'Don't use trailing comments.'
+
+  public static void main(String[] args) {
+    int x = 10;
+
+    if (/* OK */ x &gt; 5) {}
+    int a = 5; // trailing comment
+    // violation above 'Don't use trailing comments.'
+    doSomething(
+            "param1"
+    ); // trailing comment
+    // ok above, trailing comment after ');' is allowed by default
+
+  }
+
+  private static void doSomething(String param) {
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example2-config">
+          To configure the check to enforce only comment on a line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TrailingComment"&gt;
+      &lt;property name="format" value="^\s*$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="Example2-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+  int a;
+  int b;
+  int c;
+  int d; // ok, SUPPRESS CHECKSTYLE
+  // violation above 'Don't use trailing comments.'
+
+  public static void main(String[] args) {
+    int x = 10;
+
+    if (/* OK, this comment does not end the line */ x &gt; 5) {}
+    int a = 5; // trailing comment
+    // violation above 'Don't use trailing comments.'
+    doSomething(
+            "param1"
+    ); // trailing comment
+    // violation above 'Don't use trailing comments.'
+
+  }
+
+  private static void doSomething(String param) {
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example3-config">
+          To configure the check so that a trailing comment matching
+          legalComment is suppressed:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TrailingComment"&gt;
+      &lt;property name="legalComment" value="^ ok, SUPPRESS CHECKSTYLE$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="Example3-code">
+          Example for trailing comments check to suppress specific trailing comment:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+  int a;
+  int b;
+  int c;
+  int d; // ok, SUPPRESS CHECKSTYLE
+  // ok above, matches legalComment pattern
+
+  public static void main(String[] args) {
+    int x = 10;
+
+    if (/* OK */ x &gt; 5) {}
+    int a = 5; // trailing comment
+    // violation above 'Don't use trailing comments.'
+    doSomething(
+            "param1"
+    ); // trailing comment
+    // ok above, trailing comment after ');' is allowed by default
+
+  }
+
+  private static void doSomething(String param) {
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="TrailingComment_Use_Cases">
+
+        <p id="UseCase1-config">
+          To configure check so that trailing comment starting with &quot;SUPPRESS CHECKSTYLE&quot;,
+          &quot;NOPMD&quot;, &quot;NOSONAR&quot; are suppressed:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TrailingComment"&gt;
+      &lt;property name="legalComment" value="^ (SUPPRESS CHECKSTYLE|NOPMD|NOSONAR).*"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase1 {
+  int a; // SUPPRESS CHECKSTYLE - OK, comment starts with " SUPPRESS CHECKSTYLE"
+  int b; // NOPMD - OK, comment starts with " NOPMD"
+  int c; // NOSONAR - OK, comment starts with " NOSONAR"
+  int d; // some comment - does not match legalComment
+  // violation above 'Don't use trailing comments.'
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase2-config">
+          To configure the check to allow trailing comments that match a specific pattern:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TrailingComment"&gt;
+      &lt;property name="legalComment" value="^ (TODO|FIXME|trailingcomment).*"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="UseCase2-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase2 {
+  public static void main(String[] args) {
+    int x = 10;
+
+    if (/* OK */ x &gt; 5) {}
+    int a = 5; // TODO: refactor this - ok, matches legalComment pattern
+    doSomething(
+            "param1"
+    ); // FIXME: handle edge cases - ok, matches legalComment pattern
+
+    int b = 10; // trailingcomment - ok, matches legalComment pattern
+    int c = 15; // some comment - does not match legalComment
+    // violation above 'Don't use trailing comments.'
+  }
+
+  private static void doSomething(String param) {
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase3-config">
+          To configure the check to allow trailing multiline comments that match a specific pattern:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TrailingComment"&gt;
+      &lt;property name="legalComment" value="^ violation.*"/&gt;
+    &lt;/module&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="checks" value="TrailingCommentCheck"/&gt;
+      &lt;property name="query" value="//BLOCK_COMMENT_BEGIN
+        [./COMMENT_CONTENT[@text=' NOSONAR ' or @text=' NOPMD '
+        or @text=' SUPPRESS CHECKSTYLE ']]"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="UseCase3-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase3 {
+  int a; /* SUPPRESS CHECKSTYLE */
+  int b; /* NOPMD */
+  int c; /* NOSONAR */
+  int d; /* there is violation because of illegal content */
+  // violation above 'Don't use trailing comments.'
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="TrailingComment_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+TrailingComment">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="TrailingComment_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22trailing.comments%22">
+              trailing.comments
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="TrailingComment_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck</p>
+        <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="TrailingComment_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

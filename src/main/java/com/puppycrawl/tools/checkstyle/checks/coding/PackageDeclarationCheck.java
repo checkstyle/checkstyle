@@ -1,0 +1,159 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.coding;
+
+import java.io.File;
+
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+/**
+ * <div>
+ * Ensures that a class has a package declaration, and (optionally) whether
+ * the package name matches the directory name for the source file.
+ * </div>
+ *
+ * <p>
+ * Rationale: Classes that live in the null package cannot be imported.
+ * Many novice developers are not aware of this.
+ * </p>
+ *
+ * <p>
+ * Packages provide logical namespace to classes and should be stored in
+ * the form of directory levels to provide physical grouping to your classes.
+ * These directories are added to the classpath so that your classes
+ * are visible to JVM when it runs the code.
+ * </p>
+ *
+ * @since 3.2
+ */
+@FileStatefulCheck
+public final class PackageDeclarationCheck extends AbstractCheck {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_MISSING = "missing.package.declaration";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_MISMATCH = "mismatch.package.directory";
+
+    /** Is package defined. */
+    private boolean defined;
+
+    /**
+     * Whether the file is a JEP 512 compact source file, which lives in the
+     * unnamed package by definition and cannot declare a package.
+     */
+    private boolean isCompactSourceFile;
+
+    /**
+     * Whether the file is a modular compilation unit, which consists of a
+     * module declaration and cannot declare a package.
+     */
+    private boolean isModularCompilationUnit;
+
+    /** Control whether to check for directory and package name match. */
+    private boolean matchDirectoryStructure = true;
+
+    /**
+     * Creates a new {@code PackageDeclarationCheck} instance.
+     */
+    public PackageDeclarationCheck() {
+        // no code by default
+    }
+
+    /**
+     * Setter to control whether to check for directory and package name match.
+     *
+     * @param matchDirectoryStructure the new value.
+     * @since 7.6.1
+     */
+    public void setMatchDirectoryStructure(boolean matchDirectoryStructure) {
+        this.matchDirectoryStructure = matchDirectoryStructure;
+    }
+
+    @Override
+    public int[] getDefaultTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return new int[] {TokenTypes.PACKAGE_DEF};
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public void beginTree(DetailAST ast) {
+        defined = false;
+        isCompactSourceFile = ast != null
+                && ast.getType() == TokenTypes.COMPACT_COMPILATION_UNIT;
+        isModularCompilationUnit = ast != null
+                && ast.findFirstToken(TokenTypes.MODULE_DEF) != null;
+    }
+
+    @Override
+    public void finishTree(DetailAST ast) {
+        if (!defined && !isCompactSourceFile && !isModularCompilationUnit && ast != null) {
+            log(ast, MSG_KEY_MISSING);
+        }
+    }
+
+    @Override
+    public void visitToken(DetailAST ast) {
+        defined = true;
+
+        if (matchDirectoryStructure) {
+            final DetailAST packageNameAst = ast.getLastChild().getPreviousSibling();
+            final FullIdent fullIdent = FullIdent.createFullIdent(packageNameAst);
+            final String packageName = fullIdent.getText().replace('.', File.separatorChar);
+
+            final String directoryName = getDirectoryName();
+
+            if (!directoryName.endsWith(packageName)) {
+                log(ast, MSG_KEY_MISMATCH, packageName);
+            }
+        }
+    }
+
+    /**
+     * Returns the directory name this file is in.
+     *
+     * @return Directory name.
+     */
+    private String getDirectoryName() {
+        final String fileName = getFilePath();
+        final int lastSeparatorPos = fileName.lastIndexOf(File.separatorChar);
+        return fileName.substring(0, lastSeparatorPos);
+    }
+
+}

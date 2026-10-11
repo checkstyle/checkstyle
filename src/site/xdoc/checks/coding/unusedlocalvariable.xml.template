@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>UnusedLocalVariable</title>
+  </head>
+  <body>
+    <section name="UnusedLocalVariable">
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java"/>
+      </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java"/>
+      </macro>
+      <subsection name="Description" id="UnusedLocalVariable_Description">
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Properties" id="UnusedLocalVariable_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="UnusedLocalVariable_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/unusedlocalvariable/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/unusedlocalvariable/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+           To configure the check to violate variables named with a single underscore
+           if they are not used:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/unusedlocalvariable/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/unusedlocalvariable/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+           Example with pattern variable:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/unusedlocalvariable/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/unusedlocalvariable/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+           To configure the check to not allow unnamed variables with JDK 21
+           for pattern variable detection:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/unusedlocalvariable/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/unusedlocalvariable/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="UnusedLocalVariable_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedLocalVariable">
+                Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="UnusedLocalVariable_Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="UnusedLocalVariable"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="UnusedLocalVariable_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="UnusedLocalVariable_Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="UnusedLocalVariable"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

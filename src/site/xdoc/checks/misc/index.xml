@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Miscellaneous</title>
+  </head>
+  <body>
+    <section name="Miscellaneous Checks">
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>
+              <a href="arraytypestyle.html#ArrayTypeStyle">
+                ArrayTypeStyle
+              </a>
+            </td>
+            <td>
+              Checks the style of array type definitions.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="avoidescapedunicodecharacters.html#AvoidEscapedUnicodeCharacters">
+                AvoidEscapedUnicodeCharacters
+              </a>
+            </td>
+            <td>
+              Restricts using <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3">
+              Unicode escapes</a> (such as &#92;u221e).
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="commentsindentation.html#CommentsIndentation">
+                CommentsIndentation
+              </a>
+            </td>
+            <td>
+              Controls the indentation between comments and surrounding code.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="descendanttoken.html#DescendantToken">
+                DescendantToken
+              </a>
+            </td>
+            <td>
+              Checks for restricted tokens beneath other tokens.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="finalparameters.html#FinalParameters">
+                FinalParameters
+              </a>
+            </td>
+            <td>
+              Checks that parameters for methods, constructors, catch and for-each blocks are final.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="hexliteralcase.html#HexLiteralCase">
+                HexLiteralCase
+              </a>
+            </td>
+            <td>
+              Checks that hexadecimal literals are defined using uppercase letters
+              <code>(A-F)</code> rather than lowercase <code>(a-f)</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="indentation.html#Indentation">
+                Indentation
+              </a>
+            </td>
+            <td>
+              Checks correct indentation of Java code.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="lineending.html#LineEnding">
+                LineEnding
+              </a>
+            </td>
+            <td>
+              Checks whether file uses a specific line-ending sequence (<code>LF</code>,
+              <code>CRLF</code>, or <code>CR</code>).
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="multilinecommentleadingasteriskpresence.html#MultilineCommentLeadingAsteriskPresence">
+                MultilineCommentLeadingAsteriskPresence
+              </a>
+            </td>
+            <td>
+              Checks if the <a href="https://www.oracle.com/java/technologies/javase/codeconventions-comments.html">
+              multi-line comments</a> have leading asterisks on each line.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="newlineatendoffile.html#NewlineAtEndOfFile">
+                NewlineAtEndOfFile
+              </a>
+            </td>
+            <td>
+              Checks whether files end with a line separator.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="nocodeinfile.html#NoCodeInFile">
+                NoCodeInFile
+              </a>
+            </td>
+            <td>
+              Checks whether file contains code.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="numericalprefixesinfixessuffixescharactercase.html#NumericalPrefixesInfixesSuffixesCharacterCase">
+                NumericalPrefixesInfixesSuffixesCharacterCase
+              </a>
+            </td>
+            <td>
+              Checks that all numerical literal prefixes, infixes, and suffixes are written using
+              lowercase letters (for example prefixes : <code>0x, 0b</code>, infixes : <code>e,
+              p</code>, suffixes : <code>f, d</code>).
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="openjdkmethodthrowsalignment.html#OpenjdkMethodThrowsAlignment">
+                OpenjdkMethodThrowsAlignment
+              </a>
+            </td>
+            <td>
+              Checks that the <code>throws</code> clause of a wrapped method or constructor
+              declaration is properly aligned according to the <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-wrapping-method-declarations">
+              OpenJDK Java Style Guide</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="orderedproperties.html#OrderedProperties">
+                OrderedProperties
+              </a>
+            </td>
+            <td>
+              Detects if keys in properties files are in correct order.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="outertypefilename.html#OuterTypeFilename">
+                OuterTypeFilename
+              </a>
+            </td>
+            <td>
+              Checks that the outer type name and the file name match.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="todocomment.html#TodoComment">
+                TodoComment
+              </a>
+            </td>
+            <td>
+              Checks for <code>TODO:</code> comments.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="trailingcomment.html#TrailingComment">
+                TrailingComment
+              </a>
+            </td>
+            <td>
+              The check to ensure that lines with code do not end with comment.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="translation.html#Translation">
+                Translation
+              </a>
+            </td>
+            <td>
+              Ensures the correct translation of code by checking property files for consistency
+              regarding their keys.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="uncommentedmain.html#UncommentedMain">
+                UncommentedMain
+              </a>
+            </td>
+            <td>
+              Detects uncommented <code>main</code> methods.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="uniqueproperties.html#UniqueProperties">
+                UniqueProperties
+              </a>
+            </td>
+            <td>
+              Detects duplicated keys in properties files.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="upperell.html#UpperEll">
+                UpperEll
+              </a>
+            </td>
+            <td>
+              Checks that long constants are defined with an upper ell.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</document>

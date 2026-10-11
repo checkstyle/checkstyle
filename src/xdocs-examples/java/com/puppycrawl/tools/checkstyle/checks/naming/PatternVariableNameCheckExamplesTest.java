@@ -1,0 +1,85 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.naming;
+
+import static com.puppycrawl.tools.checkstyle.checks.naming.PatternVariableNameCheck.MSG_INVALID_PATTERN;
+
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+
+public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename";
+    }
+
+    @Test
+    public void testExample1() throws Exception {
+
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
+
+        final String[] expected = {
+            "15:30: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
+            "18:31: " + getCheckMessage(MSG_INVALID_PATTERN, "num_1", pattern),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+
+        final String pattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
+
+        final String[] expected = {
+            "17:30: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testUseCase1() throws Exception {
+
+        final String pattern = "^[a-z][_a-zA-Z0-9]{2,}$";
+
+        final String[] expected = {
+            "17:30: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
+            "22:31: " + getCheckMessage(MSG_INVALID_PATTERN, "n", pattern),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
+    }
+
+    @Test
+    public void testUseCase2() throws Exception {
+
+        final String[] expected = {
+            "37:30: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", "^([a-z][a-zA-Z0-9]*|_)$"),
+            "40:31: " + getCheckMessage(MSG_INVALID_PATTERN, "num_1", "^([a-z][a-zA-Z0-9]*|_)$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
+    }
+
+}
+

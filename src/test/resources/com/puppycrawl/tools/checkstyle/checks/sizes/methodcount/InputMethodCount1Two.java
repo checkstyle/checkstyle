@@ -1,0 +1,97 @@
+/*
+MethodCount
+maxTotal = 3
+maxPrivate = 3
+maxPackage = 3
+maxProtected = 3
+maxPublic = 3
+tokens = (default)CLASS_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,ANNOTATION_DEF,METHOD_DEF, \
+          RECORD_DEF,COMPACT_COMPILATION_UNIT
+
+*/
+package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
+
+public class InputMethodCount1Two {
+  // 3 violations above:
+  //   'Number of package methods is 4 (max allowed is 3).'
+  //   'Number of private methods is 4 (max allowed is 3).'
+  //   'Total number of methods is 8 (max allowed is 3).'
+
+  /**
+   * Dummy inner class to check that the inner-classes methods are not counted
+   * for the outer class.
+   */
+  protected class PublicMethodsInnerclassInnerclass {
+    // 2 violations above:
+    //   'Number of protected methods is 4 (max allowed is 3).'
+    //   'Total number of methods is 4 (max allowed is 3).'
+    /** Dummy method doing nothing */
+    protected void doNothing50() {
+    }
+
+    /** Dummy method doing nothing */
+    protected void doNothing51() {
+    }
+
+    /** Dummy method doing nothing */
+    protected void doNothing52() {
+    }
+
+    /** Dummy method doing nothing */
+    protected void doNothing53() {
+    }
+  }
+
+  /**
+   * Dummy inner class to check that the inner-classes methods are not counted
+   * for the outer class.
+   */
+  public interface PublicMethodsInnerInterface {
+    // 2 violations above:
+    //   'Number of public methods is 4 (max allowed is 3).'
+    //   'Total number of methods is 4 (max allowed is 3).'
+
+    /** Dummy method doing nothing */
+    public void doNothing61();
+
+    /** Dummy method doing nothing */
+    public abstract void doNothing62();
+
+    /** Dummy method doing nothing */
+    abstract void doNothing63();
+
+    /** Dummy method doing nothing */
+    void doNothing64();
+  }
+
+  /** Dummy method doing nothing */
+  private void doNothing31() {
+  }
+
+  /** Dummy method doing nothing */
+  private void doNothing32() {
+  }
+
+  /** Dummy method doing nothing */
+  private void doNothing33() {
+  }
+
+  /** Dummy method doing nothing */
+  private void doNothing34() {
+  }
+  /** Dummy method doing nothing */
+  void doNothing20() {
+  }
+
+  /** Dummy method doing nothing */
+  void doNothing21() {
+  }
+
+  /** Dummy method doing nothing */
+  void doNothing22() {
+  }
+
+  /** Dummy method doing nothing */
+  void doNothing23() {
+  }
+}

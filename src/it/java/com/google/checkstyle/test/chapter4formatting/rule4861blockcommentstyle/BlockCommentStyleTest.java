@@ -1,0 +1,84 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.google.checkstyle.test.chapter4formatting.rule4861blockcommentstyle;
+
+import org.junit.jupiter.api.Test;
+
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
+
+public class BlockCommentStyleTest extends AbstractGoogleModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter4formatting/rule4861blockcommentstyle";
+    }
+
+    @Test
+    public void testCommentIsAtTheEndOfBlock() throws Exception {
+        verifyWithWholeConfig(getPath("InputCommentsIndentationCommentIsAtTheEndOfBlock.java"));
+    }
+
+    @Test
+    public void testCommentIsAtTheEndOfBlockFormatted() throws Exception {
+        verifyWithWholeConfig(
+                getPath("InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock.java"));
+    }
+
+    @Test
+    public void testCommentIsInsideSwitchBlock() throws Exception {
+        verifyWithWholeConfig(getPath("InputCommentsIndentationInSwitchBlock.java"));
+    }
+
+    @Test
+    public void testCommentIsInsideSwitchBlockFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedCommentsIndentationInSwitchBlock.java"));
+    }
+
+    @Test
+    public void testCommentIsInsideEmptyBlock() throws Exception {
+        verifyWithWholeConfig(getPath("InputCommentsIndentationInEmptyBlock.java"));
+    }
+
+    @Test
+    public void testCommentIsInsideEmptyBlockFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedCommentsIndentationInEmptyBlock.java"));
+    }
+
+    @Test
+    public void testSurroundingCode() throws Exception {
+        verifyWithWholeConfig(getPath("InputCommentsIndentationSurroundingCode.java"));
+    }
+
+    @Test
+    public void testSurroundingCodeFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedCommentsIndentationSurroundingCode.java"));
+    }
+
+    @Test
+    public void testBoxComments() throws Exception {
+        verifyWithWholeConfig(getPath("InputBoxComments.java"));
+    }
+
+    @Test
+    public void testMultilineCommentLeadingAsterisk() throws Exception {
+        verifyWithWholeConfig(getPath("InputMultilineCommentLeadingAsterisk.java"));
+    }
+
+}

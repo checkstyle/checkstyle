@@ -1,0 +1,7 @@
+#Licence file for pitest extensions
+#Sun Jul 14 10:23:06 BST 2024
+expires=14/07/2027
+keyVersion=1
+packages=com.puppycrawl.tools.checkstyle.*
+signature=Ls/M9iIyyhZMIneDBFLvafXWNzQxDW0BZb7flHoRpETrI16BU417Vyxg3Wi2wjItk9bhjf2pAQttctSH7XBE4MM3qtxr9VUZWljPjF1Mxn9REzWqs+Uj2SZ/ZLntA2nWURtM+/3XGudKequ6r3kDmtdcpSPg3WNffEjEGTkWtIo\=
+type=OSSS

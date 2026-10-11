@@ -1,0 +1,4 @@
+* Magic number: {@value "0x%04x" #MAGIC_NUMBER}.
+* Grouped count: {@value "%,d" #COUNT}.
+* External ratio: {@value "ratio=%.2f" com.example.Constants#RATIO}.
+* Hex suffix: {@value "%04x hex" #MAGIC_NUMBER}.

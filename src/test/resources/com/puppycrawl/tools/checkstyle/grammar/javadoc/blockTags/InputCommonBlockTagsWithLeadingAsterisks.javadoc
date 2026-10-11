@@ -1,0 +1,12 @@
+* Multi-asterisk block tags for common tags.
+**** @author Multi Star
+***@deprecated use {@link Replacement} instead.
+** @param name user name
+*****@param <T> element type
+**** @return calculated value
+***@throws IOException when reading fails
+****     and cache cannot be opened
+** @exception IllegalStateException when state is invalid
+**** @since 2.0
+***@version 2.1
+** Plain text before @author is not a block tag.

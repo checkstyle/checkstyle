@@ -1,0 +1,33 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="JavadocVariable">
+      <property name="ignoreNamePattern" value="log|logger"/>
+    </module>
+  </module>
+</module>
+*/
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
+
+// xdoc section - start
+public class Example4 {
+  private int a; // violation 'Missing a Javadoc comment for 'a'.'
+  private int log; // ok, ignored due to ignoreNamePattern
+
+  /**
+   * Some description here
+   */
+  private int b;
+  protected int c; // violation 'Missing a Javadoc comment for 'c'.'
+  public int d; // violation 'Missing a Javadoc comment for 'd'.'
+  /*package*/ int e; // violation 'Missing a Javadoc comment for 'e'.'
+
+  public enum PublicEnum {
+    CONSTANT // violation 'Missing a Javadoc comment for 'CONSTANT'.'
+  }
+
+  private enum PrivateEnum {
+    CONSTANT // violation 'Missing a Javadoc comment for 'CONSTANT'.'
+  }
+}
+// xdoc section - end

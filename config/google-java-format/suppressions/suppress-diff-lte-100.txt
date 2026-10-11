@@ -1,0 +1,9 @@
+InputArrayBracketNoWhitespace.java
+InputTryCatchIfElse.java
+InputVerticalWhitespace.java
+InputClassWithChainedMethods.java
+InputTextBlocksGeneralForm.java
+InputCamelCaseDefined.java
+InputInvalidJavadocPosition.java
+InputSingleSwitchStatementWithoutCurly.java
+InputTextBlocksTernary.java

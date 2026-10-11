@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ModifierOrder</title>
+  </head>
+  <body>
+    <section name="ModifierOrder">
+      <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ModifierOrder_Description">Description</a></li>
+          <li><a href="#ModifierOrder_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ModifierOrder_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For openjdk style</a></li>
+            </ul>
+          </li>
+          <li><a href="#ModifierOrder_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ModifierOrder_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ModifierOrder_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ModifierOrder_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="ModifierOrder_Description">
+        <div>
+          Validates that the modifiers appear in the correct, standard order.
+          By default the order of modifiers conforms to the suggestions in the
+          <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-8.html">
+          Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3</a> and
+          <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-9.html#jls-9.4">9.4</a>.
+          The default order is:
+        </div>
+
+        <ol>
+        <li> <code>public</code> </li>
+        <li> <code>protected</code> </li>
+        <li> <code>private</code> </li>
+        <li> <code>abstract</code> </li>
+        <li> <code>default</code> </li>
+        <li> <code>static</code> </li>
+        <li> <code>sealed</code> </li>
+        <li> <code>non-sealed</code> </li>
+        <li> <code>final</code> </li>
+        <li> <code>transient</code> </li>
+        <li> <code>volatile</code> </li>
+        <li> <code>synchronized</code> </li>
+        <li> <code>native</code> </li>
+        <li> <code>strictfp</code> </li>
+        </ol>
+
+        <p>
+          Additionally, modifiers are checked to ensure all annotations
+          are declared before all other modifiers.
+        </p>
+
+        <p>
+          Rationale: Code is easier to read if everybody follows
+          a standard.
+        </p>
+
+        <p>
+          ATTENTION: We skip
+          <a href="https://www.oracle.com/technical-resources/articles/java/ma14-architect-annotations.html">
+          type annotations</a> from validation.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="ModifierOrder_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="modifiersOrder"/><a href="#modifiersOrder">modifiersOrder</a></td>
+              <td>Set the order of modifiers.</td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
+              <td><code>abstract, default, final, native, non-sealed, private, protected, public, sealed, static, strictfp, synchronized, transient, volatile</code></td>
+              <td>14.2.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="ModifierOrder_Examples">
+        <p id="Example1-config"> To configure the check: </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ModifierOrder"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code"> Code: </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  public static final int MAX_VALUE = 100;
+
+  // violation below "'public' modifier out of order with the JLS suggestions"
+  final public String exampleOne = "ExampleOne";
+  // violation below "'public' modifier out of order with the JLS suggestions"
+  static public int exampleTwo;
+
+  private static void method() {}
+
+  // violation below 'annotation modifier does not precede non-annotation modifiers'
+  public @Deprecated class Example {}
+
+  sealed strictfp interface Test permits TestClass {}
+
+  final class TestClass implements Test {}
+
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config"> To configure the check for openjdk style: </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ModifierOrder"&gt;
+      &lt;property name="modifiersOrder" value="public, private,
+                protected, abstract, static, final, transient, volatile,
+                default, synchronized, native, strictfp"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code"> Code: </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+  public static final int MAX_VALUE = 100;
+
+  // violation below 'public' modifier out of order with the defined modifier order.
+  final public String exampleOne = "ExampleOne";
+  // violation below 'public' modifier out of order with the defined modifier order.
+  static public int exampleTwo;
+
+  private static void method() {}
+
+  // violation below 'annotation modifier does not precede non-annotation modifiers'
+  public @Deprecated class Example {}
+
+  sealed strictfp interface Test permits TestClass {}
+  // violation above 'strictfp' modifier out of order.
+  final class TestClass implements Test {}
+
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="ModifierOrder_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifierOrder">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifierOrder">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifierOrder">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifierOrder">
+            OpenJDK Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="ModifierOrder_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.order%22">
+              annotation.order
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mod.custom.order%22">
+              mod.custom.order
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mod.order%22">
+              mod.order
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="ModifierOrder_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="ModifierOrder_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

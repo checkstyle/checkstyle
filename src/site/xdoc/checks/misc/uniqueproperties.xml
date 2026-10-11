@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>UniqueProperties</title>
+  </head>
+  <body>
+    <section name="UniqueProperties">
+      <p>Since Checkstyle 5.7</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#UniqueProperties_Description">Description</a></li>
+          <li><a href="#UniqueProperties_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#UniqueProperties_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example1-raw" class="toc-sublink">Example: in foo.properties file</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Scan custom file extensions</a></li>
+              <li><a href="#Example2-raw" class="toc-sublink">Example: in foo.customProperties file</a></li>
+              <li><a href="#Example3-raw" class="toc-sublink">Example: in foo.properties file</a></li>
+            </ul>
+          </li>
+          <li><a href="#UniqueProperties_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#UniqueProperties_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#UniqueProperties_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#UniqueProperties_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="UniqueProperties_Description">
+        <div>
+          Detects duplicated keys in properties files.
+        </div>
+
+        <p>
+          Rationale: Multiple property keys usually appear after merge or rebase of
+          several branches. While there are no problems in runtime, there can be a confusion
+          due to having different values for the duplicated properties.
+        </p>
+
+      </subsection>
+
+      <subsection name="Properties" id="UniqueProperties_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
+              <td>Specify the file extensions of the files to process.</td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
+              <td><code>.properties</code></td>
+              <td>5.7</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="UniqueProperties_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="UniqueProperties"/&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-raw">
+          Example: in foo.properties file
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+# // violation below 'Duplicated property 'key.one' (2 occurrence(s)).'
+key.one=44
+key.two=32
+key.one=54
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to scan custom file extensions:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="UniqueProperties"&gt;
+    &lt;property name="fileExtensions" value="customProperties"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-raw">
+          Example: in foo.customProperties file
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+# // violation below 'Duplicated property 'key.one' (2 occurrence(s)).'
+key.one=44
+key.two=32
+key.one=54
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-raw">
+          Example: in foo.properties file
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+# OK below, no duplication violation, as the file is not checked
+key.one=44
+key.two=32
+key.one=54
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="UniqueProperties_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UniqueProperties">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="UniqueProperties_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22properties.duplicate.property%22">
+              properties.duplicate.property
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unable.open.cause%22">
+              unable.open.cause
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="UniqueProperties_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="UniqueProperties_Parent_Module">
+        <p>
+          <a href="../../config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

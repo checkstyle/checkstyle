@@ -1,0 +1,208 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.naming;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck.MSG_INVALID_PATTERN;
+
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+
+public class LocalFinalVariableNameCheckTest extends AbstractModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename";
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        final LocalFinalVariableNameCheck checkObj =
+            new LocalFinalVariableNameCheck();
+        assertWithMessage("LocalFinalVariableNameCheck#getRequiredTokens should return empty array "
+                + "by default")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
+    }
+
+    @Test
+    public void testDefault()
+            throws Exception {
+
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
+
+        final String[] expected = {
+            "24:19: " + getCheckMessage(MSG_INVALID_PATTERN, "CDE", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLocalFinalVariableName.java"), expected);
+    }
+
+    @Test
+    public void testDefaultMisc()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableNameMisc.java"), expected);
+    }
+
+    @Test
+    public void testDefaultMisc2()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableNameMisc2.java"), expected);
+    }
+
+    @Test
+    public void testDefaultMisc3()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableNameMisc3.java"), expected);
+    }
+
+    @Test
+    public void testDefaultForEachClause()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableName2.java"), expected);
+    }
+
+    @Test
+    public void testDefaultEnum()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableNameEnum1.java"), expected);
+    }
+
+    @Test
+    public void testSet()
+            throws Exception {
+
+        final String pattern = "[A-Z]+";
+
+        final String[] expected = {
+            "21:19: " + getCheckMessage(MSG_INVALID_PATTERN, "cde", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLocalFinalVariableName1.java"), expected);
+    }
+
+    @Test
+    public void testSetMisc()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableName1Misc.java"), expected);
+    }
+
+    @Test
+    public void testSetMisc2()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableName1Misc2.java"), expected);
+    }
+
+    @Test
+    public void testSetMisc3()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableName1Misc3.java"), expected);
+    }
+
+    @Test
+    public void testSetForEachClause()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableName3.java"), expected);
+    }
+
+    @Test
+    public void testSetEnum()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputLocalFinalVariableNameEnum2.java"), expected);
+    }
+
+    @Test
+    public void testInnerClass()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputLocalFinalVariableNameInnerClass.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        final LocalFinalVariableNameCheck localFinalVariableNameCheckObj =
+            new LocalFinalVariableNameCheck();
+        final int[] actual = localFinalVariableNameCheckObj.getAcceptableTokens();
+        final int[] expected = {
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.PARAMETER_DEF,
+            TokenTypes.RESOURCE,
+        };
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
+    }
+
+    @Test
+    public void testTryWithResources() throws Exception {
+
+        final String pattern = "[A-Z]+";
+
+        final String[] expected = {
+            "32:30: " + getCheckMessage(MSG_INVALID_PATTERN, "br", pattern),
+            "43:29: " + getCheckMessage(MSG_INVALID_PATTERN, "br", pattern),
+            "63:22: " + getCheckMessage(MSG_INVALID_PATTERN, "zf", pattern),
+            "82:30: " + getCheckMessage(MSG_INVALID_PATTERN, "fis8859_1", pattern),
+            "86:32: " + getCheckMessage(MSG_INVALID_PATTERN, "streamreader", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLocalFinalVariableNameTryResources.java"), expected);
+    }
+
+    @Test
+    public void testTryWithResourcesJava9() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputLocalFinalVariableNameTryResourcesJava9.java"), expected);
+    }
+
+    @Test
+    public void testUnnamedVariables() throws Exception {
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
+
+        final String[] expected = {
+            "21:18: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "24:32: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "32:24: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "34:24: " + getCheckMessage(MSG_INVALID_PATTERN, "_BAD", pattern),
+            "40:19: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "41:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_BAD", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputLocalFinalVariableNameUnnamedVariables.java"),
+                expected);
+    }
+
+}

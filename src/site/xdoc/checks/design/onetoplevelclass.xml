@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>OneTopLevelClass</title>
+  </head>
+  <body>
+    <section name="OneTopLevelClass">
+      <p>Since Checkstyle 5.8</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#OneTopLevelClass_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#OneTopLevelClass_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of code without public top-level type</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#OneTopLevelClass_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">An example of code without public top-level type</a></li>
+            </ul>
+          </li>
+          <li><a href="#OneTopLevelClass_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#OneTopLevelClass_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#OneTopLevelClass_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#OneTopLevelClass_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="OneTopLevelClass_Description">
+        <div>
+          Checks that each top-level class, interface, enum
+          or annotation resides in a source file of its own.
+          Official description of a 'top-level' term:
+          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-7.html#jls-7.6">
+          7.6. Top Level Type Declarations</a>. If file doesn't contain
+          public class, interface, enum or annotation, top-level type is the first type in file.
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="OneTopLevelClass_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OneTopLevelClass"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p>
+          <b>ATTENTION:</b> This Check does not support customization of validated tokens, so do
+          not use the &quot;tokens&quot; property.
+        </p>
+        <p id="Example1-code">
+          An example of code with violations:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 { // ok, first top-level class
+  // methods
+}
+
+class ViolationExample1 { // violation "has to reside in its own source file."
+  // methods
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          An example of code without public top-level type:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OneTopLevelClass"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 { // ok, only one top-level class
+  // methods
+}
+</code></pre></div>
+      </subsection>
+      <subsection name="Use Cases" id="OneTopLevelClass_Use_Cases">
+        <p id="UseCase1-config">
+        An example of code without public top-level type:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OneTopLevelClass"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase1 { // ok, first top-level class
+  // methods
+}
+
+class ViolationUseCase1 { // violation "has to reside in its own source file."
+  // methods
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="OneTopLevelClass_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="OneTopLevelClass_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22one.top.level.class%22">
+              one.top.level.class
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="OneTopLevelClass_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="OneTopLevelClass_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

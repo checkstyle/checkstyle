@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MultiFileRegexpHeader</title>
+  </head>
+  <body>
+    <section name="MultiFileRegexpHeader">
+      <p>Since Checkstyle 10.24.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MultiFileRegexpHeader_Description">Description</a></li>
+          <li><a href="#MultiFileRegexpHeader_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MultiFileRegexpHeader_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-raw" class="toc-sublink">Such that no violations arise. Default values of properties are used.</a></li>
+              <li><a href="#Example2-raw" class="toc-sublink">Use multiple header files</a></li>
+              <li><a href="#Example3-raw" class="toc-sublink">Verify that each file starts with one of multiple headers.</a></li>
+              <li><a href="#Example4-raw" class="toc-sublink">For a configuration where any header is accepted</a></li>
+            </ul>
+          </li>
+          <li><a href="#MultiFileRegexpHeader_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MultiFileRegexpHeader_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MultiFileRegexpHeader_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MultiFileRegexpHeader_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="MultiFileRegexpHeader_Description">
+        <div>
+          Checks the header of a source file against multiple header files that contain a
+          <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">
+          pattern</a> for each line of the source header.
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="MultiFileRegexpHeader_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
+              <td>Specify the file extensions of the files to process.</td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
+              <td><code>all files</code></td>
+              <td>10.24.0</td>
+            </tr>
+            <tr>
+              <td><a id="headerFiles"/><a href="#headerFiles">headerFiles</a></td>
+              <td>Specify a comma-separated list of files containing the required headers. If a file's header matches none, the violation references the first file in this list. Users can order files to set a preferred header for such reporting.</td>
+              <td><a href="../../property-types.html#String">String</a></td>
+              <td><code>null</code></td>
+              <td>10.24.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="MultiFileRegexpHeader_Examples">
+        <p id="Example1-raw">
+          To configure the check such that no violations arise.
+          Default values of properties are used.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE module PUBLIC
+        "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+&lt;module name="Checker"&gt;
+    &lt;module name="MultiFileRegexpHeader"/&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="Example1-code">Example1:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
+// ok, as by default there is not specific header defined to validate it presence
+public class Example1 { }
+</code></pre></div>
+        <hr class="example-separator"/>
+
+        <p id="Example2-raw">
+          To configure the check to use multiple header files:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE module PUBLIC
+        "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+&lt;module name="Checker"&gt;
+    &lt;module name="MultiFileRegexpHeader"&gt;
+        &lt;property name="fileExtensions" value="java"/&gt;
+        &lt;property name="headerFiles" value="${config.folder}/java.header, ${config.folder}/apache.header"/&gt;
+    &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="java-raw">content of <code>java.header</code> file:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// Checkstyle - Java code style checker. Copyright (C) 20XX-20XX the authors.
+// Licensed under the LGPL v2.1 or later. See LICENSE for details.
+// Distributed without warranty; see the GNU LGPL for more info.
+</code></pre></div>
+
+        <p id="apache-raw">content of <code>apache.header</code> file:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+^/\* Licensed to the ASF under the Apache License, Version 2\.0 \(see NOTICE\)\.
+^\* You may not use this file except in compliance:
+^\* http://www\.apache\.org/licenses/LICENSE-2\.0 \(AS IS, no warranties/conditions\)\. \*/
+</code></pre></div>
+
+        <p id="Example2-code">Example2:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// Wrong header format
+package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
+
+public class Example2 {
+    // Some code
+}
+// violation first line """Header mismatch, expected line content was '{0}'.
+//  File must match one of the configured header templates: '{1}'."""
+</code></pre></div>
+        <hr class="example-separator"/>
+
+        <p id="Example3-raw">
+          To configure the check to verify that each file starts with one of
+          multiple headers.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+&lt;module name="Checker"&gt;
+    &lt;module name="MultiFileRegexpHeader"&gt;
+        &lt;property name="headerFiles"
+                  value="${config.folder}/java.header, ${config.folder}/apache.header"/&gt;
+    &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="Example3-code">Example3:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/* Licensed to the ASF under the Apache License, Version 2.0 (see NOTICE).
+ * You may not use this file except in compliance:
+ * http://www.apache.org/licenses/LICENSE-2.0 (AS IS, no warranties/conditions). */
+package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
+
+public class Example3 {
+    // Some code
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+
+        <p id="Example4-raw">
+          For a configuration where any header is accepted:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE module PUBLIC
+        "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+&lt;module name="Checker"&gt;
+  &lt;module name="MultiFileRegexpHeader"&gt;
+    &lt;property
+      name="headerFiles"
+      value="${config.folder}/universal.header"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="universal-raw">content of <code>universal.header</code> file:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+^.*
+</code></pre></div>
+
+        <p id="Example4-code">
+          <code>&quot;.*&quot;</code> matches all lines, so no violations are expected.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// Any header works here
+package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
+public class Example4 { }
+</code></pre></div>
+
+      </subsection>
+
+      <subsection name="Example of Usage" id="MultiFileRegexpHeader_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultiFileRegexpHeader">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultiFileRegexpHeader">
+              Checkstyle Style
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultiFileRegexpHeader">
+            Sun Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="MultiFileRegexpHeader_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multi.file.regexp.header.mismatch%22">
+              multi.file.regexp.header.mismatch
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multi.file.regexp.header.missing%22">
+              multi.file.regexp.header.missing
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="MultiFileRegexpHeader_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="MultiFileRegexpHeader_Parent_Module">
+        <p>
+          <a href="../../config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+
+    </section>
+  </body>
+</document>

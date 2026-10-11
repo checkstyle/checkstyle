@@ -1,0 +1,100 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="CodeConvTOC.doc.html">[Contents]</a> <a href="CodeConventions.doc4.html">[Prev]</a> <a href="CodeConventions.doc6.html">[Next]</a>
+<hr><br>
+ 
+<a name="a2991"> </a>
+<h2 align="center">6 - 	 Declarations</h2>
+<a name="a2992"> </a>
+<h3> 6.1	 Number Per Line</h3>
+<p><a name="368"> </a>
+One declaration per line is recommended since it encourages commenting. In other words,
+</p><blockquote><pre>int level; // indentation level
+int size;  // size of table
+</pre></blockquote><p><a name="370"> </a>
+is preferred over
+</p><blockquote><pre>int level, size;
+</pre></blockquote><p><a name="614"> </a>
+Do not put different types on the same line. Example:
+</p><blockquote><pre><a name="15393"> </a>
+		      int foo,  fooarray[]; //WRONG!
+</pre></blockquote></p><a name="1727"> </a>
+<p><b>Note:</b> The examples above use one space between the type and the identifier. Another acceptable alternative is to use tabs, e.g.:
+<blockquote><pre>
+int	level;	        // indentation level
+int	size;	         // size of table
+Object	currentEntry;	 // currently selected table entry
+</pre></blockquote><a name="a18761"> </a>
+<h3> 6.2	 Initialization</h3>
+<p><a name="18762"> </a>
+Try to initialize local variables where they're declared. The only reason not to initialize a variable where it's declared is if the initial value depends on some computation occurring first.	
+</p><a name="a16817"> </a>
+<h3> 6.3	 Placement</h3>
+<p><a name="375"> </a>
+Put declarations only at the beginning of blocks. (A block is any code surrounded by curly braces "{" and "}".) Don't wait to declare variables until their first use; it can confuse the unwary programmer and hamper code portability within the scope. 
+</p><blockquote><pre>void myMethod() {
+    int int1 = 0;         // beginning of method block
+
+    if (condition) {
+        int int2 = 0;     // beginning of "if" block
+        ...
+    }
+}
+</blockquote></pre><p><a name="307"> </a>
+The one exception to the rule is indexes of <code>for</code> loops, which in Java can be declared in the <code>for</code> statement: 
+</p><blockquote><pre>
+for (int i = 0; i &lt; maxLoops; i++) { ... }
+</blockquote></pre><p><a name="377"> </a>
+Avoid local declarations that hide declarations at higher levels. For example, do not declare the same variable name in an inner block:
+</p><blockquote><pre>int count;
+...
+myMethod() {
+    if (condition) {
+        int count = 0;     // AVOID!
+        ...
+    }
+    ...
+}
+</pre></blockquote><a name="a381"> </a>
+<h3> 6.4	 Class and Interface Declarations</h3>
+<p><a name="207"> </a>
+When coding Java classes and interfaces, the following formatting rules should be followed: 
+</p><ul><a name="390"> </a>
+<li>No space between a method name and the parenthesis "(" starting its parameter list
+<a name="391"> </a>
+<li>Open brace "{" appears at the end of the same line as the declaration statement
+<a name="394"> </a>
+<li>Closing brace "}" starts a line by itself indented to match its corresponding opening statement, except when it is a null statement the "}" should appear immediately after the "{"
+</ul><blockquote><pre>class Sample extends Object {
+    int ivar1;
+    int ivar2;
+
+    Sample(int i, int j) {
+        ivar1 = i;
+        ivar2 = j;
+    }
+
+    int emptyMethod() {}
+
+    ...
+}
+</pre></blockquote><ul><a name="1733"> </a>
+<li>Methods are separated by a blank line
+</ul>
+<hr><br>
+ 
+<a href="CodeConvTOC.doc.html">[Contents]</a> <a href="CodeConventions.doc4.html">[Prev]</a> <a href="CodeConventions.doc6.html">[Next]</a> 
+<hr><br>
+
+
+
+
+<i><a href="Copyright.doc.html">Copyright</a> &#169; 1995-1999, Sun Microsystems, Inc.   All rights
+reserved.</i>
+
+
+<!-- Last updated: Thu Apr 15 09:03:50 1999 -->
+
+</body>
+</html>

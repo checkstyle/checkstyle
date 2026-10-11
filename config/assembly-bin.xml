@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.1"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.1
+                              https://maven.apache.org/xsd/assembly-1.1.1.xsd"
+          >
+  <id>bin</id>
+  <formats>
+    <format>tar.gz</format>
+    <format>zip</format>
+  </formats>
+
+  <files>
+    <file>
+      <source>${project.build.directory}/${project.name}-${project.version}-all.jar</source>
+    </file>
+  </files>
+  <fileSets>
+    <fileSet>
+      <useDefaultExcludes>true</useDefaultExcludes>
+      <includes>
+        <include>LICENSE*</include>
+        <include>README</include>
+        <include>RIGHTS.antlr</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+
+  <dependencySets>
+    <dependencySet>
+      <useProjectArtifact>true</useProjectArtifact>
+    </dependencySet>
+  </dependencySets>
+</assembly>

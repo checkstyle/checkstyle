@@ -1,0 +1,322 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.header;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISMATCH;
+import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISSING;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
+import static org.mockito.Mockito.mockConstruction;
+import static org.mockito.Mockito.when;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.LineNumberReader;
+import java.net.URI;
+import java.nio.file.Files;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+import org.mockito.MockedConstruction;
+
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+
+public class HeaderCheckTest extends AbstractModuleTestSupport {
+
+    @TempDir
+    public File temporaryFolder;
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/header/header";
+    }
+
+    @Test
+    public void testStaticHeader() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_MISSING),
+        };
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderStaticConfig.java"),
+                getPath("InputHeader.java"), expected);
+    }
+
+    @Test
+    public void testNoHeader() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderRegexpNoHeaderConfig.java"),
+                getPath("InputHeaderRegexp.java"), expected);
+    }
+
+    @Test
+    public void testWhitespaceHeader() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderRegexpWhitespaceHeaderConfig.java"),
+                getPath("InputHeaderRegexp.java"), expected);
+    }
+
+    @Test
+    public void testNonExistentHeaderFile() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("nonExistent.file"));
+        final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
+                () -> createChecker(checkConfig));
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasMessageThat()
+                        .startsWith("cannot initialize module"
+                            + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
+                            + " - illegal value ");
+        assertWithMessage("Invalid cause exception message")
+                .that(ex)
+                .hasCauseThat()
+                .hasCauseThat()
+                .hasCauseThat()
+                .hasMessageThat()
+                        .startsWith("Unable to find: ");
+    }
+
+    @Test
+    public void testInvalidCharset() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
+        checkConfig.addProperty("charset", "XSO-8859-1");
+        final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
+                () -> createChecker(checkConfig));
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasMessageThat()
+                        .isEqualTo("cannot initialize module"
+                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
+                                + " - Cannot set property 'charset' to 'XSO-8859-1'");
+        assertWithMessage("Invalid cause exception message")
+                .that(ex)
+                .hasCauseThat()
+                .hasCauseThat()
+                .hasCauseThat()
+                .hasMessageThat()
+                        .startsWith("unsupported charset: 'XSO-8859-1'");
+    }
+
+    @Test
+    public void testEmptyFilename() {
+        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
+        checkConfig.addProperty("headerFile", "");
+        final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
+                () -> createChecker(checkConfig));
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasMessageThat()
+                        .isEqualTo("cannot initialize module"
+                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
+                                + " - Cannot set property 'headerFile' to ''");
+        assertWithMessage("Invalid cause exception message")
+                .that(ex)
+                .hasCauseThat()
+                .hasCauseThat()
+                .hasCauseThat()
+                .hasMessageThat()
+                        .isEqualTo("property 'headerFile' is missing or invalid in module"
+                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck");
+    }
+
+    @Test
+    public void testNullFilename() {
+        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
+        checkConfig.addProperty("headerFile", null);
+        final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
+                () -> createChecker(checkConfig));
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasMessageThat()
+                        .isEqualTo("cannot initialize module"
+                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
+                                + " - Cannot set property 'headerFile' to 'null'");
+    }
+
+    @Test
+    public void testNotMatch() throws Exception {
+        final String[] expected = {
+            "2: " + getCheckMessage(MSG_MISMATCH,
+                    "// checkstyle: Checks Java source code and other text files for adherence to a"
+                        + " set of rules."),
+        };
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderjava2NotMatchConfig.java"),
+                getPath("InputHeaderjava2NotMatch.header"), expected);
+    }
+
+    @Test
+    public void testIgnore() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderjava2IgnoreConfig.java"),
+                getPath("InputHeaderjava2.header"), expected);
+    }
+
+    @Test
+    public void testSetHeaderTwice() {
+        final HeaderCheck check = new HeaderCheck();
+        check.setHeader("Header");
+        final IllegalArgumentException ex =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> check.setHeader("Header2"));
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasMessageThat()
+                        .isEqualTo("header has already been set - "
+                                + "set either header or headerFile, not both");
+    }
+
+    @Test
+    public void testIoExceptionWhenLoadingHeaderFile() throws Exception {
+        final HeaderCheck check = new HeaderCheck();
+        final String uri = "test://bad";
+        check.setHeaderFile(new URI(uri));
+
+        final ReflectiveOperationException ex =
+                getExpectedThrowable(ReflectiveOperationException.class,
+                        () -> TestUtil.invokeVoidMethod(check, "loadHeaderFile"));
+        assertWithMessage("Invalid exception cause message")
+            .that(ex)
+                .hasCauseThat()
+                    .hasMessageThat()
+                    .isEqualTo("unable to load header file " + uri);
+    }
+
+    @Test
+    public void testCacheHeaderFile() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
+
+        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
+        final File cacheFile = Files.createTempFile(temporaryFolder.toPath(), "junit", null)
+                .toFile();
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_MISSING),
+        };
+
+        // Content header is conflicting with Input inline header
+        verify(checkerConfig, getPath("InputHeader.java"), expected);
+        // One more time to use cache.
+        // Content header is conflicting with Input inline header
+        verify(checkerConfig, getPath("InputHeader.java"), expected);
+    }
+
+    @Test
+    public void testCacheHeaderWithoutFile() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
+        checkConfig.addProperty("header", "Test");
+
+        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
+        final File cacheFile = Files.createTempFile(temporaryFolder.toPath(), "junit", null)
+                .toFile();
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_MISMATCH, "Test"),
+        };
+
+        // Content header is conflicting with Input inline header
+        verify(checkerConfig, getPath("InputHeader.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreLinesSorted() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderjava3IgnoreLinesSortedConfig.java"),
+                getPath("InputHeaderjava3.header"), expected);
+    }
+
+    @Test
+    public void testLoadHeaderFileTwice() {
+        final HeaderCheck check = new HeaderCheck();
+        check.setHeader("Header");
+        final ReflectiveOperationException ex =
+                getExpectedThrowable(ReflectiveOperationException.class,
+                        () -> TestUtil.invokeVoidMethod(check, "loadHeaderFile"));
+        assertWithMessage("Invalid exception cause message")
+                .that(ex)
+                .hasCauseThat()
+                        .hasMessageThat()
+                                .isEqualTo("header has already been set - "
+                                    + "set either header or headerFile, not both");
+    }
+
+    @Test
+    public void testHeaderIsValidWithBlankLines() throws Exception {
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderBlankLinesConfig.java"),
+                getPath("InputHeaderBlankLines.java"));
+    }
+
+    @Test
+    public void testHeaderIsValidWithBlankLinesBlockStyle() throws Exception {
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderBlankLines2Config.java"),
+                getPath("InputHeaderBlankLines2.java"));
+    }
+
+    @Test
+    public void testExternalResource() throws Exception {
+        final HeaderCheck check = new HeaderCheck();
+        final URI uri = CommonUtil.getUriByFilename(getPath("InputHeaderjava.header"));
+        check.setHeaderFile(uri);
+        final Set<String> results = check.getExternalResourceLocations();
+        assertWithMessage("Invalid result size")
+            .that(results.size())
+            .isEqualTo(1);
+        assertWithMessage("Invalid resource location")
+            .that(results.iterator().next())
+            .isEqualTo(uri.toASCIIString());
+    }
+
+    @Test
+    public void testIoExceptionWhenLoadingHeader() {
+        final HeaderCheck check = new HeaderCheck();
+        try (MockedConstruction<LineNumberReader> mocked = mockConstruction(
+                LineNumberReader.class, (mock, context) -> {
+                    when(mock.readLine()).thenThrow(IOException.class);
+                })) {
+            final IllegalArgumentException ex =
+                    getExpectedThrowable(IllegalArgumentException.class,
+                            () -> check.setHeader("header"));
+            assertWithMessage("Invalid exception cause")
+                    .that(ex)
+                    .hasCauseThat()
+                            .isInstanceOf(IOException.class);
+            assertWithMessage("Invalid exception message")
+                    .that(ex)
+                    .hasMessageThat()
+                            .isEqualTo("unable to load header: header");
+        }
+    }
+
+}

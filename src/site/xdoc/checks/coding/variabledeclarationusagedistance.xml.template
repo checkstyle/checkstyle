@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>VariableDeclarationUsageDistance</title>
+  </head>
+  <body>
+    <section name="VariableDeclarationUsageDistance">
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java"/>
+      </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java"/>
+      </macro>
+      <subsection name="Description" id="VariableDeclarationUsageDistance_Description">
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Properties" id="VariableDeclarationUsageDistance_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="VariableDeclarationUsageDistance_Examples">
+        <p id="Example1-config">
+            To configure the check with default config:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p>
+          The distance for the variable "minutes" in the method <code>case1</code> is 1 even
+          though this variable is used in the fifth method's call.
+        </p>
+        <p>
+          The distance for the variable "minutes" in the method <code>case2</code> is 6
+          because there is one more expression (except the initialization block) between the
+          declaration of this variable and its usage.
+        </p>
+        <hr class="example-separator"/>
+        <p id="Example2-config">
+            To configure the check to set allowed distance:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+            To configure the check to ignore certain variables:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p>
+            This configuration ignores variables named "num".
+        </p>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+            To configure the check to force validation between scopes:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+            To configure the check to check final variables:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="VariableDeclarationUsageDistance_Use_Cases">
+        <p>
+          Check is able to detect a block of initialization methods, as a single point for distance.
+          If a variable is used in such a block and there are no other statements after
+          variable declaration, then distance = 1.
+        </p>
+        <p id="UseCase1-config">
+          Configure the check to default:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="VariableDeclarationUsageDistance_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
+            OpenJDK Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages"
+            id="VariableDeclarationUsageDistance_Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="VariableDeclarationUsageDistance"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name"
+                   id="VariableDeclarationUsageDistance_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="VariableDeclarationUsageDistance_Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="VariableDeclarationUsageDistance"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

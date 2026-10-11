@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryPermitsClauseCheck"
+             name="UnnecessaryPermitsClause"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that a &lt;code&gt;permits&lt;/code&gt; clause of a sealed class or interface is not
+ unnecessary, i.e. that it is not possible to omit the clause and have the
+ compiler infer the exact same set of permitted subtypes.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ See the &lt;a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-13.html#jls-13.4.2"&gt;
+ Java Language Specification&lt;/a&gt; for more information about sealed classes.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ This Check does not perform full type resolution. It determines whether a
+ permitted type is local to the file by comparing simple names against every
+ type declaration (class, interface, enum, or record) found
+ anywhere in the compilation unit, including nested and sibling top-level
+ types. As a result, a permitted type whose simple name coincidentally
+ matches an unrelated local type declaration could, in theory, be
+ misidentified as local. In practice this situation cannot occur in code
+ that compiles, since the Java compiler would not be able to resolve such an
+ ambiguous reference in the &lt;code&gt;permits&lt;/code&gt; clause.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="unnecessary.permits.clause"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

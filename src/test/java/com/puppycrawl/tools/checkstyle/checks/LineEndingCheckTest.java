@@ -1,0 +1,334 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.LineEndingCheck.MSG_KEY_UNABLE_OPEN;
+import static com.puppycrawl.tools.checkstyle.checks.LineEndingCheck.MSG_KEY_WRONG_ENDING;
+import static com.puppycrawl.tools.checkstyle.checks.LineEndingOption.CR;
+import static com.puppycrawl.tools.checkstyle.checks.LineEndingOption.CRLF;
+import static com.puppycrawl.tools.checkstyle.checks.LineEndingOption.LF;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+
+public class LineEndingCheckTest extends AbstractModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/lineending";
+    }
+
+    @Test
+    public void testInputLineEndingLfExpected1() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputLineEndingLfExpected1.java"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingLfExpected2() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
+            "2: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
+            "3: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
+            "4: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
+            "5: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
+            "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
+            "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
+        };
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingLfExpected2Config.java"),
+                getPath("InputLineEndingLfExpected2.java"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingLfExpected3() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
+            "2: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
+            "3: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
+            "4: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
+            "5: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
+            "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
+            "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
+        };
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingLfExpected3Config.java"),
+                getPath("InputLineEndingLfExpected3.java"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingCrlfExpected1() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputLineEndingCrlfExpected1.java"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingCrlfExpected2() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
+            "2: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
+            "3: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
+            "4: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
+            "5: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
+            "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
+            "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
+        };
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingCrlfExpected2Config.java"),
+                getPath("InputLineEndingCrlfExpected2.java"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingCrlfExpected3() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
+            "2: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
+            "3: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
+            "4: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
+            "5: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
+            "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
+            "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
+        };
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingCrlfExpected3Config.java"),
+                getPath("InputLineEndingCrlfExpected3.java"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingCrExpected1() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputLineEndingCrExpected1.java"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingCrExpected2() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
+            "2: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
+            "3: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
+            "4: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
+            "5: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
+            "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
+            "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
+        };
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingCrExpected2Config.java"),
+                getPath("InputLineEndingCrExpected2.java"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingCrExpected3() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
+            "2: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
+            "3: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
+            "4: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
+            "5: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
+            "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
+            "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
+        };
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingCrExpected3Config.java"),
+                getPath("InputLineEndingCrExpected3.java"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingOneLineLf1() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
+        };
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingOneLineLf1Config.java"),
+                getPath("InputLineEndingOneLineLf1.txt"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingOneLineLf2() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
+        };
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingOneLineLf2Config.java"),
+                getPath("InputLineEndingOneLineLf2.txt"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingOneLineCrlf() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
+        };
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingOneLineCrlfConfig.java"),
+                getPath("InputLineEndingOneLineCrlf.txt"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingOneLineCrlf2() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
+        };
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingOneLineCrlf2Config.java"),
+                getPath("InputLineEndingOneLineCrlf.txt"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingOneLineCr() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
+        };
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingOneLineCrConfig.java"),
+                getPath("InputLineEndingOneLineCr.txt"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingOneLineCr2() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
+        };
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingOneLineCr2Config.java"),
+                getPath("InputLineEndingOneLineCr.txt"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingOneLineLf3() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
+        };
+
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingOneLineLf3Config.java"),
+                getPath("InputLineEndingOneLineLf1.txt"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingMultipleEndings1() throws Exception {
+        final String[] expected = {
+            "9: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
+            "10: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
+            "12: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
+            "13: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
+            "14: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLineEndingMultipleEndings1.java"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingMultipleEndings2() throws Exception {
+        final String[] expected = {
+            "10: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
+            "11: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
+            "12: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
+            "14: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
+            "15: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLineEndingMultipleEndings2.java"),
+                expected);
+    }
+
+    @Test
+    public void testInputLineEndingMultipleEndings3() throws Exception {
+        final String[] expected = {
+            "9: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
+            "11: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
+            "13: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
+            "15: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLineEndingMultipleEndings3.java"),
+                expected);
+    }
+
+    @Test
+    public void testWrongFileWithPath() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(LineEndingCheck.class);
+        final LineEndingCheck check = new LineEndingCheck();
+        check.configure(checkConfig);
+
+        final List<String> lines = new ArrayList<>(1);
+        lines.add("txt");
+
+        final File impossibleFile =
+                new File("this/file/does/not/exist.txt");
+
+        final FileText fileText = new FileText(impossibleFile, lines);
+        final Set<Violation> violations =
+                check.process(impossibleFile, fileText);
+
+        assertWithMessage("Amount of violations is unexpected")
+                .that(violations)
+                .hasSize(1);
+
+        final Violation violation = violations.iterator().next();
+
+        assertWithMessage("Violation line number differs from expected")
+                .that(violation.getLineNo())
+                .isEqualTo(0);
+
+        assertWithMessage("Violation message differs from expected")
+            .that(violation.getViolation())
+            .isEqualTo(
+                getCheckMessage(
+                    MSG_KEY_UNABLE_OPEN,
+                    impossibleFile.getPath()
+                )
+            );
+    }
+
+}

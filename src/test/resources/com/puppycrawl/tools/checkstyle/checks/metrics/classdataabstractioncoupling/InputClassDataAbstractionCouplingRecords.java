@@ -1,0 +1,93 @@
+/*
+ClassDataAbstractionCoupling
+max = 1
+excludedClasses = (default)ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, \
+                  Character, Class, Collection, Deprecated, Deque, Double, DoubleStream, \
+                  EnumSet, Exception, Float, FunctionalInterface, HashMap, HashSet, \
+                  IllegalArgumentException, IllegalStateException, IndexOutOfBoundsException, \
+                  IntStream, Integer, LinkedHashMap, LinkedHashSet, LinkedList, List, Long, \
+                  LongStream, Map, NullPointerException, Object, Optional, OptionalDouble, \
+                  OptionalInt, OptionalLong, Override, Queue, RuntimeException, SafeVarargs, \
+                  SecurityException, Set, Short, SortedMap, SortedSet, Stream, String, \
+                  StringBuffer, StringBuilder, SuppressWarnings, Throwable, TreeMap, TreeSet, \
+                  UnsupportedOperationException, Void, boolean, byte, char, double, float, \
+                  int, long, short, var, void
+excludeClassesRegexps = (default)^$
+excludedPackages = (default)
+
+
+*/
+
+
+package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling;
+
+import java.sql.Time;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+// violation below 'Class Data Abstraction Coupling is 2 (max allowed is 1)'
+class InputClassDataAbstractionCouplingRecords {
+    Date date = new Date(); // Counted, 1
+    Time time = new Time(2, 2, 2);
+}
+
+// violation below 'Class Data Abstraction Coupling is 2 (max allowed is 1)'
+record MyRecord1(boolean a, boolean b) {
+
+    private boolean myBool() {
+        Date date = new Date(); // Counted, 1
+        Time time = new Time(2, 2, 2);
+        return true;
+    }
+
+}
+
+// violation below 'Class Data Abstraction Coupling is 2 (max allowed is 1)'
+record MyRecord2(String myString, boolean a, boolean b) {
+
+    // in compact ctor
+    public MyRecord2 {
+        Date date = new Date(); // Counted, 1
+        Time time = new Time(2, 2, 2);
+    }
+}
+
+record MyRecord3(int x) { // violation 'Class Data Abstraction Coupling is 2 (max allowed is 1)'
+
+    // in ctor
+    MyRecord3() {
+        this(4);
+        Date date = new Date(); // Counted, 1
+        Time time = new Time(2, 2, 2);
+
+    }
+}
+
+record MyRecord4(int y) {
+    // violation below 'Class Data Abstraction Coupling is 3 (max allowed is 1)'
+    private record MyRecord5(int z) {
+        static Set<Integer> set = new HashSet<>(); // HashSet ignored
+        static Map<String, Integer> map = new HashMap<>(); // HashMap ignored
+        static Date date = new Date(); // Counted, 1
+        static Time time = new Time();
+        static Place place = new Place();
+
+    }
+
+    static class Time {
+        Time(int h, int m,  int s) {
+
+        }
+        Time(){}
+    }
+
+    static class Date {
+    }
+
+    static class Place {
+    }
+
+}

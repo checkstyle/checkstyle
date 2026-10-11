@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>AvoidStarImport</title>
+  </head>
+  <body>
+    <section name="AvoidStarImport">
+      <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#AvoidStarImport_Description">Description</a></li>
+          <li><a href="#AvoidStarImport_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#AvoidStarImport_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that star imports from packages <code>java.io and java.net</code> as well as static members from class <code>java.lang.Math</code> are allowed</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that star imports from all packages are allowed</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">So that starred static member imports from all packages are allowed</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">According to OpenJDK guidelines, where at most one star import is allowed per file</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#AvoidStarImport_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">So that star imports from packages <code>java.io and java.net</code> are allowed</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">So that star imports from packages <code>java.io and java.net</code> as well as static members imports from all packages are allowed</a></li>
+            </ul>
+          </li>
+          <li><a href="#AvoidStarImport_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#AvoidStarImport_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#AvoidStarImport_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#AvoidStarImport_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="AvoidStarImport_Description">
+        <div>
+          Checks that there are no import statements that use the <code>*</code> notation.
+        </div>
+
+        <p>
+          Rationale: Importing all classes from a package or static
+          members from a class leads to tight coupling between packages
+          or classes and might lead to problems when a new version of a
+          library introduces name clashes.
+        </p>
+      </subsection>
+
+      <subsection name="Notes" id="AvoidStarImport_Notes">
+        <p>
+          Note that property <code>excludes</code> is not recursive, subpackages of excluded
+          packages are not automatically excluded.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="AvoidStarImport_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="allowClassImports"/><a href="#allowClassImports">allowClassImports</a></td>
+              <td>Control whether to allow starred class imports like <code>import java.util.*;</code>.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td><a id="allowStaticMemberImports"/><a href="#allowStaticMemberImports">allowStaticMemberImports</a></td>
+              <td>Control whether to allow starred static member imports like <code>import static org.junit.Assert.*;</code>.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td><a id="excludes"/><a href="#excludes">excludes</a></td>
+              <td>Specify packages where starred class imports are allowed and classes where starred static member imports are allowed.</td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
+              <td><code>{}</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td><a id="maxAllowedStarImports"/><a href="#maxAllowedStarImports">maxAllowedStarImports</a></td>
+              <td>Control how many star imports are allowed.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>13.5.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="AvoidStarImport_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidStarImport"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.Scanner;
+import java.io.*; // violation 'Using the '.*' form of import should be avoided.'
+import static java.lang.Math.*; // violation 'form of import should be avoided.'
+import java.util.*; // violation 'Using the '.*' form of import should be avoided.'
+import java.net.*; // violation 'Using the '.*' form of import should be avoided.'
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check so that star imports from packages
+          <code>java.io and java.net</code> as well as static members from class
+          <code>java.lang.Math</code> are allowed:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidStarImport"&gt;
+      &lt;property name="excludes" value="java.io,java.net,java.lang.Math"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.Scanner;
+import java.io.*;
+import static java.lang.Math.*;
+import java.util.*; // violation 'Using the '.*' form of import should be avoided.'
+import java.net.*;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check so that star imports
+          from all packages are allowed:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidStarImport"&gt;
+      &lt;property name="allowClassImports" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.Scanner;
+import java.io.*;
+import static java.lang.Math.*; // violation 'form of import should be avoided.'
+import java.util.*;
+import java.net.*;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check so that starred static member imports
+          from all packages are allowed:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidStarImport"&gt;
+      &lt;property name="allowStaticMemberImports" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.Scanner;
+import java.io.*; // violation 'Using the '.*' form of import should be avoided.'
+import static java.lang.Math.*;
+import java.util.*; // violation 'Using the '.*' form of import should be avoided.'
+import java.net.*; // violation 'Using the '.*' form of import should be avoided.'
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check according to
+          <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-import-statements">
+          OpenJDK guidelines</a>,
+          where at most one star import is allowed per file:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidStarImport"&gt;
+      &lt;property name="maxAllowedStarImports" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.Scanner;
+import java.io.*;
+import static java.lang.Math.*; // violation 'Only '1' star import is allowed per file.'
+import java.util.*; // violation 'Only '1' star import is allowed per file.'
+import java.net.*; // violation 'Only '1' star import is allowed per file.'
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="AvoidStarImport_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check so that star imports from packages
+          <code>java.io and java.net</code> are allowed:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidStarImport"&gt;
+      &lt;property name="allowClassImports" value="true"/&gt;
+      &lt;property name="excludes" value="java.io,java.net"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.Scanner;
+import java.io.*;
+import static java.lang.Math.*; // violation 'form of import should be avoided.'
+import java.util.*;
+import java.net.*;
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          To configure the check so that star imports from packages
+          <code>java.io and java.net</code> as well as static members imports
+          from all packages are allowed:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidStarImport"&gt;
+      &lt;property name="allowStaticMemberImports" value="true"/&gt;
+      &lt;property name="excludes" value="java.io,java.net"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.Scanner;
+import java.io.*;
+import static java.lang.Math.*;
+import java.util.*; // violation 'Using the '.*' form of import should be avoided.'
+import java.net.*;
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="AvoidStarImport_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="Violation Messages" id="AvoidStarImport_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.avoidStar%22">
+              import.avoidStar
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.avoidStarCount%22">
+              import.avoidStarCount
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+      <subsection name="Fully Qualified Name" id="AvoidStarImport_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck</p>
+        <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="AvoidStarImport_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

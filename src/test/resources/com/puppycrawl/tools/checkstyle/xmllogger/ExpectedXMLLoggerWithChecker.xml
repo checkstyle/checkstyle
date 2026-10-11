@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="null">
+<file name="InputXMLLogger.java">
+<error line="12" column="15" severity="error" message="Using the '.*' form of import should be avoided - java.io.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+</file>
+</checkstyle>

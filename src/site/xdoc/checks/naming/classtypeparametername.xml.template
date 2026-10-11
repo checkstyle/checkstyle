@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ClassTypeParameterName</title>
+  </head>
+  <body>
+    <section name="ClassTypeParameterName">
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/ClassTypeParameterNameCheck.java"/>
+      </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/ClassTypeParameterNameCheck.java"/>
+      </macro>
+      <subsection name="Description" id="ClassTypeParameterName_Description">
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/ClassTypeParameterNameCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Properties" id="ClassTypeParameterName_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/ClassTypeParameterNameCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="ClassTypeParameterName_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/classtypeparametername/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/classtypeparametername/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check for names that are uppercase word:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/classtypeparametername/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/classtypeparametername/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="ClassTypeParameterName_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check for names that are camel case word with T as suffix
+          (<a href="../../styleguides/google-java-style-20260409/javaguide.html#s5.2.8-type-variable-names">Google Style</a>):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/classtypeparametername/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/classtypeparametername/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="ClassTypeParameterName_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="ClassTypeParameterName_Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="ClassTypeParameterName"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="ClassTypeParameterName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="ClassTypeParameterName_Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="ClassTypeParameterName"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,0 +1,113 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
+
+import java.io.File;
+
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+
+public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/detailnodetreestringprinter";
+    }
+
+    @Test
+    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(DetailNodeTreeStringPrinter.class))
+                .isTrue();
+    }
+
+    @Test
+    public void testParseFile() throws Exception {
+        verifyJavadocTree(getPath("ExpectedDetailNodeTreeStringPrinterJavadocComment.txt"),
+                getPath("InputDetailNodeTreeStringPrinterJavadocComment.javadoc"));
+    }
+
+    @Test
+    public void testNoUnnecessaryTextInJavadocAst() throws Exception {
+        verifyJavadocTree(
+                getPath("ExpectedDetailNodeTreeStringPrinterNoUnnecessaryTextInJavadocAst.txt"),
+                getPath("InputDetailNodeTreeStringPrinterNoUnnecessaryTextInJavadocAst.javadoc"));
+    }
+
+    @Test
+    public void testParseErrorMessage() throws Exception {
+        final String actual = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
+                "getParseErrorMessage", String.class,
+                new ParseErrorMessage(10, MSG_JAVADOC_PARSE_RULE_ERROR,
+                        9, "no viable alternative at input ' xyz'", "SOME_JAVADOC_ELEMENT"));
+        final LocalizedMessage violation = new LocalizedMessage(
+                "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
+                DetailNodeTreeStringPrinter.class,
+                MSG_JAVADOC_PARSE_RULE_ERROR,
+                9,
+                "no viable alternative at input ' xyz'", "SOME_JAVADOC_ELEMENT");
+        final String expected = "[ERROR:10] " + violation.getMessage();
+        assertWithMessage("Javadoc parse error violation doesn't meet expectations")
+            .that(actual)
+            .isEqualTo(expected);
+    }
+
+    @Test
+    public void testNoViableAltException() throws Exception {
+        final File file = new File(
+                getPath("InputDetailNodeTreeStringPrinterNoViableAltException.javadoc"));
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    DetailNodeTreeStringPrinter.printFileAst(file);
+                }, "Exception is expected");
+        final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
+                "getParseErrorMessage", String.class,
+                new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
+                        8, "no viable alternative at input 'see <'", "SEE_TAG"));
+        assertWithMessage("Generated and expected parse error messages don't match")
+            .that(exc.getMessage())
+            .isEqualTo(expected);
+    }
+
+    @Test
+    public void testHtmlTagCloseBeforeTagOpen() throws Exception {
+        final File file = new File(
+                getPath("InputDetailNodeTreeStringPrinterHtmlTagCloseBeforeTagOpen.javadoc"));
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    DetailNodeTreeStringPrinter.printFileAst(file);
+                }, "Exception is expected");
+        final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
+                "getParseErrorMessage", String.class,
+                new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
+                        3, "no viable alternative at input '</'", "HTML_ELEMENT"));
+        assertWithMessage("Generated and expected parse error messages don't match")
+            .that(exc.getMessage())
+            .isEqualTo(expected);
+    }
+
+}

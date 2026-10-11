@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ClassTypeParameterName</title>
+  </head>
+  <body>
+    <section name="ClassTypeParameterName">
+      <p>Since Checkstyle 5.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ClassTypeParameterName_Description">Description</a></li>
+          <li><a href="#ClassTypeParameterName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ClassTypeParameterName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For names that are uppercase word</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#ClassTypeParameterName_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">For names that are camel case word with T as suffix (Google Style)</a></li>
+            </ul>
+          </li>
+          <li><a href="#ClassTypeParameterName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ClassTypeParameterName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ClassTypeParameterName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ClassTypeParameterName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="ClassTypeParameterName_Description">
+        <div>
+          Checks that class type parameter names conform to a specified pattern.
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="ClassTypeParameterName_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="format"/><a href="#format">format</a></td>
+              <td>Sets the pattern to match valid identifiers.</td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
+              <td><code>^[A-Z]$</code></td>
+              <td>5.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="ClassTypeParameterName_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ClassTypeParameterName"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  class MyClass1&lt;T&gt; {}
+  class MyClass2&lt;t&gt; {}        // violation 'Name 't' must match pattern'
+  class MyClass3&lt;abc&gt; {}      // violation 'Name 'abc' must match pattern'
+  class MyClass4&lt;LISTENER&gt; {} // violation 'Name 'LISTENER' must match pattern'
+  class MyClass5&lt;RequestT&gt; {} // violation 'Name 'RequestT' must match pattern'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check for names that are uppercase word:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ClassTypeParameterName"&gt;
+      &lt;property name="format" value="^[A-Z]{2,}$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 {
+  class MyClass1&lt;T&gt; {}        // violation 'Name 'T' must match pattern'
+  class MyClass2&lt;t&gt; {}        // violation 'Name 't' must match pattern'
+  class MyClass3&lt;abc&gt; {}      // violation 'Name 'abc' must match pattern'
+  class MyClass4&lt;LISTENER&gt; {}
+  class MyClass5&lt;RequestT&gt; {} // violation 'Name 'RequestT' must match pattern'
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="ClassTypeParameterName_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check for names that are camel case word with T as suffix
+          (<a href="../../styleguides/google-java-style-20260409/javaguide.html#s5.2.8-type-variable-names">Google Style</a>):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ClassTypeParameterName"&gt;
+      &lt;property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1 {
+  class MyClass1&lt;T&gt; {}
+  class MyClass2&lt;t&gt; {}        // violation 'Name 't' must match pattern'
+  class MyClass3&lt;abc&gt; {}      // violation 'Name 'abc' must match pattern'
+  class MyClass4&lt;LISTENER&gt; {} // violation 'Name 'LISTENER' must match pattern'
+  class MyClass5&lt;RequestT&gt; {}
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="ClassTypeParameterName_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="ClassTypeParameterName_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
+              name.invalidPattern
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="ClassTypeParameterName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="ClassTypeParameterName_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

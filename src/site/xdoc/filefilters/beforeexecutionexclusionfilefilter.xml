@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>BeforeExecutionExclusionFileFilter</title>
+  </head>
+  <body>
+    <section name="BeforeExecutionExclusionFileFilter">
+      <p>Since Checkstyle 7.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#BeforeExecutionExclusionFileFilter_Description">Description</a></li>
+          <li><a href="#BeforeExecutionExclusionFileFilter_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#BeforeExecutionExclusionFileFilter_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">With the default configuration, no files are matched against the <code>fileNamePattern</code>, so the filter does not affect the audit</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">The filter to exclude all 'module-info.java' files</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">The filter to run only on required files for example that ends with "Remote" or end with "Client" in names or named as "Remote.java" or "Client.java" use negative lookahead</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">The filter to exclude all 'test' folder files and all 'module-info.java' files</a></li>
+            </ul>
+          </li>
+          <li><a href="#BeforeExecutionExclusionFileFilter_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#BeforeExecutionExclusionFileFilter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#BeforeExecutionExclusionFileFilter_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="BeforeExecutionExclusionFileFilter_Description">
+        <div>
+          File filter <code>BeforeExecutionExclusionFileFilter</code> decides which files should be
+          excluded from being processed by the utility.
+        </div>
+
+        <p>
+          By default, Checkstyle includes all files and subdirectories in a directory to be processed and
+          checked for violations. Users could have files that are in these subdirectories that shouldn't
+          be processed with their checkstyle configuration for various reasons, one of which is a valid
+          Java file that won't pass Checkstyle's parser. When Checkstyle tries to parse a Java file and
+          fails, it will throw an <code>Exception</code> and halt parsing any more files for violations.
+          An example of a valid Java file Checkstyle can't parse is JDK 9's <code>module-info.java</code>.
+          This file filter will exclude these problem files from being parsed, allowing the rest of the
+          files to run normal and be validated.
+        </p>
+
+        <p>
+          <b>Note:</b> When a file is excluded from the utility, it is excluded from all Checks and no
+          testing for violations will be performed on them.
+        </p>
+      </subsection>
+      <subsection name="Properties" id="BeforeExecutionExclusionFileFilter_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="fileNamePattern"/><a href="#fileNamePattern">fileNamePattern</a></td>
+              <td>Define regular expression to match the file name against.</td>
+              <td><a href="../property-types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
+              <td>7.2</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+      <subsection name="Examples" id="BeforeExecutionExclusionFileFilter_Examples">
+        <p id="Example1-config">
+          With the default configuration, no files are matched against the
+          <code>fileNamePattern</code>, so the filter does not affect the audit:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+
+  &lt;module name="RegexpOnFilename"&gt;
+    &lt;property name="fileNamePattern" value="^[A-Z].*"/&gt;
+    &lt;property name="match" value="false"/&gt;
+    &lt;message key="regexp.filename.mismatch"
+      value="File name must start with an uppercase."/&gt;
+  &lt;/module&gt;
+
+  &lt;module name="BeforeExecutionExclusionFileFilter"/&gt;
+
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+.../Example1.java
+.../Example2.java
+.../Example3.java
+.../Example4.java
+.../test/generated_TestCase1.java // violation, name must start with an uppercase
+.../test/generated_StubBankRemote.java // violation, must start with an uppercase
+.../test/MockPaymentRemote.java
+.../module-info.java // violation, name must start with an uppercase
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the filter to exclude all 'module-info.java' files:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+
+  &lt;module name="RegexpOnFilename"&gt;
+    &lt;property name="fileNamePattern" value="^[A-Z].*"/&gt;
+    &lt;property name="match" value="false"/&gt;
+    &lt;message key="regexp.filename.mismatch"
+      value="File name must start with an uppercase."/&gt;
+  &lt;/module&gt;
+
+  &lt;module name="BeforeExecutionExclusionFileFilter"&gt;
+    &lt;property name="fileNamePattern" value="module\-info\.java$"/&gt;
+  &lt;/module&gt;
+
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+.../Example1.java
+.../Example2.java
+.../Example3.java
+.../Example4.java
+.../test/generated_TestCase1.java // violation, name must start with an uppercase
+.../test/generated_StubBankRemote.java // violation, must start with an uppercase
+.../test/MockPaymentRemote.java
+.../module-info.java // ok, the file is not audited
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the filter to run only on required files for example that ends with &quot;Remote&quot;
+          or end with &quot;Client&quot; in names or named as &quot;Remote.java&quot; or &quot;Client.java&quot;
+          use <a href="https://www.regular-expressions.info/lookaround.html">negative lookahead</a>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+
+  &lt;module name="RegexpOnFilename"&gt;
+    &lt;property name="fileNamePattern" value="^[A-Z].*"/&gt;
+    &lt;property name="match" value="false"/&gt;
+    &lt;message key="regexp.filename.mismatch"
+      value="File name must start with an uppercase."/&gt;
+  &lt;/module&gt;
+
+  &lt;module name="BeforeExecutionExclusionFileFilter"&gt;
+    &lt;property name="fileNamePattern"
+      value="^(?!.*([\\/])?(Remote|Client)\.java$).*"/&gt;
+  &lt;/module&gt;
+
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+.../Example1.java
+.../Example2.java
+.../Example3.java
+.../Example4.java
+.../test/generated_TestCase1.java // ok, the file is not audited
+.../test/generated_StubBankRemote.java // violation, must start with an uppercase
+.../test/MockPaymentRemote.java
+.../module-info.java // ok, the file is not audited
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the filter to exclude all 'test' folder files and all 'module-info.java'
+          files:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+
+  &lt;module name="RegexpOnFilename"&gt;
+    &lt;property name="fileNamePattern" value="^[A-Z].*"/&gt;
+    &lt;property name="match" value="false"/&gt;
+    &lt;message key="regexp.filename.mismatch"
+      value="File name must start with an uppercase."/&gt;
+  &lt;/module&gt;
+
+  &lt;module name="BeforeExecutionExclusionFileFilter"&gt;
+    &lt;property name="fileNamePattern"
+      value="(.*[\\/]test[\\/].*$)|(module\-info\.java$)"/&gt;
+  &lt;/module&gt;
+
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+.../Example1.java
+.../Example2.java
+.../Example3.java
+.../Example4.java
+.../test/generated_TestCase1.java // ok, 'test' folder is not audited
+.../test/generated_StubBankRemote.java // ok, 'test' folder is not audited
+.../test/MockPaymentRemote.java
+.../module-info.java // ok, the file is not audited
+</code></pre></div>
+      </subsection>
+      <subsection name="Example of Usage" id="BeforeExecutionExclusionFileFilter_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+BeforeExecutionExclusionFileFilter">
+              Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+BeforeExecutionExclusionFileFilter">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+BeforeExecutionExclusionFileFilter">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+BeforeExecutionExclusionFileFilter">
+            Documentation Comments Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Fully Qualified Name"
+                   id="BeforeExecutionExclusionFileFilter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter </p>
+        <p>
+            This is the fully qualified class name of the module.
+            Use this name in configuration when an exact class reference is required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="BeforeExecutionExclusionFileFilter_Parent_Module">
+        <p>
+          <a href="../config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE checkstyle-packages PUBLIC
+    "-//Puppy Crawl//DTD Package Names 1.0//EN"
+    "com/puppycrawl/tools/checkstyle/packages_1_0.dtd">
+
+<checkstyle-packages>
+  <package name="com.puppycrawl.tools.checkstyle">
+    <package name="checks">
+      <package name="annotation"/>
+    </package>
+  </package>
+</checkstyle-packages>

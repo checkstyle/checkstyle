@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>EqualsHashCode</title>
+  </head>
+  <body>
+    <section name="EqualsHashCode">
+      <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#EqualsHashCode_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#EqualsHashCode_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li><a href="#EqualsHashCode_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#EqualsHashCode_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#EqualsHashCode_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#EqualsHashCode_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="EqualsHashCode_Description">
+        <div>
+          Checks that classes that either override <code>equals()</code> or <code>hashCode()</code> also
+          overrides the other.
+          This check only verifies that the method declarations match <code>Object.equals(Object)</code> and
+          <code>Object.hashCode()</code> exactly to be considered an override. This check does not verify
+          invalid method names, parameters other than <code>Object</code>, or anything else.
+        </div>
+
+        <p>
+          Rationale: The contract of <code>equals()</code> and <code>hashCode()</code> requires that
+          equal objects have the same hashCode. Therefore, whenever you override
+          <code>equals()</code> you must override <code>hashCode()</code> to ensure that your class can
+          be used in hash-based collections.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="EqualsHashCode_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EqualsHashCode"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  public int hashCode() { // violation 'Definition of 'hashCode()''
+    return 0;
+  }
+  public boolean equals(String o) { return false; }
+}
+
+class ExampleNoHashCode {
+  public boolean equals(Object o) { // violation 'Definition of 'equals()''
+    return false;
+  }
+  public boolean equals(String o) { return false; }
+}
+
+class ExampleBothMethods1 {
+  public int hashCode() { return 0; }
+  public boolean equals(Object o) { // ok, both methods exist
+    return false;
+  }
+  public boolean equals(String o) { return false; }
+}
+
+class ExampleBothMethods2 {
+  public int hashCode() { return 0; }
+  public boolean equals(java.lang.Object o) { // ok, both methods exist
+    return false;
+  }
+}
+
+class ExampleNoValidHashCode {
+  public static int hashCode(int i) { return 0; }
+  public boolean equals(Object o) { // violation 'Definition of 'equals()''
+    return false;
+  }
+}
+
+class ExampleNoValidEquals {
+  public int hashCode() { // violation 'Definition of 'hashCode()''
+    return 0;
+  }
+  public static boolean equals(Object o, Object o2) { return false; }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="EqualsHashCode_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsHashCode">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsHashCode">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="EqualsHashCode_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equals.noEquals%22">
+              equals.noEquals
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equals.noHashCode%22">
+              equals.noHashCode
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="EqualsHashCode_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="EqualsHashCode_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

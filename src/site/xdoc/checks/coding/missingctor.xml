@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MissingCtor</title>
+  </head>
+  <body>
+    <section name="MissingCtor">
+      <p>Since Checkstyle 3.4</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MissingCtor_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MissingCtor_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li><a href="#MissingCtor_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MissingCtor_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MissingCtor_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MissingCtor_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="MissingCtor_Description">
+        <div>
+          Checks that classes (except abstract ones) define a constructor and don't rely
+          on the default one.
+        </div>
+
+        <p>
+          Compatibility note: <b>when creating</b> an explicit constructor already
+          in existing class that used by other in codebases that you do not own, it must match
+          precisely the declaration of the automatically generated constructor;
+          even if the constructor should logically be protected, it must be made
+          public to match the declaration of the automatically generated
+          constructor, for <b>compatibility</b>.
+        </p>
+
+        <p>
+          See
+          <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#defaultconstructors">
+          Documentation Comments Style Guide</a>.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="MissingCtor_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingCtor"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  private int a;
+  Example1(int a) {
+    this.a = a;
+  }
+}
+class ExampleDefaultCtor {
+  private String s;
+  ExampleDefaultCtor() {
+    s = "foobar";
+  }
+}
+class InvalidExample { // violation 'Class should define a constructor'
+  public void test() {}
+}
+abstract class AbstractExample {
+  public abstract void test();
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="MissingCtor_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingCtor">
+            Documentation Comments Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingCtor">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="MissingCtor_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.ctor%22">
+              missing.ctor
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="MissingCtor_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="MissingCtor_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

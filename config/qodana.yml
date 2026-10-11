@@ -1,0 +1,82 @@
+version: 1.0
+
+image: jetbrains/qodana-jvm-community:2026.2
+projectJDK: "21"
+
+failureConditions:
+  severityThresholds:
+    any: 0
+
+profile:
+  path: intellij-idea-inspections.xml
+
+exclude:
+  - name: All
+    paths:
+      - target/
+      - bin/
+      - .ci-temp/
+
+      - src/test/resources/
+      - src/it/resources/
+      - src/site/resources/js/google-analytics.js
+      - src/site/resources/styleguides/
+
+      - config/intellij-idea-inspections.properties
+      - config/site-2.0.0.xsd
+      - config/projects-to-test/openjdk-projects-to-test-on.config
+      - config/projects-for-no-exception-javadoc.config
+      - config/idea.properties
+
+      - .settings/
+      - .classpath
+      - .project
+      - .idea/
+
+      - .circleci/config.yml
+      - .ci/*.config
+      - .ci/pitest-survival-check-xml.groovy
+      - .ci/checker-framework.groovy
+      - .ci/codenarc.groovy
+      - .ci/error-prone-check.groovy
+
+      - .mvn/
+
+      - src/main/java/com/puppycrawl/tools/checkstyle/site/
+      - src/xdocs-examples/resources/
+      - src/test/java/com/puppycrawl/tools/checkstyle/checks/javadoc/ParseTreeBuilder.java
+      - src/test/java/com/puppycrawl/tools/checkstyle/grammar/javadoc/ParseTreeBuilder.java
+
+      - docs/GRAMMAR_UPDATES.md
+
+  # until https://youtrack.jetbrains.com/projects/QD/issues/QD-15203
+  - name: UnnecessaryInheritDoc
+    paths:
+      - src/main/java/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.java
+      - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java
+      - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java
+      - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java
+      - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java
+
+  # IndentationContext is a value-object bundling everything handlers need
+  # for one file; its ctor legitimately has more parameters than the default limit.
+  - name: ParametersPerConstructor
+    paths:
+      - src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentationContext.java
+
+  # until https://github.com/checkstyle/checkstyle/issues/21219
+  - name: Annotator
+    paths:
+      - src/main/java/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.java
+
+  # "requires" on automatic modules is unavoidable until those dependencies ship
+  # module descriptors; for Saxon see https://saxonica.plan.io/issues/7193
+  - name: JavaRequiresAutoModule
+    paths:
+      - src/main/java/module-info.java
+  # "requires org.slf4j" looks unused to static analysis, but org.reflections is an
+  # automatic module that cannot declare its own slf4j runtime dependency, so this
+  # module must require it or resolution fails at run time (SARIF metadata loading)
+  - name: Java9RedundantRequiresStatement
+    paths:
+      - src/main/java/module-info.java

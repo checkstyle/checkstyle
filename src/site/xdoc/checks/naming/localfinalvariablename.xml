@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>LocalFinalVariableName</title>
+  </head>
+  <body>
+    <section name="LocalFinalVariableName">
+      <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#LocalFinalVariableName_Description">Description</a></li>
+          <li><a href="#LocalFinalVariableName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#LocalFinalVariableName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">With default properties</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check so that the length of the name is not less than 4</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">An example of how to configure the check for names of local final parameters and resources in try statements (without checks on variables)</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#LocalFinalVariableName_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">An example of how to configure the check for names that are only upper case letters and digits is</a></li>
+            </ul>
+          </li>
+          <li><a href="#LocalFinalVariableName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#LocalFinalVariableName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#LocalFinalVariableName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#LocalFinalVariableName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="LocalFinalVariableName_Description">
+        <div>
+          Checks that local final variable names conform to a specified pattern.
+          A catch parameter and resources in try statements
+          are considered to be a local, final variables.
+        </div>
+
+        <p>
+          This check does not support final pattern variables. Instead, use
+          <a href="https://checkstyle.org/checks/naming/patternvariablename.html">
+          PatternVariableName</a>.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="LocalFinalVariableName_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="format"/><a href="#format">format</a></td>
+              <td>Sets the pattern to match valid identifiers.</td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
+              <td><code>^([a-z][a-zA-Z0-9]*|_)$</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+                    PARAMETER_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
+                    RESOURCE</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+                    PARAMETER_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
+                    RESOURCE</a>
+                  .
+              </td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="LocalFinalVariableName_Examples">
+        <p id="Example1-config">
+          To configure the check with default properties:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LocalFinalVariableName"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  void MyMethod() {
+    try (Scanner scanner = new Scanner(System.in)) {
+
+      final int VAR1 = 5;  // violation 'Name 'VAR1' must match pattern'
+      final int var1 = 10;
+    }
+    catch (final Exception ex) {
+
+      final int VAR2 = 15; // violation 'Name 'VAR2' must match pattern'
+      final int var2 = 20;
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          An example of how to configure the check so that the length of the
+          name is not less than 4:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LocalFinalVariableName"&gt;
+       &lt;property name="format" value="^[a-z][a-zA-Z0-9]{4,}$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 {
+  void MyMethod() {
+    try (Scanner scanner = new Scanner(System.in)) {
+
+      final int VAR1 = 5; // violation 'Name 'VAR1' must match pattern'
+      final int var1 = 10; // violation 'Name 'var1' must match pattern'
+    }
+    catch (final Exception ex) { // violation 'Name 'ex' must match pattern'
+
+      final int VAR2 = 15; // violation 'Name 'VAR2' must match pattern'
+      final int var2 = 20; // violation 'Name 'var2' must match pattern'
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          An example of how to configure the check for names of local final parameters and
+          resources in try statements (without checks on variables):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LocalFinalVariableName"&gt;
+      &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
+      &lt;property name="tokens" value="PARAMETER_DEF,RESOURCE"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3 {
+  void MyMethod() {
+    try (Scanner scanner = new Scanner(System.in)) {
+      // violation above 'Name 'scanner' must match pattern'
+      final int VAR1 = 5;
+      final int var1 = 10;
+    }
+    catch (final Exception ex) { // violation 'Name 'ex' must match pattern'
+
+      final int VAR2 = 15;
+      final int var2 = 20;
+    }
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="LocalFinalVariableName_Use_Cases">
+        <p id="UseCase1-config">
+          An example of how to configure the check for names that are only upper case letters and
+          digits is:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LocalFinalVariableName"&gt;
+      &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1 {
+  void MyMethod() {
+    try (Scanner scanner = new Scanner(System.in)) {
+      // violation above 'Name 'scanner' must match pattern'
+      final int VAR1 = 5;
+      final int var1 = 10;       // violation 'Name 'var1' must match pattern'
+    }
+    catch (final Exception ex) { // violation 'Name 'ex' must match pattern'
+
+      final int VAR2 = 15;
+      final int var2 = 20;       // violation 'Name 'var2' must match pattern'
+    }
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="LocalFinalVariableName_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
+              OpenJDK Style
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="LocalFinalVariableName_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
+              name.invalidPattern
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="LocalFinalVariableName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="LocalFinalVariableName_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

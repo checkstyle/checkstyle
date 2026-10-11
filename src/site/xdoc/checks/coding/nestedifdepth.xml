@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>NestedIfDepth</title>
+  </head>
+  <body>
+    <section name="NestedIfDepth">
+      <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#NestedIfDepth_Description">Description</a></li>
+          <li><a href="#NestedIfDepth_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#NestedIfDepth_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Allow nesting depth 3</a></li>
+            </ul>
+          </li>
+          <li><a href="#NestedIfDepth_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#NestedIfDepth_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#NestedIfDepth_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#NestedIfDepth_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="NestedIfDepth_Description">
+        <div>
+          Restricts nested if-else blocks to a specified depth.
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="NestedIfDepth_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="max"/><a href="#max">max</a></td>
+              <td>Specify maximum allowed nesting depth.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>1</code></td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="NestedIfDepth_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NestedIfDepth"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  void Test() {
+    if (true) {
+      if (true) {}
+      else {}
+    }
+
+    if (true) {
+      if (true) {
+        if (true) {} // violation 'Nested if-else depth is 2 (max allowed is 1).'
+        else {}
+      }
+    }
+
+    if (true) {
+      if (true) {
+        if (true) { // violation 'Nested if-else depth is 2 (max allowed is 1).'
+          if (true) {} // violation 'Nested if-else depth is 3 (max allowed is 1).'
+          else {}
+        }
+      }
+    }
+
+    if (true) {
+      if (true) {
+        if (true) { // violation 'Nested if-else depth is 2 (max allowed is 1).'
+          if (true) { // violation 'Nested if-else depth is 3 (max allowed is 1).'
+            if (true) { // violation 'Nested if-else depth is 4 (max allowed is 1).'
+              if (true) {} // violation 'Nested if-else depth is 5'
+              else {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to allow nesting depth 3:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NestedIfDepth"&gt;
+      &lt;property name="max" value="3"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 {
+  void Test() {
+    if (true) {
+      if (true) {}
+      else {}
+    }
+
+    if (true) {
+      if (true) {
+        if (true) {}
+        else {}
+      }
+    }
+
+    if (true) {
+      if (true) {
+        if (true) {
+          if (true) {}
+          else {}
+        }
+      }
+    }
+
+    if (true) {
+      if (true) {
+        if (true) {
+          if (true) {
+            if (true) { // violation 'Nested if-else depth is 4 (max allowed is 3).'
+              if (true) {} // violation 'Nested if-else depth is 5'
+              else {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="NestedIfDepth_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NestedIfDepth">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="NestedIfDepth_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22nested.if.depth%22">
+              nested.if.depth
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="NestedIfDepth_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="NestedIfDepth_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

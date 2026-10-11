@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="module">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="module"/>
+        <xs:element ref="property"/>
+        <xs:element ref="metadata"/>
+        <xs:element ref="message"/>
+      </xs:choice>
+      <xs:attribute name="name" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="property">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:string"/>
+      <xs:attribute name="value" use="required" type="xs:string"/>
+      <xs:attribute name="default" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <!--
+    Used to store metadata in the Checkstyle configuration file. This
+    information is ignored by Checkstyle. This may be useful if you want to
+    store plug-in specific information.
+
+    To avoid name clashes between different tools/plug-ins you are *strongly*
+    encouraged to prefix all names with your domain name. For example, use the
+    name "com.mycompany.parameter" instead of "parameter".
+
+    The prefix "com.puppycrawl." is reserved for Checkstyle.
+  -->
+  <xs:element name="metadata">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:string"/>
+      <xs:attribute name="value" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <!--
+    Can be used to replace some generic Checkstyle messages with a custom
+    messages.
+
+    The 'key' attribute specifies for which actual Checkstyle message the
+    replacing should occur, look into Checkstyle's message.properties for
+    the according message keys.
+
+    The 'value' attribute defines the custom message patterns including
+    message parameter placeholders as defined in the original Checkstyle
+    messages (again see message.properties for reference).
+  -->
+  <xs:element name="message">
+    <xs:complexType>
+      <xs:attribute name="key" use="required" type="xs:string"/>
+      <xs:attribute name="value" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

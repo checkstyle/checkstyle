@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+  <properties>
+    <title>Contributing</title>
+  </properties>
+  <body>
+    <section name="Contributing">
+      <p>
+        The contributing guidelines have moved to GitHub.
+      </p>
+      <p>
+        Please see
+        <a href="https://github.com/checkstyle/checkstyle/blob/master/.github/CONTRIBUTING.md">
+          CONTRIBUTING.md
+        </a>
+        for the complete and up-to-date documentation.
+      </p>
+    </section>
+  </body>
+</document>

@@ -1,0 +1,116 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.utils;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
+/**
+ * <div>Note: it simply wraps the existing JDK methods to provide a workaround
+ * for Pitest survival on mutation for removal of immutable wrapping,
+ * see #13127 for more details.
+ * </div>
+ *
+ */
+public final class UnmodifiableCollectionUtil {
+
+    /**
+     * Private constructor for UnmodifiableCollectionUtil.
+     *
+     */
+    private UnmodifiableCollectionUtil() {
+    }
+
+    /**
+     * Creates an unmodifiable list based on the provided collection.
+     * This does NOT handle null — if called with null it will throw NPE.
+     * This is intentional: see
+     * <a href="https://github.com/hcoles/pitest/issues/1462">pitest issue #1462</a>.
+     *
+     * @param <T> the type of elements in the set
+     * @param collection the collection to create an unmodifiable list from
+     * @return an unmodifiable list containing the elements from the provided collection
+     */
+    public static <T> List<T> unmodifiableList(List<T> collection) {
+        return Collections.unmodifiableList(collection);
+    }
+
+    /**
+     * Creates an unmodifiable list from the provided collection.
+     * If the collection is null, returns an empty unmodifiable list.
+     *
+     * @param <T> the type of elements in the list
+     * @param collection the collection to create an unmodifiable list from
+     * @return an unmodifiable list containing the elements from the provided collection,
+     *         or an empty list if the collection is null
+     */
+    public static <T> List<T> unmodifiableList(Collection<? extends T> collection) {
+        final List<T> result;
+        if (collection == null) {
+            result = List.of();
+        }
+        else {
+            result = List.copyOf(collection);
+        }
+        return result;
+    }
+
+    /**
+     * Returns an unmodifiable view of a List containing elements of a specific type.
+     *
+     * @param <S> The generic type of elements in the input Collection.
+     * @param <T> The type of elements in the resulting unmodifiable List.
+     * @param items The List of items to make unmodifiable.
+     * @param elementType The Class object representing the type of elements in the list.
+     * @return An unmodifiable List containing elements of the specified type.
+     */
+    public static <S, T> List<T> unmodifiableList(Collection<S> items, Class<T> elementType) {
+        return items.stream()
+                .map(elementType::cast)
+                .toList();
+    }
+
+    /**
+     * Creates a copy of array.
+     *
+     * @param <T> The type of array
+     * @param array Array to create a copy of
+     * @param length length of array
+     * @return copy of array
+     */
+    public static <T> T[] copyOfArray(T[] array, int length) {
+        return Arrays.copyOf(array, length);
+    }
+
+    /**
+     * Returns an immutable set containing only the specified object.
+     *
+     * @param <T> the type of object
+     * @param obj the type of object in the set
+     * @return immutable set
+     */
+    public static <T> Set<T> singleton(T obj) {
+        return Set.of(obj);
+    }
+
+}

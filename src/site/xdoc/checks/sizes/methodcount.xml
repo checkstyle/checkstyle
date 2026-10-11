@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MethodCount</title>
+  </head>
+  <body>
+    <section name="MethodCount">
+      <p>Since Checkstyle 5.3</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MethodCount_Description">Description</a></li>
+          <li><a href="#MethodCount_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MethodCount_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Allow no more than 5 methods per type declaration</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Allow no more than 2 public methods per type declaration, and 6 methods in total</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Use separate maximums for private methods</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Use separate maximums for package-private methods</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">Use separate maximums for protected methods</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">Use tokens</a></li>
+            </ul>
+          </li>
+          <li><a href="#MethodCount_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MethodCount_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MethodCount_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MethodCount_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="MethodCount_Description">
+        <div>
+          Checks the number of methods declared in each type declaration by access modifier
+          or total count.
+        </div>
+
+        <p>
+          This check can be configured to flag classes that define too many methods
+          to prevent the class from getting too complex. Counting can be customized
+          to prevent too many total methods in a type definition (<code>maxTotal</code>),
+          or to prevent too many methods of a specific access modifier (<code>private</code>,
+          <code>package</code>, <code>protected</code> or <code>public</code>). Each count is completely
+          separated to customize how many methods of each you want to allow. For example,
+          specifying a <code>maxTotal</code> of 10, still means you can prevent more than 0
+          <code>maxPackage</code> methods. A violation won't appear for 8 public methods,
+          but one will appear if there is also 3 private methods or any package-private methods.
+        </p>
+
+        <p>
+          Methods defined in anonymous classes are not counted towards any totals.
+          Counts only go towards the main type declaration parent, and are kept separate
+          from it's children's inner types.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+public class ExampleClass {
+  public enum Colors {
+    RED, GREEN, YELLOW;
+
+    public String getRGB() {  } // NOT counted towards ExampleClass
+  }
+
+  public void example() { // counted towards ExampleClass
+    Runnable r = (new Runnable() {
+      public void run() {  } // NOT counted towards ExampleClass, won't produce any violations
+    });
+  }
+
+  public static class InnerExampleClass {
+    protected void example2() {  } // NOT counted towards ExampleClass,
+                                   // but counted towards InnerExampleClass
+  }
+}
+        </code></pre></div>
+      </subsection>
+
+      <subsection name="Properties" id="MethodCount_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="maxPackage"/><a href="#maxPackage">maxPackage</a></td>
+              <td>Specify the maximum number of <code>package</code> methods allowed.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>100</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td><a id="maxPrivate"/><a href="#maxPrivate">maxPrivate</a></td>
+              <td>Specify the maximum number of <code>private</code> methods allowed.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>100</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td><a id="maxProtected"/><a href="#maxProtected">maxProtected</a></td>
+              <td>Specify the maximum number of <code>protected</code> methods allowed.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>100</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td><a id="maxPublic"/><a href="#maxPublic">maxPublic</a></td>
+              <td>Specify the maximum number of <code>public</code> methods allowed.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>100</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td><a id="maxTotal"/><a href="#maxTotal">maxTotal</a></td>
+              <td>Specify the maximum number of methods allowed at all scope levels.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>100</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                    ENUM_CONSTANT_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_COMPILATION_UNIT">
+                    COMPACT_COMPILATION_UNIT</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                    ENUM_CONSTANT_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_COMPILATION_UNIT">
+                    COMPACT_COMPILATION_UNIT</a>
+                  .
+              </td>
+              <td>5.3</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="MethodCount_Examples">
+        <p id="Example1-config">
+          To configure the default check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodCount"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+
+  public void outerMethod1(int i) {}
+  public void outerMethod2() {}
+  public void outerMethod3(String str) {}
+
+  private void outerMethod4() {
+    Runnable r = (new Runnable() {
+      public void run() {} // NOT counted towards Example
+    });
+  }
+
+  private void outerMethod5(int i) {}
+  void outerMethod6(int i, int j) {}
+
+  public static class InnerExample{
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to allow no more than 5 methods per type declaration:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodCount"&gt;
+      &lt;property name="maxTotal" value="5"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 { // violation 'Total number of methods is 6 (max allowed is 5)'
+
+  public void outerMethod1(int i) {}
+  public void outerMethod2() {}
+  public void outerMethod3(String str) {}
+
+  private void outerMethod4() {
+    Runnable r = (new Runnable() {
+      public void run() {} // NOT counted towards Example
+    });
+  }
+
+  private void outerMethod5(int i) {}
+  void outerMethod6(int i, int j) {}
+
+  public static class InnerExample{
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to allow no more than 2 public methods per
+          type declaration, and 6 methods in total:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodCount"&gt;
+      &lt;property name="maxPublic" value="2"/&gt;
+      &lt;property name="maxTotal" value="6"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3 { // violation 'Number of public methods is 3 (max allowed is 2)'
+
+  public void outerMethod1(int i) {}
+  public void outerMethod2() {}
+  public void outerMethod3(String str) {}
+
+  private void outerMethod4() {
+    Runnable r = (new Runnable() {
+      public void run() {} // NOT counted towards Example
+    });
+  }
+
+  private void outerMethod5(int i) {}
+  void outerMethod6(int i, int j) {}
+
+  public static class InnerExample{
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to use separate maximums for private methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodCount"&gt;
+      &lt;property name="maxPrivate" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 { // violation 'Number of private methods is 2 (max allowed is 1)'
+
+  public void outerMethod1(int i) {}
+  public void outerMethod2() {}
+  public void outerMethod3(String str) {}
+
+  private void outerMethod4() {
+    Runnable r = (new Runnable() {
+      public void run() {} // NOT counted towards Example
+    });
+  }
+
+  private void outerMethod5(int i) {}
+  void outerMethod6(int i, int j) {}
+
+  public static class InnerExample{
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to use separate maximums for package-private methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodCount"&gt;
+      &lt;property name="maxPackage" value="0"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 { // violation 'Number of package methods is 1 (max allowed is 0)'
+
+  public void outerMethod1(int i) {}
+  public void outerMethod2() {}
+  public void outerMethod3(String str) {}
+
+  private void outerMethod4() {
+    Runnable r = (new Runnable() {
+      public void run() {} // NOT counted towards Example
+    });
+  }
+
+  private void outerMethod5(int i) {}
+  void outerMethod6(int i, int j) {}
+
+  public static class InnerExample{
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure the check to use separate maximums for protected methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodCount"&gt;
+      &lt;property name="maxProtected" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example6-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example6 { // ok, there are no protected methods in this class
+
+  public void outerMethod1(int i) {}
+  public void outerMethod2() {}
+  public void outerMethod3(String str) {}
+
+  private void outerMethod4() {
+    Runnable r = (new Runnable() {
+      public void run() {} // NOT counted towards Example
+    });
+  }
+
+  private void outerMethod5(int i) {}
+  void outerMethod6(int i, int j) {}
+
+  public static class InnerExample{
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check to use tokens:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodCount"&gt;
+      &lt;property name="maxTotal" value="2"/&gt;
+      &lt;property name="tokens" value="CLASS_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example7 { // violation 'Total number of methods is 6 (max allowed is 2)'
+
+  public void outerMethod1(int i) {}
+  public void outerMethod2() {}
+  public void outerMethod3(String str) {}
+
+  private void outerMethod4() {
+    Runnable r = (new Runnable() {
+      public void run() {} // NOT counted towards Example
+    });
+  }
+
+  private void outerMethod5(int i) {}
+  void outerMethod6(int i, int j) {}
+
+  public static class InnerExample{
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="MethodCount_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodCount">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="MethodCount_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.methods%22">
+              too.many.methods
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.packageMethods%22">
+              too.many.packageMethods
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.privateMethods%22">
+              too.many.privateMethods
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.protectedMethods%22">
+              too.many.protectedMethods
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.publicMethods%22">
+              too.many.publicMethods
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="MethodCount_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="MethodCount_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

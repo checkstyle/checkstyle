@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>OrderedProperties</title>
+  </head>
+  <body>
+    <section name="OrderedProperties">
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java"/>
+      </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java"/>
+      </macro>
+      <subsection name="Description" id="OrderedProperties_Description">
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Properties" id="OrderedProperties_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="OrderedProperties_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/orderedproperties/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-raw">
+          Example properties file:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/orderedproperties/Example1.properties"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p>
+          We check order of key's only. Here we would like to use a Locale independent
+          order mechanism and binary order. The order is case-insensitive and ascending.
+        </p>
+        <ul>
+          <li>
+            The capital 'A' is on 65 and the lowercase 'a' is on position 97 on the ascii table.
+          </li>
+          <li>
+            Key and key.sub are in correct order here, because only keys are relevant.
+            Therefore, on line 5 you have only "key" and nothing behind.
+            On line 6 you have "key." The dot is on position 46 which is higher than nothing.
+            key.png will be reported as violation because "png" comes before "sub".
+          </li>
+        </ul>
+
+      </subsection>
+
+      <subsection name="Example of Usage" id="OrderedProperties_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OrderedProperties">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="OrderedProperties_Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="OrderedProperties"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="OrderedProperties_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="OrderedProperties_Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="OrderedProperties"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

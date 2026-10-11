@@ -1,0 +1,3 @@
+Starting audit...
+[ERROR] src/test/resources/com/puppycrawl/tools/checkstyle/defaultlogger/InputDefaultLoggerTestSingleError.java:11:8: Unused import - java.util.List. [UnusedImports]
+Audit done.

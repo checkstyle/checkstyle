@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE checkstyle-packages PUBLIC
+    "-//Checkstyle//DTD Package Names Configuration 1.0//EN"
+    "https://checkstyle.org/dtds/packages_1_0.dtd">
+
+<checkstyle-packages>
+  <package name="com.puppycrawl.tools.checkstyle">
+    <package name="checks">
+      <package name="annotation"/>
+      <package name="blocks"/>
+      <package name="coding"/>
+      <package name="design"/>
+      <package name="header"/>
+      <package name="imports"/>
+      <package name="indentation"/>
+      <package name="javadoc"/>
+      <package name="metrics"/>
+      <package name="modifier"/>
+      <package name="naming"/>
+      <package name="regexp"/>
+      <package name="sizes"/>
+      <package name="whitespace"/>
+    </package>
+    <package name="filefilters"/>
+    <package name="filters"/>
+  </package>
+</checkstyle-packages>

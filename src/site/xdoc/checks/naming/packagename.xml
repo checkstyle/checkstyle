@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>PackageName</title>
+  </head>
+  <body>
+    <section name="PackageName">
+      <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#PackageName_Description">Description</a></li>
+          <li><a href="#PackageName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#PackageName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check to ensure with packages start with a upper case letter and only contains lowercase letters or numbers is</a></li>
+            </ul>
+          </li>
+          <li><a href="#PackageName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#PackageName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#PackageName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#PackageName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="PackageName_Description">
+        <div>
+          Checks that package names conform to a specified pattern.
+        </div>
+
+        <p>
+          The default value of <code>format</code> for module <code>PackageName</code> has been chosen to match
+          the requirements in the
+          <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.5.3">
+          Java Language specification</a>
+          and the Sun coding conventions. However, both underscores and uppercase letters are rather
+          uncommon, so most configurations should probably assign value
+          <code>^[a-z]+(\.[a-z][a-z0-9]*)*$</code> to <code>format</code> for module <code>PackageName</code>.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="PackageName_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="format"/><a href="#format">format</a></td>
+              <td>Control the pattern to match valid identifiers.</td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
+              <td><code>^[a-z]+(\.[a-zA-Z_]\w*)*$</code></td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="PackageName_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="PackageName"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.naming.packagename;
+
+public class Example1 {
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          An example of how to configure the check to ensure with packages start with a upper case
+          letter and only contains lowercase letters or numbers is:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="PackageName"&gt;
+      &lt;property name="format"
+        value="^[A-Z]+(\.[a-z][a-z0-9]*)*$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.naming.packagename;
+// violation above 'must match pattern'
+public class Example2 {
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="PackageName_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="PackageName_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
+              name.invalidPattern
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="PackageName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="PackageName_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

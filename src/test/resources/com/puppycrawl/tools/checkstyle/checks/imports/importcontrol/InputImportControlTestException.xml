@@ -1,0 +1,4 @@
+<import-control pkg=".*" strategyOnMismatch="allowed">
+  <disallow class="java.awt.Image"/>
+  <disallow class="java.io.File"/>
+</import-control>

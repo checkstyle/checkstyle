@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>UnnecessarySemicolonInTryWithResources</title>
+  </head>
+  <body>
+    <section name="UnnecessarySemicolonInTryWithResources">
+      <p>Since Checkstyle 8.22</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#UnnecessarySemicolonInTryWithResources_Description">Description</a></li>
+          <li><a href="#UnnecessarySemicolonInTryWithResources_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#UnnecessarySemicolonInTryWithResources_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Detect unnecessary semicolon if closing parenthesis is not on the same line</a></li>
+            </ul>
+          </li>
+          <li><a href="#UnnecessarySemicolonInTryWithResources_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#UnnecessarySemicolonInTryWithResources_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#UnnecessarySemicolonInTryWithResources_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#UnnecessarySemicolonInTryWithResources_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="UnnecessarySemicolonInTryWithResources_Description">
+        <div>
+          Checks if unnecessary semicolon is used in last resource declaration.
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="UnnecessarySemicolonInTryWithResources_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="allowWhenNoBraceAfterSemicolon"/><a href="#allowWhenNoBraceAfterSemicolon">allowWhenNoBraceAfterSemicolon</a></td>
+              <td>Allow unnecessary semicolon if closing parenthesis is not on the same line.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.22</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="UnnecessarySemicolonInTryWithResources_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnnecessarySemicolonInTryWithResources"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Example of violations
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  void method() throws IOException {
+    try (Reader r1 = new PipedReader();) {} // violation 'Unnecessary semicolon'
+    try (Reader r4 = new PipedReader(); Reader r5 = new PipedReader()
+         ;) {} // violation 'Unnecessary semicolon'
+    try (Reader r6 = new PipedReader();
+         Reader r7
+           = new PipedReader(); // ok, closing parenthesis is not on the same line
+    ) {}
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to detect unnecessary semicolon
+          if closing parenthesis is not on the same line
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnnecessarySemicolonInTryWithResources"&gt;
+      &lt;property name="allowWhenNoBraceAfterSemicolon" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Example of exclusion
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 {
+  void method() throws IOException {
+    try (Reader r1 = new PipedReader();) {} // violation 'Unnecessary semicolon'
+    try (Reader r4 = new PipedReader(); Reader r5 = new PipedReader()
+         ;) {} // violation 'Unnecessary semicolon'
+    try (Reader r6 = new PipedReader();
+         Reader r7
+           = new PipedReader(); // violation 'Unnecessary semicolon'
+    ) {}
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage"
+        id="UnnecessarySemicolonInTryWithResources_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonInTryWithResources">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages"
+            id="UnnecessarySemicolonInTryWithResources_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.semicolon%22">
+              unnecessary.semicolon
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+<subsection name="Fully Qualified Name"
+                id="UnnecessarySemicolonInTryWithResources_Fully_Qualified_Name">
+    <p>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheck</p>
+    <p>
+      Use this fully qualified class name in configuration when an exact class reference is
+      required.
+    </p>
+  </subsection>
+
+      <subsection name="Parent Module" id="UnnecessarySemicolonInTryWithResources_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

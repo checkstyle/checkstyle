@@ -1,0 +1,43 @@
+* Complex HTML test case embedded in Javadoc.
+*
+* <html lang="en">
+* <head>
+* <meta charset="UTF-8">
+* <title>Complex HTML Test</title>
+* <link rel="stylesheet" href="styles.css">
+* <meta name="viewport" content="width=device-width, initial-scale=1.0">
+* <script src="script.js">
+* </head>
+* <body>
+*
+* <h1>Welcome to <span>Test Page</span>
+*
+* <p>This is an open paragraph
+* <p>This one too but with extra spaces
+*
+* <hr>
+* <hr/>
+* <br>
+* <br/>
+*
+* <table>
+* <tr>
+* <td>Row 1 Col 1
+* <td>Row 1 Col 2
+* <tr>
+* <td>Row 2 Col 1<td>Row 2 Col 2
+* <select>
+* <option value="1">One
+* <option value="2">Two
+* <option value="3">Three
+* </select>
+*
+* <widget-container>
+* <custom-box data-info="yes">
+* <self-closing-widget/>
+* </custom-box>
+* </widget-container>
+*
+* </body>
+* <p> p </p> <p> p
+* </html>

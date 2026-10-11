@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SuppressionCommentFilter</title>
+  </head>
+  <body>
+    <section name="SuppressionCommentFilter">
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java"/>
+      </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java"/>
+      </macro>
+      <subsection name="Description" id="SuppressionCommentFilter_Description">
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java"/>
+        </macro>
+      </subsection>
+      <subsection name="Notes" id="SuppressionCommentFilter_Notes">
+        <macro name="notes">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java"/>
+        </macro>
+      </subsection>
+      <subsection name="Properties" id="SuppressionCommentFilter_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java"/>
+          </macro>
+        </div>
+      </subsection>
+      <subsection name="Examples" id="SuppressionCommentFilter_Examples">
+        <p id="Example1-config">
+          To configure a filter to suppress audit events (MemberNameCheck,
+          ConstantNameCheck and IllegalCatchCheck have been taken here for reference)
+          between a comment containing <code>CHECKSTYLE:OFF</code> and a comment containing
+          <code>CHECKSTYLE:ON</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure a filter so that <code>// stop constant
+          check</code> and <code>// resume constant check</code> marks
+          legitimate constant names:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure a filter so that <code>UNUSED OFF:<i>var</i></code>
+          and <code>UNUSED ON: <i>var</i></code> marks a
+          variable or parameter known not to be used by the code by
+          matching the variable name in the message through a specified message in messageFormat:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure a filter to suppress violations for checks matching
+          <code>MemberName</code> using the <code>checkFormat</code> property:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure a filter to suppress violations for checks matching
+          <code>MemberName</code> using the <code>checkFormat</code> property:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure a filter to suppress violations for checks with a specific ID
+          using the <code>idFormat</code> property:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example6-config">
+          It is possible to specify an ID of checks, so that it can be leveraged by the
+          SuppressionCommentFilter to skip validations. The following examples show how to skip
+          validations near code that is surrounded with <code>// CSOFF &lt;ID&gt;</code>
+          and <code>// CSON &lt;ID&gt;</code>, where ID is the ID of checks you want to suppress.
+          In the config of SuppressionCommentFilter, checkFormat is set to '$1' which points
+          to the ID written in the offCommentFormat and onCommentFormat. Config for such a
+          case is written below:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example8-config">
+          Example depicting use of checkC and checkCPP style comments
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example8.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        </subsection>
+        <subsection name="Use Cases" id="SuppressionCommentFilter_Use_Cases">
+        <p id="UseCase1-config">
+          To configure a filter so that name of suppressed check mentioned
+          in comment <code>CSOFF: <i>regexp</i></code>
+          and <code>CSON: <i>regexp</i></code> mark a matching check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          To configure a filter to suppress all audit events between a comment
+          containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> and a comment containing
+          <code>CHECKSTYLE_OFF: ALMOST_ALL</code> except for the <em>ConstantName</em> check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/UseCase2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/UseCase2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase3-config">
+          Example of how to configure the check to suppress checks by name defined in comment.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/UseCase3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/UseCase3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+      <subsection name="Example of Usage" id="SuppressionCommentFilter_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionCommentFilter">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionCommentFilter">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionCommentFilter">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionCommentFilter">
+            Documentation Comments Style</a>
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="Fully Qualified Name" id="SuppressionCommentFilter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter </p>
+        <p>
+            This is the fully qualified class name of the module.
+            Use this name in configuration when an exact class reference is required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="SuppressionCommentFilter_Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="SuppressionCommentFilter"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,0 +1,168 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.naming;
+
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
+
+/**
+ * <div>
+ * Checks that method names conform to a specified pattern.
+ * </div>
+ *
+ * <p>Also, checks if a method name has the same name as the residing class.
+ * The default is false (it is not allowed). It is legal in Java to have
+ * method with the same name as a class. As long as a return type is specified
+ * it is a method and not a constructor which it could be easily confused as.
+ * Does not check-style the name of an overridden methods because the developer does not
+ * have a choice in renaming such methods.
+ * </p>
+ *
+ * @since 3.0
+ */
+public class MethodNameCheck extends AbstractAccessControlNameCheck {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "method.name.equals.class.name";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+
+    /**
+     * Control whether to allow a method name to have the same name as the enclosing class name.
+     * Setting this property {@code false} helps to avoid confusion
+     * between constructors and methods.
+     */
+    private boolean allowClassName;
+
+    /** Creates a new {@code MethodNameCheck} instance. */
+    public MethodNameCheck() {
+        super("^[a-z][a-zA-Z0-9]*$", MSG_INVALID_PATTERN);
+    }
+
+    @Override
+    public int[] getDefaultTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return new int[] {TokenTypes.METHOD_DEF, };
+    }
+
+    /**
+     * Setter to control if check should apply to package-private members.
+     *
+     * @param applyTo new value of the property.
+     * @propertySince 5.1
+     */
+    @Override
+    public final void setApplyToPackage(boolean applyTo) {
+        super.setApplyToPackage(applyTo);
+    }
+
+    /**
+     * Setter to control if check should apply to private members.
+     *
+     * @param applyTo new value of the property.
+     * @propertySince 5.1
+     */
+    @Override
+    public final void setApplyToPrivate(boolean applyTo) {
+        super.setApplyToPrivate(applyTo);
+    }
+
+    /**
+     * Setter to control if check should apply to protected members.
+     *
+     * @param applyTo new value of the property.
+     * @propertySince 5.1
+     */
+    @Override
+    public final void setApplyToProtected(boolean applyTo) {
+        super.setApplyToProtected(applyTo);
+    }
+
+    /**
+     * Setter to control if check should apply to public members.
+     *
+     * @param applyTo new value of the property.
+     * @propertySince 5.1
+     */
+    @Override
+    public final void setApplyToPublic(boolean applyTo) {
+        super.setApplyToPublic(applyTo);
+    }
+
+    @Override
+    public void visitToken(DetailAST ast) {
+        if (!AnnotationUtil.hasOverrideAnnotation(ast)) {
+            // Will check the name against the format.
+            super.visitToken(ast);
+        }
+
+        if (!allowClassName) {
+            // in all cases this will be the classDef type except anon inner
+            // with anon inner classes this will be the Literal_New keyword
+            final DetailAST classDefOrNew = ast.getParent().getParent();
+
+            if (classDefOrNew != null) {
+                final DetailAST method = ast.findFirstToken(TokenTypes.IDENT);
+                final DetailAST classIdent =
+                    classDefOrNew.findFirstToken(TokenTypes.IDENT);
+                // Following logic is to handle when a classIdent can not be
+                // found. This is when you have a Literal_New keyword followed
+                // a DOT, which is when you have:
+                // new Outclass.InnerInterface(x) { ... }
+                // Such a rare case, will not have the logic to handle parsing
+                // down the tree looking for the first ident.
+                if (classIdent != null
+                    && method.getText().equals(classIdent.getText())) {
+                    log(method, MSG_KEY, method.getText());
+                }
+            }
+        }
+    }
+
+    /**
+     * Setter to control whether to allow a method name to have the same name
+     * as the enclosing class name. Setting this property {@code false}
+     * helps to avoid confusion between constructors and methods.
+     *
+     * @param allowClassName true to allow false to disallow
+     * @since 5.0
+     */
+    public void setAllowClassName(boolean allowClassName) {
+        this.allowClassName = allowClassName;
+    }
+
+}

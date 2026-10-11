@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.indentation.OpenjdkMethodThrowsAlignmentCheck"
+             name="OpenjdkMethodThrowsAlignment"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that the &lt;code&gt;throws&lt;/code&gt; clause of a wrapped method or constructor declaration
+ is properly aligned according to the
+ &lt;a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-wrapping-method-declarations"&gt;
+ OpenJDK Java Style Guide&lt;/a&gt;.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ This check only applies when the method or constructor declaration is
+ &lt;em&gt;wrapped&lt;/em&gt;, that is, the parameter list spans more than one line.
+ Single-line declarations are not in scope.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ The two rules enforced are:
+ &lt;/p&gt;
+ &lt;ol&gt;
+ &lt;li&gt;The &lt;code&gt;throws&lt;/code&gt; keyword must start on a &lt;em&gt;new line&lt;/em&gt;, it must not share
+ the line with the closing &lt;code&gt;)&lt;/code&gt; of the parameter list.&lt;/li&gt;
+ &lt;li&gt;The &lt;code&gt;throws&lt;/code&gt; keyword must &lt;em&gt;stand out&lt;/em&gt; from the parameter list by
+ being indented 8 columns relative to &lt;em&gt;either&lt;/em&gt;:
+ &lt;ul&gt;
+ &lt;li&gt;the column of the method/constructor declaration (i.e. the indentation of the
+ line containing the declaration keyword)&lt;/li&gt;
+ &lt;li&gt;the indentation (first non-whitespace column) of the source line immediately
+ above the line where &lt;code&gt;throws&lt;/code&gt; appears&lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;/li&gt;
+ &lt;/ol&gt;</description>
+         <message-keys>
+            <message-key key="openjdk.throws.indentation"/>
+            <message-key key="openjdk.throws.new.line"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

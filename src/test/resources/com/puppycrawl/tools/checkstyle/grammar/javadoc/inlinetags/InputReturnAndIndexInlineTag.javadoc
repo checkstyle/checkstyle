@@ -1,0 +1,12 @@
+* {@return {@code true} if the arguments are equal to each other
+* and {@code false} otherwise}
+* {@return a Version for major, minor versions}
+* {@return the code used by the {@link Opcode#NEWARRAY newarray} instruction to create an array
+* of this component type, or {@code -1} if this type is not supported by {@code newarray}}
+* {@return {@inheritDoc}}
+* This algorithm uses {@index CAS Compare-and-set}.
+* It also improves {@index "garbage collection" Java memory management}.
+* In this toolkit, we use the {@index "paint cycle" Rendering step for updating UI}.
+* This algorithm uses {@index CAS}.
+* It also improves {@index "garbage collection"}.
+* {@index "nested {@index nested_tag_test}"}

@@ -1,0 +1,228 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.coding;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
+
+import java.io.File;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+
+public class ModifiedControlVariableCheckTest
+    extends AbstractModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/modifiedcontrolvariable";
+    }
+
+    @Test
+    public void testModifiedControlVariable() throws Exception {
+        final String[] expected = {
+            "21:14: " + getCheckMessage(MSG_KEY, "i"),
+            "24:15: " + getCheckMessage(MSG_KEY, "i"),
+            "27:37: " + getCheckMessage(MSG_KEY, "i"),
+            "28:17: " + getCheckMessage(MSG_KEY, "i"),
+            "56:15: " + getCheckMessage(MSG_KEY, "s"),
+            "63:14: " + getCheckMessage(MSG_KEY, "m"),
+            "74:15: " + getCheckMessage(MSG_KEY, "i"),
+            "75:15: " + getCheckMessage(MSG_KEY, "k"),
+            "85:15: " + getCheckMessage(MSG_KEY, "v"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifiedControlVariableBothForLoops.java"), expected);
+    }
+
+    @Test
+    public void testEnhancedForLoopVariableTrue() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputModifiedControlVariableEnhancedForLoopVariable.java"),
+                expected);
+    }
+
+    @Test
+    public void testEnhancedForLoopVariableFalse() throws Exception {
+
+        final String[] expected = {
+            "20:18: " + getCheckMessage(MSG_KEY, "line"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifiedControlVariableEnhancedForLoopVariable3.java"),
+                expected);
+    }
+
+    @Test
+    public void testEnhancedForLoopVariable2() throws Exception {
+
+        final String[] expected = {
+            "25:18: " + getCheckMessage(MSG_KEY, "i"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifiedControlVariableEnhancedForLoopVariable2.java"),
+                expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
+    }
+
+    @Test
+    public void testImproperToken() {
+        final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
+
+        final DetailAstImpl classDefAst = new DetailAstImpl();
+        classDefAst.setType(TokenTypes.CLASS_DEF);
+        classDefAst.setText("CLASS_DEF");
+
+        final IllegalStateException visitExc =
+                getExpectedThrowable(IllegalStateException.class,
+                        () -> check.visitToken(classDefAst));
+        assertWithMessage("Error message must include token name")
+                .that(visitExc.getMessage())
+                .contains("CLASS_DEF");
+
+        final IllegalStateException leaveExc =
+                getExpectedThrowable(IllegalStateException.class,
+                        () -> check.leaveToken(classDefAst));
+        assertWithMessage("Error message must include token name")
+                .that(leaveExc.getMessage())
+                .contains("CLASS_DEF");
+    }
+
+    @Test
+    public void testVariousAssignments() throws Exception {
+        final String[] expected = {
+            "18:15: " + getCheckMessage(MSG_KEY, "i"),
+            "19:15: " + getCheckMessage(MSG_KEY, "k"),
+            "25:15: " + getCheckMessage(MSG_KEY, "i"),
+            "26:15: " + getCheckMessage(MSG_KEY, "k"),
+            "32:15: " + getCheckMessage(MSG_KEY, "i"),
+            "33:15: " + getCheckMessage(MSG_KEY, "k"),
+            "39:15: " + getCheckMessage(MSG_KEY, "i"),
+            "40:15: " + getCheckMessage(MSG_KEY, "k"),
+            "46:15: " + getCheckMessage(MSG_KEY, "i"),
+            "47:15: " + getCheckMessage(MSG_KEY, "k"),
+            "52:15: " + getCheckMessage(MSG_KEY, "i"),
+            "53:15: " + getCheckMessage(MSG_KEY, "k"),
+            "59:15: " + getCheckMessage(MSG_KEY, "i"),
+            "60:15: " + getCheckMessage(MSG_KEY, "k"),
+            "66:15: " + getCheckMessage(MSG_KEY, "i"),
+            "67:15: " + getCheckMessage(MSG_KEY, "k"),
+            "73:15: " + getCheckMessage(MSG_KEY, "i"),
+            "74:15: " + getCheckMessage(MSG_KEY, "k"),
+            "80:15: " + getCheckMessage(MSG_KEY, "i"),
+            "81:15: " + getCheckMessage(MSG_KEY, "k"),
+            "87:14: " + getCheckMessage(MSG_KEY, "i"),
+            "88:14: " + getCheckMessage(MSG_KEY, "k"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifiedControlVariableTestVariousAssignments.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordDecompositionInEnhancedForLoop() throws Exception {
+        final String[] expected = {
+            "37:15: " + getCheckMessage(MSG_KEY, "p"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputModifiedControlVariableRecordDecomposition.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "11:10: " + getCheckMessage(MSG_KEY, "i"),
+            "19:11: " + getCheckMessage(MSG_KEY, "k"),
+            "24:14: " + getCheckMessage(MSG_KEY, "a"),
+            "31:10: " + getCheckMessage(MSG_KEY, "i"),
+            "36:14: " + getCheckMessage(MSG_KEY, "item"),
+            "43:14: " + getCheckMessage(MSG_KEY, "i"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputModifiedControlVariableCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileSkipEnhancedForLoop() throws Exception {
+        final String[] expected = {
+            "16:10: " + getCheckMessage(MSG_KEY, "i"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "InputModifiedControlVariableCompactSourceFileSkipEnhancedForLoop.java"),
+                expected);
+    }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testClearState() throws Exception {
+        final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
+        final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
+            JavaParser.parseFile(
+                new File(getPath("InputModifiedControlVariableEnhancedForLoopVariable.java")),
+                JavaParser.Options.WITHOUT_COMMENTS),
+            ast -> ast.getType() == TokenTypes.OBJBLOCK);
+
+        assertWithMessage("Ast should contain METHOD_DEF")
+                .that(methodDef.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        methodDef.orElseThrow(), "variableStack",
+                        variableStack -> ((Collection<Set<String>>) variableStack).isEmpty()))
+                .isTrue();
+    }
+
+}

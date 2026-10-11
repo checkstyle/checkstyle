@@ -1,0 +1,47 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MutableException"/>
+  </module>
+</module>
+*/
+
+
+
+package com.puppycrawl.tools.checkstyle.checks.design.mutableexception;
+
+// xdoc section - start
+class Example1 extends Exception {
+  private int code; // ok, class name doesn't match with default pattern
+
+  public Example1() {
+    code = 1;
+  }
+}
+
+class FirstException extends Exception {
+  private int code; // violation 'The field 'code' must be declared final'
+
+  public FirstException() {
+    code = 2;
+  }
+}
+
+class FirstThrowable extends Throwable {
+  final int code;
+  String message; // violation 'The field 'message' must be declared final'
+
+  public FirstThrowable(int code, String message) {
+    this.code = code;
+    this.message = message;
+  }
+}
+
+class FirstBadException extends java.lang.Exception {
+  int code; // violation 'The field 'code' must be declared final'
+
+  public FirstBadException(int code) {
+    this.code = code;
+  }
+}
+// xdoc section - end

@@ -1,0 +1,50 @@
+/*
+MissingJavadocType
+excludeScope = (default)null
+scope = (default)public
+skipAnnotations = Ann1, AnnClass.Ann3
+violateExecutionOnNonTightHtml = (default)false
+tokens = INTERFACE_DEF
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
+
+@interface Ann1 { }
+@interface Ann2 { }
+@interface Ann3 { }
+
+class AnnClass {
+    public @interface Ann1 { }
+    public @interface Ann2 { }
+    public @interface Ann3 { }
+}
+
+public class InputMissingJavadocTypeMultipleQualifiedAnnotation {
+    @Ann1
+    @Ann2
+    @Ann3
+    public interface A { }
+
+    // violation below 'Missing a Javadoc comment.'
+    @Ann2
+    @Ann3
+    public interface B { }
+
+    @Ann2
+    @Ann3
+    @Ann1
+    public interface C { }
+
+    // violation below 'Missing a Javadoc comment.'
+    @AnnClass.Ann1
+    @Ann2
+    @Ann3
+    public interface D { }
+
+    @AnnClass.Ann2
+    @Ann2
+    @AnnClass.Ann3
+    public interface E { }
+}

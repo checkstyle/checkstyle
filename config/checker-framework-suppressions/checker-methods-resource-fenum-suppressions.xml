@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedErrors>
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>final OutputStream out = getOutputStream(outputLocation);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>getOutputStream(options.outputPath),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>listener = new XpathFileGeneratorAuditListener(getOutputStream(options.outputPath),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return instance;</lineContent>
+    <details>
+      type of expression: @FenumTop Object
+      method return type: @FenumUnqualified Object
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>final InputStream dtdIs = loader.getResourceAsStream(dtdResourceName);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>final OutputStream debug = new LogOutputStream(this, Project.MSG_DEBUG);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>final OutputStream infoStream = Files.newOutputStream(toFile.toPath());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>new LogOutputStream(task, Project.MSG_DEBUG),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>new LogOutputStream(task, Project.MSG_ERR),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>sarifLogger = new SarifLogger(Files.newOutputStream(toFile.toPath()),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>sarifLogger = new SarifLogger(new LogOutputStream(task, Project.MSG_INFO),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>xmlLogger = new XMLLogger(Files.newOutputStream(toFile.toPath()),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>xmlLogger = new XMLLogger(new LogOutputStream(task, Project.MSG_INFO),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
+    <specifier>flowexpr.parse.index.too.big</specifier>
+    <message>the method has no parameter #1 (total 0 parameters)</message>
+    <lineContent>ignoreOccurrenceContext.clear();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
+    <specifier>flowexpr.parse.index.too.big</specifier>
+    <message>the method has no parameter #1 (total 0 parameters)</message>
+    <lineContent>ignoreOccurrenceContext.clear();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
+    <specifier>flowexpr.parse.index.too.big</specifier>
+    <message>the method has no parameter #1 (total 0 parameters)</message>
+    <lineContent>ignoreOccurrenceContext.clear();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return resultHandler;</lineContent>
+    <details>
+      type of expression: @FenumTop AbstractExpressionHandler
+      method return type: @FenumUnqualified AbstractExpressionHandler
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter horizontalAlignment of JLabel constructor.</message>
+    <lineContent>final JLabel modesLabel = new JLabel(&quot;Modes:&quot;, SwingConstants.RIGHT);</lineContent>
+    <details>
+      found   : @SwingHorizontalOrientation int
+      required: @FenumUnqualified int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>moduleDetails = read(XmlMetaReader.class.getResourceAsStream(&quot;/&quot; + fileName),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/UnmodifiableCollectionUtil.java</fileName>
+    <specifier>type.arguments.not.inferred</specifier>
+    <message>Could not infer type arguments for Stream.map</message>
+    <lineContent>.map(elementType::cast)</lineContent>
+    <details>
+      unsatisfiable constraint: S extends @FenumTop Object &lt;: @FenumUnqualified Object
+      elementType::cast -&gt; inference type: java.util.function.Function&lt;? super S,? extends R&gt;
+      From: Argument constraint
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractNode.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>AxisIterator axisIterator = iterateAxis(axisNumber);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>descendantEnum = SingleNodeIterator.makeIterator(start);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>descendantEnum = queue.poll().iterateAxis(AxisInfo.CHILD);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>descendantEnum = start.iterateAxis(AxisInfo.CHILD);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>ancestorEnum = start.iterateAxis(AxisInfo.ANCESTOR);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>descendantEnum = result.iterateAxis(AxisInfo.DESCENDANT);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>siblingEnum = parent.iterateAxis(AxisInfo.FOLLOWING_SIBLING);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>siblingEnum = start.iterateAxis(AxisInfo.FOLLOWING_SIBLING);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>ancestorEnum = start.iterateAxis(AxisInfo.ANCESTOR);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>descendantEnum = new ReverseDescendantIterator(result);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>previousSiblingEnum = result.iterateAxis(AxisInfo.PRECEDING_SIBLING);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>previousSiblingEnum = start.iterateAxis(AxisInfo.PRECEDING_SIBLING);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseDescendantIterator.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>pushToStack(queue.poll().iterateAxis(AxisInfo.CHILD));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseDescendantIterator.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>pushToStack(start.iterateAxis(AxisInfo.CHILD));</lineContent>
+  </checkerFrameworkError>
+</suppressedErrors>

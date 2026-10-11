@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"
+             name="ModifierOrder"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Validates that the modifiers appear in the correct, standard order.
+ By default the order of modifiers conforms to the suggestions in the
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-8.html"&gt;
+ Java Language specification, &amp;#167; 8.1.1, 8.3.1, 8.4.3&lt;/a&gt; and
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-9.html#jls-9.4"&gt;9.4&lt;/a&gt;.
+ The default order is:
+ &lt;/div&gt;
+
+ &lt;ol&gt;
+ &lt;li&gt; &lt;code&gt;public&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;protected&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;private&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;abstract&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;default&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;static&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;sealed&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;non-sealed&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;final&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;transient&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;volatile&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;synchronized&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;native&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;strictfp&lt;/code&gt; &lt;/li&gt;
+ &lt;/ol&gt;
+
+ &lt;p&gt;
+ Additionally, modifiers are checked to ensure all annotations
+ are declared before all other modifiers.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Rationale: Code is easier to read if everybody follows
+ a standard.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ ATTENTION: We skip
+ &lt;a href="https://www.oracle.com/technical-resources/articles/java/ma14-architect-annotations.html"&gt;
+ type annotations&lt;/a&gt; from validation.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="abstract, default, final, native, non-sealed, private, protected, public, sealed, static, strictfp, synchronized, transient, volatile"
+                      name="modifiersOrder"
+                      type="java.lang.String[]">
+               <description>Set the order of modifiers.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="annotation.order"/>
+            <message-key key="mod.custom.order"/>
+            <message-key key="mod.order"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

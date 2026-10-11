@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ClassDataAbstractionCoupling</title>
+  </head>
+  <body>
+    <section name="ClassDataAbstractionCoupling">
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/ClassDataAbstractionCouplingCheck.java"/>
+      </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/ClassDataAbstractionCouplingCheck.java"/>
+      </macro>
+      <subsection name="Description" id="ClassDataAbstractionCoupling_Description">
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/ClassDataAbstractionCouplingCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Properties" id="ClassDataAbstractionCoupling_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/ClassDataAbstractionCouplingCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="ClassDataAbstractionCoupling_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p>
+          Example:
+        </p>
+        <p id="Example1-code">
+          The check passes without violations in the following:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example2-config">
+          To configure the check with a threshold of 2:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p>
+          Example:
+        </p>
+        <p id="Example2-code">
+          The check passes without violations in the following:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example3-config">
+          To configure the check with three excluded classes <code>HashMap</code>,
+          <code>HashSet</code> and <code>Example1</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/deeper/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p>
+          Example:
+        </p>
+        <p id="Example3-code">
+          The check passes without violations in the following:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/deeper/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example4-config">
+          To configure the check to exclude classes with a regular expression
+          <code>.*Reader$</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p>
+          Example:
+        </p>
+        <p id="Example4-code">
+          The check passes without violations in the following:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example5-config">
+          To configure the check with an excluded package <code>java.io</code>:
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p>
+          Example:
+        </p>
+        <p id="Example5-code">
+          The check passes without violations in the following:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="ClassDataAbstractionCoupling_Use_Cases">
+
+        <p id="UseCase1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="UseCase1-code">
+          The check results in a violation in the following:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="UseCase2-config">
+          To configure the check with a threshold of 2:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/deeper/UseCase2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="UseCase2-code">
+          The check results in a violation in the following:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/deeper/UseCase2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="UseCase3-config">
+          To configure the check with three excluded classes <code>HashMap</code>,
+          <code>HashSet</code> and <code>Example1</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/deeper/UseCase3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="UseCase3-code">
+          The check results in a violation in the following:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/deeper/UseCase3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="UseCase4-config">
+          To configure the check to exclude classes with a regular expression
+          <code>.*Reader$</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/UseCase4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="UseCase4-code">
+          The check results in a violation in the following:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/UseCase4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="UseCase5-config">
+          To configure the check with an excluded package <code>java.io</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/UseCase5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="UseCase5-code">
+          The check results in a violation in the following:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/UseCase5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p>
+          Override property <code>excludedPackages</code> to mark some packages as excluded.
+          Each member of <code>excludedPackages</code> should be a valid identifier:
+        </p>
+        <ul>
+          <li>
+            <code>java.util</code> - valid, excludes all classes inside <code>java.util</code>,
+            but not from the subpackages.
+          </li>
+          <li>
+            <code>java.util.</code> - invalid, should not end with a dot.
+          </li>
+          <li>
+            <code>java.util.*</code> - invalid, should not end with a star.
+          </li>
+        </ul>
+        <p>
+          Note, that checkstyle will ignore all classes from the <code>java.lang</code>
+          package and its subpackages, even if the <code>java.lang</code> was not listed in
+          the <code>excludedPackages</code> parameter.
+        </p>
+        <p>
+          Also note, that <code>excludedPackages</code> will not exclude classes, imported via
+          wildcard (e.g. <code>import java.math.*</code>). Instead of wildcard import you should
+          use direct import (e.g. <code>import java.math.BigDecimal</code>).
+        </p>
+        <hr class="example-separator"/>
+        <p id="UseCase6-config">
+          Checkstyle will not exclude classes within the same file
+          even if it was listed in the <code>excludedPackages</code> parameter. For example,
+          assuming the config is
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/UseCase6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase6-code">
+          And the file <code>a.b.Foo.java</code> is:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/UseCase6.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p>
+          The <code>bar</code> member will not be counted,
+          since the <code>a.b</code> added to the <code>excludedPackages</code>.
+          The <code>baz</code> member will be counted,
+          since the <code>a.b.c</code> was not added to the <code>excludedPackages</code>.
+          The <code>data</code> and <code>foo</code> members will be counted, as they are
+          inside same file.
+        </p>
+      </subsection>
+
+      <subsection name="Example of Usage" id="ClassDataAbstractionCoupling_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassDataAbstractionCoupling">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="ClassDataAbstractionCoupling_Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="ClassDataAbstractionCoupling"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name"
+                   id="ClassDataAbstractionCoupling_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="ClassDataAbstractionCoupling_Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="ClassDataAbstractionCoupling"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

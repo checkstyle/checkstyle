@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavadocContentLocation</title>
+  </head>
+  <body>
+    <section name="JavadocContentLocation">
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocContentLocationCheck.java"/>
+      </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocContentLocationCheck.java"/>
+      </macro>
+      <subsection name="Description" id="JavadocContentLocation_Description">
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocContentLocationCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Notes" id="JavadocContentLocation_Notes">
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocContentLocationCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Properties" id="JavadocContentLocation_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocContentLocationCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="JavadocContentLocation_Examples">
+        <p id="Example1-config">
+          To configure the default check to validate that the Javadoc content starts from the
+          second line:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          This setting produces a violation for each multi-line comment
+          starting on the same line as the initial asterisks:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+          To ensure that Javadoc content starts from the first line:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+          This setting produces a violation for each comment not
+          starting on the same line as the initial asterisks:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+      <subsection name="Example of Usage" id="JavadocContentLocation_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
+              Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
+              OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
+              Google Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="JavadocContentLocation_Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="JavadocContentLocation"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="JavadocContentLocation_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck</p>
+        <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="JavadocContentLocation_Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="JavadocContentLocation"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>IllegalTokenText</title>
+  </head>
+  <body>
+    <section name="IllegalTokenText">
+      <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#IllegalTokenText_Description">Description</a></li>
+          <li><a href="#IllegalTokenText_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#IllegalTokenText_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">With default properties</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Forbid String literals containing <code>"a href"</code></a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Forbid String literals containing <code>"a href"</code> for the ignoreCase mode</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Forbid comment content containing <code>"a href"</code></a></li>
+              <li><a href="#Example5-config" class="toc-sublink">With a custom violation message using the <code>message</code> property</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#IllegalTokenText_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Forbid string literal text blocks containing <code>"</code></a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Forbid leading zeros in an integer literal, other than zero and a hex literal</a></li>
+            </ul>
+          </li>
+          <li><a href="#IllegalTokenText_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#IllegalTokenText_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#IllegalTokenText_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#IllegalTokenText_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="IllegalTokenText_Description">
+        <div>
+          Checks specified tokens text for matching an illegal pattern.
+          By default, no tokens are specified.
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="IllegalTokenText_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="format"/><a href="#format">format</a></td>
+              <td>Define the RegExp for illegal pattern.</td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
+              <td><code>^$</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td><a id="ignoreCase"/><a href="#ignoreCase">ignoreCase</a></td>
+              <td>Control whether to ignore case when matching.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td><a id="message"/><a href="#message">message</a></td>
+              <td>Define the message which is used to notify about violations; if empty then the default message is used.</td>
+              <td><a href="../../property-types.html#String">String</a></td>
+              <td><code/></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
+                    NUM_DOUBLE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
+                    NUM_FLOAT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
+                    NUM_INT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
+                    NUM_LONG</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
+                    IDENT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">
+                    COMMENT_CONTENT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
+                    STRING_LITERAL</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CHAR_LITERAL">
+                    CHAR_LITERAL</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_CONTENT">
+                    TEXT_BLOCK_CONTENT</a>
+                  .
+              </td>
+              <td><code>empty</code></td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="IllegalTokenText_Examples">
+        <p id="Example1-config">
+          To configure the check with default properties:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalTokenText"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  public void myTest() {
+
+    String test  = "a href";
+
+    String test2 = "A href";
+    String link = "href";
+    final String quote = """
+            \"""";
+    int num1 = 0;
+    int num2 = 0x111;
+    int num3 = 0X111;
+    int num4 = 010;
+    long num5 = 0L;
+    long num6 = 010L;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to forbid String literals containing
+          <code>&quot;a href&quot;</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalTokenText"&gt;
+      &lt;property name="tokens" value="STRING_LITERAL"/&gt;
+      &lt;property name="format" value="a href"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+  public void myTest() {
+    // violation below 'Token text matches the illegal pattern 'a href'.'
+    String test  = "a href";
+
+    String test2 = "A href"; // ok, case is sensitive
+    String link = "href";
+    final String quote = """
+            \"""";
+    int num1 = 0;
+    int num2 = 0x111;
+    int num3 = 0X111;
+    int num4 = 010;
+    long num5 = 0L;
+    long num6 = 010L;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to forbid String literals containing
+          <code>&quot;a href&quot;</code> for the ignoreCase mode:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalTokenText"&gt;
+      &lt;property name="tokens" value="STRING_LITERAL"/&gt;
+      &lt;property name="format" value="a href"/&gt;
+      &lt;property name="ignoreCase" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+  public void myTest() {
+    // violation below 'Token text matches the illegal pattern 'a href'.'
+    String test  = "a href";
+    // violation below 'Token text matches the illegal pattern 'a href'.'
+    String test2 = "A href";
+    String link = "href";
+    final String quote = """
+            \"""";
+    int num1 = 0;
+    int num2 = 0x111;
+    int num3 = 0X111;
+    int num4 = 010;
+    long num5 = 0L;
+    long num6 = 010L;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to forbid comment content containing
+          <code>&quot;a href&quot;</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalTokenText"&gt;
+      &lt;property name="tokens" value="COMMENT_CONTENT"/&gt;
+      &lt;property name="format" value="a href"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation first line 'Token text matches the illegal pattern 'a href''
+public class Example4 { // violation above 'Token text matches the illegal pattern'
+  public void myTest() {
+
+    String test  = "a href";
+
+    String test2 = "A href";
+    String link = "href";
+    final String quote = """
+            \"""";
+    int num1 = 0;
+    int num2 = 0x111;
+    int num3 = 0X111;
+    int num4 = 010;
+    long num5 = 0L;
+    long num6 = 010L;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check with a custom violation message using the
+          <code>message</code> property:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalTokenText"&gt;
+      &lt;property name="tokens" value="STRING_LITERAL"/&gt;
+      &lt;property name="format" value="href"/&gt;
+      &lt;property name="message" value="Custom illegal text found"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 {
+  public void myTest() {
+
+    String test  = "a href"; // violation 'Custom illegal text found'
+
+    String test2 = "A href"; // violation 'Custom illegal text found'
+    String link = "href";    // violation 'Custom illegal text found'
+    final String quote = """
+            \"""";
+    int num1 = 0;
+    int num2 = 0x111;
+    int num3 = 0X111;
+    int num4 = 010;
+    long num5 = 0L;
+    long num6 = 010L;
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="IllegalTokenText_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check to forbid string literal text blocks containing
+          <code>&quot;</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalTokenText"&gt;
+        &lt;property name="tokens" value="TEXT_BLOCK_CONTENT"/&gt;
+        &lt;property name="format" value='"'/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase1 {
+  public void myTest() {
+
+    String test  = "a href";
+
+    String test2 = "A href";
+    String link = "href";
+    final String quote = """
+            \""""; // violation above 'Token text matches the illegal pattern '"'.'
+    int num1 = 0;
+    int num2 = 0x111;
+    int num3 = 0X111;
+    int num4 = 010;
+    long num5 = 0L;
+    long num6 = 010L;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          To configure the check to forbid leading zeros in an integer
+          literal, other than zero and a hex literal:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalTokenText"&gt;
+      &lt;property name="tokens" value="NUM_INT,NUM_LONG"/&gt;
+      &lt;property name="format" value="^0[^lx]"/&gt;
+      &lt;property name="ignoreCase" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase2 {
+  public void myTest() {
+
+    String test  = "a href";
+
+    String test2 = "A href";
+    String link = "href";
+    final String quote = """
+            \"""";
+    int num1 = 0;
+    int num2 = 0x111;
+    int num3 = 0X111; // ok, case is ignored
+    int num4 = 010;     // violation 'Token text matches the illegal pattern'
+    long num5 = 0L;
+    long num6 = 010L;   // violation 'Token text matches the illegal pattern'
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="IllegalTokenText_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText">
+            OpenJDK Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="IllegalTokenText_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.token.text%22">
+              illegal.token.text
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="IllegalTokenText_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="IllegalTokenText_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

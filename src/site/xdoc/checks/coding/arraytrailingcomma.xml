@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ArrayTrailingComma</title>
+  </head>
+  <body>
+    <section name="ArrayTrailingComma">
+      <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ArrayTrailingComma_Description">Description</a></li>
+          <li><a href="#ArrayTrailingComma_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ArrayTrailingComma_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Check to always validate trailing comma</a></li>
+            </ul>
+          </li>
+          <li><a href="#ArrayTrailingComma_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ArrayTrailingComma_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ArrayTrailingComma_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ArrayTrailingComma_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="ArrayTrailingComma_Description">
+        <div>
+          Checks that array initialization contains a trailing comma.
+        </div>
+
+        <div class="wrapper"><pre class="prettyprint"><code>
+int[] a = new int[]
+{
+  1,
+  2,
+  3,
+};
+        </code></pre></div>
+
+        <p>
+          By default, the check demands a comma at the end if neither left nor right curly braces
+          are on the same line as the last element of the array.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+return new int[] { 0 };
+return new int[] { 0
+  };
+return new int[] {
+  0 };
+        </code></pre></div>
+
+        <p>
+          Rationale: Putting this comma in makes it easier to change the
+          order of the elements or add new elements on the end. Main benefit of a trailing
+          comma is that when you add new entry to an array, no surrounding lines are changed.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+{
+  100000000000000000000,
+  200000000000000000000, // OK
+}
+
+{
+  100000000000000000000,
+  200000000000000000000,
+  300000000000000000000,  // Just this line added, no other changes
+}
+        </code></pre></div>
+
+        <p>
+          If closing brace is on the same line as trailing comma, this benefit is gone
+          (as the check does not demand a certain location of curly braces the following
+          two cases will not produce a violation):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+{100000000000000000000,
+ 200000000000000000000,} // Trailing comma not needed, line needs to be modified anyway
+
+{100000000000000000000,
+ 200000000000000000000, // Modified line
+ 300000000000000000000,} // Added line
+        </code></pre></div>
+
+        <p>
+          If opening brace is on the same line as trailing comma there's also (more arguable) problem:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+{100000000000000000000, // Line cannot be just duplicated to slightly modify entry
+}
+
+{100000000000000000000,
+ 100000000000000000001, // More work needed to duplicate
+}
+        </code></pre></div>
+      </subsection>
+
+      <subsection name="Properties" id="ArrayTrailingComma_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="alwaysDemandTrailingComma"/><a href="#alwaysDemandTrailingComma">alwaysDemandTrailingComma</a></td>
+              <td>Control whether to always check for a trailing comma, even when an array is inline.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.33</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="ArrayTrailingComma_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ArrayTrailingComma"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Which results in the following violations:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  int[] numbers = {1, 2, 3};
+  boolean[] bools = {
+    true,
+    true,
+    false  // violation 'Array should contain trailing comma.'
+    };
+
+  String[][] text = {{},{},};
+
+  double[][] decimals = {
+    {0.5, 2.3, 1.1,},
+    {1.7, 1.9, 0.6},
+    {0.8, 7.4, 6.5,}  // violation 'Array should contain trailing comma.'
+  };
+
+  char[] chars = {'a', 'b', 'c'
+  };
+
+  String[] letters = {
+    "a", "b", "c"};
+
+  int[] a1 = new int[]{
+    1,
+    2
+    ,
+  };
+
+  int[] a2 = new int[]{
+    1,
+    2
+  ,};
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">To configure check to always validate trailing comma:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ArrayTrailingComma"&gt;
+        &lt;property name="alwaysDemandTrailingComma" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+  int[] numbers = {1, 2, 3}; // violation 'Array should contain trailing comma.'
+  boolean[] bools = {
+    true,
+    true,
+    false // violation 'Array should contain trailing comma.'
+    };
+
+  String[][] text = {{},{},};
+
+  double[][] decimals = {
+    {0.5, 2.3, 1.1,},
+    {1.7, 1.9, 0.6}, // violation 'Array should contain trailing comma.'
+    {0.8, 7.4, 6.5,} // violation 'Array should contain trailing comma.'
+  };
+
+  char[] chars = {'a', 'b', 'c'  // violation 'Array should contain trailing comma.'
+  };
+
+  String[] letters = {
+    "a", "b", "c"}; // violation 'Array should contain trailing comma.'
+
+  int[] a1 = new int[]{
+    1,
+    2
+    ,
+  };
+
+  int[] a2 = new int[]{
+    1,
+    2
+  ,};
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="ArrayTrailingComma_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayTrailingComma">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="ArrayTrailingComma_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22array.trailing.comma%22">
+              array.trailing.comma
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="ArrayTrailingComma_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="ArrayTrailingComma_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

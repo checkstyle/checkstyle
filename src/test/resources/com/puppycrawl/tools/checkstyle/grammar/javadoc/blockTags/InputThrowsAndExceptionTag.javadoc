@@ -1,0 +1,13 @@
+* @throws IOException if the file cannot be read.
+* @throws NullPointerException
+*     if the input file is null.
+* @throws
+*     NullPointerException
+*     if the input file is null.
+* @exception IllegalStateException when called in an invalid state
+* @exception
+*     UnexpectedErrorException if something very unexpected happens.
+* @exception CustomUncheckedException
+*         {@inheritDoc}
+* @throws IOException
+* @exception SecurityException

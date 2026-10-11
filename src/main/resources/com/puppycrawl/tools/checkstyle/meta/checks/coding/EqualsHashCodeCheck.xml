@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck"
+             name="EqualsHashCode"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that classes that either override &lt;code&gt;equals()&lt;/code&gt; or &lt;code&gt;hashCode()&lt;/code&gt; also
+ overrides the other.
+ This check only verifies that the method declarations match &lt;code&gt;Object.equals(Object)&lt;/code&gt; and
+ &lt;code&gt;Object.hashCode()&lt;/code&gt; exactly to be considered an override. This check does not verify
+ invalid method names, parameters other than &lt;code&gt;Object&lt;/code&gt;, or anything else.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Rationale: The contract of &lt;code&gt;equals()&lt;/code&gt; and &lt;code&gt;hashCode()&lt;/code&gt; requires that
+ equal objects have the same hashCode. Therefore, whenever you override
+ &lt;code&gt;equals()&lt;/code&gt; you must override &lt;code&gt;hashCode()&lt;/code&gt; to ensure that your class can
+ be used in hash-based collections.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="equals.noEquals"/>
+            <message-key key="equals.noHashCode"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Whitespace</title>
+  </head>
+  <body>
+    <section name="Whitespace Checks">
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>
+              <a href="arraybracketnowhitespace.html#ArrayBracketNoWhitespace">
+                ArrayBracketNoWhitespace
+              </a>
+            </td>
+            <td>
+              Checks that the whitespace around square-bracket tokens <code>[</code> and
+              <code>]</code> follows the Google Java Style Guide requirements for array
+              declarations, array creation, and array indexing as described in <a href="https://google.github.io/styleguide/javaguide.html#s4.6.2-horizontal-whitespace">
+              Section 4.6.2: Horizontal Whitespace</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="emptyforinitializerpad.html#EmptyForInitializerPad">
+                EmptyForInitializerPad
+              </a>
+            </td>
+            <td>
+              Checks the padding of an empty for initializer; that is whether a white space is
+              required at an empty for initializer, or such white space is forbidden.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="emptyforiteratorpad.html#EmptyForIteratorPad">
+                EmptyForIteratorPad
+              </a>
+            </td>
+            <td>
+              Checks the padding of an empty for iterator; that is whether a white space is required
+              at an empty for iterator, or such white space is forbidden.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="emptylineseparator.html#EmptyLineSeparator">
+                EmptyLineSeparator
+              </a>
+            </td>
+            <td>
+              Checks for empty line separators after, fields, constructors, methods, nested classes,
+              static initializers and instance initializers.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="emptylinewrappinginblock.html#EmptyLineWrappingInBlock">
+                EmptyLineWrappingInBlock
+              </a>
+            </td>
+            <td>
+              Checks the empty line right after the opening brace and right before the closing brace
+              of a block.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="filetabcharacter.html#FileTabCharacter">
+                FileTabCharacter
+              </a>
+            </td>
+            <td>
+              Checks that there are no tab characters (<code>'\t'</code>) in the source code.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="genericwhitespace.html#GenericWhitespace">
+                GenericWhitespace
+              </a>
+            </td>
+            <td>
+              Checks that the whitespace around the Generic tokens (angle brackets) "&lt;" and
+              "&gt;" are correct to the <i>typical</i> convention.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="methodparampad.html#MethodParamPad">
+                MethodParamPad
+              </a>
+            </td>
+            <td>
+              Checks the padding between the identifier of a method definition, constructor
+              definition, method call, constructor invocation, record, or record pattern; and the
+              left parenthesis of the parameter list.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="nolinewrap.html#NoLineWrap">
+                NoLineWrap
+              </a>
+            </td>
+            <td>
+              Checks that chosen statements are not line-wrapped.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="nowhitespaceafter.html#NoWhitespaceAfter">
+                NoWhitespaceAfter
+              </a>
+            </td>
+            <td>
+              Checks that there is no whitespace after a token.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="nowhitespacebefore.html#NoWhitespaceBefore">
+                NoWhitespaceBefore
+              </a>
+            </td>
+            <td>
+              Checks that there is no whitespace before a token.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="nowhitespacebeforecasedefaultcolon.html#NoWhitespaceBeforeCaseDefaultColon">
+                NoWhitespaceBeforeCaseDefaultColon
+              </a>
+            </td>
+            <td>
+              Checks that there is no whitespace before the colon in a switch block.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="operatorwrap.html#OperatorWrap">
+                OperatorWrap
+              </a>
+            </td>
+            <td>
+              Checks the policy on how to wrap lines on <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/opsummary.html">
+              operators</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="parenpad.html#ParenPad">
+                ParenPad
+              </a>
+            </td>
+            <td>
+              Checks the policy on the padding of parentheses; that is whether a space is required
+              after a left parenthesis and before a right parenthesis, or such spaces are forbidden.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="separatorwrap.html#SeparatorWrap">
+                SeparatorWrap
+              </a>
+            </td>
+            <td>
+              Checks line wrapping with separators.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="singlespaceseparator.html#SingleSpaceSeparator">
+                SingleSpaceSeparator
+              </a>
+            </td>
+            <td>
+              Checks that non-whitespace characters are separated by no more than one whitespace.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="typebodypadding.html#TypeBodyPadding">
+                TypeBodyPadding
+              </a>
+            </td>
+            <td>
+              Checks the padding of the body of type definitions (classes, interfaces, enums,
+              records).
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="typecastparenpad.html#TypecastParenPad">
+                TypecastParenPad
+              </a>
+            </td>
+            <td>
+              Checks the policy on the padding of parentheses for typecasts.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="whitespaceafter.html#WhitespaceAfter">
+                WhitespaceAfter
+              </a>
+            </td>
+            <td>
+              Checks that a token is followed by whitespace, with the exception that it does not
+              check for whitespace after the semicolon of an empty for iterator.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="whitespacearound.html#WhitespaceAround">
+                WhitespaceAround
+              </a>
+            </td>
+            <td>
+              Checks that a token is surrounded by whitespace.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="whitespacebeforeemptybody.html#WhitespaceBeforeEmptyBody">
+                WhitespaceBeforeEmptyBody
+              </a>
+            </td>
+            <td>
+              Checks that a whitespace is present before the opening brace of an empty body.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</document>

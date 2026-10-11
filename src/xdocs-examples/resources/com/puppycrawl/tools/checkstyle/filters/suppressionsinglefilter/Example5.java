@@ -1,0 +1,33 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MemberName">
+      <property name="id" value="customMemberName"/>
+    </module>
+  </module>
+  <module name="SuppressionSingleFilter">
+    <property name="files" value="Example5.java"/>
+    <property name="id" value="customMemberName"/>
+  </module>
+</module>
+*/
+package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
+// xdoc section - start
+public class Example5 {
+  // filtered violation below 'Name 'MyVariable' must match pattern'
+  private int MyVariable = 5;
+
+  public void exampleMethod(int a, int b) {
+    int value = 100;
+
+    Integer. parseInt("3");
+  }
+
+  public void printExample() {
+    int [] x;
+    System.out.println(
+            "example"
+    );
+  }
+}
+// xdoc section - end

@@ -1,0 +1,379 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.utils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.regex.Pattern;
+
+import javax.annotation.Nullable;
+
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+/**
+ * Contains utility methods for working with Javadoc.
+ */
+public final class JavadocUtil {
+
+    /** Maps from a token name to value. */
+    private static final Map<String, Integer> TOKEN_NAME_TO_VALUE;
+    /** Maps from a token value to name. */
+    private static final Map<Integer, String> TOKEN_VALUE_TO_NAME;
+
+    /** Exception message for unknown JavaDoc token id. */
+    private static final String UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE = "Unknown javadoc"
+            + " token id. Given id: ";
+
+    /** Newline pattern. */
+    private static final Pattern NEWLINE = Pattern.compile("\n");
+
+    /** Return pattern. */
+    private static final Pattern RETURN = Pattern.compile("\r");
+
+    /** Tab pattern. */
+    private static final Pattern TAB = Pattern.compile("\t");
+
+    // initialise the constants
+    static {
+        TOKEN_NAME_TO_VALUE =
+                TokenUtil.nameToValueMapFromPublicIntFields(JavadocCommentsTokenTypes.class);
+        TOKEN_VALUE_TO_NAME = TokenUtil.invertMap(TOKEN_NAME_TO_VALUE);
+    }
+
+    /** Prevent instantiation. */
+    private JavadocUtil() {
+    }
+
+    /**
+     * Checks that commentContent starts with '*' javadoc comment identifier.
+     *
+     * @param commentContent
+     *        content of block comment
+     * @return true if commentContent starts with '*' javadoc comment
+     *         identifier.
+     */
+    public static boolean isJavadocComment(String commentContent) {
+        boolean result = false;
+
+        if (!commentContent.isEmpty()) {
+            final char docCommentIdentifier = commentContent.charAt(0);
+            result = docCommentIdentifier == '*';
+        }
+
+        return result;
+    }
+
+    /**
+     * Checks block comment content starts with '*' javadoc comment identifier.
+     *
+     * @param blockCommentBegin
+     *        block comment AST
+     * @return true if block comment content starts with '*' javadoc comment
+     *         identifier.
+     */
+    public static boolean isJavadocComment(DetailAST blockCommentBegin) {
+        final String commentContent = getBlockCommentContent(blockCommentBegin);
+        return isJavadocComment(commentContent) && isCorrectJavadocPosition(blockCommentBegin);
+    }
+
+    /**
+     * Gets content of block comment.
+     *
+     * @param blockCommentBegin
+     *        block comment AST.
+     * @return content of block comment.
+     */
+    public static String getBlockCommentContent(DetailAST blockCommentBegin) {
+        final DetailAST commentContent = blockCommentBegin.getFirstChild();
+        return commentContent.getText();
+    }
+
+    /**
+     * Get content of Javadoc comment.
+     *
+     * @param javadocCommentBegin
+     *        Javadoc comment AST
+     * @return content of Javadoc comment.
+     */
+    public static String getJavadocCommentContent(DetailAST javadocCommentBegin) {
+        final DetailAST commentContent = javadocCommentBegin.getFirstChild();
+        return commentContent.getText().substring(1);
+    }
+
+    /**
+     * Returns the Javadoc block comment attached to the given declaration AST node.
+     *
+     * @param ast the declaration AST node
+     * @return the attached Javadoc block comment, or {@code null} if none is found
+     */
+    @Nullable
+    public static DetailAST getAttachedJavadocComment(final DetailAST ast) {
+        DetailAST result = null;
+        DetailAST child = ast.getFirstChild();
+        while (result == null && child.getType() != TokenTypes.IDENT) {
+            result = findJavadocComment(child);
+            child = child.getNextSibling();
+        }
+        return result;
+    }
+
+    /**
+     * Returns the Javadoc block comment attached to the given package AST node.
+     * Because of <a href="https://github.com/checkstyle/checkstyle/issues/4392">parser bug</a>
+     * parser can place javadoc comment either as previous sibling of package definition
+     * or (if there is annotation between package def and javadoc) inside package definition tree.
+     * So we should look for javadoc in both places.
+     *
+     * @param ast the package declaration AST node
+     * @return the attached Javadoc block comment, or {@code null} if none is found
+     */
+    @Nullable
+    public static DetailAST getAttachedJavadocCommentForPackage(final DetailAST ast) {
+        DetailAST result = null;
+        final DetailAST prevSibling = ast.getPreviousSibling();
+        if (prevSibling != null
+                && prevSibling.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                && isJavadocComment(prevSibling)) {
+            result = prevSibling;
+        }
+        else {
+            final Optional<DetailAST> firstAnnotationChild =
+                Optional.ofNullable(ast.getFirstChild())
+                    .map(DetailAST::getFirstChild)
+                    .map(DetailAST::getFirstChild);
+            if (firstAnnotationChild.isPresent()) {
+                for (DetailAST child = firstAnnotationChild.orElseThrow(); child != null;
+                     child = child.getNextSibling()) {
+                    if (child.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                            && isJavadocComment(child)) {
+                        result = child;
+                        break;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Finds the first Javadoc block comment under the given AST node.
+     *
+     * @param ast the AST node to search
+     * @return the Javadoc block comment, or {@code null} if none is found
+     */
+    @Nullable
+    private static DetailAST findJavadocComment(DetailAST ast) {
+        DetailAST result = null;
+        if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN && isJavadocComment(ast)) {
+            result = ast;
+        }
+        else {
+            DetailAST child = ast.getFirstChild();
+            while (result == null && child != null) {
+                result = findJavadocComment(child);
+                child = child.getNextSibling();
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Returns the first child token that has a specified type.
+     *
+     * @param detailNode
+     *        Javadoc AST node
+     * @param type
+     *        the token type to match
+     * @return the matching token, or null if no match
+     */
+    public static DetailNode findFirstToken(DetailNode detailNode, int type) {
+        DetailNode returnValue = null;
+        DetailNode node = detailNode.getFirstChild();
+        while (node != null) {
+            if (node.getType() == type) {
+                returnValue = node;
+                break;
+            }
+            node = node.getNextSibling();
+        }
+        return returnValue;
+    }
+
+    /**
+     * Returns all child tokens that have a specified type.
+     *
+     * @param detailNode Javadoc AST node
+     * @param type the token type to match
+     * @return the matching tokens, or an empty list if no match
+     */
+    public static List<DetailNode> getAllNodesOfType(DetailNode detailNode, int type) {
+        final List<DetailNode> nodes = new ArrayList<>();
+        DetailNode node = detailNode.getFirstChild();
+        while (node != null) {
+            if (node.getType() == type) {
+                nodes.add(node);
+            }
+            node = node.getNextSibling();
+        }
+        return nodes;
+    }
+
+    /**
+     * Checks whether the given AST node is an HTML element with the specified tag name.
+     * This method ignore void elements.
+     *
+     * @param ast the AST node to check
+     *            (must be of type {@link JavadocCommentsTokenTypes#HTML_ELEMENT})
+     * @param expectedTagName the tag name to match (case-insensitive)
+     * @return {@code true} if the node has the given tag name, {@code false} otherwise
+     */
+    public static boolean isTag(DetailNode ast, String expectedTagName) {
+        final DetailNode htmlTagStart = findFirstToken(ast,
+                JavadocCommentsTokenTypes.HTML_TAG_START);
+        boolean isTag = false;
+        if (htmlTagStart != null) {
+            final String tagName = findFirstToken(htmlTagStart,
+                JavadocCommentsTokenTypes.TAG_NAME).getText();
+            isTag = expectedTagName.equalsIgnoreCase(tagName);
+        }
+        return isTag;
+    }
+
+    /**
+     * Gets next sibling of specified node with the specified type.
+     *
+     * @param node DetailNode
+     * @param tokenType javadoc token type
+     * @return next sibling.
+     */
+    public static DetailNode getNextSibling(DetailNode node, int tokenType) {
+        DetailNode nextSibling = node.getNextSibling();
+        while (nextSibling != null && nextSibling.getType() != tokenType) {
+            nextSibling = nextSibling.getNextSibling();
+        }
+        return nextSibling;
+    }
+
+    /**
+     * Returns the name of a token for a given ID.
+     *
+     * @param id
+     *        the ID of the token name to get
+     * @return a token name
+     * @throws IllegalArgumentException if an unknown token ID was specified.
+     */
+    public static String getTokenName(int id) {
+        final String name = TOKEN_VALUE_TO_NAME.get(id);
+        if (name == null) {
+            throw new IllegalArgumentException(UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE + id);
+        }
+        return name;
+    }
+
+    /**
+     * Returns the ID of a token for a given name.
+     *
+     * @param name
+     *        the name of the token ID to get
+     * @return a token ID
+     * @throws IllegalArgumentException if an unknown token name was specified.
+     */
+    public static int getTokenId(String name) {
+        final Integer id = TOKEN_NAME_TO_VALUE.get(name);
+        if (id == null) {
+            throw new IllegalArgumentException("Unknown javadoc token name. Given name " + name);
+        }
+        return id;
+    }
+
+    /**
+     * Extracts the tag name from the given Javadoc tag section.
+     *
+     * @param javadocTagSection the node representing a Javadoc tag section.
+     *       This node must be of type {@link JavadocCommentsTokenTypes#JAVADOC_BLOCK_TAG}
+     *       or {@link JavadocCommentsTokenTypes#JAVADOC_INLINE_TAG}.
+     *  @return the tag name (e.g., "param", "return", "link")
+     */
+    public static String getTagName(DetailNode javadocTagSection) {
+        return findFirstToken(javadocTagSection.getFirstChild(),
+                    JavadocCommentsTokenTypes.TAG_NAME).getText();
+    }
+
+    /**
+     * Replace all control chars with escaped symbols.
+     *
+     * @param text the String to process.
+     * @return the processed String with all control chars escaped.
+     */
+    public static String escapeAllControlChars(String text) {
+        final String textWithoutNewlines = NEWLINE.matcher(text).replaceAll("\\\\n");
+        final String textWithoutReturns = RETURN.matcher(textWithoutNewlines).replaceAll("\\\\r");
+        return TAB.matcher(textWithoutReturns).replaceAll("\\\\t");
+    }
+
+    /**
+     * Checks Javadoc comment it's in right place.
+     *
+     * <p>From Javadoc util documentation:
+     * "Placement of comments - Documentation comments are recognized only when placed
+     * immediately before class, interface, constructor, method, field or annotation field
+     * declarations -- see the class example, method example, and field example.
+     * Documentation comments placed in the body of a method are ignored."</p>
+     *
+     * <p>If there are many documentation comments per declaration statement,
+     * only the last one will be recognized.</p>
+     *
+     * @param blockComment Block comment AST
+     * @return true if Javadoc is in right place
+     * @see <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
+     *     Javadoc util documentation</a>
+     */
+    public static boolean isCorrectJavadocPosition(DetailAST blockComment) {
+        // We must be sure that after this one there are no other documentation comments.
+        DetailAST sibling = blockComment.getNextSibling();
+        while (sibling != null) {
+            if (sibling.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                if (isJavadocComment(getBlockCommentContent(sibling))) {
+                    // Found another javadoc comment, so this one should be ignored.
+                    break;
+                }
+                sibling = sibling.getNextSibling();
+            }
+            else if (sibling.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+                sibling = sibling.getNextSibling();
+            }
+            else {
+                // Annotation, declaration or modifier is here. Do not check further.
+                sibling = null;
+            }
+        }
+        return sibling == null
+            && (BlockCommentPosition.isOnType(blockComment)
+                || BlockCommentPosition.isOnMember(blockComment)
+                || BlockCommentPosition.isOnPackage(blockComment)
+                || BlockCommentPosition.isOnModule(blockComment));
+    }
+
+}

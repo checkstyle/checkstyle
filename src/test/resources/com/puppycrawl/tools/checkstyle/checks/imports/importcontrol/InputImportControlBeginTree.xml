@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE import-control PUBLIC
+        "-//Checkstyle//DTD ImportControl Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/import_control_1_2.dtd">
+
+<import-control pkg="com.puppycrawl.tools.checkstyle.checks">
+  <allow pkg="java.util.stream"/>
+  <subpackage name="imports">
+    <disallow class="java.util.stream.Stream"/>
+    <disallow class="java.util.stream.Collectors"/>
+  </subpackage>
+</import-control>

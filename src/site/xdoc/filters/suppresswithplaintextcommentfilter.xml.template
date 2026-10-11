@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SuppressWithPlainTextCommentFilter</title>
+  </head>
+  <body>
+    <section name="SuppressWithPlainTextCommentFilter">
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java"/>
+      </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java"/>
+      </macro>
+      <subsection name="Description" id="SuppressWithPlainTextCommentFilter_Description">
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java"/>
+        </macro>
+      </subsection>
+      <subsection name="Notes" id="SuppressWithPlainTextCommentFilter_Notes">
+        <macro name="notes">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java"/>
+        </macro>
+      </subsection>
+      <subsection name="Properties" id="SuppressWithPlainTextCommentFilter_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java"/>
+          </macro>
+        </div>
+      </subsection>
+      <subsection name="Examples" id="SuppressWithPlainTextCommentFilter_Examples">
+        <p id="Example1-config">
+          To configure a filter to suppress audit events between a comment
+          containing <code>// CHECKSTYLE:OFF</code> and a comment containing
+          <code>// CHECKSTYLE:ON</code> (the default comments).
+          Checker is configured to check only properties files using UniqueProperties check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example1.properties"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example1.properties"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure a filter to suppress audit events between a comment
+          containing <code>STOP CHECK</code> and a comment
+          containing <code>RESUME CHECK</code>.
+          Checker is configured to check only properties files using UniqueProperties check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example2.properties"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example2.properties"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure a filter to suppress UniqueProperties check audit events between a comment
+          containing <code>STOP UNIQUE CHECK</code> and a comment containing
+          <code>RESUME UNIQUE CHECK</code>.
+          Checker is configured to check only properties files using both UniqueProperties check
+          and OrderedProperties check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example3.properties"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example3.properties"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure a filter to suppress audit events for the check mentioned in the comment
+          <code>CSOFF: <i>regexp</i></code> and <code>CSON: <i>regexp</i></code>.
+          Checker is configured to check only XML files using RegexpSingleline check to detect
+          disallowed 'code' values for the 'type' parameter:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example4.xml"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example4.xml"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure a filter to suppress all audit events between a comment
+          containing <code>CSOFF: ALMOST_ALL</code> and a comment containing
+          <code>CSON: ALMOST_ALL</code>, except for the RegexpSingleline
+          check.
+          Checker is configured to check only XML files using RegexpSingleline check to detect
+          disallowed 'code' values for the 'type' parameter:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example5.xml"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example5.xml"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure a filter to suppress audit events <b>that match a
+          specific message in the messageFormat</b> (allowing suppression not only by the
+          check's name but also by the message content, as the same check can report
+          violations with different message formats) between a comment
+          containing <code>CSOFF</code> and comment containing <code>CSON</code>.
+          Checker is configured to check only XML files using RegexpSingleline check to detect
+          disallowed 'code' and 'config' values for the 'type' parameter:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example6.xml"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example6.xml"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p>
+          It is possible to specify the ID of checks, which can be used by the
+          SuppressWithPlainTextCommentFilter to suppress audit events.
+          The following examples show how to suppress audit events in code surrounded
+          by <code>CSOFF &lt;ID&gt; (reason)</code> and <code>CSON &lt;ID&gt;</code>,
+          where ID is the ID of the check you want to suppress.
+        </p>
+        <p id="Example7-config">
+          Example of Checkstyle checks and SuppressWithPlainTextCommentFilter configuration -
+          the checkFormat, set to '$1', indicates that the ID of the check
+          is in the first group of offCommentFormat and onCommentFormat
+          regular expressions.
+          Checker is configured to check only XML files using RegexpSingleline check to detect
+          disallowed 'code' and 'config' values for the 'type' parameter:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example7.xml"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example7.xml"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example8-config">
+          Example of how to configure the check to suppress more than one check.
+          Checker is configured to check only SQL files using RegexpSingleline check to detect
+          usage of JOIN operations and LineLength check to detect lines exceeding 60
+          characters:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example8.sql"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example8.sql"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        </subsection>
+        <subsection name="Use Cases" id="SuppressWithPlainTextCommentFilter_Use_Cases">
+        <p id="UseCase1-config">
+          This check is not limited to comments. It can match any symbols in the given file
+          as <code>offCommentFormat</code> and <code>onCommentFormat</code> for suppression.
+          The following example shows how to suppress violations within a text block for the
+          LineLength check.
+          Checker is configured to use LineLength check to detect lines exceeding the maximum
+          length of 100 characters:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+      <subsection name="Example of Usage" id="SuppressWithPlainTextCommentFilter_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithPlainTextCommentFilter">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithPlainTextCommentFilter">
+            Google Style</a>
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="Fully Qualified Name"
+                   id="SuppressWithPlainTextCommentFilter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter</p>
+        <p>
+            This is the fully qualified class name of the module.
+            Use this name in configuration when an exact class reference is required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="SuppressWithPlainTextCommentFilter_Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="SuppressWithPlainTextCommentFilter"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

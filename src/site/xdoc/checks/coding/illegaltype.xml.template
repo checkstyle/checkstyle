@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>IllegalType</title>
+  </head>
+  <body>
+    <section name="IllegalType">
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTypeCheck.java"/>
+      </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTypeCheck.java"/>
+      </macro>
+      <subsection name="Description" id="IllegalType_Description">
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTypeCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Notes" id="IllegalType_Notes">
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTypeCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Properties" id="IllegalType_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+             <param name="modulePath"
+                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTypeCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="IllegalType_Examples">
+        <p id="Example1-config">
+            To configure the default check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the Check so that particular tokens are checked:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the Check so that it ignores function() methods:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the Check so that it validates abstract class names:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the Check so that it verifies only public, protected or static
+           methods and fields:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure the check so that it verifies usage of types Boolean and Foo:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check to target fields types only:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check so that it violates Abstract Types which are illegal:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example8.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="IllegalType_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check so that it violates usage of var:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="IllegalType_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalType">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="IllegalType_Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="IllegalType"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="IllegalType_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="IllegalType_Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="IllegalType"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

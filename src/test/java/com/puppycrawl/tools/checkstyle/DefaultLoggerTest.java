@@ -1,0 +1,397 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+
+public class DefaultLoggerTest extends AbstractModuleTestSupport {
+
+    private static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/defaultlogger";
+    }
+
+    @AfterEach
+    public void tearDown() {
+        ResourceBundle.clearCache();
+    }
+
+    @Test
+    public void testException() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestException.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestException.txt";
+
+        final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                errorStream, OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getNonCompilablePath(inputFile),
+                getPath(expectedInfoFile),
+                getPath(expectedErrorFile),
+                dl, infoStream, errorStream);
+    }
+
+    @Test
+    public void testSingleError() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestSingleError.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestSingleError.txt";
+
+        final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                errorStream, OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getPath(inputFile),
+                getPath(expectedInfoFile),
+                getPath(expectedErrorFile),
+                dl, infoStream, errorStream);
+    }
+
+    @Test
+    public void testMultipleErrors() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestMultipleErrors.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestMultipleErrors.txt";
+
+        final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                errorStream, OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getPath(inputFile),
+                getPath(expectedInfoFile),
+                getPath(expectedErrorFile),
+                dl, infoStream, errorStream);
+    }
+
+    @Test
+    public void testCtorWithTwoParametersCloseStreamOptions() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestSingleError.java";
+        final String expectedOutputFile = "ExpectedDefaultLoggerOutputSingleError.txt";
+
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(outputStream, OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getPath(inputFile),
+                getPath(expectedOutputFile),
+                dl, outputStream);
+    }
+
+    @Test
+    public void testCtorWithTwoParametersNoneStreamOptions() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestSingleError.java";
+        final String expectedOutputFile = "ExpectedDefaultLoggerOutputSingleError.txt";
+
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(outputStream, OutputStreamOptions.NONE);
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getPath(inputFile),
+                getPath(expectedOutputFile),
+                dl, outputStream);
+    }
+
+    /**
+     * We keep this test for 100% coverage. Until #12873.
+     * Test not updated because relies on deprecated AutomaticBean and verifies only correct field
+     * mapping.
+     */
+    @Test
+    public void testOldCtorWithTwoParametersCloseStreamOptions() {
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AutomaticBean.OutputStreamOptions.CLOSE);
+        final boolean closeInfo = TestUtil.getInternalState(dl, "closeInfo", Boolean.class);
+
+        assertWithMessage("closeInfo should be true")
+                .that(closeInfo)
+                .isTrue();
+    }
+
+    /**
+     * We keep this test for 100% coverage. Until #12873.
+     * Test not updated because relies on deprecated AutomaticBean and verifies only correct field
+     * mapping.
+     */
+    @Test
+    public void testOldCtorWithTwoParametersNoneStreamOptions() {
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AutomaticBean.OutputStreamOptions.NONE);
+        final boolean closeInfo = TestUtil.getInternalState(dl, "closeInfo", Boolean.class);
+
+        assertWithMessage("closeInfo should be false")
+                .that(closeInfo)
+                .isFalse();
+    }
+
+    /**
+     * This test cannot use verifyWithInlineConfigParserAndLogger as it does not
+     * involve an input file, configuration or audit process. It only verifies that
+     * constructing a DefaultLogger with null stream options throws an
+     * IllegalArgumentException with the correct message.
+     */
+    @Test
+    public void testNullInfoStreamOptions() {
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        final IllegalArgumentException ex =
+                TestUtil.getExpectedThrowable(IllegalArgumentException.class,
+                        () -> new DefaultLogger(outputStream, (OutputStreamOptions) null),
+                        "IllegalArgumentException expected");
+        assertWithMessage("Invalid error message")
+                .that(ex)
+                .hasMessageThat()
+                        .isEqualTo("Parameter infoStreamOptions can not be null");
+    }
+
+    /**
+     * This test cannot use verifyWithInlineConfigParserAndLogger as it does not
+     * involve an input file, configuration or audit process. It only verifies that
+     * constructing a DefaultLogger with null stream options throws an
+     * IllegalArgumentException with the correct message.
+     */
+    @Test
+    public void testNullErrorStreamOptions() {
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        final IllegalArgumentException ex =
+                TestUtil.getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    final DefaultLogger defaultLogger = new DefaultLogger(outputStream,
+                            OutputStreamOptions.CLOSE, outputStream, null);
+
+                    // Workaround for Eclipse error "The allocated object is never used"
+                    assertWithMessage("defaultLogger should be non-null")
+                            .that(defaultLogger)
+                            .isNotNull();
+                },
+                "IllegalArgumentException expected");
+        assertWithMessage("Invalid error message")
+                .that(ex)
+                .hasMessageThat()
+                        .isEqualTo("Parameter errorStreamOptions can not be null");
+    }
+
+    @Test
+    public void testAddErrorModuleId() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestAddErrorModuleId.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestAddErrorModuleId.txt";
+
+        final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                errorStream, OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getPath(inputFile),
+                getPath(expectedInfoFile),
+                getPath(expectedErrorFile),
+                dl, infoStream, errorStream);
+    }
+
+    @Test
+    public void testAddErrorIgnoreSeverityLevel() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestIgnoreSeverityLevel.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestIgnoreSeverityLevel.txt";
+
+        final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                errorStream, OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getPath(inputFile),
+                getPath(expectedInfoFile),
+                getPath(expectedErrorFile),
+                dl, infoStream, errorStream);
+    }
+
+    @Test
+    public void testFinishLocalSetup() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestSingleError.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestSingleError.txt";
+
+        final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                errorStream, OutputStreamOptions.CLOSE);
+
+        dl.finishLocalSetup();
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getPath(inputFile),
+                getPath(expectedInfoFile),
+                getPath(expectedErrorFile),
+                dl, infoStream, errorStream);
+    }
+
+    /**
+     * Verifies that the language specified with the system property {@code user.language} exists.
+     */
+    @Test
+    public void testLanguageIsValid() {
+        final String language = DEFAULT_LOCALE.getLanguage();
+        assumeFalse(language.isEmpty(), "Locale not set");
+        assertWithMessage("Invalid language")
+                .that(Arrays.asList(Locale.getISOLanguages()))
+                .contains(language);
+    }
+
+    /**
+     * Verifies that the country specified with the system property {@code user.country} exists.
+     */
+    @Test
+    public void testCountryIsValid() {
+        final String country = DEFAULT_LOCALE.getCountry();
+        assumeFalse(country.isEmpty(), "Locale not set");
+        assertWithMessage("Invalid country")
+                .that(Arrays.asList(Locale.getISOCountries()))
+                .contains(country);
+    }
+
+    @Test
+    public void testNewCtor() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestException.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestException.txt";
+
+        try (MockByteArrayOutputStream infoStream = new MockByteArrayOutputStream();
+             MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
+            final DefaultLogger dl = new DefaultLogger(
+                    infoStream, OutputStreamOptions.CLOSE,
+                    errorStream, OutputStreamOptions.CLOSE);
+
+            verifyWithInlineConfigParserAndDefaultLogger(
+                    getNonCompilablePath(inputFile),
+                    getPath(expectedInfoFile),
+                    getPath(expectedErrorFile),
+                    dl, infoStream, errorStream);
+
+            assertWithMessage("Info stream should be closed")
+                    .that(infoStream.closedCount)
+                    .isGreaterThan(0);
+            assertWithMessage("Error stream should be closed")
+                    .that(errorStream.closedCount)
+                    .isGreaterThan(0);
+        }
+    }
+
+    /**
+     * Direct invocation of {@code addException} is necessary because
+     * {@code Checker} implementation does not call {@code addException}
+     * during normal file processing flow, leaving mutations on lines 179-183
+     * ({@code PrintWriter::println}, {@code getLocalizedMessage},
+     * {@code AuditEvent::getFileName}, {@code Throwable::printStackTrace})
+     * with no coverage if tested only through {@code verifyWithInlineConfigParserAndDefaultLogger}.
+     */
+    @Test
+    public void testAddException() throws Exception {
+        try (MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
+            final DefaultLogger dl = new DefaultLogger(
+                    new ByteArrayOutputStream(), OutputStreamOptions.CLOSE,
+                    errorStream, OutputStreamOptions.CLOSE);
+
+            dl.addException(new AuditEvent(5000, "myfile"),
+                    new IllegalStateException("oops"));
+
+            final String errorOutput = errorStream.toString(StandardCharsets.UTF_8);
+
+            assertWithMessage("Exception output should contain filename")
+                    .that(errorOutput)
+                    .contains("myfile");
+            assertWithMessage("Exception output should contain exception type")
+                    .that(errorOutput)
+                    .contains("java.lang.IllegalStateException");
+            assertWithMessage("Exception output should contain exception message")
+                    .that(errorOutput)
+                    .contains("oops");
+        }
+    }
+
+    @Test
+    public void testStreamsNotClosedByLogger() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestSingleError.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestSingleError.txt";
+
+        try (ByteArrayOutputStream infoStream = new ModifiedByteArrayOutputStream();
+            ByteArrayOutputStream errorStream = new ModifiedByteArrayOutputStream()) {
+            final DefaultLogger dl = new DefaultLogger(
+                    infoStream, OutputStreamOptions.NONE,
+                    errorStream, OutputStreamOptions.NONE);
+
+            verifyWithInlineConfigParserAndDefaultLogger(
+                    getPath(inputFile),
+                    getPath(expectedInfoFile),
+                    getPath(expectedErrorFile),
+                    dl, infoStream, errorStream);
+        }
+    }
+
+    private static final class ModifiedByteArrayOutputStream extends ByteArrayOutputStream {
+
+        @Override
+        public void close() throws IOException {
+            reset();
+            super.close();
+        }
+
+    }
+
+    private static final class MockByteArrayOutputStream extends ByteArrayOutputStream {
+
+        private int closedCount;
+
+        @Override
+        public void close() throws IOException {
+            super.close();
+            ++closedCount;
+        }
+
+    }
+
+}

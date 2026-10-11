@@ -1,0 +1,42 @@
+/*
+InterfaceMemberImpliedModifier
+violateImpliedPublicField = (default)true
+violateImpliedStaticField = (default)true
+violateImpliedFinalField = (default)true
+violateImpliedPublicMethod = false
+violateImpliedAbstractMethod = (default)true
+violateImpliedPublicNested = (default)true
+violateImpliedStaticNested = (default)true
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.modifier.interfacememberimpliedmodifier;
+
+public interface InputInterfaceMemberImpliedModifierMethodsOnInterface2 {
+
+    public static void methodPublicStatic() {
+    }
+
+    static void methodStatic() {
+    }
+
+    public default void methodPublicDefault() {
+    }
+
+    default int methodDefault() {
+        int foo = 6;
+        return foo;
+    }
+
+    public abstract void methodPublicAbstract();
+
+    abstract void methodAbstract();
+
+    // violation below 'Implied modifier 'abstract' should be explicit.'
+    public void methodPublic();
+
+    // violation below 'Implied modifier 'abstract' should be explicit.'
+    void method();
+
+}

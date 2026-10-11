@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+# This script takes null delimited files as input
+# it drops paths that match the listed exclusions
+# output is null delimited to match input
+$/="\0";
+my @excludes=qw(
+  \.png$
+  (^|/)images/
+  ^src/it/resources/
+  ^src/test/resources/
+  ^src/site/resources/styleguides/
+  ^src/site/resources/css/
+  ^src/site/resources/js/
+  ^src/test/resources-noncompilable/
+  ^src/test/resources-with-javadoc-error/
+  /messages.*_..\.properties$
+  /release-notes-old.*\.xml$
+  /release-notes\.xml$
+  /.*_..\.translation[^/]*$
+  ^cdg-pitest-licence.txt$
+  ^.teamcity/
+  ^config/projects-to-test/openjdk17-excluded\.files$
+  ^config/projects-to-test/openjdk19-excluded\.files$
+  ^config/projects-to-test/openjdk20-excluded\.files$
+  ^config/projects-to-test/openjdk25-excluded\.files$
+  ^config/list-of-projects\.yml$
+  ^config/jsoref-spellchecker/whitelist.words$
+  ^config/jsoref-spellchecker/english.words$
+  ^config/checker-framework-suppressions/
+  ^config/archunit-store/
+  ^config/sarif-schema-2.1.0.json$
+  ^mvnw$
+  ^mvnw\.cmd$
+  ^config/rewrite\.yml$
+);
+my $exclude = join "|", @excludes;
+while (<>) {
+  chomp;
+  next if m{$exclude};
+  print "$_$/";
+}

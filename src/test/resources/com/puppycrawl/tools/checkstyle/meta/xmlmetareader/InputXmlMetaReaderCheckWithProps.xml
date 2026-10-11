@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.misc.InputCheck"
+           name="InputCheck"
+           parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description>Some description for check</description>
+      <properties>
+        <property default-value="propertyOneDefaultValue"
+                  name="propertyOne"
+                  type="java.lang.String">
+          <description>Property wrapped
+            description.</description>
+        </property>
+        <property default-value=""
+                  name="propertyTwo"
+                  type="java.lang.String[]"
+                  validation-type="tokenTypesSet">
+          <description>Property two desc</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="test.key"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

@@ -1,0 +1,92 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.whitespace;
+
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck.MSG_KEY;
+
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+
+public class NoLineWrapExamplesTest extends AbstractExamplesModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap";
+    }
+
+    @Test
+    public void testExample1() throws Exception {
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_KEY, "package"),
+            "13:1: " + getCheckMessage(MSG_KEY, "import"),
+            "16:1: " + getCheckMessage(MSG_KEY, "import"),
+        };
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_KEY, "import"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_KEY, "package"),
+            "18:1: " + getCheckMessage(MSG_KEY, "import"),
+            "22:1: " + getCheckMessage(MSG_KEY, "import"),
+            "26:1: " + getCheckMessage(MSG_KEY, "import"),
+        };
+
+        verifyWithInlineConfigParser(getNonCompilablePath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_KEY, "package"),
+            "17:1: " + getCheckMessage(MSG_KEY, "import"),
+            "20:1: " + getCheckMessage(MSG_KEY, "import"),
+            "23:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
+            "26:3: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
+            "28:3: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
+            "30:3: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testUseCase1() throws Exception {
+        final String[] expected = {
+            "21:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
+            "24:3: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
+            "26:3: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
+    }
+
+}

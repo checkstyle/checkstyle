@@ -1,0 +1,8 @@
+/* Licensed to the ASF under the Apache License, Version 2.0 (see NOTICE).
+ * You may not use this file except in compliance:
+ * http://www.apache.org/licenses/LICENSE-2.0 (AS IS, no warranties/conditions). */
+package com.puppycrawl.tools.checkstyle.checks.header.multifileregexpheader;
+
+public class Example3 {
+    // Some code
+}
