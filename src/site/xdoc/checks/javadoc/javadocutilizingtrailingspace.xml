@@ -24,6 +24,7 @@
               <li><a href="#Example2-config" class="toc-sublink">With a custom line limit</a></li>
               <li><a href="#Example3-config" class="toc-sublink">Report long lines that have a URL or a link</a></li>
               <li><a href="#Example4-config" class="toc-sublink">Report lines that stop early after punctuation</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Allow unused columns before the limit</a></li>
             </ul>
           </li>
           <li><a href="#JavadocUtilizingTrailingSpace_Example_of_Usage">Example of Usage</a></li>
@@ -87,6 +88,26 @@
      * Not part of the API.
      * This is returned when a type not
      * known to this wrapper is returned.
+     *&#47;
+        </code></pre></div>
+
+        <p>
+          <b>Columns that do not have to be used.</b> <code>allowedTrailingSpace</code> is the number
+          of columns before the limit that a line can leave unused. A line is then reported as
+          stopping too early only when the first word of the next line would fit before these
+          columns. A line can still be as long as the limit. The example shows the value 20.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+    // ok, "path." would end at column 66, in the last 20 columns
+    &#47;**
+     * Reads the settings of the service from the given file
+     * path.
+     *&#47;
+
+    // violation, "given" would end at column 55
+    &#47;**
+     * Reads the settings of the service from the
+     * given file path.
      *&#47;
         </code></pre></div>
 
@@ -222,6 +243,13 @@
               <th>type</th>
               <th>default value</th>
               <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="allowedTrailingSpace"/><a href="#allowedTrailingSpace">allowedTrailingSpace</a></td>
+              <td>Specify the number of columns before the line length limit that do not have to be used.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>14.4.0</td>
             </tr>
             <tr>
               <td><a id="ignorePattern"/><a href="#ignorePattern">ignorePattern</a></td>
@@ -458,6 +486,68 @@ class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
   // violation 2 lines below 'Line under-utilized (23/80). Words from below could be moved up'
+  /**
+   * Checks the status.
+   * The company returned value
+   * is invalid.
+   */
+  public void shortLine() { }
+
+  // violation 2 lines below 'Line is longer than 80 characters (found 86)'
+  /**
+   * Refer to the specific status {@link com.wide.bundles.exceeds.limit.CompanyStatus}
+   */
+  public void longLine() { }
+
+  // ok, long inline tag at start of line is allowed
+  /**
+   * {@link com.very.wide.bundles.name.that.exceeds.limit.CompanyStatus}
+   */
+  public void longTagAtStart() { }
+
+  // ok, properly wrapped
+  /**
+   * Refer to the specific status
+   * {@link com.very.wide.bundles.name.that.exceeds.limit.CompanyStatus}
+   */
+  public void properlyWrapped() { }
+
+  // violation 2 lines below 'Line is longer than 80 characters (found 85)'
+  /**
+   * @return the status of the company, which is defined by the registry of companies
+   */
+  public String blockTagTooLong() { return ""; }
+
+  // ok, the content of a pre element is ignored
+  /**
+   * Example:
+   * &lt;pre&gt;
+   * CompanyStatus status = new CompanyStatusFactory().createStatus(companyNumber);
+   * &lt;/pre&gt;
+   */
+  public void preElementContent() { }
+
+  // ok, a line that has a URL is not reported as too long
+  /** See https://example.com/documentation/company-registry/api/v2/status-endpoints/details */
+  public void longUrl() { }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to allow unused columns before the limit:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocUtilizingTrailingSpace"&gt;
+      &lt;property name="allowedTrailingSpace" value="50"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example5:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+  // ok, "is" would end at column 34, in the last 50 columns
   /**
    * Checks the status.
    * The company returned value
