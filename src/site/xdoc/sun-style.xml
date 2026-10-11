@@ -1014,8 +1014,22 @@
                     8.2 Blank Spaces
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/methodparampad.html#MethodParamPad">
+                    MethodParamPad
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodParamPad">
+                    config
+                  </a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter8whitespace/rule82blankspaces">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
