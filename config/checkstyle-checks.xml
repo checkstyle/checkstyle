@@ -51,8 +51,7 @@
     <property name="checks" value="WriteTag"/>
     <property name="files" value=".*(?&lt;!Check)\.java$"/>
   </module>
-  <!-- Until https://github.com/checkstyle/checkstyle/issues/21813
-       JavadocUtilizingTrailingSpace is enabled for one package only -->
+  <!-- JavadocUtilizingTrailingSpace is enabled for one package only -->
   <module name="SuppressionSingleFilter">
     <property name="checks" value="JavadocUtilizingTrailingSpace"/>
     <property name="files"
@@ -61,6 +60,11 @@
   <module name="SuppressionSingleFilter">
     <property name="checks" value="WriteTag"/>
     <property name="files" value="Abstract\w*Check\.java|FileSetCheck\.java|FileStatefulCheck\.java|StatelessCheck\.java|GlobalStatefulCheck\.java"/>
+  </module>
+  <!-- Temporary suppression for checkstyle-openrewrite-recipes Header.java -->
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="ExceptionThrowShouldUseContext"/>
+    <property name="files" value="Header\.java"/>
   </module>
   <module name="SuppressWarningsFilter"/>
   <module name="SuppressWithPlainTextCommentFilter">
@@ -447,6 +451,7 @@
     <module name="EmptyStatement"/>
     <module name="EqualsAvoidNull"/>
     <module name="EqualsHashCode"/>
+    <module name="ExceptionThrowShouldUseContext"/>
     <module name="ExplicitInitialization"/>
     <module name="ExpressionOverBlockLambda"/>
     <module name="FallThrough"/>
