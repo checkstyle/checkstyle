@@ -386,10 +386,10 @@ public class WhitespaceAfterCheckTest extends AbstractModuleTestSupport {
             "43:37: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
             "46:48: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
             "49:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "TA"),
-            "53:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
             "54:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
-            "55:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
-            "62:42: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+            "56:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+            "58:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+            "65:42: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
         };
         verifyWithInlineConfigParser(
             getPath("InputWhitespaceAfterAnnotation2.java"), expected);
