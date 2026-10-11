@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * <div>
@@ -86,7 +87,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
         Optional<DetailAST> result = Optional.empty();
         if (topLevelExpr.getType() == TokenTypes.LAND) {
             result = findRedundantNullCheck(topLevelExpr, instanceOfNode)
-                    .map(DetailAST::getFirstChild);
+                    .map(nullCheckNode -> CheckUtil.getFirstNode(nullCheckNode.getFirstChild()));
         }
         return result;
     }
@@ -117,12 +118,12 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
         DetailAST instanceOfNode) {
 
         Optional<DetailAST> nullCheckNode = Optional.empty();
-        final DetailAST instanceOfIdent = instanceOfNode.findFirstToken(TokenTypes.IDENT);
+        final DetailAST instanceOfOperand = getTargetOperand(instanceOfNode.getFirstChild());
 
-        if (instanceOfIdent != null
-            && !containsVariableDereference(logicalAndNode, instanceOfIdent.getText())) {
+        if (instanceOfOperand != null
+            && !containsVariableDereference(logicalAndNode, instanceOfOperand)) {
 
-            nullCheckNode = searchForNullCheck(logicalAndNode, instanceOfNode, instanceOfIdent);
+            nullCheckNode = searchForNullCheck(logicalAndNode, instanceOfNode, instanceOfOperand);
         }
         return nullCheckNode;
     }
@@ -132,11 +133,11 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
      *
      * @param logicalAndNode the LAND node to search
      * @param instanceOfNode the instanceof expression node
-     * @param instanceOfIdent the identifier from the instanceof expression
+     * @param instanceOfOperand the operand from the instanceof expression
      * @return the null check node if found, null otherwise
      */
     private static Optional<DetailAST> searchForNullCheck(DetailAST logicalAndNode,
-        DetailAST instanceOfNode, DetailAST instanceOfIdent) {
+        DetailAST instanceOfNode, DetailAST instanceOfOperand) {
 
         Optional<DetailAST> nullCheckNode = Optional.empty();
 
@@ -158,7 +159,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
 
             if (nullCheckNode.isEmpty()) {
                 nullCheckNode = checkChildForNullCheck(
-                        currentChild, instanceOfNode, instanceOfIdent);
+                        currentChild, instanceOfNode, instanceOfOperand);
             }
 
             currentChild = currentChild.getNextSibling();
@@ -172,16 +173,16 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
      *
      * @param currentChild the child node to check
      * @param instanceOfNode the instanceof expression node
-     * @param instanceOfIdent the identifier from the instanceof expression
+     * @param instanceOfOperand the operand from the instanceof expression
      * @return the null check node if found, otherwise empty
      */
     private static Optional<DetailAST> checkChildForNullCheck(DetailAST currentChild,
-        DetailAST instanceOfNode, DetailAST instanceOfIdent) {
+        DetailAST instanceOfNode, DetailAST instanceOfOperand) {
 
         Optional<DetailAST> result = Optional.empty();
 
         if (isNotEqual(currentChild)
-                && isNullCheckRedundant(instanceOfIdent, currentChild)) {
+                && isNullCheckRedundant(instanceOfOperand, currentChild)) {
             result = Optional.of(currentChild);
         }
         else if (currentChild.getType() == TokenTypes.LAND) {
@@ -238,10 +239,10 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
      * on the specified variable.
      *
      * @param node the AST node to check
-     * @param variableName the name of the variable
+     * @param targetOperand the target operand node
      * @return true if the variable is dereferenced, false otherwise
      */
-    private static boolean containsVariableDereference(DetailAST node, String variableName) {
+    private static boolean containsVariableDereference(DetailAST node, DetailAST targetOperand) {
 
         boolean found = false;
 
@@ -253,9 +254,10 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
             DetailAST firstChild = node.getFirstChild();
 
             while (firstChild != null) {
-                if (variableName.equals(firstChild.getText())
+                if (isSameVariable(targetOperand, firstChild)
+                        && firstChild.getNextSibling() != null
                         && firstChild.getNextSibling().getType() != TokenTypes.ELIST
-                            || containsVariableDereference(firstChild, variableName)) {
+                            || containsVariableDereference(firstChild, targetOperand)) {
                     found = true;
                     break;
                 }
@@ -288,18 +290,100 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
     /**
      * Determines if the null check is redundant with the instanceof check.
      *
-     * @param instanceOfIdent the identifier from the instanceof check
+     * @param instanceOfOperand the operand from the instanceof check
      * @param nullCheckNode the node representing the null check
      * @return true if the null check is unnecessary, false otherwise
      */
-    private static boolean isNullCheckRedundant(DetailAST instanceOfIdent,
+    private static boolean isNullCheckRedundant(DetailAST instanceOfOperand,
         final DetailAST nullCheckNode) {
 
-        final DetailAST nullCheckIdent = nullCheckNode.findFirstToken(TokenTypes.IDENT);
-        return nullCheckIdent != null
-                && (isNullLiteral(nullCheckNode.getFirstChild().getNextSibling())
-                    || isNullLiteral(nullCheckNode.getFirstChild()))
-                && instanceOfIdent.getText().equals(nullCheckIdent.getText());
+        final DetailAST nullCheckOperand = getNullCheckOperand(nullCheckNode);
+        return nullCheckOperand != null && isSameVariable(instanceOfOperand, nullCheckOperand);
+    }
+
+    /**
+     * Extracts the non-null operand being compared in a {@code !=} expression.
+     *
+     * @param nullCheckNode the NOT_EQUAL node
+     * @return the non-null operand if found and supported, otherwise {@code null}
+     */
+    private static DetailAST getNullCheckOperand(DetailAST nullCheckNode) {
+        final DetailAST firstChild = nullCheckNode.getFirstChild();
+        final DetailAST secondChild = firstChild.getNextSibling();
+        final DetailAST candidate;
+
+        if (isNullLiteral(firstChild)) {
+            candidate = secondChild;
+        }
+        else if (isNullLiteral(secondChild)) {
+            candidate = firstChild;
+        }
+        else {
+            candidate = null;
+        }
+
+        final DetailAST result;
+        if (candidate != null) {
+            result = getTargetOperand(candidate);
+        }
+        else {
+            result = null;
+        }
+        return result;
+    }
+
+    /**
+     * Checks if the instanceof operand and the null check operand refer to the same variable.
+     *
+     * @param instanceOfOperand the operand from the instanceof expression
+     * @param nullCheckOperand the operand from the null check expression
+     * @return true if both operands refer to the same variable, false otherwise
+     */
+    private static boolean isSameVariable(DetailAST instanceOfOperand,
+        DetailAST nullCheckOperand) {
+
+        final boolean same;
+        if (instanceOfOperand.getType() == TokenTypes.IDENT
+                && nullCheckOperand.getType() == TokenTypes.IDENT) {
+            same = instanceOfOperand.getText().equals(nullCheckOperand.getText());
+        }
+        else if (isThisField(instanceOfOperand) && isThisField(nullCheckOperand)) {
+            same = instanceOfOperand.getLastChild().getText()
+                    .equals(nullCheckOperand.getLastChild().getText());
+        }
+        else {
+            same = false;
+        }
+        return same;
+    }
+
+    /**
+     * Extracts the target operand node for null check comparison.
+     *
+     * @param node the AST node
+     * @return the operand node if supported, otherwise {@code null}
+     */
+    private static DetailAST getTargetOperand(DetailAST node) {
+        final DetailAST result;
+        if (node != null && (node.getType() == TokenTypes.IDENT || isThisField(node))) {
+            result = node;
+        }
+        else {
+            result = null;
+        }
+        return result;
+    }
+
+    /**
+     * Checks if the given node represents a {@code this.<field>} reference.
+     *
+     * @param node the node to check
+     * @return {@code true} if the node is a {@code this.<field>} reference, otherwise {@code false}
+     */
+    private static boolean isThisField(DetailAST node) {
+        return node.getType() == TokenTypes.DOT
+                && node.getFirstChild().getType() == TokenTypes.LITERAL_THIS
+                && node.getLastChild().getType() == TokenTypes.IDENT;
     }
 
 }
