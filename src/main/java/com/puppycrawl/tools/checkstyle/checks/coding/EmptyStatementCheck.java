@@ -42,10 +42,25 @@ public class EmptyStatementCheck extends AbstractCheck {
     public static final String MSG_KEY = "empty.statement";
 
     /**
+     * Allow empty for and while loop bodies.
+     */
+    private boolean allowEmptyLoopBody;
+
+    /**
      * Creates a new {@code EmptyStatementCheck} instance.
      */
     public EmptyStatementCheck() {
         // no code by default
+    }
+
+    /**
+     * Setter to allow empty for and while loop bodies.
+     *
+     * @param allowEmptyLoopBody Check's option for allowing empty loop bodies.
+     * @since 14.4.0
+     */
+    public void setAllowEmptyLoopBody(boolean allowEmptyLoopBody) {
+        this.allowEmptyLoopBody = allowEmptyLoopBody;
     }
 
     @Override
@@ -65,9 +80,23 @@ public class EmptyStatementCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.EMPTY_STAT || isEmptyDeclaration(ast)) {
+        if ((ast.getType() == TokenTypes.EMPTY_STAT && !isEmptyLoopBodyAllowed(ast))
+                || isEmptyDeclaration(ast)) {
             log(ast, MSG_KEY);
         }
+    }
+
+    /**
+     * Checks whether an empty statement is the body of a for or while loop.
+     *
+     * @param emptyStatement empty statement to check
+     * @return {@code true} if empty loop bodies are allowed and this statement is
+     *         the direct body of a for or while loop
+     */
+    private boolean isEmptyLoopBodyAllowed(DetailAST emptyStatement) {
+        final int parentType = emptyStatement.getParent().getType();
+        return allowEmptyLoopBody
+            && (parentType == TokenTypes.LITERAL_FOR || parentType == TokenTypes.LITERAL_WHILE);
     }
 
     /**
