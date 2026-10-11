@@ -90,7 +90,7 @@ public abstract class AbstractParenPadCheck extends AbstractCheck {
      */
     protected void processLeft(DetailAST ast) {
         final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-        final int after = ast.getColumnNo() + 1;
+        final int after = ast.getColumnNo();
 
         if (after < line.length) {
             final boolean hasWhitespaceAfter =
@@ -111,7 +111,7 @@ public abstract class AbstractParenPadCheck extends AbstractCheck {
      * @param ast the token representing a right parentheses
      */
     protected void processRight(DetailAST ast) {
-        final int before = ast.getColumnNo() - 1;
+        final int before = ast.getColumnNo() - 2;
         if (before >= 0) {
             final int[] line = getLineCodePoints(ast.getLineNo() - 1);
             final boolean hasPrecedingWhitespace =

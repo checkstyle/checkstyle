@@ -193,7 +193,7 @@ public class GoogleRightCurlyCheck extends AbstractCheck {
      * @param brace the right curly brace.
      */
     private void logViolations(String message, DetailAST brace) {
-        log(brace, message, brace.getText(), brace.getColumnNo() + 1);
+        log(brace, message, brace.getText(), brace.getColumnNo());
     }
 
     /**

@@ -61,15 +61,9 @@ public class ArchUnitTest {
         .EMPTY_STRING_ARRAY>\
         """,
         """
-        Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(com.puppycrawl.tools\
-        .checkstyle.api.DetailAST, java.lang.String, [Ljava.lang.Object;)> calls method \
-        <com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang\
+        Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.expandedTabsColumnNo(int, int)> \
+        calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang\
         .String, int, int)>\
-        """,
-        """
-        Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(int, int, java.lang\
-        .String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils\
-        .CommonUtil.lengthExpandedTabs(java.lang.String, int, int)>\
         """,
         """
         Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.log(int, int, java.lang\

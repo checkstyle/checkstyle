@@ -101,7 +101,7 @@ public class EmptyForIteratorPadCheck extends AbstractCheck {
             // empty for iterator. test pad after semi.
             final DetailAST semi = ast.getPreviousSibling();
             final int[] line = getLineCodePoints(semi.getLineNo() - 1);
-            final int after = semi.getColumnNo() + 1;
+            final int after = semi.getColumnNo();
             // don't check if at end of line
             if (after < line.length) {
                 if (option == PadOption.NOSPACE

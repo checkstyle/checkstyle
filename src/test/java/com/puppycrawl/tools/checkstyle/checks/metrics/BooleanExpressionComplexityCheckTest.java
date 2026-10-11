@@ -82,7 +82,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
                         () -> booleanExpressionComplexityCheckObj.visitToken(ast));
         assertWithMessage("Invalid exception message")
             .that(exc.getMessage())
-            .isEqualTo("Unknown type: interface[0x-1]");
+            .isEqualTo("Unknown type: interface[0x0]");
     }
 
     @Test

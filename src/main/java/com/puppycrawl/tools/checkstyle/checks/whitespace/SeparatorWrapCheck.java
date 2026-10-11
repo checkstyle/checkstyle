@@ -104,14 +104,14 @@ public class SeparatorWrapCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final String text = ast.getText();
-        final int colNo = ast.getColumnNo();
+        final int columnIndex = ast.getColumnNo() - 1;
         final int lineNo = ast.getLineNo();
         final int[] currentLine = getLineCodePoints(lineNo - 1);
         final boolean isLineEmptyAfterToken = CodePointUtil.isBlank(
-                Arrays.copyOfRange(currentLine, colNo + text.length(), currentLine.length)
+                Arrays.copyOfRange(currentLine, columnIndex + text.length(), currentLine.length)
         );
         final boolean isLineEmptyBeforeToken = CodePointUtil.isBlank(
-                Arrays.copyOfRange(currentLine, 0, colNo)
+                Arrays.copyOfRange(currentLine, 0, columnIndex)
         );
 
         if (option == WrapOption.NL

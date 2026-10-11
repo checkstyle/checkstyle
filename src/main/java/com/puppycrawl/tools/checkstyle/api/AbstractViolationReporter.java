@@ -177,7 +177,7 @@ public abstract class AbstractViolationReporter extends AbstractAutomaticBean {
      * Log a message that has column information.
      *
      * @param line the line number where the audit event was found
-     * @param col the column number where the audit event was found
+     * @param col the column number where the audit event was found, starting from 1
      * @param key the message that describes the audit event
      * @param args the details of the message
      *

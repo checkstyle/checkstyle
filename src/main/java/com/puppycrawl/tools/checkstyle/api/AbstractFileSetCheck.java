@@ -238,7 +238,7 @@ public abstract class AbstractFileSetCheck
             Object... args) {
         final FileContext fileContext = context.get();
         final int col = 1 + CommonUtil.lengthExpandedTabs(
-                fileContext.fileContents.getLine(lineNo - 1), colNo, tabWidth);
+                fileContext.fileContents.getLine(lineNo - 1), colNo - 1, tabWidth);
         fileContext.violations.add(
                 new Violation(lineNo,
                         col,

@@ -116,8 +116,8 @@ public class OpenjdkMethodThrowsAlignmentCheck extends AbstractCheck {
                     log(throwsAst, MSG_KEY_NOT_ON_NEW_LINE);
                 }
                 else {
-                    final int throwsCol = throwsAst.getColumnNo();
-                    final int declCol = ast.getColumnNo();
+                    final int throwsCol = throwsAst.getColumnNo() - 1;
+                    final int declCol = ast.getColumnNo() - 1;
                     final int prevLineIndent = getIndentOfLine(throwsLineNo - 1);
                     final boolean indentedFromDecl =
                             throwsCol - declCol == LINE_WRAPPING_INDENTATION;

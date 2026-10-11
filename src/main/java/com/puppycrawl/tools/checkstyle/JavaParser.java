@@ -226,14 +226,15 @@ public final class JavaParser {
         slComment.setType(TokenTypes.SINGLE_LINE_COMMENT);
         slComment.setText("//");
 
-        slComment.setColumnNo(token.getCharPositionInLine());
+        final int columnNo = token.getCharPositionInLine() + 1;
+        slComment.setColumnNo(columnNo);
         slComment.setLineNo(token.getLine());
 
         final DetailAstImpl slCommentContent = new DetailAstImpl();
         slCommentContent.setType(TokenTypes.COMMENT_CONTENT);
 
         // plus length of '//'
-        slCommentContent.setColumnNo(token.getCharPositionInLine() + 2);
+        slCommentContent.setColumnNo(columnNo + 2);
         slCommentContent.setLineNo(token.getLine());
         slCommentContent.setText(token.getText());
 

@@ -127,7 +127,8 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
      *
      * @param tokens the token stream to check for hidden tokens
      * @param blockCommentLineNumber the line number of the block comment being parsed
-     * @param javadocColumnNumber the column number of the javadoc indent
+     * @param javadocColumnNumber the column number of the first character of the javadoc
+     *        content, right after {@code /**}, starting from 1
      */
     public JavadocCommentsAstVisitor(CommonTokenStream tokens,
                                      int blockCommentLineNumber, int javadocColumnNumber) {
@@ -703,7 +704,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
 
         // adjust first line to indent of /**
         if (node.getLineNumber() == blockCommentLineNumber) {
-            node.setColumnNumber(node.getColumnNumber() + javadocColumnNumber);
+            node.setColumnNumber(node.getColumnNumber() + javadocColumnNumber - 1);
         }
 
         final int tokenType = token.getType();

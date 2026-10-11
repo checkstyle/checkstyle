@@ -51,7 +51,7 @@ public interface DetailNode {
     int getLineNumber();
 
     /**
-     * Node column number.
+     * Node column number. Column numbers start at 1, the same as line numbers.
      *
      * @return node column number.
      */

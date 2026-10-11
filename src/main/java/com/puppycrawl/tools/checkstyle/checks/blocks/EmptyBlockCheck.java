@@ -170,14 +170,14 @@ public class EmptyBlockCheck extends AbstractCheck {
             rcurlyAST = rightCurly;
         }
         final int slistLineNo = slistAST.getLineNo();
-        final int slistColNo = slistAST.getColumnNo();
+        final int slistIndex = slistAST.getColumnNo() - 1;
         final int rcurlyLineNo = rcurlyAST.getLineNo();
-        final int rcurlyColNo = rcurlyAST.getColumnNo();
+        final int rcurlyIndex = rcurlyAST.getColumnNo() - 1;
         boolean returnValue = false;
         if (slistLineNo == rcurlyLineNo) {
             // Handle braces on the same line
             final int[] txt = Arrays.copyOfRange(getLineCodePoints(slistLineNo - 1),
-                    slistColNo + 1, rcurlyColNo);
+                    slistIndex + 1, rcurlyIndex);
 
             if (!CodePointUtil.isBlank(txt)) {
                 returnValue = true;
@@ -186,9 +186,9 @@ public class EmptyBlockCheck extends AbstractCheck {
         else {
             final int[] codePointsFirstLine = getLineCodePoints(slistLineNo - 1);
             final int[] firstLine = Arrays.copyOfRange(codePointsFirstLine,
-                    slistColNo + 1, codePointsFirstLine.length);
+                    slistIndex + 1, codePointsFirstLine.length);
             final int[] codePointsLastLine = getLineCodePoints(rcurlyLineNo - 1);
-            final int[] lastLine = Arrays.copyOfRange(codePointsLastLine, 0, rcurlyColNo);
+            final int[] lastLine = Arrays.copyOfRange(codePointsLastLine, 0, rcurlyIndex);
             // check if all lines are also only whitespace
             returnValue = !(CodePointUtil.isBlank(firstLine) && CodePointUtil.isBlank(lastLine))
                     || !checkIsAllLinesAreWhitespace(slistLineNo, rcurlyLineNo);

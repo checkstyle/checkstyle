@@ -320,7 +320,7 @@ public class XpathQueryGenerator {
      */
     private int expandedTabColumn(DetailAST ast) {
         return 1 + CommonUtil.lengthExpandedTabs(fileText.get(lineNumber - 1),
-                ast.getColumnNo(), tabWidth);
+                ast.getColumnNo() - 1, tabWidth);
     }
 
     /**
