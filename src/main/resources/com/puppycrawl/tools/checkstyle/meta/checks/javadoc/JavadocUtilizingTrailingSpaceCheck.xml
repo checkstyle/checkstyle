@@ -61,6 +61,26 @@
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
+ &lt;b&gt;Columns that do not have to be used.&lt;/b&gt; &lt;code&gt;allowedTrailingSpace&lt;/code&gt; is the number
+ of columns before the limit that a line can leave unused. A line is then reported as
+ stopping too early only when the first word of the next line would fit before these
+ columns. A line can still be as long as the limit. The example shows the value 20.
+ &lt;/p&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+     // ok, "path." would end at column 66, in the last 20 columns
+     &amp;#47;**
+      * Reads the settings of the service from the given file
+      * path.
+      *&amp;#47;
+
+     // violation, "given" would end at column 55
+     &amp;#47;**
+      * Reads the settings of the service from the
+      * given file path.
+      *&amp;#47;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+ &lt;p&gt;
  &lt;b&gt;Lines that are too long.&lt;/b&gt; A line is reported when it is longer than the limit.
  The fix is to wrap it at a word.
  &lt;/p&gt;
@@ -182,6 +202,9 @@
       *&amp;#47;
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
+            <property default-value="0" name="allowedTrailingSpace" type="int">
+               <description>Specify the number of columns before the line length limit that do not have to be used.</description>
+            </property>
             <property default-value="href\s*=\s*&#34;[^&#34;]*&#34;|http://|https://|ftp://"
                       name="ignorePattern"
                       type="java.util.regex.Pattern">
