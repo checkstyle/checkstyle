@@ -519,12 +519,17 @@ public abstract class AbstractExpressionHandler {
     protected final void findSubtreeAst(DetailAstSet astSet, DetailAST tree,
         boolean allowNesting) {
         if (!context.getHandlerFactory().isHandledType(tree.getType())) {
-            final int lineNum = tree.getLineNo();
-            final Integer colNum = astSet.getStartColumn(lineNum);
+            final boolean isRecordPatternDelimiter =
+                TokenUtil.isOfType(tree.getType(), TokenTypes.LPAREN, TokenTypes.RPAREN)
+                    && tree.getParent().getType() == TokenTypes.RECORD_PATTERN_DEF;
+            if (!isRecordPatternDelimiter) {
+                final int lineNum = tree.getLineNo();
+                final Integer colNum = astSet.getStartColumn(lineNum);
 
-            final int thisLineColumn = expandedTabsColumnNo(tree);
-            if (colNum == null || thisLineColumn < colNum) {
-                astSet.addAst(tree);
+                final int thisLineColumn = expandedTabsColumnNo(tree);
+                if (colNum == null || thisLineColumn < colNum) {
+                    astSet.addAst(tree);
+                }
             }
 
             // check children
