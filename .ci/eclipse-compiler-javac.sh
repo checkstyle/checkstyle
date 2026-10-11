@@ -13,8 +13,8 @@ JAVA_RELEASE=${2:-$DEFAULT_JAVA_RELEASE}
 
 ECLIPSE_URL="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4"
 
-ECJ_MAVEN_VERSION=$(curl --fail-with-body -s "$ECLIPSE_URL/?C=M;O=D" \
-    | grep -o "R-[^/]*" | head -n1)
+ECJ_MAVEN_VERSION=$(curl --fail-with-body -s "$ECLIPSE_URL/" \
+    | grep -o "R-[^/]*" | sort -V | tail -n1)
 echo "Latest eclipse release is $ECJ_MAVEN_VERSION"
 
 ECJ_JAR=$(curl --fail-with-body -s "$ECLIPSE_URL/$ECJ_MAVEN_VERSION/" \
