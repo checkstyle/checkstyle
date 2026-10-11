@@ -45,6 +45,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * }
  *
  * <p>
+ * An {@code if} statement without an {@code else} is also a target
+ * of this Check when its body only returns a boolean literal and it is
+ * immediately followed by a return of a boolean literal:
+ * </p>
+ * {@snippet lang="text" :
+ * if (valid())
+ *   return false;
+ * return true;
+ * }
+ *
+ * <p>
  * The idea for this Check has been shamelessly stolen from the equivalent
  * <a href="https://pmd.github.io/pmd/pmd_rules_java_design.html#simplifybooleanreturns">
  *     PMD</a> rule.
@@ -92,18 +103,20 @@ public class SimplifyBooleanReturnCheck extends AbstractCheck {
         // thenStatement
         // [ LITERAL_ELSE (with the elseStatement as a child) ]
 
-        // don't bother if this is not if then else
-        final DetailAST elseLiteral =
-            ast.findFirstToken(TokenTypes.LITERAL_ELSE);
-        if (elseLiteral != null) {
-            final DetailAST elseStatement = elseLiteral.getFirstChild();
+        // skip '(' and ')'
+        final DetailAST condition = ast.getFirstChild().getNextSibling();
+        final DetailAST thenStatement = condition.getNextSibling().getNextSibling();
 
-            // skip '(' and ')'
-            final DetailAST condition = ast.getFirstChild().getNextSibling();
-            final DetailAST thenStatement = condition.getNextSibling().getNextSibling();
-
-            if (canReturnOrYieldOnlyBooleanLiteral(thenStatement)
-                && canReturnOrYieldOnlyBooleanLiteral(elseStatement)) {
+        if (canReturnOrYieldOnlyBooleanLiteral(thenStatement)) {
+            final DetailAST elseLiteral =
+                ast.findFirstToken(TokenTypes.LITERAL_ELSE);
+            if (elseLiteral != null) {
+                final DetailAST elseStatement = elseLiteral.getFirstChild();
+                if (canReturnOrYieldOnlyBooleanLiteral(elseStatement)) {
+                    log(ast, MSG_KEY);
+                }
+            }
+            else if (isBooleanLiteralReturnOrYieldStatement(ast.getNextSibling())) {
                 log(ast, MSG_KEY);
             }
         }
