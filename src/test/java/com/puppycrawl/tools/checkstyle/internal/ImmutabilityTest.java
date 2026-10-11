@@ -145,6 +145,9 @@ public class ImmutabilityTest {
         "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck.DEFAULT_TAGS",
         "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"
             + ".TOKENS_FOR_INTERFACE_MODIFIERS",
+        // Derived exclusively from the allowedAbbreviations configuration property.
+        "com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"
+            + ".allowedNumericAbbreviations",
         "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck.detector",
         "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck.detector",
         "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck.formatString",

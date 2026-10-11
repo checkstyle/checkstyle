@@ -14,6 +14,14 @@
  &lt;p&gt;'_' is considered as word separator in identifier name.&lt;/p&gt;
 
  &lt;p&gt;
+ Explicitly allowed abbreviations containing digits, such as &lt;code&gt;SLF4J&lt;/code&gt; and &lt;code&gt;UTF8&lt;/code&gt;,
+ are recognized as whole terms within identifiers. Matching is case-sensitive and longer
+ configured terms are matched before shorter ones, so &lt;code&gt;SLF4J&lt;/code&gt; takes precedence over
+ &lt;code&gt;SLF4&lt;/code&gt; when both are allowed. Abbreviations outside these terms are still checked.
+ Digits otherwise retain their default treatment as abbreviation boundaries.
+ &lt;/p&gt;
+
+ &lt;p&gt;
  &lt;code&gt;allowedAbbreviationLength&lt;/code&gt; specifies how many consecutive capital letters are
  allowed in the identifier.
  A value of &lt;i&gt;3&lt;/i&gt; indicates that up to 4 consecutive capital letters are allowed,

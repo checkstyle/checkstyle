@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -42,6 +43,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </div>
  *
  * <p>'_' is considered as word separator in identifier name.</p>
+ *
+ * <p>
+ * Explicitly allowed abbreviations containing digits, such as {@code SLF4J} and {@code UTF8},
+ * are recognized as whole terms within identifiers. Matching is case-sensitive and longer
+ * configured terms are matched before shorter ones, so {@code SLF4J} takes precedence over
+ * {@code SLF4} when both are allowed. Abbreviations outside these terms are still checked.
+ * Digits otherwise retain their default treatment as abbreviation boundaries.
+ * </p>
  *
  * <p>
  * {@code allowedAbbreviationLength} specifies how many consecutive capital letters are
@@ -90,6 +99,9 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * Specify abbreviations that must be skipped for checking.
      */
     private Set<String> allowedAbbreviations = new HashSet<>();
+
+    /** Allowed terms containing digits, ordered with longer terms first. */
+    private List<String> allowedNumericAbbreviations = List.of();
 
     /** Allow to skip variables with {@code final} modifier. */
     private boolean ignoreFinal = true;
@@ -182,6 +194,10 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
         if (allowedAbbreviations != null) {
             this.allowedAbbreviations =
                 Arrays.stream(allowedAbbreviations).collect(Collectors.toUnmodifiableSet());
+            allowedNumericAbbreviations = Arrays.stream(allowedAbbreviations)
+                    .filter(abbreviation -> abbreviation.chars().anyMatch(Character::isDigit))
+                    .sorted(Comparator.comparingInt(String::length).reversed())
+                    .toList();
         }
     }
 
@@ -341,9 +357,10 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
         int beginIndex = 0;
         boolean abbrStarted = false;
         String result = null;
+        final String name = separateNumericAbbreviations(str);
 
-        for (int index = 0; index < str.length(); index++) {
-            final char symbol = str.charAt(index);
+        for (int index = 0; index < name.length(); index++) {
+            final char symbol = name.charAt(index);
 
             if (Character.isUpperCase(symbol)) {
                 if (!abbrStarted) {
@@ -364,7 +381,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
                     endIndex = index - 1;
                     allowedLength = allowedAbbreviationLength;
                 }
-                result = getAbbreviationIfIllegal(str, beginIndex, endIndex, allowedLength);
+                result = getAbbreviationIfIllegal(name, beginIndex, endIndex, allowedLength);
                 if (result != null) {
                     break;
                 }
@@ -373,8 +390,23 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
         }
         // if abbreviation at the end of name (example: scaleX)
         if (abbrStarted) {
-            final int endIndex = str.length() - 1;
-            result = getAbbreviationIfIllegal(str, beginIndex, endIndex, allowedAbbreviationLength);
+            final int endIndex = name.length() - 1;
+            result = getAbbreviationIfIllegal(name, beginIndex, endIndex,
+                    allowedAbbreviationLength);
+        }
+        return result;
+    }
+
+    /**
+     * Replaces explicitly allowed numeric terms with word separators for abbreviation scanning.
+     *
+     * @param name the identifier
+     * @return the identifier with allowed numeric terms separated from other words
+     */
+    private String separateNumericAbbreviations(String name) {
+        String result = name;
+        for (String abbreviation : allowedNumericAbbreviations) {
+            result = result.replace(abbreviation, "_");
         }
         return result;
     }
