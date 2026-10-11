@@ -208,7 +208,6 @@ public class XdocsPagesTest {
             "MemberName",
             "MethodLength",
             "MethodName",
-            "MethodParamPad",
             "MissingJavadocMethod",
             "MissingSwitchDefault",
             "ModifierOrder",
