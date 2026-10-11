@@ -31,7 +31,10 @@ import java.io.Reader; // violation 'Wrong lexicographical order for.*. Should b
 
 import com.google.errorprone.annotations.*;
 
-import com.google.common.collect.*; // 2 violations
+// 2 violations 3 lines below:
+//   'Extra separation in import group before 'com.google.common.collect.\*''
+//   'Wrong lexicographical order for 'com.google.common.collect.\*' import.'
+import com.google.common.collect.*;
 import org.junit.*;
 
 public class InputCustomImportOrderListRules {
