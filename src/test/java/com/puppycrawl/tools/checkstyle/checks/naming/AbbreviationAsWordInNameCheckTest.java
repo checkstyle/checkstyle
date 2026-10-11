@@ -34,6 +34,32 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
+    public void testNumericAllowedAbbreviationsStrict() throws Exception {
+        final String[] expected = {
+            "20:10: " + getWarningMessage("getSLF4JXMLParser", 1),
+            "21:10: " + getWarningMessage("getSlF4JLogger", 1),
+            "22:10: " + getWarningMessage("getSLF5JLogger", 1),
+            "23:10: " + getWarningMessage("getUTF16", 1),
+        };
+        verifyWithInlineConfigParser(getPath("InputAbbreviationAsWordInNameNumericStrict.java"),
+                expected);
+    }
+
+    @Test
+    public void testNumericAllowedAbbreviations() throws Exception {
+        final String[] expected = {
+            "23:10: " + getWarningMessage("getSLF4J_XMLParser", 2),
+            "24:10: " + getWarningMessage("getXMLSLF4JLogger", 2),
+            "25:10: " + getWarningMessage("getSLF4JXMLParser", 2),
+            "26:10: " + getWarningMessage("getSLF5JLogger", 2),
+            "27:10: " + getWarningMessage("getPIXEL3BPrice", 2),
+            "28:10: " + getWarningMessage("getXMLParser", 2),
+        };
+        verifyWithInlineConfigParser(getPath("InputAbbreviationAsWordInNameNumeric.java"),
+                expected);
+    }
+
+    @Test
     public void testDefault() throws Exception {
         final int expectedCapitalCount = 4;
 

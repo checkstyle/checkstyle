@@ -132,6 +132,15 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
     }
 
     @Test
+    public void testUseCase4() throws Exception {
+        final String[] expected = {
+            "21:8: " + getCheckMessage(MSG_KEY, "getSLF4JXMLParser", 1),
+            "22:8: " + getCheckMessage(MSG_KEY, "getSLF5JLogger", 1),
+        };
+        verifyWithInlineXmlConfig(getPath("UseCase4.java"), expected);
+    }
+
+    @Test
     public void testUseCase1() throws Exception {
         final int expectedCapitalCount = 2;
 

@@ -37,6 +37,7 @@
               <li><a href="#UseCase1-config" class="toc-sublink">Check variables, excluding fields with the static modifier, and allow abbreviations up to 2 consecutive capital letters ignoring the longer word 'CSV'.</a></li>
               <li><a href="#UseCase2-config" class="toc-sublink">Check variables, enforcing no abbreviations and ignoring static (but non-final) variables only.</a></li>
               <li><a href="#UseCase3-config" class="toc-sublink">Check variables, enforce no abbreviations (essentially camel case) except for words like 'ALLOWED'.</a></li>
+              <li><a href="#UseCase4-config" class="toc-sublink">To allow configured abbreviations containing digits while checking other abbreviations. Matching is case-sensitive; longer configured terms take precedence over shorter terms.</a></li>
             </ul>
           </li>
           <li><a href="#AbbreviationAsWordInName_Example_of_Usage">Example of Usage</a></li>
@@ -55,6 +56,14 @@
         </div>
 
         <p>'_' is considered as word separator in identifier name.</p>
+
+        <p>
+          Explicitly allowed abbreviations containing digits, such as <code>SLF4J</code> and <code>UTF8</code>,
+          are recognized as whole terms within identifiers. Matching is case-sensitive and longer
+          configured terms are matched before shorter ones, so <code>SLF4J</code> takes precedence over
+          <code>SLF4</code> when both are allowed. Abbreviations outside these terms are still checked.
+          Digits otherwise retain their default treatment as abbreviation boundaries.
+        </p>
 
         <p>
           <code>allowedAbbreviationLength</code> specifies how many consecutive capital letters are
@@ -675,6 +684,32 @@ class UseCase3 {
   final int customerID = 2;
   static int nextID = 3;
   static final int MAX_ALLOWED = 4; // ok, abbreviation is allowed
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p>
+          To allow configured abbreviations containing digits while checking other abbreviations.
+          Matching is case-sensitive; longer configured terms take precedence over shorter terms.
+        </p>
+        <p id="UseCase4-config">Configuration:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"&gt;
+      &lt;property name="allowedAbbreviationLength" value="0"/&gt;
+      &lt;property name="allowedAbbreviations" value="SLF4,SLF4J,UTF8"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase4-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase4 {
+  void getSLF4JLogger() { }
+  void getSLF4Adapter() { }
+  void getUTF8() { }
+  void getSLF4JXMLParser() { } // violation 'Abbreviation in name'
+  void getSLF5JLogger() { } // violation 'Abbreviation in name'
 }
 </code></pre></div>
       </subsection>
