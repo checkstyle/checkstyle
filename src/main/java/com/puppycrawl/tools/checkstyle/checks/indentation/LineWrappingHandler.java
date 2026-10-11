@@ -157,7 +157,12 @@ public class LineWrappingHandler {
                 continue;
             }
             if (currentType == TokenTypes.RPAREN) {
-                logWarningMessage(node, firstNodeIndent);
+                if (node.getParent().getType() == TokenTypes.RECORD_PATTERN_DEF) {
+                    logWarningMessage(node, currentIndent);
+                }
+                else {
+                    logWarningMessage(node, firstNodeIndent);
+                }
             }
             else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
                 logWarningMessage(node, currentIndent);
