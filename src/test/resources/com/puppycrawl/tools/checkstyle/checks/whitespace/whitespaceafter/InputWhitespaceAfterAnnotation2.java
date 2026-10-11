@@ -50,9 +50,12 @@ public class InputWhitespaceAfterAnnotation2 {
     // violation above ''TA' is not followed by whitespace'
 
     public enum Color {
-        @JsonProperty("d")RED,  // violation '')' is not followed by whitespace'
-        @JsonProperty("e")BLUE, // violation '')' is not followed by whitespace'
-        @JsonProperty("j")GREEN // violation '')' is not followed by whitespace'
+        // violation below '')' is not followed by whitespace'
+        @JsonProperty("d")RED,
+        // violation below '')' is not followed by whitespace'
+        @JsonProperty("e")BLUE,
+        // violation below '')' is not followed by whitespace'
+        @JsonProperty("j")GREEN
     }
 
     public enum Store {
