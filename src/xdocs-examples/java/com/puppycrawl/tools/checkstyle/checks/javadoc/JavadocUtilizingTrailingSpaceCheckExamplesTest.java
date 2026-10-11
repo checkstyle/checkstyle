@@ -77,4 +77,14 @@ public class JavadocUtilizingTrailingSpaceCheckExamplesTest
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "24:5: " + getCheckMessage(MSG_TOO_LONG, 80, 86),
+            "43:6: " + getCheckMessage(MSG_TOO_LONG, 80, 85),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
 }
