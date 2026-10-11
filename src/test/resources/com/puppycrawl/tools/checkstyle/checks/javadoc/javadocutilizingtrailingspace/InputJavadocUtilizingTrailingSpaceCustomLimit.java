@@ -3,6 +3,7 @@ JavadocUtilizingTrailingSpace
 ignorePattern = (default)href\\s*=\\s*"[^"]*"|http://|https://|ftp://
 ignoreTooShortPattern = (default)[.:,]$
 lineLimit = 50
+validateOnlyJoinableLines = (default)true
 violateExecutionOnNonTightHtml = (default)false
 
 */
