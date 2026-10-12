@@ -165,6 +165,16 @@ public class RedundantThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSwitchCase() throws Exception {
+        final String[] expected = {
+            "21:24: " + getCheckMessage(MSG_KEY_FIELD, "max"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRedundantThisSwitchCase.java"), expected);
+    }
+
+    @Test
     public void testMultipleInputs() throws Exception {
         final String filePath1 = getPath("InputRedundantThisMultipleInputsFirst.java");
         final String filePath2 = getPath("InputRedundantThisMultipleInputsSecond.java");
