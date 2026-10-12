@@ -35,8 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </div>
  */
 @FileStatefulCheck
-public abstract class AbstractSuperCheck
-        extends AbstractCheck {
+public abstract class AbstractSuperCheck extends AbstractCheck {
 
     /**
      * A key pointing to the warning message text in "messages.properties" file.

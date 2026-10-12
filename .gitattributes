@@ -34,3 +34,5 @@ src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/newlineatend
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingMultipleEndings2.java -text
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingMultipleEndings3.java -text
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingOneLineLf1.txt -text
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/InputRegexpMultilineCarriageReturn.java -text
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/InputRegexpMultilineMaximum.java -text

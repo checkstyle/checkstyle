@@ -32,8 +32,7 @@ import java.util.EventListener;
  * auditFinished
  * }
  */
-public interface AuditListener
-    extends EventListener {
+public interface AuditListener extends EventListener {
 
     /**
      * Notify that the audit is about to start.

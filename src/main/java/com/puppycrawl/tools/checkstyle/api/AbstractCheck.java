@@ -338,6 +338,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * The actual context holder.
      */
     private static final class FileContext {
+
         /** The sorted set for collecting violations. */
         private final SortedSet<Violation> violations = new TreeSet<>();
 
@@ -350,6 +351,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
         private FileContext() {
             // no code by default
         }
+
     }
 
 }

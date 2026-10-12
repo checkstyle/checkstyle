@@ -39,7 +39,7 @@ public class Example5 {
   public class ClassE<T> {}
 
   /** */
-  private class ClassF<T> {} // violation, as param tag for <T> is missing
+  private class ClassF<T> {} // violation 'missing @param '<T>' tag.'
 
   /** */
   @Generated("tool")

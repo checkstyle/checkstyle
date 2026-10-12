@@ -63,7 +63,10 @@ public class InputJavadocMethodTags1One {
 
     /** @throws WrongException problem **/
     void method7()
-        throws Exception, NullPointerException // 2 violations
+        throws Exception, NullPointerException
+        // 2 violations above:
+        //    'Expected @throws tag for 'Exception'.'
+        //    'Expected @throws tag for 'NullPointerException'.'
     {
     }
 
@@ -82,7 +85,10 @@ public class InputJavadocMethodTags1One {
 
     /** @param WrongParam problem **/
     // violation above 'Unused @param tag for 'WrongParam'.'
-    void method10(int aOne, int aTwo) // 2 violations
+    void method10(int aOne, int aTwo)
+    // 2 violations above:
+    //    'Expected @param tag for 'aOne'.'
+    //    'Expected @param tag for 'aTwo'.'
     {
     }
 

@@ -105,7 +105,6 @@ basedir
 basefont
 baz
 bc
-bdc
 bdd
 beanutils
 beforeexecutionexclusionfilefilter
@@ -114,6 +113,7 @@ bestpractices
 bew
 bitbucket
 bjrke
+blankspaces
 Blic
 blockandinlinetags
 blockcomment
@@ -149,10 +149,10 @@ cacio
 caciocavallosilano
 calledmethods
 camelcase
+cas
 casegroup
 catchparametername
 cba
-cbeaff
 CComments
 CDATA
 cde
@@ -281,7 +281,6 @@ Dcyclonedx
 DDDL
 Ddokka
 Ddry
-DEADBEEF
 DECCHARS
 declarationorder
 declarationrightbeforefirstusage
@@ -390,6 +389,7 @@ emptycatchblock
 emptyforinitializerpad
 emptyforiteratorpad
 emptylineseparator
+emptylinewrappinginblock
 emptystatement
 emptytag
 Emtpy
@@ -414,6 +414,7 @@ ev
 Evt
 exceptionoverrides
 exceptionstodocument
+exceptionthrowshouldusecontext
 executablestatementcount
 Exif
 explicitinitialization
@@ -442,7 +443,6 @@ FEF
 fenum
 ffc
 ffcp
-ffd
 fff
 FFFA
 FFFB
@@ -491,6 +491,7 @@ Fopenjdk
 forbiddenapis
 Foreach
 formatofdoccomment
+forstatements
 Fpuppycrawl
 fq
 Fqcn
@@ -695,6 +696,7 @@ javadoctags
 javadocthrowsorder
 javadoctype
 javadocutil
+javadocutilizingtrailingspace
 javadocvariable
 Javaee
 javaformat
@@ -1188,6 +1190,7 @@ recordcomponentnumber
 recordtypeparametername
 redundantimport
 redundantmodifier
+redundantthis
 refactor
 refactoring
 refaster
@@ -1235,6 +1238,7 @@ Rr
 Rsa
 rsh
 RSPEC
+rsqm
 rsync
 Rtl
 ru
@@ -1472,6 +1476,7 @@ treemap
 treeset
 treetable
 treewalker
+triggerer
 trino
 trinodb
 tschneeberger

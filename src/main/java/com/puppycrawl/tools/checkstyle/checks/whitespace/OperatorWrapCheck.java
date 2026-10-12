@@ -44,8 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * @since 3.0
  */
 @StatelessCheck
-public class OperatorWrapCheck
-    extends AbstractCheck {
+public class OperatorWrapCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

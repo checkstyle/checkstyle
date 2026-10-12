@@ -33,8 +33,7 @@ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class UncommentedMainCheckTest
-    extends AbstractModuleTestSupport {
+public class UncommentedMainCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

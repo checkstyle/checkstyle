@@ -169,7 +169,7 @@ public final class TreeTable extends JTable {
      * Generate Xpath.
      */
     private void generateXpath() {
-        if (tree.getLastSelectedPathComponent() instanceof DetailAST ast) {
+        if (tree.getLastSelectedPathComponent() instanceof final DetailAST ast) {
             final String xpath = XpathQueryGenerator.generateXpathQuery(ast);
             xpathEditor.setText(xpath);
         }
@@ -363,6 +363,7 @@ public final class TreeTable extends JTable {
      */
     private final class TreeTableCellEditor extends BaseCellEditor implements
             TableCellEditor {
+
         /**
          * Creates a new {@code TreeTableCellEditor} instance.
          */
@@ -402,7 +403,7 @@ public final class TreeTable extends JTable {
          */
         @Override
         public boolean isCellEditable(EventObject event) {
-            if (event instanceof MouseEvent mouseEvent) {
+            if (event instanceof final MouseEvent mouseEvent) {
                 for (int counter = getColumnCount() - 1; counter >= 0;
                      counter--) {
                     if (getColumnClass(counter) == ParseTreeTableModel.class) {

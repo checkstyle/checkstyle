@@ -65,10 +65,39 @@ public class EmptyStatementCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.EMPTY_STAT
-                || ast.getParent().getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
+        if (ast.getType() == TokenTypes.EMPTY_STAT || isEmptyDeclaration(ast)) {
             log(ast, MSG_KEY);
         }
+    }
+
+    /**
+     * Checks whether a semicolon is a standalone empty declaration, i.e. it
+     * appears at the top level of a compilation unit or directly in a type body.
+     *
+     * @param semi semicolon token
+     * @return {@code true} if semicolon is an empty declaration
+     */
+    private static boolean isEmptyDeclaration(DetailAST semi) {
+        final int parentType = semi.getParent().getType();
+        return parentType == TokenTypes.COMPILATION_UNIT
+            || parentType == TokenTypes.COMPACT_COMPILATION_UNIT
+            || parentType == TokenTypes.OBJBLOCK && !isEnumConstantsTerminator(semi);
+    }
+
+    /**
+     * Checks whether a semicolon in a type body terminates the list of enum constants.
+     * Such a semicolon is part of the enum syntax and is not an empty declaration.
+     *
+     * @param semi semicolon token whose parent is an object block
+     * @return {@code true} if semicolon terminates the enum constants list
+     */
+    private static boolean isEnumConstantsTerminator(DetailAST semi) {
+        final int typeDefType = semi.getParent().getParent().getType();
+        final int previousType = semi.getPreviousSibling().getType();
+        return typeDefType == TokenTypes.ENUM_DEF
+            && (previousType == TokenTypes.LCURLY
+                || previousType == TokenTypes.ENUM_CONSTANT_DEF
+                || previousType == TokenTypes.COMMA);
     }
 
 }

@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.annotation;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck;
 
 public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
 
     @Test
     public void testClass() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAnnotationLocationClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationLocationCheck.class);
-
         final String[] expectedViolation = {
-            "6:1: " + getCheckMessage(AnnotationLocationCheck.class,
+            "19:1: " + getCheckMessage(AnnotationLocationCheck.class,
                     AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION_ALONE, "ClassAnnotation"),
         };
 
@@ -70,20 +62,15 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
                         + "MODIFIERS/ANNOTATION[./IDENT[@text='ClassAnnotation']]/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(getPath("InputXpathAnnotationLocationClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInterface() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAnnotationLocationInterface.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationLocationCheck.class);
-
         final String[] expectedViolation = {
-            "7:1: " + getCheckMessage(AnnotationLocationCheck.class,
+            "20:1: " + getCheckMessage(AnnotationLocationCheck.class,
              AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION_ALONE,
                     "InterfaceAnnotation"),
         };
@@ -103,24 +90,18 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
                     + "/MODIFIERS/ANNOTATION[./IDENT[@text='InterfaceAnnotation']]/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(getPath("InputXpathAnnotationLocationInterface.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEnum() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAnnotationLocationEnum.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationLocationCheck.class);
-
         final String[] expectedViolation = {
-            "6:1: " + getCheckMessage(AnnotationLocationCheck.class,
+            "19:1: " + getCheckMessage(AnnotationLocationCheck.class,
                     AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION_ALONE,
                     "EnumAnnotation"),
         };
-
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/ENUM_DEF[./IDENT[@text='"
                         + "InputXpathAnnotationLocationEnum']]",
@@ -135,22 +116,15 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='EnumAnnotation']]/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
-
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotationLocationEnum.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testMethod() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAnnotationLocationMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationLocationCheck.class);
-        moduleConfig.addProperty("tokens", "METHOD_DEF");
-
         final String[] expectedViolation = {
-            "4:6: " + getCheckMessage(AnnotationLocationCheck.class,
+            "16:6: " + getCheckMessage(AnnotationLocationCheck.class,
                     AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION_ALONE,
                     "MethodAnnotation"),
         };
@@ -171,23 +145,15 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
                         + "OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]/MODIFIERS/"
                         + "ANNOTATION[./IDENT[@text='MethodAnnotation']]/AT"
         );
-
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
-
+        verifyXpathWithInlineConfigParser(getPath("InputXpathAnnotationLocationMethod.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testVariable() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAnnotationLocationVariable.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationLocationCheck.class);
-        moduleConfig.addProperty("tokens", "VARIABLE_DEF");
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(AnnotationLocationCheck.class,
+            "16:5: " + getCheckMessage(AnnotationLocationCheck.class,
                     AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION_ALONE,
                     "VariableAnnotation"),
         };
@@ -209,22 +175,16 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
                         + "ANNOTATION[./IDENT[@text='VariableAnnotation']]/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(getPath("InputXpathAnnotationLocationVariable.java"),
+                expectedXpathQueries,
+                expectedViolation);
 
     }
 
     @Test
     public void testConstructor() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAnnotationLocationCTOR.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationLocationCheck.class);
-        moduleConfig.addProperty("tokens", "CTOR_DEF");
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(AnnotationLocationCheck.class,
+            "16:5: " + getCheckMessage(AnnotationLocationCheck.class,
                     AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION_ALONE,
                     "CTORAnnotation"),
         };
@@ -250,8 +210,9 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
                         + "MODIFIERS/ANNOTATION[./IDENT[@text='CTORAnnotation']]/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(getPath("InputXpathAnnotationLocationCTOR.java"),
+                expectedXpathQueries,
+                expectedViolation);
 
     }
 

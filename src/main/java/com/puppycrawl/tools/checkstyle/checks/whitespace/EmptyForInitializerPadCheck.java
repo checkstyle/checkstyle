@@ -42,8 +42,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 3.4
  */
 @StatelessCheck
-public class EmptyForInitializerPadCheck
-    extends AbstractCheck {
+public class EmptyForInitializerPadCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

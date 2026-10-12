@@ -186,7 +186,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             }
             catch (IOException exc) {
                 throw new IllegalStateException(
-                        getLocalizedMessage("Checker.cacheFilesException"), exc);
+                        getLocalizedMessage("Checker.cacheFilesException") + ": "
+                                + cacheFile.getFileName(), exc);
             }
         }
     }
@@ -461,7 +462,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         try {
             child = moduleFactory.createModule(name);
 
-            if (child instanceof AbstractAutomaticBean bean) {
+            if (child instanceof final AbstractAutomaticBean bean) {
                 bean.contextualize(childContext);
                 bean.configure(childConf);
             }
@@ -677,6 +678,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 listener.auditFinished(event);
             }
         }
+
     }
 
     /** Starts the file audit and completes it when processing ends. */
@@ -700,6 +702,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         public void close() {
             fireFileFinished(fileName);
         }
+
     }
 
 }

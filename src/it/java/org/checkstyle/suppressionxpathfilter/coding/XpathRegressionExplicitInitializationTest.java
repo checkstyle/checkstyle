@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck;
 
 public class XpathRegressionExplicitInitializationTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
 
     @Test
     public void testPrimitiveType() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathExplicitInitializationPrimitiveType.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ExplicitInitializationCheck.class);
-
         final String[] expectedViolation = {
-            "4:17: " + getCheckMessage(ExplicitInitializationCheck.class,
+            "11:17: " + getCheckMessage(ExplicitInitializationCheck.class,
                 ExplicitInitializationCheck.MSG_KEY, "a", 0),
         };
 
@@ -62,20 +54,16 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='a']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathExplicitInitializationPrimitiveType.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testObjectType() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathExplicitInitializationObjectType.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ExplicitInitializationCheck.class);
-
         final String[] expectedViolation = {
-            "6:20: " + getCheckMessage(ExplicitInitializationCheck.class,
+            "13:20: " + getCheckMessage(ExplicitInitializationCheck.class,
                 ExplicitInitializationCheck.MSG_KEY, "bar", "null"),
         };
 
@@ -85,20 +73,16 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='bar']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathExplicitInitializationObjectType.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEnum() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathExplicitInitializationEnum.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ExplicitInitializationCheck.class);
-
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(ExplicitInitializationCheck.class,
+            "12:9: " + getCheckMessage(ExplicitInitializationCheck.class,
                 ExplicitInitializationCheck.MSG_KEY, "a", 0),
         };
 
@@ -108,8 +92,10 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='a']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathExplicitInitializationEnum.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

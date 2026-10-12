@@ -48,8 +48,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * @since 5.8
  */
 @FileStatefulCheck
-public class AvoidEscapedUnicodeCharactersCheck
-    extends AbstractCheck {
+public class AvoidEscapedUnicodeCharactersCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

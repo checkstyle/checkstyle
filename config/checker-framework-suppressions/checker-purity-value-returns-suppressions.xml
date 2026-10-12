@@ -1,6 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.DetailAstImpl::getColumnNo not allowed in side-effect-free method</message>
+    <lineContent>return text + &quot;[&quot; + getLineNo() + &quot;x&quot; + getColumnNo() + &quot;]&quot;;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.DetailAstImpl::getLineNo not allowed in side-effect-free method</message>
+    <lineContent>return text + &quot;[&quot; + getLineNo() + &quot;x&quot; + getColumnNo() + &quot;]&quot;;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting java.lang.Class::getClassLoader not allowed in deterministic side-effect-free method</message>
+    <lineContent>final ClassLoader loader = getClass().getClassLoader();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting java.lang.ClassLoader::getResourceAsStream not allowed in deterministic side-effect-free method</message>
+    <lineContent>final InputStream dtdIs = loader.getResourceAsStream(dtdResourceName);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
+    <specifier>purity.object.creation</specifier>
+    <message>object creation not allowed in deterministic method</message>
+    <lineContent>inputSource = new InputSource(dtdIs);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FullIdent.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.DetailAST::getColumnNo not allowed in side-effect-free method</message>
+    <lineContent>+ &quot;[&quot; + detailAst.getLineNo() + &quot;x&quot; + detailAst.getColumnNo() + &quot;]&quot;;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FullIdent.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.DetailAST::getLineNo not allowed in side-effect-free method</message>
+    <lineContent>+ &quot;[&quot; + detailAst.getLineNo() + &quot;x&quot; + detailAst.getColumnNo() + &quot;]&quot;;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.api.Violation::compareContent not allowed in deterministic side-effect-free method</message>
+    <lineContent>result = compareContent(other);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.api.Violation::compareLocation not allowed in deterministic side-effect-free method</message>
+    <lineContent>int result = compareLocation(other);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting java.util.Collections::enumeration not allowed in side-effect-free method</message>
+    <lineContent>return Collections.enumeration(keyList);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
     <specifier>flowexpr.parse.index.too.big</specifier>
     <message>the method has no parameter #1 (total 0 parameters)</message>
@@ -12,5 +82,327 @@
     <specifier>flowexpr.parse.index.too.big</specifier>
     <message>the method has no parameter #1 (total 0 parameters)</message>
     <lineContent>ignoreOccurrenceContext.clear();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck::calculateTypeDeclarationDistance not allowed in deterministic side-effect-free method</message>
+    <lineContent>return calculateTypeDeclarationDistance(outerTypeDeclName, first, second);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting java.lang.StringBuilder::&lt;init&gt; not allowed in side-effect-free method</message>
+    <lineContent>final StringBuilder sb = new StringBuilder(50);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting java.lang.StringBuilder::append not allowed in side-effect-free method</message>
+    <lineContent>sb.append(&quot;, &quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting java.lang.StringBuilder::append not allowed in side-effect-free method</message>
+    <lineContent>sb.append(index);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl::getColumnNumber not allowed in side-effect-free method</message>
+    <lineContent>return text + &quot;[&quot; + getLineNumber() + &quot;x&quot; + getColumnNumber() + &quot;]&quot;;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl::getLineNumber not allowed in side-effect-free method</message>
+    <lineContent>return text + &quot;[&quot; + getLineNumber() + &quot;x&quot; + getColumnNumber() + &quot;]&quot;;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTag.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo::getName not allowed in side-effect-free method</message>
+    <lineContent>return &quot;JavadocTag[tag=&apos;&quot; + tagInfo.getName()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>&amp;&amp; Objects.equals(getPatternSafely(checkRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>&amp;&amp; Objects.equals(getPatternSafely(messageRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>getPatternSafely(messageRegexp), moduleId, linesCsv, columnsCsv);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>getPatternSafely(suppressElement.checkRegexp))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>getPatternSafely(suppressElement.fileRegexp))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>getPatternSafely(suppressElement.messageRegexp))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>return Objects.equals(getPatternSafely(fileRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.XpathFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>&amp;&amp; Objects.equals(getPatternSafely(checkRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.XpathFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>&amp;&amp; Objects.equals(getPatternSafely(messageRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.XpathFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>getPatternSafely(messageRegexp), moduleId, xpathQuery);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.XpathFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>getPatternSafely(xpathFilter.checkRegexp))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.XpathFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>getPatternSafely(xpathFilter.fileRegexp))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.XpathFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>getPatternSafely(xpathFilter.messageRegexp))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.XpathFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>return Objects.equals(getPatternSafely(fileRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.XpathFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.XpathFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
+    <lineContent>return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getCharPositionInLine not allowed in deterministic side-effect-free method</message>
+    <lineContent>&amp;&amp; getCharPositionInLine() == other.getCharPositionInLine()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getCharPositionInLine not allowed in deterministic side-effect-free method</message>
+    <lineContent>&amp;&amp; getCharPositionInLine() == other.getCharPositionInLine()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getCharPositionInLine not allowed in deterministic side-effect-free method</message>
+    <lineContent>getCharPositionInLine(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getLine not allowed in deterministic side-effect-free method</message>
+    <lineContent>&amp;&amp; getLine() == other.getLine()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getLine not allowed in deterministic side-effect-free method</message>
+    <lineContent>&amp;&amp; getLine() == other.getLine()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getLine not allowed in deterministic side-effect-free method</message>
+    <lineContent>getLine(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getStartIndex not allowed in deterministic side-effect-free method</message>
+    <lineContent>&amp;&amp; getStartIndex() == other.getStartIndex()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getStartIndex not allowed in deterministic side-effect-free method</message>
+    <lineContent>&amp;&amp; getStartIndex() == other.getStartIndex()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getStartIndex not allowed in deterministic side-effect-free method</message>
+    <lineContent>getStartIndex(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getStopIndex not allowed in deterministic side-effect-free method</message>
+    <lineContent>&amp;&amp; getStopIndex() == other.getStopIndex();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getStopIndex not allowed in deterministic side-effect-free method</message>
+    <lineContent>&amp;&amp; getStopIndex() == other.getStopIndex();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getStopIndex not allowed in deterministic side-effect-free method</message>
+    <lineContent>getStopIndex()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getText not allowed in deterministic side-effect-free method</message>
+    <lineContent>&amp;&amp; getText().equals(other.getText())</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getText not allowed in deterministic side-effect-free method</message>
+    <lineContent>&amp;&amp; getText().equals(other.getText())</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getText not allowed in deterministic side-effect-free method</message>
+    <lineContent>getText(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getTokenIndex not allowed in deterministic side-effect-free method</message>
+    <lineContent>&amp;&amp; getTokenIndex() == other.getTokenIndex()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getTokenIndex not allowed in deterministic side-effect-free method</message>
+    <lineContent>&amp;&amp; getTokenIndex() == other.getTokenIndex()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getTokenIndex not allowed in deterministic side-effect-free method</message>
+    <lineContent>getTokenIndex(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getType not allowed in deterministic side-effect-free method</message>
+    <lineContent>getType(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getType not allowed in deterministic side-effect-free method</message>
+    <lineContent>return getType() == other.getType()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getType not allowed in deterministic side-effect-free method</message>
+    <lineContent>return getType() == other.getType()</lineContent>
   </checkerFrameworkError>
 </suppressedErrors>

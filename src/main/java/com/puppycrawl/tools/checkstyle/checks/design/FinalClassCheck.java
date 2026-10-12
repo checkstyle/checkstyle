@@ -67,8 +67,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * @since 3.1
  */
 @FileStatefulCheck
-public class FinalClassCheck
-    extends AbstractCheck {
+public class FinalClassCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -475,6 +474,7 @@ public class FinalClassCheck
         /* package */ DetailAST getTypeDeclarationAst() {
             return typeDeclarationAst;
         }
+
     }
 
     /**
@@ -597,6 +597,7 @@ public class FinalClassCheck
         private boolean isDeclaredAsPrivate() {
             return declaredAsPrivate;
         }
+
     }
 
 }

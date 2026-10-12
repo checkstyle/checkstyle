@@ -29,8 +29,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class AvoidStarImportCheckTest
-    extends AbstractModuleTestSupport {
+public class AvoidStarImportCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

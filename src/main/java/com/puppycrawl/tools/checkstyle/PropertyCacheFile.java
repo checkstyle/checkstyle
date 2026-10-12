@@ -203,6 +203,15 @@ public final class PropertyCacheFile {
     }
 
     /**
+     * Returns the cache file name.
+     *
+     * @return the cache file name.
+     */
+    public String getFileName() {
+        return fileName;
+    }
+
+    /**
      * Calculates the hashcode for the serializable object based on its content.
      *
      * @param object serializable object.
@@ -225,7 +234,8 @@ public final class PropertyCacheFile {
         }
         catch (final IOException | NoSuchAlgorithmException exc) {
             // rethrow as unchecked exception
-            throw new IllegalStateException("Unable to calculate hashcode.", exc);
+            throw new IllegalStateException("Unable to calculate hashcode for "
+                    + object.getClass().getName(), exc);
         }
     }
 
@@ -384,8 +394,7 @@ public final class PropertyCacheFile {
      * @param location       resource location.
      * @param contentHashSum content hash sum.
      */
-    private record ExternalResource(String location,
-                                    String contentHashSum) {
+    private record ExternalResource(String location, String contentHashSum) {
     }
 
 }

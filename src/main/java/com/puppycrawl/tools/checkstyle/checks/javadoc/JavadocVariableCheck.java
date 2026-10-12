@@ -41,8 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * @since 3.0
  */
 @StatelessCheck
-public class JavadocVariableCheck
-    extends AbstractCheck {
+public class JavadocVariableCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

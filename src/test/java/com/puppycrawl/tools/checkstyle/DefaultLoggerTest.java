@@ -373,11 +373,13 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     private static final class ModifiedByteArrayOutputStream extends ByteArrayOutputStream {
+
         @Override
         public void close() throws IOException {
             reset();
             super.close();
         }
+
     }
 
     private static final class MockByteArrayOutputStream extends ByteArrayOutputStream {

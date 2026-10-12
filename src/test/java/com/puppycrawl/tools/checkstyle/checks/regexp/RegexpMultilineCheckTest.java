@@ -96,35 +96,23 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCarriageReturn() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        checkConfig.addProperty("format", "\\r");
-        checkConfig.addProperty("maximum", "0");
         final String[] expected = {
             "1: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "\\r"),
-            "3: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "\\r"),
+            "4: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "\\r"),
         };
-
-        final File file = Files.createTempFile(temporaryFolder.toPath(), "junit", null).toFile();
-        Files.writeString(file.toPath(),
-                "first line \r\n second line \n\r third line");
-
-        verify(checkConfig, file.getPath(), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpMultilineCarriageReturnConfig.java"),
+                getPath("InputRegexpMultilineCarriageReturn.java"), expected);
     }
 
     @Test
     public void testMaximum() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        checkConfig.addProperty("format", "\\r");
-        checkConfig.addProperty("maximum", "1");
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "\\r"),
+            "4: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "\\r"),
         };
-
-        final File file = Files.createTempFile(temporaryFolder.toPath(), "junit", null).toFile();
-        Files.writeString(file.toPath(),
-                "first line \r\n second line \n\r third line");
-
-        verify(checkConfig, file.getPath(), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpMultilineMaximumConfig.java"),
+                getPath("InputRegexpMultilineMaximum.java"), expected);
     }
 
     /**
@@ -199,33 +187,22 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMinimum() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        checkConfig.addProperty("format", "\\r");
-        checkConfig.addProperty("minimum", "5");
         final String[] expected = {
             "1: " + getCheckMessage(MSG_REGEXP_MINIMUM, "5", "\\r"),
         };
-
-        final File file = Files.createTempFile(temporaryFolder.toPath(), "junit", null).toFile();
-        Files.writeString(file.toPath(), "");
-
-        verify(checkConfig, file.getPath(), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpMultilineMinimumConfig.java"),
+                getPath("InputRegexpMultilineMinimum.txt"), expected);
     }
 
     @Test
     public void testMinimumWithCustomMessage() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        checkConfig.addProperty("format", "\\r");
-        checkConfig.addProperty("minimum", "5");
-        checkConfig.addProperty("message", "some message");
         final String[] expected = {
             "1: some message",
         };
-
-        final File file = Files.createTempFile(temporaryFolder.toPath(), "junit", null).toFile();
-        Files.writeString(file.toPath(), "");
-
-        verify(checkConfig, file.getPath(), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpMultilineMinimumCustomMessageConfig.java"),
+                getPath("InputRegexpMultilineMinimumCustomMessage.txt"), expected);
     }
 
     private static CharSequence makeLargeXyString() {

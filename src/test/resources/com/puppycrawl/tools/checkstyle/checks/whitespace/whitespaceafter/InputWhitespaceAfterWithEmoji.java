@@ -10,7 +10,9 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
 class InputWhitespaceAfterWithEmoji {
 
-    private String[] emoji = new String[]{"🤩🎄" ,"🧐","🧐🧐", // 2 violations
+    // violation below '',' is not followed by whitespace'
+    private String[] emoji = new String[]{"🤩🎄" ,"🧐","🧐🧐",
+    // violation above '',' is not followed by whitespace'
         "🧐🧐"};
 
     void foo1() {
@@ -45,7 +47,9 @@ class InputWhitespaceAfterWithEmoji {
             "asd🧐").toString(
         ).toCharArray();
 
-        for (int i = 0;i < 5 && emoji[i].equals("🎄");i++) { // 2 violations
+        // violation below '';' is not followed by whitespace'
+        for (int i = 0;i < 5 && emoji[i].equals("🎄");i++) {
+        // violation above '';' is not followed by whitespace'
         }
 
     }

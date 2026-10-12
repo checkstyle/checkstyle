@@ -13,10 +13,15 @@ package com.puppycrawl.tools.checkstyle.checks.coding.emptystatement;
  */
 public class InputEmptyStatement
 {
+   ; // violation 'Empty statement'
+   ; // violation 'Empty statement'
+
    public InputEmptyStatement()
    {
       ; // violation 'Empty statement'
    }
+
+   ; // violation 'Empty statement'
 
    public void EmptyMethod()
    {
@@ -85,5 +90,26 @@ public class InputEmptyStatement
       {
          ; // violation 'Empty statement'
       }
+   }
+
+   private int field;; // violation 'Empty statement'
+   static {}; // violation 'Empty statement'
+   {}; // violation 'Empty statement'
+   public void method() {}; // violation 'Empty statement'
+   class Nested {}; // violation 'Empty statement'
+   @interface NestedAnnotation {}; // violation 'Empty statement'
+
+   interface NestedInterface
+   {
+      void abstractMethod();; // violation 'Empty statement'
+
+      default void defaultMethod() {}; // violation 'Empty statement'
+   }
+
+   private final Object anonymous = new Object() { ; }; // violation 'Empty statement'
+
+   public void localClass()
+   {
+      class Local { private int value;; } // violation 'Empty statement'
    }
 }

@@ -146,7 +146,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
         try {
             module = moduleFactory.createModule(name);
-            if (module instanceof AbstractAutomaticBean bean) {
+            if (module instanceof final AbstractAutomaticBean bean) {
                 bean.contextualize(childContext);
                 bean.configure(childConf);
             }

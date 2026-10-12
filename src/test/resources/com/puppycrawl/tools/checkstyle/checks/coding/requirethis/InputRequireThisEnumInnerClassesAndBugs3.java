@@ -176,13 +176,21 @@ class NestedFrames3 {
                 }
             }
         }
-        return a + a * a; // 3 violations
+        return a + a * a;
+        // 3 violations above:
+        //    'Reference to instance variable 'a' needs "this.".'
+        //    'Reference to instance variable 'a' needs "this.".'
+        //    'Reference to instance variable 'a' needs "this.".'
     }
 
     public int oneReturnInMethod3() {
         for (int b = 0; b < 10; b++) {
         }
-        return b + b * b; // 3 violations
+        return b + b * b;
+        // 3 violations above:
+        //    'Reference to instance variable 'b' needs "this.".'
+        //    'Reference to instance variable 'b' needs "this.".'
+        //    'Reference to instance variable 'b' needs "this.".'
     }
     final NestedFrames NestedFrames = new NestedFrames();
 }

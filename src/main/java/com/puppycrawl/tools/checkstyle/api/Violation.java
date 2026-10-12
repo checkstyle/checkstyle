@@ -38,8 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * @noinspectionreason ClassWithTooManyConstructors - immutable nature of class requires a
  *      bunch of constructors
  */
-public final class Violation
-    implements Comparable<Violation> {
+public final class Violation implements Comparable<Violation> {
 
     /** The default severity level if one is not specified. */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;

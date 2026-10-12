@@ -44,8 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 /**
  * Loads a list of package names from a package name XML file.
  */
-public final class PackageNamesLoader
-    extends XmlLoader {
+public final class PackageNamesLoader extends XmlLoader {
 
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID =
@@ -153,10 +152,12 @@ public final class PackageNamesLoader
             result = namesLoader.packageNames;
         }
         catch (IOException exc) {
-            throw new CheckstyleException("unable to get package file resources", exc);
+            throw new CheckstyleException("unable to get package file resources with "
+                    + classLoader.getClass().getName(), exc);
         }
         catch (ParserConfigurationException | SAXException exc) {
-            throw new CheckstyleException("unable to open one of package files", exc);
+            throw new CheckstyleException("unable to open one of package files with "
+                    + classLoader.getClass().getName(), exc);
         }
 
         return Collections.unmodifiableSet(result);

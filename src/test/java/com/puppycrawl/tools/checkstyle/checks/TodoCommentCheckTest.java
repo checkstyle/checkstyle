@@ -27,8 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class TodoCommentCheckTest
-    extends AbstractModuleTestSupport {
+public class TodoCommentCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

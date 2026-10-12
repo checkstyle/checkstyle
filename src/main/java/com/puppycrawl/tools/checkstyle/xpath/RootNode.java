@@ -42,8 +42,7 @@ public class RootNode extends AbstractRootNode {
     }
 
     /**
-     * Iterates siblings of the current node and
-     * recursively creates new Xpath-nodes.
+     * Iterates siblings of the current node and recursively creates new Xpath-nodes.
      *
      * @return children list
      */
@@ -83,10 +82,9 @@ public class RootNode extends AbstractRootNode {
     }
 
     /**
-     * Getter method for token type. Returns the actual type of the underlying
-     * AST root, which is either {@code COMPILATION_UNIT} for an ordinary
-     * compilation unit or {@code COMPACT_COMPILATION_UNIT} for a JEP 512
-     * compact source file.
+     * Getter method for token type. Returns the actual type of the underlying AST root, which is
+     * either {@code COMPILATION_UNIT} for an ordinary compilation unit or
+     * {@code COMPACT_COMPILATION_UNIT} for a JEP 512 compact source file.
      *
      * @return token type of the underlying AST root
      */

@@ -37,8 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 3.2
  */
 @StatelessCheck
-public class IllegalTokenTextCheck
-    extends AbstractCheck {
+public class IllegalTokenTextCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

@@ -22,7 +22,7 @@ class Example1 {
   }
 
   void foo(int field3) {
-    // violation below, reference to instance variable "field3" requires "this"
+    // violation below 'Reference to instance variable 'field3' needs "this.".'
     field3 = field3;
   }
 }

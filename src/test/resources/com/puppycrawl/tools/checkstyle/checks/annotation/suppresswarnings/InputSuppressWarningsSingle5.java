@@ -39,9 +39,9 @@ public class InputSuppressWarningsSingle5
             @SuppressWarnings("unused")
             Object o = new InputSuppressWarningsSingle5() {
 
+                // violation 2 lines below 'The warning 'unchecked' cannot be suppressed'
                 @Override
                 @SuppressWarnings("unchecked")
-                // violation above 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }
@@ -56,9 +56,9 @@ public class InputSuppressWarningsSingle5
         int cool();
     }
 
+    // violation 2 lines below 'The warning 'unknown' cannot be suppressed at this location'
     @Documented
     @SuppressWarnings("unknown")
-    // violation above 'The warning 'unknown' cannot be suppressed at this location'
     @interface MoreSweetness {
 
         // violation below 'The warning 'unused' cannot be suppressed at this location'
@@ -101,10 +101,10 @@ public class InputSuppressWarningsSingle5
 
         }
 
-        // violation below 'The warning 'unchecked' cannot be suppressed at this location'
+        // violation 2 lines below 'The warning 'unchecked' cannot be suppressed at this location'
+        // violation 2 lines below 'The warning 'unused' cannot be suppressed at this location'
         @java.lang.SuppressWarnings((false) ? "unchecked" :
                 ("" == "") ? (false) ? (true) ? "" : "foo" : "    " : "unused")
-        // violation above 'The warning 'unused' cannot be suppressed at this location'
         public void seriously() {
 
         }

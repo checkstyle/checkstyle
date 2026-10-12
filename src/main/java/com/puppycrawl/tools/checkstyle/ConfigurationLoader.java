@@ -318,8 +318,7 @@ public final class ConfigurationLoader {
      * Implements the SAX document handler interfaces, so they do not
      * appear in the public API of the ConfigurationLoader.
      */
-    private final class InternalLoader
-        extends XmlLoader {
+    private final class InternalLoader extends XmlLoader {
 
         /** Module elements. */
         private static final String MODULE = "module";
@@ -518,7 +517,7 @@ public final class ConfigurationLoader {
                 catch (final CheckstyleException exc) {
                     // -@cs[IllegalInstantiation] SAXException is in the overridden
                     // method signature
-                    throw new SAXException(exc);
+                    throw new SAXException(attributesValue, exc);
                 }
 
                 final String name = attributes.getValue(NAME);

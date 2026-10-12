@@ -53,8 +53,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * @since 3.0
  */
 @StatelessCheck
-public class SimplifyBooleanReturnCheck
-    extends AbstractCheck {
+public class SimplifyBooleanReturnCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

@@ -32,8 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class MethodParamPadCheckTest
-    extends AbstractModuleTestSupport {
+public class MethodParamPadCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

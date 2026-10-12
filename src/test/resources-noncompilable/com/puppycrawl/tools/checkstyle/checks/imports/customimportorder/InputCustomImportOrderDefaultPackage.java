@@ -32,7 +32,10 @@ import java.io.Reader; // violation 'wrong order..* expecting group .* on this l
 
 import com.puppycrawl.tools.*;
 
-import com.google.common.*; // 2 violations
+// 2 violations 3 lines below:
+//   'Extra separation in import group before 'com.google.common.\*''
+//   'Wrong lexicographical order for 'com.google.common.\*' import.'
+import com.google.common.*;
 import org.apache.*;
 
 public class InputCustomImportOrderDefaultPackage {

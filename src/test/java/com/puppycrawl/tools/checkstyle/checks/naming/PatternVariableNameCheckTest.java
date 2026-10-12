@@ -27,8 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class PatternVariableNameCheckTest
-        extends AbstractModuleTestSupport {
+public class PatternVariableNameCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

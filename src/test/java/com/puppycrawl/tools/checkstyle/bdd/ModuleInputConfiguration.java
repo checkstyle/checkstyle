@@ -117,6 +117,7 @@ public final class ModuleInputConfiguration {
                     moduleMessages
             );
         }
+
     }
 
 }

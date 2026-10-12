@@ -65,10 +65,10 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "177:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "177:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "177:24: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "183:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "183:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "183:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "211:25: " + getCheckMessage(MSG_VARIABLE, "field", ""),
+            "187:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "187:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "187:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "219:25: " + getCheckMessage(MSG_VARIABLE, "field", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
@@ -102,9 +102,9 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "179:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "179:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "179:24: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "185:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "185:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "185:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "189:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "189:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "189:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisEnumInnerClassesAndBugs3.java"),
@@ -180,6 +180,59 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisAnonymousEmpty.java"),
+                expected);
+    }
+
+    @Test
+    public void testAnonymousClassParentField() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnonymousClassParentField.java"),
+                expected);
+    }
+
+    @Test
+    public void testAnonymousClassInheritedMembers() throws Exception {
+        final String outer = "InputRequireThisAnonymousInherited.";
+        final String[] expected = {
+            "27:17: " + getCheckMessage(MSG_VARIABLE, "other", outer),
+            "66:17: " + getCheckMessage(MSG_VARIABLE, "other", outer),
+            "78:17: " + getCheckMessage(MSG_VARIABLE, "field", outer),
+            "87:17: " + getCheckMessage(MSG_METHOD, "outerMethod", outer),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnonymousInherited.java"),
+                expected);
+    }
+
+    @Test
+    public void testAnonymousClassPrivateMembersAreNotInherited() throws Exception {
+        final String outer = "InputRequireThisAnonymousInheritedPrivate.";
+        final String[] expected = {
+            "22:17: " + getCheckMessage(MSG_VARIABLE, "separator", outer),
+            "34:17: " + getCheckMessage(MSG_METHOD, "helper", outer),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnonymousInheritedPrivate.java"),
+                expected);
+    }
+
+    @Test
+    public void testAnonymousClassInheritedInterfaceMembers() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnonymousInheritedInterfaces.java"),
+                expected);
+    }
+
+    @Test
+    public void testAnonymousClassCyclicInheritance() throws Exception {
+        final String[] expected = {
+            "21:17: " + getCheckMessage(MSG_VARIABLE, "field",
+                    "InputRequireThisAnonymousCyclicInheritance."),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRequireThisAnonymousCyclicInheritance.java"),
                 expected);
     }
 
@@ -295,12 +348,12 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "279:18: " + getCheckMessage(MSG_METHOD, "addSuf2F", ""),
             "284:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "284:18: " + getCheckMessage(MSG_METHOD, "addSuf2F", ""),
-            "310:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "349:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "383:25: " + getCheckMessage(MSG_METHOD, "getAction", ""),
-            "385:20: " + getCheckMessage(MSG_METHOD, "processAction", ""),
-            "393:16: " + getCheckMessage(MSG_METHOD, "processAction", ""),
-            "499:22: " + getCheckMessage(MSG_VARIABLE, "add", ""),
+            "313:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "352:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "386:25: " + getCheckMessage(MSG_METHOD, "getAction", ""),
+            "388:20: " + getCheckMessage(MSG_METHOD, "processAction", ""),
+            "396:16: " + getCheckMessage(MSG_METHOD, "processAction", ""),
+            "502:22: " + getCheckMessage(MSG_VARIABLE, "add", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisValidateOnlyOverlappingFalse.java"), expected);
@@ -395,7 +448,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "46:21: " + getCheckMessage(MSG_VARIABLE, "z", ""),
             "71:29: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "71:34: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "81:17: " + getCheckMessage(MSG_VARIABLE, "thread", ""),
+            "84:17: " + getCheckMessage(MSG_VARIABLE, "thread", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisAllowLambdaParameters.java"), expected);
@@ -418,12 +471,39 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "103:51: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
             "107:23: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
             "107:54: " + getCheckMessage(MSG_VARIABLE, "fldScanner", ""),
-            "110:24: " + getCheckMessage(MSG_VARIABLE, "fldStreamReader", ""),
-            "111:23: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
-            "111:54: " + getCheckMessage(MSG_VARIABLE, "fldScanner", ""),
+            "113:24: " + getCheckMessage(MSG_VARIABLE, "fldStreamReader", ""),
+            "114:23: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
+            "114:54: " + getCheckMessage(MSG_VARIABLE, "fldScanner", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisTryWithResourcesOnlyOverlappingFalse.java"), expected);
+    }
+
+    @Test
+    public void testFinallyResourceScope() throws Exception {
+        final String[] expected = {
+            "20:32: " + getCheckMessage(MSG_VARIABLE, "resource", ""),
+            "22:32: " + getCheckMessage(MSG_VARIABLE, "resource", ""),
+            "25:28: " + getCheckMessage(MSG_VARIABLE, "resource", ""),
+            "32:32: " + getCheckMessage(MSG_VARIABLE, "resource", ""),
+            "33:32: " + getCheckMessage(MSG_VARIABLE, "other", ""),
+            "44:36: " + getCheckMessage(MSG_VARIABLE, "other", ""),
+            "48:32: " + getCheckMessage(MSG_VARIABLE, "resource", ""),
+            "72:32: " + getCheckMessage(MSG_VARIABLE, "resource", ""),
+            "80:32: " + getCheckMessage(MSG_VARIABLE, "resource", ""),
+            "100:36: " + getCheckMessage(MSG_VARIABLE, "resource", ""),
+        };
+        verifyWithInlineConfigParser(getPath("InputRequireThisFinally.java"), expected);
+    }
+
+    @Test
+    public void testFinallyResourceScopeDefault() throws Exception {
+        verifyWithInlineConfigParser(getPath("InputRequireThisFinallyDefault.java"));
+    }
+
+    @Test
+    public void testFinallyResourceScopeFieldsDisabled() throws Exception {
+        verifyWithInlineConfigParser(getPath("InputRequireThisFinallyFieldsDisabled.java"));
     }
 
     @Test

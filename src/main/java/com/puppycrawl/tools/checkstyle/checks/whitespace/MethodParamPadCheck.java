@@ -45,8 +45,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  */
 
 @StatelessCheck
-public class MethodParamPadCheck
-    extends AbstractCheck {
+public class MethodParamPadCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

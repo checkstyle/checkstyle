@@ -28,8 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class MemberNameCheckTest
-    extends AbstractModuleTestSupport {
+public class MemberNameCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

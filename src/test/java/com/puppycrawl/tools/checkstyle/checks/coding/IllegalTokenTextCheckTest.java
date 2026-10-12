@@ -33,8 +33,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
-public class IllegalTokenTextCheckTest
-    extends AbstractModuleTestSupport {
+public class IllegalTokenTextCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

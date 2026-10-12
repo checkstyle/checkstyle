@@ -267,6 +267,10 @@ public class CommonUtilTest extends AbstractPathTestSupport {
                 .that(ex)
                 .hasCauseThat()
                         .isInstanceOf(NoSuchMethodException.class);
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasMessageThat()
+                        .isEqualTo(Math.class.getName());
     }
 
     @Test
@@ -291,6 +295,10 @@ public class CommonUtilTest extends AbstractPathTestSupport {
                 .that(ex)
                 .hasCauseThat()
                         .isInstanceOf(InstantiationException.class);
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasMessageThat()
+                        .isEqualTo(constructor.getName());
     }
 
     @Test
@@ -307,15 +315,17 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testCloseWithException() {
+        final Closeable closeable = () -> {
+            throw new IOException("Test IOException");
+        };
         final IllegalStateException ex = getExpectedThrowable(IllegalStateException.class, () -> {
-            CommonUtil.close(() -> {
-                throw new IOException("Test IOException");
-            });
+            CommonUtil.close(closeable);
         });
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
-                        .isEqualTo("Cannot close the stream");
+                        .isEqualTo("Cannot close the stream "
+                                + closeable.getClass().getName());
     }
 
     @Test

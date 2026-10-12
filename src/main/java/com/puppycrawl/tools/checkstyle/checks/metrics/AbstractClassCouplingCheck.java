@@ -487,6 +487,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             }
             return result;
         }
+
     }
 
 }

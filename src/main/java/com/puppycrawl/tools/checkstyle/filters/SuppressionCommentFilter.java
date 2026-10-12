@@ -343,8 +343,7 @@ public class SuppressionCommentFilter
      * A Tag holds a suppression comment and its location, and determines
      * whether the suppression turns checkstyle reporting on or off.
      */
-    private static final class Tag
-        implements Comparable<Tag> {
+    private static final class Tag implements Comparable<Tag> {
 
         /** The text of the tag. */
         private final String text;

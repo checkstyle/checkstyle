@@ -28,8 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class JavadocVariableCheckTest
-    extends AbstractModuleTestSupport {
+public class JavadocVariableCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
@@ -437,7 +436,7 @@ public class JavadocVariableCheckTest
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "field22"),
             "21:9: " + getCheckMessage(MSG_JAVADOC_MISSING, "INVALID"),
             "21:18: " + getCheckMessage(MSG_JAVADOC_MISSING, "CHECKED"),
-            "43:9: " + getCheckMessage(MSG_JAVADOC_MISSING, "pinned"),
+            "46:9: " + getCheckMessage(MSG_JAVADOC_MISSING, "pinned"),
         };
         verifyWithInlineConfigParser(
             getPath("InputJavadocVariableOddCases.java"),

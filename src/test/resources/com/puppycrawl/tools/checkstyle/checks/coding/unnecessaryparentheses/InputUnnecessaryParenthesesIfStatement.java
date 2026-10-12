@@ -36,7 +36,10 @@ public class InputUnnecessaryParenthesesIfStatement {
             return;
         }
 
-        if (((x < y)           // 2 violations
+        if (((x < y)
+        // 2 violations above:
+        //  'Unnecessary parentheses around expression'
+        //  'Unnecessary parentheses around expression'
                 && (x > z))) { // violation 'Unnecessary parentheses around expression'
             return;
         }

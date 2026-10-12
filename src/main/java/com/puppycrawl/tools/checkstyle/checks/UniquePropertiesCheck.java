@@ -185,7 +185,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
         @Override
         public synchronized Object put(Object key, Object value) {
             final Object oldValue = super.put(key, value);
-            if (oldValue != null && key instanceof String keyString) {
+            if (oldValue != null && key instanceof final String keyString) {
 
                 duplicatedKeys.put(keyString,
                         duplicatedKeys.getOrDefault(keyString, 0) + 1);

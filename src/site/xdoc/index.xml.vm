@@ -379,7 +379,7 @@
 
       <subsection name="JRE and JDK" id="Additional_Information_JRE_and_JDK">
         <p>
-          Runtime of Checkstyle is limited only by minimal version or JRE.
+          Runtime of Checkstyle is limited only by minimal version of JRE.
         </p>
         <div class="wrapper">
           <table>

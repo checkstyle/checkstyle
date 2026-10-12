@@ -65,8 +65,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * @since 3.2
  */
 @FileStatefulCheck
-public class ImportOrderCheck
-    extends AbstractCheck {
+public class ImportOrderCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

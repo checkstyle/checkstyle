@@ -132,7 +132,7 @@ public class ParseTreeTablePresentation {
     public Object getValueAt(Object node, int column) {
         final Object result;
 
-        if (node instanceof DetailNode detailNode) {
+        if (node instanceof final DetailNode detailNode) {
             result = getValueAtDetailNode(detailNode, column);
         }
         else {
@@ -152,7 +152,7 @@ public class ParseTreeTablePresentation {
     public Object getChild(Object parent, int index) {
         final Object result;
 
-        if (parent instanceof DetailNode parentNode) {
+        if (parent instanceof final DetailNode parentNode) {
             DetailNode node = parentNode.getFirstChild();
             for (int nodeIndex = 0; nodeIndex < index; nodeIndex++) {
                 node = node.getNextSibling();
@@ -175,7 +175,7 @@ public class ParseTreeTablePresentation {
     public int getChildCount(Object parent) {
         int result = 0;
 
-        if (parent instanceof DetailNode parentNode) {
+        if (parent instanceof final DetailNode parentNode) {
             DetailNode node = parentNode.getFirstChild();
             while (node != null) {
                 node = node.getNextSibling();

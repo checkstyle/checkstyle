@@ -1146,6 +1146,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         /* package */ boolean isNamedPatternVar() {
             return namedPatternVar;
         }
+
     }
 
     /**
@@ -1245,6 +1246,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         /* package */ void addInstOrClassVar(VariableDesc variableDesc) {
             instanceAndClassVarStack.push(variableDesc);
         }
+
     }
 
 }

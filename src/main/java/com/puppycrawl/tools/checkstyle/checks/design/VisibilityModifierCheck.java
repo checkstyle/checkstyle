@@ -117,8 +117,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * @since 3.0
  */
 @FileStatefulCheck
-public class VisibilityModifierCheck
-    extends AbstractCheck {
+public class VisibilityModifierCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

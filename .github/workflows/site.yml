@@ -47,7 +47,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  site:
+  check_triggerer:
     if: >-
       (github.event.comment.body == 'GitHub, generate web site'
        || github.event.comment.body == 'GitHub, generate website'
@@ -55,9 +55,38 @@ jobs:
        || inputs.pr-number != '')
       && (github.event_name != 'issue_comment'
           || github.event.issue.pull_request != null)
-      && (github.event_name != 'issue_comment'
-          || contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'),
-                      github.event.comment.author_association))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Reject comment from untrusted triggerer
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AUTHOR_ASSOCIATION: ${{ github.event.comment.author_association }}
+          LOGIN: ${{ github.event.comment.user.login }}
+          REPO: ${{ github.repository }}
+          MIN_MERGED_PRS: 5
+        run: |
+          set -eu
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Trusted via workflow_dispatch"
+            exit 0
+          fi
+          case "$AUTHOR_ASSOCIATION" in
+            OWNER|MEMBER|COLLABORATOR)
+              echo "Trusted via author_association=$AUTHOR_ASSOCIATION"
+              exit 0
+              ;;
+          esac
+          QUERY="repo:$REPO+is:pr+is:merged+author:$LOGIN"
+          COUNT=$(gh api "search/issues?q=$QUERY" --jq .total_count)
+          echo "Merged PR count for $LOGIN in $REPO: $COUNT (threshold $MIN_MERGED_PRS)"
+          if [ "$COUNT" -ge "$MIN_MERGED_PRS" ]; then
+            exit 0
+          fi
+          echo "Rejecting: $LOGIN has $COUNT merged PRs, below threshold $MIN_MERGED_PRS"
+          exit 1
+
+  site:
+    needs: check_triggerer
     runs-on: ubuntu-latest
     outputs:
       commit_sha: ${{ steps.pr_info.outputs.commit_sha }}
@@ -140,7 +169,7 @@ jobs:
           path: .ci-temp/checkstyle/target/site
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v6
+        uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd  # v6
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -185,7 +214,7 @@ jobs:
 
       - name: Comment PR
         if: always()
-        uses: peter-evans/create-or-update-comment@v5
+        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9  # v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}

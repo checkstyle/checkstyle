@@ -121,7 +121,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid error message")
             .that(exc.getMessage())
             .isEqualTo("Unable to parse " + fileName
-                    + " - invalid files or checks or message format");
+                    + " - invalid files or checks or message format for checks: abc");
     }
 
     @Test

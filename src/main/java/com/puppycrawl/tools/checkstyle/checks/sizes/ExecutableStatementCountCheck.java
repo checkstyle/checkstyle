@@ -36,8 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * @since 3.2
  */
 @FileStatefulCheck
-public final class ExecutableStatementCountCheck
-    extends AbstractCheck {
+public final class ExecutableStatementCountCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

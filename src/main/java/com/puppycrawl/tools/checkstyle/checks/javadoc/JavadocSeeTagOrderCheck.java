@@ -260,6 +260,7 @@ public class JavadocSeeTagOrderCheck extends AbstractJavadocCheck {
      * distant access.
      */
     private enum Category {
+
         /** Local member such as {@code #field} or {@code #method()}. */
         LOCAL(0),
         /** Simple type reference such as {@code OtherClass}. */
@@ -303,6 +304,7 @@ public class JavadocSeeTagOrderCheck extends AbstractJavadocCheck {
      * against another kind within their own category.
      */
     private enum Kind {
+
         /** A field reference such as {@code #field}. */
         FIELD(0),
         /** A constructor reference such as {@code #Example()}. */

@@ -50,8 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 5.7
  */
 @StatelessCheck
-public class SuppressWarningsHolder
-    extends AbstractCheck {
+public class SuppressWarningsHolder extends AbstractCheck {
 
     /**
      * Optional prefix for warning suppressions that are only intended to be

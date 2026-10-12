@@ -562,6 +562,7 @@ public final class Main {
      * @noinspectionreason PackageVisibleInnerClass - we keep this enum package visible for tests
      */
     /* package */ enum OutputFormat {
+
         /** XML output format. */
         XML,
         /** SARIF output format. */
@@ -603,10 +604,12 @@ public final class Main {
         public String toString() {
             return name().toLowerCase(Locale.ROOT);
         }
+
     }
 
     /** Log Filter used in debug mode. */
     private static final class OnlyCheckstyleLoggersFilter implements Filter {
+
         /** Name of the package used to filter on. */
         private final String packageName = Main.class.getPackage().getName();
 
@@ -627,6 +630,7 @@ public final class Main {
         public boolean isLoggable(LogRecord logRecord) {
             return logRecord.getLoggerName().startsWith(packageName);
         }
+
     }
 
     /**
@@ -915,6 +919,7 @@ public final class Main {
             }
             return result;
         }
+
     }
 
 }

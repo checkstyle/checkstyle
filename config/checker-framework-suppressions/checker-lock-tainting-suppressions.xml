@@ -48,14 +48,14 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method toString is @SideEffectFree but calls getColumnNo which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method toString is @LockingFree but calls getColumnNo which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>return text + &quot;[&quot; + getLineNo() + &quot;x&quot; + getColumnNo() + &quot;]&quot;;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method toString is @SideEffectFree but calls getLineNo which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method toString is @LockingFree but calls getLineNo which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>return text + &quot;[&quot; + getLineNo() + &quot;x&quot; + getColumnNo() + &quot;]&quot;;</lineContent>
   </checkerFrameworkError>
 
@@ -197,14 +197,14 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method resolveEntity is @Pure but calls getClassLoader which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method resolveEntity is @LockingFree but calls getClassLoader which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>final ClassLoader loader = getClass().getClassLoader();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method resolveEntity is @Pure but calls getResourceAsStream which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method resolveEntity is @LockingFree but calls getResourceAsStream which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>final InputStream dtdIs = loader.getResourceAsStream(dtdResourceName);</lineContent>
   </checkerFrameworkError>
 
@@ -256,14 +256,14 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FullIdent.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method toString is @SideEffectFree but calls getColumnNo which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method toString is @LockingFree but calls getColumnNo which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>+ &quot;[&quot; + detailAst.getLineNo() + &quot;x&quot; + detailAst.getColumnNo() + &quot;]&quot;;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FullIdent.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method toString is @SideEffectFree but calls getLineNo which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method toString is @LockingFree but calls getLineNo which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>+ &quot;[&quot; + detailAst.getLineNo() + &quot;x&quot; + detailAst.getColumnNo() + &quot;]&quot;;</lineContent>
   </checkerFrameworkError>
 
@@ -375,14 +375,14 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method compareTo is @Pure but calls compareContent which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method compareTo is @LockingFree but calls compareContent which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>result = compareContent(other);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method compareTo is @Pure but calls compareLocation which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method compareTo is @LockingFree but calls compareLocation which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>int result = compareLocation(other);</lineContent>
   </checkerFrameworkError>
 
@@ -449,14 +449,14 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
     <specifier>lockingfree.synchronized.method</specifier>
-    <message>A synchronized method cannot be SIDEEFFECTFREE. It may only be annotated with @ReleasesNoLocks or @MayReleaseLocks.</message>
+    <message>A synchronized method cannot be LOCKINGFREE. It may only be annotated with @ReleasesNoLocks or @MayReleaseLocks.</message>
     <lineContent>public synchronized Enumeration&lt;Object&gt; keys() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method keys is @SideEffectFree but calls enumeration which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method keys is @LockingFree but calls enumeration which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>return Collections.enumeration(keyList);</lineContent>
   </checkerFrameworkError>
 
@@ -628,14 +628,14 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method toString is @SideEffectFree but calls append which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method toString is @LockingFree but calls append which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>sb.append(&quot;, &quot;);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method toString is @SideEffectFree but calls append which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method toString is @LockingFree but calls append which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>sb.append(index);</lineContent>
   </checkerFrameworkError>
 
@@ -670,14 +670,14 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method toString is @SideEffectFree but calls getColumnNumber which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method toString is @LockingFree but calls getColumnNumber which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>return text + &quot;[&quot; + getLineNumber() + &quot;x&quot; + getColumnNumber() + &quot;]&quot;;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method toString is @SideEffectFree but calls getLineNumber which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method toString is @LockingFree but calls getLineNumber which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>return text + &quot;[&quot; + getLineNumber() + &quot;x&quot; + getColumnNumber() + &quot;]&quot;;</lineContent>
   </checkerFrameworkError>
 
@@ -699,7 +699,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTag.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method toString is @SideEffectFree but calls getName which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method toString is @LockingFree but calls getName which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>return &quot;JavadocTag[tag=&apos;&quot; + tagInfo.getName()</lineContent>
   </checkerFrameworkError>
 
@@ -854,63 +854,63 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>&amp;&amp; Objects.equals(getPatternSafely(checkRegexp),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>&amp;&amp; Objects.equals(getPatternSafely(messageRegexp),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>getPatternSafely(suppressElement.checkRegexp))</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>getPatternSafely(suppressElement.fileRegexp))</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>getPatternSafely(suppressElement.messageRegexp))</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>return Objects.equals(getPatternSafely(fileRegexp),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method hashCode is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method hashCode is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>getPatternSafely(messageRegexp), moduleId, linesCsv, columnsCsv);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method hashCode is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method hashCode is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method hashCode is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method hashCode is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),</lineContent>
   </checkerFrameworkError>
 
@@ -1202,63 +1202,63 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>&amp;&amp; Objects.equals(getPatternSafely(checkRegexp),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>&amp;&amp; Objects.equals(getPatternSafely(messageRegexp),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>getPatternSafely(xpathFilter.checkRegexp))</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>getPatternSafely(xpathFilter.fileRegexp))</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>getPatternSafely(xpathFilter.messageRegexp))</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>return Objects.equals(getPatternSafely(fileRegexp),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method hashCode is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method hashCode is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>getPatternSafely(messageRegexp), moduleId, xpathQuery);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method hashCode is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method hashCode is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method hashCode is @Pure but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method hashCode is @LockingFree but calls getPatternSafely which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),</lineContent>
   </checkerFrameworkError>
 
@@ -1310,147 +1310,147 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getCharPositionInLine which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getCharPositionInLine which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>&amp;&amp; getCharPositionInLine() == other.getCharPositionInLine()</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getCharPositionInLine which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getCharPositionInLine which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>&amp;&amp; getCharPositionInLine() == other.getCharPositionInLine()</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getLine which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getLine which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>&amp;&amp; getLine() == other.getLine()</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getLine which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getLine which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>&amp;&amp; getLine() == other.getLine()</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getStartIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getStartIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>&amp;&amp; getStartIndex() == other.getStartIndex()</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getStartIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getStartIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>&amp;&amp; getStartIndex() == other.getStartIndex()</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getStopIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getStopIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>&amp;&amp; getStopIndex() == other.getStopIndex();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getStopIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getStopIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>&amp;&amp; getStopIndex() == other.getStopIndex();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getText which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getText which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>&amp;&amp; getText().equals(other.getText())</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getText which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getText which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>&amp;&amp; getText().equals(other.getText())</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getTokenIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getTokenIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>&amp;&amp; getTokenIndex() == other.getTokenIndex()</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getTokenIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getTokenIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>&amp;&amp; getTokenIndex() == other.getTokenIndex()</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getType which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getType which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>return getType() == other.getType()</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method equals is @Pure but calls getType which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method equals is @LockingFree but calls getType which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>return getType() == other.getType()</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method hashCode is @Pure but calls getCharPositionInLine which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method hashCode is @LockingFree but calls getCharPositionInLine which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>getCharPositionInLine(),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method hashCode is @Pure but calls getLine which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method hashCode is @LockingFree but calls getLine which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>getLine(),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method hashCode is @Pure but calls getStartIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method hashCode is @LockingFree but calls getStartIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>getStartIndex(),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method hashCode is @Pure but calls getStopIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method hashCode is @LockingFree but calls getStopIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>getStopIndex()</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method hashCode is @Pure but calls getText which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method hashCode is @LockingFree but calls getText which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>getText(),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method hashCode is @Pure but calls getTokenIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method hashCode is @LockingFree but calls getTokenIndex which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>getTokenIndex(),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method hashCode is @Pure but calls getType which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <message>method hashCode is @LockingFree but calls getType which is @ReleasesNoLocks (weaker side effect guarantee)</message>
     <lineContent>getType(),</lineContent>
   </checkerFrameworkError>
 

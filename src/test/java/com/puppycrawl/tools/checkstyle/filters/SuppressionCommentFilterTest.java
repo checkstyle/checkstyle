@@ -54,8 +54,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
-public class SuppressionCommentFilterTest
-    extends AbstractModuleTestSupport {
+public class SuppressionCommentFilterTest extends AbstractModuleTestSupport {
 
     private static final String[] ALL_MESSAGES = {
         "42:17: "

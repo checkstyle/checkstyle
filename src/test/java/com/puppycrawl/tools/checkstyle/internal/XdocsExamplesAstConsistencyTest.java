@@ -621,7 +621,8 @@ public class XdocsExamplesAstConsistencyTest {
                 new ByteArrayInputStream(xmlBlock.getBytes(StandardCharsets.UTF_8)));
         }
         catch (IOException exception) {
-            throw new IllegalStateException("Failed to parse in-memory XML block", exception);
+            throw new IllegalStateException("Failed to parse in-memory XML block for "
+                    + moduleName, exception);
         }
 
         return findModuleElement(document.getDocumentElement(), moduleName);
@@ -644,7 +645,7 @@ public class XdocsExamplesAstConsistencyTest {
             final NodeList children = element.getChildNodes();
             for (int index = 0; result == null && index < children.getLength(); index++) {
                 final Node node = children.item(index);
-                if (node instanceof Element childElement
+                if (node instanceof final Element childElement
                     && "module".equals(node.getNodeName())) {
                     result = findModuleElement(childElement, moduleName);
                 }
@@ -666,7 +667,7 @@ public class XdocsExamplesAstConsistencyTest {
 
         for (int index = 0; index < children.getLength(); index++) {
             final Node node = children.item(index);
-            if (node instanceof Element childElement
+            if (node instanceof final Element childElement
                 && "property".equals(node.getNodeName())) {
                 names.add(childElement.getAttribute("name"));
             }
@@ -1056,8 +1057,8 @@ public class XdocsExamplesAstConsistencyTest {
             }
         }
         catch (IOException exception) {
-            throw new IllegalStateException("Failed to build module simple name index",
-                exception);
+            throw new IllegalStateException("Failed to build module simple name index into "
+                + index.getClass().getName(), exception);
         }
 
         return index;
@@ -1806,6 +1807,7 @@ public class XdocsExamplesAstConsistencyTest {
      * false positives.
      */
     private static final class StructuralAstNode {
+
         private final int type;
         private final String text;
         /** Section-relative line number; null when position is intentionally ignored. */
@@ -1869,7 +1871,7 @@ public class XdocsExamplesAstConsistencyTest {
 
         @Override
         public boolean equals(Object obj) {
-            if (!(obj instanceof StructuralAstNode other)) {
+            if (!(obj instanceof final StructuralAstNode other)) {
                 return false;
             }
             final boolean typeMatch = type == other.type;
@@ -1932,6 +1934,7 @@ public class XdocsExamplesAstConsistencyTest {
             sb.append('}');
             return sb.toString();
         }
+
     }
 
     /**

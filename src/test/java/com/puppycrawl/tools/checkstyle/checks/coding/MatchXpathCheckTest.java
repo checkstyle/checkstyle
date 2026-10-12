@@ -31,8 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class MatchXpathCheckTest
-    extends AbstractModuleTestSupport {
+public class MatchXpathCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

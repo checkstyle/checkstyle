@@ -30,8 +30,7 @@ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class RedundantModifierCheckTest
-    extends AbstractModuleTestSupport {
+public class RedundantModifierCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

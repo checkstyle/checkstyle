@@ -296,7 +296,8 @@ markdownlint)
   ;;
 
 no-error-kafka)
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo "CS_version: ${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
@@ -318,7 +319,8 @@ EOF
 
 no-error-pmd)
   export MAVEN_OPTS="-XX:MaxRAMPercentage=90"
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo "CS_version: ${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
@@ -349,7 +351,8 @@ no-error-pmd)
   ;;
 
 no-error-hazelcast)
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo "CS_version: ${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout Hazelcast sources..."
@@ -407,8 +410,10 @@ EOF
   ;;
 
 no-error-xwiki)
-  CS_POM_VERSION="$(getPomVersion)"
-  ANTLR4_VERSION="$(getMavenProperty 'antlr4.version')"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
+  ANTLR4_VERSION="$(getMavenProperty 'antlr4.version')" \
+    || { echo "Failed to get ANTLR4 version."; exit 1; }
   echo "version:${CS_POM_VERSION} antlr4:${ANTLR4_VERSION}"
 
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
@@ -457,7 +462,8 @@ no-error-xwiki)
   ;;
 
 no-error-test-sbe)
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo version:"$CS_POM_VERSION"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
@@ -611,7 +617,8 @@ release-dry-run)
 
 assembly-run-all-jar)
   ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo version:"$CS_POM_VERSION"
   mkdir -p .ci-temp
   FOLDER=src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule73wherejavadocrequired
@@ -673,7 +680,8 @@ module-path-run)
   ./mvnw -e --no-transfer-progress clean package -Pno-validations
   ./mvnw -e --no-transfer-progress dependency:build-classpath \
     -Dmdep.includeScope=runtime -Dmdep.outputFile=target/module-path.txt
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   MODULE_PATH="target/checkstyle-$CS_POM_VERSION.jar:$(cat target/module-path.txt)"
   echo "Module path:"
   cat target/module-path.txt
@@ -742,7 +750,8 @@ EOF
 check-since-version)
   # This identifies the PR's original commit
   # if it notices a merge commit
-  HEAD=$(git rev-parse HEAD)
+  HEAD=$(git rev-parse HEAD) \
+    || { echo "Failed to get HEAD commit."; exit 1; }
   if git show --summary HEAD | grep ^Merge: ; then
       echo "Merge detected."
       HEAD=$(git log -n 1 --no-merges --pretty=format:"%H")
@@ -750,7 +759,8 @@ check-since-version)
   # Identify previous commit to know how much to examine
   # Script assumes we are only working with 1 commit if we are in master
   # Otherwise, it looks for the common ancestor with master
-  COMMIT=$(git rev-parse "$HEAD")
+  COMMIT=$(git rev-parse "$HEAD") \
+    || { echo "Failed to parse commit."; exit 1; }
   echo "PR commit: $COMMIT"
 
   HEAD_NEW_FILES=$(git show "$COMMIT" | cat | grep -A 1 "\-\-\- /dev/null" | cat)
@@ -764,7 +774,8 @@ check-since-version)
 
   if [ -f "$NEW_CHECK_FILE" ]; then
     echo "New Check detected: $NEW_CHECK_FILE"
-    CS_RELEASE_VERSION="$(getPomVersionWithoutSnapshot)"
+    CS_RELEASE_VERSION="$(getPomVersionWithoutSnapshot)" \
+      || { echo "Failed to get Checkstyle POM version."; exit 1; }
     echo "CS Release version: $CS_RELEASE_VERSION"
 
     if [[ $CS_RELEASE_VERSION != *.0 ]]; then
@@ -1011,7 +1022,8 @@ sonarqube)
   ;;
 
 no-error-pgjdbc)
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
@@ -1026,7 +1038,8 @@ no-error-pgjdbc)
   ;;
 
 no-error-orekit)
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout target sources ..."
@@ -1053,7 +1066,8 @@ no-error-orekit)
   ;;
 
 no-error-hibernate-search)
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
@@ -1074,7 +1088,8 @@ no-error-hibernate-search)
 
 no-error-checkstyles-sevntu)
   set -e
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   ./mvnw -e --no-transfer-progress compile verify -Psevntu \
@@ -1085,7 +1100,8 @@ no-error-checkstyles-sevntu)
 
 no-error-sevntu-checks)
   set -e
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
@@ -1102,7 +1118,8 @@ no-error-sevntu-checks)
 
 no-error-checkstyle-openrewrite-recipes)
   set -e
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
@@ -1117,7 +1134,8 @@ no-error-checkstyle-openrewrite-recipes)
 
 no-error-contribution)
   set -e
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
@@ -1136,7 +1154,8 @@ no-error-contribution)
 
 no-error-methods-distance)
   set -e
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
@@ -1149,7 +1168,8 @@ no-error-methods-distance)
   ;;
 
 no-error-equalsverifier)
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout target sources ..."
@@ -1166,7 +1186,8 @@ no-error-equalsverifier)
 
 no-error-strata)
   set -e
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
@@ -1185,7 +1206,8 @@ no-error-strata)
 
 no-error-spring-integration)
   set -e
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
@@ -1200,7 +1222,8 @@ no-error-spring-integration)
   ;;
 
 no-error-htmlunit)
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout target sources ..."
@@ -1221,7 +1244,8 @@ no-error-htmlunit)
   ;;
 
 no-error-spotbugs)
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
@@ -1238,7 +1262,8 @@ no-error-trino)
   echo "Building checkstyle..."
   ./mvnw -e --no-transfer-progress clean install -Pno-validations -DskipTests
   echo "Resolving Checkstyle version from pom.xml..."
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo "CS_version: ${CS_POM_VERSION}"
   echo "Cloning Trino sources..."
   checkout_from https://github.com/trinodb/trino.git "f45e24a240b089a6499c9bc1a4193b3fa""ba798ef"
@@ -1252,8 +1277,10 @@ no-error-trino)
 
 no-exception-struts)
   export MAVEN_OPTS="-XX:MaxRAMPercentage=90"
-  CS_POM_VERSION="$(getPomVersion)"
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
@@ -1270,8 +1297,10 @@ no-exception-struts)
 no-exception-checkstyle-sevntu)
   export MAVEN_OPTS="-Xmx4g"
   set -e
-  CS_POM_VERSION="$(getPomVersion)"
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
@@ -1289,8 +1318,10 @@ no-exception-checkstyle-sevntu)
 no-exception-checkstyle-sevntu-javadoc)
   export MAVEN_OPTS="-Xmx4g"
   set -e
-  CS_POM_VERSION="$(getPomVersion)"
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
@@ -1308,9 +1339,11 @@ no-exception-checkstyle-sevntu-javadoc)
 
 no-exception-guava)
   export MAVEN_OPTS="-Xmx4g"
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
@@ -1325,9 +1358,11 @@ no-exception-guava)
 
 no-exception-hibernate-orm)
   export MAVEN_OPTS="-Xmx4g"
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
@@ -1342,8 +1377,10 @@ no-exception-hibernate-orm)
 
 no-exception-spotbugs)
   export MAVEN_OPTS="-Xmx4g"
-  CS_POM_VERSION="$(getPomVersion)"
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
@@ -1359,8 +1396,10 @@ no-exception-spotbugs)
 
 no-exception-spoon)
   export MAVEN_OPTS="-Xmx4g"
-  CS_POM_VERSION="$(getPomVersion)"
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
@@ -1376,8 +1415,10 @@ no-exception-spoon)
 
 no-exception-spring-framework)
   export MAVEN_OPTS="-Xmx4g"
-  CS_POM_VERSION="$(getPomVersion)"
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
@@ -1393,9 +1434,11 @@ no-exception-spring-framework)
 
 no-exception-hbase)
   export MAVEN_OPTS="-Xmx4g"
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
@@ -1410,8 +1453,10 @@ no-exception-hbase)
 
 no-exception-Pmd-elasticsearch-lombok-ast)
   export MAVEN_OPTS="-Xmx4g"
-  CS_POM_VERSION="$(getPomVersion)"
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
@@ -1429,9 +1474,11 @@ no-exception-Pmd-elasticsearch-lombok-ast)
 
 no-exception-alot-of-projects)
   export MAVEN_OPTS="-Xmx4g"
-  CS_POM_VERSION="$(getPomVersion)"
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
@@ -1453,8 +1500,10 @@ no-warning-imports-guava)
   export MAVEN_OPTS="-Xmx4g"
   PROJECTS=checks-import-order/projects-to-test-imports-guava.properties
   CONFIG=checks-import-order/checks-imports-error-guava.xml
-  CS_POM_VERSION="$(getPomVersion)"
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
@@ -1483,8 +1532,10 @@ no-warning-imports-guava)
 no-warning-imports-java-design-patterns)
   PROJECTS=checks-import-order/projects-to-test-imports-java-design-patterns.properties
   CONFIG=checks-import-order/checks-imports-error-java-design-patterns.xml
-  CS_POM_VERSION="$(getPomVersion)"
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester

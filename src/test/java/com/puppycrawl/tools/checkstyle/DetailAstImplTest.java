@@ -391,7 +391,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
                 }
                 // -@cs[IllegalCatch] Cannot avoid catching it.
                 catch (Exception exception) {
-                    throw new IllegalStateException(exception);
+                    throw new IllegalStateException(child.toString(), exception);
                 }
             }
         );

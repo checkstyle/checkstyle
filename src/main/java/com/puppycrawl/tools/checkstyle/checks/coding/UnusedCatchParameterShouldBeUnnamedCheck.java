@@ -251,6 +251,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
         private DetailAST getParameterDefinition() {
             return parameterDefinition;
         }
+
     }
 
 }

@@ -29,8 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @since 5.0
  */
-public class MethodTypeParameterNameCheck
-    extends AbstractNameCheck {
+public class MethodTypeParameterNameCheck extends AbstractNameCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

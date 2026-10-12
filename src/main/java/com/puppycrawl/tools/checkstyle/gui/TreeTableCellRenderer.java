@@ -34,8 +34,7 @@ import javax.swing.tree.TreeModel;
 /**
  * A TreeCellRenderer that displays a JTree.
  */
-class TreeTableCellRenderer extends JTree implements
-        TableCellRenderer {
+class TreeTableCellRenderer extends JTree implements TableCellRenderer {
 
     /**
      * Serial ID.
@@ -79,7 +78,7 @@ class TreeTableCellRenderer extends JTree implements
         // Make the tree's cell renderer use the table's cell selection
         // colors.
         final TreeCellRenderer tcr = getCellRenderer();
-        if (tcr instanceof DefaultTreeCellRenderer renderer) {
+        if (tcr instanceof final DefaultTreeCellRenderer renderer) {
             renderer.setBorderSelectionColor(null);
             renderer.setTextSelectionColor(
                     UIManager.getColor(COLOR_KEY_TABLE_SELECTION_FOREGROUND));

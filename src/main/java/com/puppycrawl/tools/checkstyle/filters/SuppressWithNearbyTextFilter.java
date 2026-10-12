@@ -419,6 +419,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
             }
             return match;
         }
+
     }
 
 }

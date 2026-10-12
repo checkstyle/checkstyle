@@ -594,7 +594,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
      */
     private void processChildren(JavadocNodeImpl parent, List<? extends ParseTree> children) {
         for (ParseTree child : children) {
-            if (child instanceof TerminalNode terminalNode) {
+            if (child instanceof final TerminalNode terminalNode) {
                 final Token token = (Token) terminalNode.getPayload();
 
                 // Add hidden tokens before this token
@@ -766,6 +766,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
      * preserving the starting token for accurate location metadata.
      */
     private final class TextAccumulator {
+
         /**
          * Buffer to accumulate TEXT token texts.
          *
@@ -812,6 +813,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
                 buffer.setLength(0);
             }
         }
+
     }
 
 }

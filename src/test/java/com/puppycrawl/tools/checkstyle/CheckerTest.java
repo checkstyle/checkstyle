@@ -560,7 +560,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // We set wrong file name length in order to reproduce IOException on OS Linux, OS Windows.
         // The maximum file name length which is allowed in most UNIX, Windows file systems is 255.
         // See https://en.wikipedia.org/wiki/Filename;
-        checker.setCacheFile(String.format(Locale.ENGLISH, "%0300d", 0));
+        final String cacheFile = String.format(Locale.ENGLISH, "%0300d", 0);
+        checker.setCacheFile(cacheFile);
         final IllegalStateException exc =
                 getExpectedThrowable(IllegalStateException.class,
                     checker::destroy, "Exception did not happen");
@@ -570,7 +571,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Exception message differ")
             .that(exc.getMessage())
             .isEqualTo(getLocalizedMessage(
-                    "Checker.cacheFilesException"));
+                    "Checker.cacheFilesException") + ": " + cacheFile);
     }
 
     /**
@@ -1808,7 +1809,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     private static IllegalStateException findRelativizePathException(Throwable throwable) {
         Throwable current = throwable;
         while (current != null) {
-            if (current instanceof IllegalStateException exception
+            if (current instanceof final IllegalStateException exception
                     && current.getCause() instanceof IllegalArgumentException) {
                 return exception;
             }
@@ -1839,6 +1840,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         public void fileFinished(AuditEvent event) {
             fileFinishedCount++;
         }
+
     }
 
     public static class DummyFilter implements Filter {

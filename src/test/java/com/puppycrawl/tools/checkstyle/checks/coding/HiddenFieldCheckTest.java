@@ -35,8 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class HiddenFieldCheckTest
-    extends AbstractModuleTestSupport {
+public class HiddenFieldCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

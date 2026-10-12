@@ -57,6 +57,17 @@
           </tr>
           <tr>
             <td>
+              <a href="emptylinewrappinginblock.html#EmptyLineWrappingInBlock">
+                EmptyLineWrappingInBlock
+              </a>
+            </td>
+            <td>
+              Checks the empty line right after the opening brace and right before the closing brace
+              of a block.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="filetabcharacter.html#FileTabCharacter">
                 FileTabCharacter
               </a>

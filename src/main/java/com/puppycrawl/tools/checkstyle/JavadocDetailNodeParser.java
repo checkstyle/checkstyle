@@ -206,7 +206,7 @@ public class JavadocDetailNodeParser {
             final int lineNumber = offset + line;
 
             final String target;
-            if (recognizer instanceof JavadocCommentsLexer lexer) {
+            if (recognizer instanceof final JavadocCommentsLexer lexer) {
                 target = lexer.getPreviousToken().getText();
             }
             else {
@@ -238,6 +238,7 @@ public class JavadocDetailNodeParser {
             }
             return result.toString();
         }
+
     }
 
     /**

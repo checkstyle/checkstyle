@@ -151,6 +151,7 @@ public class ArchUnitSuperClassTest {
                 }
             }
         }
+
     }
 
     /**
@@ -180,6 +181,7 @@ public class ArchUnitSuperClassTest {
                 events.add(SimpleConditionEvent.violated(item, message));
             }
         }
+
     }
 
 }

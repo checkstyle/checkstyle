@@ -577,6 +577,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.PatternVariableAssignmentCheck");
         NAME_TO_FULL_MODULE_NAME.put("ParameterAssignmentCheck",
                 BASE_PACKAGE + ".checks.coding.ParameterAssignmentCheck");
+        NAME_TO_FULL_MODULE_NAME.put("RedundantThisCheck",
+                BASE_PACKAGE + ".checks.coding.RedundantThisCheck");
         NAME_TO_FULL_MODULE_NAME.put("RequireThisCheck",
                 BASE_PACKAGE + ".checks.coding.RequireThisCheck");
         NAME_TO_FULL_MODULE_NAME.put("ReturnCountCheck",
@@ -631,6 +633,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.UnusedTryResourceShouldBeUnnamedCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnnecessaryTypeArgumentsWithRecordPatternCheck",
                 BASE_PACKAGE + ".checks.coding.UnnecessaryTypeArgumentsWithRecordPatternCheck");
+        NAME_TO_FULL_MODULE_NAME.put("ExceptionThrowShouldUseContextCheck",
+                BASE_PACKAGE + ".checks.coding.ExceptionThrowShouldUseContextCheck");
     }
 
     /**
@@ -763,6 +767,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.javadoc.JavadocThrowsOrderCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocTypeCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocTypeCheck");
+        NAME_TO_FULL_MODULE_NAME.put("JavadocUtilizingTrailingSpaceCheck",
+                BASE_PACKAGE + ".checks.javadoc.JavadocUtilizingTrailingSpaceCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocVariableCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocVariableCheck");
         NAME_TO_FULL_MODULE_NAME.put("MissingJavadocMethodCheck",
@@ -933,6 +939,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.whitespace.EmptyForIteratorPadCheck");
         NAME_TO_FULL_MODULE_NAME.put("EmptyLineSeparatorCheck",
                 BASE_PACKAGE + ".checks.whitespace.EmptyLineSeparatorCheck");
+        NAME_TO_FULL_MODULE_NAME.put("EmptyLineWrappingInBlockCheck",
+                BASE_PACKAGE + ".checks.whitespace.EmptyLineWrappingInBlockCheck");
         NAME_TO_FULL_MODULE_NAME.put("FileTabCharacterCheck",
                 BASE_PACKAGE + ".checks.whitespace.FileTabCharacterCheck");
         NAME_TO_FULL_MODULE_NAME.put("GenericWhitespaceCheck",

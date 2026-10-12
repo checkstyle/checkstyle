@@ -146,7 +146,7 @@ public final class CheckUtil {
             return checksReferencedInCheckstyleChecksXml;
         }
         catch (Exception exception) {
-            throw new IllegalStateException(exception);
+            throw new IllegalStateException(configFilePath, exception);
         }
     }
 

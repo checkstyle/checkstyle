@@ -35,8 +35,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
-public class ParenPadCheckTest
-    extends AbstractModuleTestSupport {
+public class ParenPadCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

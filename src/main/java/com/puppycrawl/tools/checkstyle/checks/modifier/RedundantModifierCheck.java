@@ -165,8 +165,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * @since 3.0
  */
 @StatelessCheck
-public class RedundantModifierCheck
-    extends AbstractCheck {
+public class RedundantModifierCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

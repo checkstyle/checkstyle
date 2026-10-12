@@ -75,6 +75,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     "JavadocTagContinuationIndentation",
                     "JavadocThrowsOrder",
                     "JavadocType",
+                    "JavadocUtilizingTrailingSpace",
                     "MissingDeprecated",
                     "NonEmptyAtclauseDescription",
                     "PreferLiteralJavadocInlineTag",
@@ -106,7 +107,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             return CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks());
         }
         catch (IOException exc) {
-            throw new ExceptionInInitializerError(exc);
+            throw new IllegalStateException("Failed to get check names, excluding "
+                    + NO_VIOLATION_MODULES, exc);
         }
     }
 

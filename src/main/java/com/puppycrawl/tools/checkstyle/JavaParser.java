@@ -245,6 +245,7 @@ public final class JavaParser {
      * Custom error listener to provide detailed exception message.
      */
     private static final class CheckstyleErrorListener extends BaseErrorListener {
+
         /**
          * Creates a new {@code CheckstyleErrorListener} instance.
          */
@@ -259,6 +260,7 @@ public final class JavaParser {
             final String message = line + ":" + charPositionInLine + ": " + msg;
             throw new IllegalStateException(message, ex);
         }
+
     }
 
 }

@@ -51,6 +51,12 @@
     <property name="checks" value="WriteTag"/>
     <property name="files" value=".*(?&lt;!Check)\.java$"/>
   </module>
+  <!-- JavadocUtilizingTrailingSpace is enabled for one package only -->
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="JavadocUtilizingTrailingSpace"/>
+    <property name="files"
+              value="^(?!.*[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]xpath[\\/]).*$"/>
+  </module>
   <module name="SuppressionSingleFilter">
     <property name="checks" value="WriteTag"/>
     <property name="files" value="Abstract\w*Check\.java|FileSetCheck\.java|FileStatefulCheck\.java|StatelessCheck\.java|GlobalStatefulCheck\.java"/>
@@ -440,6 +446,7 @@
     <module name="EmptyStatement"/>
     <module name="EqualsAvoidNull"/>
     <module name="EqualsHashCode"/>
+    <module name="ExceptionThrowShouldUseContext"/>
     <module name="ExplicitInitialization"/>
     <module name="ExpressionOverBlockLambda"/>
     <module name="FallThrough"/>
@@ -568,6 +575,13 @@
       <message key="matchxpath.match"
                value="All example test classes should extend AbstractExamplesModuleTestSupport."/>
     </module>
+    <module name="MatchXpath">
+      <property name="id" value="xpathTestsUseInlineConfigParser"/>
+      <property name="query"
+                value="//METHOD_CALL[.//IDENT[@text='runVerifications']]"/>
+      <message key="matchxpath.match"
+               value="Use verifyXpathWithInlineConfigParser instead of runVerifications."/>
+    </module>
     <module name="MissingCtor"/>
     <module name="MissingNullCaseInSwitch"/>
     <module name="MissingSwitchDefault"/>
@@ -600,6 +614,10 @@
     <module name="PackageDeclaration"/>
     <module name="ParameterAssignment"/>
     <module name="PatternVariableAssignment"/>
+    <module name="RedundantThis">
+      <!-- This check might conflict with RequireThis -->
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="RequireThis"/>
     <module name="ReturnCount">
       <property name="max" value="1"/>
@@ -791,6 +809,12 @@
     <module name="JavadocType">
       <!-- avoid errors on tag '@noinspection' -->
       <property name="allowUnknownTags" value="true"/>
+    </module>
+    <module name="JavadocUtilizingTrailingSpace">
+      <property name="lineLimit" value="100"/>
+      <!-- default value and lines that have a single word, as in LineLength -->
+      <property name="ignorePattern"
+                value="^ *\* *[^ ]+$|href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://"/>
     </module>
     <module name="PreferLiteralJavadocInlineTag"/>
     <module name="JavadocVariable"/>
@@ -992,6 +1016,7 @@
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
       <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
     </module>
+    <module name="EmptyLineWrappingInBlock"/>
     <module name="GenericWhitespace"/>
     <module name="MethodParamPad"/>
     <module name="NoLineWrap"/>
