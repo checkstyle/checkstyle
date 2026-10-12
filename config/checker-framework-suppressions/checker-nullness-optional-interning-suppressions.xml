@@ -8853,13 +8853,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference rparen</message>
-    <lineContent>loopBody = rparen.getNextSibling();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference sibling.findFirstToken(TokenTypes.IDENT)</message>
     <lineContent>sibling.findFirstToken(TokenTypes.IDENT).getText());</lineContent>
   </checkerFrameworkError>
