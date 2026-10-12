@@ -95,8 +95,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private final Deque<Deque<DetailAST>> currentScopeAssignedVariables =
             new ArrayDeque<>();
 
-    /** Unassigned candidates on entry to conditional blocks that end with a throw. */
-    private final Map<DetailAST, ThrowingBranch> throwingBranches =
+    /** Unassigned candidates on entry to conditional blocks that cannot complete normally. */
+    private final Map<DetailAST, NonCompletingBranch> nonCompletingBranches =
             new HashMap<>();
 
     /**
@@ -202,8 +202,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 scopeStack.push(new ScopeData());
 
             case TokenTypes.SLIST -> {
-                if (ThrowingBranch.isThrowingBranch(ast)) {
-                    throwingBranches.put(ast, new ThrowingBranch(scopeStack));
+                if (NonCompletingBranch.isNonCompletingBranch(ast)) {
+                    nonCompletingBranches.put(ast, new NonCompletingBranch(scopeStack));
                 }
                 currentScopeAssignedVariables.push(new ArrayDeque<>());
                 if (ast.getParent().getType() != TokenTypes.CASE_GROUP
@@ -289,7 +289,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 if (containsBreak || shouldUpdateUninitializedVariables(parentAst)) {
                     updateAllUninitializedVariables();
                 }
-                final ThrowingBranch branch = throwingBranches.remove(ast);
+                final NonCompletingBranch branch = nonCompletingBranches.remove(ast);
                 if (branch != null) {
                     branch.restore();
                 }
@@ -605,10 +605,12 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             if (variable.getText().equals(ast.getText())) {
                 // if the variable is declared outside the loop and initialized inside
                 // the loop, then it cannot be declared final, as it can be initialized
-                // more than once in this case
+                // more than once in this case, unless a return or throw statement right
+                // after the assignment leaves the method before the loop can iterate again
                 final DetailAST currAstLoopAstParent = getParentLoop(ast);
                 final DetailAST currVarLoopAstParent = getParentLoop(variable);
-                if (currAstLoopAstParent == currVarLoopAstParent) {
+                if (currAstLoopAstParent == currVarLoopAstParent
+                        || isAssignmentFollowedByAbruptCompletion(ast, currAstLoopAstParent)) {
                     final FinalVariableCandidate candidate = scopeData.scope.get(ast.getText());
                     shouldRemove = candidate.alreadyAssigned;
                 }
@@ -634,6 +636,85 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             parentLoop = parentLoop.getParent();
         }
         return parentLoop;
+    }
+
+    /**
+     * Checks whether the assignment is followed by a return or throw statement before
+     * the enclosing loop can iterate again, so the assignment cannot be executed more
+     * than once. Only statements in the same block flow are considered: the search
+     * climbs out of nested blocks, if statements and try statements, but it stops
+     * at the enclosing loop.
+     *
+     * @param ident identifier of the assignment.
+     * @param loopAst the enclosing loop of the assignment.
+     * @return true if a return or throw statement follows the assignment.
+     */
+    private static boolean isAssignmentFollowedByAbruptCompletion(DetailAST ident,
+                                                                  DetailAST loopAst) {
+        DetailAST statement = ident;
+        while (statement != loopAst
+            && statement.getParent().getType() != TokenTypes.SLIST) {
+            statement = statement.getParent();
+        }
+        boolean result = false;
+        while (!result && statement != loopAst) {
+            final DetailAST slist = statement.getParent();
+            DetailAST nextStatement = null;
+            if (slist.getType() == TokenTypes.SLIST) {
+                result = hasAbruptCompletionAfter(statement, loopAst);
+                DetailAST container = slist.getParent();
+                if (container.getType() == TokenTypes.LITERAL_ELSE) {
+                    container = container.getParent();
+                }
+                if (TokenUtil.isOfType(container.getType(),
+                        TokenTypes.LITERAL_IF, TokenTypes.LITERAL_TRY)) {
+                    nextStatement = container;
+                }
+            }
+            if (nextStatement == null) {
+                break;
+            }
+            statement = nextStatement;
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether a return or throw statement follows the given statement in the same block.
+     *
+     * @param statement statement to start from.
+     * @param loopAst the enclosing loop of the statement.
+     * @return true if a return or throw statement follows the statement.
+     */
+    private static boolean hasAbruptCompletionAfter(DetailAST statement, DetailAST loopAst) {
+        boolean result = false;
+        DetailAST sibling = statement;
+        while (sibling.getNextSibling() != null) {
+            sibling = sibling.getNextSibling();
+            if (sibling.getType() == TokenTypes.LITERAL_RETURN
+                    || sibling.getType() == TokenTypes.LITERAL_THROW) {
+                result = !isInsideTryStatement(sibling, loopAst);
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether the ast is inside a try statement between the ast and the
+     * enclosing loop. Such a try statement is excluded because a handler or
+     * finally block can resume execution after a throw or return statement.
+     *
+     * @param ast ast to check.
+     * @param loopAst the enclosing loop of the ast.
+     * @return true if a try statement is found between the ast and the loop.
+     */
+    private static boolean isInsideTryStatement(DetailAST ast, DetailAST loopAst) {
+        DetailAST parent = ast;
+        while (parent != loopAst && parent.getType() != TokenTypes.LITERAL_TRY) {
+            parent = parent.getParent();
+        }
+        return parent != loopAst;
     }
 
     /**
@@ -727,17 +808,17 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /** Assignment state for a conditional branch that cannot complete normally. */
-    private static final class ThrowingBranch {
+    private static final class NonCompletingBranch {
 
         /** Candidates that were unassigned before entering the branch, with their scopes. */
         private final Map<FinalVariableCandidate, ScopeData> unassigned = new HashMap<>();
 
         /**
-         * Captures the state before entering a throwing branch.
+         * Captures the state before entering a branch that cannot complete normally.
          *
          * @param scopes enclosing scopes
          */
-        private ThrowingBranch(Deque<ScopeData> scopes) {
+        private NonCompletingBranch(Deque<ScopeData> scopes) {
             for (ScopeData data : scopes) {
                 for (FinalVariableCandidate candidate : data.scope.values()) {
                     if (!candidate.assigned
@@ -749,15 +830,19 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         }
 
         /**
-         * Checks for a block ending in a throw outside exception handlers.
+         * Checks for a block ending in a throw or a return outside exception handlers.
          * Enclosing try statements are excluded because a handler can resume execution.
          *
          * @param ast block to inspect
          * @return whether assignments in the block cannot reach following statements
          */
-        private static boolean isThrowingBranch(DetailAST ast) {
-            boolean result = TokenUtil.isOfType(ast.getLastChild().getPreviousSibling(),
-                            TokenTypes.LITERAL_THROW);
+        private static boolean isNonCompletingBranch(DetailAST ast) {
+            DetailAST lastChild = ast.getLastChild();
+            if (lastChild.getType() == TokenTypes.RCURLY) {
+                lastChild = lastChild.getPreviousSibling();
+            }
+            boolean result = TokenUtil.isOfType(lastChild,
+                            TokenTypes.LITERAL_THROW, TokenTypes.LITERAL_RETURN);
             for (DetailAST parent = ast; result && parent != null;
                     parent = parent.getParent()) {
                 result = parent.getType() != TokenTypes.LITERAL_TRY;
