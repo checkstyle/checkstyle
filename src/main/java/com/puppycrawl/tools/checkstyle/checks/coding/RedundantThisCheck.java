@@ -146,6 +146,7 @@ public class RedundantThisCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
+        requiredStatements.clear();
         redundantUsages.clear();
     }
 
@@ -296,7 +297,7 @@ public class RedundantThisCheck extends AbstractCheck {
      */
     private static DetailAST nextStatement(DetailAST statement) {
         DetailAST result = statement.getNextSibling();
-        if (result.getType() == TokenTypes.SEMI) {
+        if (result != null && result.getType() == TokenTypes.SEMI) {
             result = result.getNextSibling();
         }
         return result;
