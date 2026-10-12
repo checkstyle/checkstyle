@@ -46,9 +46,6 @@ public final class InputForStatements {
             total += i;
         }
 
-        // 2 violations 3 lines below:
-        //   ''for' construct must use '{}'s.'
-        //   'Empty statement.'
         for (index = 0; index < limit; index++);
 
         // violation below 'Avoid using more than three variables'
