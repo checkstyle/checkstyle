@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.UpperEllCheck;
 
 public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
@@ -39,14 +37,8 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
 
     @Test
     public void testUpperEllOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathUpperEllOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UpperEllCheck.class);
-
         final String[] expectedViolation = {
-            "4:16: " + getCheckMessage(UpperEllCheck.class,
+            "10:16: " + getCheckMessage(UpperEllCheck.class,
                     UpperEllCheck.MSG_KEY),
         };
 
@@ -60,20 +52,16 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
                 + "/NUM_LONG[@text='0l']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUpperEllOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testUpperEllTwo() throws Exception {
-        final File fileToProcess =
-            new File(getPath("InputXpathUpperEllTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UpperEllCheck.class);
-
         final String[] expectedViolation = {
-            "6:21: " + getCheckMessage(UpperEllCheck.class,
+            "12:21: " + getCheckMessage(UpperEllCheck.class,
                                        UpperEllCheck.MSG_KEY),
         };
 
@@ -88,20 +76,16 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
                 + "/NUM_LONG[@text='508987l']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                         expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUpperEllTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testUpperEllThree() throws Exception {
-        final File fileToProcess =
-            new File(getPath("InputXpathUpperEllThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UpperEllCheck.class);
-
         final String[] expectedViolation = {
-            "5:18: " + getCheckMessage(UpperEllCheck.class,
+            "11:18: " + getCheckMessage(UpperEllCheck.class,
                                        UpperEllCheck.MSG_KEY),
         };
 
@@ -116,8 +100,10 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
                 + "/NUM_LONG[@text='123l']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                         expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUpperEllThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
