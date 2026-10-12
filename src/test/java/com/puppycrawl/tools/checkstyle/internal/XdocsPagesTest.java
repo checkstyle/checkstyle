@@ -212,7 +212,6 @@ public class XdocsPagesTest {
             "MissingSwitchDefault",
             "ModifierOrder",
             "NewlineAtEndOfFile",
-            "NoWhitespaceAfter",
             "NoWhitespaceBefore",
             "PackageName",
             "ParameterName",
