@@ -516,13 +516,30 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             if (ast.getParent().getType() == TokenTypes.LITERAL_RETURN) {
                 log(ast, MSG_RETURN);
             }
-            else if (assignDepth >= 1) {
+            else if (assignDepth >= 1 && isInAssignment(ast)) {
                 log(ast, MSG_ASSIGN);
             }
             else {
                 log(ast, MSG_EXPR);
             }
         }
+    }
+
+    /**
+     * Checks whether the expression belongs to an assignment in the same scope.
+     * Called only when an enclosing assignment has been visited. An assignment
+     * enclosing a class or lambda does not apply to its body.
+     *
+     * @param ast the expression to check
+     * @return whether an assignment is found before a class or lambda boundary
+     */
+    private static boolean isInAssignment(DetailAST ast) {
+        DetailAST ancestor = ast;
+        while (!TokenUtil.isOfType(ancestor.getType(), ASSIGNMENTS)
+                && !TokenUtil.isOfType(ancestor, TokenTypes.OBJBLOCK, TokenTypes.LAMBDA)) {
+            ancestor = ancestor.getParent();
+        }
+        return TokenUtil.isOfType(ancestor.getType(), ASSIGNMENTS);
     }
 
     /**

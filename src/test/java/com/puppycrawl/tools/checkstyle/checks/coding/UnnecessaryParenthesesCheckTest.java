@@ -45,6 +45,31 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAssignmentContext() throws Exception {
+        final String[] expected = {
+            "14:21: " + getCheckMessage(MSG_EXPR),
+            "15:39: " + getCheckMessage(MSG_ASSIGN),
+            "20:58: " + getCheckMessage(MSG_EXPR),
+            "24:17: " + getCheckMessage(MSG_EXPR),
+            "25:35: " + getCheckMessage(MSG_ASSIGN),
+            "29:41: " + getCheckMessage(MSG_ASSIGN),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryParenthesesAssignmentContext.java"), expected);
+    }
+
+    @Test
+    public void testCompactAssignmentContext() throws Exception {
+        final String[] expected = {
+            "10:28: " + getCheckMessage(MSG_ASSIGN),
+            "11:13: " + getCheckMessage(MSG_EXPR),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputUnnecessaryParenthesesCompactAssignmentContext.java"),
+                expected);
+    }
+
+    @Test
     public void testDefault() throws Exception {
 
         final String[] expected = {
@@ -144,15 +169,15 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnnecessaryParenthesesSwitchExpression() throws Exception {
         final String[] expected = {
-            "21:31: " + getCheckMessage(MSG_ASSIGN),
+            "21:31: " + getCheckMessage(MSG_EXPR),
             "24:13: " + getCheckMessage(MSG_LITERAL, 2),
-            "25:39: " + getCheckMessage(MSG_ASSIGN),
+            "25:39: " + getCheckMessage(MSG_EXPR),
             "30:18: " + getCheckMessage(MSG_RETURN),
             "32:16: " + getCheckMessage(MSG_IDENT, "g"),
             "36:18: " + getCheckMessage(MSG_RETURN),
-            "46:31: " + getCheckMessage(MSG_ASSIGN),
+            "46:31: " + getCheckMessage(MSG_EXPR),
             "48:13: " + getCheckMessage(MSG_LITERAL, 2),
-            "49:39: " + getCheckMessage(MSG_ASSIGN),
+            "49:39: " + getCheckMessage(MSG_EXPR),
             "53:18: " + getCheckMessage(MSG_RETURN),
             "58:18: " + getCheckMessage(MSG_RETURN),
         };
