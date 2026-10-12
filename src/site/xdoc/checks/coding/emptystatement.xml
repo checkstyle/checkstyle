@@ -15,11 +15,13 @@
     <p class="toc-heading">On This Page</p>
     <ul class="toc-list">
           <li><a href="#EmptyStatement_Description">Description</a></li>
+          <li><a href="#EmptyStatement_Properties">Properties</a></li>
           <li>
             <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#EmptyStatement_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Allow empty <code>for</code> and <code>while</code> loop bodies</a></li>
             </ul>
           </li>
           <li><a href="#EmptyStatement_Example_of_Usage">Example of Usage</a></li>
@@ -33,6 +35,27 @@
         <div>
           Detects empty statements (standalone <code>";"</code> semicolon).
           Empty statements often introduce bugs that are hard to spot
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="EmptyStatement_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="allowEmptyLoopBody"/><a href="#allowEmptyLoopBody">allowEmptyLoopBody</a></td>
+              <td>Allow empty for and while loop bodies.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>14.4.0</td>
+            </tr>
+          </table>
         </div>
       </subsection>
 
@@ -58,6 +81,34 @@ public class Example1 {
     if(i &gt; 3); // violation 'Empty statement'
     i++;
     for (i = 0; i &lt; 5; i++); // violation 'Empty statement'
+    i++;
+    while (i &gt; 10)
+      i++;
+  }
+  ; // violation 'Empty statement'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to allow empty <code>for</code> and <code>while</code> loop bodies:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyStatement"&gt;&lt;property name="allowEmptyLoopBody" value="true"/&gt;&lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+  ; // violation 'Empty statement'
+  public void foo() {
+    int i = 5;
+    if(i &gt; 3); // violation 'Empty statement'
+    i++;
+    for (i = 0; i &lt; 5; i++);
     i++;
     while (i &gt; 10)
       i++;

@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck.
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class EmptyStatementCheckTest extends AbstractModuleTestSupport {
 
@@ -37,35 +38,35 @@ public class EmptyStatementCheckTest extends AbstractModuleTestSupport {
     public void testEmptyStatements()
             throws Exception {
         final String[] expected = {
-            "16:4: " + getCheckMessage(MSG_KEY),
             "17:4: " + getCheckMessage(MSG_KEY),
-            "21:7: " + getCheckMessage(MSG_KEY),
-            "24:4: " + getCheckMessage(MSG_KEY),
-            "28:7: " + getCheckMessage(MSG_KEY),
-            "33:19: " + getCheckMessage(MSG_KEY),
-            "37:10: " + getCheckMessage(MSG_KEY),
-            "40:16: " + getCheckMessage(MSG_KEY),
-            "44:10: " + getCheckMessage(MSG_KEY),
-            "54:10: " + getCheckMessage(MSG_KEY),
-            "60:13: " + getCheckMessage(MSG_KEY),
-            "62:13: " + getCheckMessage(MSG_KEY),
-            "65:19: " + getCheckMessage(MSG_KEY),
-            "69:10: " + getCheckMessage(MSG_KEY),
-            "72:9: " + getCheckMessage(MSG_KEY),
-            "77:10: " + getCheckMessage(MSG_KEY),
-            "83:10: " + getCheckMessage(MSG_KEY),
-            "87:10: " + getCheckMessage(MSG_KEY),
-            "91:10: " + getCheckMessage(MSG_KEY),
-            "95:22: " + getCheckMessage(MSG_KEY),
-            "96:13: " + getCheckMessage(MSG_KEY),
-            "97:6: " + getCheckMessage(MSG_KEY),
-            "98:27: " + getCheckMessage(MSG_KEY),
-            "99:19: " + getCheckMessage(MSG_KEY),
-            "100:34: " + getCheckMessage(MSG_KEY),
-            "104:29: " + getCheckMessage(MSG_KEY),
-            "106:38: " + getCheckMessage(MSG_KEY),
-            "109:52: " + getCheckMessage(MSG_KEY),
-            "113:39: " + getCheckMessage(MSG_KEY),
+            "18:4: " + getCheckMessage(MSG_KEY),
+            "22:7: " + getCheckMessage(MSG_KEY),
+            "25:4: " + getCheckMessage(MSG_KEY),
+            "29:7: " + getCheckMessage(MSG_KEY),
+            "34:19: " + getCheckMessage(MSG_KEY),
+            "38:10: " + getCheckMessage(MSG_KEY),
+            "41:16: " + getCheckMessage(MSG_KEY),
+            "45:10: " + getCheckMessage(MSG_KEY),
+            "55:10: " + getCheckMessage(MSG_KEY),
+            "61:13: " + getCheckMessage(MSG_KEY),
+            "63:13: " + getCheckMessage(MSG_KEY),
+            "66:19: " + getCheckMessage(MSG_KEY),
+            "70:10: " + getCheckMessage(MSG_KEY),
+            "73:9: " + getCheckMessage(MSG_KEY),
+            "78:10: " + getCheckMessage(MSG_KEY),
+            "84:10: " + getCheckMessage(MSG_KEY),
+            "88:10: " + getCheckMessage(MSG_KEY),
+            "92:10: " + getCheckMessage(MSG_KEY),
+            "96:22: " + getCheckMessage(MSG_KEY),
+            "97:13: " + getCheckMessage(MSG_KEY),
+            "98:6: " + getCheckMessage(MSG_KEY),
+            "99:27: " + getCheckMessage(MSG_KEY),
+            "100:19: " + getCheckMessage(MSG_KEY),
+            "101:34: " + getCheckMessage(MSG_KEY),
+            "105:29: " + getCheckMessage(MSG_KEY),
+            "107:38: " + getCheckMessage(MSG_KEY),
+            "110:52: " + getCheckMessage(MSG_KEY),
+            "114:39: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -73,11 +74,22 @@ public class EmptyStatementCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAllowEmptyLoopBody() throws Exception {
+        final String[] expected = {
+            "15:11: " + getCheckMessage(MSG_KEY),
+            "17:15: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyStatementAllowEmptyLoopBody.java"), expected);
+    }
+
+    @Test
     public void testTopLevelSemicolons() throws Exception {
         final String[] expected = {
-            "10:1: " + getCheckMessage(MSG_KEY),
-            "13:2: " + getCheckMessage(MSG_KEY),
-            "14:1: " + getCheckMessage(MSG_KEY),
+            "11:1: " + getCheckMessage(MSG_KEY),
+            "14:2: " + getCheckMessage(MSG_KEY),
+            "15:1: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -87,11 +99,11 @@ public class EmptyStatementCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEnumSemicolons() throws Exception {
         final String[] expected = {
-            "14:6: " + getCheckMessage(MSG_KEY),
-            "19:10: " + getCheckMessage(MSG_KEY),
-            "29:10: " + getCheckMessage(MSG_KEY),
-            "34:9: " + getCheckMessage(MSG_KEY),
-            "39:13: " + getCheckMessage(MSG_KEY),
+            "15:6: " + getCheckMessage(MSG_KEY),
+            "20:10: " + getCheckMessage(MSG_KEY),
+            "30:10: " + getCheckMessage(MSG_KEY),
+            "35:9: " + getCheckMessage(MSG_KEY),
+            "40:13: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -115,14 +127,23 @@ public class EmptyStatementCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCompactSourceFile() throws Exception {
         final String[] expected = {
-            "9:1: " + getCheckMessage(MSG_KEY),
-            "12:5: " + getCheckMessage(MSG_KEY),
-            "15:18: " + getCheckMessage(MSG_KEY),
-            "17:14: " + getCheckMessage(MSG_KEY),
-            "21:9: " + getCheckMessage(MSG_KEY),
+            "10:1: " + getCheckMessage(MSG_KEY),
+            "13:5: " + getCheckMessage(MSG_KEY),
+            "16:18: " + getCheckMessage(MSG_KEY),
+            "18:14: " + getCheckMessage(MSG_KEY),
+            "22:9: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("compact/InputEmptyStatementCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileAllowEmptyLoopBody() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputEmptyStatementCompactSourceFileAllowEmptyLoopBody.java"),
                 expected);
     }
 
