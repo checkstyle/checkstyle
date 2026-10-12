@@ -23,12 +23,18 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RedundantThisCheck.MSG_KEY_FIELD;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RedundantThisCheck.MSG_KEY_METHOD;
 
+import java.io.File;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RedundantThisCheckTest extends AbstractModuleTestSupport {
@@ -162,6 +168,44 @@ public class RedundantThisCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputRedundantThisAdjacent.java"), expected);
+    }
+
+    @Test
+    public void testSwitchCase() throws Exception {
+        final String[] expected = {
+            "21:24: " + getCheckMessage(MSG_KEY_FIELD, "max"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRedundantThisSwitchCase.java"), expected);
+    }
+
+    /**
+     * Statements stored for one file are nodes of the tree of that file, they never
+     * match nodes of another file. So a missing reset keeps all trees in memory but
+     * cannot be seen in violations, and we have to use reflection to be sure that
+     * state of the field is cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final RedundantThisCheck check = new RedundantThisCheck();
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputRedundantThisConstructorShadow.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final DetailAST ctorDef = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.CTOR_DEF).orElseThrow();
+        final DetailAST literalThis = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.LITERAL_THIS).orElseThrow();
+
+        // parameters of constructor have to be in scope to make 'this' required
+        check.visitToken(ctorDef);
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, literalThis,
+                        "requiredStatements",
+                        requiredStatements -> ((Collection<?>) requiredStatements).isEmpty()))
+                .isTrue();
     }
 
     @Test
