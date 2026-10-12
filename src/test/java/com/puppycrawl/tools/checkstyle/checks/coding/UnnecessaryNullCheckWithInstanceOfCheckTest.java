@@ -246,4 +246,18 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
                 "InputUnnecessaryNullCheckWithInstanceOfMutationKillerTwo.java"), expected);
     }
 
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofThis() throws Exception {
+
+        final String[] expected = {
+            "15:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "20:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "25:43: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "30:43: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "35:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath(
+                "InputUnnecessaryNullCheckWithInstanceOfThis.java"), expected);
+    }
+
 }
