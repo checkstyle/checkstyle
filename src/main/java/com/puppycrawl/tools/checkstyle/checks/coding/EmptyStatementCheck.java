@@ -80,7 +80,7 @@ public class EmptyStatementCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if ((ast.getType() == TokenTypes.EMPTY_STAT && !isEmptyLoopBodyAllowed(ast))
+        if (ast.getType() == TokenTypes.EMPTY_STAT && !isEmptyLoopBodyAllowed(ast)
                 || isEmptyDeclaration(ast)) {
             log(ast, MSG_KEY);
         }
