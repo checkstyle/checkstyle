@@ -203,12 +203,42 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
      * @return the parameter count of the constructor
      */
     private static int getParameterCount(DetailAST constructor) {
-        final DetailAST params = constructor.findFirstToken(TokenTypes.PARAMETERS);
-        int parameterCount = 0;
-        if (params != null) {
-            parameterCount = params.getChildCount(TokenTypes.PARAMETER_DEF);
+        final int parameterCount;
+        if (constructor.getType() == TokenTypes.COMPACT_CTOR_DEF) {
+            final DetailAST recordDef = getRecordDef(constructor);
+            final DetailAST recordComponents =
+                    recordDef.findFirstToken(TokenTypes.RECORD_COMPONENTS);
+            if (recordComponents == null) {
+                parameterCount = 0;
+            }
+            else {
+                parameterCount = recordComponents.getChildCount(TokenTypes.RECORD_COMPONENT_DEF);
+            }
+        }
+        else {
+            final DetailAST params = constructor.findFirstToken(TokenTypes.PARAMETERS);
+            if (params == null) {
+                parameterCount = 0;
+            }
+            else {
+                parameterCount = params.getChildCount(TokenTypes.PARAMETER_DEF);
+            }
         }
         return parameterCount;
+    }
+
+    /**
+     * Finds the nearest ancestor record definition node for the given AST node.
+     *
+     * @param ast the AST node to start searching from
+     * @return the nearest {@code RECORD_DEF} AST node
+     */
+    private static DetailAST getRecordDef(DetailAST ast) {
+        DetailAST current = ast;
+        while (current.getType() != TokenTypes.RECORD_DEF) {
+            current = current.getParent();
+        }
+        return current;
     }
 
 }
