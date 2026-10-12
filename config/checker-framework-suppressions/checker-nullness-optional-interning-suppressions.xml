@@ -4885,6 +4885,24 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ClassHeaderWrapOpenjdkCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter lcurly of ClassHeaderWrapOpenjdkCheck.checkNecessaryWrap.</message>
+    <lineContent>checkNecessaryWrap(headerStart, lcurly);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ClassHeaderWrapOpenjdkCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference objBlock</message>
+    <lineContent>final DetailAST lcurly = objBlock.findFirstToken(TokenTypes.LCURLY);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
