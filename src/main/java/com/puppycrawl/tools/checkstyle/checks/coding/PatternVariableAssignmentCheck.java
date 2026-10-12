@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -87,11 +88,16 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
 
-        final List<DetailAST> patternVariableIdents = getPatternVariableIdents(ast);
-        final List<DetailAST> reassignedVariableIdents = getReassignedVariableIdents(ast);
+        final DetailAST scopeRoot = findReassignmentScopeRoot(ast);
 
-        for (DetailAST patternVariableIdent : patternVariableIdents) {
-            checkForReassignment(patternVariableIdent, reassignedVariableIdents);
+        if (scopeRoot != null) {
+            final List<DetailAST> patternVariableIdents = getPatternVariableIdents(ast);
+            final List<DetailAST> reassignedVariableIdents =
+                    getReassignedVariableIdents(scopeRoot);
+
+            for (DetailAST patternVariableIdent : patternVariableIdents) {
+                checkForReassignment(patternVariableIdent, reassignedVariableIdents, scopeRoot);
+            }
         }
     }
 
@@ -148,31 +154,27 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
     /**
      * Gets the list of AST branches of reassigned variable identifiers.
      *
-     * @param ast ast tree of checked instanceof statement
+     * @param scopeRoot the root AST node of the reassignment scope
      * @return list of AST identifiers that represent reassigned variables
      */
-    private static List<DetailAST> getReassignedVariableIdents(DetailAST ast) {
+    private static List<DetailAST> getReassignedVariableIdents(DetailAST scopeRoot) {
 
         final List<DetailAST> reassignedVariableIdents = new ArrayList<>();
-        final DetailAST scopeRoot = findReassignmentScopeRoot(ast);
 
-        if (scopeRoot != null) {
+        final List<DetailAST> branches =
+                expandReassignmentScopes(scopeRoot);
 
-            final List<DetailAST> branches =
-                    expandReassignmentScopes(scopeRoot);
+        for (DetailAST branch : branches) {
+            for (DetailAST expressionBranch = branch;
+                 expressionBranch != null;
+                 expressionBranch = shiftToNextTraversedBranch(
+                         expressionBranch, branch)) {
 
-            for (DetailAST branch : branches) {
-                for (DetailAST expressionBranch = branch;
-                     expressionBranch != null;
-                     expressionBranch = shiftToNextTraversedBranch(
-                             expressionBranch, branch)) {
+                final DetailAST assignToken =
+                        getMatchedAssignToken(expressionBranch);
 
-                    final DetailAST assignToken =
-                            getMatchedAssignToken(expressionBranch);
-
-                    if (assignToken != null) {
-                        reassignedVariableIdents.add(assignToken.getFirstChild());
-                    }
+                if (assignToken != null) {
+                    reassignedVariableIdents.add(assignToken.getFirstChild());
                 }
             }
         }
@@ -259,20 +261,133 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether a pattern variable is reassigned and logs a violation if so.
+     * Checks whether a pattern variable is reassigned and logs a violation.
      *
      * @param patternVariableIdent AST ident of the pattern variable
-     * @param reassignedVariableIdents list of AST idents that represent reassigned variables
+     * @param reassignedVariableIdents list of AST idents for reassigned variables
+     * @param scopeRoot the root AST node of the reassignment scope
      */
     private void checkForReassignment(
-            DetailAST patternVariableIdent,
-            Iterable<DetailAST> reassignedVariableIdents) {
+            final DetailAST patternVariableIdent,
+            final Iterable<DetailAST> reassignedVariableIdents,
+            final DetailAST scopeRoot) {
 
         for (DetailAST assignTokenIdent : reassignedVariableIdents) {
-            if (patternVariableIdent.getText().equals(assignTokenIdent.getText())) {
+            if (patternVariableIdent.getText().equals(assignTokenIdent.getText())
+                    && !isShadowed(assignTokenIdent,
+                            patternVariableIdent.getText(), scopeRoot)) {
                 log(assignTokenIdent, MSG_KEY, assignTokenIdent.getText());
             }
         }
+    }
+
+    /**
+     * Checks whether an identifier being assigned to is shadowed by a
+     * variable, parameter, or field in an enclosing scope.
+     *
+     * @param assignTokenIdent the identifier AST being assigned to
+     * @param varName name of the pattern variable
+     * @param scopeRoot the root AST node of the reassignment scope
+     * @return true if the identifier is shadowed in an enclosing scope
+     */
+    private static boolean isShadowed(final DetailAST assignTokenIdent,
+                                      final String varName,
+                                      final DetailAST scopeRoot) {
+        boolean shadowed = false;
+        final DetailAST boundary = scopeRoot.getParent();
+
+        for (DetailAST current = assignTokenIdent;
+             !current.equals(boundary);
+             current = current.getParent()) {
+            if (isScopeShadowing(current, varName, assignTokenIdent)) {
+                shadowed = true;
+                break;
+            }
+        }
+
+        return shadowed;
+    }
+
+    /**
+     * Checks whether an AST node defines a scope that shadows the given variable name.
+     *
+     * @param current the AST node of the current scope
+     * @param varName the name to look for
+     * @param assignTokenIdent the identifier AST being assigned to
+     * @return true if the scope shadows the variable name
+     */
+    private static boolean isScopeShadowing(final DetailAST current,
+                                            final String varName,
+                                            final DetailAST assignTokenIdent) {
+        final boolean shadowing;
+        final int type = current.getType();
+        if (type == TokenTypes.OBJBLOCK || type == TokenTypes.SLIST) {
+            shadowing = hasDeclaration(current, TokenTypes.VARIABLE_DEF,
+                    varName, assignTokenIdent);
+        }
+        else if (type == TokenTypes.LITERAL_CATCH) {
+            shadowing = hasDeclaration(current, TokenTypes.PARAMETER_DEF,
+                    varName, assignTokenIdent);
+        }
+        else {
+            shadowing = hasParameter(current, varName, assignTokenIdent);
+        }
+        return shadowing;
+    }
+
+    /**
+     * Checks whether a method, constructor, or lambda has a parameter with the given name.
+     *
+     * @param current the AST node to check
+     * @param varName the name to look for
+     * @param assignTokenIdent the identifier AST being assigned to
+     * @return true if a matching parameter is found
+     */
+    private static boolean hasParameter(final DetailAST current,
+                                        final String varName,
+                                        final DetailAST assignTokenIdent) {
+        boolean hasParam = false;
+        final DetailAST parameters = current.findFirstToken(TokenTypes.PARAMETERS);
+        if (parameters != null) {
+            hasParam = hasDeclaration(parameters, TokenTypes.PARAMETER_DEF,
+                    varName, assignTokenIdent);
+        }
+        else if (current.getType() == TokenTypes.LAMBDA) {
+            final DetailAST ident = current.findFirstToken(TokenTypes.IDENT);
+            if (ident != null) {
+                hasParam = varName.equals(ident.getText());
+            }
+        }
+        return hasParam;
+    }
+
+    /**
+     * Checks whether a parent AST node has a child of the given type with the matching identifier.
+     *
+     * @param parent the parent AST node
+     * @param childType the token type of the child node
+     * @param varName the name to look for
+     * @param assignTokenIdent the identifier AST being assigned to
+     * @return true if a child with the matching identifier is found
+     */
+    private static boolean hasDeclaration(final DetailAST parent,
+                                          final int childType,
+                                          final String varName,
+                                          final DetailAST assignTokenIdent) {
+        boolean match = false;
+        for (DetailAST child = parent.getFirstChild(); child != null;
+             child = child.getNextSibling()) {
+            if (child.getType() == childType
+                    && (parent.getType() != TokenTypes.SLIST
+                        || CheckUtil.isBeforeInSource(child, assignTokenIdent))) {
+                final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
+                if (varName.equals(ident.getText())) {
+                    match = true;
+                    break;
+                }
+            }
+        }
+        return match;
     }
 
     /**
