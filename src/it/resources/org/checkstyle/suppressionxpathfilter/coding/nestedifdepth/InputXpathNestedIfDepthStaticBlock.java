@@ -1,3 +1,10 @@
+/*
+NestedIfDepth
+max = (default)1
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.nestedifdepth;
 
 public class InputXpathNestedIfDepthStaticBlock {
@@ -7,7 +14,7 @@ public class InputXpathNestedIfDepthStaticBlock {
         int c = 3;
         if (a > b) {
             if (c > b) {
-                if (c > a) { //warn
+                if (c > a) { // violation 'Nested if-else depth is 2 (max allowed is 1)'
                 }
             }
         }
