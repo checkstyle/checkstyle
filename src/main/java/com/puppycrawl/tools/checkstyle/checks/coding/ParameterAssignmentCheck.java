@@ -117,7 +117,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
             visitMethodDef(ast);
         }
         else if (type == TokenTypes.LAMBDA) {
-            if (ast.getParent().getType() != TokenTypes.SWITCH_RULE) {
+            if (!isSwitchRuleLambda(ast)) {
                 visitLambda(ast);
             }
         }
@@ -130,8 +130,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
     public void leaveToken(DetailAST ast) {
         final int type = ast.getType();
         if (TokenUtil.isOfType(type, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF)
-                || type == TokenTypes.LAMBDA
-                && ast.getParent().getType() != TokenTypes.SWITCH_RULE) {
+                || type == TokenTypes.LAMBDA && !isSwitchRuleLambda(ast)) {
             parameterNames = parameterNamesStack.pop();
         }
     }
@@ -219,6 +218,17 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
             }
             parameterDefAST = parameterDefAST.getNextSibling();
         }
+    }
+
+    /**
+     * Checks whether a lambda token represents a switch rule arrow.
+     * Switch rule arrows have no children, while lambda expressions do.
+     *
+     * @param lambda the lambda AST node
+     * @return true if the token represents a switch rule arrow
+     */
+    private static boolean isSwitchRuleLambda(DetailAST lambda) {
+        return !lambda.hasChildren();
     }
 
 }
