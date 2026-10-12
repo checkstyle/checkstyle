@@ -254,6 +254,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
 
             while (firstChild != null) {
                 if (variableName.equals(firstChild.getText())
+                        && firstChild.getNextSibling() != null
                         && firstChild.getNextSibling().getType() != TokenTypes.ELIST
                             || containsVariableDereference(firstChild, variableName)) {
                     found = true;
