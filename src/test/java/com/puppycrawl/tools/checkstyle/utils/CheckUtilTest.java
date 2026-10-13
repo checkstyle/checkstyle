@@ -343,6 +343,19 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testParseDoubleOutOfRangeValues() {
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("99999999999", TokenTypes.NUM_INT))
+            .isEqualTo(99_999_999_999.0);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("0x1ffffffff", TokenTypes.NUM_INT))
+            .isEqualTo(8_589_934_591.0);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("18446744073709551616", TokenTypes.NUM_LONG))
+            .isGreaterThan(1.0e19);
+    }
+
+    @Test
     public void testParseClassNames() {
         final Set<String> actual = CheckUtil.parseClassNames(
                 "I.am.class.name.with.dot.in.the.end.", "ClassOnly", "my.Class");
