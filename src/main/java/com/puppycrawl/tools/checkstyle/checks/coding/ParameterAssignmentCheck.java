@@ -38,11 +38,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>
  * Rationale:
- * Parameter assignment is often considered poor
- * programming practice. Forcing developers to declare
+ * Parameter assignment is often considered poor programming practice. Forcing developers to declare
  * parameters as final is often onerous. Having a check
- * ensure that parameters are never assigned would give
- * the best of both worlds.
+ * ensure that parameters are never assigned would give the best of both worlds.
  * </p>
  *
  * @since 3.2
@@ -51,8 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public final class ParameterAssignmentCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "parameter.assignment";
 

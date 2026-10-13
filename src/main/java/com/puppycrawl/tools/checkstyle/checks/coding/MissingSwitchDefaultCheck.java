@@ -34,8 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>
  * Rationale: It's usually a good idea to introduce a
- * default case in every switch statement. Even if
- * the developer is sure that all currently possible
+ * default case in every switch statement. Even if the developer is sure that all currently possible
  * cases are covered, this should be expressed in the
  * default branch, e.g. by using an assertion. This way
  * the code is protected against later changes, e.g.
@@ -51,14 +50,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * This check does not validate switch statements that use pattern or null
  * labels. Rationale: Switch statements that use pattern or null labels are
- * checked by the compiler for exhaustiveness. This means that all possible
- * inputs must be covered.
+ * checked by the compiler for exhaustiveness. This means that all possible inputs must be covered.
  * </p>
  *
  * <p>
  * See the <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-15.html#jls-15.28">
- *     Java Language Specification</a> for more information about switch statements
- *     and expressions.
+ *     Java Language Specification</a> for more information about switch statements and expressions.
  * </p>
  *
  * <p>
@@ -72,8 +69,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class MissingSwitchDefaultCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "missing.switch.default";
 

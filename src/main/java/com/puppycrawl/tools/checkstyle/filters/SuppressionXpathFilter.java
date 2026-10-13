@@ -180,40 +180,33 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  *
  * <p>
  * A <a href="/dtds/suppressions_1_2_xpath.dtd"><em>suppressions XML
- * document</em></a> contains a set
- * of {@code suppress} and {@code suppress-xpath} elements, where
- * each {@code suppress-xpath} element can have the
- * following attributes:
+ * document</em></a> contains a set of {@code suppress} and {@code suppress-xpath} elements, where
+ * each {@code suppress-xpath} element can have the following attributes:
  * </p>
  * <ul>
  * <li>
- * {@code files} -
- * a <a href="https://checkstyle.org/property-types.html#Pattern">Pattern</a>
+ * {@code files} - a <a href="https://checkstyle.org/property-types.html#Pattern">Pattern</a>
  * matched against the file name associated with an audit
  * event. It is optional. If unmatched, all Unix path separators (/)
  * are converted to Windows separators (\) and retried.
  * </li>
  * <li>
- * {@code checks} -
- * a <a href="https://checkstyle.org/property-types.html#Pattern">Pattern</a>
+ * {@code checks} - a <a href="https://checkstyle.org/property-types.html#Pattern">Pattern</a>
  * matched against the name of the check associated with an audit
  * event. Optional as long as {@code id} or {@code message} is specified.
  * </li>
  * <li>
- * {@code message} -
- * a <a href="https://checkstyle.org/property-types.html#Pattern">Pattern</a>
+ * {@code message} - a <a href="https://checkstyle.org/property-types.html#Pattern">Pattern</a>
  * matched against the message of the check associated with an audit
  * event. Optional as long as {@code checks} or {@code id} is specified.
  * </li>
  * <li>
- * {@code id} -
- * a <a href="https://checkstyle.org/property-types.html#String">String</a>
+ * {@code id} - a <a href="https://checkstyle.org/property-types.html#String">String</a>
  * matched against the ID of the check associated with an audit
  * event. Optional as long as {@code checks} or {@code message} is specified.
  * </li>
  * <li>
- * {@code query} -
- * a <a href="https://checkstyle.org/property-types.html#String">String</a>
+ * {@code query} - a <a href="https://checkstyle.org/property-types.html#String">String</a>
  * xpath query. It is optional.
  * </li>
  * </ul>
@@ -221,8 +214,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * <p>
  * Each audit event is checked against
  * each {@code suppress} and {@code suppress-xpath} element. It is
- * suppressed if all specified attributes match against the audit
- * event.
+ * suppressed if all specified attributes match against the audit event.
  * </p>
  *
  * <p>

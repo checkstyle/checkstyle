@@ -40,8 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 public class InnerTypeLastCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "arrangement.members.before.inner";
 

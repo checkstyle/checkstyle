@@ -20,8 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 /**
- * A block of text from an input file that does not necessarily
- * have any grammatical structure.
+ * A block of text from an input file that does not necessarily have any grammatical structure.
  *
  */
 public interface TextBlock {
@@ -68,8 +67,7 @@ public interface TextBlock {
     int getEndColNo();
 
     /**
-     * Checks if this comment intersects with a specified
-     * part of the file.
+     * Checks if this comment intersects with a specified part of the file.
      *
      * @param startLineNo the starting line number in the file
      * @param startColNo the starting column number in the file

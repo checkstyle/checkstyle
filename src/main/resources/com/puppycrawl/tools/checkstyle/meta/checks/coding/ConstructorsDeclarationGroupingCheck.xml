@@ -15,8 +15,7 @@
  &lt;p&gt;
  Rationale: Grouping constructors together in a class improves code readability
  and maintainability. It allows developers to easily understand
- the different ways an object can be instantiated
- and the tasks performed by each constructor.
+ the different ways an object can be instantiated and the tasks performed by each constructor.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false"

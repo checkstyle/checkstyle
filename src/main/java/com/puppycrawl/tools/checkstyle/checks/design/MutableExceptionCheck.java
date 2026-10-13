@@ -47,8 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * condition. Having non-final fields not only allows the state to be
  * modified by accident and therefore mask the original condition but
  * also allows developers to accidentally forget to set the initial state.
- * In both cases, code catching the exception could draw incorrect
- * conclusions based on the state.
+ * In both cases, code catching the exception could draw incorrect conclusions based on the state.
  * </p>
  *
  * @since 3.2
@@ -57,8 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class MutableExceptionCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "mutable.exception";
 

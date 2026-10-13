@@ -155,8 +155,7 @@ public final class ConfigurationLoader {
      * Creates a new {@code ConfigurationLoader} instance.
      *
      * @param overrideProps resolver for overriding properties
-     * @param omitIgnoredModules {@code true} if ignored modules should be
-     *         omitted
+     * @param omitIgnoredModules {@code true} if ignored modules should be omitted
      * @param threadModeSettings the thread mode configuration
      * @throws ParserConfigurationException if an error occurs
      * @throws SAXException if an error occurs
@@ -174,8 +173,7 @@ public final class ConfigurationLoader {
     /**
      * Parses the specified input source loading the configuration information.
      * The stream wrapped inside the source, if any, is NOT
-     * explicitly closed after parsing, it is the responsibility of
-     * the caller to close the stream.
+     * explicitly closed after parsing, it is the responsibility of the caller to close the stream.
      *
      * @param source the source that contains the configuration data
      * @return the check configurations
@@ -365,8 +363,7 @@ public final class ConfigurationLoader {
          * ant
          * </a>
          *
-         * @param value The string to be scanned for property references. Must
-         *              not be {@code null}.
+         * @param value The string to be scanned for property references. Must not be {@code null}.
          * @param defaultValue default to use if one of the properties in value
          *              cannot be resolved from props.
          *

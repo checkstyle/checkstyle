@@ -22,8 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 
 /**
- * Implementation of a {@link MatchSuppressor} that suppresses based on
- * whether in a comment.
+ * Implementation of a {@link MatchSuppressor} that suppresses based on whether in a comment.
  */
 class CommentSuppressor implements MatchSuppressor {
 

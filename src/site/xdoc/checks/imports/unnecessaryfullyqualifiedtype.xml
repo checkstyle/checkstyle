@@ -46,8 +46,7 @@
 
         <p>
           Using fully qualified names where they are not needed reduces readability and
-          is inconsistent with common Java style conventions, which favor importing the
-          type instead.
+          is inconsistent with common Java style conventions, which favor importing the type instead.
         </p>
 
         <p>

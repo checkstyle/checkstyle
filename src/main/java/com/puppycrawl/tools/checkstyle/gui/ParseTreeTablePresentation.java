@@ -220,14 +220,12 @@ public class ParseTreeTablePresentation {
     /**
      * Return the index of child in parent.  If either {@code parent}
      * or {@code child} is {@code null}, returns -1.
-     * If either {@code parent} or {@code child} don't
-     * belong to this tree model, returns -1.
+     * If either {@code parent} or {@code child} don't belong to this tree model, returns -1.
      *
      * @param parent a node in the tree, obtained from this data source.
      * @param child the node we are interested in.
      * @return the index of the child in the parent, or -1 if either
-     *     {@code child} or {@code parent} are {@code null}
-     *     or don't belong to this tree model.
+     *     {@code child} or {@code parent} are {@code null} or don't belong to this tree model.
      */
     public int getIndexOfChild(Object parent, Object child) {
         int index = -1;

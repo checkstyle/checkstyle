@@ -67,8 +67,7 @@ public class IfHandler extends BlockParentHandler {
     }
 
     /**
-     * Determines if this 'if' statement is part of an 'else' clause
-     * and on the same line.
+     * Determines if this 'if' statement is part of an 'else' clause and on the same line.
      *
      * @return true if this 'if' is part of an 'else', false otherwise
      */

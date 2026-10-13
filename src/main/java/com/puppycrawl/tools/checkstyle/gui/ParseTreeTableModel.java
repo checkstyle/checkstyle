@@ -162,8 +162,7 @@ public class ParseTreeTableModel implements TreeModel {
     /**
      * Notify all listeners that have registered interest in
      * 'tree structure changed' event.  The event instance
-     * is lazily created using the parameters passed into
-     * the fire method.
+     * is lazily created using the parameters passed into the fire method.
      *
      * @param source The Object responsible for generating the event.
      * @param path An array of Object identifying the path to the parent of the modified items.

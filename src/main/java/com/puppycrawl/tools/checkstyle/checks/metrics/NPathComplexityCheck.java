@@ -37,8 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * The NPATH metric computes the number of possible execution paths through a
  * function(method). It takes into account the nesting of conditional statements
- * and multipart boolean expressions ({@code A && B, C || D, E ? F :G} and
- * their combinations).
+ * and multipart boolean expressions ({@code A && B, C || D, E ? F :G} and their combinations).
  * </p>
  *
  * <p>
@@ -123,8 +122,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public final class NPathComplexityCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "npathComplexity";
 
@@ -542,8 +540,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
     }
 
     /**
-     * Coordinates of token end. Used to prevent inline ternary
-     * operator from being processed twice.
+     * Coordinates of token end. Used to prevent inline ternary operator from being processed twice.
      */
     private static final class TokenEnd {
 

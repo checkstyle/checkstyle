@@ -54,14 +54,12 @@ public class EqualsHashCodeCheck extends AbstractCheck {
     // keep track of definitions in different inner classes
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_HASHCODE = "equals.noHashCode";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_EQUALS = "equals.noEquals";
 

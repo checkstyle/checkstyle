@@ -555,8 +555,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
 
     /**
      * Does pre-order traverse of abstract syntax tree to find the previous statement of the
-     * comment. If previous statement of the comment is found, then the traverse will
-     * be finished.
+     * comment. If previous statement of the comment is found, then the traverse will be finished.
      *
      * @param comment current statement.
      * @return previous statement of the comment or null if the comment does not have previous
@@ -940,8 +939,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if the comment is inside a method call with same indentation of
-     * first expression. e.g:
+     * Checks if the comment is inside a method call with same indentation of first expression. e.g:
      *
      * <p>
      * {@code

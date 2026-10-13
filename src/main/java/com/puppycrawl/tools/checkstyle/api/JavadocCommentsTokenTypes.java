@@ -1668,7 +1668,8 @@ public final class JavadocCommentsTokenTypes {
      * is ability include a format string inside the tag.
      *
      * <p>In this example, the format specifier {@code 0x%04x} is used to format the integer
-     * {@code Modifier#PUBLIC} as a hexadecimal value, padded with zeros to a width of four characters.</p>
+     * {@code Modifier#PUBLIC} as a hexadecimal value, padded with zeros to a width of four
+     * characters.</p>
      * {@snippet lang="text" :
      * {@value %04x java.lang.reflect.Modifier#PUBLIC}
      * }
@@ -2139,8 +2140,7 @@ public final class JavadocCommentsTokenTypes {
     public static final int HTML_ATTRIBUTE = JavadocCommentsLexer.HTML_ATTRIBUTE;
 
     /**
-     * {@code HTML_ATTRIBUTES} represents a collection of HTML attributes
-     * inside an HTML tag.
+     * {@code HTML_ATTRIBUTES} represents a collection of HTML attributes inside an HTML tag.
      *
      * <p>Appears in Javadoc comments when documenting HTML elements that contain
      * multiple attributes.</p>
@@ -2302,8 +2302,7 @@ public final class JavadocCommentsTokenTypes {
     public static final int TAG_NAME = JavadocCommentsLexer.TAG_NAME;
 
     /**
-     * {@code TAG_CLOSE} represents the closing {@literal ">"} symbol
-     * of an HTML tag.
+     * {@code TAG_CLOSE} represents the closing {@literal ">"} symbol of an HTML tag.
      *
      * <p>Appears in Javadoc comments when documenting HTML elements.</p>
      *
@@ -2349,8 +2348,7 @@ public final class JavadocCommentsTokenTypes {
     public static final int TAG_SLASH_CLOSE = JavadocCommentsLexer.TAG_SLASH_CLOSE;
 
     /**
-     * {@code TAG_SLASH} represents the slash {@literal "/"} used
-     * inside an HTML closing tag.
+     * {@code TAG_SLASH} represents the slash {@literal "/"} used inside an HTML closing tag.
      *
      * <p>Appears in Javadoc comments when closing HTML elements.</p>
      *

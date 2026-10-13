@@ -51,8 +51,7 @@
           condition. Having non-final fields not only allows the state to be
           modified by accident and therefore mask the original condition but
           also allows developers to accidentally forget to set the initial state.
-          In both cases, code catching the exception could draw incorrect
-          conclusions based on the state.
+          In both cases, code catching the exception could draw incorrect conclusions based on the state.
         </p>
       </subsection>
 

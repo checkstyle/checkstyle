@@ -49,8 +49,7 @@ import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
 /**
  * Displays information about a parse tree.
- * The user can change the file that is parsed and displayed
- * using a JFileChooser.
+ * The user can change the file that is parsed and displayed using a JFileChooser.
  *
  * @noinspection MagicNumber
  * @noinspectionreason MagicNumber - "magic numbers" are required to set GUI elements

@@ -41,14 +41,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "overload.methods.declaration";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_ORDER = "overload.methods.declaration.order";
 
@@ -160,8 +158,7 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
     }
 
     /**
-     * Checks that overloaded methods are ordered with increasing parameter count
-     * or not.
+     * Checks that overloaded methods are ordered with increasing parameter count or not.
      *
      * @param currentMethod ast of the method.
      * @param methodName method name.

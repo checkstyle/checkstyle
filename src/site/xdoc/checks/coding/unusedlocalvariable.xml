@@ -41,8 +41,7 @@
           pattern variables</a>.
           Doesn't check
           <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.12.3">
-          array components</a> as array
-          components are classified as different kind of variables by
+          array components</a> as array components are classified as different kind of variables by
           <a href="https://docs.oracle.com/javase/specs/jls/se17/html/index.html">JLS</a>.
         </div>
       </subsection>

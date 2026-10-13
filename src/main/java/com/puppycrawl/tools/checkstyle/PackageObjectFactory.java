@@ -117,8 +117,7 @@ public class PackageObjectFactory implements ModuleFactory {
      * Creates a new {@code PackageObjectFactory} instance.
      *
      * @param packageNames package names to use
-     * @param moduleClassLoader class loader used to load Checkstyle
-     *          core and custom modules
+     * @param moduleClassLoader class loader used to load Checkstyle core and custom modules
      */
     public PackageObjectFactory(Set<String> packageNames, ClassLoader moduleClassLoader) {
         this(packageNames, moduleClassLoader, ModuleLoadOption.SEARCH_REGISTERED_PACKAGES);
@@ -128,8 +127,7 @@ public class PackageObjectFactory implements ModuleFactory {
      * Creates a new {@code PackageObjectFactory} instance.
      *
      * @param packageName The package name to use
-     * @param moduleClassLoader class loader used to load Checkstyle
-     *          core and custom modules
+     * @param moduleClassLoader class loader used to load Checkstyle core and custom modules
      * @throws IllegalArgumentException if moduleClassLoader is null or packageNames is null
      */
     public PackageObjectFactory(String packageName, ClassLoader moduleClassLoader) {
@@ -148,8 +146,7 @@ public class PackageObjectFactory implements ModuleFactory {
      * Creates a new {@code PackageObjectFactory} instance.
      *
      * @param packageNames package names to use
-     * @param moduleClassLoader class loader used to load Checkstyle
-     *          core and custom modules
+     * @param moduleClassLoader class loader used to load Checkstyle core and custom modules
      * @param moduleLoadOption loading option
      * @throws IllegalArgumentException if moduleClassLoader is null or packageNames contains null
      */

@@ -60,8 +60,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class UnnecessaryPermitsClauseCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "unnecessary.permits.clause";
 
@@ -72,8 +71,7 @@ public class UnnecessaryPermitsClauseCheck extends AbstractCheck {
     private final Set<String> localTypeNames = new HashSet<>();
 
     /**
-     * A list of {@link TokenTypes#PERMITS_CLAUSE} nodes found in the current
-     * compilation unit.
+     * A list of {@link TokenTypes#PERMITS_CLAUSE} nodes found in the current compilation unit.
      */
     private final List<DetailAST> permitsClauseAstList = new ArrayList<>();
 
@@ -136,8 +134,7 @@ public class UnnecessaryPermitsClauseCheck extends AbstractCheck {
 
     /**
      * Determines whether every type named in the given {@code permits} clause
-     * is declared somewhere within the same compilation unit, and is
-     * therefore redundant.
+     * is declared somewhere within the same compilation unit, and is therefore redundant.
      *
      * @param permitsClause the {@link TokenTypes#PERMITS_CLAUSE} node to inspect
      * @return {@code true} if the clause is unnecessary

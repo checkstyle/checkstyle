@@ -47,8 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * Responsible for walking an abstract syntax tree and notifying interested
- * checks at each node.
+ * Responsible for walking an abstract syntax tree and notifying interested checks at each node.
  *
  */
 @FileStatefulCheck
@@ -116,8 +115,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     }
 
     /**
-     * Setter to specify the severity level
-     * to log Java parsing exceptions when they are skipped.
+     * Setter to specify the severity level to log Java parsing exceptions when they are skipped.
      *
      *  @param javaParseExceptionSeverity severity level to log parsing exceptions
      *      when they are skipped.

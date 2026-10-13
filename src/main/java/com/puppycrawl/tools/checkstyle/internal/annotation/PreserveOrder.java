@@ -27,8 +27,7 @@ import java.lang.annotation.Target;
 
 /**
  * Indicates that the order of array or collection elements
- * in a property should be preserved and not auto-sorted
- * during Xdocs verification.
+ * in a property should be preserved and not auto-sorted during Xdocs verification.
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

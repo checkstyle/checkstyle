@@ -38,8 +38,7 @@ public enum BlockOption {
     TEXT,
 
     /**
-     * Represents the policy that there is a statement in the block. For
-     * example:
+     * Represents the policy that there is a statement in the block. For example:
      *
      * {@snippet lang="text" :
      * finally {

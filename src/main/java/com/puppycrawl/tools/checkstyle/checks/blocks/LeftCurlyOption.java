@@ -26,8 +26,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 public enum LeftCurlyOption {
 
     /**
-     * Represents the policy for placing the brace at the end of line. For
-     * example:
+     * Represents the policy for placing the brace at the end of line. For example:
      * <pre>
      * if (condition) {
      *     ...
@@ -61,8 +60,7 @@ public enum LeftCurlyOption {
     NLOW,
 
     /**
-     * Represents the policy that the brace must always be on a new line. For
-     * example:
+     * Represents the policy that the brace must always be on a new line. For example:
      * <pre>
      * if (condition)
      * {

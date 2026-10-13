@@ -62,13 +62,11 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     public enum ModuleCreationOption {
 
         /**
-         * Points that the module configurations
-         * has to be added under {@link TreeWalker}.
+         * Points that the module configurations has to be added under {@link TreeWalker}.
          */
         IN_TREEWALKER,
         /**
-         * Points that checker will be created as
-         * a root of default configuration.
+         * Points that checker will be created as a root of default configuration.
          */
         IN_CHECKER,
 
@@ -117,8 +115,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @param moduleName module name.
      * @param moduleId module id.
      * @return {@code Configuration} instance for the given module name.
-     * @throws IllegalStateException if there is a problem retrieving the module
-     *         or config.
+     * @throws IllegalStateException if there is a problem retrieving the module or config.
      */
     protected static Configuration getModuleConfig(Configuration masterConfig, String moduleName,
             String moduleId) {
@@ -558,8 +555,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     }
 
     /**
-     * Gets the check message 'as is' from appropriate 'messages.properties'
-     * file.
+     * Gets the check message 'as is' from appropriate 'messages.properties' file.
      *
      * @param reporterClass the package the message is located in.
      * @param messageKey the key of message in 'messages.properties' file.

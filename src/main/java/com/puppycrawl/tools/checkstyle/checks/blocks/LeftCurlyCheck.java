@@ -44,20 +44,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class LeftCurlyCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_LINE_NEW = "line.new";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_LINE_PREVIOUS = "line.previous";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_LINE_BREAK_AFTER = "line.break.after";
 
@@ -266,8 +263,7 @@ public class LeftCurlyCheck extends AbstractCheck {
     }
 
     /**
-     * Find the last token of type {@code TokenTypes.ANNOTATION}
-     * under the given set of modifiers.
+     * Find the last token of type {@code TokenTypes.ANNOTATION} under the given set of modifiers.
      *
      * @param modifiers {@code DetailAST}.
      * @return Optional containing the last annotation, if found.
@@ -314,8 +310,7 @@ public class LeftCurlyCheck extends AbstractCheck {
 
     /**
      * Validate NL_OR_SINGLELINE case. A brace that opens a block which ends on
-     * the same line is allowed to stay at the end of that line, otherwise the
-     * NL rule is applied.
+     * the same line is allowed to stay at the end of that line, otherwise the NL rule is applied.
      *
      * @param brace brace AST
      * @param braceLine line content

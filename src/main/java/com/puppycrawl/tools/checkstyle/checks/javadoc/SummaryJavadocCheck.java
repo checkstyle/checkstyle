@@ -54,20 +54,17 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_SUMMARY_FIRST_SENTENCE = "summary.first.sentence";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_SUMMARY_JAVADOC = "summary.javaDoc";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_SUMMARY_JAVADOC_MISSING = "summary.javaDoc.missing";
 
@@ -504,8 +501,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      *
      * @param ast The Javadoc root node.
      * @param period The configured period symbol.
-     * @return An Optional containing the first sentence
-     *     up to and excluding the period, or an empty
+     * @return An Optional containing the first sentence up to and excluding the period, or an empty
      *     Optional if no ending was found.
      */
     private static Optional<String> getFirstSentence(DetailNode ast, String period) {

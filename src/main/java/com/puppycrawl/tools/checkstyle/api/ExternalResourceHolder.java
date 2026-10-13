@@ -37,8 +37,7 @@ public interface ExternalResourceHolder {
 
     /**
      * Returns a set of external configuration resource locations which are used by the module.
-     * ATTENTION!
-     * If 'getExternalResourceLocations()' return null, there will be
+     * ATTENTION! If 'getExternalResourceLocations()' return null, there will be
      * {@link NullPointerException} in {@link Checker}.
      * Such behaviour will signal that your module (check or filter) is designed incorrectly.
      * It makes sense to return an empty set from 'getExternalResourceLocations()'

@@ -433,8 +433,7 @@ public class UnusedPrivateFieldCheck extends AbstractCheck {
     }
 
     /**
-     * Looks up the declared simple type name of a local variable or parameter
-     * currently in scope.
+     * Looks up the declared simple type name of a local variable or parameter currently in scope.
      *
      * @param name the variable or parameter name.
      * @return its declared simple type name, or null if the name is not a
@@ -453,8 +452,7 @@ public class UnusedPrivateFieldCheck extends AbstractCheck {
     }
 
     /**
-     * Extracts the declared simple type name of a VARIABLE_DEF or
-     * PARAMETER_DEF, if determinable.
+     * Extracts the declared simple type name of a VARIABLE_DEF or PARAMETER_DEF, if determinable.
      *
      * @param varOrParamDef the VARIABLE_DEF or PARAMETER_DEF node.
      * @return the simple type name, or null if it could not be determined
@@ -525,8 +523,7 @@ public class UnusedPrivateFieldCheck extends AbstractCheck {
     }
 
     /**
-     * A recorded field-name access on a qualifier whose declared type is
-     * known precisely.
+     * A recorded field-name access on a qualifier whose declared type is known precisely.
      *
      * @param typeName  the qualifier's declared simple type name.
      * @param fieldName the field name accessed on it.

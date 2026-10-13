@@ -63,18 +63,15 @@ import picocli.CommandLine.ParseResult;
 public final class Main {
 
     /**
-     * A key pointing to the error counter
-     * message in the "messages.properties" file.
+     * A key pointing to the error counter message in the "messages.properties" file.
      */
     public static final String ERROR_COUNTER = "Main.errorCounter";
     /**
-     * A key pointing to the load properties exception
-     * message in the "messages.properties" file.
+     * A key pointing to the load properties exception message in the "messages.properties" file.
      */
     public static final String LOAD_PROPERTIES_EXCEPTION = "Main.loadProperties";
     /**
-     * A key pointing to the create listener exception
-     * message in the "messages.properties" file.
+     * A key pointing to the create listener exception message in the "messages.properties" file.
      */
     public static final String CREATE_LISTENER_EXCEPTION = "Main.createListener";
 
@@ -462,8 +459,7 @@ public final class Main {
     }
 
     /**
-     * Creates a new instance of the root module that will control and run
-     * Checkstyle.
+     * Creates a new instance of the root module that will control and run Checkstyle.
      *
      * @param name The name of the module. This will either be a short name that
      *        will have to be found or the complete package name.
@@ -640,8 +636,7 @@ public final class Main {
      *              MismatchedQueryAndUpdateOfCollection, LocalCanBeFinal
      * @noinspectionreason FieldMayBeFinal - usage of picocli requires
      *      suppression of above inspections
-     * @noinspectionreason CanBeFinal - usage of picocli requires
-     *      suppression of above inspections
+     * @noinspectionreason CanBeFinal - usage of picocli requires suppression of above inspections
      * @noinspectionreason MismatchedQueryAndUpdateOfCollection - list of files is gathered and used
      *      via reflection by picocli library
      * @noinspectionreason LocalCanBeFinal - usage of picocli requires

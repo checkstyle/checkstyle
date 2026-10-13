@@ -52,8 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>
  * Using fully qualified names where they are not needed reduces readability and
- * is inconsistent with common Java style conventions, which favor importing the
- * type instead.
+ * is inconsistent with common Java style conventions, which favor importing the type instead.
  * </p>
  *
  * <p>
@@ -89,8 +88,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class UnnecessaryFullyQualifiedTypeCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "unnecessary.fully.qualified.type";
 
@@ -341,8 +339,7 @@ public class UnnecessaryFullyQualifiedTypeCheck extends AbstractCheck {
     }
 
     /**
-     * Adds an identity for each fully qualified reference sharing the given simple
-     * name.
+     * Adds an identity for each fully qualified reference sharing the given simple name.
      *
      * @param simpleName the simple name to match references against
      * @param identities the identity set to add to
@@ -360,8 +357,7 @@ public class UnnecessaryFullyQualifiedTypeCheck extends AbstractCheck {
      * resolves to the same type as an unqualified reference would.
      *
      * @param simpleName the simple name to check
-     * @return {@code true} if an unqualified reference resolves to a matching
-     *     qualified type
+     * @return {@code true} if an unqualified reference resolves to a matching qualified type
      */
     private boolean resolvesToQualifiedReference(String simpleName) {
         boolean resolved = false;

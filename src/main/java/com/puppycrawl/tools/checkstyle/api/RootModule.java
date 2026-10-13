@@ -23,8 +23,7 @@ import java.io.File;
 import java.util.List;
 
 /**
- * The first module that is run as part of Checkstyle and controls its entire
- * behavior and children.
+ * The first module that is run as part of Checkstyle and controls its entire behavior and children.
  */
 public interface RootModule extends Configurable {
 

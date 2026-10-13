@@ -7,8 +7,7 @@
          <description>&lt;div&gt;
  Restricts using
  &lt;a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3"&gt;
- Unicode escapes&lt;/a&gt;
- (such as &amp;#92;u221e). It is possible to allow using escapes for
+ Unicode escapes&lt;/a&gt; (such as &amp;#92;u221e). It is possible to allow using escapes for
  &lt;a href="https://en.wiktionary.org/wiki/Appendix:Control_characters"&gt;
  non-printable, control characters&lt;/a&gt;.
  Also, this check can be configured to allow using escapes

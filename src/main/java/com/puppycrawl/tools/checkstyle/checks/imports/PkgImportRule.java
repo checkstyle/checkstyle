@@ -37,8 +37,7 @@ class PkgImportRule extends AbstractImportRule {
      * @param localOnly whether the rule is to be applied locally only
      * @param pkgName the package to apply the rule on.
      * @param exactMatch whether the package name must match exactly.
-     * @param regExp whether the package name is to be interpreted as a regular
-     *        expression.
+     * @param regExp whether the package name is to be interpreted as a regular expression.
      */
     /* package */ PkgImportRule(final boolean allow, final boolean localOnly,
         final String pkgName, final boolean exactMatch, final boolean regExp) {

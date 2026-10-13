@@ -20,8 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 /**
- * An implementation of {@link MatchSuppressor} that never suppresses a
- * match.
+ * An implementation of {@link MatchSuppressor} that never suppresses a match.
  */
 public final class NeverSuppress implements MatchSuppressor {
 

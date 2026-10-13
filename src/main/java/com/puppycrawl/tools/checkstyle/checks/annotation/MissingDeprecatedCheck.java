@@ -76,15 +76,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_ANNOTATION_MISSING_DEPRECATED =
             "annotation.missing.deprecated";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_JAVADOC_DUPLICATE_TAG =
             "javadoc.duplicateTag";

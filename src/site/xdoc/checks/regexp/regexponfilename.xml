@@ -56,8 +56,7 @@
           supplied, then all folders that checkstyle finds are examined for violations.
           The ignoreFileNameExtensions property drops the file extension and applies
           the fileNamePattern only to the rest of file name. For example, if the file
-          is named 'test.java' and this property is turned on, the pattern is only
-          applied to 'test'.
+          is named 'test.java' and this property is turned on, the pattern is only applied to 'test'.
         </p>
 
         <p>
@@ -73,8 +72,7 @@
           the violation is, especially if multiple RegexpOnFilename checks are used.
           Argument 0 for the message populates the check's folderPattern. Argument 1
           for the message populates the check's fileNamePattern. The file name is not
-          passed as an argument since it is part of CheckStyle's default violation
-          messages.
+          passed as an argument since it is part of CheckStyle's default violation messages.
         </p>
       </subsection>
 

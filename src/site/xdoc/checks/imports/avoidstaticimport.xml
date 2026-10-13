@@ -39,15 +39,13 @@
         <p>
           Rationale: Importing static members can lead to naming conflicts
           between class' members. It may lead to poor code readability since it
-          may no longer be clear what class a member resides in (without looking
-          at the import statement).
+          may no longer be clear what class a member resides in (without looking at the import statement).
         </p>
       </subsection>
 
       <subsection name="Notes" id="AvoidStaticImport_Notes">
         <p>
-          If you exclude a starred import on a class this automatically excludes
-          each member individually.
+          If you exclude a starred import on a class this automatically excludes each member individually.
         </p>
 
         <p>

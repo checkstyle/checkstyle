@@ -67,26 +67,22 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class GenericWhitespaceCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WS_PRECEDED = "ws.preceded";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WS_FOLLOWED = "ws.followed";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WS_ILLEGAL_FOLLOW = "ws.illegalFollow";
 
@@ -347,8 +343,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
     }
 
     /**
-     * Returns whether the specified string contains only whitespace between
-     * specified indices.
+     * Returns whether the specified string contains only whitespace between specified indices.
      *
      * @param fromIndex the index to start the search from. Inclusive
      * @param toIndex the index to finish the search. Exclusive

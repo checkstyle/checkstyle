@@ -44,12 +44,10 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <li>The outer most paragraph tags should not precede
  * <a href="https://www.w3schools.com/html/html_blocks.asp">HTML block-tag</a>.
  * Nested paragraph tags are allowed to do that. This check only supports following block-tags:
- * {@literal <address>},{@literal <blockquote>}
- * ,{@literal <div>},{@literal <dl>}
- * ,{@literal <h1>},{@literal <h2>},{@literal <h3>},{@literal <h4>},{@literal <h5>},
- * {@literal <h6>},{@literal <hr>}
- * ,{@literal <ol>},{@literal <p>},{@literal <pre>}
- * ,{@literal <table>},{@literal <ul>}.
+ * {@literal <address>},{@literal <blockquote>},{@literal <div>},{@literal <dl>},
+ * {@literal <h1>},{@literal <h2>},{@literal <h3>},{@literal <h4>},{@literal <h5>},
+ * {@literal <h6>},{@literal <hr>},{@literal <ol>},{@literal <p>},{@literal <pre>},
+ * {@literal <table>},{@literal <ul>}.
  * </li>
  * </ul>
  *
@@ -67,32 +65,27 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 public class JavadocParagraphCheck extends AbstractJavadocCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_TAG_AFTER = "javadoc.paragraph.tag.after";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_LINE_BEFORE = "javadoc.paragraph.line.before";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_REDUNDANT_PARAGRAPH = "javadoc.paragraph.redundant.paragraph";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_MISPLACED_TAG = "javadoc.paragraph.misplaced.tag";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_PRECEDED_BLOCK_TAG = "javadoc.paragraph.preceded.block.tag";
 

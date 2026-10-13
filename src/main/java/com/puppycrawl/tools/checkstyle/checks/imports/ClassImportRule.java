@@ -33,8 +33,7 @@ class ClassImportRule extends AbstractImportRule {
      * @param allow whether to allow access.
      * @param localOnly whether the rule is to be applied locally only
      * @param className the class to apply the rule on.
-     * @param regExp whether the class name is to be interpreted as a regular
-     *        expression.
+     * @param regExp whether the class name is to be interpreted as a regular expression.
      */
     /* package */  ClassImportRule(final boolean allow, final boolean localOnly,
         final String className, final boolean regExp) {

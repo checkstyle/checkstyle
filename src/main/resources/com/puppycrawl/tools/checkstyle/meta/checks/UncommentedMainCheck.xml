@@ -22,8 +22,7 @@
  are skipped by design. The whole purpose of compact source files is to serve as
  standalone single-file programs with a &lt;code&gt;main&lt;/code&gt; method as the entry point.
  Unlike regular classes where leftover &lt;code&gt;main&lt;/code&gt; methods may be
- debugging artifacts, compact sources inherently require a &lt;code&gt;main&lt;/code&gt; method
- to function.
+ debugging artifacts, compact sources inherently require a &lt;code&gt;main&lt;/code&gt; method to function.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^$"

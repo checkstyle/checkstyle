@@ -25,8 +25,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 public enum JavadocContentLocationOption {
 
     /**
-     * Represents a policy for the location of content starting from
-     * the same line as {@code /**}.
+     * Represents a policy for the location of content starting from the same line as {@code /**}.
      * Example:
      * <pre>
      * &#47;** Summary text.

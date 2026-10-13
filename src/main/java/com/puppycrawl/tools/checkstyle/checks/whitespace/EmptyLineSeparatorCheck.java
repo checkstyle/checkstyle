@@ -65,15 +65,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message empty.line.separator in "messages.properties"
-     * file.
+     * A key is pointing to the warning message empty.line.separator in "messages.properties" file.
      */
     public static final String MSG_SHOULD_BE_SEPARATED = "empty.line.separator";
 
     /**
      * A key is pointing to the warning message empty.line.separator.multiple.lines
-     *  in "messages.properties"
-     * file.
+     *  in "messages.properties" file.
      */
     public static final String MSG_MULTIPLE_LINES = "empty.line.separator.multiple.lines";
 
@@ -814,8 +812,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      *
      * @param startLine number of the first line in the range
      * @param endLine number of the second line in the range
-     * @return {@code true} if found any blank line within the range, {@code false}
-     *         otherwise
+     * @return {@code true} if found any blank line within the range, {@code false} otherwise
      */
     private boolean hasEmptyLine(int startLine, int endLine) {
         // Initial value is false - blank line not found

@@ -54,8 +54,7 @@ public interface FileSetCheck extends Configurable, Contextualizable {
 
     /**
      * Request to process a file. The implementation should use the supplied
-     * contents and not read the contents again. This reduces the amount of
-     * file I/O.
+     * contents and not read the contents again. This reduces the amount of file I/O.
      *
      * <p>
      * The file set to process might contain files that are not
