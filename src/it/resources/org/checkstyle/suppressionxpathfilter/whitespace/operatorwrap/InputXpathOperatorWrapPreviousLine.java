@@ -2,7 +2,7 @@
 OperatorWrap
 option = eol
 tokens = ASSIGN
-
+shouldWrapAtHigherLevel = (default)false
 
 */
 
