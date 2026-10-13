@@ -102,7 +102,6 @@ public class XdocsExampleFileTest {
         "checks/coding/hiddenfield/",
         "checks/javadoc/javadoctype/",
         "checks/javadoc/missingjavadoctype/",
-        "checks/naming/illegalidentifiername/",
         "checks/outertypefilename/",
         "checks/regexp/regexpmultiline/",
         "checks/regexp/regexpsingleline/"
