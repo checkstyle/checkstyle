@@ -20,6 +20,9 @@
                       type="com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption">
                <description>Specify policy on how to wrap lines.</description>
             </property>
+            <property default-value="false" name="shouldWrapAtHigherLevel" type="boolean">
+               <description>Control whether to enforce the higher-level wrap preference.</description>
+            </property>
             <property default-value="QUESTION,COLON,EQUAL,NOT_EQUAL,DIV,PLUS,MINUS,STAR,MOD,SR,BSR,GE,GT,SL,LE,LT,BXOR,BOR,LOR,BAND,LAND,TYPE_EXTENSION_AND,LITERAL_INSTANCEOF"
                       name="tokens"
                       type="java.lang.String[]"
