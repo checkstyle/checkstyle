@@ -118,20 +118,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class ImportControlCheck extends AbstractCheck implements ExternalResourceHolder {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_MISSING_FILE = "import.control.missing.file";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_UNKNOWN_PKG = "import.control.unknown.pkg";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_DISALLOWED = "import.control.disallowed";
 
@@ -164,8 +161,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     private String fileName;
 
     /**
-     * The package controller for the current file. Used for performance
-     * optimisation.
+     * The package controller for the current file. Used for performance optimisation.
      */
     private AbstractImportControl currentImportControl;
 

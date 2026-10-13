@@ -163,8 +163,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * in targeted identifiers (abbreviations in the classes, interfaces,
      * variables and methods names, ... ).
      *
-     * @param allowedAbbreviationLength amount of allowed capital letters in
-     *        abbreviation.
+     * @param allowedAbbreviationLength amount of allowed capital letters in abbreviation.
      * @since 5.8
      */
     public void setAllowedAbbreviationLength(int allowedAbbreviationLength) {
@@ -174,8 +173,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     /**
      * Setter to specify abbreviations that must be skipped for checking.
      *
-     * @param allowedAbbreviations abbreviations that must be
-     *        skipped from checking.
+     * @param allowedAbbreviations abbreviations that must be skipped from checking.
      * @since 5.8
      */
     public void setAllowedAbbreviations(String... allowedAbbreviations) {
@@ -242,8 +240,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * Checks if it is an ignore situation.
      *
      * @param ast input DetailAST node.
-     * @return true if it is an ignore situation found for given input DetailAST
-     *         node.
+     * @return true if it is an ignore situation found for given input DetailAST node.
      */
     private boolean isIgnoreSituation(DetailAST ast) {
         final DetailAST modifiers = ast.getFirstChild();
@@ -290,8 +287,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * Check that variable definition in interface or @interface definition.
      *
      * @param variableDefAst variable definition.
-     * @return true if variable definition(variableDefAst) is in interface
-     *     or @interface definition.
+     * @return true if variable definition(variableDefAst) is in interface or @interface definition.
      */
     private static boolean isInterfaceDeclaration(DetailAST variableDefAst) {
         boolean result = false;
@@ -312,8 +308,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * Checks that the method has "@Override" annotation.
      *
      * @param methodModifiersAST
-     *        A DetailAST nod is related to the given method modifiers
-     *        (MODIFIERS type).
+     *        A DetailAST nod is related to the given method modifiers (MODIFIERS type).
      * @return true if method has "@Override" annotation.
      */
     private static boolean hasOverrideAnnotation(DetailAST methodModifiersAST) {
@@ -334,8 +329,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      *
      * @param str
      *        the given String.
-     * @return the disallowed abbreviation contained in given String as a
-     *         separate String.
+     * @return the disallowed abbreviation contained in given String as a separate String.
      */
     private String getDisallowedAbbreviation(String str) {
         int beginIndex = 0;
@@ -435,8 +429,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     }
 
     /**
-     * Gets all the children which are one level below on the current DetailAST
-     * parent node.
+     * Gets all the children which are one level below on the current DetailAST parent node.
      *
      * @param node
      *        Current parent node.

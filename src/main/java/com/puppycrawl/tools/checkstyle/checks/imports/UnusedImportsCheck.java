@@ -97,8 +97,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class UnusedImportsCheck extends AbstractJavadocCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "import.unused";
 
@@ -457,8 +456,7 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
     /**
      * Strips a trailing parameter name (e.g. {@code "outputTarget"} in
      * {@code "Result outputTarget"}) from a type token when the
-     * Javadoc lexer merges the type and parameter name into a
-     * single PARAMETER_TYPE token.
+     * Javadoc lexer merges the type and parameter name into a single PARAMETER_TYPE token.
      *
      * <p>Only strips if the substring after the last space is a valid
      * Java identifier, which is true for a parameter name but false

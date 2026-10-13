@@ -47,8 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.NullUtil;
  * <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html">
  * Documentation Comments style guide</a>, links call attention to
  * themselves by their color and underline in HTML, and by their length
- * in source code doc comments. Linking the same name multiple times
- * is redundant.
+ * in source code doc comments. Linking the same name multiple times is redundant.
  * </p>
  *
  * <p>
@@ -65,8 +64,7 @@ import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 public class JavadocLinkFirstOccurrenceCheck extends AbstractJavadocCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "javadoc.link.first.occurrence";
 

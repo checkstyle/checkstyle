@@ -33,10 +33,9 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *
  * <p>
  * Rationale: description and other related documentation for a package can be written up
- * in the package-info.java file and it gets used in the production of the Javadocs.
- * See <a
- * href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#packagecomment"
- * >link</a> for more info.
+ * in the package-info.java file and it gets used in the production of the Javadocs. See
+ * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#packagecomment">
+ * link</a> for more info.
  * </p>
  *
  * <p>
@@ -50,8 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 public class MissingJavadocPackageCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_PKG_JAVADOC_MISSING = "package.javadoc.missing";
 

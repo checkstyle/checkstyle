@@ -88,8 +88,7 @@ public final class ClassDataAbstractionCouplingCheck
     extends AbstractClassCouplingCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "classDataAbstractionCoupling";
 

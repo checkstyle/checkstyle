@@ -96,8 +96,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public final class TranslationCheck extends AbstractFileSetCheck {
 
     /**
-     * A key is pointing to the warning message text for missing key
-     * in "messages.properties" file.
+     * A key is pointing to the warning message text for missing key in "messages.properties" file.
      */
     public static final String MSG_KEY = "translation.missingKey";
 

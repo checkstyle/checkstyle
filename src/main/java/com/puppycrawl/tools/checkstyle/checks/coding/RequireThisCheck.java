@@ -67,8 +67,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Limitations: Nothing is currently done about static variables
  * or catch-blocks.  Static methods invoked on a class name seem to be OK;
  * both the class name and the method name have a DOT parent.
- * Non-static methods invoked on either this or a variable name seem to be
- * OK, likewise.
+ * Non-static methods invoked on either this or a variable name seem to be OK, likewise.
  * </p>
  *
  * @since 3.4
@@ -78,13 +77,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class RequireThisCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_METHOD = "require.this.method";
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_VARIABLE = "require.this.variable";
 
@@ -1548,8 +1545,7 @@ public class RequireThisCheck extends AbstractCheck {
          * Checks if a given name is a known instance member of the class.
          *
          * @param ident the IDENT ast of the name to check.
-         * @return true is the given name is a name of a known
-         *         instance member of the class.
+         * @return true is the given name is a name of a known instance member of the class.
          */
         /* package */ boolean hasInstanceMember(final DetailAST ident) {
             return containsFieldOrVariableDef(instanceMembers, ident);
@@ -1559,8 +1555,7 @@ public class RequireThisCheck extends AbstractCheck {
          * Checks if a given name is a known instance method of the class.
          *
          * @param ident the IDENT ast of the method call to check.
-         * @return true if the given ast is correspondent to a known
-         *         instance method of the class.
+         * @return true if the given ast is correspondent to a known instance method of the class.
          */
         /* package */ boolean hasInstanceMethod(final DetailAST ident) {
             return containsMethodDef(instanceMethods, ident);
@@ -1570,8 +1565,7 @@ public class RequireThisCheck extends AbstractCheck {
          * Checks if a given name is a known static method of the class.
          *
          * @param ident the IDENT ast of the method call to check.
-         * @return true is the given ast is correspondent to a known
-         *         instance method of the class.
+         * @return true is the given ast is correspondent to a known instance method of the class.
          */
         /* package */ boolean hasStaticMethod(final DetailAST ident) {
             return containsMethodDef(staticMethods, ident);
@@ -1688,8 +1682,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         /**
-         * Whether the set contains a method definition with the
-         *     same name and number of parameters.
+         * Whether the set contains a method definition with the same name and number of parameters.
          *
          * @param set the set of definitions.
          * @param ident the specified method call IDENT ast.

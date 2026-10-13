@@ -71,8 +71,7 @@ public final class JavadocUtil {
      *
      * @param commentContent
      *        content of block comment
-     * @return true if commentContent starts with '*' javadoc comment
-     *         identifier.
+     * @return true if commentContent starts with '*' javadoc comment identifier.
      */
     public static boolean isJavadocComment(String commentContent) {
         boolean result = false;
@@ -90,8 +89,7 @@ public final class JavadocUtil {
      *
      * @param blockCommentBegin
      *        block comment AST
-     * @return true if block comment content starts with '*' javadoc comment
-     *         identifier.
+     * @return true if block comment content starts with '*' javadoc comment identifier.
      */
     public static boolean isJavadocComment(DetailAST blockCommentBegin) {
         final String commentContent = getBlockCommentContent(blockCommentBegin);

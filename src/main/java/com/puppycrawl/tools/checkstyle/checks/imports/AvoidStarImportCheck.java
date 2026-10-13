@@ -36,8 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Rationale: Importing all classes from a package or static
  * members from a class leads to tight coupling between packages
- * or classes and might lead to problems when a new version of a
- * library introduces name clashes.
+ * or classes and might lead to problems when a new version of a library introduces name clashes.
  * </p>
  *
  * <p>
@@ -52,14 +51,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class AvoidStarImportCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "import.avoidStar";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_COUNT = "import.avoidStarCount";
 
@@ -129,8 +126,7 @@ public class AvoidStarImportCheck extends AbstractCheck {
      * Setter to specify packages where starred class imports are
      * allowed and classes where starred static member imports are allowed.
      *
-     * @param excludesParam package names/fully-qualifies class names
-     *     where star imports are ok
+     * @param excludesParam package names/fully-qualifies class names where star imports are ok
      * @since 3.2
      */
     public void setExcludes(String... excludesParam) {

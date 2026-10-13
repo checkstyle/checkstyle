@@ -27,8 +27,7 @@ import org.antlr.v4.runtime.Token;
 /**
  * Extending BailErrorStrategy allows us to report errors while
  * cancelling the parsing operation. If input is not syntactically
- * correct, we do not need to use antlr's recovery strategy, which
- * can add significant overhead.
+ * correct, we do not need to use antlr's recovery strategy, which can add significant overhead.
  *
  */
 public class CheckstyleParserErrorStrategy extends BailErrorStrategy {

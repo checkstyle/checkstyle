@@ -34,8 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * constructor definition, method call, constructor invocation, record, or record pattern;
  * and the left parenthesis of the parameter list.
  * That is, if the identifier and left parenthesis are on the same line,
- * checks whether a space is required immediately after the identifier or
- * such a space is forbidden.
+ * checks whether a space is required immediately after the identifier or such a space is forbidden.
  * If they are not on the same line, reports a violation, unless configured to
  * allow line breaks. To allow linebreaks after the identifier, set property
  * {@code allowLineBreaks} to {@code true}.
@@ -48,20 +47,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class MethodParamPadCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_LINE_PREVIOUS = "line.previous";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WS_PRECEDED = "ws.preceded";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
 
@@ -140,8 +136,7 @@ public class MethodParamPadCheck extends AbstractCheck {
     /**
      * Setter to allow a line break between the identifier and left parenthesis.
      *
-     * @param allowLineBreaks whether whitespace should be
-     *     flagged at line breaks.
+     * @param allowLineBreaks whether whitespace should be flagged at line breaks.
      * @since 3.4
      */
     public void setAllowLineBreaks(boolean allowLineBreaks) {

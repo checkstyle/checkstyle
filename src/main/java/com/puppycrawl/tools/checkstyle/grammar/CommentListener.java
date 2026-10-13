@@ -20,8 +20,7 @@
 package com.puppycrawl.tools.checkstyle.grammar;
 
 /**
- * This interface is used to be notified by parser about comments
- * in the parsed code.
+ * This interface is used to be notified by parser about comments in the parsed code.
  *
  * @noinspection ClassOnlyUsedInOnePackage
  * @noinspectionreason ClassOnlyUsedInOnePackage - we restrict all parsing to a single package
@@ -44,8 +43,7 @@ public interface CommentListener {
     /**
      * Report the location of a block comment that can span multiple lines.
      * The type of comment is identified by a String whose value depends on
-     * the language being parsed, but would typically be the delimiter for the
-     * comment.
+     * the language being parsed, but would typically be the delimiter for the comment.
      *
      * @param type an identifier for what type of comment it is.
      * @param startLineNo the starting line number

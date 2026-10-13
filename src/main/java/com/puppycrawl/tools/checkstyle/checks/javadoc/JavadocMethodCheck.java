@@ -112,44 +112,37 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 public class JavadocMethodCheck extends AbstractJavadocCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_CLASS_INFO = "javadoc.classInfo";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_UNUSED_TAG_GENERAL = "javadoc.unusedTagGeneral";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_INVALID_INHERIT_DOC = "javadoc.invalidInheritDoc";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_UNUSED_TAG = "javadoc.unusedTag";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_EXPECTED_TAG = "javadoc.expectedTag";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_RETURN_EXPECTED = "javadoc.return.expected";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_DUPLICATE_TAG = "javadoc.duplicateTag";
 
@@ -744,8 +737,7 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
      *
      * @param tags the tags to check
      * @param parent the node which takes the parameters
-     * @param reportExpectedTags whether we should report if do not find
-     *            expected tag
+     * @param reportExpectedTags whether we should report if do not find expected tag
      */
     private void checkParamTags(final List<JavadocTag> tags,
             final DetailAST parent, boolean reportExpectedTags) {
@@ -866,13 +858,11 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Checks for only one return tag. All return tags will be removed from the
-     * supplied list.
+     * Checks for only one return tag. All return tags will be removed from the supplied list.
      *
      * @param tags the tags to check
      * @param lineNo the line number of the expected tag
-     * @param reportExpectedTags whether we should report if do not find
-     *            expected tag
+     * @param reportExpectedTags whether we should report if do not find expected tag
      */
     private void checkReturnTag(List<JavadocTag> tags, int lineNo,
         boolean reportExpectedTags) {
@@ -904,8 +894,7 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
      *
      * @param tags the tags to check
      * @param throwsList the throws to check
-     * @param reportExpectedTags whether we should report if do not find
-     *            expected tag
+     * @param reportExpectedTags whether we should report if do not find expected tag
      */
     private void checkThrowsTags(List<JavadocTag> tags,
             List<ExceptionInfo> throwsList, boolean reportExpectedTags) {

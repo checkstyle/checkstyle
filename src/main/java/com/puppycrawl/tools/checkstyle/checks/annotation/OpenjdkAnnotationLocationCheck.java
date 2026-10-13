@@ -52,14 +52,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class OpenjdkAnnotationLocationCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_ANNOTATION_ALONE_OR_SAME = "annotation.alone.or.same";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_ANNOTATION_ON_TARGET_LINE = "annotation.on.target.line";
 

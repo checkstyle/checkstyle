@@ -70,8 +70,7 @@ public final class CodePointUtil {
     }
 
     /**
-     * Tests if the unicode code points array
-     * ends with the specified suffix.
+     * Tests if the unicode code points array ends with the specified suffix.
      *
      * @param codePoints the array of unicode code points to check
      * @param suffix the suffix

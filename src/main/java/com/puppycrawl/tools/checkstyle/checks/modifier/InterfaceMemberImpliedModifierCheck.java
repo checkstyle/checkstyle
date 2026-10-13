@@ -123,44 +123,37 @@ public class InterfaceMemberImpliedModifierCheck extends AbstractCheck {
     private static final String FINAL_KEYWORD = "final";
 
     /**
-     * Control whether to enforce that {@code public} is explicitly coded
-     * on interface fields.
+     * Control whether to enforce that {@code public} is explicitly coded on interface fields.
      */
     private boolean violateImpliedPublicField = true;
 
     /**
-     * Control whether to enforce that {@code static} is explicitly coded
-     * on interface fields.
+     * Control whether to enforce that {@code static} is explicitly coded on interface fields.
      */
     private boolean violateImpliedStaticField = true;
 
     /**
-     * Control whether to enforce that {@code final} is explicitly coded
-     * on interface fields.
+     * Control whether to enforce that {@code final} is explicitly coded on interface fields.
      */
     private boolean violateImpliedFinalField = true;
 
     /**
-     * Control whether to enforce that {@code public} is explicitly coded
-     * on interface methods.
+     * Control whether to enforce that {@code public} is explicitly coded on interface methods.
      */
     private boolean violateImpliedPublicMethod = true;
 
     /**
-     * Control whether to enforce that {@code abstract} is explicitly coded
-     * on interface methods.
+     * Control whether to enforce that {@code abstract} is explicitly coded on interface methods.
      */
     private boolean violateImpliedAbstractMethod = true;
 
     /**
-     * Control whether to enforce that {@code public} is explicitly coded
-     * on interface nested types.
+     * Control whether to enforce that {@code public} is explicitly coded on interface nested types.
      */
     private boolean violateImpliedPublicNested = true;
 
     /**
-     * Control whether to enforce that {@code static} is explicitly coded
-     * on interface nested types.
+     * Control whether to enforce that {@code static} is explicitly coded on interface nested types.
      */
     private boolean violateImpliedStaticNested = true;
 

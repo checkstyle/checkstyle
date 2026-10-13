@@ -50,32 +50,27 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class GoogleRightCurlyCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_LINE_ALONE = "line.alone";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_LINE_BREAK_AFTER = "line.break.after";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_LINE_BREAK_BEFORE = "line.break.before";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_CONCISE_BLOCK = "empty.block.concise";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_LINE_SAME = "line.same";
 
@@ -280,8 +275,7 @@ public class GoogleRightCurlyCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether the current block is part
-     * of a multi-block statement ({@code if/else},
+     * Checks whether the current block is part of a multi-block statement ({@code if/else},
      * {@code try/catch/finally}, or {@code do/while}).
      *
      * @param currentBlock the current block

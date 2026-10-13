@@ -88,14 +88,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
 
@@ -380,14 +378,12 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     }
 
     /**
-     * Check if it should be checked if previous token is separated from current by
-     * whitespace.
+     * Check if it should be checked if previous token is separated from current by whitespace.
      * This function is needed to recognise double brace initialization as valid,
      * unfortunately it's not possible to implement this functionality
      * in isNotRelevantSituation method, because in this method when we return
      * true(is not relevant) ast is later doesn't check at all. For example:
-     * new Properties() {{setProperty("double curly braces", "are not a style violation");
-     * }};
+     * new Properties() {{setProperty("double curly braces", "are not a style violation"); }};
      * For second left curly brace in first line when we would return true from
      * isNotRelevantSituation it wouldn't later check that the next token(setProperty)
      * is not separated from previous token.
@@ -462,8 +458,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * @param parentType the token type of {@code ast}'s parent.
      * @param match the parent token type we're looking to match.
      * @return {@code true} if {@code ast} makes up part of an
-     *         empty block contained under a {@code match} token type
-     *         node.
+     *         empty block contained under a {@code match} token type node.
      */
     private static boolean isEmptyBlock(DetailAST ast, int parentType, int match) {
         final boolean result;
@@ -483,13 +478,11 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     }
 
     /**
-     * Test if the given {@code DetailAST} is part of an allowed empty
-     * method block.
+     * Test if the given {@code DetailAST} is part of an allowed empty method block.
      *
      * @param ast the {@code DetailAST} to test.
      * @param parentType the token type of {@code ast}'s parent.
-     * @return {@code true} if {@code ast} makes up part of an
-     *         allowed empty method block.
+     * @return {@code true} if {@code ast} makes up part of an allowed empty method block.
      */
     private boolean isEmptyMethodBlock(DetailAST ast, int parentType) {
         return allowEmptyMethods
@@ -501,8 +494,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * constructor (ctor) block checked from RCURLY.
      *
      * @param ast the {@code DetailAST} to test.
-     * @return {@code true} if {@code ast} makes up part of an
-     *         allowed empty constructor block.
+     * @return {@code true} if {@code ast} makes up part of an allowed empty constructor block.
      */
     private boolean isEmptyCtorBlockCheckedFromRcurly(DetailAST ast) {
         final DetailAST parent = ast.getParent();
@@ -519,8 +511,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * empty constructor checked from SLIST token.
      *
      * @param ast the {@code DetailAST} to test.
-     * @return {@code true} if {@code ast} makes up part of an
-     *          empty constructor block.
+     * @return {@code true} if {@code ast} makes up part of an empty constructor block.
      */
     private boolean isEmptyCtorBlockCheckedFromSlist(DetailAST ast) {
         return allowEmptyConstructors
@@ -534,8 +525,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      *
      * @param ast ast the {@code DetailAST} to test.
      * @param parentType the token type of {@code ast}'s parent.
-     * @return {@code true} if {@code ast} makes up part of an
-     *         allowed empty loop block.
+     * @return {@code true} if {@code ast} makes up part of an allowed empty loop block.
      */
     private boolean isEmptyLoop(DetailAST ast, int parentType) {
         return allowEmptyLoops
@@ -545,26 +535,22 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     }
 
     /**
-     * Test if the given {@code DetailAST} is part of an allowed empty
-     * lambda block.
+     * Test if the given {@code DetailAST} is part of an allowed empty lambda block.
      *
      * @param ast the {@code DetailAST} to test.
      * @param parentType the token type of {@code ast}'s parent.
-     * @return {@code true} if {@code ast} makes up part of an
-     *         allowed empty lambda block.
+     * @return {@code true} if {@code ast} makes up part of an allowed empty lambda block.
      */
     private boolean isEmptyLambda(DetailAST ast, int parentType) {
         return allowEmptyLambdas && isEmptyBlock(ast, parentType, TokenTypes.LAMBDA);
     }
 
     /**
-     * Tests if the given {@code DetailAst} is part of an allowed empty
-     * catch block.
+     * Tests if the given {@code DetailAst} is part of an allowed empty catch block.
      *
      * @param ast the {@code DetailAst} to test.
      * @param parentType the token type of {@code ast}'s parent
-     * @return {@code true} if {@code ast} makes up part of an
-     *         allowed empty catch block.
+     * @return {@code true} if {@code ast} makes up part of an allowed empty catch block.
      */
     private boolean isEmptyCatch(DetailAST ast, int parentType) {
         return allowEmptyCatches && isEmptyBlock(ast, parentType, TokenTypes.LITERAL_CATCH);
@@ -611,8 +597,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      *
      * @param ast ast the {@code DetailAST} to test.
      * @return {@code true} if {@code ast} makes up part of an
-     *         empty block contained under a {@code match} token type
-     *         node.
+     *         empty block contained under a {@code match} token type node.
      */
     private static boolean isEmptyType(DetailAST ast) {
         final int type = ast.getType();

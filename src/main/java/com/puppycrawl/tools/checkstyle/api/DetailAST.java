@@ -89,8 +89,7 @@ public interface DetailAST {
     DetailAST getLastChild();
 
     /**
-     * Checks if this branch of the parse tree contains a token
-     * of the provided type.
+     * Checks if this branch of the parse tree contains a token of the provided type.
      *
      * @param type a TokenType
      * @return true if and only if this branch (including this node)

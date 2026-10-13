@@ -61,8 +61,7 @@
       </subsection>
       <subsection name="Notes" id="SuppressWarningsFilter_Notes">
         <p>
-          SuppressWarningsFilter can suppress Checks that have Treewalker or
-          Checker as parent module.
+          SuppressWarningsFilter can suppress Checks that have Treewalker or Checker as parent module.
         </p>
       </subsection>
       <subsection name="Examples" id="SuppressWarningsFilter_Examples">

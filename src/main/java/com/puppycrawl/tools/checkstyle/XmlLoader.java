@@ -33,8 +33,7 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * Contains the common implementation of a loader, for loading a configuration
- * from an XML file.
+ * Contains the common implementation of a loader, for loading a configuration from an XML file.
  *
  * <p>
  * The error handling policy can be described as being austere, dead set,

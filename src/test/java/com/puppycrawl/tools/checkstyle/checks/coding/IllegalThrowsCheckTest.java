@@ -89,8 +89,7 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Test to validate the IllegalThrowsCheck with <b>ignoreOverriddenMethods</b>
-     * property.
+     * Test to validate the IllegalThrowsCheck with <b>ignoreOverriddenMethods</b> property.
      */
     @Test
     public void testIgnoreOverriddenMethods() throws Exception {
@@ -102,8 +101,7 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Test to validate the IllegalThrowsCheck without <b>ignoreOverriddenMethods</b>
-     * property.
+     * Test to validate the IllegalThrowsCheck without <b>ignoreOverriddenMethods</b> property.
      */
     @Test
     public void testNotIgnoreOverriddenMethods() throws Exception {

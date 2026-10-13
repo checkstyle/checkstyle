@@ -75,14 +75,12 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 public class PreferCodeOrSnippetJavadocInlineTagCheck extends AbstractJavadocCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_SINGLE_LINE = "prefer.code.javadoc.singleline.tag";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_MULTI_LINE = "prefer.code.javadoc.multiline.tag";
 

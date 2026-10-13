@@ -21,8 +21,7 @@
  &lt;/li&gt;
  &lt;li&gt;
  adds a separation between module imports and other imports: ensures that the module
- import block is separated from type and static imports by, at least, one blank
- line or comment
+ import block is separated from type and static imports by, at least, one blank line or comment
  &lt;/li&gt;
  &lt;/ul&gt;
 

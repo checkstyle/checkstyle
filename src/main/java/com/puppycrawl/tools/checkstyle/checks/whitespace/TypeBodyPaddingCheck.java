@@ -208,8 +208,7 @@ public class TypeBodyPaddingCheck extends AbstractCheck {
 
     /**
      * Checks that a blank line exists after the opening brace of the type body.
-     * The line immediately following the LCURLY line must be blank (contain only
-     * whitespace).
+     * The line immediately following the LCURLY line must be blank (contain only whitespace).
      *
      * @param lcurly the LCURLY token.
      * @return true if there is a blank line after the opening brace.

@@ -105,15 +105,13 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Method returns line number the key is detected in the checked properties
-     * files first.
+     * Method returns line number the key is detected in the checked properties files first.
      *
      * @param fileText
      *            {@link FileText} object contains the lines to process
      * @param keyName
      *            key name to look for
-     * @return line number of first occurrence. If no key found in properties
-     *         file, 1 is returned
+     * @return line number of first occurrence. If no key found in properties file, 1 is returned
      */
     private static int getLineNumber(FileText fileText, String keyName) {
         final Pattern keyPattern = getKeyPattern(keyName);

@@ -49,8 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class ExpressionOverBlockLambdaCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "expression.over.block.lambda";
 
@@ -153,8 +152,7 @@ public class ExpressionOverBlockLambdaCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if the statement in a block lambda can be rewritten
-     * as an expression lambda.
+     * Checks if the statement in a block lambda can be rewritten as an expression lambda.
      *
      * @param statement the statement node
      * @return true if the statement can be converted to an expression lambda

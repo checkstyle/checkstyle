@@ -48,8 +48,7 @@ public class MainFrameModel {
         JAVA_WITH_COMMENTS("Java with comments"),
 
         /**
-         * Java tokens, comments and Javadoc comments nodes
-         * (which are parsed from block comments).
+         * Java tokens, comments and Javadoc comments nodes (which are parsed from block comments).
          */
         JAVA_WITH_JAVADOC_AND_COMMENTS("Java with comments and Javadocs");
 
@@ -179,8 +178,7 @@ public class MainFrameModel {
 
     /**
      * Get lines to position map.
-     * It returns unmodifiable collection to
-     * prevent additional overhead of copying
+     * It returns unmodifiable collection to prevent additional overhead of copying
      * and possible state modifications.
      *
      * @return lines to position map.

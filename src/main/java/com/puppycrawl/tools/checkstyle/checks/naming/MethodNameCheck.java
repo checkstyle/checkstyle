@@ -41,14 +41,12 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 public class MethodNameCheck extends AbstractAccessControlNameCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "method.name.equals.class.name";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
 

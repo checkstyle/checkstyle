@@ -63,8 +63,7 @@
 
         <p>
           All forms of <code>requires</code> (plain, <code>transitive</code>, <code>static</code>)
-          belong to a single block, and the order of directives inside a block is not
-          validated.
+          belong to a single block, and the order of directives inside a block is not validated.
         </p>
 
         <p>

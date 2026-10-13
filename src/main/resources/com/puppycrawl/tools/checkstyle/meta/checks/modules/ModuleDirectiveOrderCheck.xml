@@ -23,8 +23,7 @@
 
  &lt;p&gt;
  All forms of &lt;code&gt;requires&lt;/code&gt; (plain, &lt;code&gt;transitive&lt;/code&gt;, &lt;code&gt;static&lt;/code&gt;)
- belong to a single block, and the order of directives inside a block is not
- validated.
+ belong to a single block, and the order of directives inside a block is not validated.
  &lt;/p&gt;
 
  &lt;p&gt;

@@ -44,8 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 public class JavadocVariableCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_JAVADOC_MISSING = "javadoc.missing.named";
 
@@ -185,8 +184,7 @@ public class JavadocVariableCheck extends AbstractCheck {
 
     /**
      * A derivative of {@link CheckUtil#getAccessModifierFromModifiersToken(DetailAST)} that
-     * considers enum definitions' visibility when evaluating the accessibility of an enum
-     * constant.
+     * considers enum definitions' visibility when evaluating the accessibility of an enum constant.
      * <br>
      * <a href="https://github.com/checkstyle/checkstyle/pull/16787/files#r2073671898">Implemented
      * separately</a> to reduce scope of fix for

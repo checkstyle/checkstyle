@@ -349,8 +349,7 @@ public class XpathQueryGenerator {
      * the delimiter itself: for example select='"He said, ""Go!"""'.
      *
      * <p>Guava cannot as Guava encoding does not meet our requirements like
-     * double encoding for apos, removed slashes which are basic requirements
-     * for Saxon to decode.
+     * double encoding for apos, removed slashes which are basic requirements for Saxon to decode.
      *
      * @param value the value to escape.
      * @return the escaped value if necessary.

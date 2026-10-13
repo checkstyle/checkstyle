@@ -60,8 +60,7 @@ import org.junit.jupiter.api.Test;
  * commits after starter commit.</p>
  *
  * <p>Resolved commits are filtered according to author. If commit author
- * belong to list USERS_EXCLUDED_FROM_VALIDATION then this commit will
- * not be validated.</p>
+ * belong to list USERS_EXCLUDED_FROM_VALIDATION then this commit will not be validated.</p>
  *
  * <p>Filtered commit list is checked if their messages has proper structure.</p>
  *

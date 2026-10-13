@@ -69,8 +69,7 @@ import org.xml.sax.SAXException;
  *       {@code -code} example paragraphs are indexed.  Their titles use the
  *       pattern {@code "<CheckName>: Example1 [config]"} and
  *       {@code "<CheckName>: Example1 [code]"} so users can distinguish a
- *       configuration snippet from its matching Java code example in search
- *       results.</li>
+ *       configuration snippet from its matching Java code example in search results.</li>
  *
  *   <li><b>Full general-page indexing.</b> Each meaningful {@code <section>}
  *       in general documentation pages (e.g. {@code config-system-properties},
@@ -263,8 +262,7 @@ public final class SearchIndexGenerator {
     /**
      * Matches an example paragraph {@code id} attribute that has a suffix of
      * either {@code -config} or {@code -code}, capturing the base label
-     * (e.g. "Example1") in group 1 and the type ("config" or "code") in
-     * group 2.
+     * (e.g. "Example1") in group 1 and the type ("config" or "code") in group 2.
      *
      * <p>Example ids found in XDoc source:</p>
      * <ul>
@@ -404,8 +402,7 @@ public final class SearchIndexGenerator {
      * <p>Every directory found here must have a corresponding entry in
      * {@link #CHECKS_CATEGORY_DISPLAY_NAMES}; an unmapped directory likely
      * means a new check category was added without registering its display
-     * name, so this fails fast rather than guessing a label from the
-     * directory name.</p>
+     * name, so this fails fast rather than guessing a label from the directory name.</p>
      *
      * @param checksDir the checks root directory
      * @param xdocsDir  the xdocs root (used for URL building)
@@ -446,8 +443,7 @@ public final class SearchIndexGenerator {
      * property entries for every check.</p>
      *
      * <p>For each plain {@code .xml} file, the main check/filter entry,
-     * per-example entries (both config and code), and per-property entries
-     * are added.</p>
+     * per-example entries (both config and code), and per-property entries are added.</p>
      *
      * @param dir      directory to scan
      * @param xdocsDir xdocs root (used for URL building)
@@ -585,8 +581,7 @@ public final class SearchIndexGenerator {
      *
      * <p>Generic structural section names (see {@link #GENERIC_SECTION_NAMES})
      * are disambiguated as {@code "<page title>: <section name>"} to avoid
-     * collisions across pages (e.g. "Eclipse IDE: Debug" vs
-     * "IntelliJ IDE: Debug").</p>
+     * collisions across pages (e.g. "Eclipse IDE: Debug" vs "IntelliJ IDE: Debug").</p>
      *
      * @param xmlFile the XDoc source file to parse
      * @return list of entries, one per top-level section found
@@ -664,8 +659,7 @@ public final class SearchIndexGenerator {
      * @param doc      the parsed XDoc document
      * @param baseUrl  the page url without anchor
      * @param category category label
-     * @return list of per-example entries (both config and code); empty if
-     *         none found
+     * @return list of per-example entries (both config and code); empty if none found
      */
     private static List<SearchIndexEntry> extractExampleEntries(Document doc,
                                                                 String baseUrl,
@@ -854,8 +848,7 @@ public final class SearchIndexGenerator {
      * Adds an entry to the output list only if its URL has not been seen
      * before. This is a secondary guard that catches any duplicates that
      * slip through the primary filter (only processing plain {@code .xml}
-     * files), e.g. if a check has the same example paragraph id repeated
-     * across two sections.
+     * files), e.g. if a check has the same example paragraph id repeated across two sections.
      *
      * @param entry the entry to conditionally add
      */
@@ -888,8 +881,7 @@ public final class SearchIndexGenerator {
     }
 
     /**
-     * Parses the XML file into a Document with external entity resolution
-     * disabled for security.
+     * Parses the XML file into a Document with external entity resolution disabled for security.
      *
      * @param xmlFile the XDoc source file
      * @return the parsed Document
@@ -918,8 +910,7 @@ public final class SearchIndexGenerator {
      * be fixed rather than silently skipped or producing an empty entry.
      *
      * @param doc        the parsed document
-     * @param identifier file path or URL used to identify the source in the
-     *                   error message
+     * @param identifier file path or URL used to identify the source in the error message
      * @return the body element
      * @throws IllegalStateException if {@code doc} has no {@code <body>} element
      */
@@ -1103,8 +1094,7 @@ public final class SearchIndexGenerator {
     }
 
     /**
-     * Truncates text to the given max length, appending an ellipsis if
-     * truncation occurred.
+     * Truncates text to the given max length, appending an ellipsis if truncation occurred.
      *
      * @param text      the text to truncate
      * @param maxLength maximum length before truncation
@@ -1276,8 +1266,7 @@ public final class SearchIndexGenerator {
      * Capitalises the first character of a string.
      *
      * @param input the string to capitalise
-     * @return string with first character uppercased, or input unchanged if
-     *         empty
+     * @return string with first character uppercased, or input unchanged if empty
      */
     private static String capitalise(String input) {
         String result = input;

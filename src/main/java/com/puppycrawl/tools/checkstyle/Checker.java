@@ -112,8 +112,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
     /**
      * The severity level of any violations found by submodules.
-     * The value of this property is passed to submodules via
-     * contextualize().
+     * The value of this property is passed to submodules via contextualize().
      *
      * <p>Note: Since the Checker is merely a container for modules
      * it does not make sense to implement logging functionality
@@ -485,8 +484,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     }
 
     /**
-     * Adds a FileSetCheck to the list of FileSetChecks
-     * that is executed in process().
+     * Adds a FileSetCheck to the list of FileSetChecks that is executed in process().
      *
      * @param fileSetCheck the additional FileSetCheck
      */
@@ -519,8 +517,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     }
 
     /**
-     * Sets the file extensions that identify the files that pass the
-     * filter of this FileSetCheck.
+     * Sets the file extensions that identify the files that pass the filter of this FileSetCheck.
      *
      * @param extensions the set of file extensions. A missing
      *     initial '.' character of an extension is automatically added.

@@ -56,8 +56,7 @@ public final class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionM
 
     /**
      * Returns the list selection model. ListToTreeSelectionModelWrapper
-     * listens for changes to this model and updates the selected paths
-     * accordingly.
+     * listens for changes to this model and updates the selected paths accordingly.
      *
      * @return the list selection model
      */
@@ -90,8 +89,7 @@ public final class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionM
 
     /**
      * If {@code updatingListSelectionModel} is false, this will
-     * reset the selected paths from the selected rows in the list
-     * selection model.
+     * reset the selected paths from the selected rows in the list selection model.
      */
     private void updateSelectedPathsFromSelectedRows() {
         if (!updatingListSelectionModel) {

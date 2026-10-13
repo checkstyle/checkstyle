@@ -40,8 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * Per the documentation comments style guide, errors generally should not be
  * documented because they are unpredictable. This check reports documented
  * throwable names whose simple name ends with {@code Error}, unless the same
- * Error type is explicitly thrown with {@code throw new} in the documented
- * method or constructor.
+ * Error type is explicitly thrown with {@code throw new} in the documented method or constructor.
  * </p>
  *
  * @since 14.1.0
@@ -50,8 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 public class JavadocNoErrorInThrowsTagCheck extends AbstractJavadocCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "javadoc.no.error.in.throws.tag";
 

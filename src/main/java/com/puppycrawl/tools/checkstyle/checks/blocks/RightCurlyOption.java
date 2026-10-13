@@ -64,8 +64,7 @@ public enum RightCurlyOption {
      * Represents the policy that the brace should follow
      * {@link RightCurlyOption#ALONE_OR_SINGLELINE} policy
      * but the brace should be on the same line as the next part of a multi-block statement
-     * (one that directly contains
-     * multiple blocks: if/else-if/else or try/catch/finally).
+     * (one that directly contains multiple blocks: if/else-if/else or try/catch/finally).
      * If no next part of a multi-block statement present, brace must be alone on line.
      * It also allows single-line format of multi-block statements.
      *

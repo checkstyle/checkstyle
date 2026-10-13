@@ -42,8 +42,7 @@ final class CsvFilterElement implements IntFilterElement {
      * Note: integers must be non-negative.
      *
      * @param pattern the CSV string.
-     * @throws NumberFormatException if a component substring does not
-     *     contain a parsable integer.
+     * @throws NumberFormatException if a component substring does not contain a parsable integer.
      */
     /* package */ CsvFilterElement(String pattern) {
         for (String token : pattern.split(",", -1)) {

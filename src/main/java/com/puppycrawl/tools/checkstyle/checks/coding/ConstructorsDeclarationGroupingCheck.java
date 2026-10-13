@@ -40,8 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Rationale: Grouping constructors together in a class improves code readability
  * and maintainability. It allows developers to easily understand
- * the different ways an object can be instantiated
- * and the tasks performed by each constructor.
+ * the different ways an object can be instantiated and the tasks performed by each constructor.
  * </p>
  *
  * @since 10.17.0
@@ -51,14 +50,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "constructors.declaration.grouping";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_ORDER = "constructors.declaration.order";
 

@@ -175,8 +175,7 @@ public final class DefaultConfiguration implements Configuration {
     }
 
     /**
-     * Returns an unmodifiable map instance containing the custom messages
-     * for this configuration.
+     * Returns an unmodifiable map instance containing the custom messages for this configuration.
      *
      * @return unmodifiable map containing custom messages
      */

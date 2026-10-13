@@ -415,8 +415,7 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Handles a Javadoc inline tag node. The tag is measured as a whole and
-     * its content is skipped.
+     * Handles a Javadoc inline tag node. The tag is measured as a whole and its content is skipped.
      *
      * @param node the inline tag node
      */
@@ -439,8 +438,7 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Handles an HTML element. The content of {@code pre} and {@code code}
-     * elements is skipped.
+     * Handles an HTML element. The content of {@code pre} and {@code code} elements is skipped.
      *
      * @param element the HTML element node
      */

@@ -117,13 +117,11 @@
 
       <subsection name="Notes" id="VisibilityModifier_Notes">
         <p>
-          Top-level fields of compact source files
-          (<a href="https://openjdk.org/jeps/512">JEP 512</a>)
+          Top-level fields of compact source files (<a href="https://openjdk.org/jeps/512">JEP 512</a>)
           are skipped by design. Their access modifiers do not provide the encapsulation
           that this check enforces for ordinary classes.
           Public members are not flagged if the name matches the public
-          member regular expression (contains <code>"^serialVersionUID$"</code> by
-          default).
+          member regular expression (contains <code>"^serialVersionUID$"</code> by default).
         </p>
       </subsection>
 

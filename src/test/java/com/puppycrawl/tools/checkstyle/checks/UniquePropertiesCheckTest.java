@@ -81,8 +81,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Tests the {@link UniquePropertiesCheck#getLineNumber(FileText, String)}
-     * method return value.
+     * Tests the {@link UniquePropertiesCheck#getLineNumber(FileText, String)} method return value.
      *
      * @noinspection JavadocReference
      * @noinspectionreason JavadocReference - reference is required to specify method under test

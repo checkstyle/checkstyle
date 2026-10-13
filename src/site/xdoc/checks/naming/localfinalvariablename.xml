@@ -42,8 +42,7 @@
       <subsection name="Description" id="LocalFinalVariableName_Description">
         <div>
           Checks that local final variable names conform to a specified pattern.
-          A catch parameter and resources in try statements
-          are considered to be a local, final variables.
+          A catch parameter and resources in try statements are considered to be a local, final variables.
         </div>
 
         <p>

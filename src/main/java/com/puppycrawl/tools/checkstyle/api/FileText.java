@@ -138,8 +138,7 @@ public final class FileText {
      * Creates a new file text representation.
      *
      * <p>The file will be read using the specified encoding, replacing
-     * malformed input and unmappable characters with the default
-     * replacement character.
+     * malformed input and unmappable characters with the default replacement character.
      *
      * @param file the name of the file
      * @param charsetName the encoding to use when reading the file

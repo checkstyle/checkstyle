@@ -29,8 +29,7 @@ public interface Filter {
      * Determines whether or not a filtered AuditEvent is accepted.
      * An accepted event is kept in the final report as a violation; a rejected
      * event is filtered out. In other words, returning {@code true} makes the
-     * violation appear in the report, while returning {@code false} suppresses
-     * it.
+     * violation appear in the report, while returning {@code false} suppresses it.
      *
      * @param event the AuditEvent to filter.
      * @return true if the event is accepted and its violation should appear in

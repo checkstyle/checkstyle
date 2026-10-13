@@ -31,8 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * Represents a violation that can be localised. The translations come from
- * message.properties files. The underlying implementation uses
- * java.text.MessageFormat.
+ * message.properties files. The underlying implementation uses java.text.MessageFormat.
  *
  * @noinspection ClassWithTooManyConstructors
  * @noinspectionreason ClassWithTooManyConstructors - immutable nature of class requires a
@@ -75,8 +74,7 @@ public final class Violation implements Comparable<Violation> {
     private final String customMessage;
 
     /**
-     * Creates a new {@code Violation} instance. The column number
-     * defaults to 0.
+     * Creates a new {@code Violation} instance. The column number defaults to 0.
      *
      * @param lineNo line number associated with the violation
      * @param bundle name of a resource bundle that contains audit event violations
@@ -460,8 +458,7 @@ public final class Violation implements Comparable<Violation> {
     }
 
     /**
-     * Compares two values that may be {@code null}, ordering {@code null}
-     * before any other value.
+     * Compares two values that may be {@code null}, ordering {@code null} before any other value.
      *
      * @param first the first value
      * @param second the second value

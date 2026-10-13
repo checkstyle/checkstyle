@@ -285,8 +285,7 @@ public final class CheckUtil {
     }
 
     /**
-     * Gets the check message 'as is' from appropriate 'messages.properties'
-     * file.
+     * Gets the check message 'as is' from appropriate 'messages.properties' file.
      *
      * @param module The package the message is located in.
      * @param locale the locale to get the message for.
