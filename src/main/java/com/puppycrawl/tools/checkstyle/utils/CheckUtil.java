@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import java.math.BigInteger;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -150,24 +151,29 @@ public final class CheckUtil {
         if (txt.endsWith("L") || txt.endsWith("l")) {
             txt = txt.substring(0, txt.length() - 1);
         }
-        final double result;
+        double result;
 
         final boolean negative = txt.charAt(0) == '-';
-        if (type == TokenTypes.NUM_INT) {
-            if (negative) {
-                result = Integer.parseInt(txt, radix);
+        try {
+            if (type == TokenTypes.NUM_INT) {
+                if (negative) {
+                    result = Integer.parseInt(txt, radix);
+                }
+                else {
+                    result = Integer.parseUnsignedInt(txt, radix);
+                }
             }
-            else {
-                result = Integer.parseUnsignedInt(txt, radix);
-            }
-        }
-        else {
-            if (negative) {
+            else if (negative) {
                 result = Long.parseLong(txt, radix);
             }
             else {
                 result = Long.parseUnsignedLong(txt, radix);
             }
+        }
+        catch (NumberFormatException ignored) {
+            // literal exceeds the int/long range; keep its magnitude so the audit
+            // continues instead of aborting on a value out of primitive range
+            result = new BigInteger(txt, radix).doubleValue();
         }
 
         return result;
