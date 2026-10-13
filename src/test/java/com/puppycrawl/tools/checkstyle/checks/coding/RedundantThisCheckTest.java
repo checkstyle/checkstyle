@@ -103,9 +103,10 @@ public class RedundantThisCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNestedClass() throws Exception {
         final String[] expected = {
-            "19:62: " + getCheckMessage(MSG_KEY_FIELD, "x"),
-            "22:62: " + getCheckMessage(MSG_KEY_FIELD, "name"),
-            "32:13: " + getCheckMessage(MSG_KEY_FIELD, "x"),
+            "17:21: " + getCheckMessage(MSG_KEY_FIELD, "x"),
+            "28:62: " + getCheckMessage(MSG_KEY_FIELD, "x"),
+            "31:62: " + getCheckMessage(MSG_KEY_FIELD, "name"),
+            "41:13: " + getCheckMessage(MSG_KEY_FIELD, "x"),
         };
 
         verifyWithInlineConfigParser(
