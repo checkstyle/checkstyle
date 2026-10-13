@@ -498,8 +498,30 @@ public class FinalLocalVariableCheckTest extends AbstractModuleTestSupport {
             "31:9: " + getCheckMessage(MSG_KEY, "local"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFinalLocalVariableCompactSourceFile.java"),
+                getNonCompilablePath("compact/InputFinalLocalVariableCompactSourceFile.java"),
             expected);
+    }
+
+    @Test
+    public void testCompactSourceFileEnhancedForLoopVariable() throws Exception {
+        final String[] expected = {
+            "14:14: " + getCheckMessage(MSG_KEY, "value"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputFinalLocalVariableCompactEnhancedFor.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileUnnamedVariable() throws Exception {
+        final String[] expected = {
+            "12:9: " + getCheckMessage(MSG_KEY, "_"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputFinalLocalVariableCompactUnnamed.java"),
+                expected);
     }
 
 }
