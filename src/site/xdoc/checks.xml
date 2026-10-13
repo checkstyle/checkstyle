@@ -269,6 +269,18 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/misc/classheaderwrapopenjdk.html#ClassHeaderWrapOpenjdk">
+                ClassHeaderWrapOpenjdk
+              </a>
+            </td>
+            <td>
+              Checks that a wrapped class, interface, enum, or record header is wrapped according to
+              the <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-wrapping-class-declarations">
+              OpenJDK Java Style Guide</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/modifier/classmemberimpliedmodifier.html#ClassMemberImpliedModifier">
                 ClassMemberImpliedModifier
               </a>
