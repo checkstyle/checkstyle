@@ -84,6 +84,17 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
+    <message>incompatible argument for parameter key of Properties.getProperty.</message>
+    <lineContent>|| !CHECKSTYLE_VERSION.equals(details.getProperty(VERSION_KEY))) {</lineContent>
+    <details>
+      found   : @UnknownPropertyKey String
+      required: @PropertyKey String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
+    <specifier>argument</specifier>
     <message>incompatible argument for parameter key of Properties.setProperty.</message>
     <lineContent>.forEach(resource -&gt; details.setProperty(resource.location, resource.contentHashSum));</lineContent>
     <details>
@@ -107,7 +118,29 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter key of Properties.setProperty.</message>
+    <lineContent>details.setProperty(VERSION_KEY, CHECKSTYLE_VERSION);</lineContent>
+    <details>
+      found   : @UnknownPropertyKey String
+      required: @PropertyKey String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter key of Properties.setProperty.</message>
     <lineContent>details.setProperty(checkedFileName, Long.toString(timestamp));</lineContent>
+    <details>
+      found   : @UnknownPropertyKey String
+      required: @PropertyKey String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter key of ResourceBundle.getString.</message>
+    <lineContent>&quot;com.puppycrawl.tools.checkstyle.version&quot;, Locale.ROOT).getString(&quot;checkstyle.version&quot;);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
       required: @PropertyKey String
