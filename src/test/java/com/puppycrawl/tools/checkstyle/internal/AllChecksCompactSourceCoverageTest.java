@@ -119,7 +119,6 @@ public class AllChecksCompactSourceCoverageTest {
         "ExplicitInitializationCheck",
         "FallThroughCheck",
         "FinalClassCheck",
-        "FinalLocalVariableCheck",
         "FinalParametersCheck",
         "GenericWhitespaceCheck",
         "GoogleNonConstantFieldNameCheck",
