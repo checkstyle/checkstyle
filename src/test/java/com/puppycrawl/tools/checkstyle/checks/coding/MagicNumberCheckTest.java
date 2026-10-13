@@ -874,4 +874,15 @@ public class MagicNumberCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputMagicNumberCompactSourceFile.java"), expected);
     }
 
+    @Test
+    public void testMagicNumberOutOfRangeLiteral() throws Exception {
+        final String[] expected = {
+            "22:17: " + getCheckMessage(MSG_KEY, "99999999999"),
+            "23:17: " + getCheckMessage(MSG_KEY, "0x1ffffffff"),
+            "24:18: " + getCheckMessage(MSG_KEY, "18446744073709551616L"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMagicNumberOutOfRangeLiteral.java"), expected);
+    }
+
 }
