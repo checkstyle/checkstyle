@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck;
 
 public class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSupport {
@@ -39,14 +37,8 @@ public class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSuppo
 
     @Test
     public void testNoPublic() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathOuterTypeFilenameOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(OuterTypeFilenameCheck.class);
-
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(OuterTypeFilenameCheck.class,
+            "9:1: " + getCheckMessage(OuterTypeFilenameCheck.class,
                     OuterTypeFilenameCheck.MSG_KEY),
         };
 
@@ -56,20 +48,16 @@ public class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSuppo
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Class1']]/LITERAL_CLASS"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOuterTypeFilenameOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNested() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathOuterTypeFilenameTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(OuterTypeFilenameCheck.class);
-
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(OuterTypeFilenameCheck.class,
+            "9:1: " + getCheckMessage(OuterTypeFilenameCheck.class,
                     OuterTypeFilenameCheck.MSG_KEY),
         };
 
@@ -79,20 +67,16 @@ public class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSuppo
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]/LITERAL_CLASS"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOuterTypeFilenameTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInterface() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathOuterTypeFilenameThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(OuterTypeFilenameCheck.class);
-
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(OuterTypeFilenameCheck.class,
+            "9:1: " + getCheckMessage(OuterTypeFilenameCheck.class,
                     OuterTypeFilenameCheck.MSG_KEY),
         };
 
@@ -104,8 +88,10 @@ public class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSuppo
                     + "/LITERAL_INTERFACE"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOuterTypeFilenameThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
