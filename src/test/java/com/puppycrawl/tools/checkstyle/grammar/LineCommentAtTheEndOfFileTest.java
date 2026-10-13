@@ -25,8 +25,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * Checks that file can be parsed, when it ends on line-comment but without
- * new-line.
+ * Checks that file can be parsed, when it ends on line-comment but without new-line.
  *
  */
 public class LineCommentAtTheEndOfFileTest extends AbstractModuleTestSupport {

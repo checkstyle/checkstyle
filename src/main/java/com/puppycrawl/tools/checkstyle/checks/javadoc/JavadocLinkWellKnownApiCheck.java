@@ -64,14 +64,12 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 public class JavadocLinkWellKnownApiCheck extends AbstractJavadocCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WELL_KNOWN_API = "javadoc.wellKnownApi";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WELL_KNOWN_PACKAGE = "javadoc.wellKnownPackage";
 
@@ -111,8 +109,7 @@ public class JavadocLinkWellKnownApiCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Setter to specify package names whose fully qualified API references should not be
-     * linked.
+     * Setter to specify package names whose fully qualified API references should not be linked.
      *
      * @param values user's values.
      * @since 14.1.0

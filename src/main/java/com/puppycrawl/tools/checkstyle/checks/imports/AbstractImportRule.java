@@ -31,8 +31,7 @@ public abstract class AbstractImportRule {
     private final boolean localOnly;
 
     /**
-     * Indicates if the name is to be interpreted
-     * as a regular expression.
+     * Indicates if the name is to be interpreted as a regular expression.
      */
     private final boolean regExp;
 
@@ -41,8 +40,7 @@ public abstract class AbstractImportRule {
      *
      * @param allow whether to allow access.
      * @param localOnly whether the rule is to be applied locally only.
-     * @param regExp whether the name is to be interpreted as a regular
-     *        expression.
+     * @param regExp whether the name is to be interpreted as a regular expression.
      */
     protected AbstractImportRule(final boolean allow, final boolean localOnly,
         final boolean regExp) {

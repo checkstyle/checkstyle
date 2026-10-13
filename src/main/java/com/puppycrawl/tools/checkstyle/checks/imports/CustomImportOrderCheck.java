@@ -155,38 +155,32 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_LINE_SEPARATOR = "custom.import.order.line.separator";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_SEPARATED_IN_GROUP = "custom.import.order.separated.internally";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_LEX = "custom.import.order.lex";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_NONGROUP_IMPORT = "custom.import.order.nonGroup.import";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_NONGROUP_EXPECTED = "custom.import.order.nonGroup.expected";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_ORDER = "custom.import.order";
 
@@ -788,8 +782,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
     }
 
     /**
-     * Contains import attributes as line number, import full path, import
-     * group.
+     * Contains import attributes as line number, import full path, import group.
      *
      * @param importFullPath import full path
      * @param importGroup import group
@@ -827,8 +820,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
     }
 
     /**
-     * Contains matching attributes assisting in definition of "best matching"
-     * group for import.
+     * Contains matching attributes assisting in definition of "best matching" group for import.
      */
     private static final class RuleMatchForImport {
 

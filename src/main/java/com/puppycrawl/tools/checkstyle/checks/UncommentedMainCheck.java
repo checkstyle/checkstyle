@@ -49,8 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.NullUtil;
  * are skipped by design. The whole purpose of compact source files is to serve as
  * standalone single-file programs with a {@code main} method as the entry point.
  * Unlike regular classes where leftover {@code main} methods may be
- * debugging artifacts, compact sources inherently require a {@code main} method
- * to function.
+ * debugging artifacts, compact sources inherently require a {@code main} method to function.
  * </p>
  *
  * @since 3.2
@@ -59,8 +58,7 @@ import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 public class UncommentedMainCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "uncommented.main";
 

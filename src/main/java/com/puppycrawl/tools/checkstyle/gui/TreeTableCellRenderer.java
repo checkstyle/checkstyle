@@ -69,8 +69,7 @@ class TreeTableCellRenderer extends JTree implements TableCellRenderer {
     }
 
     /**
-     * UpdateUI is overridden to set the colors of the Tree's renderer
-     * to match that of the table.
+     * UpdateUI is overridden to set the colors of the Tree's renderer to match that of the table.
      */
     @Override
     public void updateUI() {
@@ -88,8 +87,7 @@ class TreeTableCellRenderer extends JTree implements TableCellRenderer {
     }
 
     /**
-     * Sets the row height of the tree, and forwards the row height to
-     * the table.
+     * Sets the row height of the tree, and forwards the row height to the table.
      */
     @Override
     public void setRowHeight(int newRowHeight) {
@@ -111,8 +109,7 @@ class TreeTableCellRenderer extends JTree implements TableCellRenderer {
     }
 
     /**
-     * Subclassed to translate the graphics such that the last visible
-     * row will be drawn at 0,0.
+     * Subclassed to translate the graphics such that the last visible row will be drawn at 0,0.
      */
     @Override
     public void paint(Graphics graph) {

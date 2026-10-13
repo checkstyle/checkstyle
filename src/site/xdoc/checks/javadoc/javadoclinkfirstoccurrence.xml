@@ -42,8 +42,7 @@
           <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html">
           Documentation Comments style guide</a>, links call attention to
           themselves by their color and underline in HTML, and by their length
-          in source code doc comments. Linking the same name multiple times
-          is redundant.
+          in source code doc comments. Linking the same name multiple times is redundant.
         </p>
 
         <p>

@@ -77,8 +77,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * <li>
  * If a class has references to mutable objects then those object
- * references must be replaced with copies in the clone method
- * after calling super.clone().
+ * references must be replaced with copies in the clone method after calling super.clone().
  * </li>
  * <li>
  * The clone method does not work correctly with final mutable object
@@ -100,8 +99,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * <p>Sometimes a copy constructor or static factory is not an acceptable
  * alternative to the clone method.  The example below highlights the
- * limitation of a copy constructor (or static factory). Assume
- * Square is a subclass for Shape.
+ * limitation of a copy constructor (or static factory). Assume Square is a subclass for Shape.
  * </p>
  * {@snippet :
  * Shape s1 = new Square();
@@ -143,8 +141,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class NoCloneCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "avoid.clone.method";
 

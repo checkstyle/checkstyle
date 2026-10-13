@@ -49,14 +49,12 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 public class WriteTagCheck extends AbstractJavadocCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_MISSING_TAG = "writetag.missingTag";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_TAG_FORMAT = "writetag.tagFormat";
 

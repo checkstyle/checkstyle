@@ -127,11 +127,9 @@ public final class PackageNamesLoader extends XmlLoader {
 
     /**
      * Returns the set of package names, compiled from all
-     * checkstyle_packages.xml files found on the given class loaders
-     * classpath.
+     * checkstyle_packages.xml files found on the given class loaders classpath.
      *
-     * @param classLoader the class loader for loading the
-     *          checkstyle_packages.xml files.
+     * @param classLoader the class loader for loading the checkstyle_packages.xml files.
      * @return the set of package names.
      * @throws CheckstyleException if an error occurs.
      */

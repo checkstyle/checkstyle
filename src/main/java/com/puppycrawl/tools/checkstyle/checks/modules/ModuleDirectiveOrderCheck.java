@@ -50,8 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <p>
  * All forms of {@code requires} (plain, {@code transitive}, {@code static})
- * belong to a single block, and the order of directives inside a block is not
- * validated.
+ * belong to a single block, and the order of directives inside a block is not validated.
  * </p>
  *
  * <p>
@@ -72,8 +71,7 @@ public class ModuleDirectiveOrderCheck extends AbstractCheck {
 
     /**
      * A key pointing to the warning message text in "messages.properties" file.
-     * Emitted when directives of one kind are interleaved with directives of
-     * another kind.
+     * Emitted when directives of one kind are interleaved with directives of another kind.
      */
     public static final String MSG_GROUPING = "module.directive.grouping";
 
@@ -104,8 +102,7 @@ public class ModuleDirectiveOrderCheck extends AbstractCheck {
     private static final Set<String> VALID_KINDS = Set.copyOf(DEFAULT_ORDER);
 
     /**
-     * Specify directive kinds in the order their blocks must appear inside
-     * the module declaration.
+     * Specify directive kinds in the order their blocks must appear inside the module declaration.
      */
     @PreserveOrder
     private List<String> order = DEFAULT_ORDER;
@@ -128,8 +125,7 @@ public class ModuleDirectiveOrderCheck extends AbstractCheck {
      * inside the module declaration.
      *
      * @param order the order of directive kinds.
-     * @throws IllegalArgumentException when an element of order is not a
-     *     directive kind.
+     * @throws IllegalArgumentException when an element of order is not a directive kind.
      * @since 14.1.0
      */
     public void setOrder(String... order) {
@@ -185,8 +181,7 @@ public class ModuleDirectiveOrderCheck extends AbstractCheck {
     }
 
     /**
-     * Validates the placement of a directive relative to the previous directive
-     * of the module.
+     * Validates the placement of a directive relative to the previous directive of the module.
      *
      * <p>
      * A directive of the same kind as the previous one continues the current

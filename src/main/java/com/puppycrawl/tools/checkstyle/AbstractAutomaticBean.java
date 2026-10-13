@@ -107,8 +107,7 @@ public abstract class AbstractAutomaticBean
     /**
      * Creates a BeanUtilsBean that is configured to use
      * type converters that throw a ConversionException
-     * instead of using the default value when something
-     * goes wrong.
+     * instead of using the default value when something goes wrong.
      *
      * @return a configured BeanUtilsBean
      */

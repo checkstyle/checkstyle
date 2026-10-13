@@ -81,8 +81,7 @@ public final class DetailAstImpl implements DetailAST {
 
     /**
      * All token types in this branch.
-     * Token 'x' (where x is an int) is in this branch
-     * if branchTokenTypes.get(x) is true.
+     * Token 'x' (where x is an int) is in this branch if branchTokenTypes.get(x) is true.
      */
     private BitSet branchTokenTypes;
 

@@ -13,8 +13,7 @@
  Per the documentation comments style guide, errors generally should not be
  documented because they are unpredictable. This check reports documented
  throwable names whose simple name ends with &lt;code&gt;Error&lt;/code&gt;, unless the same
- Error type is explicitly thrown with &lt;code&gt;throw new&lt;/code&gt; in the documented
- method or constructor.
+ Error type is explicitly thrown with &lt;code&gt;throw new&lt;/code&gt; in the documented method or constructor.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false"

@@ -63,8 +63,7 @@ public enum LineSeparatorOption {
      * Checks that bytes is equal to the byte representation of this line separator.
      *
      * @param bytes a bytes array to check
-     * @return if bytes is equal to the byte representation
-     *     of this line separator
+     * @return if bytes is equal to the byte representation of this line separator
      */
     public boolean matches(byte... bytes) {
         final boolean result;

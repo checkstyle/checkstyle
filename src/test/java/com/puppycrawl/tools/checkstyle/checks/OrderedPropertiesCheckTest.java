@@ -147,10 +147,8 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
 
     /**
      * This test validates the PIT mutation of getIndex().
-     * Here the for statement for
-     * (int index = startLineNo; index < fileText.size(); index++)
-     * will change to
-     * for (int index = startLineNo; true; index++)
+     * Here the for statement for (int index = startLineNo; index < fileText.size(); index++)
+     * will change to for (int index = startLineNo; true; index++)
      * By creating a FileText having no lines it makes sure that
      * fileText.size() returning zero size.
      * This will keep the for loop intact.

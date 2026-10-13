@@ -350,8 +350,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
         }
 
         /**
-         * Determines whether the source of an audit event
-         * matches the text of this suppression.
+         * Determines whether the source of an audit event matches the text of this suppression.
          *
          * @param event the {@code AuditEvent} to check.
          * @return true if the source of event matches the text of this suppression.

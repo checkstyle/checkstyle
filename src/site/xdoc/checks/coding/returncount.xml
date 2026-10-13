@@ -57,8 +57,7 @@
           and lambdas that have no return type (IE 'return;'). It will only count
           visible return statements. Return statements not normally written, but
           implied, at the end of the method/constructor definition will not be taken
-          into account. To disallow "return;" in void return type methods, use a value
-          of 0.
+          into account. To disallow "return;" in void return type methods, use a value of 0.
         </p>
 
         <p>

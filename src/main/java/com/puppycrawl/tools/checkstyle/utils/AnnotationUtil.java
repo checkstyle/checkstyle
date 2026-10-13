@@ -231,8 +231,7 @@ public final class AnnotationUtil {
 
     /**
      * Checks if the given AST is annotated with at least one annotation that
-     * matches the given predicate and returns the AST representing the first
-     * matching annotation.
+     * matches the given predicate and returns the AST representing the first matching annotation.
      *
      * <p>
      * This method will not look for imports or package

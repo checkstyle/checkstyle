@@ -121,8 +121,7 @@
         <p>
           <b>Note:</b> To search for things that mean something in XML, like
           &lt; you need to escape them like &amp;lt;. This is required so the
-          XML parser does not act on them, but instead passes the correct
-          character to the regexp engine.
+          XML parser does not act on them, but instead passes the correct character to the regexp engine.
         </p>
       </subsection>
 

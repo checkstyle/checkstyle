@@ -146,8 +146,7 @@ public final class BlockCommentPosition {
      * Node is on type member declaration.
      *
      * @param blockComment DetailAST
-     * @return true if node is before method, field, constructor, enum constant
-     *     or annotation field
+     * @return true if node is before method, field, constructor, enum constant or annotation field
      */
     public static boolean isOnMember(DetailAST blockComment) {
         return isOnMethod(blockComment)

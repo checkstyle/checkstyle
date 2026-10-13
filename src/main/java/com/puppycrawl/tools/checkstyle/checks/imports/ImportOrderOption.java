@@ -59,8 +59,7 @@ public enum ImportOrderOption {
     ABOVE,
 
     /**
-     * Represents the policy that static imports are processed like non static
-     * imports. For example:
+     * Represents the policy that static imports are processed like non static imports. For example:
      *
      * {@snippet lang="text" :
      *  import java.awt.Button;

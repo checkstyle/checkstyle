@@ -31,8 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * This class checks line-wrapping into definitions and expressions. The
- * line-wrapping indentation should be not less than value of the
- * lineWrappingIndentation parameter.
+ * line-wrapping indentation should be not less than value of the lineWrappingIndentation parameter.
  *
  */
 public class LineWrappingHandler {
@@ -311,8 +310,7 @@ public class LineWrappingHandler {
      * Checks line wrapping into annotations.
      *
      * @param atNode block tag node.
-     * @param firstNodesOnLines map which contains
-     *     first nodes as values and line numbers as keys.
+     * @param firstNodesOnLines map which contains first nodes as values and line numbers as keys.
      * @param indentLevel line wrapping indentation.
      */
     private void checkAnnotationIndentation(DetailAST atNode,

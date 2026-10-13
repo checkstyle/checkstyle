@@ -61,8 +61,7 @@ public final class TestUtil {
 
     /**
      * The stack size used in {@link TestUtil#getResultWithLimitedResources}.
-     * This value should be as small as possible. Some JVM requires this value to be
-     * at least 144k.
+     * This value should be as small as possible. Some JVM requires this value to be at least 144k.
      *
      * @see <a href="https://www.baeldung.com/jvm-configure-stack-sizes">
      *      Configuring Stack Sizes in the JVM</a>
@@ -304,8 +303,7 @@ public final class TestUtil {
      * Runs a given task with limited stack size suitable for XPath-based checks.
      * The stack size is larger than
      * {@link TestUtil#getResultWithLimitedResources} to allow Saxon's XPath engine
-     * to initialize, but still small enough to detect stack overflows in deep AST
-     * XPath traversal.
+     * to initialize, but still small enough to detect stack overflows in deep AST XPath traversal.
      *
      * @param callable the task to execute
      * @throws Exception if getting result fails

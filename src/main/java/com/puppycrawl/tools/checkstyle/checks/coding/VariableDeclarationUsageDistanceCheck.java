@@ -58,8 +58,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     public static final String MSG_KEY_EXT = "variable.declaration.usage.distance.extend";
 
     /**
-     * Default value of distance between declaration of variable and its first
-     * usage.
+     * Default value of distance between declaration of variable and its first usage.
      */
     private static final int DEFAULT_DISTANCE = 3;
 
@@ -83,8 +82,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     private int allowedDistance = DEFAULT_DISTANCE;
 
     /**
-     * Define RegExp to ignore distance calculation for variables listed in
-     * this pattern.
+     * Define RegExp to ignore distance calculation for variables listed in this pattern.
      */
     private Pattern ignoreVariablePattern = Pattern.compile("");
 
@@ -109,8 +107,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * Value should be greater than 0.
      *
      * @param allowedDistance
-     *        Allowed distance between declaration of variable and its first
-     *        usage.
+     *        Allowed distance between declaration of variable and its first usage.
      * @since 5.8
      */
     public void setAllowedDistance(int allowedDistance) {
@@ -218,8 +215,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     }
 
     /**
-     * Processes statements until usage of variable to detect sequence of
-     * initialization methods.
+     * Processes statements until usage of variable to detect sequence of initialization methods.
      *
      * @param variableUsageAst
      *        DetailAST of expression that uses variable named variableName.
@@ -329,8 +325,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      *
      * @param types The set of types of the predecessor to search for.
      * @param ast The AST node for which predecessor is searched.
-     * @return The closest predecessor of one of the specified types;
-     *         null if no such node exists.
+     * @return The closest predecessor of one of the specified types; null if no such node exists.
      */
     private static DetailAST getFirstPredecessorOfTypes(Set<Integer> types, DetailAST ast) {
         DetailAST current = ast;
@@ -341,12 +336,10 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     }
 
     /**
-     * Calculates distance between declaration of variable and its first usage
-     * in single scope.
+     * Calculates distance between declaration of variable and its first usage in single scope.
      *
      * @param semicolonAst
-     *        Regular node of Ast which is checked for content of checking
-     *        variable.
+     *        Regular node of Ast which is checked for content of checking variable.
      * @param variableIdentAst
      *        Variable which distance is calculated for.
      * @return entry which contains expression with variable usage and distance.
@@ -403,12 +396,10 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     }
 
     /**
-     * Calculates distance between declaration of variable and its first usage
-     * in multiple scopes.
+     * Calculates distance between declaration of variable and its first usage in multiple scopes.
      *
      * @param ast
-     *        Regular node of Ast which is checked for content of checking
-     *        variable.
+     *        Regular node of Ast which is checked for content of checking variable.
      * @param variable
      *        Variable which distance is calculated for.
      * @return entry which contains expression with variable usage and distance.
@@ -709,8 +700,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      *        Ast node which represents operator.
      * @param variable
      *        Variable which is checked for content in operator.
-     * @return true if operator contains variable in its declaration, otherwise
-     *         - false.
+     * @return true if operator contains variable in its declaration, otherwise - false.
      */
     private static boolean isVariableInOperatorExpr(
             DetailAST operator, DetailAST variable) {
@@ -789,14 +779,12 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      *     class Table implements Comparator<Integer>{
      *     }
      * }
-     * An inner class may be defined. Both tokens implements and extends
-     * are zero-distance tokens.
+     * An inner class may be defined. Both tokens implements and extends are zero-distance tokens.
      * {@snippet lang="text" :
      *     public int method(Object b){
      *     }
      * }
-     * public is a modifier and zero-distance token. int is a type and
-     * zero-distance token.
+     * public is a modifier and zero-distance token. int is a type and zero-distance token.
      *
      * @param type
      *        Token type of the ast node.

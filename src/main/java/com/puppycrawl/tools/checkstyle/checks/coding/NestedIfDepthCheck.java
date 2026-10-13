@@ -35,8 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class NestedIfDepthCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "nested.if.depth";
 
@@ -117,8 +116,7 @@ public final class NestedIfDepthCheck extends AbstractCheck {
     }
 
     /**
-     * Returns whether a token represents an SLIST as part of an ELSE
-     * statement.
+     * Returns whether a token represents an SLIST as part of an ELSE statement.
      *
      * @param ast the token to check
      * @return whether the toke does represent an SLIST as part of an ELSE

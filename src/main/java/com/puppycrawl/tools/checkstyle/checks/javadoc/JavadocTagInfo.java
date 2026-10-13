@@ -411,8 +411,7 @@ public enum JavadocTagInfo {
     }
 
     /**
-     * Checks if a particular Javadoc tag is valid within a Javadoc block of a
-     * given AST.
+     * Checks if a particular Javadoc tag is valid within a Javadoc block of a given AST.
      *
      * <p>
      * If passing in a DetailAST representing a non-void METHOD_DEF

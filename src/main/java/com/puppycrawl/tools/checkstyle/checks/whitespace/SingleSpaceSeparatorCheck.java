@@ -65,8 +65,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class SingleSpaceSeparatorCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "single.space.separator";
 
@@ -170,8 +169,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
 
     /**
      * Checks if characters in {@code line} at and around {@code columnNo} has
-     * the correct number of spaces. to return {@code true} the following
-     * conditions must be met:
+     * the correct number of spaces. to return {@code true} the following conditions must be met:
      * <ul>
      * <li> the character at {@code columnNo} is the first in the line. </li>
      * <li> the character at {@code columnNo} is not separated by whitespaces from

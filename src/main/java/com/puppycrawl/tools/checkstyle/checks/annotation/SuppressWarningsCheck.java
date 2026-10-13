@@ -36,8 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <div>
  * Allows to specify what warnings that
  * {@code @SuppressWarnings} is not allowed to suppress.
- * You can also specify a list of TokenTypes that
- * the configured warning(s) cannot be suppressed on.
+ * You can also specify a list of TokenTypes that the configured warning(s) cannot be suppressed on.
  * </div>
  *
  * <p>
@@ -50,8 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * {@code @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")}.
  * According to the above example, the "unused" warning is being suppressed
  * not the "unchecked" or "foo" warnings.  All of these warnings will be
- * considered and matched against regardless of what the conditional
- * evaluates to.
+ * considered and matched against regardless of what the conditional evaluates to.
  * The check also does not support code like {@code @SuppressWarnings("un" + "used")},
  * {@code @SuppressWarnings((String) "unused")} or
  * {@code @SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})}.
@@ -59,8 +57,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <p>
  * By default, any warning specified will be disallowed on
- * all legal TokenTypes unless otherwise specified via
- * the tokens property.
+ * all legal TokenTypes unless otherwise specified via the tokens property.
  * </p>
  *
  * <p>
@@ -70,8 +67,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  *
  * <p>This check can be configured so that the "unchecked"
- * and "unused" warnings cannot be suppressed on
- * anything but variable and parameter declarations.
+ * and "unused" warnings cannot be suppressed on anything but variable and parameter declarations.
  * See below of an example.
  * </p>
  *
@@ -81,8 +77,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class SuppressWarningsCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED =
         "suppressed.warning.not.allowed";
@@ -91,8 +86,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
     private static final String SUPPRESS_WARNINGS = "SuppressWarnings";
 
     /**
-     * Fully-qualified {@link SuppressWarnings SuppressWarnings}
-     * annotation name.
+     * Fully-qualified {@link SuppressWarnings SuppressWarnings} annotation name.
      */
     private static final String FQ_SUPPRESS_WARNINGS =
         "java.lang." + SUPPRESS_WARNINGS;
@@ -281,8 +275,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
     }
 
     /**
-     * Walks a conditional expression checking the left
-     * and right sides, checking for matches and
+     * Walks a conditional expression checking the left and right sides, checking for matches and
      * logging violations.
      *
      * @param cond a Conditional type
@@ -313,8 +306,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
      *
      * @param cond cond a conditional type
      *     {@link TokenTypes#QUESTION QUESTION}
-     * @return either the value
-     *     or another conditional
+     * @return either the value or another conditional
      */
     private static DetailAST getCondLeft(final DetailAST cond) {
         final DetailAST colon = cond.findFirstToken(TokenTypes.COLON);
@@ -326,8 +318,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
      *
      * @param cond a conditional type
      *     {@link TokenTypes#QUESTION QUESTION}
-     * @return either the value
-     *     or another conditional
+     * @return either the value or another conditional
      */
     private static DetailAST getCondRight(final DetailAST cond) {
         final DetailAST colon = cond.findFirstToken(TokenTypes.COLON);

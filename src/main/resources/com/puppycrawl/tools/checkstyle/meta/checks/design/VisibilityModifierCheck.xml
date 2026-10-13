@@ -71,13 +71,11 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- Top-level fields of compact source files
- (&lt;a href="https://openjdk.org/jeps/512"&gt;JEP 512&lt;/a&gt;)
+ Top-level fields of compact source files (&lt;a href="https://openjdk.org/jeps/512"&gt;JEP 512&lt;/a&gt;)
  are skipped by design. Their access modifiers do not provide the encapsulation
  that this check enforces for ordinary classes.
  Public members are not flagged if the name matches the public
- member regular expression (contains &lt;code&gt;"^serialVersionUID$"&lt;/code&gt; by
- default).
+ member regular expression (contains &lt;code&gt;"^serialVersionUID$"&lt;/code&gt; by default).
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="allowPublicFinalFields" type="boolean">

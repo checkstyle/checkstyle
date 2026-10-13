@@ -54,8 +54,7 @@ public final class ChainedPropertyUtil {
      * Accepts user defined properties and returns new properties
      * with all chained properties resolved.
      *
-     * @param properties the underlying properties to use
-     *                   for property resolution.
+     * @param properties the underlying properties to use for property resolution.
      * @return resolved properties
      * @throws CheckstyleException when chained property is not defined
      */

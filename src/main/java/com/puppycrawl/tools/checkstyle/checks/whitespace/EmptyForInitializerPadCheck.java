@@ -45,14 +45,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class EmptyForInitializerPadCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_PRECEDED = "ws.preceded";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_NOT_PRECEDED = "ws.notPreceded";
 

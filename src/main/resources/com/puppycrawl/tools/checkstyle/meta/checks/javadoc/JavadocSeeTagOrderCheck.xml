@@ -22,8 +22,7 @@
 
  &lt;p&gt;Inside each member group, fields come first, then constructors, then
  methods. Overloaded constructors and methods with the same name must be
- grouped together and ordered by the number of parameters, with the fewest
- parameters first.&lt;/p&gt;
+ grouped together and ordered by the number of parameters, with the fewest parameters first.&lt;/p&gt;
 
  &lt;p&gt;For example, this is the order recommended by the OpenJDK documentation
  comments style guide:&lt;/p&gt;

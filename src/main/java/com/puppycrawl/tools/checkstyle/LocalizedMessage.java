@@ -28,8 +28,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * Represents a message that can be localised. The translations come from
- * message.properties files. The underlying implementation uses
- * java.text.MessageFormat.
+ * message.properties files. The underlying implementation uses java.text.MessageFormat.
  */
 public class LocalizedMessage {
 

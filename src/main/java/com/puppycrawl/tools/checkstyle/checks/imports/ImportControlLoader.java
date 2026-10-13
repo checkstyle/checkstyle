@@ -357,8 +357,7 @@ public final class ImportControlLoader extends XmlLoader {
     }
 
     /**
-     * Utility to safely get an attribute. If it does not exist an exception
-     * is thrown.
+     * Utility to safely get an attribute. If it does not exist an exception is thrown.
      *
      * @param attributes collect to get attribute from.
      * @param name name of the attribute to get.

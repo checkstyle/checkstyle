@@ -41,8 +41,7 @@
 
         <p>
           The check honors special comments to suppress the warning.
-          By default, the texts
-          "fallthru", "fall thru", "fall-thru",
+          By default, the texts "fallthru", "fall thru", "fall-thru",
           "fallthrough", "fall through", "fall-through"
           "fallsthrough", "falls through", "falls-through" (case-sensitive).
           The comment containing these words must be all on one line,

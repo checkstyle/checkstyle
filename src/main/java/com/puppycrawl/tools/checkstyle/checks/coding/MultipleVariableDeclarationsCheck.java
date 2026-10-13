@@ -45,14 +45,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class MultipleVariableDeclarationsCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_MULTIPLE = "multiple.variable.declarations";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_MULTIPLE_COMMA = "multiple.variable.declarations.comma";
 

@@ -49,20 +49,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class RightCurlyCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_LINE_BREAK_BEFORE = "line.break.before";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_LINE_ALONE = "line.alone";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_LINE_SAME = "line.same";
 
@@ -149,8 +146,7 @@ public class RightCurlyCheck extends AbstractCheck {
      * Does general validation.
      *
      * @param details for validation.
-     * @return violation message or empty string
-     *     if there was no violation during validation.
+     * @return violation message or empty string if there was no violation during validation.
      */
     private String validate(Details details) {
         String violation = "";

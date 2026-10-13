@@ -73,8 +73,7 @@
  &lt;p&gt;
  &lt;b&gt;Note:&lt;/b&gt; To search for things that mean something in XML, like
  &amp;lt; you need to escape them like &amp;amp;lt;. This is required so the
- XML parser does not act on them, but instead passes the correct
- character to the regexp engine.
+ XML parser does not act on them, but instead passes the correct character to the regexp engine.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="0" name="duplicateLimit" type="int">

@@ -23,8 +23,7 @@ import java.util.regex.Pattern;
 
 /**
  * Represents an import rules for a specific file. Only the file name is
- * considered and only files processed by TreeWalker. The file's
- * extension is ignored.
+ * considered and only files processed by TreeWalker. The file's extension is ignored.
  */
 class FileImportControl extends AbstractImportControl {
 
@@ -52,8 +51,7 @@ class FileImportControl extends AbstractImportControl {
     /**
      * Creates a Pattern from {@code expression}.
      *
-     * @param expression a self-contained regular expression matching the full
-     *     file name exactly.
+     * @param expression a self-contained regular expression matching the full file name exactly.
      * @return a Pattern.
      */
     private static Pattern createPatternForExactMatch(String expression) {

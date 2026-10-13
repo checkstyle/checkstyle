@@ -55,14 +55,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class RedundantThisCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "message.properties"
-     * file.
+     * A key is pointing to the warning message text in "message.properties" file.
      */
     public static final String MSG_KEY_FIELD = "redundant.this.field";
 
     /**
-     * A key is pointing to the warning message text in "message.properties"
-     * file.
+     * A key is pointing to the warning message text in "message.properties" file.
      */
     public static final String MSG_KEY_METHOD = "redundant.this.method";
 

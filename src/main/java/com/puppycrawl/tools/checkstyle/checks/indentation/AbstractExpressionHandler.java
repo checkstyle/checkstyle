@@ -76,8 +76,7 @@ public abstract class AbstractExpressionHandler {
     /**
      * Get the indentation amount for this handler. For performance reasons,
      * this value is cached. The first time this method is called, the
-     * indentation amount is computed and stored. On further calls, the stored
-     * value is returned.
+     * indentation amount is computed and stored. On further calls, the stored value is returned.
      *
      * @return the expected indentation amount
      * @noinspection WeakerAccess
@@ -103,8 +102,7 @@ public abstract class AbstractExpressionHandler {
      * Indentation level suggested for a child element. Children don't have
      * to respect this, but most do.
      *
-     * @param child  child AST (so suggestion level can differ based on child
-     *                  type)
+     * @param child  child AST (so suggestion level can differ based on child type)
      *
      * @return suggested indentation for child
      * @noinspection WeakerAccess
@@ -246,8 +244,7 @@ public abstract class AbstractExpressionHandler {
     /**
      * Checks that indentation should be increased after first line in checkLinesIndent().
      *
-     * @return true if indentation should be increased after
-     *              first line in checkLinesIndent()
+     * @return true if indentation should be increased after first line in checkLinesIndent()
      *         false otherwise
      */
     protected boolean shouldIncreaseIndent() {
@@ -394,8 +391,7 @@ public abstract class AbstractExpressionHandler {
     }
 
     /**
-     * Check the indent level of the children of the specified parent
-     * expression.
+     * Check the indent level of the children of the specified parent expression.
      *
      * @param parentNode         the parent whose children we are checking
      * @param tokenTypes         the token types to check

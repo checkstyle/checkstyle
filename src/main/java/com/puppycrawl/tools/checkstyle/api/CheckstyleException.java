@@ -44,8 +44,7 @@ public class CheckstyleException extends Exception {
     }
 
     /**
-     * Creates a new {@code CheckstyleException} instance
-     * that was caused by another exception.
+     * Creates a new {@code CheckstyleException} instance that was caused by another exception.
      *
      * @param message a message that explains this exception
      * @param cause the Exception that is wrapped by this exception

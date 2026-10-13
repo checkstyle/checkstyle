@@ -186,8 +186,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     }
 
     /**
-     * Returns the TreeWalker child of the root configuration produced by the inline
-     * config parser.
+     * Returns the TreeWalker child of the root configuration produced by the inline config parser.
      *
      * @param rootConfig root (Checker) configuration.
      * @return the TreeWalker configuration.

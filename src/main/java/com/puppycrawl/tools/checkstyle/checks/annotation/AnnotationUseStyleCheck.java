@@ -144,8 +144,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     }
 
     /**
-     * Defines the two styles for defining
-     * elements in an annotation.
+     * Defines the two styles for defining elements in an annotation.
      *
      */
     public enum TrailingArrayCommaOption {
@@ -168,8 +167,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     }
 
     /**
-     * Defines the two styles for defining
-     * elements in an annotation.
+     * Defines the two styles for defining elements in an annotation.
      *
      */
     public enum ClosingParensOption {
@@ -193,43 +191,37 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     }
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_ANNOTATION_INCORRECT_STYLE =
         "annotation.incorrect.style";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_ANNOTATION_PARENS_MISSING =
         "annotation.parens.missing";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_ANNOTATION_PARENS_PRESENT =
         "annotation.parens.present";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING =
         "annotation.trailing.comma.missing";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT =
         "annotation.trailing.comma.present";
 
     /**
-     * The element name used to receive special linguistic support
-     * for annotation use.
+     * The element name used to receive special linguistic support for annotation use.
      */
     private static final String ANNOTATION_ELEMENT_SINGLE_NAME =
             "value";
@@ -332,8 +324,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
 
     /**
      * Checks to see if the
-     * {@link ElementStyleOption AnnotationElementStyleOption}
-     * is correct.
+     * {@link ElementStyleOption AnnotationElementStyleOption} is correct.
      *
      * @param annotation the annotation token
      */
@@ -428,8 +419,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     }
 
     /**
-     * Checks to see if the trailing comma is present if required or
-     * prohibited.
+     * Checks to see if the trailing comma is present if required or prohibited.
      *
      * @param annotation the annotation token
      */
@@ -478,8 +468,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     }
 
     /**
-     * Checks to see if the closing parenthesis are present if required or
-     * prohibited.
+     * Checks to see if the closing parenthesis are present if required or prohibited.
      *
      * @param ast the annotation token
      */
