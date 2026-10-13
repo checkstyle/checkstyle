@@ -11,6 +11,15 @@ public class InputRedundantThisNestedClass {
     private int x = 10;
     private String name = "Outer Class";
 
+    void method(int k) {
+        switch (k) {
+            case 1:
+                if (this.x > 0) {
+                    // violation above, 'Redundant "this", field 'x' can be accessed directly.'
+                }
+        }
+    }
+
     class Inner {
         private int x = 20;  // Same field name as outer
         private String name = "Inner Class";

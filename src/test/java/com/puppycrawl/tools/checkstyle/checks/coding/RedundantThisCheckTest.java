@@ -23,12 +23,18 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RedundantThisCheck.MSG_KEY_FIELD;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RedundantThisCheck.MSG_KEY_METHOD;
 
+import java.io.File;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RedundantThisCheckTest extends AbstractModuleTestSupport {
@@ -103,9 +109,10 @@ public class RedundantThisCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNestedClass() throws Exception {
         final String[] expected = {
-            "19:62: " + getCheckMessage(MSG_KEY_FIELD, "x"),
-            "22:62: " + getCheckMessage(MSG_KEY_FIELD, "name"),
-            "32:13: " + getCheckMessage(MSG_KEY_FIELD, "x"),
+            "17:21: " + getCheckMessage(MSG_KEY_FIELD, "x"),
+            "28:62: " + getCheckMessage(MSG_KEY_FIELD, "x"),
+            "31:62: " + getCheckMessage(MSG_KEY_FIELD, "name"),
+            "41:13: " + getCheckMessage(MSG_KEY_FIELD, "x"),
         };
 
         verifyWithInlineConfigParser(
@@ -175,6 +182,33 @@ public class RedundantThisCheckTest extends AbstractModuleTestSupport {
             "14:9: " + getCheckMessage(MSG_KEY_FIELD, "x"));
 
         verifyWithInlineConfigParser(filePath1, filePath2, expectedFromFile1, expectedFromFile2);
+    }
+
+    /**
+     * Verifies that {@code requiredStatements} is cleared in {@code beginTree}.
+     * The field holds DetailAST nodes, which use identity equality, so stale entries
+     * from a previous file can never match nodes in the next file. Because of that,
+     * the missing {@code clear()} call has no effect on reported violations and
+     * cannot be detected with input files, so the field state is checked directly.
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final RedundantThisCheck check = new RedundantThisCheck();
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputRedundantThisConstructorShadow.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+
+        final DetailAST ctorDef = TestUtil.findTokenInAstByPredicate(root,
+                ast -> ast.getType() == TokenTypes.CTOR_DEF).orElseThrow();
+        final DetailAST literalThis = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.LITERAL_THIS).orElseThrow();
+
+        check.visitToken(ctorDef);
+        assertWithMessage("requiredStatements should be cleared in beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        literalThis, "requiredStatements",
+                        requiredStatements -> ((Collection<?>) requiredStatements).isEmpty()))
+                .isTrue();
     }
 
     @Test
