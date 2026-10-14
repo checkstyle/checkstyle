@@ -17,14 +17,13 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package org.checkstyle.suppressionxpathfilter;
+package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.List;
 
+import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck;
 
 public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractXpathTestSupport {
@@ -37,16 +36,15 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
         return CLASS.getSimpleName();
     }
 
+    @Override
+    public String getPackageLocation() {
+        return "org/checkstyle/suppressionxpathfilter/coding/textblockgooglestyleformatting";
+    }
+
     @Test
     public void testTextBlocksFormatNotVerticallyAligned() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathTextBlockGoogleStyleFormatting.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "8:13: " + getCheckMessage(CLASS,
+            "14:13: " + getCheckMessage(CLASS,
                 TextBlockGoogleStyleFormattingCheck.MSG_VERTICALLY_UNALIGNED),
         };
 
@@ -59,20 +57,15 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
                        + "[@text='\\n                s\\n            ']]/TEXT_BLOCK_LITERAL_END"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTextBlockGoogleStyleFormatting.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testTextBlocksFormatNotVerticallyAlignedInMethodCall() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathTextBlockGoogleStyleFormatting2.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "14:13: " + getCheckMessage(CLASS,
+            "20:13: " + getCheckMessage(CLASS,
                 TextBlockGoogleStyleFormattingCheck.MSG_VERTICALLY_UNALIGNED),
         };
 
@@ -87,20 +80,15 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
                     + ".\\n            ']]/TEXT_BLOCK_LITERAL_END"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTextBlockGoogleStyleFormatting2.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testTextBlocksFormatClosingQuotesNotOnNewLine() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathTextBlockGoogleStyleFormatting3.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "9:20: " + getCheckMessage(CLASS,
+            "15:20: " + getCheckMessage(CLASS,
                     TextBlockGoogleStyleFormattingCheck.MSG_VERTICALLY_UNALIGNED),
         };
 
@@ -114,8 +102,9 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
                       + "                   ']]/TEXT_BLOCK_LITERAL_END"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTextBlockGoogleStyleFormatting3.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
