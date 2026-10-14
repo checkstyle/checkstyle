@@ -605,10 +605,11 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             if (variable.getText().equals(ast.getText())) {
                 // if the variable is declared outside the loop and initialized inside
                 // the loop, then it cannot be declared final, as it can be initialized
-                // more than once in this case
+                // more than once in this case, unless the loop is exited after initialization
                 final DetailAST currAstLoopAstParent = getParentLoop(ast);
                 final DetailAST currVarLoopAstParent = getParentLoop(variable);
-                if (currAstLoopAstParent == currVarLoopAstParent) {
+                if (currAstLoopAstParent == currVarLoopAstParent
+                        || isAssignmentFollowedByLoopExit(ast, currVarLoopAstParent)) {
                     final FinalVariableCandidate candidate = scopeData.scope.get(ast.getText());
                     shouldRemove = candidate.alreadyAssigned;
                 }
@@ -617,6 +618,28 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             }
         }
         return shouldRemove;
+    }
+
+    /**
+     * Whether the assignment statement is followed in the same block, after only expression
+     * statements and variable definitions, by an unlabeled {@code break} which exits the loop
+     * directly nested in the loop of the variable declaration, so the assignment cannot be
+     * executed more than once.
+     *
+     * @param ast the assigned variable ast.
+     * @param variableLoop the loop containing the variable declaration, or null.
+     * @return true, if the loop is exited after the assignment.
+     */
+    private static boolean isAssignmentFollowedByLoopExit(DetailAST ast, DetailAST variableLoop) {
+        DetailAST nextStatement = ast.getParent().getParent();
+        while (TokenUtil.isOfType(nextStatement,
+                TokenTypes.EXPR, TokenTypes.SEMI, TokenTypes.VARIABLE_DEF)) {
+            nextStatement = nextStatement.getNextSibling();
+        }
+        return TokenUtil.isOfType(nextStatement, TokenTypes.LITERAL_BREAK)
+            && nextStatement.findFirstToken(TokenTypes.IDENT) == null
+            && !isInSpecificCodeBlocks(nextStatement, TokenTypes.LITERAL_SWITCH)
+            && getParentLoop(getParentLoop(nextStatement).getParent()) == variableLoop;
     }
 
     /**
@@ -630,7 +653,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private static DetailAST getParentLoop(DetailAST ast) {
         DetailAST parentLoop = ast;
         while (parentLoop != null
-            && !isLoopAst(parentLoop.getType())) {
+            && !LOOP_TYPES.get(parentLoop.getType())) {
             parentLoop = parentLoop.getParent();
         }
         return parentLoop;
@@ -714,16 +737,6 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         final DetailAST classOrMethodOfAst2 =
             findFirstUpperNamedBlock(ast2);
         return classOrMethodOfAst1 == classOrMethodOfAst2 && ast1.getText().equals(ast2.getText());
-    }
-
-    /**
-     * Checks whether the ast is a loop.
-     *
-     * @param ast the ast to check.
-     * @return true if the ast is a loop.
-     */
-    private static boolean isLoopAst(int ast) {
-        return LOOP_TYPES.get(ast);
     }
 
     /** Assignment state for a conditional branch that cannot complete normally. */
