@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSepar
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.internal.junit.LimitedStackThread;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
@@ -42,8 +43,9 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    @LimitedStackThread
     public void testNoStackoverflowError() throws Exception {
-        verifyWithLimitedResources(getPath("InputSingleSpaceSeparatorNoStackoverflowError.java"),
+        verifyWithInlineConfigParser(getPath("InputSingleSpaceSeparatorNoStackoverflowError.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 

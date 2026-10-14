@@ -45,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParserBaseVisitor;
+import com.puppycrawl.tools.checkstyle.internal.junit.LimitedStackThread;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 // -@cs[ClassDataAbstractionCoupling] No way to split up class usage.
@@ -274,6 +275,7 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
      */
 
     @Test
+    @LimitedStackThread
     public void testNoStackOverflowOnDeepStringConcat() throws Exception {
         final File file =
                 new File(getPath("InputJavaAstVisitorNoStackOverflowOnDeepStringConcat.java"));
@@ -294,9 +296,7 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
         // kill surviving pitest mutation from removal of nested binary operation
         // optimization in JavaAstVisitor#visitBinOp. Limited resources (small stack size)
         // ensure that we throw a StackOverflowError if optimization is removed.
-        final DetailAST root = TestUtil.getResultWithLimitedResources(
-                () -> new JavaAstVisitor(tokenStream).visit(compilationUnit)
-        );
+        final DetailAST root = new JavaAstVisitor(tokenStream).visit(compilationUnit);
 
         assertWithMessage("File parsing and AST building should complete successfully.")
                 .that(root)
