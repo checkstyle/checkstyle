@@ -1,6 +1,16 @@
+/*
+AbstractClassName
+format = (default)^Abstract.+$
+ignoreModifier = (default)false
+ignoreName = (default)false
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.naming.abstractclassname;
 
 public class InputXpathAbstractClassNameInner {
-    abstract class MyClass { // warn
+    // violation below 'Name 'MyClass' must match pattern '^Abstract.+$'.'
+    abstract class MyClass {
     }
 }
