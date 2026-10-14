@@ -103,7 +103,7 @@ public class Example1 {
     return null;
   }
 }
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
         <p id="Example2-code"> Example: Opening quotes are not on new line:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
@@ -148,7 +148,7 @@ public class Example2 {
   public void getData(String text, int num) {}
   public void getData(int num, String text) {}
 }
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
         <p id="Example3-code"> Example: Closing quotes are not on new line</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
@@ -198,7 +198,7 @@ public class Example3 {
   public void getData(String text, int num) {}
   public void getData(String text) {}
 }
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
         <p id="Example4-code">
             Example: Opening and closing quotes are on new lines but not vertically aligned
         </p>
@@ -234,7 +234,7 @@ public class Example4 {
   }
   public void getData(int num, String text) {}
 }
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
         <p id="Example5-code">
             Example: Each line of text in the text block must be indented at
             least as much as the opening and closing quotes.

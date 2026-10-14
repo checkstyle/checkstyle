@@ -35,19 +35,19 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/textblockgooglestyleformatting/Example1.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
         <p id="Example2-code"> Example: Opening quotes are not on new line:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/textblockgooglestyleformatting/Example2.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
         <p id="Example3-code"> Example: Closing quotes are not on new line</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/textblockgooglestyleformatting/Example3.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
         <p id="Example4-code">
             Example: Opening and closing quotes are on new lines but not vertically aligned
         </p>
@@ -55,7 +55,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/textblockgooglestyleformatting/Example4.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
         <p id="Example5-code">
             Example: Each line of text in the text block must be indented at
             least as much as the opening and closing quotes.
