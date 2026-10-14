@@ -1,4 +1,10 @@
-package org.checkstyle.suppressionxpathfilter.textblockgooglestyleformatting;
+/*
+TextBlockGoogleStyleFormatting
+
+
+*/
+
+package org.checkstyle.suppressionxpathfilter.coding.textblockgooglestyleformatting;
 
 public class InputXpathTextBlockGoogleStyleFormatting2 {
 
@@ -11,7 +17,7 @@ public class InputXpathTextBlockGoogleStyleFormatting2 {
                 """
                     Hello,
                     This is a multi-line message.
-            """ // warn
+            """ // violation 'Text-block quotes are not vertically aligned.'
         );
 
         return

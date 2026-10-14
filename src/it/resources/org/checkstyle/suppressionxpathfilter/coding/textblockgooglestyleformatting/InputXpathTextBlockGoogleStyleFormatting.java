@@ -1,11 +1,17 @@
-package org.checkstyle.suppressionxpathfilter.textblockgooglestyleformatting;
+/*
+TextBlockGoogleStyleFormatting
+
+
+*/
+
+package org.checkstyle.suppressionxpathfilter.coding.textblockgooglestyleformatting;
 
 public class InputXpathTextBlockGoogleStyleFormatting {
     public String textFun() {
         final String simpleScript =
                """
                 s
-            """; // warn
+            """; // violation 'Text-block quotes are not vertically aligned.'
 
         final String simpleScript1 =
             """
