@@ -31,6 +31,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.internal.junit.LimitedStackThread;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -458,10 +459,11 @@ public class ParenPadCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    @LimitedStackThread
     public void testNoStackoverflowError()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithLimitedResources(getPath("InputParenPadNoStackoverflowError.java"),
+        verifyWithInlineConfigParser(getPath("InputParenPadNoStackoverflowError.java"),
                 expected);
     }
 
