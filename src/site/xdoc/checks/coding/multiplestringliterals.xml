@@ -96,14 +96,14 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  String a = "StringContents"; // violation "StringContents" occurs twice
+  String a = "StringContents"; // violation '"StringContents" appears 2 times'
   String a1 = "unchecked";
   @SuppressWarnings("unchecked") // ok, duplicate strings are ignored in annotations
   public void myTest() {
     String a2 = "StringContents";
-    String a3 = "DuoString" + "DuoString"; // violation "DuoString" occurs twice
+    String a3 = "DuoString" + "DuoString"; // violation '"DuoString" appears 2 times'
     String a4 = "SingleString";
-    String a5 = ", " + ", " + ", "; // violation ", " occurs three times
+    String a5 = ", " + ", " + ", "; // violation '", " appears 3 times'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -130,7 +130,7 @@ public class Example2 {
     String a2 = "StringContents";
     String a3 = "DuoString" + "DuoString"; // ok, two occurrences are allowed
     String a4 = "SingleString";
-    String a5 = ", " + ", " + ", "; // violation, three occurrences are NOT allowed
+    String a5 = ", " + ", " + ", "; // violation '", " appears 3 times'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -150,12 +150,12 @@ public class Example2 {
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-  String a = "StringContents"; // violation "StringContents" occurs twice
+  String a = "StringContents"; // violation '"StringContents" appears 2 times'
   String a1 = "unchecked";
   @SuppressWarnings("unchecked") // ok, duplicate strings are ignored in annotations
   public void myTest() {
     String a2 = "StringContents";
-    String a3 = "DuoString" + "DuoString"; // violation "DuoString" occurs twice
+    String a3 = "DuoString" + "DuoString"; // violation '"DuoString" appears 2 times'
     String a4 = "SingleString";
     String a5 = ", " + ", " + ", "; // ok, multiple occurrences of ", " are allowed
   }
@@ -178,14 +178,14 @@ public class Example3 {
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
-  String a = "StringContents"; // violation "StringContents" occurs twice
-  String a1 = "unchecked"; // // violation "unchecked" occurs twice
+  String a = "StringContents"; // violation '"StringContents" appears 2 times'
+  String a1 = "unchecked"; // violation '"unchecked" appears 2 times'
   @SuppressWarnings("unchecked")
   public void myTest() {
     String a2 = "StringContents";
-    String a3 = "DuoString" + "DuoString"; // violation "DuoString" occurs twice
+    String a3 = "DuoString" + "DuoString"; // violation '"DuoString" appears 2 times'
     String a4 = "SingleString";
-    String a5 = ", " + ", " + ", "; // violation ", " occurs three times
+    String a5 = ", " + ", " + ", "; // violation '", " appears 3 times'
   }
 }
 </code></pre></div>
