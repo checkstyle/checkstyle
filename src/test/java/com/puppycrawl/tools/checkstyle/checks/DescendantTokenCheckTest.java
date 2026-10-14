@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KEY_MAX;
 import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KEY_MIN;
 import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KEY_SUM_MAX;
@@ -27,6 +28,7 @@ import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KE
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
@@ -281,6 +283,32 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenTestLimitedToken.java"), expected);
+    }
+
+    @Test
+    public void testNegativeMaximumDepth() throws Exception {
+        final String[] expected = {
+            "19:1: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "CLASS_DEF", "CLASS_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputDescendantTokenNegativeMaximumDepth.java"), expected);
+    }
+
+    @Test
+    public void testNoStackOverflowOnDeepStringConcat() throws Exception {
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_KEY_MAX, "1799", 1, "VARIABLE_DEF", "PLUS"),
+        };
+        // Limited stack size ensures that a recursive traversal of the deeply
+        // nested tree of string concatenations throws StackOverflowError
+        final boolean completed = TestUtil.getResultWithLimitedResources(() -> {
+            verifyWithInlineConfigParser(
+                    getPath("InputDescendantTokenDeepStringConcat.java"), expected);
+            return true;
+        });
+        assertWithMessage("Check should process deeply nested tree without failure")
+                .that(completed)
+                .isTrue();
     }
 
 }
