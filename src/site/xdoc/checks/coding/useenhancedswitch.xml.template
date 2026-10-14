@@ -38,7 +38,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/useenhancedswitch/Example1.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
         <p id="Example2-code">
           Example of violation with switch expression:
         </p>
