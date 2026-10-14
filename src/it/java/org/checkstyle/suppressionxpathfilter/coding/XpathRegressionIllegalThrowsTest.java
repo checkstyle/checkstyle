@@ -44,7 +44,7 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
     @Test
     public void testRuntimeException() throws Exception {
         final String[] expectedViolation = {
-            "14:35: " + getCheckMessage(IllegalThrowsCheck.class,
+            "15:35: " + getCheckMessage(IllegalThrowsCheck.class,
                 IllegalThrowsCheck.MSG_KEY, "RuntimeException"),
         };
 
@@ -63,7 +63,7 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
     @Test
     public void testError() throws Exception {
         final String[] expectedViolation = {
-            "18:45: " + getCheckMessage(IllegalThrowsCheck.class,
+            "19:45: " + getCheckMessage(IllegalThrowsCheck.class,
                 IllegalThrowsCheck.MSG_KEY, "java.lang.Error"),
         };
 

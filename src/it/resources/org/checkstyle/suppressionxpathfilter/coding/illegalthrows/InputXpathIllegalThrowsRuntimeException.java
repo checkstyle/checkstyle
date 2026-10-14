@@ -11,7 +11,8 @@ ignoreOverriddenMethods = (default)true
 package org.checkstyle.suppressionxpathfilter.coding.illegalthrows;
 
 public class InputXpathIllegalThrowsRuntimeException {
-    public void sayHello() throws RuntimeException // violation 'Throwing 'RuntimeException' is not allowed.'
+    // violation below 'Throwing 'RuntimeException' is not allowed.'
+    public void sayHello() throws RuntimeException
     {
     }
 }

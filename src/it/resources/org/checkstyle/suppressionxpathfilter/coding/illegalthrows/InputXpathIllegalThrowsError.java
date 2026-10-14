@@ -15,7 +15,8 @@ public class InputXpathIllegalThrowsError {
     {
     }
 
-    public void methodTwo() throws java.lang.Error // violation 'Throwing 'java.lang.Error' is not allowed.'
+    // violation below 'Throwing 'java.lang.Error' is not allowed.'
+    public void methodTwo() throws java.lang.Error
     {
     }
 }
