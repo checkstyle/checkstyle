@@ -52,14 +52,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class EqualsAvoidNullCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_EQUALS_AVOID_NULL = "equals.avoid.null";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_EQUALS_IGNORE_CASE_AVOID_NULL = "equalsIgnoreCase.avoid.null";
 
@@ -266,8 +264,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     }
 
     /**
-     * Determine whether LITERAL_NEW is an anonymous class definition and leave
-     * the frame it is in.
+     * Determine whether LITERAL_NEW is an anonymous class definition and leave the frame it is in.
      *
      * @param ast LITERAL_NEW ast.
      */
@@ -327,8 +324,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     }
 
     /**
-     * Looks for all "safe" Token combinations in the argument
-     * expression branch.
+     * Looks for all "safe" Token combinations in the argument expression branch.
      *
      * @param expr the argument expression
      * @return - true if any child matches the set of tokens, false if not

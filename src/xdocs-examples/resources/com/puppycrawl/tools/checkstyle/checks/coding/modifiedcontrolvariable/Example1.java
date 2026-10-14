@@ -11,11 +11,11 @@ package com.puppycrawl.tools.checkstyle.checks.coding.modifiedcontrolvariable;
 class Example1 {
   void InvalidExample() {
     for(int i=0;i < 8;i++) {
-      i++; // violation, control variable modified
+      i++; // violation 'Control variable 'i' is modified.'
     }
     String args1[]={"Coding", "block"};
     for (String arg: args1) {
-      arg = arg.trim(); // violation, control variable modified
+      arg = arg.trim(); // violation 'Control variable 'arg' is modified.'
     }
   }
 }

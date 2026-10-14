@@ -74,8 +74,7 @@ public class SuppressWarningsHolder extends AbstractCheck {
     private static final Map<String, String> CHECK_ALIAS_MAP = new HashMap<>();
 
     /**
-     * A thread-local holder for the list of suppression entries for the last
-     * file parsed.
+     * A thread-local holder for the list of suppression entries for the last file parsed.
      */
     private static final ThreadLocal<List<Entry>> ENTRIES =
             ThreadLocal.withInitial(ArrayList::new);
@@ -99,11 +98,9 @@ public class SuppressWarningsHolder extends AbstractCheck {
 
     /**
      * Returns the default alias for the source name of a check, which is the
-     * source name in lower case with any dotted prefix or "Check"/"check"
-     * suffix removed.
+     * source name in lower case with any dotted prefix or "Check"/"check" suffix removed.
      *
-     * @param sourceName the source name of the check (generally the class
-     *        name)
+     * @param sourceName the source name of the check (generally the class name)
      * @return the default alias for the given check
      */
     public static String getDefaultAlias(String sourceName) {
@@ -120,8 +117,7 @@ public class SuppressWarningsHolder extends AbstractCheck {
      * Returns the alias of simple check name for a check, The alias is
      * for the form of CheckNameCheck or CheckName.
      *
-     * @param sourceName the source name of the check (generally the class
-     *        name)
+     * @param sourceName the source name of the check (generally the class name)
      * @return the alias of the simple check name for the given check
      */
     @Nullable
@@ -145,8 +141,7 @@ public class SuppressWarningsHolder extends AbstractCheck {
      * explicitly registered via {@link #setAliasList(String...)}, that
      * alias is returned; otherwise, the default alias is used.
      *
-     * @param sourceName the source name of the check (generally the class
-     *        name)
+     * @param sourceName the source name of the check (generally the class name)
      * @return the current alias for the given check
      */
     public static String getAlias(String sourceName) {
@@ -163,8 +158,7 @@ public class SuppressWarningsHolder extends AbstractCheck {
     /**
      * Registers an alias for the source name of a check.
      *
-     * @param sourceName the source name of the check (generally the class
-     *        name)
+     * @param sourceName the source name of the check (generally the class name)
      * @param checkAlias the alias used in {@link SuppressWarnings} annotations
      */
     private static void registerAlias(String sourceName, String checkAlias) {
@@ -199,8 +193,7 @@ public class SuppressWarningsHolder extends AbstractCheck {
      * location in the last file processed.
      *
      * @param event audit event.
-     * @return whether the check with the given name is suppressed at the given
-     *         source location
+     * @return whether the check with the given name is suppressed at the given source location
      */
     public static boolean isSuppressed(AuditEvent event) {
         final List<Entry> entries = ENTRIES.get();

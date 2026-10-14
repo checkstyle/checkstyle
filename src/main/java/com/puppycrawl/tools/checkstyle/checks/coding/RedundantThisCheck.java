@@ -55,14 +55,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class RedundantThisCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "message.properties"
-     * file.
+     * A key is pointing to the warning message text in "message.properties" file.
      */
     public static final String MSG_KEY_FIELD = "redundant.this.field";
 
     /**
-     * A key is pointing to the warning message text in "message.properties"
-     * file.
+     * A key is pointing to the warning message text in "message.properties" file.
      */
     public static final String MSG_KEY_METHOD = "redundant.this.method";
 
@@ -146,6 +144,7 @@ public class RedundantThisCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
+        requiredStatements.clear();
         redundantUsages.clear();
     }
 
@@ -296,7 +295,7 @@ public class RedundantThisCheck extends AbstractCheck {
      */
     private static DetailAST nextStatement(DetailAST statement) {
         DetailAST result = statement.getNextSibling();
-        if (result.getType() == TokenTypes.SEMI) {
+        if (result != null && result.getType() == TokenTypes.SEMI) {
             result = result.getNextSibling();
         }
         return result;

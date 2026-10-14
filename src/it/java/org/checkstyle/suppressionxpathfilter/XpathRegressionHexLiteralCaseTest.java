@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.HexLiteralCaseCheck;
 
 public class XpathRegressionHexLiteralCaseTest extends AbstractXpathTestSupport {
@@ -39,13 +37,8 @@ public class XpathRegressionHexLiteralCaseTest extends AbstractXpathTestSupport 
 
     @Test
     public void testHexLiteralCaseCheck() throws Exception {
-        final File fileProcess =
-                new File(getPath("InputXpathHexLiteralCase.java"));
-        final DefaultConfiguration config =
-                createModuleConfig(HexLiteralCaseCheck.class);
-
         final String[] expected = {
-            "4:14: " + getCheckMessage(HexLiteralCaseCheck.class,
+            "10:14: " + getCheckMessage(HexLiteralCaseCheck.class,
                       HexLiteralCaseCheck.MSG_KEY),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -59,18 +52,16 @@ public class XpathRegressionHexLiteralCaseTest extends AbstractXpathTestSupport 
                         + "/OBJBLOCK/VARIABLE_DEF"
                         + "[./IDENT[@text='i']]/ASSIGN/EXPR/NUM_INT[@text='0xa']"
         );
-        runVerifications(config, fileProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathHexLiteralCase.java"),
+                expectedXpathQueries,
+                expected);
     }
 
     @Test
     public void testLongHexLiteralCaseCheck() throws Exception {
-        final File fileProcess =
-                new File(getPath("InputXpathHexLiteralCaseLong.java"));
-        final DefaultConfiguration config =
-                createModuleConfig(HexLiteralCaseCheck.class);
-
         final String[] expected = {
-            "4:15: " + getCheckMessage(HexLiteralCaseCheck.class,
+            "10:15: " + getCheckMessage(HexLiteralCaseCheck.class,
                     HexLiteralCaseCheck.MSG_KEY),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -84,18 +75,16 @@ public class XpathRegressionHexLiteralCaseTest extends AbstractXpathTestSupport 
                         + "/OBJBLOCK/VARIABLE_DEF"
                         + "[./IDENT[@text='i']]/ASSIGN/EXPR/NUM_LONG[@text='0x00efL']"
         );
-        runVerifications(config, fileProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathHexLiteralCaseLong.java"),
+                expectedXpathQueries,
+                expected);
     }
 
     @Test
     public void testHexLiteralCaseCheckTwo() throws Exception {
-        final File fileProcess =
-                new File(getPath("InputXpathHexLiteralCaseTwo.java"));
-        final DefaultConfiguration config =
-                createModuleConfig(HexLiteralCaseCheck.class);
-
         final String[] expected = {
-            "4:14: " + getCheckMessage(HexLiteralCaseCheck.class,
+            "10:14: " + getCheckMessage(HexLiteralCaseCheck.class,
                     HexLiteralCaseCheck.MSG_KEY),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -109,7 +98,10 @@ public class XpathRegressionHexLiteralCaseTest extends AbstractXpathTestSupport 
                         + "/OBJBLOCK/VARIABLE_DEF"
                         + "[./IDENT[@text='a']]/ASSIGN/EXPR/NUM_INT[@text='0xFa1']"
         );
-        runVerifications(config, fileProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathHexLiteralCaseTwo.java"),
+                expectedXpathQueries,
+                expected);
     }
 
 }

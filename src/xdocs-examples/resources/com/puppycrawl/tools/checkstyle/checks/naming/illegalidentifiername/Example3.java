@@ -2,7 +2,9 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="IllegalIdentifierName">
-      <property name="tokens" value="VARIABLE_DEF"/>
+      <property name="format"
+        value="(?i)^(?!(when|record|yield|var|permits|sealed|open|transitive|_)$|(.*\$)).+$"/>
+      <property name="tokens" value="RECORD_DEF"/>
     </module>
   </module>
 </module>
@@ -13,13 +15,13 @@ package com.puppycrawl.tools.checkstyle.checks.naming.illegalidentifiername;
 
 // xdoc section - start
 public class Example3 {
-  Integer var = 4; // violation 'Name 'var' must match pattern'
+  Integer var = 4;
   int record = 15;
   String yield = "yield";
 
-  String test$stuff = "test"; // violation 'must match pattern'
+  String test$stuff = "test";
   String when = "today";
-  record Record(Record r){}
+  record Record(Record r){} // violation 'Name 'Record' must match pattern'
 
   record R(Record record){}
 

@@ -39,8 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class ParameterNumberCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "maxParam";
 

@@ -11,8 +11,7 @@
  pattern variables&lt;/a&gt;.
  Doesn't check
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.12.3"&gt;
- array components&lt;/a&gt; as array
- components are classified as different kind of variables by
+ array components&lt;/a&gt; as array components are classified as different kind of variables by
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se17/html/index.html"&gt;JLS&lt;/a&gt;.
  &lt;/div&gt;</description>
          <properties>

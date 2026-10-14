@@ -38,8 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  *
  * <p>
  * The check honors special comments to suppress the warning.
- * By default, the texts
- * "fallthru", "fall thru", "fall-thru",
+ * By default, the texts "fallthru", "fall thru", "fall-thru",
  * "fallthrough", "fall through", "fall-through"
  * "fallsthrough", "falls through", "falls-through" (case-sensitive).
  * The comment containing these words must be all on one line,
@@ -65,14 +64,12 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 public class FallThroughCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_FALL_THROUGH = "fall.through";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_FALL_THROUGH_LAST = "fall.through.last";
 

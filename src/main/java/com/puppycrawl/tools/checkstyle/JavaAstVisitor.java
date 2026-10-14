@@ -84,8 +84,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>
  * See <a href="https://github.com/checkstyle/checkstyle/pull/10434">#10434</a>
- * for a good example of how
- * to make changes to Checkstyle's grammar and AST.
+ * for a good example of how to make changes to Checkstyle's grammar and AST.
  * </p>
  *
  * <p>
@@ -2355,8 +2354,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         }
 
         /**
-         * This method is used to replace the {@code ^} (set as root node) ANTLR2
-         * operator.
+         * This method is used to replace the {@code ^} (set as root node) ANTLR2 operator.
          *
          * @param pair the DetailAstPair to use for swapping nodes
          * @param ast the new root

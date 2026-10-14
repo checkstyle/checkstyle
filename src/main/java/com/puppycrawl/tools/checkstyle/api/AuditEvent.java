@@ -96,8 +96,7 @@ public final class AuditEvent {
     /**
      * Returns name of file being audited.
      *
-     * @return the file name currently being audited or null if there is
-     *     no relation to a file.
+     * @return the file name currently being audited or null if there is no relation to a file.
      */
     public String getFileName() {
         return fileName;
@@ -147,8 +146,7 @@ public final class AuditEvent {
     /**
      * Returns id of module.
      *
-     * @return the identifier of the module that generated the event. Can return
-     *         null.
+     * @return the identifier of the module that generated the event. Can return null.
      */
     public String getModuleId() {
         return violation.getModuleId();

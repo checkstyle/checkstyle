@@ -50,8 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * supplied, then all folders that checkstyle finds are examined for violations.
  * The ignoreFileNameExtensions property drops the file extension and applies
  * the fileNamePattern only to the rest of file name. For example, if the file
- * is named 'test.java' and this property is turned on, the pattern is only
- * applied to 'test'.
+ * is named 'test.java' and this property is turned on, the pattern is only applied to 'test'.
  * </p>
  *
  * <p>
@@ -67,8 +66,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * the violation is, especially if multiple RegexpOnFilename checks are used.
  * Argument 0 for the message populates the check's folderPattern. Argument 1
  * for the message populates the check's fileNamePattern. The file name is not
- * passed as an argument since it is part of CheckStyle's default violation
- * messages.
+ * passed as an argument since it is part of CheckStyle's default violation messages.
  * </p>
  *
  * @since 6.15
@@ -77,13 +75,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_MATCH = "regexp.filename.match";
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_MISMATCH = "regexp.filename.mismatch";
 
@@ -247,8 +243,7 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Retrieves the String form of the {@code pattern} or {@code defaultString}
-     * if null.
+     * Retrieves the String form of the {@code pattern} or {@code defaultString} if null.
      *
      * @param pattern The pattern to convert.
      * @param defaultString The result to use if {@code pattern} is null.

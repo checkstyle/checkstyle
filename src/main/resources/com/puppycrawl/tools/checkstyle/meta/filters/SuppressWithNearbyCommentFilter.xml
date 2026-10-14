@@ -25,8 +25,7 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- SuppressWithNearbyCommentFilter can suppress Checks that have
- Treewalker as parent module.
+ SuppressWithNearbyCommentFilter can suppress Checks that have Treewalker as parent module.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="checkC" type="boolean">

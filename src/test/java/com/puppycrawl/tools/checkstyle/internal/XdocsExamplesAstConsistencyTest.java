@@ -1218,8 +1218,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks whether a file contains an embedded {@code /*xml ... *}{@code /}
-     * configuration block.
+     * Checks whether a file contains an embedded {@code /*xml ... *}{@code /} configuration block.
      *
      * @param file the file to check
      * @return true if an XML config block is present
@@ -1541,8 +1540,7 @@ public class XdocsExamplesAstConsistencyTest {
      * {@code ok}, {@code violation}, and {@code xdoc section} single-line comments.
      *
      * @param ast the AST to convert
-     * @return structural representation of the AST, or null if the node is a
-     *         skippable comment
+     * @return structural representation of the AST, or null if the node is a skippable comment
      */
     private static StructuralAstNode toStructuralAst(DetailAST ast) {
         final boolean ignoreName = isTypeName(ast)
@@ -1803,8 +1801,7 @@ public class XdocsExamplesAstConsistencyTest {
      * <p>Line numbers are section-relative (line 1 = first line of the extracted
      * xdoc section) because {@link #parseContent} re-parses only the extracted
      * section string. Class and constructor name nodes have their line number
-     * set to {@code null} so that intentional name differences do not cause
-     * false positives.
+     * set to {@code null} so that intentional name differences do not cause false positives.
      */
     private static final class StructuralAstNode {
 

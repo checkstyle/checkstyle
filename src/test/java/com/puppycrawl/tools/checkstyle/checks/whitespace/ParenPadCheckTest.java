@@ -547,8 +547,7 @@ public class ParenPadCheckTest extends AbstractModuleTestSupport {
      * METHOD_DEF will never reach this method. It is hard to recreate conditions for
      * all tokens to go through this method. We do not want to change main code to have
      * this set ok tokens more exact, because it will not be ease to understand.
-     * So we have to use reflection to be sure all
-     * acceptable tokens pass that check.
+     * So we have to use reflection to be sure all acceptable tokens pass that check.
      */
     @Test
     public void testIsAcceptableToken() throws Exception {

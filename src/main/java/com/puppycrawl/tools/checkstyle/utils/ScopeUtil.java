@@ -215,11 +215,9 @@ public final class ScopeUtil {
     }
 
     /**
-     * Returns whether a node is directly contained within an interface or
-     * annotation block.
+     * Returns whether a node is directly contained within an interface or annotation block.
      *
-     * @param node the node to check if directly contained within an interface
-     *     or annotation block.
+     * @param node the node to check if directly contained within an interface or annotation block.
      * @return a {@code boolean} value
      */
     public static boolean isInInterfaceOrAnnotationBlock(DetailAST node) {

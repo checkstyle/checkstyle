@@ -39,8 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * legacy code, they often either aren't configurable enough or
  * just can't anticipate how format should be done. Sometimes this is
  * personal preference, other times it is practical experience. In any
- * case, this check should just ensure that a minimal set of indentation
- * rules is followed.
+ * case, this check should just ensure that a minimal set of indentation rules is followed.
  * </p>
  *
  * <p>
@@ -107,26 +106,22 @@ public class IndentationCheck extends AbstractCheck {
      */
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_ERROR = IndentationContext.MSG_ERROR;
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_ERROR_MULTI = IndentationContext.MSG_ERROR_MULTI;
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_CHILD_ERROR = IndentationContext.MSG_CHILD_ERROR;
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_CHILD_ERROR_MULTI =
         IndentationContext.MSG_CHILD_ERROR_MULTI;

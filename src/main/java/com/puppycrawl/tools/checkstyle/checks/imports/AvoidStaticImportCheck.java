@@ -34,14 +34,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * Rationale: Importing static members can lead to naming conflicts
  * between class' members. It may lead to poor code readability since it
- * may no longer be clear what class a member resides in (without looking
- * at the import statement).
+ * may no longer be clear what class a member resides in (without looking at the import statement).
  * </p>
  *
  * <p>
  * Notes:
- * If you exclude a starred import on a class this automatically excludes
- * each member individually.
+ * If you exclude a starred import on a class this automatically excludes each member individually.
  * </p>
  *
  * <p>
@@ -56,8 +54,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class AvoidStaticImportCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "import.avoidStatic";
 

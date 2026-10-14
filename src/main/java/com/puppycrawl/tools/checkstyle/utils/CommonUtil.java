@@ -191,8 +191,7 @@ public final class CommonUtil {
 
     /**
      * Returns the length of a String prefix with tabs expanded.
-     * Each tab is counted as the number of characters is
-     * takes to jump to the next tab stop.
+     * Each tab is counted as the number of characters is takes to jump to the next tab stop.
      *
      * @param inputString
      *            the input String

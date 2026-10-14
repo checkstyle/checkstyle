@@ -32,8 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class RecordComponentNameCheck extends AbstractNameCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
 

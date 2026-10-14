@@ -386,8 +386,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * Performs verification of two files with their given file paths.
      * using specified configuration of one file only. Also performs
      * verification of the config specified in the input file. This method
-     * needs to be implemented when two given files need to be
-     * checked through a single check only.
+     * needs to be implemented when two given files need to be checked through a single check only.
      *
      * @param filePath1 file path of first file to verify
      * @param filePath2 file path of first file to verify
@@ -916,8 +915,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
-     * Gets the check message 'as is' from appropriate 'messages.properties'
-     * file.
+     * Gets the check message 'as is' from appropriate 'messages.properties' file.
      *
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments  the arguments of message in 'messages.properties' file.
@@ -928,8 +926,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
-     * Gets the check message 'as is' from appropriate 'messages.properties'
-     * file.
+     * Gets the check message 'as is' from appropriate 'messages.properties' file.
      *
      * @param clazz the related check class.
      * @param messageKey the key of message in 'messages.properties' file.
@@ -942,8 +939,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
-     * Gets the check message 'as is' from appropriate 'messages.properties'
-     * file.
+     * Gets the check message 'as is' from appropriate 'messages.properties' file.
      *
      * @param messageBundle the bundle name.
      * @param messageKey the key of message in 'messages.properties' file.

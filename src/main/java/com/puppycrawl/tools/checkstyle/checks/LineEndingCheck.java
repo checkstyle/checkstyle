@@ -51,14 +51,12 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 public class LineEndingCheck extends AbstractFileSetCheck {
 
     /**
-     * A key is pointing to the warning message text in "message.properties"
-     * file.
+     * A key is pointing to the warning message text in "message.properties" file.
      */
     public static final String MSG_KEY_UNABLE_OPEN = "unable.open";
 
     /**
-     * A key is pointing to the warning message text in "message.properties"
-     * file.
+     * A key is pointing to the warning message text in "message.properties" file.
      */
     public static final String MSG_KEY_WRONG_ENDING = "wrong.line.ending";
 

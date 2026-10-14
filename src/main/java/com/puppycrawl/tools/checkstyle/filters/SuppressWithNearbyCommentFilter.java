@@ -60,8 +60,7 @@ import com.puppycrawl.tools.checkstyle.utils.WeakReferenceHolder;
  *
  * <p>
  * Notes:
- * SuppressWithNearbyCommentFilter can suppress Checks that have
- * Treewalker as parent module.
+ * SuppressWithNearbyCommentFilter can suppress Checks that have Treewalker as parent module.
  * </p>
  *
  * @since 5.0
@@ -239,8 +238,7 @@ public class SuppressWithNearbyCommentFilter
     }
 
     /**
-     * Collects all the suppression tags for all comments into a list and
-     * sorts the list.
+     * Collects all the suppression tags for all comments into a list and sorts the list.
      */
     private void tagSuppressions() {
         tags.clear();
@@ -256,8 +254,7 @@ public class SuppressWithNearbyCommentFilter
     }
 
     /**
-     * Appends the suppressions in a collection of comments to the full
-     * set of suppression tags.
+     * Appends the suppressions in a collection of comments to the full set of suppression tags.
      *
      * @param comments the set of comments.
      */
@@ -417,8 +414,7 @@ public class SuppressWithNearbyCommentFilter
         }
 
         /**
-         * Determines whether the source of an audit event
-         * matches the text of this tag.
+         * Determines whether the source of an audit event matches the text of this tag.
          *
          * @param event the {@code TreeWalkerAuditEvent} to check.
          * @return true if the source of event matches the text of this tag.

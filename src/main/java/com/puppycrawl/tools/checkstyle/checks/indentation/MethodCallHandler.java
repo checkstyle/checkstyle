@@ -195,8 +195,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
 
     /**
      * Returns true if the given child handler represents the invocation target
-     * of this method call (the expression before the dot), rather than one of
-     * the call's arguments.
+     * of this method call (the expression before the dot), rather than one of the call's arguments.
      *
      * @param child the child handler to classify
      * @return true if the child is the invocation target, not an argument
@@ -255,8 +254,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
      * previously not validated because the enclosing statement is not a direct
      * SLIST child. Arguments whose leftmost token is a self-checking construct
      * (currently {@code new}) are skipped so that dedicated handler owns the
-     * diagnostic instead of shadowing it with a generic {@code method call}
-     * message.
+     * diagnostic instead of shadowing it with a generic {@code method call} message.
      */
     private void checkReturnStatementCallArguments() {
         final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);

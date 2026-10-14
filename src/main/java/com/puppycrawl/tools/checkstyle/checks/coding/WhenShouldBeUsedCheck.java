@@ -60,8 +60,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class WhenShouldBeUsedCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "when.should.be.used";
 
@@ -158,8 +157,7 @@ public class WhenShouldBeUsedCheck extends AbstractCheck {
     }
 
     /**
-     * Check if the case block has a pattern variable definition
-     * or a record pattern definition.
+     * Check if the case block has a pattern variable definition or a record pattern definition.
      *
      * @param caseAST the AST node representing {@code LITERAL_CASE}
      * @return true if the case block has a pattern label, false otherwise

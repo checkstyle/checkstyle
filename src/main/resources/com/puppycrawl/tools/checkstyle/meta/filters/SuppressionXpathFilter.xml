@@ -152,40 +152,33 @@
 
  &lt;p&gt;
  A &lt;a href="/dtds/suppressions_1_2_xpath.dtd"&gt;&lt;em&gt;suppressions XML
- document&lt;/em&gt;&lt;/a&gt; contains a set
- of &lt;code&gt;suppress&lt;/code&gt; and &lt;code&gt;suppress-xpath&lt;/code&gt; elements, where
- each &lt;code&gt;suppress-xpath&lt;/code&gt; element can have the
- following attributes:
+ document&lt;/em&gt;&lt;/a&gt; contains a set of &lt;code&gt;suppress&lt;/code&gt; and &lt;code&gt;suppress-xpath&lt;/code&gt; elements, where
+ each &lt;code&gt;suppress-xpath&lt;/code&gt; element can have the following attributes:
  &lt;/p&gt;
  &lt;ul&gt;
  &lt;li&gt;
- &lt;code&gt;files&lt;/code&gt; -
- a &lt;a href="https://checkstyle.org/property-types.html#Pattern"&gt;Pattern&lt;/a&gt;
+ &lt;code&gt;files&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property-types.html#Pattern"&gt;Pattern&lt;/a&gt;
  matched against the file name associated with an audit
  event. It is optional. If unmatched, all Unix path separators (/)
  are converted to Windows separators (\) and retried.
  &lt;/li&gt;
  &lt;li&gt;
- &lt;code&gt;checks&lt;/code&gt; -
- a &lt;a href="https://checkstyle.org/property-types.html#Pattern"&gt;Pattern&lt;/a&gt;
+ &lt;code&gt;checks&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property-types.html#Pattern"&gt;Pattern&lt;/a&gt;
  matched against the name of the check associated with an audit
  event. Optional as long as &lt;code&gt;id&lt;/code&gt; or &lt;code&gt;message&lt;/code&gt; is specified.
  &lt;/li&gt;
  &lt;li&gt;
- &lt;code&gt;message&lt;/code&gt; -
- a &lt;a href="https://checkstyle.org/property-types.html#Pattern"&gt;Pattern&lt;/a&gt;
+ &lt;code&gt;message&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property-types.html#Pattern"&gt;Pattern&lt;/a&gt;
  matched against the message of the check associated with an audit
  event. Optional as long as &lt;code&gt;checks&lt;/code&gt; or &lt;code&gt;id&lt;/code&gt; is specified.
  &lt;/li&gt;
  &lt;li&gt;
- &lt;code&gt;id&lt;/code&gt; -
- a &lt;a href="https://checkstyle.org/property-types.html#String"&gt;String&lt;/a&gt;
+ &lt;code&gt;id&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property-types.html#String"&gt;String&lt;/a&gt;
  matched against the ID of the check associated with an audit
  event. Optional as long as &lt;code&gt;checks&lt;/code&gt; or &lt;code&gt;message&lt;/code&gt; is specified.
  &lt;/li&gt;
  &lt;li&gt;
- &lt;code&gt;query&lt;/code&gt; -
- a &lt;a href="https://checkstyle.org/property-types.html#String"&gt;String&lt;/a&gt;
+ &lt;code&gt;query&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property-types.html#String"&gt;String&lt;/a&gt;
  xpath query. It is optional.
  &lt;/li&gt;
  &lt;/ul&gt;
@@ -193,8 +186,7 @@
  &lt;p&gt;
  Each audit event is checked against
  each &lt;code&gt;suppress&lt;/code&gt; and &lt;code&gt;suppress-xpath&lt;/code&gt; element. It is
- suppressed if all specified attributes match against the audit
- event.
+ suppressed if all specified attributes match against the audit event.
  &lt;/p&gt;
 
  &lt;p&gt;

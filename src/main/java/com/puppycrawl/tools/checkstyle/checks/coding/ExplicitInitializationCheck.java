@@ -30,16 +30,14 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <div>
  * Checks if any class or object member is explicitly initialized
  * to default for its type value ({@code null} for object
- * references, zero for numeric types and {@code char}
- * and {@code false} for {@code boolean}.
+ * references, zero for numeric types and {@code char} and {@code false} for {@code boolean}.
  * </div>
  *
  * <p>
  * Rationale: Each instance variable gets
  * initialized twice, to the same value. Java
  * initializes each instance variable to its default
- * value ({@code 0} or {@code null}) before performing any
- * initialization specified in the code.
+ * value ({@code 0} or {@code null}) before performing any initialization specified in the code.
  * So there is a minor inefficiency.
  * </p>
  *
@@ -49,8 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 public class ExplicitInitializationCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "explicit.init";
 

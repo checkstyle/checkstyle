@@ -47,8 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * <li>
  * adds a separation between module imports and other imports: ensures that the module
- * import block is separated from type and static imports by, at least, one blank
- * line or comment
+ * import block is separated from type and static imports by, at least, one blank line or comment
  * </li>
  * </ul>
  *
@@ -79,8 +78,7 @@ public class ModuleImportOrderCheck extends AbstractCheck {
 
     /**
      * A key pointing to the warning message text in "messages.properties" file.
-     * Emitted when module imports are not sorted lexicographically by
-     * qualified module name.
+     * Emitted when module imports are not sorted lexicographically by qualified module name.
      */
     public static final String MSG_ORDERING_LEX = "module.import.ordering.lex";
 
@@ -88,8 +86,7 @@ public class ModuleImportOrderCheck extends AbstractCheck {
     private final List<ImportEntry> imports = new ArrayList<>();
 
     /**
-     * Specify policy on the position of module imports relative to type and
-     * static imports.
+     * Specify policy on the position of module imports relative to type and static imports.
      */
     private ModuleImportOrderOption option = ModuleImportOrderOption.TOP;
 

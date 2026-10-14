@@ -164,8 +164,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
 
     /**
      * Checks the indentation of a single-expression lambda body when the body is placed
-     * on a line separate from the {@code ->} operator. This ensures that continuation
-     * lines like:
+     * on a line separate from the {@code ->} operator. This ensures that continuation lines like:
      * {@snippet lang="text" :
      * return (String s) ->
      * s.length();
@@ -274,8 +273,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
      * as the given SWITCH_LITERAL node.
      *
      * @param node the SWITCH_LITERAL node to compare with
-     * @return true if the current LAMBDA node is on the same line
-     *     as the given SWITCH_LITERAL node
+     * @return true if the current LAMBDA node is on the same line as the given SWITCH_LITERAL node
      */
     private boolean isSameLineAsSwitch(DetailAST node) {
         return node.getType() == TokenTypes.LITERAL_SWITCH

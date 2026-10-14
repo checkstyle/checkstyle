@@ -75,8 +75,7 @@ public class JavadocDetailNodeParser {
      * </p>
      *
      * @param javadocCommentAst
-     *        the {@code DetailAST} node representing the Javadoc comment in the
-     *        source file
+     *        the {@code DetailAST} node representing the Javadoc comment in the source file
      * @return a {@code ParseStatus} containing the root of the parsed Javadoc
      *        tree (if successful), the first non-tight HTML tag (if any), and
      *        the error message (if parsing failed)
@@ -150,8 +149,7 @@ public class JavadocDetailNodeParser {
 
         /**
          * Offset is line number of beginning of the Javadoc comment. Log
-         * messages should have line number in scope of file, not in scope of
-         * Javadoc comment.
+         * messages should have line number in scope of file, not in scope of Javadoc comment.
          */
         private int offset;
 
@@ -242,8 +240,7 @@ public class JavadocDetailNodeParser {
     }
 
     /**
-     * Contains result of parsing javadoc comment: DetailNode tree and parse
-     * error message.
+     * Contains result of parsing javadoc comment: DetailNode tree and parse error message.
      */
     public static class ParseStatus {
 

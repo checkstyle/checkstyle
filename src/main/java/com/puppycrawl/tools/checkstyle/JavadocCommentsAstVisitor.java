@@ -573,8 +573,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     /**
-     * Builds the AST for a particular node, then returns a "flattened" tree
-     * of siblings.
+     * Builds the AST for a particular node, then returns a "flattened" tree of siblings.
      *
      * @param ctx the ParserRuleContext to base tree on
      * @return flattened DetailAstImpl

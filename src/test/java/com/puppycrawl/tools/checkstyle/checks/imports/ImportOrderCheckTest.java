@@ -472,8 +472,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Tests that a non-static import before a static import correctly gives an
-     * error if order=top.
+     * Tests that a non-static import before a static import correctly gives an error if order=top.
      */
     @Test
     public void testStaticGroupsAlphabeticalOrderBottomNegative2() throws Exception {

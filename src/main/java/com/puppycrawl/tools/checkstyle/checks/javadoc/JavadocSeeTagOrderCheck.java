@@ -54,8 +54,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>Inside each member group, fields come first, then constructors, then
  * methods. Overloaded constructors and methods with the same name must be
- * grouped together and ordered by the number of parameters, with the fewest
- * parameters first.</p>
+ * grouped together and ordered by the number of parameters, with the fewest parameters first.</p>
  *
  * <p>For example, this is the order recommended by the OpenJDK documentation
  * comments style guide:</p>
@@ -256,8 +255,7 @@ public class JavadocSeeTagOrderCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Category of a {@code @see} reference, ordered from the closest to the most
-     * distant access.
+     * Category of a {@code @see} reference, ordered from the closest to the most distant access.
      */
     private enum Category {
 
@@ -341,8 +339,7 @@ public class JavadocSeeTagOrderCheck extends AbstractJavadocCheck {
      *
      * @param category category that defines the primary structural ordering
      * @param kind whether the reference is a field, constructor, or method
-     * @param qualifier owning type name, or an empty string for local and
-     *     non-member references
+     * @param qualifier owning type name, or an empty string for local and non-member references
      * @param name simple member or type name used for grouping
      * @param parameterCount number of parameters, used to order overloaded methods
      * @param text full reference text used for messages

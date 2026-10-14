@@ -102,7 +102,6 @@ public class XdocsExampleFileTest {
         "checks/coding/hiddenfield/",
         "checks/javadoc/javadoctype/",
         "checks/javadoc/missingjavadoctype/",
-        "checks/naming/illegalidentifiername/",
         "checks/outertypefilename/",
         "checks/regexp/regexpmultiline/",
         "checks/regexp/regexpsingleline/"
@@ -244,8 +243,7 @@ public class XdocsExampleFileTest {
      * configured properties), that example is the numerically-first one (Example1) in
      * its directory. Convention is that a module's baseline/default behavior should be
      * the first thing a reader encounters, with later examples layering on property
-     * configuration - this catches cases where the default example exists but is
-     * out of order.
+     * configuration - this catches cases where the default example exists but is out of order.
      *
      * <p>This is distinct from testEveryModuleHasDefaultConfigExample, which
      * only checks that a default-config example exists somewhere; a module can pass
@@ -471,8 +469,7 @@ public class XdocsExampleFileTest {
      * <p>Returns null if any violation message in the file is unspecified, if
      * the file has zero violations within the visible section, or if the markers
      * themselves cannot be found, since none of those are a reliable duplicate
-     * signal - see InlineConfigParser.SUPPRESSED_VALIDATE_MESSAGE_FILES /
-     * SUPPRESSED_CHECKS.
+     * signal - see InlineConfigParser.SUPPRESSED_VALIDATE_MESSAGE_FILES / SUPPRESSED_CHECKS.
      *
      * @param suppressed whether this module is in SUPPRESSED_UNIQUENESS_CHECK_MODULES;
      *     when true, parse failures are silently skipped instead of recorded, so
@@ -535,8 +532,7 @@ public class XdocsExampleFileTest {
      * "// xdoc section - end" marker comments in a file.
      *
      * @return a two-element array {startLine, endLine}, or null if either marker
-     *     is missing (in which case the file is skipped from comparison rather
-     *     than guessed at).
+     *     is missing (in which case the file is skipped from comparison rather than guessed at).
      */
     private static int[] findVisibleSectionBounds(Path exampleFile) throws IOException {
         final List<String> lines = Files.readAllLines(exampleFile);
@@ -565,8 +561,7 @@ public class XdocsExampleFileTest {
 
     /**
      * Processes a single module directory: if the module has a default-config example
-     * anywhere, checks that its numerically-first example (Example1) is that default
-     * example.
+     * anywhere, checks that its numerically-first example (Example1) is that default example.
      *
      * @param dir the directory to check
      * @param violations a thread-safe list to collect any discovered violations

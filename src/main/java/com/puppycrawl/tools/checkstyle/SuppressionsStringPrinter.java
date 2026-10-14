@@ -34,8 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
 
 /**
- * Class for constructing xpath queries to suppress nodes
- * with specified line and column number.
+ * Class for constructing xpath queries to suppress nodes with specified line and column number.
  */
 public final class SuppressionsStringPrinter {
 

@@ -279,8 +279,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
      * this test requires an Exception is logged. This cannot be
      * done right now as the method uses Checker, which only calls
      * the addError() method. Would be possible if Checker or the
-     * verifyWithInlineConfigParserAndXmlLogger method are modified
-     * to handle addException() calls.
+     * verifyWithInlineConfigParserAndXmlLogger method are modified to handle addException() calls.
      */
     @Test
     public void testAddExceptionAfterFileStarted()
@@ -310,8 +309,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
      * this test requires an Exception is logged. This cannot be
      * done right now as the method uses Checker, which only calls
      * the addError() method. Would be possible if Checker or the
-     * verifyWithInlineConfigParserAndXmlLogger method are modified
-     * to handle addException() calls.
+     * verifyWithInlineConfigParserAndXmlLogger method are modified to handle addException() calls.
      */
     @Test
     public void testAddExceptionBeforeFileFinished()
@@ -337,8 +335,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
      * this test requires an Exception is logged. This cannot be
      * done right now as the method uses Checker, which only calls
      * the addError() method. Would be possible if Checker or the
-     * verifyWithInlineConfigParserAndXmlLogger method are modified
-     * to handle addException() calls.
+     * verifyWithInlineConfigParserAndXmlLogger method are modified to handle addException() calls.
      */
     @Test
     public void testAddExceptionBetweenFileStartedAndFinished()

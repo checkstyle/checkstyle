@@ -82,8 +82,7 @@ public interface Configuration extends Serializable {
     String getName();
 
     /**
-     * Returns an unmodifiable map instance containing the custom messages
-     * for this configuration.
+     * Returns an unmodifiable map instance containing the custom messages for this configuration.
      *
      * @return unmodifiable map containing custom messages
      */

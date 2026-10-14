@@ -7,8 +7,7 @@
          <description>&lt;div&gt;
  Checks cyclomatic complexity against a specified limit. It is a measure of
  the minimum number of possible paths through the source and therefore the
- number of required tests, it is not about quality of code! It is only
- applied to methods, c-tors,
+ number of required tests, it is not about quality of code! It is only applied to methods, c-tors,
  &lt;a href="https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html"&gt;
  static initializers and instance initializers&lt;/a&gt;.
  &lt;/div&gt;

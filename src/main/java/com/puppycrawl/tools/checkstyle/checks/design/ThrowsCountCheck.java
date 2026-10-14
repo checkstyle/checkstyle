@@ -43,12 +43,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * on reports that we had for the ThrowsCountCheck over big projects
  * such as OpenJDK. This check also forces developers to put exceptions
  * into a hierarchy such that in the simplest
- * case, only one type of exception need be checked for by
- * a caller but any subclasses can be caught
+ * case, only one type of exception need be checked for by a caller but any subclasses can be caught
  * specifically if necessary. For more information on rules
  * for the exceptions and their issues, see Effective Java:
- * Programming Language Guide Second Edition
- * by Joshua Bloch pages 264-273.
+ * Programming Language Guide Second Edition by Joshua Bloch pages 264-273.
  * </p>
  *
  * <p>
@@ -62,8 +60,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class ThrowsCountCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "throws.count";
 

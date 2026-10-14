@@ -70,8 +70,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class FinalClassCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "final.class";
 
@@ -243,8 +242,7 @@ public class FinalClassCheck extends AbstractCheck {
     }
 
     /**
-     * Register to outer super class of given classAst that
-     * given classAst is extending them.
+     * Register to outer super class of given classAst that given classAst is extending them.
      *
      * @param qualifiedClassName qualifies class name(with package) of the current class
      * @param currentClass class which outer super class will be informed about nesting subclass

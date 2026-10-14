@@ -1,3 +1,11 @@
+/*
+FallThrough
+checkLastCaseGroup = (default)false
+reliefPattern = (default)falls?[ -]?thr(u|ough)
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.fallthrough;
 
 public class InputXpathFallThrough {
@@ -8,7 +16,8 @@ public class InputXpathFallThrough {
             case 1: if (1 == 0) {
                 break;
             };
-            case 2: break; //warn
+            case 2: break;
+            // violation above 'Fall through from previous branch of the switch statement.'
         }
     }
 }

@@ -118,8 +118,7 @@ public class ChainedPropertyUtilTest extends AbstractModuleTestSupport {
      * Loads properties from a file. We could load properties inline
      * with StringReader, but that would preserve the order of the
      * properties. Since properties are not loaded/ stored in
-     * sequential order, it is important to maintain this
-     * random property order for testing.
+     * sequential order, it is important to maintain this random property order for testing.
      *
      * @param file the properties file
      * @return the properties in file

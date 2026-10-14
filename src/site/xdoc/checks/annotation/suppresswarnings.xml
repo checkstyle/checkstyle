@@ -37,8 +37,7 @@
         <div>
           Allows to specify what warnings that
           <code>@SuppressWarnings</code> is not allowed to suppress.
-          You can also specify a list of TokenTypes that
-          the configured warning(s) cannot be suppressed on.
+          You can also specify a list of TokenTypes that the configured warning(s) cannot be suppressed on.
         </div>
 
         <p>
@@ -51,8 +50,7 @@
           <code>@SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")</code>.
           According to the above example, the "unused" warning is being suppressed
           not the "unchecked" or "foo" warnings.  All of these warnings will be
-          considered and matched against regardless of what the conditional
-          evaluates to.
+          considered and matched against regardless of what the conditional evaluates to.
           The check also does not support code like <code>@SuppressWarnings("un" + "used")</code>,
           <code>@SuppressWarnings((String) "unused")</code> or
           <code>@SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})</code>.
@@ -60,8 +58,7 @@
 
         <p>
           By default, any warning specified will be disallowed on
-          all legal TokenTypes unless otherwise specified via
-          the tokens property.
+          all legal TokenTypes unless otherwise specified via the tokens property.
         </p>
 
         <p>
@@ -71,8 +68,7 @@
         </p>
 
         <p>This check can be configured so that the "unchecked"
-          and "unused" warnings cannot be suppressed on
-          anything but variable and parameter declarations.
+          and "unused" warnings cannot be suppressed on anything but variable and parameter declarations.
           See below of an example.
         </p>
       </subsection>

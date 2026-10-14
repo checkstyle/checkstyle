@@ -56,8 +56,7 @@
  &lt;/li&gt;
  &lt;li&gt;
  If a class has references to mutable objects then those object
- references must be replaced with copies in the clone method
- after calling super.clone().
+ references must be replaced with copies in the clone method after calling super.clone().
  &lt;/li&gt;
  &lt;li&gt;
  The clone method does not work correctly with final mutable object
@@ -79,8 +78,7 @@
 
  &lt;p&gt;Sometimes a copy constructor or static factory is not an acceptable
  alternative to the clone method.  The example below highlights the
- limitation of a copy constructor (or static factory). Assume
- Square is a subclass for Shape.
+ limitation of a copy constructor (or static factory). Assume Square is a subclass for Shape.
  &lt;/p&gt;
  &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  Shape s1 = new Square();

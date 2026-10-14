@@ -77,8 +77,7 @@ public record TreeWalkerAuditEvent(
     /**
      * Returns id of module.
      *
-     * @return the identifier of the module that generated the event. Can return
-     *         null.
+     * @return the identifier of the module that generated the event. Can return null.
      */
     public String getModuleId() {
         return violation.getModuleId();

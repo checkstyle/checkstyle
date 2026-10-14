@@ -28,8 +28,7 @@ import javax.swing.event.EventListenerList;
 
 /**
  * A base class for CellEditors, providing default implementations for all
- * methods in the CellEditor interface and support for managing a series
- * of listeners.
+ * methods in the CellEditor interface and support for managing a series of listeners.
  * <a href=
  * "https://docs.oracle.com/cd/E48246_01/apirefs.1111/e13403/oracle/ide/controls/TreeTableModel.html">
  * Original&nbsp;Source&nbsp;Location</a>
@@ -85,8 +84,7 @@ public class BaseCellEditor implements CellEditor {
     }
 
     /**
-     * Notifies all listeners that have registered interest in
-     * 'editing stopped' event.
+     * Notifies all listeners that have registered interest in 'editing stopped' event.
      *
      * @see EventListenerList
      */
@@ -103,8 +101,7 @@ public class BaseCellEditor implements CellEditor {
     }
 
     /**
-     * Notifies all listeners that have registered interest in
-     * 'editing canceled' event.
+     * Notifies all listeners that have registered interest in 'editing canceled' event.
      *
      * @see EventListenerList
      */
