@@ -801,4 +801,20 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 getPath("InputRequireThisAnnotationOverlappingTrue.java"), expected);
     }
 
+    @Test
+    public void testCompoundAssignMinusAndBitwiseOr() throws Exception {
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "25:9: " + getCheckMessage(MSG_VARIABLE, "flags", ""),
+            "30:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "35:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "43:9: " + getCheckMessage(MSG_VARIABLE, "flags", ""),
+            "67:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "72:9: " + getCheckMessage(MSG_VARIABLE, "active", ""),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisCompoundAssignMinusAndBitwiseOr.java"), expected);
+    }
+
 }
