@@ -242,26 +242,23 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
      * @return true if the variable is dereferenced, false otherwise
      */
     private static boolean containsVariableDereference(DetailAST node, String variableName) {
-
         boolean found = false;
+        DetailAST child = node.getFirstChild();
 
-        if (node.getType() == TokenTypes.DOT
-            || node.getType() == TokenTypes.METHOD_CALL
-            || node.getType() == TokenTypes.LAND
-            || node.getType() == TokenTypes.LOR) {
+        while (child != null) {
+            final boolean isDirectDereference =
+                    (node.getType() == TokenTypes.DOT || node.getType() == TokenTypes.METHOD_CALL)
+                    && variableName.equals(child.getText())
+                    && child.getNextSibling() != null
+                    && child.getNextSibling().getType() != TokenTypes.ELIST;
 
-            DetailAST firstChild = node.getFirstChild();
-
-            while (firstChild != null) {
-                if (variableName.equals(firstChild.getText())
-                        && firstChild.getNextSibling().getType() != TokenTypes.ELIST
-                            || containsVariableDereference(firstChild, variableName)) {
-                    found = true;
-                    break;
-                }
-                firstChild = firstChild.getNextSibling();
+            if (isDirectDereference || containsVariableDereference(child, variableName)) {
+                found = true;
+                break;
             }
+            child = child.getNextSibling();
         }
+
         return found;
     }
 
