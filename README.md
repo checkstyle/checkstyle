@@ -110,7 +110,7 @@ information on how to build the project.
   ask questions about Checkstyle usage.
 - If you are interested in contributing to the project, you can join our
   [Discord Contributors Chat](https://discord.com/channels/845645228467159061/1216455699488313554)
-  [with invite link](https://discord.gg/FsUsYC2ura).
+  [with invite link](https://discord.com/invite/FsUsYC2ura).
 - Our [Google Groups Forum](https://groups.google.com/forum/?hl=en#!forum/checkstyle) is a
   mailing list for discussion and support; however, we may be slow to respond there.
 
