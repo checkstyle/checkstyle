@@ -82,11 +82,11 @@ public class InputFormattedOneVariablePerDeclaration {
   }
 
   class Suppress {
+    // violation below 'Each variable declaration must be in its own statement.'
     @SuppressWarnings("unused")
-    // violation above 'Each variable declaration must be in its own statement.'
     long q1, q2, q3;
+    // violation below 'Each variable declaration must be in its own statement.'
     @SuppressWarnings("unused")
     long q4, q5, q6;
-    // violation 2 lines above 'Each variable declaration must be in its own statement.'
   }
 }
