@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck;
 
 public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
 
     @Test
     public void testRuntimeException() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalThrowsRuntimeException.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalThrowsCheck.class);
-
         final String[] expectedViolation = {
-            "4:35: " + getCheckMessage(IllegalThrowsCheck.class,
+            "14:35: " + getCheckMessage(IllegalThrowsCheck.class,
                 IllegalThrowsCheck.MSG_KEY, "RuntimeException"),
         };
 
@@ -63,20 +55,15 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
                 + "/IDENT[@text='RuntimeException']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalThrowsRuntimeException.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testError() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalThrowsError.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalThrowsCheck.class);
-
         final String[] expectedViolation = {
-            "8:45: " + getCheckMessage(IllegalThrowsCheck.class,
+            "18:45: " + getCheckMessage(IllegalThrowsCheck.class,
                 IllegalThrowsCheck.MSG_KEY, "java.lang.Error"),
         };
 
@@ -87,20 +74,15 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
                 + "/DOT[./IDENT[@text='Error']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalThrowsError.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testThrowable() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalThrowsThrowable.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalThrowsCheck.class);
-
         final String[] expectedViolation = {
-            "6:35: " + getCheckMessage(IllegalThrowsCheck.class,
+            "16:35: " + getCheckMessage(IllegalThrowsCheck.class,
                 IllegalThrowsCheck.MSG_KEY, "Throwable"),
         };
 
@@ -113,8 +95,9 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
                + "/LITERAL_THROWS/IDENT[@text='Throwable']"
         );
 
-        runVerifications(moduleConfig, fileToProcess,
-                expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalThrowsThrowable.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
