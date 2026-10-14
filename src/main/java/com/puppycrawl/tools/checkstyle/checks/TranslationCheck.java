@@ -153,6 +153,11 @@ public final class TranslationCheck extends AbstractFileSetCheck {
     /** Formatting string to form regexp to validate default translations file names. */
     private static final String REGEXP_FORMAT_TO_CHECK_DEFAULT_TRANSLATIONS = "^%s\\.%s$";
 
+    /**
+     * Compiled pattern for all system newlines.
+     */
+    private static final Pattern ALL_NEW_LINES = Pattern.compile("\\R");
+
     /** Logger for TranslationCheck. */
     private final Log log;
 
@@ -474,8 +479,8 @@ public final class TranslationCheck extends AbstractFileSetCheck {
                 final MessageDispatcher dispatcher = getMessageDispatcher();
                 final String path = fileKey.getKey().getAbsolutePath();
                 dispatcher.fireFileStarted(path);
-                for (Object key : missingKeys) {
-                    log(1, MSG_KEY, key);
+                for (String key : missingKeys) {
+                    log(1, MSG_KEY, ALL_NEW_LINES.matcher(key).replaceAll("\\\\n"));
                 }
                 fireErrors(path);
                 dispatcher.fireFileFinished(path);
