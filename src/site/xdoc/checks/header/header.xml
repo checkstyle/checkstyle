@@ -119,7 +119,7 @@
 package com.puppycrawl.tools.checkstyle.checks.header.header;
 // ok, as by default there is not specific header defined to validate it presence
 public class Example1 { }
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
         <p id="Example2-raw">
           To configure the check to use header file <code>&quot;java.header&quot;</code> and
           ignore lines <code>2</code>, <code>3</code>, and <code> 4</code> and only process Java
@@ -170,7 +170,7 @@ public class Example2 {
     // Some code
 }
 // violation first line 'Line does not match expected header line of'
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
         <p id="Example3-raw">
           Without the need for an external header file:
         </p>
@@ -191,7 +191,7 @@ public class Example2 {
 package com.puppycrawl.tools.checkstyle.checks.header.header;
 // violation on first line 'Line does not match expected header'
 public class Example3 { }
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
         <p id="Example4-raw">
           In case target file is less in size than header file:
         </p>

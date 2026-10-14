@@ -70,7 +70,6 @@ import java.util.Scanner; // violation 'Duplicate import to line 18 - java.util.
 
 public class Example1{ }
 </code></pre></div>
-        <hr class="example-separator"/>
         <p id="Example2-code">
             Example:
         </p>
