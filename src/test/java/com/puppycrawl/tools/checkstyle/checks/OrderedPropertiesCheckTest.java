@@ -110,6 +110,15 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testKeyWithLineBreaks() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY, "a\\nice", "key\\nice"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOrderedProperties7KeyWithLineBreaks.properties"), expected);
+    }
+
+    @Test
     public void testShouldNotProcessFilesWithWrongFileExtension() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParserSeparateConfigAndTarget(
