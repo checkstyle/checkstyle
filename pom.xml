@@ -2654,9 +2654,19 @@
                              so it must not carry any module descriptor (ours or a dependency's). -->
                         <exclude>module-info.class</exclude>
                         <exclude>META-INF/versions/*/module-info.class</exclude>
+                        <!-- Exclude overlapping META-INF files to avoid shade warnings -->
+                        <exclude>META-INF/LICENSE</exclude>
+                        <exclude>META-INF/LICENSE.txt</exclude>
+                        <exclude>META-INF/NOTICE.txt</exclude>
+                        <exclude>META-INF/MANIFEST.MF</exclude>
                       </excludes>
                     </filter>
                   </filters>
+                  <artifactSet>
+                    <excludes>
+                      <exclude>com.google.guava:failureaccess</exclude>
+                    </excludes>
+                  </artifactSet>
                   <createDependencyReducedPom>false</createDependencyReducedPom>
                   <shadedArtifactAttached>true</shadedArtifactAttached>
                   <shadedClassifierName>all</shadedClassifierName>
