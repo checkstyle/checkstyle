@@ -114,6 +114,15 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testKeyWithLineBreaks() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY, "key\\nice\\nice", 2),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUniquePropertiesKeyWithLineBreaks.properties"), expected);
+    }
+
+    @Test
     public void testShouldNotProcessFilesWithWrongFileExtension() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParserSeparateConfigAndTarget(
