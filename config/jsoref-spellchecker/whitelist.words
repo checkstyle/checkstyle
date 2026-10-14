@@ -421,6 +421,7 @@ explicitinitialization
 expr
 expressionoverblocklambda
 Externalizable
+failureaccess
 fallsthrough
 fallthrough
 fallthru
