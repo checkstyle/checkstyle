@@ -6082,6 +6082,17 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/WhileHandler.java</fileName>
     <specifier>argument</specifier>
+    <message>incompatible argument for parameter lastNode of AbstractExpressionHandler.checkWrappingIndentation.</message>
+    <lineContent>checkWrappingIndentation(getMainAst(), getMainAst().findFirstToken(TokenTypes.RPAREN));</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/WhileHandler.java</fileName>
+    <specifier>argument</specifier>
     <message>incompatible argument for parameter tree of AbstractExpressionHandler.checkExpressionSubtree.</message>
     <lineContent>checkExpressionSubtree(condAst, expected, false, false);</lineContent>
     <details>
