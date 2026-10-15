@@ -1,9 +1,16 @@
+/*
+AvoidInlineConditionals
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.avoidinlineconditionals;
 
 public class InputXpathAvoidInlineConditionalsAssign {
     String b;
 
     void setB(String a) {
-        b = (a == null || a.length() < 1) ? null : a.substring(1); // warn
+        b = (a == null || a.length() < 1) ? null : a.substring(1);
+        // violation above 'Avoid inline conditionals.'
     }
 }
