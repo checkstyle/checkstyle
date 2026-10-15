@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import java.util.BitSet;
-
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -42,10 +41,14 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Typecasts are also not checked, as there is
  * <a href="https://checkstyle.org/checks/whitespace/typecastparenpad.html">
  * TypecastParenPad</a> to validate them.
+ *
+ * <p>Only parentheses directly owned by configured tokens are checked. For example,
+ * parentheses around multiplication operands are checked by the {@code STAR} token.</p>
  * </div>
  *
  * @since 3.0
  */
+@StatelessCheck
 public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
@@ -69,16 +72,10 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
 
     /**
-     * Tokens that this check handles.
-     */
-    private final BitSet acceptableTokens;
-
-    /**
-     * Initializes acceptableTokens and message keys.
+     * Initializes message keys.
      */
     public ParenPadCheck() {
         super(MSG_WS_FOLLOWED, MSG_WS_NOT_FOLLOWED, MSG_WS_PRECEDED, MSG_WS_NOT_PRECEDED);
-        acceptableTokens = TokenUtil.asBitSet(makeAcceptableTokens());
     }
 
     @Override
@@ -104,38 +101,11 @@ public class ParenPadCheck extends AbstractParenPadCheck {
                 processRight(ast.findFirstToken(TokenTypes.RPAREN));
             }
 
-            case TokenTypes.DOT, TokenTypes.EXPR, TokenTypes.QUESTION -> processExpression(ast);
-
             case TokenTypes.LITERAL_FOR -> visitLiteralFor(ast);
-
-            case TokenTypes.ANNOTATION,
-                 TokenTypes.ENUM_CONSTANT_DEF,
-                 TokenTypes.LITERAL_NEW,
-                 TokenTypes.LITERAL_SYNCHRONIZED,
-                 TokenTypes.LAMBDA -> visitTokenWithOptionalParentheses(ast);
 
             case TokenTypes.RESOURCE_SPECIFICATION -> visitResourceSpecification(ast);
 
-            default -> {
-                processLeft(ast.findFirstToken(TokenTypes.LPAREN));
-                processRight(ast.findFirstToken(TokenTypes.RPAREN));
-            }
-        }
-    }
-
-    /**
-     * Checks parens in token which may not contain parens, e.g.
-     * {@link TokenTypes#ENUM_CONSTANT_DEF}, {@link TokenTypes#ANNOTATION}
-     * {@link TokenTypes#LITERAL_SYNCHRONIZED}, {@link TokenTypes#LITERAL_NEW} and
-     * {@link TokenTypes#LAMBDA}.
-     *
-     * @param ast the token to check.
-     */
-    private void visitTokenWithOptionalParentheses(DetailAST ast) {
-        final DetailAST parenAst = ast.findFirstToken(TokenTypes.LPAREN);
-        if (parenAst != null) {
-            processLeft(parenAst);
-            processRight(ast.findFirstToken(TokenTypes.RPAREN));
+            default -> processExpression(ast);
         }
     }
 
@@ -179,43 +149,20 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     }
 
     /**
-     * Checks parens inside {@link TokenTypes#EXPR}, {@link TokenTypes#QUESTION}
-     * and {@link TokenTypes#METHOD_CALL}.
+     * Checks only the parentheses owned by the configured token.
      *
-     * @param ast the token to check.
+     * @param ast the token to check
      */
     private void processExpression(DetailAST ast) {
-        DetailAST currentNode = ast.getFirstChild();
-        while (currentNode != null) {
-            if (currentNode.getType() == TokenTypes.LPAREN) {
-                processLeft(currentNode);
+        for (DetailAST child = ast.getFirstChild(); child != null;
+                child = child.getNextSibling()) {
+            if (child.getType() == TokenTypes.LPAREN) {
+                processLeft(child);
             }
-            else if (currentNode.getType() == TokenTypes.RPAREN && !isInTypecast(currentNode)) {
-                processRight(currentNode);
+            else if (child.getType() == TokenTypes.RPAREN && !isInTypecast(child)) {
+                processRight(child);
             }
-            else if (currentNode.hasChildren() && !isAcceptableToken(currentNode)) {
-                // Traverse all subtree tokens which will never be configured
-                // to be launched in visitToken()
-                currentNode = currentNode.getFirstChild();
-                continue;
-            }
-
-            // Go up after processing the last child
-            while (currentNode.getNextSibling() == null && currentNode.getParent() != ast) {
-                currentNode = currentNode.getParent();
-            }
-            currentNode = currentNode.getNextSibling();
         }
-    }
-
-    /**
-     * Checks whether AcceptableTokens contains the given ast.
-     *
-     * @param ast the token to check.
-     * @return true if the ast is in AcceptableTokens.
-     */
-    private boolean isAcceptableToken(DetailAST ast) {
-        return acceptableTokens.get(ast.getType());
     }
 
     /**
@@ -224,7 +171,8 @@ public class ParenPadCheck extends AbstractParenPadCheck {
      * @return acceptableTokens.
      */
     private static int[] makeAcceptableTokens() {
-        return new int[] {TokenTypes.ANNOTATION,
+        return new int[] {
+            TokenTypes.ANNOTATION,
             TokenTypes.ANNOTATION_FIELD_DEF,
             TokenTypes.CTOR_CALL,
             TokenTypes.CTOR_DEF,
@@ -247,6 +195,49 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             TokenTypes.LAMBDA,
             TokenTypes.RECORD_DEF,
             TokenTypes.RECORD_PATTERN_DEF,
+            TokenTypes.ASSIGN,
+            TokenTypes.PLUS_ASSIGN,
+            TokenTypes.MINUS_ASSIGN,
+            TokenTypes.STAR_ASSIGN,
+            TokenTypes.DIV_ASSIGN,
+            TokenTypes.MOD_ASSIGN,
+            TokenTypes.SR_ASSIGN,
+            TokenTypes.BSR_ASSIGN,
+            TokenTypes.SL_ASSIGN,
+            TokenTypes.BAND_ASSIGN,
+            TokenTypes.BXOR_ASSIGN,
+            TokenTypes.BOR_ASSIGN,
+            TokenTypes.LAND,
+            TokenTypes.LOR,
+            TokenTypes.BAND,
+            TokenTypes.BOR,
+            TokenTypes.BXOR,
+            TokenTypes.EQUAL,
+            TokenTypes.NOT_EQUAL,
+            TokenTypes.LT,
+            TokenTypes.LE,
+            TokenTypes.GT,
+            TokenTypes.GE,
+            TokenTypes.SL,
+            TokenTypes.SR,
+            TokenTypes.BSR,
+            TokenTypes.PLUS,
+            TokenTypes.MINUS,
+            TokenTypes.STAR,
+            TokenTypes.DIV,
+            TokenTypes.MOD,
+            TokenTypes.UNARY_PLUS,
+            TokenTypes.UNARY_MINUS,
+            TokenTypes.LNOT,
+            TokenTypes.BNOT,
+            TokenTypes.INC,
+            TokenTypes.DEC,
+            TokenTypes.POST_INC,
+            TokenTypes.POST_DEC,
+            TokenTypes.INDEX_OP,
+            TokenTypes.METHOD_REF,
+            TokenTypes.LITERAL_INSTANCEOF,
+            TokenTypes.TYPECAST,
         };
     }
 
