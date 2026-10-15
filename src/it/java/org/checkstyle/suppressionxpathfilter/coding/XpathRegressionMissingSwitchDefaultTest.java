@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck;
 
 public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSupport {
@@ -46,12 +44,8 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
 
     @Test
     public void testSimple() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMissingSwitchDefaultSimple.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(CLAZZ, MissingSwitchDefaultCheck.MSG_KEY),
+            "12:9: " + getCheckMessage(CLAZZ, MissingSwitchDefaultCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -61,18 +55,16 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
                         + "/SLIST/LITERAL_SWITCH"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMissingSwitchDefaultSimple.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNested() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMissingSwitchDefaultNested.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "12:17: " + getCheckMessage(CLAZZ, MissingSwitchDefaultCheck.MSG_KEY),
+            "18:17: " + getCheckMessage(CLAZZ, MissingSwitchDefaultCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -87,18 +79,16 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
                         + "LITERAL_SWITCH"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMissingSwitchDefaultNested.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testStaticBlock() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMissingSwitchDefaultStaticBlock.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(CLAZZ, MissingSwitchDefaultCheck.MSG_KEY),
+            "12:9: " + getCheckMessage(CLAZZ, MissingSwitchDefaultCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -107,7 +97,10 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
                     + "/OBJBLOCK/STATIC_INIT/SLIST/LITERAL_SWITCH"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMissingSwitchDefaultStaticBlock.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
