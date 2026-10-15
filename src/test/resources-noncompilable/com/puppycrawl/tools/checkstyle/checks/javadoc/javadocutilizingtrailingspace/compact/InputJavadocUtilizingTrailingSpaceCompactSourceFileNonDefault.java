@@ -1,5 +1,6 @@
 /*
 JavadocUtilizingTrailingSpace
+allowedTrailingSpace = 20
 ignorePattern = ^$
 ignoreTooShortPattern = ^$
 lineLimit = 100

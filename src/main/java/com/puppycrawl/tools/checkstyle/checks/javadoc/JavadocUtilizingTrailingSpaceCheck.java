@@ -86,6 +86,26 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </code></pre></div>
  *
  * <p>
+ * <b>Columns that do not have to be used.</b> {@code allowedTrailingSpace} is the number
+ * of columns before the limit that a line can leave unused. A line is then reported as
+ * stopping too early only when the first word of the next line would fit before these
+ * columns. A line can still be as long as the limit. The example shows the value 20.
+ * </p>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ *     // ok, "path." would end at column 66, in the last 20 columns
+ *     &#47;**
+ *      * Reads the settings of the service from the given file
+ *      * path.
+ *      *&#47;
+ *
+ *     // violation, "given" would end at column 55
+ *     &#47;**
+ *      * Reads the settings of the service from the
+ *      * given file path.
+ *      *&#47;
+ * </code></pre></div>
+ *
+ * <p>
  * <b>Lines that are too long.</b> A line is reported when it is longer than the limit.
  * The fix is to wrap it at a word.
  * </p>
@@ -237,6 +257,9 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
     /** Pattern for lines that are not reported as too short. */
     private Pattern ignoreTooShortPattern = Pattern.compile("[.:,]$");
 
+    /** Number of columns before the line length limit that do not have to be used. */
+    private int allowedTrailingSpace;
+
     /** Current line being built. */
     private JavadocLine currentLine;
 
@@ -298,6 +321,17 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
      */
     public void setIgnoreTooShortPattern(Pattern pattern) {
         ignoreTooShortPattern = pattern;
+    }
+
+    /**
+     * Setter to specify the number of columns before the line length limit that do not
+     * have to be used.
+     *
+     * @param space the number of columns
+     * @since 14.4.0
+     */
+    public void setAllowedTrailingSpace(int space) {
+        allowedTrailingSpace = space;
     }
 
     @Override
@@ -540,7 +574,7 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
             if (nextLine.hasContent && !nextLine.startsWithUnbreakable
                     && !nextLine.startsWithBlockTag && !nextLine.startsWithHtml) {
                 final int potentialLength = line.length + 1 + nextLine.firstWordLength();
-                pullNext = potentialLength <= lineLimit;
+                pullNext = potentialLength <= lineLimit - allowedTrailingSpace;
             }
         }
 
