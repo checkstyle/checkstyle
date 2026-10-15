@@ -469,7 +469,7 @@ public class XdocsExampleFileTest {
      * <p>Returns null if any violation message in the file is unspecified, if
      * the file has zero violations within the visible section, or if the markers
      * themselves cannot be found, since none of those are a reliable duplicate
-     * signal - see InlineConfigParser.SUPPRESSED_VALIDATE_MESSAGE_FILES / SUPPRESSED_CHECKS.
+     * signal - see InlineConfigParser.SUPPRESSED_VALIDATE_MESSAGE_FILES.
      *
      * @param suppressed whether this module is in SUPPRESSED_UNIQUENESS_CHECK_MODULES;
      *     when true, parse failures are silently skipped instead of recorded, so
