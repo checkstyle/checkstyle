@@ -85,12 +85,25 @@ public class LambdaBodyLengthCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getParent().getType() != TokenTypes.SWITCH_RULE) {
+        if (!isSwitchRuleLambda(ast)) {
             final int length = getLength(ast);
             if (length > max) {
                 log(ast, MSG_KEY, length, max);
             }
         }
+    }
+
+    /**
+     * Checks if the provided LAMBDA node is a switch rule lambda.
+     * The arrow of a switch rule is a LAMBDA node without children, while a lambda
+     * that is the value of a switch rule has children, so it is not skipped.
+     *
+     * @param lambda the ast to check.
+     * @return true if lambda is a switch rule lambda.
+     */
+    private static boolean isSwitchRuleLambda(DetailAST lambda) {
+        return lambda.getParent().getType() == TokenTypes.SWITCH_RULE
+                && !lambda.hasChildren();
     }
 
     /**
