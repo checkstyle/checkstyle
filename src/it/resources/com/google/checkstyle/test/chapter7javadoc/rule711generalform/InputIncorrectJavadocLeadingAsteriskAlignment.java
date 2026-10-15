@@ -89,9 +89,8 @@ public class InputIncorrectJavadocLeadingAsteriskAlignment {
     // Closing tag should be alone on line. False negative until #18273
     /**
       * Wrong Alignment. */
-    // violation above 'Leading asterisk has .* indentation .* 2, expected is 1'
     // violation 3 lines above ''//' has more than 1 empty lines before.'
-    // violation 2 lines above 'Leading asterisk has .* indentation .* 7, expected is 6.'
+    // violation 2 lines above 'Leading asterisk has .* indentation .* 2, expected is 1'
     TWO
   }
 }
