@@ -92,7 +92,6 @@ public class AllChecksCompactSourceCoverageTest {
         "AnnotationOnSameLineCheck",
         "AnnotationUseStyleCheck",
         "AnonInnerLengthCheck",
-        "ArrayTrailingCommaCheck",
         "AtclauseOrderCheck",
         "AvoidEscapedUnicodeCharactersCheck",
         "AvoidStarImportCheck",
