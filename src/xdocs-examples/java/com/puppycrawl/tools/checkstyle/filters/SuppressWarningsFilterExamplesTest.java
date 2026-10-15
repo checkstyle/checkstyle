@@ -40,17 +40,14 @@ public class SuppressWarningsFilterExamplesTest extends AbstractExamplesModuleTe
         final String[] expectedWithoutFilter = {
             "17:7: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN, "J", pattern),
             "18:7: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN, "JJ", pattern),
-            "21:7: 'int' is followed by whitespace.",
             "21:10: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN, "ARRAY",
                     pattern),
-            "23:7: 'int' is followed by whitespace.",
             "23:10: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN, "ARRAY2",
                     pattern),
         };
 
         final String[] expectedWithFilter = {
             "18:7: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN, "JJ", pattern),
-            "23:7: 'int' is followed by whitespace.",
             "23:10: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN, "ARRAY2",
                     pattern),
         };
