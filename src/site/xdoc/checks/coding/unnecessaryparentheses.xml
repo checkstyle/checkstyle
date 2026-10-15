@@ -47,6 +47,7 @@
 return (x);          // parens around identifier
 return (x + 1);      // parens around return value
 int x = (y / 2 + 1); // parens around assignment rhs
+int y = ((1 + 2)) * 3; // parens around expression, nested
 for (int i = (0); i &lt; 10; i++) {  // parens around literal
 t -= (z + 1);                     // parens around assignment rhs
 boolean a = (x &gt; 7 &amp;&amp; y &gt; 5)      // parens around expression
