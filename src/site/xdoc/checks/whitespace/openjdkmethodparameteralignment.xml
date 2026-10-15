@@ -46,13 +46,11 @@
         <ul>
         <li>
           when every parameter that starts a new line is indented eight spaces past the declaration,
-          the declaration uses the eight extra spaces form and any number of parameters may share a
-          line;
+          the declaration uses the eight extra spaces form and any number of parameters may share a line;
         </li>
         <li>
           otherwise the parameters are expected to be listed vertically, that is, every parameter that
-          starts a new line is aligned with the first parameter and each line holds exactly one
-          parameter.
+          starts a new line is aligned with the first parameter and each line holds exactly one parameter.
         </li>
         </ul>
 
