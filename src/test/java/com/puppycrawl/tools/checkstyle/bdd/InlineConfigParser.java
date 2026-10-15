@@ -275,8 +275,7 @@ public final class InlineConfigParser {
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
             "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck"
+            "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck"
     );
 
     /**
