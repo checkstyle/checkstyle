@@ -394,6 +394,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/duplicatemaporsetkey.html#DuplicateMapOrSetKey">
+                DuplicateMapOrSetKey
+              </a>
+            </td>
+            <td>
+              Checks for duplicate key or element arguments in Java collection factory methods.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/blocks/emptyblock.html#EmptyBlock">
                 EmptyBlock
               </a>
