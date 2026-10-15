@@ -112,7 +112,7 @@ public class ParameterNameCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "26:19: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat1", pattern),
             "26:34: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat2", pattern),
-            "27:25: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat3", pattern),
+            "28:25: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat3", pattern),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameOneMethods.java"), expected);

@@ -273,8 +273,7 @@ public final class InlineConfigParser {
      * are updated with proper violation messages.
      */
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-            "com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck"
+            "com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"
     );
 
     /**
