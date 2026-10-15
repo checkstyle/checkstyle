@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_DUPLICATE;
 import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_LANG;
 import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_SAME;
+import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_WILDCARD;
 
 import java.util.Arrays;
 import java.util.List;
@@ -67,6 +68,43 @@ public class RedundantImportCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 inputWithWarnings, inputWithoutWarnings,
                 expectedFirstInput, expectedSecondInput);
+    }
+
+    @Test
+    public void testWildcard() throws Exception {
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_WILDCARD, "java.util.ArrayList", "java.util.*"),
+            "11:1: " + getCheckMessage(MSG_WILDCARD, "java.util.List", "java.util.*"),
+            "13:1: " + getCheckMessage(MSG_WILDCARD, "java.awt.Component", "java.awt.*"),
+            "20:1: " + getCheckMessage(MSG_WILDCARD, "java.util.Map.Entry", "java.util.Map.*"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRedundantImportWildcard.java"), expected);
+    }
+
+    @Test
+    public void testWildcardDuplicateSimpleNames() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_WILDCARD, "java.util.Date", "java.util.*"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRedundantImportWildcardDuplicateNames.java"),
+                expected);
+    }
+
+    @Test
+    public void testWildcardExcluded() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_LANG, "java.lang.*"),
+            "10:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
+            "12:1: " + getCheckMessage(MSG_SAME,
+                "com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.*"),
+            "13:1: " + getCheckMessage(MSG_SAME,
+                "com.puppycrawl.tools.checkstyle.checks.imports.redundantimport."
+                        + "InputRedundantImportWildcard"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRedundantImportWildcardExcluded.java"), expected);
     }
 
     @Test
