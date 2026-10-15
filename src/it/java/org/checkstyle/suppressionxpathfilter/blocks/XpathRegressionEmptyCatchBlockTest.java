@@ -45,7 +45,7 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
     @Test
     public void testOne() throws Exception {
         final String[] expectedViolation = {
-            "14:38: " + getCheckMessage(CLAZZ,
+            "16:38: " + getCheckMessage(CLAZZ,
                 EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
         };
 
@@ -64,7 +64,7 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
     @Test
     public void testTwo() throws Exception {
         final String[] expectedViolation = {
-            "14:38: " + getCheckMessage(CLAZZ,
+            "17:38: " + getCheckMessage(CLAZZ,
                 EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
         };
 
@@ -83,7 +83,7 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
     @Test
     public void testThree() throws Exception {
         final String[] expectedViolation = {
-            "16:47: " + getCheckMessage(CLAZZ,
+            "18:47: " + getCheckMessage(CLAZZ,
                 EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
         };
 

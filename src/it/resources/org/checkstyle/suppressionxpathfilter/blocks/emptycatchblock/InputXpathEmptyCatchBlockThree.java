@@ -1,5 +1,7 @@
 /*
 EmptyCatchBlock
+exceptionVariableName = (default)^$
+commentFormat = (default).*
 
 
 */

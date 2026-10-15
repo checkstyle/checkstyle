@@ -1,5 +1,7 @@
 /*
 EmptyCatchBlock
+exceptionVariableName = (default)^$
+commentFormat = (default).*
 
 
 */
@@ -11,7 +13,8 @@ public class InputXpathEmptyCatchBlockTwo {
 
         try {
             throw new RuntimeException();
-        } catch (RuntimeException e) { // violation 'Empty catch block.'
+            // violation below 'Empty catch block.'
+        } catch (RuntimeException e) {
         }
     }
 }
