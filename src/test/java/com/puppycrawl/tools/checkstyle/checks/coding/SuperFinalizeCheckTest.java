@@ -52,4 +52,14 @@ public class SuperFinalizeCheckTest extends AbstractModuleTestSupport {
                 getPath("InputSuperFinalizeMethodReference.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputSuperFinalizeCompactSourceFile.java"),
+                expected);
+    }
+
 }
