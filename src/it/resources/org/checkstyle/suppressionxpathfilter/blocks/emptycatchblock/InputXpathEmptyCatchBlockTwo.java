@@ -1,3 +1,11 @@
+/*
+EmptyCatchBlock
+exceptionVariableName = (default)^$
+commentFormat = (default).*
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.blocks.emptycatchblock;
 
 public class InputXpathEmptyCatchBlockTwo {
@@ -5,7 +13,8 @@ public class InputXpathEmptyCatchBlockTwo {
 
         try {
             throw new RuntimeException();
-        } catch (RuntimeException e) /*warn*/ {
+            // violation below 'Empty catch block.'
+        } catch (RuntimeException e) {
         }
     }
 }
