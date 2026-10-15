@@ -552,4 +552,26 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             expected);
     }
 
+    @Test
+    public void testTopLevelTypes() throws Exception {
+        final String[] expected = {
+            "33:9: " + getCheckMessage(MSG_KEY_EXT, "f", 4, 3),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputVariableDeclarationUsageDistanceTopLevelTypes.java"),
+            expected);
+    }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "22:5: " + getCheckMessage(MSG_KEY_EXT, "b", 4, 3),
+        };
+
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputVariableDeclarationUsageDistanceCompactSourceFile.java"),
+            expected);
+    }
+
 }
