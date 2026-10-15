@@ -50,13 +50,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <ul>
  * <li>
  * when every parameter that starts a new line is indented eight spaces past the declaration,
- * the declaration uses the eight extra spaces form and any number of parameters may share a
- * line;
+ * the declaration uses the eight extra spaces form and any number of parameters may share a line;
  * </li>
  * <li>
  * otherwise the parameters are expected to be listed vertically, that is, every parameter that
- * starts a new line is aligned with the first parameter and each line holds exactly one
- * parameter.
+ * starts a new line is aligned with the first parameter and each line holds exactly one parameter.
  * </li>
  * </ul>
  *
@@ -73,14 +71,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class OpenjdkMethodParameterAlignmentCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "method.parameter.alignment";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WRAP = "method.parameter.wrap";
 
