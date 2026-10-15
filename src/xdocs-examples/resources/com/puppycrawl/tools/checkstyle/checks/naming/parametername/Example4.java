@@ -24,9 +24,13 @@ class Example4 {
   void method0(int v) {}
   void method1(int v1) {}
   void method2(int V2) {}
-  @Override              // violation above "Parameter name 'V2' must match pattern"
+  @Override
   public boolean equals(Object V3) {
-    return true;         // violation above "Parameter name 'V3' must match pattern"
+    return true;
   }
 }
+// violation 6 lines above """Parameter name 'V2' must match pattern
+//  '\Q^[a-z]([a-z0-9][a-zA-Z0-9]*)?$\E'"""
+// violation 6 lines above """Parameter name 'V3' must match pattern
+//  '\Q^[a-z][a-z0-9][a-zA-Z0-9]*$\E'"""
 // xdoc section - end
