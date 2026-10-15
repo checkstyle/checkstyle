@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck;
 
 public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
@@ -43,14 +41,8 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
 
     @Test
     public void testMain() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathNoFinalizerMain.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoFinalizerCheck.class);
-
         final String[] expectedViolation = {
-            "8:5: " + getCheckMessage(NoFinalizerCheck.class,
+            "14:5: " + getCheckMessage(NoFinalizerCheck.class,
                     NoFinalizerCheck.MSG_KEY),
         };
 
@@ -66,20 +58,16 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS/LITERAL_PROTECTED"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoFinalizerMain.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInner() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathNoFinalizerInner.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoFinalizerCheck.class);
-
         final String[] expectedViolation = {
-            "10:9: " + getCheckMessage(NoFinalizerCheck.class,
+            "16:9: " + getCheckMessage(NoFinalizerCheck.class,
                     NoFinalizerCheck.MSG_KEY),
         };
 
@@ -104,20 +92,16 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
                 + "ANNOTATION[./IDENT[@text='Override']]/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoFinalizerInner.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInEnum() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathNoFinalizerInEnum.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoFinalizerCheck.class);
-
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(NoFinalizerCheck.class,
+            "11:9: " + getCheckMessage(NoFinalizerCheck.class,
                     NoFinalizerCheck.MSG_KEY),
         };
 
@@ -136,8 +120,10 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
                 + "/METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS/LITERAL_PROTECTED"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoFinalizerInEnum.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
