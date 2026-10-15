@@ -1,3 +1,9 @@
+/*
+EmptyCatchBlock
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.blocks.emptycatchblock;
 
 public class InputXpathEmptyCatchBlockThree {
@@ -7,7 +13,7 @@ public class InputXpathEmptyCatchBlockThree {
             String value = "test";
             try {
                 Integer.parseInt(value);
-            } catch (NumberFormatException e) {} //warn
+            } catch (NumberFormatException e) {} // violation 'Empty catch block.'
         } catch (Exception ex) {
             ex.printStackTrace();
         }

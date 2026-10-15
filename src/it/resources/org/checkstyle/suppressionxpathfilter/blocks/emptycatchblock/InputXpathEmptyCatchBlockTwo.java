@@ -1,3 +1,9 @@
+/*
+EmptyCatchBlock
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.blocks.emptycatchblock;
 
 public class InputXpathEmptyCatchBlockTwo {
@@ -5,7 +11,7 @@ public class InputXpathEmptyCatchBlockTwo {
 
         try {
             throw new RuntimeException();
-        } catch (RuntimeException e) /*warn*/ {
+        } catch (RuntimeException e) { // violation 'Empty catch block.'
         }
     }
 }
