@@ -3,6 +3,7 @@ JavadocUtilizingTrailingSpace
 ignorePattern = (default)href\\s*=\\s*"[^"]*"|http://|https://|ftp://
 ignoreTooShortPattern = (default)[.:,]$
 lineLimit = (default)80
+validateOnlyJoinableLines = (default)true
 violateExecutionOnNonTightHtml = (default)false
 
 */
@@ -40,18 +41,18 @@ public class InputJavadocUtilizingTrailingSpace {
      */
     public void longInlineTagAtStartAllowed() { }
 
-    // violation 2 lines below 'Line under-utilized (59/80). Words from below could be moved up'
+    // ok, only a part of the next line fits
     /**
      * inline {@link wide.bundles.name.limit.CompanyStatus}
      * reference in the middle and should be too long.
      */
-    public void longInlineTagInMiddleViolation() { }
+    public void longInlineTagInMiddle() { }
 
     /**
      * inline {@link wide.bundles.name.limit.CompanyStatus} reference in the
      * middle and should be too long.
      */
-    public void correctedLongInlineTagInMiddleViolation() { }
+    public void correctedLongInlineTagInMiddle() { }
 
     /**
      * This line is wrapped correctly
@@ -66,11 +67,19 @@ public class InputJavadocUtilizingTrailingSpace {
      */
     public void preBlockIgnored() { }
 
-    // violation 3 lines below 'Line under-utilized (44/80). Words from below could be moved up'
+    // ok, the whole next line is two characters too long to fit
     /**
      * @param valued
      * a parameter description that is short
      * but followed by another content line.
+     */
+    public void blockTagValueNotJoinable(int value) { }
+
+    // violation 3 lines below 'Line under-utilized (44/80). Words from below could be moved up'
+    /**
+     * @param valued
+     * a parameter description that is short
+     * but followed by one more line.
      */
     public void blockTagValueTooShort(int value) { }
 
