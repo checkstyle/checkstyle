@@ -663,6 +663,30 @@ public class MainTest {
     }
 
     @Test
+    public void testMainExitCodeOn256Errors(@SysErr Capturable systemErr) {
+        assertMainReturnCode(255, "-c", getPath("InputMainConfig-magicnumber.xml"),
+                getPath("InputMainMagicNumber256Errors.java"));
+        final Violation errorCounterMessage = new Violation(1,
+                Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
+                new String[] {String.valueOf(256)}, null, getClass(), null);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo(addEndOfLine(errorCounterMessage.getViolation()));
+    }
+
+    @Test
+    public void testMainExitCodeOn300Errors(@SysErr Capturable systemErr) {
+        assertMainReturnCode(255, "-c", getPath("InputMainConfig-magicnumber.xml"),
+                getPath("InputMainMagicNumber300Errors.java"));
+        final Violation errorCounterMessage = new Violation(1,
+                Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
+                new String[] {String.valueOf(300)}, null, getClass(), null);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo(addEndOfLine(errorCounterMessage.getViolation()));
+    }
+
+    @Test
     public void testExistingTargetFileWithOneErrorAgainstSunCheck(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut)
                     throws Exception {
