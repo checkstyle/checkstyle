@@ -1,3 +1,11 @@
+/*
+IllegalCatch
+illegalClassNames = (default)Error, Exception, RuntimeException, Throwable, java.lang.Error, \
+                    java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.illegalcatch;
 
 public class InputXpathIllegalCatchTwo {
@@ -13,7 +21,8 @@ public class InputXpathIllegalCatchTwo {
 
     public void methodTwo() {
         try {
-        } catch (java.lang.RuntimeException e) { // warn
+        } catch (java.lang.RuntimeException e) {
+        // violation above "Catching 'java.lang.RuntimeException' is not allowed"
         }
     }
 }

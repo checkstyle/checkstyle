@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 
 public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalCatchOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalCatchCheck.class);
-
         final String[] expectedViolation = {
-            "6:11: " + getCheckMessage(IllegalCatchCheck.class,
+            "14:11: " + getCheckMessage(IllegalCatchCheck.class,
                 IllegalCatchCheck.MSG_KEY, "RuntimeException"),
         };
 
@@ -63,20 +55,15 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
                 + "/LITERAL_TRY/LITERAL_CATCH"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalCatchOne.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalCatchTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalCatchCheck.class);
-
         final String[] expectedViolation = {
-            "16:11: " + getCheckMessage(IllegalCatchCheck.class,
+            "24:11: " + getCheckMessage(IllegalCatchCheck.class,
                 IllegalCatchCheck.MSG_KEY, "java.lang.RuntimeException"),
         };
 
@@ -87,20 +74,15 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
                 + "/LITERAL_TRY/LITERAL_CATCH"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalCatchTwo.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalCatchThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalCatchCheck.class);
-
         final String[] expectedViolation = {
-            "8:11: " + getCheckMessage(IllegalCatchCheck.class,
+            "16:11: " + getCheckMessage(IllegalCatchCheck.class,
                 IllegalCatchCheck.MSG_KEY, "Throwable"),
         };
 
@@ -110,8 +92,9 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
                 + "/STATIC_INIT/SLIST/LITERAL_TRY/LITERAL_CATCH"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalCatchThree.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
