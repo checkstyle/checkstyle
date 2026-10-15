@@ -1596,6 +1596,25 @@ git-check-single-commit)
   fi
   ;;
 
+git-check-pitest-suppressions)
+  # Check if pitest suppressions were modified or extended in the PR
+  BASE_BRANCH=${BASE_BRANCH:-master}
+  TARGET_REF=${PR_HEAD_SHA:-HEAD}
+
+  DIFF_FILES=$(git diff --name-only "$BASE_BRANCH"..."$TARGET_REF" -- config/pitest-suppressions/)
+  if [ -n "$DIFF_FILES" ]; then
+    echo "Error: Pitest suppression files were modified in this PR:"
+    echo "$DIFF_FILES"
+    echo ""
+    echo "Diff:"
+    git diff "$BASE_BRANCH"..."$TARGET_REF" -- config/pitest-suppressions/
+    echo ""
+    echo "Extending or modifying pitest suppressions in PRs is generally not allowed."
+    echo "Please ensure 100% mutation coverage instead of suppressing mutations."
+    exit 1
+  fi
+  ;;
+
 git-check-pull-number)
   PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
   echo "PR_NUMBER=${PR_NUMBER}"
