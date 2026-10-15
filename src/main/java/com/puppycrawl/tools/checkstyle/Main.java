@@ -84,6 +84,9 @@ public final class Main {
     /** Exit code returned when execution finishes with {@link CheckstyleException}. */
     private static final int EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE = -2;
 
+    /** Maximum exit code, so the number of errors can not wrap around to 0. */
+    private static final int MAX_EXIT_CODE = 255;
+
     /**
      * Client code should not create instances of this class, but use
      * {@link #main(String[])} method instead.
@@ -93,7 +96,8 @@ public final class Main {
 
     /**
      * Loops over the files specified checking them for errors. The exit code
-     * is the number of errors found in all the files.
+     * is the number of errors found in all the files, but no more than 255,
+     * so it can not wrap around to 0 on a multiple of 256 errors.
      *
      * @param args the command line arguments.
      * @throws IOException if there is a problem with files access
@@ -149,7 +153,7 @@ public final class Main {
                 System.err.println(errorCounterViolation.getMessage());
             }
         }
-        Runtime.getRuntime().exit(exitStatus);
+        Runtime.getRuntime().exit(Math.min(exitStatus, MAX_EXIT_CODE));
     }
 
     /**
