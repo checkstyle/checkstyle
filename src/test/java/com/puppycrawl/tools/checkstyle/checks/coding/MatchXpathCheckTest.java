@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.junit.LimitedStackThread;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MatchXpathCheckTest extends AbstractModuleTestSupport {
@@ -47,10 +48,11 @@ public class MatchXpathCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    @LimitedStackThread(stackSize = 1_048_576, name = "LimitedXpathStackSizeThread")
     public void testNoStackoverflowError()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithLimitedXpathResources(
+        verifyWithInlineConfigParser(
                 getPath("InputMatchXpathNoStackoverflowError.java"), expected);
     }
 
