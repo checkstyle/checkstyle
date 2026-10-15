@@ -134,7 +134,7 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
     public void testPatternVariableAssignmentNestedClasses() throws Exception {
 
         final String[] expected = {
-            "70:13: " + getCheckMessage(MSG_KEY, "s"),
+            "76:13: " + getCheckMessage(MSG_KEY, "s"),
         };
 
         verifyWithInlineXmlConfig(getPath(

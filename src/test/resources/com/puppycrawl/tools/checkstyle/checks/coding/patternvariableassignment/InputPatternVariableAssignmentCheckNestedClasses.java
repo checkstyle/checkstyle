@@ -5,6 +5,7 @@
   </module>
 </module>
 */
+
 package com.puppycrawl.tools.checkstyle.checks.coding.patternvariableassignment;
 
 public class InputPatternVariableAssignmentCheckNestedClasses {
@@ -38,8 +39,8 @@ public class InputPatternVariableAssignmentCheckNestedClasses {
     void lambda(Object o) {
         if (o instanceof String s) {
             Runnable r = () -> {
-                String s = "lambda local";
-                s = "lambda local assignment";
+                String t = "lambda local";
+                t = "lambda local assignment";
             };
             r.run();
         }
@@ -60,9 +61,10 @@ public class InputPatternVariableAssignmentCheckNestedClasses {
 
     void nestedRecord(Object o) {
         if (o instanceof String s) {
-            record LocalRecord(String s) {
+            record LocalRecord(String t) {
                 void set() {
-                    s = "record component";
+                    String loc = t;
+                    loc = "record local assignment";
                 }
             }
             new LocalRecord("test").set();
