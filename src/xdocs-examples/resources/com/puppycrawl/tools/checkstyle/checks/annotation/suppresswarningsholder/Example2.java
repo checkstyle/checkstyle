@@ -29,7 +29,7 @@ class Example2 {
   public void needsLotsOfParameters1 (int a,
     int b, int c, int d, int e, int f, int g, int h) {}
 
-  private int [] ARR; // violation ''int' is followed by whitespace'
+  private int [] ARR;
   // violation above 'Name 'ARR' must match pattern'
   @SuppressWarnings("all")
   private int [] ARRAY;
