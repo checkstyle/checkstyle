@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.blocks;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck;
 
 public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport {
@@ -46,13 +44,9 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathEmptyCatchBlockOne.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "8:38: " + getCheckMessage(CLAZZ, EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
+            "16:38: " + getCheckMessage(CLAZZ,
+                EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -62,18 +56,16 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
                 + "/SLIST/LITERAL_TRY/LITERAL_CATCH/SLIST"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyCatchBlockOne.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathEmptyCatchBlockTwo.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "8:47: " + getCheckMessage(CLAZZ, EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
+            "17:38: " + getCheckMessage(CLAZZ,
+                EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -83,18 +75,16 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
                 + "/SLIST/LITERAL_TRY/LITERAL_CATCH/SLIST"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyCatchBlockTwo.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathEmptyCatchBlockThree.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "10:47: " + getCheckMessage(CLAZZ, EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
+            "18:47: " + getCheckMessage(CLAZZ,
+                EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -104,7 +94,9 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
                 + "/SLIST/LITERAL_TRY/SLIST/LITERAL_TRY/LITERAL_CATCH/SLIST"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyCatchBlockThree.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
