@@ -1,10 +1,16 @@
+/*
+SimplifyBooleanExpression
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.simplifybooleanexpression;
 
 public class InputXpathSimplifyBooleanExpressionInterface {
     interface Inner {
         default void test() {
            boolean a = false, b = false, c = false, d = false;
-           if (!(b != true)) {}; // warn
+           if (!(b != true)) {}; // violation 'Expression can be simplified.'
            boolean e = e = (a && b) ? c : d;
            if (a == b) {};
 
