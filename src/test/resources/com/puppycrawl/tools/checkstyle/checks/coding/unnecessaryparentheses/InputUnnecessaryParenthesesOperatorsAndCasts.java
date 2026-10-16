@@ -34,9 +34,10 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
         }
 
         for (int i = (0+1); (i) < ((6+6)); i += (1+0)) {
-        // 3 violations above:
+        // 4 violations above:
         //  'Unnecessary parentheses around assignment right-hand side'
         //  'Unnecessary parentheses around identifier 'i''
+        //  'Unnecessary parentheses around expression'
         //  'Unnecessary parentheses around assignment right-hand side'
             System.identityHashCode("hi");
         }

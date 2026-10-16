@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * return (x);          // parens around identifier
  * return (x + 1);      // parens around return value
  * int x = (y / 2 + 1); // parens around assignment rhs
+ * int y = ((1 + 2)) * 3; // parens around expression, nested
  * for (int i = (0); i &lt; 10; i++) {  // parens around literal
  * t -= (z + 1);                     // parens around assignment rhs
  * boolean a = (x &gt; 7 &amp;&amp; y &gt; 5)      // parens around expression
@@ -444,6 +445,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             final DetailAST selfOrParentMethodCall = getSelfOrParentMethodCall(ast);
             if (type == TokenTypes.EXPR) {
+                checkNestedParentheses(ast);
                 checkExpression(ast);
             }
             else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
@@ -511,6 +513,99 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
                 log(ast, MSG_EXPR);
             }
         }
+    }
+
+    /**
+     * Checks whether an expression contains nested parentheses around an operand.
+     * Parentheses that surround the whole expression are left to
+     * {@link #checkExpression(DetailAST)}, so only the operator tree below the
+     * expression itself is searched.
+     *
+     * @param ast the {@code DetailAST} to check, whose type is
+     *        {@code TokenTypes.EXPR}.
+     */
+    private void checkNestedParentheses(DetailAST ast) {
+        if (!isExprSurrounded(ast)) {
+            DetailAST child = ast.getFirstChild();
+            while (child != null) {
+                findNestedParentheses(child);
+                child = child.getNextSibling();
+            }
+        }
+    }
+
+    /**
+     * Searches the subtree of the given node for nested parentheses and logs a
+     * warning for each occurrence. Nested expressions are not entered, as they
+     * are searched when they are left themselves. The direct children of a
+     * conditional operator are not checked, as they are covered by
+     * {@link #getParenthesesChildrenAroundQuestion(DetailAST)}, and the direct
+     * children of an assignment are not checked either, as parentheses around
+     * the whole right-hand side of an assignment are already reported by
+     * {@link #visitToken(DetailAST)}.
+     *
+     * @param node the {@code DetailAST} to search.
+     */
+    private void findNestedParentheses(DetailAST node) {
+        if (node.getType() != TokenTypes.EXPR) {
+            if (node.getType() != TokenTypes.QUESTION
+                    && !TokenUtil.isOfType(node.getType(), ASSIGNMENTS)) {
+                logNestedParentheses(node);
+            }
+            DetailAST child = node.getFirstChild();
+            while (child != null) {
+                findNestedParentheses(child);
+                child = child.getNextSibling();
+            }
+        }
+    }
+
+    /**
+     * Logs a warning for each pair of nested parentheses among the children of
+     * the given node. Two pairs of parentheses that directly wrap the same
+     * tokens are always unnecessary, as removing one of them keeps the other
+     * pair around exactly the same tokens, so precedence and meaning of the
+     * expression do not change.
+     *
+     * @param node the {@code DetailAST} whose children to check.
+     */
+    private void logNestedParentheses(DetailAST node) {
+        DetailAST child = node.getFirstChild();
+        while (child != null) {
+            final DetailAST next = child.getNextSibling();
+            DetailAST advance = child.getNextSibling();
+            if (next != null && child.getType() == TokenTypes.LPAREN
+                    && next.getType() == TokenTypes.LPAREN) {
+                DetailAST innerParen = next;
+                while (innerParen.getNextSibling().getType() == TokenTypes.LPAREN) {
+                    innerParen = innerParen.getNextSibling();
+                }
+                final DetailAST content = innerParen.getNextSibling();
+                if (isNestedParenthesesContent(content)) {
+                    log(innerParen, MSG_EXPR);
+                }
+                advance = content;
+            }
+            child = advance;
+        }
+    }
+
+    /**
+     * Tests if the given node is a content of nested parentheses that this check
+     * reports. Contents that are already covered by other methods of this check,
+     * like identifiers, literals, casts and conditional, relational, bitwise and
+     * unary expressions, are not reported again.
+     *
+     * @param ast the {@code DetailAST} with the content of the parentheses.
+     * @return {@code true} if nested parentheses around {@code ast} are
+     *         unnecessary and are not reported elsewhere.
+     */
+    private static boolean isNestedParenthesesContent(DetailAST ast) {
+        final int type = ast.getType();
+        return TokenUtil.isOfType(type, TokenTypes.PLUS, TokenTypes.MINUS,
+                TokenTypes.STAR, TokenTypes.DIV, TokenTypes.MOD,
+                TokenTypes.SL, TokenTypes.SR, TokenTypes.BSR)
+                || TokenUtil.isOfType(type, ASSIGNMENTS);
     }
 
     /**
