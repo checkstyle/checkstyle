@@ -14,8 +14,8 @@ public class InputFormattedCorrectJavadocLeadingAsteriskAlignment {
   // violation above "Summary javadoc is missing."
   private int int2;
 
+  // violation below "Summary javadoc is missing."
   /***/
-  // violation above "Summary javadoc is missing."
   private String str;
 
   /** */
