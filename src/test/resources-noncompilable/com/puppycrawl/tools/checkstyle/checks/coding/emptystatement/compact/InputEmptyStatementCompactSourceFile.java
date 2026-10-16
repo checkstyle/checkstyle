@@ -1,6 +1,6 @@
 /*
 EmptyStatement
-
+allowEmptyLoopBody = (default)false
 
 */
 
