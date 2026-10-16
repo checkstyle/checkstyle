@@ -102,8 +102,7 @@ public class LambdaBodyLengthCheck extends AbstractCheck {
      * @return true if lambda is a switch rule lambda.
      */
     private static boolean isSwitchRuleLambda(DetailAST lambda) {
-        return lambda.getParent().getType() == TokenTypes.SWITCH_RULE
-                && !lambda.hasChildren();
+        return !lambda.hasChildren();
     }
 
     /**
