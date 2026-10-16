@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.annotation;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheck;
 
 public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSupport {
@@ -34,34 +32,20 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
     private final String checkName = AnnotationOnSameLineCheck.class.getSimpleName();
 
     @Override
-    public String getPackageLocation() {
-        return "org/checkstyle/suppressionxpathfilter/annotation/annotationonsameline";
-    }
-
-    @Override
     protected String getCheckName() {
         return checkName;
     }
 
+    @Override
+    public String getPackageLocation() {
+        return "org/checkstyle/suppressionxpathfilter/annotation/annotationonsameline";
+    }
+
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathAnnotationOnSameLineMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationOnSameLineCheck.class);
-
-        moduleConfig.addProperty("tokens",
-                "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
-                + "CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, TYPECAST, "
-                + "LITERAL_THROWS, IMPLEMENTS_CLAUSE, TYPE_ARGUMENT, LITERAL_NEW, DOT, "
-                + "ANNOTATION_FIELD_DEF");
-
         final String[] expectedViolation = {
-            "6:5: " + getCheckMessage(AnnotationOnSameLineCheck.class,
-                     AnnotationOnSameLineCheck.MSG_KEY_ANNOTATION_ON_SAME_LINE,
-                     "Deprecated"),
+            "15:5: " + getCheckMessage(AnnotationOnSameLineCheck.class,
+                AnnotationOnSameLineCheck.MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -81,23 +65,16 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='Deprecated']]/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotationOnSameLineMethod.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathAnnotationOnSameLineField.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationOnSameLineCheck.class);
-
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(AnnotationOnSameLineCheck.class,
-                    AnnotationOnSameLineCheck.MSG_KEY_ANNOTATION_ON_SAME_LINE,
-                    "Deprecated"),
+            "15:5: " + getCheckMessage(AnnotationOnSameLineCheck.class,
+                AnnotationOnSameLineCheck.MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -117,27 +94,16 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
                         + "/ANNOTATION[./IDENT[@text='Deprecated']]/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotationOnSameLineField.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathAnnotationOnSameLineInterface.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationOnSameLineCheck.class);
-        moduleConfig.addProperty("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
-                + "CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, TYPECAST, "
-                + "LITERAL_THROWS, IMPLEMENTS_CLAUSE, TYPE_ARGUMENT, LITERAL_NEW, DOT, "
-                + "ANNOTATION_FIELD_DEF");
-
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(AnnotationOnSameLineCheck.class,
-                    AnnotationOnSameLineCheck.MSG_KEY_ANNOTATION_ON_SAME_LINE,
-                    "Deprecated"),
+            "12:1: " + getCheckMessage(AnnotationOnSameLineCheck.class,
+                AnnotationOnSameLineCheck.MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -154,8 +120,9 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='Deprecated']]/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotationOnSameLineInterface.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
