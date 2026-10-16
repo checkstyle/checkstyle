@@ -1,3 +1,9 @@
+/*
+AvoidDoubleBraceInitialization
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.avoiddoublebraceinitialization;
 
 public class InputXpathAvoidDoubleBraceInitializationInnerClassFields {
@@ -6,7 +12,7 @@ public class InputXpathAvoidDoubleBraceInitializationInnerClassFields {
 
     class InnerClass {
         public void doInitialize() {
-            new InputXpathAvoidDoubleBraceInitializationInnerClassFields() {{ /** warn */
+            new InputXpathAvoidDoubleBraceInitializationInnerClassFields() {{ // violation 'Avoid double brace initialization.'
                 this.x = x + 1;
                 this.y = y + 1;
             }};
