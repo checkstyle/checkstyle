@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck;
 
 public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport {
@@ -39,14 +37,8 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
 
     @Test
     public void testSingleLine() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathTrailingCommentSingleLine.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(TrailingCommentCheck.class);
-
         final String[] expectedViolation = {
-            "4:12: " + getCheckMessage(TrailingCommentCheck.class,
+            "13:12: " + getCheckMessage(TrailingCommentCheck.class,
                         TrailingCommentCheck.MSG_KEY),
         };
 
@@ -57,20 +49,16 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
                         + "&apos;t use trailing comments :) // warn\\n']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTrailingCommentSingleLine.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testBlock() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathTrailingCommentBlock.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(TrailingCommentCheck.class);
-
         final String[] expectedViolation = {
-            "4:40: " + getCheckMessage(TrailingCommentCheck.class,
+            "13:40: " + getCheckMessage(TrailingCommentCheck.class,
                         TrailingCommentCheck.MSG_KEY),
         };
 
@@ -80,20 +68,16 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
                         + "/OBJBLOCK/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' warn\\n']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTrailingCommentBlock.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInsideMethod() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathTrailingCommentInsideMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(TrailingCommentCheck.class);
-
         final String[] expectedViolation = {
-            "5:20: " + getCheckMessage(TrailingCommentCheck.class,
+            "14:20: " + getCheckMessage(TrailingCommentCheck.class,
                         TrailingCommentCheck.MSG_KEY),
         };
 
@@ -104,8 +88,10 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
                         + "/SLIST/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' warn\\n']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTrailingCommentInsideMethod.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
