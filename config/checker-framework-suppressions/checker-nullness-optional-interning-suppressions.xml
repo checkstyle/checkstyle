@@ -2353,6 +2353,27 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>!= getParentOfType(nextStatement, LOOP_TYPES)</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>&amp;&amp; getParentOfType(getParentOfType(nextStatement, LOOP_TYPES).getParent(), LOOP_TYPES)</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>&amp;&amp; getParentOfType(getParentOfType(nextStatement, TRY_TYPES), LOOP_TYPES)</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
     <lineContent>.findFirstToken(TokenTypes.CASE_GROUP) == ast.getParent()) {</lineContent>
   </checkerFrameworkError>
 
@@ -2374,14 +2395,21 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>if (currAstLoopAstParent == currVarLoopAstParent) {</lineContent>
+    <lineContent>== variableLoop;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>if (currAstLoopAstParent == currVarLoopAstParent) {</lineContent>
+    <lineContent>if (currAstLoopAstParent == currVarLoopAstParent</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>if (currAstLoopAstParent == currVarLoopAstParent</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

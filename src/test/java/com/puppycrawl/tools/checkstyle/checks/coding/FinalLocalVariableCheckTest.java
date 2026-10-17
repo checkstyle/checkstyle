@@ -350,6 +350,29 @@ public class FinalLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testBreakInLoop() throws Exception {
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_KEY, "a"),
+            "28:16: " + getCheckMessage(MSG_KEY, "first"),
+            "38:16: " + getCheckMessage(MSG_KEY, "first"),
+            "46:13: " + getCheckMessage(MSG_KEY, "a"),
+            "56:16: " + getCheckMessage(MSG_KEY, "first"),
+            "68:20: " + getCheckMessage(MSG_KEY, "first"),
+            "79:16: " + getCheckMessage(MSG_KEY, "first"),
+            "91:16: " + getCheckMessage(MSG_KEY, "element"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableBreakInLoop.java"), expected);
+    }
+
+    @Test
+    public void testBreakInLoopNotFinal() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableBreakInLoopNotFinal.java"), expected);
+    }
+
+    @Test
     public void testAnonymousClass() throws Exception {
         final String[] expected = {
             "14:16: " + getCheckMessage(MSG_KEY, "testSupport"),
