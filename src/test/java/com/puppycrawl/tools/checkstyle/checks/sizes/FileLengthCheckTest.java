@@ -79,8 +79,10 @@ public class FileLengthCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid exception message")
             .that(exc.getMessage())
             .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                + "sizes.FileLengthCheck - "
-                + "illegal value 'abc' for property 'max'");
+                + "sizes.FileLengthCheck");
+        assertWithMessage("Invalid exception message")
+            .that(exc.getCause().getMessage())
+            .isEqualTo("illegal value 'abc' for property 'max'");
     }
 
     @Test

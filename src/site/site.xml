@@ -169,6 +169,8 @@
           <item name="NestedIfDepth" href="checks/coding/nestedifdepth.html"/>
           <item name="NestedTryDepth" href="checks/coding/nestedtrydepth.html"/>
           <item name="NoArrayTrailingComma" href="checks/coding/noarraytrailingcomma.html"/>
+          <item name="NoCauseGetMessageInExceptionConstructor"
+                href="checks/coding/nocausegetmessageinexceptionconstructor.html"/>
           <item name="NoClone" href="checks/coding/noclone.html"/>
           <item name="NoEnumTrailingComma" href="checks/coding/noenumtrailingcomma.html"/>
           <item name="NoFinalizer" href="checks/coding/nofinalizer.html"/>

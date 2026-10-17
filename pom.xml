@@ -3750,6 +3750,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoArrayTrailingCommaCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.NoCauseGetMessageInExceptionConstructorCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoEnumTrailingCommaCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck*</param>
@@ -3788,6 +3789,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.RedundantThisCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoArrayTrailingCommaCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.NoCauseGetMessageInExceptionConstructorCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoEnumTrailingCommaCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheckTest</param>
