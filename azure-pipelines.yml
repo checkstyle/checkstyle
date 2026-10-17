@@ -131,6 +131,7 @@ pool:
 
 variables:
   MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
+  MAVEN_USER_HOME: $(Pipeline.Workspace)/.m2
   MAVEN_OPTS: '--show-version -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
   SKIP_CACHE: $(skipCache)
   IMAGE: $(image)
@@ -166,7 +167,7 @@ steps:
         maven
       path: |
         $(MAVEN_CACHE_FOLDER)
-        .mvn/wrapper
+        $(Pipeline.Workspace)/.m2/wrapper
     displayName: Cache Maven local repo and wrapper
     condition: ne(variables.SKIP_CACHE, 'true')
 
