@@ -46,6 +46,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Setup local maven cache
         uses: actions/cache@v6

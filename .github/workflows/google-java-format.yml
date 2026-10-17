@@ -36,6 +36,8 @@ jobs:
 
       - name: Checkout Pull Request Code
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - uses: robinraju/release-downloader@28fc21f50d76778e7023361aa1f863e717d3d56f  # v1
         with:
@@ -62,6 +64,8 @@ jobs:
 
       - name: Checkout Pull Request Code
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - uses: robinraju/release-downloader@28fc21f50d76778e7023361aa1f863e717d3d56f  # v1
         with:

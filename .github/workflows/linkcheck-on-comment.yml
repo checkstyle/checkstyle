@@ -45,6 +45,7 @@ jobs:
       - name: Download checkstyle for PR
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           ref: refs/pull/${{ inputs.pr-number || github.event.issue.number }}/head
 
       - name: Set up JDK 21
