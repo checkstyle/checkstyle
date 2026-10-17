@@ -40,6 +40,7 @@ public class HiddenFieldCheckExamplesTest extends AbstractExamplesModuleTestSupp
             "21:28: " + getCheckMessage(MSG_KEY, "testField"),
             "24:24: " + getCheckMessage(MSG_KEY, "field"),
             "28:32: " + getCheckMessage(MSG_KEY, "field"),
+            "33:28: " + getCheckMessage(MSG_KEY, "name"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -60,6 +61,7 @@ public class HiddenFieldCheckExamplesTest extends AbstractExamplesModuleTestSupp
             "21:12: " + getCheckMessage(MSG_KEY, "field"),
             "26:24: " + getCheckMessage(MSG_KEY, "field"),
             "30:32: " + getCheckMessage(MSG_KEY, "field"),
+            "35:28: " + getCheckMessage(MSG_KEY, "name"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -72,6 +74,7 @@ public class HiddenFieldCheckExamplesTest extends AbstractExamplesModuleTestSupp
             "23:28: " + getCheckMessage(MSG_KEY, "testField"),
             "26:24: " + getCheckMessage(MSG_KEY, "field"),
             "30:32: " + getCheckMessage(MSG_KEY, "field"),
+            "35:28: " + getCheckMessage(MSG_KEY, "name"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -83,6 +86,7 @@ public class HiddenFieldCheckExamplesTest extends AbstractExamplesModuleTestSupp
             "18:19: " + getCheckMessage(MSG_KEY, "testField"),
             "21:12: " + getCheckMessage(MSG_KEY, "field"),
             "30:32: " + getCheckMessage(MSG_KEY, "field"),
+            "35:28: " + getCheckMessage(MSG_KEY, "name"),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
@@ -106,6 +110,7 @@ public class HiddenFieldCheckExamplesTest extends AbstractExamplesModuleTestSupp
             "21:12: " + getCheckMessage(MSG_KEY, "field"),
             "23:28: " + getCheckMessage(MSG_KEY, "testField"),
             "26:24: " + getCheckMessage(MSG_KEY, "field"),
+            "35:28: " + getCheckMessage(MSG_KEY, "name"),
         };
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);

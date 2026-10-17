@@ -99,7 +99,6 @@ public class XdocsExampleFileTest {
      * <a href="https://github.com/checkstyle/checkstyle/issues/21072">...</a>
      */
     private static final Set<String> SUPPRESSED_UNIQUENESS_CHECK_MODULES = Set.of(
-        "checks/coding/hiddenfield/",
         "checks/javadoc/javadoctype/",
         "checks/javadoc/missingjavadoctype/",
         "checks/outertypefilename/",
