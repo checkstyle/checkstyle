@@ -58,6 +58,32 @@ public class NestedTryDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_KEY, 2, 1),
+            "33:13: " + getCheckMessage(MSG_KEY, 2, 1),
+            "40:13: " + getCheckMessage(MSG_KEY, 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNestedTryDepthCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCustom() throws Exception {
+        final String[] expected = {
+            "20:17: " + getCheckMessage(MSG_KEY, 3, 2),
+            "39:17: " + getCheckMessage(MSG_KEY, 3, 2),
+            "49:17: " + getCheckMessage(MSG_KEY, 3, 2),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNestedTryDepthCompactSourceFileCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final NestedTryDepthCheck check = new NestedTryDepthCheck();
         assertWithMessage("Acceptable tokens should not be null")
