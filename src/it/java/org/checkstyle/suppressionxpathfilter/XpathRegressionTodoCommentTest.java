@@ -21,35 +21,24 @@ package org.checkstyle.suppressionxpathfilter;
 
 import static com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck.MSG_KEY;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck;
 
 public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
 
-    private final String checkName = TodoCommentCheck.class.getSimpleName();
-
     @Override
     protected String getCheckName() {
-        return checkName;
+        return TodoCommentCheck.class.getSimpleName();
     }
 
     @Test
     public void testSingleLine() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathTodoCommentSingleLine.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(TodoCommentCheck.class);
-        moduleConfig.addProperty("format", "FIXME:");
-
         final String[] expectedViolation = {
-            "4:7: " + getCheckMessage(TodoCommentCheck.class, MSG_KEY, "FIXME:"),
+            "11:7: " + getCheckMessage(TodoCommentCheck.class, MSG_KEY, "FIXME:"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -57,21 +46,15 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
                         + "'InputXpathTodoCommentSingleLine']]/OBJBLOCK/"
                         + "SINGLE_LINE_COMMENT/COMMENT_CONTENT[@text=' warn FIXME:\\n']");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTodoCommentSingleLine.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testBlock() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathTodoCommentBlock.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(TodoCommentCheck.class);
-        moduleConfig.addProperty("format", "FIXME:");
-
         final String[] expectedViolation = {
-            "4:7: " + getCheckMessage(TodoCommentCheck.class, MSG_KEY, "FIXME:"),
+            "11:7: " + getCheckMessage(TodoCommentCheck.class, MSG_KEY, "FIXME:"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -81,21 +64,15 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
                         + "[@text=' // warn\\n     * FIXME:\\n     * TODO\\n     ']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTodoCommentBlock.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testInsideMethod() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathTodoCommentInsideMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(TodoCommentCheck.class);
-        moduleConfig.addProperty("format", "FIXME:");
-
         final String[] expectedViolation = {
-            "5:11: " + getCheckMessage(TodoCommentCheck.class, MSG_KEY, "FIXME:"),
+            "12:11: " + getCheckMessage(TodoCommentCheck.class, MSG_KEY, "FIXME:"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -105,8 +82,9 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
                         + "SINGLE_LINE_COMMENT/COMMENT_CONTENT[@text=' FIXME: //warn\\n']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTodoCommentInsideMethod.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
