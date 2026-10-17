@@ -104,7 +104,6 @@ public class AllChecksCompactSourceCoverageTest {
         "ConstantNameCheck",
         "ConstructorsDeclarationGroupingCheck",
         "CustomImportOrderCheck",
-        "CyclomaticComplexityCheck",
         "DeclarationOrderCheck",
         "DefaultComesLastCheck",
         "DescendantTokenCheck",
