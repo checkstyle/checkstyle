@@ -220,7 +220,6 @@ public class AllChecksCompactSourceCoverageTest {
         "SuppressWarningsCheck",
         "SuppressWarningsHolder",
         "TextBlockGoogleStyleFormattingCheck",
-        "ThrowsCountCheck",
         "TodoCommentCheck",
         "TrailingCommentCheck",
         "TypeNameCheck",
