@@ -1,6 +1,7 @@
 /*
 JavadocVariable
 accessModifiers = (default)public,protected,package,private
+considerEnclosingScope = (default)false
 ignoreNamePattern = log|logger
 tokens = (default)VARIABLE_DEF,ENUM_CONSTANT_DEF
 
