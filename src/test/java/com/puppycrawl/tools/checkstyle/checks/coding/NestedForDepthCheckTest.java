@@ -99,4 +99,29 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
                expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "18:13: " + getCheckMessage(MSG_KEY, 2, 1),
+            "20:17: " + getCheckMessage(MSG_KEY, 3, 1),
+            "33:13: " + getCheckMessage(MSG_KEY, 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNestedForDepthCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCustom() throws Exception {
+        final String[] expected = {
+            "21:17: " + getCheckMessage(MSG_KEY, 3, 2),
+            "35:17: " + getCheckMessage(MSG_KEY, 3, 2),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNestedForDepthCompactSourceFileCustom.java"),
+                expected);
+    }
+
 }
