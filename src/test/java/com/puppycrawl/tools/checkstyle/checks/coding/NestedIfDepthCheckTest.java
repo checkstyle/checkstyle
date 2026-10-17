@@ -35,6 +35,29 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "14:13: " + getCheckMessage(MSG_KEY, 2, 1),
+            "15:17: " + getCheckMessage(MSG_KEY, 3, 1),
+            "40:13: " + getCheckMessage(MSG_KEY, 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNestedIfDepthCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileMax() throws Exception {
+        final String[] expected = {
+            "17:17: " + getCheckMessage(MSG_KEY, 3, 2),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNestedIfDepthCompactSourceFileMax.java"),
+                expected);
+    }
+
+    @Test
     public void testDefault() throws Exception {
 
         final String[] expected = {
