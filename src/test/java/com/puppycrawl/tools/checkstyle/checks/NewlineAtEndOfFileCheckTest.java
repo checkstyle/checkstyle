@@ -171,8 +171,10 @@ public class NewlineAtEndOfFileCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Error message is unexpected")
                 .that(exc.getMessage())
                 .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle."
-                        + "checks.NewlineAtEndOfFileCheck - "
-                        + "Cannot set property 'lineSeparator' to 'ct'");
+                        + "checks.NewlineAtEndOfFileCheck");
+        assertWithMessage("Error message is unexpected")
+                .that(exc.getCause().getMessage())
+                .isEqualTo("Cannot set property 'lineSeparator' to 'ct'");
     }
 
     @Test
