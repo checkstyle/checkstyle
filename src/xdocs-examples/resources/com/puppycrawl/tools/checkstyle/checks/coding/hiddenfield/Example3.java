@@ -29,5 +29,13 @@ class Example3 {
   abstract class Inner {
     abstract int method(String field); // violation ''field' hides a field.'
   }
+  static class Builder {
+    private String name;
+
+    Builder setName(String name) { // violation ''name' hides a field.'
+      this.name = name;
+      return this;
+    }
+  }
 }
 // xdoc section - end

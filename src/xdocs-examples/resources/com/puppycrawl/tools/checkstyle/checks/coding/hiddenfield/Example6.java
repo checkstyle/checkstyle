@@ -30,5 +30,13 @@ class Example6 {
   abstract class Inner {
     abstract int method(String field); // violation ''field' hides a field.'
   }
+  static class Builder {
+    private String name;
+
+    Builder setName(String name) { // ok, because setterCanReturnItsClass is true
+      this.name = name;
+      return this;
+    }
+  }
 }
 // xdoc section - end
