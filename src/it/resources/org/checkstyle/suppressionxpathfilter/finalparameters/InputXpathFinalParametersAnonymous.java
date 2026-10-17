@@ -1,3 +1,12 @@
+/*
+FinalParameters
+ignorePrimitiveTypes = true
+ignoreUnnamedParameters = (default)true
+tokens = (default)METHOD_DEF, CTOR_DEF
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.finalparameters;
 
 public class InputXpathFinalParametersAnonymous {
@@ -8,7 +17,8 @@ public class InputXpathFinalParametersAnonymous {
 
     public void createClass() {
         AnonymousClass obj = new AnonymousClass() {
-            public void method(String[] argOne, final String[] argTwo) {} // warn
+            public void method(String[] argOne, final String[] argTwo) {}
+            // violation above 'Parameter argOne should be final.'
         };
     }
 }
