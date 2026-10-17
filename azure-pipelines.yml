@@ -130,8 +130,10 @@ pool:
   vmImage: $(image)
 
 variables:
-  MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
-  MAVEN_OPTS: '--show-version -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
+  MAVEN_USER_HOME: $(Pipeline.Workspace)/.m2
+  MAVEN_REPOSITORY_FOLDER: $(Pipeline.Workspace)/.m2/repository
+  MAVEN_WRAPPER_FOLDER: $(Pipeline.Workspace)/.m2/wrapper
+  MAVEN_OPTS: '--show-version -Dmaven.repo.local=$(MAVEN_REPOSITORY_FOLDER)'
   SKIP_CACHE: $(skipCache)
   IMAGE: $(image)
   ON_CRON_ONLY: $(onCronOnly)
@@ -165,8 +167,8 @@ steps:
         maven | "$(Agent.OS)"
         maven
       path: |
-        $(MAVEN_CACHE_FOLDER)
-        .mvn/wrapper
+        $(MAVEN_REPOSITORY_FOLDER)
+        $(MAVEN_WRAPPER_FOLDER)
     displayName: Cache Maven local repo and wrapper
     condition: ne(variables.SKIP_CACHE, 'true')
 
