@@ -87,6 +87,9 @@ public class AuditEventTest {
         assertWithMessage("invalid source name")
                 .that(event.getSourceName())
                 .isEqualTo("com.puppycrawl.tools.checkstyle.api.AuditEventTest");
+        assertWithMessage("invalid file content")
+                .that(event.getFileContent())
+                .isEqualTo(null);
     }
 
 }
