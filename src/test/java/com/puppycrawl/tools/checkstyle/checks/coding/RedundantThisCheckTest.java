@@ -253,4 +253,18 @@ public class RedundantThisCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testForLoop() throws Exception {
+        final String[] expected = {
+            "19:9: " + getCheckMessage(MSG_KEY_FIELD, "item"),
+            "25:9: " + getCheckMessage(MSG_KEY_FIELD, "count"),
+            "30:9: " + getCheckMessage(MSG_KEY_FIELD, "item"),
+            "40:9: " + getCheckMessage(MSG_KEY_FIELD, "count"),
+            "47:13: " + getCheckMessage(MSG_KEY_FIELD, "item"),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputRedundantThisForLoop.java"),
+                expected);
+    }
 }
