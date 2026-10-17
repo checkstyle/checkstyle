@@ -29,7 +29,6 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.grammar.CommentListener;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
@@ -281,7 +280,7 @@ public final class FileContents implements CommentListener {
      * @return if the specified line consists only of tabs and spaces.
      */
     public boolean lineIsBlank(int lineNo) {
-        return CommonUtil.isBlank(line(lineNo));
+        return line(lineNo).isBlank();
     }
 
     /**
