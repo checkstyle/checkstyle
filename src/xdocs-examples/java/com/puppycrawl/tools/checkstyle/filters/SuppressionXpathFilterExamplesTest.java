@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 import static com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck.MSG_INVALID_PATTERN;
 
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.SetSystemProperty;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
@@ -34,6 +35,9 @@ import com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck;
 
+@SetSystemProperty(key = "config.folder",
+    value = "src/xdocs-examples/resources/"
+        + "com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter")
 public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTestSupport {
 
     @Override
@@ -54,8 +58,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                     CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-                + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -74,8 +76,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                     CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("Example2.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -94,8 +94,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                     CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-                + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("Example3.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -114,8 +112,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                     CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-                + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("UseCase14.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -144,8 +140,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                     EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("UseCase4.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -186,8 +180,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                     LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 23),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("UseCase5.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -210,8 +202,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                     EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("UseCase6.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -242,8 +232,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                     "Test2", pattern),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("UseCase7.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -266,8 +254,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                     "WeirdName", pattern),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("UseCase8.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -308,8 +294,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
             "56:19: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "11"),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("UseCase9.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -338,8 +322,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                     "age", ""),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("UseCase10.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -355,8 +337,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         final String[] expectedWithFilter = {};
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("UseCase11.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -374,8 +354,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         final String[] expectedWithFilter = {};
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("UseCase12.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -394,8 +372,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
             "30:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "24"),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("UseCase13.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -415,8 +391,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
             "30:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "24"),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("UseCase1.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -445,8 +419,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                     "DoMATH", pattern),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("UseCase2.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -477,8 +449,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                     "Test1", pattern),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("UseCase3.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);

@@ -22,10 +22,14 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISSING;
 
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.SetSystemProperty;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+@SetSystemProperty(key = "config.folder",
+    value = "src/xdocs-examples/resources/"
+        + "com/puppycrawl/tools/checkstyle/checks/header/header")
 public class HeaderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
     @Override
@@ -46,7 +50,6 @@ public class HeaderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_MISSING),
         };
-        System.setProperty("config.folder", "src/xdocs-examples/resources/" + getPackageLocation());
         verifyWithExternalXmlConfig(getPath("Example2.xml"),
                                     getPath("Example2.java"),
                                     expected);
@@ -69,7 +72,6 @@ public class HeaderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_MISSING),
         };
-        System.setProperty("config.folder", "src/xdocs-examples/resources/" + getPackageLocation());
         verifyWithExternalXmlConfig(getPath("Example4.xml"),
                                     getPath("Example4.java"),
                                     expected);

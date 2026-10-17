@@ -59,6 +59,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
 import org.junitpioneer.jupiter.DefaultLocale;
+import org.junitpioneer.jupiter.SetSystemProperty;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
@@ -72,6 +73,7 @@ import com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil;
 
 @DefaultLocale("en")
 @ExtendWith({SystemErrGuard.class, SystemOutGuard.class})
+@SetSystemProperty(key = "picocli.ansi", value = "false")
 public class MainTest {
 
     private static final String SHORT_USAGE = String.format(Locale.ROOT,
@@ -239,8 +241,6 @@ public class MainTest {
     public void setUp(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         systemErr.captureMuted();
         systemOut.captureMuted();
-
-        System.setProperty("picocli.ansi", "false");
 
         LOG.setLevel(ORIGINAL_LOG_LEVEL);
 
@@ -572,9 +572,8 @@ public class MainTest {
     @Test
     public void testViolationsByGoogleAndXpathSuppressions(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        System.setProperty("org.checkstyle.google.suppressionxpathfilter.config",
-                getPath("InputMainViolationsForGoogleXpathSuppressions.xml"));
         assertMainReturnCode(0, "-c", "/google_checks.xml",
+                "-p", getPath("InputMainViolationsForGoogleXpathSuppressions.properties"),
                 getPath("InputMainViolationsForGoogle.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -587,9 +586,8 @@ public class MainTest {
     @Test
     public void testViolationsByGoogleAndSuppressions(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        System.setProperty("org.checkstyle.google.suppressionfilter.config",
-                getPath("InputMainViolationsForGoogleSuppressions.xml"));
         assertMainReturnCode(0, "-c", "/google_checks.xml",
+                "-p", getPath("InputMainViolationsForGoogleSuppressions.properties"),
                 getPath("InputMainViolationsForGoogle.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
