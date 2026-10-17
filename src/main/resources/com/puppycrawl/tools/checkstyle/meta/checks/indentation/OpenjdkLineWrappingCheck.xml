@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.indentation.OpenjdkLineWrappingCheck"
+             name="OpenjdkLineWrapping"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks continuation-line alignment in expressions according to the
+ &lt;a href="https://checkstyle.org/styleguides/openjdk-java-style-v6/openjdk-styleguide.html#wrapping-lines"&gt;
+ OpenJDK Java Style Guide&lt;/a&gt;.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ A continuation may use eight additional columns relative to the expression's first line,
+ the previous code line, or the start of the wrapped expression. It may also align with a
+ preceding argument or method call in a chain. Sibling alignment must stand out from the
+ indentation of the surrounding block. Tabs are expanded using &lt;code&gt;tabWidth&lt;/code&gt;.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ This check complements &lt;code&gt;Indentation&lt;/code&gt;; it does not check block indentation, declaration
+ wrapping, or closing delimiters. The guide's exception for logical argument grouping is
+ subjective, so this check validates columns without inferring semantic groups.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="indentation.error.multi"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
