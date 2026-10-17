@@ -132,4 +132,24 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
                 getPath("InputThrowsCountMaxAllowZero.java"), expected);
     }
 
+    @Test
+    public void testThrowsCountCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "24:19: " + getCheckMessage(MSG_KEY, 5, 4),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputThrowsCountCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testThrowsCountCompactSourceFileCustom() throws Exception {
+        final String[] expected = {
+            "22:19: " + getCheckMessage(MSG_KEY, 2, 1),
+            "27:24: " + getCheckMessage(MSG_KEY, 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputThrowsCountCompactSourceFileCustom.java"),
+                expected);
+    }
+
 }
