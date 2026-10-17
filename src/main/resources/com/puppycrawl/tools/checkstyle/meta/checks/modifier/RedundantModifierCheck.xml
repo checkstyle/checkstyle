@@ -102,8 +102,9 @@
  modifier on the method of a final class is redundant.
  &lt;/p&gt;
 
- &lt;p&gt;Public modifier for constructors in non-public non-protected classes
- is always obsolete: &lt;/p&gt;
+ &lt;p&gt;A public modifier on a constructor of a package-private top-level class
+ is redundant. Constructors in nested classes may be public regardless
+ of the visibility of their enclosing classes:&lt;/p&gt;
 
  &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  public class PublicClass {
@@ -112,6 +113,10 @@
 
  class PackagePrivateClass {
    public PackagePrivateClass() {} // violation expected
+
+   private static class NestedClass {
+     public NestedClass() {} // OK
+   }
  }
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
