@@ -197,7 +197,6 @@ public class AllChecksCompactSourceCoverageTest {
         "PackageNameCheck",
         "ParameterAssignmentCheck",
         "ParameterNameCheck",
-        "ParameterNumberCheck",
         "ParenPadCheck",
         "PatternVariableAssignmentCheck",
         "PatternVariableNameCheck",
