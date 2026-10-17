@@ -50,7 +50,6 @@ import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
@@ -673,38 +672,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final Map<String, List<String>> expectedViolations = new HashMap<>();
         expectedViolations.put(messageFileName, Arrays.asList(expected));
         verify(checker, processedFiles, expectedViolations);
-    }
-
-    /**
-     * Runs 'verifyWithInlineConfigParser' with limited stack size and time duration.
-     *
-     * @param fileName file name to verify.
-     * @param expected an array of expected messages.
-     * @throws Exception if exception occurs during verification process.
-     */
-    protected final void verifyWithLimitedResources(String fileName, String... expected)
-            throws Exception {
-        TestUtil.getResultWithLimitedResources(() -> {
-            verifyWithInlineConfigParser(fileName, expected);
-            return null;
-        });
-    }
-
-    /**
-     * Runs 'verifyWithInlineConfigParser' with limited stack size suitable for XPath-based
-     * checks, allowing Saxon's XPath engine to initialize while still detecting stack
-     * overflows caused by deep AST traversal.
-     *
-     * @param fileName file name to verify.
-     * @param expected an array of expected messages.
-     * @throws Exception if exception occurs during verification process.
-     */
-    protected final void verifyWithLimitedXpathResources(String fileName, String... expected)
-            throws Exception {
-        TestUtil.runWithLimitedXpathResources(() -> {
-            verifyWithInlineConfigParser(fileName, expected);
-            return null;
-        });
     }
 
     /**
