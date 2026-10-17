@@ -19,13 +19,10 @@
 
 package org.checkstyle.suppressionxpathfilter;
 
-import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.MultilineCommentLeadingAsteriskPresenceCheck;
 
 public class XpathRegressionMultilineCommentLeadingAsteriskPresenceTest
@@ -39,20 +36,21 @@ public class XpathRegressionMultilineCommentLeadingAsteriskPresenceTest
         return checkName;
     }
 
+    @Override
+    public String getPackageLocation() {
+        return "org/checkstyle/suppressionxpathfilter"
+            + "/multilinecommentleadingasteriskpresence";
+    }
+
     @Test
     public void testMultilineCommentLeadingAsteriskPresence() throws Exception {
-        final File fileProcess =
-            new File(getPath("InputXpathMultilineCommentLeadingAsteriskPresenceOne.java"));
-        final DefaultConfiguration config =
-            createModuleConfig(MultilineCommentLeadingAsteriskPresenceCheck.class);
-
-        final String[] expected = {
-            "4:5: " + getCheckMessage(
+        final String[] expectedViolation = {
+            "11:5: " + getCheckMessage(
                 MultilineCommentLeadingAsteriskPresenceCheck.class,
-                MultilineCommentLeadingAsteriskPresenceCheck.MSG_MISSING_ASTERISK, "5"),
+                MultilineCommentLeadingAsteriskPresenceCheck.MSG_MISSING_ASTERISK, "12"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                     + "[@text='InputXpathMultilineCommentLeadingAsteriskPresenceOne']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/MODIFIERS"
@@ -60,53 +58,52 @@ public class XpathRegressionMultilineCommentLeadingAsteriskPresenceTest
                     + "[@text='  // warn\\n        line5\\n     ']]"
         );
 
-        runVerifications(config, fileProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathMultilineCommentLeadingAsteriskPresenceOne.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testMultilineCommentLeadingAsteriskPresenceTwo() throws Exception {
-        final File fileProcess =
-                new File(getPath("InputXpathMultilineCommentLeadingAsteriskPresenceTwo.java"));
-        final DefaultConfiguration config =
-                createModuleConfig(MultilineCommentLeadingAsteriskPresenceCheck.class);
-
-        final String[] expected = {
-            "3:1: " + getCheckMessage(
-                    MultilineCommentLeadingAsteriskPresenceCheck.class,
-                    MultilineCommentLeadingAsteriskPresenceCheck.MSG_MISSING_ASTERISK, "4"),
+        final String[] expectedViolation = {
+            "10:1: " + getCheckMessage(
+                MultilineCommentLeadingAsteriskPresenceCheck.class,
+                MultilineCommentLeadingAsteriskPresenceCheck.MSG_MISSING_ASTERISK, "11"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathMultilineCommentLeadingAsteriskPresenceTwo']]"
-                        + "/MODIFIERS/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
-                        + "[@text=' // warn\\n   line4\\n ']]"
+        final List<String> expectedXpathQueries = List.of(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                    + "[@text='InputXpathMultilineCommentLeadingAsteriskPresenceTwo']]"
+                    + "/MODIFIERS/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                    + "[@text=' // warn\\n   line4\\n ']]"
         );
 
-        runVerifications(config, fileProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathMultilineCommentLeadingAsteriskPresenceTwo.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testMultilineCommentLeadingAsteriskPresenceThree() throws Exception {
-        final File fileProcess =
-                new File(getPath("InputXpathMultilineCommentLeadingAsteriskPresenceThree.java"));
-        final DefaultConfiguration config =
-                createModuleConfig(MultilineCommentLeadingAsteriskPresenceCheck.class);
-
-        final String[] expected = {
-            "5:9: " + getCheckMessage(
-                    MultilineCommentLeadingAsteriskPresenceCheck.class,
-                    MultilineCommentLeadingAsteriskPresenceCheck.MSG_MISSING_ASTERISK, "6"),
+        final String[] expectedViolation = {
+            "12:9: " + getCheckMessage(
+                MultilineCommentLeadingAsteriskPresenceCheck.class,
+                MultilineCommentLeadingAsteriskPresenceCheck.MSG_MISSING_ASTERISK, "13"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathMultilineCommentLeadingAsteriskPresenceThree']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/BLOCK_COMMENT_BEGIN"
-                        + "[./COMMENT_CONTENT[@text='  // warn\\n           line6\\n         ']]"
+        final List<String> expectedXpathQueries = List.of(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                    + "[@text='InputXpathMultilineCommentLeadingAsteriskPresenceThree']]"
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/BLOCK_COMMENT_BEGIN"
+                    + "[./COMMENT_CONTENT[@text='  // warn\\n           line6\\n         ']]"
         );
 
-        runVerifications(config, fileProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathMultilineCommentLeadingAsteriskPresenceThree.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
 }
