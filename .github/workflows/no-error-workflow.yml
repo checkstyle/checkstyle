@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-java@v6.0.1
         with:
@@ -32,6 +34,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-java@v6.0.1
         with:

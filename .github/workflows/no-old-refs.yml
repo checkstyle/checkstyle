@@ -26,6 +26,8 @@ jobs:
     steps:
       - name: Download checkstyle
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: PR linked issues
         id: links

@@ -45,10 +45,13 @@ jobs:
 
       - name: Checkout Pull Request Code
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Clone JDK 25 Repo
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: openjdk/jdk25u
           path: ./.ci-temp/jdk25
 

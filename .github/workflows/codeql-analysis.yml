@@ -33,6 +33,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       # Setup JDK 21 for the project
       - name: Setup JDK 21
