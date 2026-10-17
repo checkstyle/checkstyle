@@ -180,7 +180,6 @@ public class AllChecksCompactSourceCoverageTest {
         "MultipleStringLiteralsCheck",
         "MutableExceptionCheck",
         "NestedForDepthCheck",
-        "NestedTryDepthCheck",
         "NoCodeInFileCheck",
         "NoLineWrapCheck",
         "NoWhitespaceAfterCheck",
