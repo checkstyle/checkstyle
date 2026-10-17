@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck"
+             name="FinalPatternVariable"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that pattern variables that never have their values changed are declared final.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Pattern variables are not implicitly final in Java, and they can be reassigned.
+ This check verifies that pattern variables are explicitly declared as final if they
+ are not reassigned within their flow scope.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="final.pattern.variable"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
