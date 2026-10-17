@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.SetSystemProperty;
 import org.mockito.MockedConstruction;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -479,12 +480,11 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
+    @SetSystemProperty(key = XmlLoader.LoadExternalDtdFeatureProvider.ENABLE_EXTERNAL_DTD_LOAD,
+        value = "true")
     public void testExternalEntity() throws Exception {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
-
-        System.setProperty(
-                XmlLoader.LoadExternalDtdFeatureProvider.ENABLE_EXTERNAL_DTD_LOAD, "true");
 
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
@@ -497,12 +497,11 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
+    @SetSystemProperty(key = XmlLoader.LoadExternalDtdFeatureProvider.ENABLE_EXTERNAL_DTD_LOAD,
+        value = "true")
     public void testExternalEntitySubdirectory() throws Exception {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
-
-        System.setProperty(
-                XmlLoader.LoadExternalDtdFeatureProvider.ENABLE_EXTERNAL_DTD_LOAD, "true");
 
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
@@ -515,12 +514,11 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
+    @SetSystemProperty(key = XmlLoader.LoadExternalDtdFeatureProvider.ENABLE_EXTERNAL_DTD_LOAD,
+        value = "true")
     public void testExternalEntityFromUri() throws Exception {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
-
-        System.setProperty(
-                XmlLoader.LoadExternalDtdFeatureProvider.ENABLE_EXTERNAL_DTD_LOAD, "true");
 
         final File file = new File(
                 getPath("subdir/InputConfigurationLoaderExternalEntitySubDir.xml"));

@@ -37,11 +37,13 @@ import org.itsallcode.junit.sysextensions.SystemOutGuard.SysOut;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junitpioneer.jupiter.SetSystemProperty;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 @ExtendWith({SystemErrGuard.class, SystemOutGuard.class})
+@SetSystemProperty(key = "picocli.ansi", value = "false")
 public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
     private static final String EOL = System.lineSeparator();
@@ -90,8 +92,6 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
     public void setUp(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         systemErr.captureMuted();
         systemOut.captureMuted();
-
-        System.setProperty("picocli.ansi", "false");
     }
 
     @Test
