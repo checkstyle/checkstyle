@@ -131,8 +131,9 @@ public enum EnumClass {
           modifier on the method of a final class is redundant.
         </p>
 
-        <p>Public modifier for constructors in non-public non-protected classes
-          is always obsolete: </p>
+        <p>A public modifier on a constructor of a package-private top-level class
+          is redundant. Constructors in nested classes may be public regardless
+          of the visibility of their enclosing classes:</p>
 
         <div class="wrapper"><pre class="prettyprint"><code>
 public class PublicClass {
@@ -141,6 +142,10 @@ public class PublicClass {
 
 class PackagePrivateClass {
   public PackagePrivateClass() {} // violation expected
+
+  private static class NestedClass {
+    public NestedClass() {} // OK
+  }
 }
         </code></pre></div>
 

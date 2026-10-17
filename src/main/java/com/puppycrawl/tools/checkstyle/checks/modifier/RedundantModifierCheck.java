@@ -129,8 +129,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * modifier on the method of a final class is redundant.
  * </p>
  *
- * <p>Public modifier for constructors in non-public non-protected classes
- * is always obsolete: </p>
+ * <p>A public modifier on a constructor of a package-private top-level class
+ * is redundant. Constructors in nested classes may be public regardless
+ * of the visibility of their enclosing classes:</p>
  *
  * {@snippet lang="text" :
  * public class PublicClass {
@@ -139,6 +140,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * class PackagePrivateClass {
  *   public PackagePrivateClass() {} // violation expected
+ *
+ *   private static class NestedClass {
+ *     public NestedClass() {} // OK
+ *   }
  * }
  * }
  *
@@ -463,7 +468,9 @@ public class RedundantModifierCheck extends AbstractCheck {
      */
     private void checkClassConstructorModifiers(DetailAST classCtorAst) {
         final DetailAST classDef = classCtorAst.getParent().getParent();
-        if (!isClassPublic(classDef) && !isClassProtected(classDef)) {
+        final DetailAST classModifiers = classDef.findFirstToken(TokenTypes.MODIFIERS);
+        if (TokenUtil.isRootNode(classDef.getParent())
+                && classModifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) == null) {
             checkForRedundantModifier(classCtorAst, TokenTypes.LITERAL_PUBLIC);
         }
     }
@@ -493,44 +500,6 @@ public class RedundantModifierCheck extends AbstractCheck {
                     }
                 }
             });
-    }
-
-    /**
-     * Checks if given class ast has protected modifier.
-     *
-     * @param classDef class ast
-     * @return true if class is protected, false otherwise
-     */
-    private static boolean isClassProtected(DetailAST classDef) {
-        final DetailAST classModifiers =
-                classDef.findFirstToken(TokenTypes.MODIFIERS);
-        return classModifiers.findFirstToken(TokenTypes.LITERAL_PROTECTED) != null;
-    }
-
-    /**
-     * Checks if given class is accessible from "public" scope.
-     *
-     * @param ast class def to check
-     * @return true if class is accessible from public scope,false otherwise
-     */
-    private static boolean isClassPublic(DetailAST ast) {
-        boolean isAccessibleFromPublic = false;
-        final DetailAST modifiersAst = ast.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean hasPublicModifier =
-                modifiersAst.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null;
-
-        if (TokenUtil.isRootNode(ast.getParent())) {
-            isAccessibleFromPublic = hasPublicModifier;
-        }
-        else {
-            final DetailAST parentClassAst = ast.getParent().getParent();
-
-            if (hasPublicModifier || parentClassAst.getType() == TokenTypes.INTERFACE_DEF) {
-                isAccessibleFromPublic = isClassPublic(parentClassAst);
-            }
-        }
-
-        return isAccessibleFromPublic;
     }
 
     /**
