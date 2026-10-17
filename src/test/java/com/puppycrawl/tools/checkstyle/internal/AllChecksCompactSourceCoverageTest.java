@@ -183,7 +183,6 @@ public class AllChecksCompactSourceCoverageTest {
         "MutableExceptionCheck",
         "NPathComplexityCheck",
         "NestedForDepthCheck",
-        "NestedIfDepthCheck",
         "NestedTryDepthCheck",
         "NoCodeInFileCheck",
         "NoLineWrapCheck",
