@@ -102,4 +102,15 @@ public class HexLiteralCaseCheckTest extends AbstractModuleTestSupport {
         );
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "11:13: " + getCheckMessage(MSG_KEY),
+            "17:15: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputHexLiteralCaseCompactSourceFile.java"),
+                expected);
+    }
+
 }
