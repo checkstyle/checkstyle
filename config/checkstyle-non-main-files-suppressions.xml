@@ -290,6 +290,8 @@
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/coding/noarraytrailingcomma.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src/site/xdoc/checks/coding/nocausegetmessageinexceptionconstructor.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/coding/noclone.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/coding/noenumtrailingcomma.xml.template"/>
