@@ -81,6 +81,23 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
     }
 
     @Test
+    public void testKeyWithLineBreaks() throws Exception {
+        final Configuration checkConfig = createModuleConfig(TranslationCheck.class);
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY, "key\\nice\\nice"),
+        };
+        final File[] propertyFiles = {
+            new File(getPath("messages_linebreak_de.properties")),
+            new File(getPath("messages_linebreak.properties")),
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath("messages_linebreak_de.properties"),
+            expected);
+    }
+
+    @Test
     public void testDifferentBases() throws Exception {
         final Configuration checkConfig = createModuleConfig(TranslationCheck.class);
         final String[] expected = {
