@@ -1,6 +1,13 @@
+/*
+NumericalPrefixesInfixesSuffixesCharacterCase
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.numericalprefixesinfixessuffixescharactercase;
 
 public class InputXpathNumericalPrefixesInfixesSuffixesCharacterCaseOne {
-    int a = 0X1A; // warn
+    // violation below 'Numerical prefix should be in lowercase.'
+    int a = 0X1A;
     int b = 0x1A;
 }
