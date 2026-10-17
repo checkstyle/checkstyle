@@ -99,6 +99,19 @@ public class EmptyStatementCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAllowEmptyLoopBody() throws Exception {
+        final String[] expected = {
+            "26:19: " + getCheckMessage(MSG_KEY),
+            "30:13: " + getCheckMessage(MSG_KEY),
+            "34:9: " + getCheckMessage(MSG_KEY),
+            "38:5: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyStatementAllowEmptyLoopBody.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final EmptyStatementCheck check = new EmptyStatementCheck();
         assertWithMessage("Acceptable tokens should not be null")
@@ -123,6 +136,18 @@ public class EmptyStatementCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("compact/InputEmptyStatementCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileAllowEmptyLoopBody() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_KEY),
+            "15:14: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputEmptyStatementCompactSourceFileAllowEmptyLoopBody.java"),
                 expected);
     }
 
