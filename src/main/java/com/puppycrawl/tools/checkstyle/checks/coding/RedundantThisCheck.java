@@ -139,6 +139,7 @@ public class RedundantThisCheck extends AbstractCheck {
             TokenTypes.PATTERN_VARIABLE_DEF,
             TokenTypes.SLIST,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.LITERAL_FOR,
         };
     }
 
@@ -168,7 +169,7 @@ public class RedundantThisCheck extends AbstractCheck {
                     addParametersToScope(resourcesNode.orElseThrow());
                 }
             }
-            case TokenTypes.SLIST -> scopeStack.push(new HashSet<>());
+            case TokenTypes.LITERAL_FOR, TokenTypes.SLIST -> scopeStack.push(new HashSet<>());
             case TokenTypes.VARIABLE_DEF, TokenTypes.PATTERN_VARIABLE_DEF -> {
                 final Set<String> currentScope = scopeStack.peek();
                 if (currentScope != null) {
@@ -189,7 +190,7 @@ public class RedundantThisCheck extends AbstractCheck {
         if (TokenUtil.isOfType(ast,
                 TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF,
                 TokenTypes.LITERAL_CATCH, TokenTypes.LITERAL_TRY,
-                TokenTypes.SLIST)) {
+                TokenTypes.SLIST, TokenTypes.LITERAL_FOR)) {
             scopeStack.pop();
         }
     }
