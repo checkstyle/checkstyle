@@ -23,7 +23,7 @@ public class Example3 {
   }
 
   public void printExample() {
-    int [] x; // violation ''int' is followed by whitespace'
+    int [] x;
     System.out.println(
             "example"
     );
