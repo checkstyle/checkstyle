@@ -62,6 +62,14 @@
         <a href="./index.html#Download">Download section</a>.
         This command line tool is included in the Checkstyle distribution.
       </p>
+      <p>
+        The exit code of the command is the number of errors found during the
+        audit, but it is limited to 255 at most, as operating systems truncate
+        exit codes to 8 bits and an error count that is a multiple of 256
+        would otherwise be reported as 0, which looks like a successful run.
+        The closing message, for example "Checkstyle ends with 300 errors.",
+        always shows the real number of errors.
+      </p>
     </section>
 
     <section name="Command line usage">
