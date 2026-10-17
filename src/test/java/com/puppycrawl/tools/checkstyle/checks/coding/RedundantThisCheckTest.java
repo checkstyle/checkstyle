@@ -253,4 +253,15 @@ public class RedundantThisCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testLambda() throws Exception {
+        final String[] expected = {
+            "40:13: " + getCheckMessage(MSG_KEY_FIELD, "value"),
+            "44:38: " + getCheckMessage(MSG_KEY_FIELD, "value"),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputRedundantThisLambda.java"), expected);
+    }
+
 }
