@@ -195,6 +195,14 @@ class Example1 {
   abstract class Inner {
     abstract int method(String field); // violation ''field' hides a field.'
   }
+  static class Builder {
+    private String name;
+
+    Builder setName(String name) { // violation ''name' hides a field.'
+      this.name = name;
+      return this;
+    }
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -230,6 +238,14 @@ class Example2 {
   }
   abstract class Inner {
     abstract int method(String field); // ok, because PARAMETER_DEF not configured
+  }
+  static class Builder {
+    private String name;
+
+    Builder setName(String name) { // ok, because PARAMETER_DEF not configured
+      this.name = name;
+      return this;
+    }
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -267,6 +283,14 @@ class Example3 {
   abstract class Inner {
     abstract int method(String field); // violation ''field' hides a field.'
   }
+  static class Builder {
+    private String name;
+
+    Builder setName(String name) { // violation ''name' hides a field.'
+      this.name = name;
+      return this;
+    }
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -301,6 +325,14 @@ class Example4 {
   }
   abstract class Inner {
     abstract int method(String field); // violation ''field' hides a field.'
+  }
+  static class Builder {
+    private String name;
+
+    Builder setName(String name) { // violation ''name' hides a field.'
+      this.name = name;
+      return this;
+    }
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -337,6 +369,14 @@ class Example5 {
   }
   abstract class Inner {
     abstract int method(String field); // violation ''field' hides a field.'
+  }
+  static class Builder {
+    private String name;
+
+    Builder setName(String name) { // violation ''name' hides a field.'
+      this.name = name;
+      return this;
+    }
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -376,6 +416,14 @@ class Example6 {
   abstract class Inner {
     abstract int method(String field); // violation ''field' hides a field.'
   }
+  static class Builder {
+    private String name;
+
+    Builder setName(String name) { // ok, because setterCanReturnItsClass is true
+      this.name = name;
+      return this;
+    }
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">
@@ -410,6 +458,14 @@ class Example7 {
   }
   abstract class Inner {
     abstract int method(String field); // ok, because ignoreAbstractMethods is true
+  }
+  static class Builder {
+    private String name;
+
+    Builder setName(String name) { // violation ''name' hides a field.'
+      this.name = name;
+      return this;
+    }
   }
 }
 </code></pre></div>

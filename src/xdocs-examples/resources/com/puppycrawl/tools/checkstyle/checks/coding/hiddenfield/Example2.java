@@ -29,5 +29,13 @@ class Example2 {
   abstract class Inner {
     abstract int method(String field); // ok, because PARAMETER_DEF not configured
   }
+  static class Builder {
+    private String name;
+
+    Builder setName(String name) { // ok, because PARAMETER_DEF not configured
+      this.name = name;
+      return this;
+    }
+  }
 }
 // xdoc section - end
