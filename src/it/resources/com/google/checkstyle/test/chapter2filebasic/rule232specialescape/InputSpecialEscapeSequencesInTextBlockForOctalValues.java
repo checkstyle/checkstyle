@@ -170,6 +170,60 @@ public class InputSpecialEscapeSequencesInTextBlockForOctalValues {
         """;
   }
 
+  private void twoDigitOctalWithWarn() {
+    String r1 = // violation below 'Consider using special escape sequence .*'
+        """
+        \10
+        """;
+    String r2 = // violation below 'Consider using special escape sequence .*'
+        """
+        \11
+        """;
+    String r3 = // violation below 'Consider using special escape sequence .*'
+        """
+        \12
+        """;
+    String r4 = // violation below 'Consider using special escape sequence .*'
+        """
+        \14
+        """;
+    String r5 = // violation below 'Consider using special escape sequence .*'
+        """
+        \15
+        """;
+    String r6 = // violation below 'Consider using special escape sequence .*'
+        """
+        \40
+        """;
+    String r7 = // violation below 'Consider using special escape sequence .*'
+        """
+        \42
+        """;
+    String r8 = // violation below 'Consider using special escape sequence .*'
+        """
+        \47
+        """;
+  }
+
+  private void octalEscapeOfOrdinaryCharWithoutWarn() {
+    String r1 =
+        """
+        \101
+        """;
+    String r2 =
+        """
+        \127
+        """;
+    String r3 =
+        """
+        \157
+        """;
+    String r4 =
+        """
+        \1234
+        """;
+  }
+
   Inner anoInner =
       new Inner() {
         public void specialCharsWithoutWarn1() {
