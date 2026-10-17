@@ -215,8 +215,6 @@
   <suppress id="xpathTestsUseInlineConfigParser"
             files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]annotation[\\/]XpathRegressionAnnotationLocationTest\.java"/>
   <suppress id="xpathTestsUseInlineConfigParser"
-            files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]annotation[\\/]XpathRegressionAnnotationOnSameLineTest\.java"/>
-  <suppress id="xpathTestsUseInlineConfigParser"
             files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]annotation[\\/]XpathRegressionAnnotationUseStyleTest\.java"/>
   <suppress id="xpathTestsUseInlineConfigParser"
             files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]annotation[\\/]XpathRegressionMissingOverrideOnRecordAccessorTest\.java"/>
