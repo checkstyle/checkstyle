@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.annotation;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideOnRecordAccessorCheck;
 
 public class XpathRegressionMissingOverrideOnRecordAccessorTest
@@ -46,14 +44,8 @@ public class XpathRegressionMissingOverrideOnRecordAccessorTest
 
     @Test
     public void testSimple() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathMissingOverrideOnRecordAccessorSimple.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(MissingOverrideOnRecordAccessorCheck.class);
-
         final String[] expectedViolation = {
-            "5:5: " + getCheckMessage(MissingOverrideOnRecordAccessorCheck.class,
+            "12:5: " + getCheckMessage(MissingOverrideOnRecordAccessorCheck.class,
                 MissingOverrideOnRecordAccessorCheck.MSG_KEY),
         };
 
@@ -69,19 +61,16 @@ public class XpathRegressionMissingOverrideOnRecordAccessorTest
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='name']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathMissingOverrideOnRecordAccessorSimple.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testNested() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathMissingOverrideOnRecordAccessorNested.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(MissingOverrideOnRecordAccessorCheck.class);
-
         final String[] expectedViolation = {
-            "12:9: " + getCheckMessage(MissingOverrideOnRecordAccessorCheck.class,
+            "19:9: " + getCheckMessage(MissingOverrideOnRecordAccessorCheck.class,
                 MissingOverrideOnRecordAccessorCheck.MSG_KEY),
         };
 
@@ -100,19 +89,16 @@ public class XpathRegressionMissingOverrideOnRecordAccessorTest
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='value']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathMissingOverrideOnRecordAccessorNested.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testInterface() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathMissingOverrideOnRecordAccessorInterface.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(MissingOverrideOnRecordAccessorCheck.class);
-
         final String[] expectedViolation = {
-            "9:5: " + getCheckMessage(MissingOverrideOnRecordAccessorCheck.class,
+            "16:5: " + getCheckMessage(MissingOverrideOnRecordAccessorCheck.class,
                 MissingOverrideOnRecordAccessorCheck.MSG_KEY),
         };
 
@@ -128,7 +114,10 @@ public class XpathRegressionMissingOverrideOnRecordAccessorTest
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='name']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathMissingOverrideOnRecordAccessorInterface.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
 }
