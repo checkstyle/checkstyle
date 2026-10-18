@@ -381,6 +381,36 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAnnotation1() throws Exception {
+        final String[] expected = {
+            "31:38: " + getCheckMessage(MSG_KEY),
+            "35:28: " + getCheckMessage(MSG_KEY),
+            "38:28: " + getCheckMessage(MSG_KEY),
+            "41:40: " + getCheckMessage(MSG_KEY),
+            "54:37: " + getCheckMessage(MSG_KEY),
+            "63:38: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineAnnotation1.java"), expected);
+    }
+
+    @Test
+    public void testAnnotation2() throws Exception {
+        final String[] expected = {
+            "35:58: " + getCheckMessage(MSG_KEY),
+            "39:30: " + getCheckMessage(MSG_KEY),
+            "42:30: " + getCheckMessage(MSG_KEY),
+            "46:58: " + getCheckMessage(MSG_KEY),
+            "56:30: " + getCheckMessage(MSG_KEY),
+            "70:62: " + getCheckMessage(MSG_KEY),
+            "78:46: " + getCheckMessage(MSG_KEY),
+            "95:56: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineAnnotation2.java"), expected);
+    }
+
+    @Test
     public void testSwitch() throws Exception {
         final String[] expected = {
             "20:22: " + getCheckMessage(MSG_KEY),
