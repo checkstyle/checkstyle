@@ -331,8 +331,6 @@
   <suppress id="xpathTestsUseInlineConfigParser"
             files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]design[\\/]XpathRegressionDesignForExtensionTest\.java"/>
   <suppress id="xpathTestsUseInlineConfigParser"
-            files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]design[\\/]XpathRegressionFinalClassTest\.java"/>
-  <suppress id="xpathTestsUseInlineConfigParser"
             files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]design[\\/]XpathRegressionHideUtilityClassConstructorTest\.java"/>
   <suppress id="xpathTestsUseInlineConfigParser"
             files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]design[\\/]XpathRegressionInnerTypeLastTest\.java"/>
