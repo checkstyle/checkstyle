@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -139,6 +140,7 @@ public class RedundantThisCheck extends AbstractCheck {
             TokenTypes.PATTERN_VARIABLE_DEF,
             TokenTypes.SLIST,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.LAMBDA,
         };
     }
 
@@ -168,6 +170,12 @@ public class RedundantThisCheck extends AbstractCheck {
                     addParametersToScope(resourcesNode.orElseThrow());
                 }
             }
+            case TokenTypes.LAMBDA -> {
+                if (isLambdaExpression(ast)) {
+                    scopeStack.push(new HashSet<>());
+                    addLambdaParametersToScope(ast);
+                }
+            }
             case TokenTypes.SLIST -> scopeStack.push(new HashSet<>());
             case TokenTypes.VARIABLE_DEF, TokenTypes.PATTERN_VARIABLE_DEF -> {
                 final Set<String> currentScope = scopeStack.peek();
@@ -189,7 +197,8 @@ public class RedundantThisCheck extends AbstractCheck {
         if (TokenUtil.isOfType(ast,
                 TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF,
                 TokenTypes.LITERAL_CATCH, TokenTypes.LITERAL_TRY,
-                TokenTypes.SLIST)) {
+                TokenTypes.SLIST)
+                || isLambdaExpression(ast)) {
             scopeStack.pop();
         }
     }
@@ -338,6 +347,34 @@ public class RedundantThisCheck extends AbstractCheck {
                 scopeStack.peek().add(ident.getText());
             }
             child = child.getNextSibling();
+        }
+    }
+
+    /**
+     * Checks whether the given node is a lambda expression, rather than a switch rule.
+     *
+     * @param ast the node to check
+     * @return {@code true} if {@code ast} is a lambda expression
+     */
+    private static boolean isLambdaExpression(DetailAST ast) {
+        return ast.getType() == TokenTypes.LAMBDA
+            && ast.getParent().getType() != TokenTypes.SWITCH_RULE;
+    }
+
+    /**
+     * Adds all parameters found within the given lambda node to the current scope.
+     *
+     * @param lambdaNode the {@code LAMBDA} node
+     */
+    private void addLambdaParametersToScope(DetailAST lambdaNode) {
+        final DetailAST parameters = lambdaNode.findFirstToken(TokenTypes.PARAMETERS);
+        if (parameters == null) {
+            final DetailAST ident = Objects.requireNonNull(
+                lambdaNode.findFirstToken(TokenTypes.IDENT));
+            Objects.requireNonNull(scopeStack.peek()).add(ident.getText());
+        }
+        else {
+            addParametersToScope(parameters);
         }
     }
 
