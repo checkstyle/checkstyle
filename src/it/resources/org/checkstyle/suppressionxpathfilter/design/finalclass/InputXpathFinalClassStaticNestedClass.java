@@ -1,8 +1,15 @@
+/*
+FinalClass
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.design.finalclass;
 
 public class InputXpathFinalClassStaticNestedClass {
 
-    static class StaticNestedClass { // warn
+    // violation below 'Class StaticNestedClass should be declared as final.'
+    static class StaticNestedClass {
         private StaticNestedClass() {}
     }
 }

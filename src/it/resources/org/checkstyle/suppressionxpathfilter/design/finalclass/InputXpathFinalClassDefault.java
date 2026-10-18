@@ -1,6 +1,13 @@
+/*
+FinalClass
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.design.finalclass;
 
-public class InputXpathFinalClassDefault { // warn
+// violation below 'Class InputXpathFinalClassDefault should be declared as final.'
+public class InputXpathFinalClassDefault {
     private InputXpathFinalClassDefault() {
 
     }
