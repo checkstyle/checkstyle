@@ -164,7 +164,6 @@ public class AllChecksCompactSourceCoverageTest {
         "MatchXpathCheck",
         "MemberNameCheck",
         "MethodCountCheck",
-        "MethodLengthCheck",
         "MethodNameCheck",
         "MethodParamPadCheck",
         "MethodTypeParameterNameCheck",
