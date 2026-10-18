@@ -167,6 +167,24 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testPropertyExpansion() throws Exception {
+        System.setProperty("ic.check.pkg", "importcontrol");
+        System.setProperty("ic.check.allowed", "java.io");
+        try {
+            final String[] expected = {
+                "12:1: " + getCheckMessage(MSG_DISALLOWED, "java.util.ArrayList"),
+            };
+
+            verifyWithInlineConfigParser(
+                    getPath("InputImportControlPropertyExpansion.java"), expected);
+        }
+        finally {
+            System.clearProperty("ic.check.pkg");
+            System.clearProperty("ic.check.allowed");
+        }
+    }
+
+    @Test
     public void testOneRegExp() throws Exception {
         final String[] expected = {"13:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File")};
 
