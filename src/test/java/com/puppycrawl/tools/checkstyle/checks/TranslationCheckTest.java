@@ -81,6 +81,74 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
     }
 
     @Test
+    public void testTranslationWithScriptSubtag() throws Exception {
+        final Configuration checkConfig = createModuleConfig(TranslationCheck.class);
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY, "only.script"),
+        };
+        final File[] propertyFiles = {
+            new File(getPath("messages_script_zh_Hans.properties")),
+            new File(getPath("messages_script.properties")),
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath("messages_script_zh_Hans.properties"),
+            expected);
+    }
+
+    @Test
+    public void testTranslationWithThreeLetterLanguageCode() throws Exception {
+        final Configuration checkConfig = createModuleConfig(TranslationCheck.class);
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY, "only.lang3"),
+        };
+        final File[] propertyFiles = {
+            new File(getPath("messages_lang3_deu.properties")),
+            new File(getPath("messages_lang3.properties")),
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath("messages_lang3_deu.properties"),
+            expected);
+    }
+
+    @Test
+    public void testTranslationWithScriptAndCountryCode() throws Exception {
+        final Configuration checkConfig = createModuleConfig(TranslationCheck.class);
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY, "only.scriptcountry"),
+        };
+        final File[] propertyFiles = {
+            new File(getPath("messages_scriptcountry_zh_Hans_CN.properties")),
+            new File(getPath("messages_scriptcountry.properties")),
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath("messages_scriptcountry_zh_Hans_CN.properties"),
+            expected);
+    }
+
+    @Test
+    public void testTranslationWithScriptCountryAndVariant() throws Exception {
+        final Configuration checkConfig = createModuleConfig(TranslationCheck.class);
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY, "only.scriptvariant"),
+        };
+        final File[] propertyFiles = {
+            new File(getPath("messages_scriptvariant_zh_Hans_CN_UNIX.properties")),
+            new File(getPath("messages_scriptvariant.properties")),
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath("messages_scriptvariant_zh_Hans_CN_UNIX.properties"),
+            expected);
+    }
+
+    @Test
     public void testDifferentBases() throws Exception {
         final Configuration checkConfig = createModuleConfig(TranslationCheck.class);
         final String[] expected = {
