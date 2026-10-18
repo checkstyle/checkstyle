@@ -1,8 +1,15 @@
+/*
+MissingOverrideOnRecordAccessor
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.annotation.missingoverrideonrecordaccessor;
 
 public record InputXpathMissingOverrideOnRecordAccessorSimple(String name) {
 
-    public String name() { // warn 'method must include @java.lang.Override annotation.'
+// violation below 'Record component accessor method must include @java.lang.Override annotation.'
+    public String name() {
         return name.toUpperCase();
     }
 
