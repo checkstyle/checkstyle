@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 
 import com.sun.checkstyle.test.base.AbstractSunModuleTestSupport;
 
-public class MethodParamPadTest extends AbstractSunModuleTestSupport {
+public class BlankSpacesTest extends AbstractSunModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
@@ -31,8 +31,18 @@ public class MethodParamPadTest extends AbstractSunModuleTestSupport {
     }
 
     @Test
+    public void testWhitespaceAfterInvalid() throws Exception {
+        verifyWithWholeConfig(getPath("InputWhitespaceAfterInvalid.java"));
+    }
+
+    @Test
     public void testMethodParamPadInvalid() throws Exception {
         verifyWithWholeConfig(getPath("InputMethodParamPadInvalid.java"));
+    }
+
+    @Test
+    public void testNoWhitespaceAfterInvalid() throws Exception {
+        verifyWithWholeConfig(getPath("InputNoWhitespaceAfterInvalid.java"));
     }
 
 }
