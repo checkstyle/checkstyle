@@ -188,7 +188,7 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
         final DetailAST content = closingQuotes.getPreviousSibling();
         final String text = content.getText();
         int index = text.length() - 1;
-        while (text.charAt(index) == ' ') {
+        while (index > 0 && text.charAt(index) == ' ') {
             index--;
         }
         return Character.isWhitespace(text.charAt(index));

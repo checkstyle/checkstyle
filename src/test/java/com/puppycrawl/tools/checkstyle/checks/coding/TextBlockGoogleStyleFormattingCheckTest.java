@@ -486,6 +486,27 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
+    public void testTextBlockWithSpacesOnlyContent() throws Exception {
+        final String[] expected = {
+            "14:33: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "14:37: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "18:36: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "18:42: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "22:38: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "22:41: " + getCheckMessage(MSG_TEXT_BLOCK_CONTENT),
+            "22:44: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "22:44: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "28:38: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "28:41: " + getCheckMessage(MSG_TEXT_BLOCK_CONTENT),
+            "28:44: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "28:44: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputTextBlockGoogleStyleFormattingSpacesOnlyContent.java"),
+                expected);
+    }
+
+    @Test
     public void testDefaultTestBlockFormatWithTernary() throws Exception {
         final String[] expected = {
             "17:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
