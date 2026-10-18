@@ -9,12 +9,12 @@ import java.util.Set;
 public class InputWrappingMethodDoAndDonts {
     class Do {
         public void someMethod(String aString,
-                       List<Integer> aList,
-                       Map<String, String> aMap,
-                       int anInt,
-                       long aLong,
-                       Set<Number> aSet,
-                       double aDouble) {
+                               List<Integer> aList,
+                               Map<String, String> aMap,
+                               int anInt,
+                               long aLong,
+                               Set<Number> aSet,
+                               double aDouble) {
         }
 
         public void someMethod1(String aString, List<Integer> aList,
@@ -23,8 +23,8 @@ public class InputWrappingMethodDoAndDonts {
         }
 
         public void someMethod2(String aString,
-                       List<Map<Integer, StringBuffer>> aListOfMaps,
-                       Map<String, String> aMap)
+                                List<Map<Integer, StringBuffer>> aListOfMaps,
+                                Map<String, String> aMap)
                 throws IllegalArgumentException {
         }
 
@@ -37,26 +37,26 @@ public class InputWrappingMethodDoAndDonts {
 
     class Donts {
 
-        // Not covered until https://github.com/checkstyle/checkstyle/issues/21694
+        // violation below 'Only one parameter is allowed per line in a vertical list.'
         public void someMethod(String aString,
-                       List<Integer> aList,
-                       Map<String, String> aMap,
-                       int anInt, long aLong,
-                       Set<Number> aSet,
-                       double aDouble) {
+                               List<Integer> aList,
+                               Map<String, String> aMap,
+                               int anInt, long aLong,
+                               Set<Number> aSet,
+                               double aDouble) {
         }
 
         public void someMethod2(String aString,
-                       List<Map<Integer, StringBuffer>> aListOfMaps,
-                       Map<String, String> aMap) throws InterruptedException {
+                                List<Map<Integer, StringBuffer>> aListOfMaps,
+                                Map<String, String> aMap) throws InterruptedException {
             // violation above """The 'throws' clause should be on a new line when the
             // method declaration is wrapped."""
         }
 
         public void someMethod3(String aString,
-                       List<Integer> aList,
-                       Map<String, String> aMap)
-                       throws IllegalArgumentException {
+                                List<Integer> aList,
+                                Map<String, String> aMap)
+                                throws IllegalArgumentException {
             // violation above """The 'throws' clause should be indented 8 spaces relative
             // to the method declaration or the previous line and should not align with the
             // previous line."""
