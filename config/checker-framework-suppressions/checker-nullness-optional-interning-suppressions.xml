@@ -2155,6 +2155,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of CheckUtil.isTerminated.</message>
+    <lineContent>&amp;&amp; CheckUtil.isTerminated(ast.findFirstToken(TokenTypes.SLIST));</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExplicitInitializationCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter ast of AbstractCheck.log.</message>
@@ -2377,14 +2388,14 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>result = findLastCaseGroupWhichContainsSlist(ast.getParent()) != ast;</lineContent>
+    <lineContent>result = findLastCaseGroupWhichContainsSlist(ast.getParent()) != ast</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>result = findLastCaseGroupWhichContainsSlist(ast.getParent()) != ast;</lineContent>
+    <lineContent>result = findLastCaseGroupWhichContainsSlist(ast.getParent()) != ast</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
