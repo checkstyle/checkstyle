@@ -27,7 +27,7 @@ jobs:
       - restore_cache:
           name: Restore Maven repo and wrapper cache
           keys:
-            - mvn-cache-v2-{{ checksum "pom.xml" }}
+            - mvn-cache-v3-{{ checksum "pom.xml" }}
       - run:
           command: << parameters.command >>
           no_output_timeout: << parameters.no_output_timeout >>
@@ -37,9 +37,10 @@ jobs:
             ./.ci/validation.sh ci-temp-check
       - save_cache:
           name: Save Maven repo and wrapper cache
-          key: mvn-cache-v2-{{ checksum "pom.xml" }}
+          key: mvn-cache-v3-{{ checksum "pom.xml" }}
           paths:
-            - .m2
+            - ~/.m2/repository
+            - ~/.m2/wrapper
 
   validate-with-script:
     description: Runs a non-maven script using the job name as the argument.
@@ -100,7 +101,7 @@ jobs:
       - restore_cache:
           name: Restore Maven repo and wrapper cache
           keys:
-            - mvn-cache-v2-{{ checksum "pom.xml" }}
+            - mvn-cache-v3-{{ checksum "pom.xml" }}
       - run:
           name: Validate Javadoc inputs with JDK javadoc
           command: ./.ci/validation.sh javadoc-tool-validate
@@ -108,9 +109,10 @@ jobs:
           path: .ci-temp/javadoc
       - save_cache:
           name: Save Maven repo and wrapper cache
-          key: mvn-cache-v2-{{ checksum "pom.xml" }}
+          key: mvn-cache-v3-{{ checksum "pom.xml" }}
           paths:
-            - .m2
+            - ~/.m2/repository
+            - ~/.m2/wrapper
 
 workflows:
   #  sonarqube:
