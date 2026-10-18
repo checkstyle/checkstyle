@@ -98,6 +98,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * https://checkstyle.org/dtds/import_control_1_5.dtd</a>.
  * It contains documentation on each of the elements and attributes.
  * </p>
+ * <p>
+ * Attribute values in the import control file can contain property references
+ * in the form {@code ${name}}. When the file is loaded, such references are
+ * replaced with the values of the corresponding system properties, in the same
+ * way as property references in the main configuration file. A reference to a
+ * property that has not been set, or a reference that is not closed, makes the
+ * file fail to load.
+ * </p>
  *
  * <p>
  * The check validates a XML document when it loads the document. To validate against
