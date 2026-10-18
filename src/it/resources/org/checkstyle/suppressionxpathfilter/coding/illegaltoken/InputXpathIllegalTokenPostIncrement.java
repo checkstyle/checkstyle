@@ -1,3 +1,10 @@
+/*
+IllegalToken
+tokens = POST_INC
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.illegaltoken;
 
 public enum InputXpathIllegalTokenPostIncrement {
@@ -5,6 +12,6 @@ public enum InputXpathIllegalTokenPostIncrement {
 
     void method() {
         int i = 0;
-        i++; // warn
+        i++; // violation 'Using '++' is not allowed.'
     }
 }
