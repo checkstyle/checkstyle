@@ -142,6 +142,102 @@ public class ImportControlLoaderTest {
     }
 
     @Test
+    public void testLoadWithPropertyExpansion() throws Exception {
+        System.setProperty("ic.loader.root", "com");
+        System.setProperty("ic.loader.sub", "child");
+        System.setProperty("ic.loader.allowed", "allowed.pkg");
+        System.setProperty("ic.loader.clazz", "some.Class");
+        System.setProperty("ic.loader.module", "java.base");
+        try {
+            final AbstractImportControl root =
+                    ImportControlLoader.load(
+                        new File(getPath("InputImportControlLoaderPropertyExpansion.xml"))
+                            .toURI());
+            final AbstractImportControl sub =
+                    root.locateFinest("com.example.child", "AnyFile");
+            assertWithMessage("Expanded subpackage should be located")
+                .that(sub)
+                .isNotSameInstanceAs(root);
+            assertWithMessage("Import from expanded allow pkg should be allowed")
+                .that(sub.checkAccess("com.example.child", "AnyFile", "allowed.pkg.Some"))
+                .isEqualTo(AccessResult.ALLOWED);
+            assertWithMessage("Import of expanded disallow class should be disallowed")
+                .that(sub.checkAccess("com.example.child", "AnyFile", "some.Class"))
+                .isEqualTo(AccessResult.DISALLOWED);
+            final AbstractImportControl literal =
+                    root.locateFinest("com.example.a$b", "AnyFile");
+            assertWithMessage("Import from literal dollar subpackage should be allowed")
+                .that(literal.checkAccess("com.example.a$b", "AnyFile", "literal.dollar.Some"))
+                .isEqualTo(AccessResult.ALLOWED);
+            final AbstractImportControl escaped =
+                    root.locateFinest("com.example.my$pkg", "AnyFile");
+            assertWithMessage("Import from escaped dollar subpackage should be allowed")
+                .that(escaped.checkAccess("com.example.my$pkg", "AnyFile",
+                        "escaped.dollar.Some"))
+                .isEqualTo(AccessResult.ALLOWED);
+            final AbstractImportControl file =
+                    root.locateFinest("com.example", "Trailing$");
+            assertWithMessage("Import from trailing dollar file should be allowed")
+                .that(file.checkAccess("com.example", "Trailing$", "trailing.dollar.Some"))
+                .isEqualTo(AccessResult.ALLOWED);
+        }
+        finally {
+            System.clearProperty("ic.loader.root");
+            System.clearProperty("ic.loader.sub");
+            System.clearProperty("ic.loader.allowed");
+            System.clearProperty("ic.loader.clazz");
+            System.clearProperty("ic.loader.module");
+        }
+    }
+
+    @Test
+    public void testLoadWithUnresolvedProperty() throws Exception {
+        System.clearProperty("ic.loader.unset");
+        final URI uri =
+                new File(getPath("InputImportControlLoaderUnresolvedProperty.xml")).toURI();
+        try {
+            ImportControlLoader.load(uri);
+            assertWithMessage("exception expected").fail();
+        }
+        catch (CheckstyleException exc) {
+            assertWithMessage("Invalid exception message")
+                .that(exc.getMessage())
+                .isEqualTo("unable to parse " + uri);
+            assertWithMessage("Invalid exception class")
+                .that(exc.getCause())
+                .isInstanceOf(SAXException.class);
+            assertWithMessage("Invalid exception message")
+                .that(exc)
+                .hasCauseThat()
+                .hasMessageThat()
+                .isEqualTo("Property ${ic.loader.unset} has not been set");
+        }
+    }
+
+    @Test
+    public void testLoadWithUnclosedProperty() throws Exception {
+        final URI uri =
+                new File(getPath("InputImportControlLoaderUnclosedProperty.xml")).toURI();
+        try {
+            ImportControlLoader.load(uri);
+            assertWithMessage("exception expected").fail();
+        }
+        catch (CheckstyleException exc) {
+            assertWithMessage("Invalid exception message")
+                .that(exc.getMessage())
+                .isEqualTo("unable to parse " + uri);
+            assertWithMessage("Invalid exception class")
+                .that(exc.getCause())
+                .isInstanceOf(SAXException.class);
+            assertWithMessage("Invalid exception message")
+                .that(exc)
+                .hasCauseThat()
+                .hasMessageThat()
+                .isEqualTo("Syntax error in property: com.${ic.loader.unclosed");
+        }
+    }
+
+    @Test
     public void testInputStreamFailsOnRead() throws Exception {
         try (InputStream inputStream = mock()) {
             final int available = doThrow(IOException.class).when(inputStream).available();
