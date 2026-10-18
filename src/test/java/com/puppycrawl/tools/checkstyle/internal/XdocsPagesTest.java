@@ -63,6 +63,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -733,24 +734,89 @@ public class XdocsPagesTest {
     @Test
     public void testAllXmlExamples() throws Exception {
         for (Path path : XdocUtil.getXdocsFilePaths()) {
-            final String fileName = path.getFileName().toString();
-            final NodeList sources = getTagSourcesNode(path, "source");
+            validateXmlExamples(path);
+        }
+    }
 
-            for (int position = 0; position < sources.getLength(); position++) {
-                final String unserializedSource = sources.item(position).getTextContent()
-                        .replace("...", "").trim();
+    @Test
+    public void testInvalidXmlInCodeBlock(@TempDir Path temporaryDirectory) throws Exception {
+        final Path path = temporaryDirectory.resolve("invalid-example.xml");
+        for (String example : List.of(
+                "<code class=\"language-xml\">"
+                        + "&lt;checkstyle-packages name=\"MissingQuote&gt;</code>",
+                "<code class=\"language-xml\">&lt;project&gt;&lt;/project</code>",
+                "<code>&lt;module name=\"MissingQuote&gt;</code>",
+                "&lt;module name=\"MissingQuote&gt;")) {
+            Files.writeString(path, "<document><body><div><pre>"
+                    + example + "</pre></div></body></document>");
 
-                if (unserializedSource.length() > 1 && (unserializedSource.charAt(0) != '<'
-                        || unserializedSource.charAt(unserializedSource.length() - 1) != '>'
-                        // no dtd testing yet
-                        || unserializedSource.contains("<!"))) {
-                    continue;
+            final AssertionError error = TestUtil.getExpectedThrowable(AssertionError.class,
+                    () -> validateXmlExamples(path));
+            assertWithMessage("invalid XML example in %s should be reported", example)
+                    .that(error).hasMessageThat().contains("invalid-example.xml has invalid xml");
+        }
+    }
+
+    private static void validateXmlExamples(Path path) throws Exception {
+        final String fileName = path.getFileName().toString();
+        final String input = Files.readString(path);
+        final Document document = XmlUtil.getRawXml(path.toString(), input, input);
+        final NodeList sources = document.getElementsByTagName("source");
+
+        for (int position = 0; position < sources.getLength(); position++) {
+            validateXmlExample(fileName, sources.item(position).getTextContent(), true);
+        }
+
+        final NodeList codeBlocks = document.getElementsByTagName("code");
+        for (int position = 0; position < codeBlocks.getLength(); position++) {
+            final Element codeBlock = (Element) codeBlocks.item(position);
+            final String code = codeBlock.getTextContent().trim();
+            final boolean isXmlCodeBlock = code.startsWith("<module")
+                    || code.startsWith("<property")
+                    || code.startsWith("<?xml") && code.contains("<module")
+                    || codeBlock.getAttribute("class").contains("language-xml")
+                            && !fileName.startsWith("writing-javadoc-checks")
+                            && !fileName.startsWith("filetabcharacter")
+                            && !code.contains("Checkstyle ends with");
+            if (isXmlCodeBlock && "pre".equals(codeBlock.getParentNode().getNodeName())) {
+                validateXmlExample(fileName, code, false);
+            }
+        }
+
+        final NodeList preBlocks = document.getElementsByTagName("pre");
+        for (int position = 0; position < preBlocks.getLength(); position++) {
+            final Element preBlock = (Element) preBlocks.item(position);
+            if (preBlock.getElementsByTagName("code").getLength() == 0) {
+                final String code = preBlock.getTextContent().trim();
+                if (code.startsWith("<module") || code.startsWith("<property")) {
+                    validateXmlExample(fileName, code, false);
                 }
+            }
+        }
+    }
 
-                final String code = buildXml(unserializedSource);
-                // validate only
-                XmlUtil.getRawXml(fileName, code, unserializedSource);
+    private static void validateXmlExample(String fileName, String source,
+                                           boolean validateConfiguration)
+            throws Exception {
+        final String unserializedSource = source.replace("...", "").trim();
 
+        // no dtd testing yet
+        if (!unserializedSource.contains("<!DOCTYPE")
+                && (!validateConfiguration || unserializedSource.length() <= 1
+                    || unserializedSource.charAt(0) == '<'
+                            && unserializedSource.charAt(unserializedSource.length() - 1) == '>'
+                            && !unserializedSource.contains("<!"))) {
+            final String code;
+            if (!validateConfiguration && unserializedSource.startsWith("<?xml")) {
+                code = unserializedSource;
+            }
+            else {
+                code = buildXml(unserializedSource);
+            }
+            // validate only
+            XmlUtil.getRawXml(fileName, code, unserializedSource);
+
+            if (validateConfiguration) {
                 // can't test ant structure, or old and outdated checks
                 assertWithMessage("Xml is invalid, old or has outdated structure")
                         .that(fileName.startsWith("ant-task")
