@@ -230,7 +230,6 @@ public class XdocsPagesTest {
             "UnusedImports",
             "UpperEll",
             "VisibilityModifier",
-            "WhitespaceAfter",
             "WhitespaceAround"
     );
 
