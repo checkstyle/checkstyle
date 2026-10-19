@@ -17,27 +17,32 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.sun.checkstyle.test.chapter7statements.rule72compoundstatements;
+package com.sun.checkstyle.test.chapter4indentation.rule42wrappinglines;
 
 import org.junit.jupiter.api.Test;
 
 import com.sun.checkstyle.test.base.AbstractSunModuleTestSupport;
 
-public class LeftCurlyTest extends AbstractSunModuleTestSupport {
+public class WrappingLinesTest extends AbstractSunModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
-        return "com/sun/checkstyle/test/chapter7statements/rule72compoundstatements";
+        return "com/sun/checkstyle/test/chapter4indentation/rule42wrappinglines";
     }
 
     @Test
-    public void testLeftCurlyValid() throws Exception {
-        verifyWithWholeConfig(getPath("InputLeftCurlyValid.java"));
+    public void testIndentation() throws Exception {
+        verifyWithWholeConfig(getPath("InputIndentation.java"));
     }
 
     @Test
-    public void testLeftCurlyInvalid() throws Exception {
-        verifyWithWholeConfig(getPath("InputLeftCurlyInvalid.java"));
+    public void testOperatorWrap() throws Exception {
+        verifyWithWholeConfig(getPath("InputOperatorWrap.java"));
+    }
+
+    @Test
+    public void testSeparatorWrap() throws Exception {
+        verifyWithWholeConfig(getPath("InputSeparatorWrap.java"));
     }
 
 }
