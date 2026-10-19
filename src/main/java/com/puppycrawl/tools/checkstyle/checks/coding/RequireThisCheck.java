@@ -443,7 +443,9 @@ public class RequireThisCheck extends AbstractCheck {
 
             case TokenTypes.RESOURCE -> {
                 final DetailAST resourceIdent = ast.findFirstToken(TokenTypes.IDENT);
-                if (resourceIdent != null) {
+                // A resource can be a variable access (for example, a field) rather than
+                // a declaration; such a name is a usage, so it is not registered here.
+                if (resourceIdent != null && ast.findFirstToken(TokenTypes.TYPE) != null) {
                     frame.addIdent(resourceIdent);
                 }
             }

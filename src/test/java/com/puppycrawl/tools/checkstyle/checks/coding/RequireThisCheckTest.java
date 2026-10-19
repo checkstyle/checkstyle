@@ -651,6 +651,20 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFieldAsResource() throws Exception {
+        final String[] expected = {
+            "19:32: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "27:32: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "29:32: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "35:32: " + getCheckMessage(MSG_VARIABLE, "other", ""),
+            "40:71: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "43:32: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisFieldAsResource.java"), expected);
+    }
+
+    @Test
     public void testCatchVariables() throws Exception {
         final String[] expected = {
             "38:21: " + getCheckMessage(MSG_VARIABLE, "ex", ""),
