@@ -73,6 +73,9 @@ public class ClassDefHandler extends BlockParentHandler {
         final DetailAST modifiers = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
         if (modifiers.hasChildren()) {
             checkModifiers();
+            if (getMainAst().getType() != TokenTypes.ANNOTATION_DEF) {
+                checkIdentLineAfterModifiers(modifiers);
+            }
         }
         else {
             if (getMainAst().getType() != TokenTypes.ANNOTATION_DEF) {
@@ -110,6 +113,46 @@ public class ClassDefHandler extends BlockParentHandler {
             TokenTypes.LITERAL_RETURN,
             TokenTypes.LITERAL_THROW,
             TokenTypes.LITERAL_CONTINUE,
+        };
+    }
+
+    /**
+     * Checks the indentation of the line with the keyword of the definition
+     * if it follows the modifiers on a separate line. Such a line is not
+     * visited by any other check, as the ident is only checked when the
+     * definition has no modifiers at all. The line is only checked when the
+     * modifiers end with an annotation, so the keyword line directly follows
+     * the leading annotations of the definition; when a keyword modifier
+     * comes last, the keyword line is a wrapped line and is left to the
+     * line wrapping logic.
+     *
+     * @param modifiers the modifiers node of the definition being checked
+     */
+    private void checkIdentLineAfterModifiers(DetailAST modifiers) {
+        final DetailAST keyword = getKeywordAst();
+        if (modifiers.getLastChild().getType() == TokenTypes.ANNOTATION
+                && keyword.getLineNo() > modifiers.getFirstChild().getLineNo()
+                && isOnStartOfLine(keyword)) {
+            final int lineStart = getLineStart(keyword);
+            if (!getIndent().isAcceptable(lineStart)) {
+                logError(keyword, "ident", lineStart);
+            }
+        }
+    }
+
+    /**
+     * Gets the token of the keyword of the definition, that is the token
+     * which starts the line of the definition itself after its modifiers.
+     *
+     * @return the keyword token of the definition
+     */
+    private DetailAST getKeywordAst() {
+        return switch (getMainAst().getType()) {
+            case TokenTypes.CLASS_DEF -> getMainAst().findFirstToken(TokenTypes.LITERAL_CLASS);
+            case TokenTypes.INTERFACE_DEF -> getMainAst()
+                    .findFirstToken(TokenTypes.LITERAL_INTERFACE);
+            case TokenTypes.ENUM_DEF -> getMainAst().findFirstToken(TokenTypes.ENUM);
+            default -> getMainAst().findFirstToken(TokenTypes.LITERAL_RECORD);
         };
     }
 
