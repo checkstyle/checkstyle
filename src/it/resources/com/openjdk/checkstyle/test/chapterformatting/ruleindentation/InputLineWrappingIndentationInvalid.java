@@ -4,6 +4,7 @@ package com.openjdk.checkstyle.test.chapterformatting.ruleindentation;
 
 public class InputLineWrappingIndentationInvalid {
 
+    // violation below 'Parameter should be aligned .*'
     void method(int a,
         int b) {
     // violation above '.* incorrect indentation level 8, expected .* 12.'
