@@ -193,6 +193,32 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example9.java"/>
           <param name="type" value="code"/>
         </macro>
+
+          <macro name="example">
+            <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example9.java"/>
+            <param name="type" value="code"/>
+          </macro><hr class="example-separator"/>
+          <p id="Example10-config">
+            To configure the check to report a violation at the position of a specific
+            capturing group instead of the start of the whole match, use
+            <code>reportGroup</code>. Here group 2 is <code>out</code>, so a call split
+            across lines is reported on the line where <code>out</code> appears:
+          </p>
+          <macro name="example">
+            <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example10.java"/>
+            <param name="type" value="config"/>
+          </macro>
+          <p id="Example10-code">
+            Example:
+          </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example10.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
       </subsection>
 
       <subsection name="Example of Usage" id="RegexpMultiline_Example_of_Usage">
