@@ -21,14 +21,12 @@ package org.checkstyle.suppressionxpathfilter.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck.MSG_KEY;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck;
 
 public class XpathRegressionSimplifyBooleanReturnTest extends AbstractXpathTestSupport {
@@ -48,14 +46,8 @@ public class XpathRegressionSimplifyBooleanReturnTest extends AbstractXpathTestS
 
     @Test
     public void testIfBooleanEqualsBoolean() throws Exception {
-        final File fileToProcess = new File(
-            getPath(
-                "InputXpathSimplifyBooleanReturnIfBooleanEqualsBoolean.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(CLASS, MSG_KEY),
+            "13:9: " + getCheckMessage(CLASS, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -64,21 +56,15 @@ public class XpathRegressionSimplifyBooleanReturnTest extends AbstractXpathTestS
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='toTest']]/SLIST/LITERAL_IF"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-            expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSimplifyBooleanReturnIfBooleanEqualsBoolean.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testIfBooleanReturnBoolean() throws Exception {
-        final File fileToProcess = new File(
-            getPath(
-                "InputXpathSimplifyBooleanReturnIfBooleanReturnBoolean.java"
-            ));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "11:13: " + getCheckMessage(CLASS, MSG_KEY),
+            "18:13: " + getCheckMessage(CLASS, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -88,21 +74,15 @@ public class XpathRegressionSimplifyBooleanReturnTest extends AbstractXpathTestS
                 + "/LAMBDA[./IDENT[@text='statement']]/SLIST/LITERAL_IF"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-            expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSimplifyBooleanReturnIfBooleanReturnBoolean.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testAnonymousInnerClass() throws Exception {
-        final File fileToProcess = new File(
-            getPath(
-                "InputXpathSimplifyBooleanReturnAnonymousInnerClass.java"
-            ));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "12:17: " + getCheckMessage(CLASS, MSG_KEY),
+            "19:17: " + getCheckMessage(CLASS, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -113,8 +93,9 @@ public class XpathRegressionSimplifyBooleanReturnTest extends AbstractXpathTestS
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='check']]/SLIST/LITERAL_IF"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-            expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSimplifyBooleanReturnAnonymousInnerClass.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
