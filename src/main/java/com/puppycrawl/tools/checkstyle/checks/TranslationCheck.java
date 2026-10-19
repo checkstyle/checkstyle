@@ -124,23 +124,27 @@ public final class TranslationCheck extends AbstractFileSetCheck {
     private static final String DEFAULT_TRANSLATION_REGEXP = "^.+\\..+$";
 
     /**
-     * Regexp pattern for bundles names which end with language code, followed by country code and
-     * variant suffix. For example, messages_es_ES_UNIX.properties.
+     * Regexp pattern for bundles names which end with language code, optionally followed by
+     * script code, followed by country code and variant suffix.
+     * For example, messages_es_ES_UNIX.properties, messages_zh_Hans_CN_UNIX.properties.
      */
     private static final Pattern LANGUAGE_COUNTRY_VARIANT_PATTERN =
-        CommonUtil.createPattern("^.+\\_[a-z]{2}\\_[A-Z]{2}\\_[A-Za-z]+\\..+$");
+        CommonUtil.createPattern("^.+\\_[a-z]{2,3}(\\_[A-Z][a-z]{3})?\\_[A-Z]{2}"
+            + "\\_[A-Za-z]+\\..+$");
     /**
-     * Regexp pattern for bundles names which end with language code, followed by country code
-     * suffix. For example, messages_es_ES.properties.
+     * Regexp pattern for bundles names which end with language code, optionally followed by
+     * script code, followed by country code suffix.
+     * For example, messages_es_ES.properties, messages_zh_Hans_CN.properties.
      */
     private static final Pattern LANGUAGE_COUNTRY_PATTERN =
-        CommonUtil.createPattern("^.+\\_[a-z]{2}\\_[A-Z]{2}\\..+$");
+        CommonUtil.createPattern("^.+\\_[a-z]{2,3}(\\_[A-Z][a-z]{3})?\\_[A-Z]{2}\\..+$");
     /**
-     * Regexp pattern for bundles names which end with language code suffix.
-     * For example, messages_es.properties.
+     * Regexp pattern for bundles names which end with language code suffix, optionally
+     * followed by script code suffix.
+     * For example, messages_es.properties, messages_zh_Hans.properties.
      */
     private static final Pattern LANGUAGE_PATTERN =
-        CommonUtil.createPattern("^.+\\_[a-z]{2}\\..+$");
+        CommonUtil.createPattern("^.+\\_[a-z]{2,3}(\\_[A-Z][a-z]{3})?\\..+$");
 
     /** File name format for default translation. */
     private static final String DEFAULT_TRANSLATION_FILE_NAME_FORMATTER = "%s.%s";
