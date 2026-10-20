@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck;
 
 public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
 
     @Test
     public void testCorrect() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathNestedForDepth.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NestedForDepthCheck.class);
-
         final String[] expectedViolation = {
-            "7:17: " + getCheckMessage(NestedForDepthCheck.class,
+            "15:17: " + getCheckMessage(NestedForDepthCheck.class,
                 NestedForDepthCheck.MSG_KEY, 2, 1),
         };
 
@@ -63,21 +55,16 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
                 + "/SLIST/LITERAL_FOR/SLIST/LITERAL_FOR"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNestedForDepth.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMax() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathNestedForDepthMax.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NestedForDepthCheck.class);
-        moduleConfig.addProperty("max", "2");
-
         final String[] expectedViolation = {
-            "8:21: " + getCheckMessage(NestedForDepthCheck.class,
+            "16:21: " + getCheckMessage(NestedForDepthCheck.class,
                 NestedForDepthCheck.MSG_KEY, 3, 2),
         };
 
@@ -91,20 +78,16 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
                 + "SLIST/LITERAL_FOR"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNestedForDepthMax.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathNestedForDepthInnerClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NestedForDepthCheck.class);
-
         final String[] expectedViolation = {
-            "8:21: " + getCheckMessage(NestedForDepthCheck.class,
+            "16:21: " + getCheckMessage(NestedForDepthCheck.class,
                 NestedForDepthCheck.MSG_KEY, 2, 1),
         };
 
@@ -116,8 +99,10 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
                 + "/SLIST/LITERAL_FOR/SLIST/LITERAL_FOR"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNestedForDepthInnerClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
