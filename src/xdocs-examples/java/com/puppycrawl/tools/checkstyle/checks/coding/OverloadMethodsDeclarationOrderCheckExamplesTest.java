@@ -45,7 +45,6 @@ public class OverloadMethodsDeclarationOrderCheckExamplesTest
     public void testExample2() throws Exception {
         final String[] expected = {
             "17:3: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_ORDER),
-            "19:3: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_ORDER),
             "28:3: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_KEY, "24"),
             "41:5: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_KEY, "35"),
             "41:5: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_ORDER),

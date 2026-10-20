@@ -122,7 +122,6 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
         final Map<String, Integer> methodLineNumberMap = new HashMap<>();
 
         final Map<String, Integer> methodParameterCountMap = new HashMap<>();
-        final Map<String, Boolean> methodIsOrderedMap = new HashMap<>();
 
         int currentIndex = 0;
         while (currentToken != null) {
@@ -144,11 +143,9 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
                     }
 
                     if (orderByIncreasingParameterCount) {
-                        checkMethodOrdering(currentToken, methodName,
-                                methodIsOrderedMap, methodParameterCountMap);
+                        checkMethodOrdering(currentToken, methodName, methodParameterCountMap);
                     }
                 }
-                methodIsOrderedMap.putIfAbsent(methodName, Boolean.TRUE);
                 methodIndexMap.put(methodName, currentIndex);
                 methodLineNumberMap.put(methodName, currentToken.getLineNo());
                 methodParameterCountMap.put(methodName, getParameterCount(currentToken));
@@ -162,20 +159,14 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
      *
      * @param currentMethod ast of the method.
      * @param methodName method name.
-     * @param methodIsOrderedMap
-     *        is a map of method names to booleans indicating whether the method is ordered.
      * @param methodParameterCountMap
      *        is a map of method names to integers indicating the parameter count of the previous
      *        similar method.
      */
     private void checkMethodOrdering(DetailAST currentMethod, String methodName,
-        Map<String, Boolean> methodIsOrderedMap, Map<String, Integer> methodParameterCountMap) {
+        Map<String, Integer> methodParameterCountMap) {
 
-        final int currentParamCount = getParameterCount(currentMethod);
-        final boolean isOrdered = methodIsOrderedMap.get(methodName)
-                            && currentParamCount >= methodParameterCountMap.get(methodName);
-        if (!isOrdered) {
-            methodIsOrderedMap.put(methodName, Boolean.FALSE);
+        if (getParameterCount(currentMethod) < methodParameterCountMap.get(methodName)) {
             log(currentMethod, MSG_ORDER);
         }
     }

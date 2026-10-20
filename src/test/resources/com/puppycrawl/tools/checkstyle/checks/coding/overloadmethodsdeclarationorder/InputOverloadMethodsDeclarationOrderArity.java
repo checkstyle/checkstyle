@@ -22,7 +22,7 @@ public class InputOverloadMethodsDeclarationOrderArity {
     } // violation above 'Overloaded methods should be ordered by increasing parameter count.'
 
     public void testing(String a, String b) {
-    } // violation above 'Overloaded methods should be ordered by increasing parameter count.'
+    }
 
     private class Inner {
         void test() {}
@@ -33,7 +33,6 @@ public class InputOverloadMethodsDeclarationOrderArity {
         // violation above 'Overloaded methods should be ordered by increasing parameter count.'
 
         void test(int x) {}
-        // violation above 'Overloaded methods should be ordered by increasing parameter count.'
     }
     enum Foo {
         ONE, TWO;
@@ -47,5 +46,16 @@ public class InputOverloadMethodsDeclarationOrderArity {
 
         public void value(String s) {
         } // violation above 'Overloaded methods should be ordered by increasing parameter count.'
+    }
+
+    static class Cascade {
+        void process(int a) {}
+
+        void process(int a, int b, int c) {}
+
+        void process(int a, int b) {}
+        // violation above 'Overloaded methods should be ordered by increasing parameter count.'
+
+        void process(int a, int b, int c, int d) {}
     }
 }
