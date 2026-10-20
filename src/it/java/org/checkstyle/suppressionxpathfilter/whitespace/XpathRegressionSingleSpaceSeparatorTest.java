@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck;
 
 public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
 
     @Test
     public void testSingleSpaceSeparator() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathSingleSpaceSeparator.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(SingleSpaceSeparatorCheck.class);
-
         final String[] expectedViolation = {
-            "4:11: " + getCheckMessage(SingleSpaceSeparatorCheck.class,
+            "11:11: " + getCheckMessage(SingleSpaceSeparatorCheck.class,
                     SingleSpaceSeparatorCheck.MSG_KEY),
         };
 
@@ -62,22 +54,16 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
                 + "/VARIABLE_DEF/IDENT[@text='bad']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSingleSpaceSeparator.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testValidateComments() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathSingleSpaceSeparatorValidateComments.java"
-        ));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(SingleSpaceSeparatorCheck.class);
-        moduleConfig.addProperty("validateComments", "true");
-
         final String[] expectedViolation = {
-            "4:17: " + getCheckMessage(SingleSpaceSeparatorCheck.class,
+            "11:17: " + getCheckMessage(SingleSpaceSeparatorCheck.class,
                     SingleSpaceSeparatorCheck.MSG_KEY),
         };
 
@@ -88,31 +74,30 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
                 + "[@text=' an invalid comment // warn\\n']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSingleSpaceSeparatorValidateComments.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInnerClassViolation() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathSingleSpaceSeparatorInnerClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(SingleSpaceSeparatorCheck.class);
-
         final String[] expectedViolation = {
-            "5:15: " + getCheckMessage(SingleSpaceSeparatorCheck.class,
+            "12:15: " + getCheckMessage(SingleSpaceSeparatorCheck.class,
                 SingleSpaceSeparatorCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathSingleSpaceSeparatorInnerClass']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathSingleSpaceSeparatorInnerClass']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]/OBJBLOCK/VARIABLE_DEF"
                 + "/IDENT[@text='bad']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSingleSpaceSeparatorInnerClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
