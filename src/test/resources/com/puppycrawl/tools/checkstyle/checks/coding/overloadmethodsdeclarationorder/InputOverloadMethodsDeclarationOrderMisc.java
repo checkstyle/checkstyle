@@ -34,7 +34,7 @@ public class InputOverloadMethodsDeclarationOrderMisc {
         } // violation above 'Overloaded methods should be ordered by increasing parameter count.'
 
         public void foo(boolean b) {
-        } // violation above 'Overloaded methods should be ordered by increasing parameter count.'
+        }
     }
 
     class AllGood {
