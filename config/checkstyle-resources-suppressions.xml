@@ -535,6 +535,10 @@
     files="/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant6.java"/>
   <suppress checks="FileLength"
     files="/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant7.java"/>
+  <suppress checks="FileLength"
+    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/InputIndentationCorrectAnnotationIndent.java"/>
+  <suppress checks="FileLength"
+    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/InputIndentationInvalidAnnotationIndent.java"/>
   <suppress checks="OuterTypeFilename"
     files=".*/sariflogger/InputSarifLogger Space\.java"/>
   <suppress id="resourceFileName"
