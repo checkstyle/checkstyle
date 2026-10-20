@@ -127,7 +127,7 @@ class Example2 {
   void same(String s) {}
   // violation above 'Overloaded methods should be ordered by increasing parameter count.'
   void same(int i, String s) {}
-  // violation above 'Overloaded methods should be ordered by increasing parameter count.'
+
   void notSame() {}
   interface notSame{}
 
