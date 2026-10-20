@@ -249,12 +249,24 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
     @Test
     public void testUnnecessaryNullCheckWithInstanceOfBooleanCondition() throws Exception {
         final String[] expected = {
-            "12:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "16:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "20:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+                "12:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+                "16:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+                "20:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
         };
         verifyWithInlineConfigParser(getPath(
                 "InputUnnecessaryNullCheckWithInstanceOfBooleanCondition.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceOfArithmeticDereference() throws Exception {
+        final String[] expected = {
+            "40:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "45:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "52:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryNullCheckWithInstanceOfArithmeticDereference.java"),
+                expected);
     }
 
 }
