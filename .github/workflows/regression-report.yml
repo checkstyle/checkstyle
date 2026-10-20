@@ -23,7 +23,7 @@ env:
   # yamllint disable-line rule:line-length
   DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/test-configs/main/extractor/src/main/resources/list-of-projects.yml"
   BASE_TEST_CONFIGS_URL: "https://raw.githubusercontent.com/checkstyle/test-configs/main"
-  EXTRACTOR_VERSION: 2024-10-08
+  EXTRACTOR_VERSION: 2026-10-20
   DIFF_TOOL_VERSION: "1.0-2026-08-26"
   PATCH_DIFF_TOOL_VERSION: "0.1-SNAPSHOT"
   CACHE_KEY: "regression-report-${{ github.run_id }}"
