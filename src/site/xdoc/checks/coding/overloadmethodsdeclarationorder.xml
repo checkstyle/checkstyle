@@ -127,13 +127,14 @@ class Example2 {
   void same(String s) {}
   // violation above 'Overloaded methods should be ordered by increasing parameter count.'
   void same(int i, String s) {}
+
   void notSame() {}
   interface notSame{}
 
   void otherSame(String s) {}
   void foo() {}
   // violation 2 lines below """All overloaded methods should be placed next
-  //  to each other. Previous overloaded method located at line '23'."""
+  //  to each other. Previous overloaded method located at line '24'."""
   void otherSame(String s, int i) {}
 
   public enum ExampleEnum {
@@ -146,7 +147,7 @@ class Example2 {
     void foo() {}
 
     // violation 2 lines below """All overloaded methods should be placed next
-    //  to each other. Previous overloaded method located at line '34'."""
+    //  to each other. Previous overloaded method located at line '35'."""
     public void example(String s) {}
     // violation above 'Overloaded methods should be ordered by increasing parameter count.'
   }
