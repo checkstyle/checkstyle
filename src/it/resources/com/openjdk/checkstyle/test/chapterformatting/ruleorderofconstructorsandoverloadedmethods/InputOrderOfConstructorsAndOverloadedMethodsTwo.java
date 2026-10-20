@@ -13,7 +13,7 @@ public class InputOrderOfConstructorsAndOverloadedMethodsTwo {
     // violation above 'Overloaded methods should be ordered by increasing parameter count.'
 
     void same(int i, String s) {}
-    // violation above 'Overloaded methods should be ordered by increasing parameter count.'
+    // ordered after 'same(String s)' because the parameter count increases.
 
     void notSame() {}
 
