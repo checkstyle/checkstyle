@@ -237,10 +237,4 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexity2\.java"/>
 
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/suppresswarningsholder/InputSuppressWarningsHolderAlias2\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/suppresswarningsholder/InputSuppressWarningsHolderAlias4\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/suppresswarningsholder/InputSuppressWarningsHolderWithAndWithoutCheckSuffixDifferentCases\.java"/>
 </suppressions>
