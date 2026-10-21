@@ -100,7 +100,6 @@ public class XdocsExampleFileTest {
      */
     private static final Set<String> SUPPRESSED_UNIQUENESS_CHECK_MODULES = Set.of(
         "checks/outertypefilename/",
-        "checks/regexp/regexpmultiline/",
         "checks/regexp/regexpsingleline/"
     );
 
