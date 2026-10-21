@@ -150,8 +150,79 @@ public class LineWrappingHandler {
         final int currentIndent = firstNodeIndent + indentLevel;
 
         for (DetailAST node : firstNodesOnLines.values()) {
-            checkNodeIndentation(node, firstNodeIndent, currentIndent);
+            checkNodeIndentation(node, firstNodeIndent,
+                    getNodeIndent(node, firstLineNode, indentLevel, currentIndent));
         }
+    }
+
+    /**
+     * Gets the indentation a wrapped line should use. Lines inside the argument list of a nested
+     * method call are based on the line where that call starts, so each nesting level of a wrapped
+     * call adds its own line wrapping indentation instead of treating the nested arguments as
+     * continuations of the outermost call.
+     *
+     * @param node the first node on the wrapped line.
+     * @param firstLineNode the first node of the checked range.
+     * @param indentLevel indentation all wrapped lines should use.
+     * @param currentIndent indentation based on the first line of the checked range.
+     * @return the indentation the given node should use.
+     */
+    private int getNodeIndent(DetailAST node, DetailAST firstLineNode, int indentLevel,
+            int currentIndent) {
+        int result = currentIndent;
+        final DetailAST call = getArgumentListOwner(node);
+        if (call != null) {
+            final DetailAST firstToken = getFirstToken(call);
+            if (firstToken.getLineNo() != firstLineNode.getLineNo()
+                    && expandedTabsColumnNo(firstToken) == getLineStart(firstToken)) {
+                result = getLineStart(firstToken) + indentLevel;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Gets the first token of the given expression, which is its leftmost descendant. For a method
+     * call this is the start of its target expression, as the call node itself is positioned at its
+     * left parenthesis.
+     *
+     * @param ast the expression to get the first token of.
+     * @return the leftmost descendant of the given expression.
+     */
+    private static DetailAST getFirstToken(DetailAST ast) {
+        DetailAST node = ast;
+        while (node.getFirstChild() != null) {
+            node = node.getFirstChild();
+        }
+        return node;
+    }
+
+    /**
+     * Gets the method call whose argument list contains the given node, if any. Only the innermost
+     * such call is considered, as it is the one the node's line is a continuation of. A node in the
+     * middle of a call's own target or name, like the method name of a chained call whose dot ended
+     * the previous line, does not belong to any argument list, so the search stops there. The first
+     * token of a call is different, it starts one of the arguments of the enclosing call, so the
+     * search continues past it.
+     *
+     * @param node the node to find the argument list owner for.
+     * @return the innermost method call whose argument list contains the node,
+     *         or null if there is none.
+     */
+    private static DetailAST getArgumentListOwner(DetailAST node) {
+        DetailAST result = null;
+        for (DetailAST ast = node.getParent(); ast != null; ast = ast.getParent()) {
+            if (ast.getType() == TokenTypes.ELIST
+                    && ast.getParent().getType() == TokenTypes.METHOD_CALL) {
+                result = ast.getParent();
+                break;
+            }
+            if (ast.getType() == TokenTypes.METHOD_CALL
+                    && node != getFirstToken(ast)) {
+                break;
+            }
+        }
+        return result;
     }
 
     /**
