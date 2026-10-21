@@ -11,6 +11,11 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.nonemptyatclausedescripti
 
 public class InputNonEmptyAtclauseDescriptionTwo
 {
+    // violation 7 lines below 'At-clause should have a non-empty description'
+    // violation 7 lines below 'At-clause should have a non-empty description'
+    // violation 7 lines below 'At-clause should have a non-empty description'
+    // violation 7 lines below 'At-clause should have a non-empty description'
+    // violation 7 lines below 'At-clause should have a non-empty description'
     /**
      *
      * @param a
@@ -18,11 +23,7 @@ public class InputNonEmptyAtclauseDescriptionTwo
      * @param c
      * @deprecated
      * @throws Exception
-     */ // violation 5 lines above 'At-clause should have a non-empty description'
-    // violation 5 lines above 'At-clause should have a non-empty description'
-    // violation 5 lines above 'At-clause should have a non-empty description'
-    // violation 5 lines above 'At-clause should have a non-empty description'
-    // violation 5 lines above 'At-clause should have a non-empty description'
+     */
     public int foo4(String a, int b, double c) throws Exception
     {
         return 1;
@@ -42,6 +43,7 @@ public class InputNonEmptyAtclauseDescriptionTwo
         return 1;
     }
 
+    // violation 7 lines below 'At-clause should have a non-empty description'
     /**
      *
      * @param a Some javadoc
@@ -49,16 +51,17 @@ public class InputNonEmptyAtclauseDescriptionTwo
      * @param c Some javadoc
      * @return Some javadoc
      * @exception Exception
-     */ // violation above 'At-clause should have a non-empty description'
+     */
     public int foo6(String a, int b, double c) throws Exception
     {
         return 1;
     }
 
+    // violation 3 lines below 'At-clause should have a non-empty description'
     /**
      * @param a xxx
      * @return
-     */ // violation above 'At-clause should have a non-empty description'
+     */
     int foo(int a) {
         return a;
     }
@@ -70,14 +73,15 @@ public class InputNonEmptyAtclauseDescriptionTwo
         return 1;
     }
 
+    // violation 4 lines below 'At-clause should have a non-empty description'
+    // violation 5 lines below 'At-clause should have a non-empty description'
     /**
      *
      * @return
      *
      * @throws Exception
      *
-     */ // violation 4 lines above 'At-clause should have a non-empty description'
-    // violation 3 lines above 'At-clause should have a non-empty description'
+     */
         public int foo7() throws Exception
         {
                 return 1;
