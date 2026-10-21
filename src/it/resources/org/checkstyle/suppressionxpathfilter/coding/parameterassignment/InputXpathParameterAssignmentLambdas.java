@@ -1,3 +1,9 @@
+/*
+ParameterAssignment
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.parameterassignment;
 
 public class InputXpathParameterAssignmentLambdas {
@@ -6,7 +12,7 @@ public class InputXpathParameterAssignmentLambdas {
         void method(int a);
     }
 
-    SomeInterface obj1 = q -> q++; // warn
+    SomeInterface obj1 = q -> q++; // violation "Assignment of parameter 'q' is not allowed."
     void method() {
         int q = 12;
         SomeInterface obj = (d) -> {

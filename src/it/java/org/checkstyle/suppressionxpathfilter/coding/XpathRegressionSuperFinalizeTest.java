@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck;
 
 public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
@@ -45,11 +43,8 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(getPath("InputXpathSuperFinalizeNoFinalize.java"));
-        final DefaultConfiguration moduleConfig = createModuleConfig(SuperFinalizeCheck.class);
-
         final String[] expectedViolation = {
-            "4:17: " + getCheckMessage(SuperFinalizeCheck.class,
+            "10:17: " + getCheckMessage(SuperFinalizeCheck.class,
                                         SuperFinalizeCheck.MSG_KEY, "finalize"),
         };
 
@@ -58,17 +53,15 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
                 + "[./IDENT[@text='InputXpathSuperFinalizeNoFinalize']]"
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='finalize']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSuperFinalizeNoFinalize.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final File fileToProcess =
-                            new File(getPath("InputXpathSuperFinalizeInnerClass.java"));
-        final DefaultConfiguration moduleConfig = createModuleConfig(SuperFinalizeCheck.class);
-
         final String[] expectedViolation = {
-            "5:17: " + getCheckMessage(SuperFinalizeCheck.class,
+            "11:17: " + getCheckMessage(SuperFinalizeCheck.class,
                                         SuperFinalizeCheck.MSG_KEY, "finalize"),
         };
 
@@ -77,17 +70,15 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
                 + "[./IDENT[@text='InputXpathSuperFinalizeInnerClass']]"
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='finalize']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSuperFinalizeInnerClass.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testAnonymousClass() throws Exception {
-        final File fileToProcess =
-                            new File(getPath("InputXpathSuperFinalizeAnonymousClass.java"));
-        final DefaultConfiguration moduleConfig = createModuleConfig(SuperFinalizeCheck.class);
-
         final String[] expectedViolation = {
-            "9:28: " + getCheckMessage(SuperFinalizeCheck.class,
+            "15:28: " + getCheckMessage(SuperFinalizeCheck.class,
                                         SuperFinalizeCheck.MSG_KEY, "finalize"),
         };
 
@@ -99,7 +90,9 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
                 + "/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='Object']]"
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='finalize']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSuperFinalizeAnonymousClass.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
