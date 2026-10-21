@@ -224,10 +224,6 @@
             files="/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctagcontinuationindentation/InputJavadocTagContinuationIndentationBlockTag\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctagcontinuationindentation/InputJavadocTagContinuationIndentationDescription\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/InputMissingJavadocMethodExtendAnnotation\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/InputMissingJavadocMethodJavadocInMethod\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/javadoc/nonemptyatclausedescription/InputNonEmptyAtclauseDescriptionOne\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
