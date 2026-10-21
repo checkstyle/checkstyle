@@ -97,6 +97,7 @@ Commit messages are validated (`CommitValidationTest`, `.github/PULL_REQUEST_TEM
 - Every defect or behavior change needs an issue (`.github/ISSUE_TEMPLATE/`) with real CLI
   output from the latest release; a maintainer must label it `approved` before the PR is merged.
 - One commit per PR, no merge commits (`git-check-single-commit`, `git-no-merge-commits`).
+- Run `mvnw clean verify` before PR creation, it must pass without any errors.
 
 ## OpenRewrite
 
