@@ -91,10 +91,6 @@
   <suppress id="noCheckstyleInInputs"
             files="/it/resources/com/google/checkstyle/test/chapter3filestructure/rule333orderingandspacing/InputFormattedOrderingAndSpacingValid2.java"/>
 
-  <!-- Input files with violation comments inside Javadoc, until https://github.com/checkstyle/checkstyle/issues/19764 -->
-  <suppress id="noViolationCommentsInJavadoc"
-            files="/checks/metrics/classfanoutcomplexity/InputClassFanOutComplexityRemoveIncorrectAnnotationToken.java"/>
-
   <!-- until https://github.com/checkstyle/checkstyle/issues/19803 -->
   <suppress id="violationBetweenJavadocAndMethod"
             files="/checks/coding/onestatementperline/InputOneStatementPerLineSingleLineSmallTalkStyle\.java"/>
