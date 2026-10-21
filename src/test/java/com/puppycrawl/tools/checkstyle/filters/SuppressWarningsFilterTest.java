@@ -21,14 +21,23 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck.MSG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck.MSG_REGEXP_EXCEEDED;
+
+import java.io.File;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -142,6 +151,41 @@ public class SuppressWarningsFilterTest extends AbstractModuleTestSupport {
 
         verifySuppressedWithParser(getPath("InputSuppressWarningsFilterById.java"),
                 expectedViolationMessages, suppressedViolationMessages);
+    }
+
+    @Test
+    public void testSuppressionsAreNotAppliedToNonJavaFile() throws Exception {
+        final String[] expectedNonJavaFile = {
+            "16: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                "forbidde[n]"),
+        };
+
+        verifyWithInlineConfigParser(
+            List.of(getPath("InputSuppressWarningsFilterSuppressAll.java"),
+                getPath("InputSuppressWarningsFilterNonJavaFile.properties")),
+            List.of(List.of(), List.of(expectedNonJavaFile)));
+    }
+
+    @Test
+    public void testSuppressionsAreNotAppliedToUnparsableJavaFile() throws Exception {
+        final String suppressAllFile = getPath("InputSuppressWarningsFilterSuppressAll.java");
+        final String unparsableFile =
+            getNonCompilablePath("InputSuppressWarningsFilterUnparsableFile.java");
+        final String[] expectedUnparsableFile = {
+            "1: " + getCheckMessage(TreeWalker.class, TreeWalker.PARSE_EXCEPTION_MSG,
+                "IllegalStateException") + " occurred while parsing file "
+                + unparsableFile + ".",
+            "20: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                "forbidde[n]"),
+        };
+        verifyWithInlineXmlConfig(unparsableFile, expectedUnparsableFile);
+
+        final Configuration config =
+            InlineConfigParser.parseWithXmlHeader(suppressAllFile).xmlConfiguration();
+        final File[] files = {new File(suppressAllFile), new File(unparsableFile)};
+        verify(createChecker(config), files, Map.of(
+            suppressAllFile, List.of(),
+            unparsableFile, List.of(expectedUnparsableFile)));
     }
 
     private void verifySuppressedWithParser(String fileName, String... suppressed)

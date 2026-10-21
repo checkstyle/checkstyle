@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_K
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -38,6 +39,8 @@ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck;
@@ -263,6 +266,19 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIsSuppressedInDifferentFile() throws Exception {
+        populateHolder("all", 100, 100, 350, 350);
+
+        final Checker source = new Checker();
+        final Violation violation =
+            new Violation(200, 1, null, null, null, "id", MemberNameCheck.class, "msg");
+        final AuditEvent event = new AuditEvent(source, "otherFileName", violation);
+        assertWithMessage("Event from another file should not be suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isFalse();
+    }
+
+    @Test
     public void testAnnotationInTry() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -393,11 +409,11 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     @Test
     public void testClearState() throws Exception {
         final SuppressWarningsHolder check = new SuppressWarningsHolder();
+        final File file = Path.of(getPath("InputSuppressWarningsHolder.java")).toFile();
+        check.setFileContents(new FileContents(new FileText(file, List.of())));
 
         final Optional<DetailAST> annotationDef = TestUtil.findTokenInAstByPredicate(
-                JavaParser.parseFile(
-                    new File(getPath("InputSuppressWarningsHolder.java")),
-                    JavaParser.Options.WITHOUT_COMMENTS),
+                JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS),
             ast -> ast.getType() == TokenTypes.ANNOTATION);
 
         assertWithMessage("Ast should contain ANNOTATION")
@@ -417,8 +433,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final Class<?> entry = Class
                 .forName("com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry");
 
-        final Object entryInstance = TestUtil.instantiate(entry, checkName, firstLine,
-                firstColumn, lastLine, lastColumn);
+        final Object entryInstance = TestUtil.instantiate(entry, "fileName", checkName,
+                firstLine, firstColumn, lastLine, lastColumn);
 
         final ThreadLocal<List<Object>> entries = TestUtil
                 .getInternalStaticStateThreadLocal(SuppressWarningsHolder.class,
@@ -430,7 +446,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final Checker source = new Checker();
         final Violation violation = new Violation(line, column, null, null, null,
                 moduleId, MemberNameCheck.class, "violation");
-        return new AuditEvent(source, "filename", violation);
+        return new AuditEvent(source, "fileName", violation);
     }
 
     @Test
