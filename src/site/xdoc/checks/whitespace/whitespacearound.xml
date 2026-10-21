@@ -30,6 +30,7 @@
               <li><a href="#Example8-config" class="toc-sublink">Allow empty catch bodies</a></li>
               <li><a href="#Example9-config" class="toc-sublink">Ignore the colon</a></li>
               <li><a href="#Example10-config" class="toc-sublink">Allow empty switch block statements</a></li>
+              <li><a href="#Example11-config" class="toc-sublink">Enforce whitespace around array initializers</a></li>
             </ul>
           </li>
           <li>
@@ -162,6 +163,13 @@ try {
               <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
+            </tr>
+            <tr>
+              <td><a id="enforceWhitespaceAroundArrayInit"/><a href="#enforceWhitespaceAroundArrayInit">enforceWhitespaceAroundArrayInit</a></td>
+              <td>Enforce whitespace after the opening brace and before the closing brace of array initializers.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>14.4.0</td>
             </tr>
             <tr>
               <td><a id="ignoreEnhancedForColon"/><a href="#ignoreEnhancedForColon">ignoreEnhancedForColon</a></td>
@@ -834,6 +842,50 @@ class Example10 {
     switch (y) {
       case 1:{ }
       // ok, allowEmptySwitchBlockStatements is true
+    }
+  }
+  void myFunction(){ }
+  // violation above ''{' is not preceded with whitespace'
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example11-config">
+          To configure the check to enforce whitespace around array initializers:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="WhitespaceAround"&gt;
+      &lt;property name="enforceWhitespaceAroundArrayInit" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example11-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example11 {
+  interface Empty{ }
+  // violation above ''{' is not preceded with whitespace'
+  public Example11() {}
+  // 2 violations above:
+  //  ''{' is not followed by whitespace'
+  //  ''}' is not preceded with whitespace'
+  int y = 0;
+  void example() {
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
+    //  ''-&gt;' is not followed by whitespace'
+    //  ''{' is not preceded with whitespace'
+    try { }
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace'
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'}; // 2 violations: ''{' is not followed by whitespace', ''}' is not preceded with whitespace'
+    for (char item: vowels) { }
+    for (int i = 0; i &lt; 10; i++){ }
+    // violation above ''{' is not preceded with whitespace'
+    switch (y) {
+      case 1:{ }
+      // violation above ''{' is not preceded with whitespace'
     }
   }
   void myFunction(){ }
