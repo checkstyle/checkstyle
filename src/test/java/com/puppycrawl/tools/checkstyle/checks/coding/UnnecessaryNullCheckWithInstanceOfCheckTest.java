@@ -40,14 +40,15 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
             "12:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "15:39: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "24:14: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "54:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "57:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "60:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "69:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "74:26: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "78:14: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "80:30: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "86:19: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "50:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "55:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "58:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "61:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "70:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "75:26: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "79:14: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "81:30: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "87:19: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
         };
         verifyWithInlineConfigParser(getPath(
             "InputUnnecessaryNullCheckWithInstanceOfOne.java"), expected);
@@ -255,6 +256,22 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
         };
         verifyWithInlineConfigParser(getPath(
                 "InputUnnecessaryNullCheckWithInstanceOfBooleanCondition.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceOfArithmeticDereference() throws Exception {
+        final String[] expected = {
+            "40:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "45:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "52:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "63:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "68:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "77:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "85:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryNullCheckWithInstanceOfArithmeticDereference.java"),
+                expected);
     }
 
 }
