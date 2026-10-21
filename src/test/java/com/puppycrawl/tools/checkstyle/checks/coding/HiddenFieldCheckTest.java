@@ -683,6 +683,21 @@ public class HiddenFieldCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testHiddenFieldImplicitlyStaticTypes() throws Exception {
+
+        final String[] expected = {
+            "29:22: " + getCheckMessage(MSG_KEY, "shade"),
+            "31:24: " + getCheckMessage(MSG_KEY, "counter"),
+            "42:28: " + getCheckMessage(MSG_KEY, "counter"),
+            "61:22: " + getCheckMessage(MSG_KEY, "value"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputHiddenFieldImplicitlyStaticTypes.java"),
+                expected);
+    }
+
+    @Test
     public void testHiddenFieldCompactSourceFile() throws Exception {
         final String[] expected = {
             "18:21: " + getCheckMessage(MSG_KEY, "name"),
