@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.NoArrayTrailingCommaCheck;
 
 public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathNoArrayTrailingCommaOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoArrayTrailingCommaCheck.class);
-
         final String[] expectedViolation = {
-            "5:37: " + getCheckMessage(NoArrayTrailingCommaCheck.class,
+            "11:37: " + getCheckMessage(NoArrayTrailingCommaCheck.class,
                 NoArrayTrailingCommaCheck.MSG_KEY),
         };
 
@@ -63,20 +55,16 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
                     + "/LITERAL_NEW/ARRAY_INIT/COMMA[4]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathNoArrayTrailingCommaOne.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathNoArrayTrailingCommaTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoArrayTrailingCommaCheck.class);
-
         final String[] expectedViolation = {
-            "4:28: " + getCheckMessage(NoArrayTrailingCommaCheck.class,
+            "10:28: " + getCheckMessage(NoArrayTrailingCommaCheck.class,
                 NoArrayTrailingCommaCheck.MSG_KEY),
         };
 
@@ -87,20 +75,16 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
                     + "/ASSIGN/EXPR/LITERAL_NEW/ARRAY_INIT/COMMA"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathNoArrayTrailingCommaTwo.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathNoArrayTrailingCommaThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoArrayTrailingCommaCheck.class);
-
         final String[] expectedViolation = {
-            "6:50: " + getCheckMessage(NoArrayTrailingCommaCheck.class,
+            "12:50: " + getCheckMessage(NoArrayTrailingCommaCheck.class,
                 NoArrayTrailingCommaCheck.MSG_KEY),
         };
 
@@ -112,8 +96,10 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
                     + "/ELIST/EXPR/LITERAL_NEW/ARRAY_INIT/COMMA[3]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathNoArrayTrailingCommaThree.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
 }
