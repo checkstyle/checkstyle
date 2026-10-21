@@ -29,6 +29,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  */
 public class MethodDefHandler extends BlockParentHandler {
 
+    /** Token for modifier. */
+    private static final String MODIFIER = "modifier";
+
     /**
      * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
@@ -55,7 +58,53 @@ public class MethodDefHandler extends BlockParentHandler {
         final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
         if (isOnStartOfLine(modifier)
             && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
-            logError(modifier, "modifier", expandedTabsColumnNo(modifier));
+            logError(modifier, MODIFIER, expandedTabsColumnNo(modifier));
+        }
+        checkFirstTokenAfterAnnotations(modifier);
+    }
+
+    /**
+     * Checks the indentation of the first token of the method definition that is not an annotation.
+     * The modifiers node starts at the first annotation when annotations precede the method, so
+     * when they are placed on lines of their own, the line with the actual modifiers or the type
+     * would otherwise never be checked.
+     *
+     * @param modifiers modifiers node of the method definition
+     */
+    private void checkFirstTokenAfterAnnotations(DetailAST modifiers) {
+        DetailAST firstToken = null;
+        for (DetailAST child = modifiers.getFirstChild(); child != null;
+                child = child.getNextSibling()) {
+            if (child.getType() != TokenTypes.ANNOTATION) {
+                firstToken = getFirstToken(child);
+                break;
+            }
+        }
+        if (firstToken == null) {
+            final DetailAST typeParameters =
+                    getMainAst().findFirstToken(TokenTypes.TYPE_PARAMETERS);
+            final DetailAST type = getMainAst().findFirstToken(TokenTypes.TYPE);
+            if (typeParameters != null && type != null
+                    && getFirstToken(type).getLineNo()
+                            != getFirstToken(typeParameters).getLineNo()) {
+                // the type parameters wrap over lines and the type is a continuation
+                // of the header, so the definition starts at the type parameters
+                firstToken = getFirstToken(typeParameters);
+            }
+            else if (type != null) {
+                firstToken = getFirstToken(type);
+            }
+            else {
+                // constructors have no type node, their name starts the definition
+                firstToken = getMainAst().findFirstToken(TokenTypes.IDENT);
+            }
+        }
+        final int firstTokenColumn = expandedTabsColumnNo(firstToken);
+        if (firstToken.getLineNo() != modifiers.getLineNo()
+            && firstTokenColumn != expandedTabsColumnNo(modifiers)
+            && isOnStartOfLine(firstToken)
+            && !getIndent().isAcceptable(firstTokenColumn)) {
+            logError(firstToken, MODIFIER, firstTokenColumn);
         }
     }
 
