@@ -566,6 +566,57 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
+    /**
+     * A module id is free text from the configuration, so it may contain characters that
+     * must be escaped in JSON. The rule id built from it must be escaped both in the rule
+     * and in the results with and without a column.
+     */
+    @Test
+    public void testEscapeModuleId() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapeModuleId.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapeModuleId.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    /**
+     * This test injects ruleMetadata via reflection to use a module name and a violation key
+     * that must be escaped in JSON. Module metadata of built-in checks never contains such
+     * characters, so this state is not reachable through Checker.process(...).
+     */
+    @Test
+    public void testEscapeModuleNameAndMessageId() throws Exception {
+        final SarifLogger logger = new SarifLogger(outStream, OutputStreamOptions.CLOSE);
+
+        final String sourceName = "com.puppycrawl.tools.checkstyle.SarifLoggerTest";
+        final String violationKey = "quoted\"key/with\\slash";
+        final ModuleDetails fakeModule = new ModuleDetails();
+        fakeModule.setName("Quoted\"Name");
+        fakeModule.setFullQualifiedName(sourceName);
+        fakeModule.setDescription("Test module with escaped name");
+        fakeModule.addToViolationMessages(violationKey);
+
+        @SuppressWarnings("unchecked")
+        final Map<Object, ModuleDetails> ruleMetadata =
+                TestUtil.getInternalState(logger, "ruleMetadata", Map.class);
+        final Class<?> ruleKeyClass = TestUtil.getInnerClassType(SarifLogger.class, "RuleKey");
+        final Object ruleKey = TestUtil.instantiate(ruleKeyClass, sourceName, null);
+        ruleMetadata.put(ruleKey, fakeModule);
+
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", violationKey, null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error");
+        logger.addError(new AuditEvent(this, "Test.java", violation));
+        logger.auditFinished(null);
+
+        verifyContent(getPath("ExpectedSarifLoggerEscapeModuleNameAndMessageId.sarif"),
+                outStream);
+    }
+
     @Test
     public void testMultipleMessageStrings() throws Exception {
         final String inputFile = "InputSarifLoggerMultipleMessages.java";

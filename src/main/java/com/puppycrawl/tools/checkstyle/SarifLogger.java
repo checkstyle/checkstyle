@@ -271,8 +271,8 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
                         generateMessageStrings(module));
             }
             result.add(rule
-                    .replace(RULE_ID_PLACEHOLDER, ruleKey.toRuleId())
-                    .replace("${shortDescription}", shortDescription)
+                    .replace(RULE_ID_PLACEHOLDER, escape(ruleKey.toRuleId()))
+                    .replace("${shortDescription}", escape(shortDescription))
                     .replace("${fullDescription}", escape(fullDescription))
                     .replace("${messageStrings}", messageStringsFragment));
         }
@@ -350,7 +350,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
                 COLUMN_PLACEHOLDER, Integer.toString(event.getColumn()),
                 LINE_PLACEHOLDER, Integer.toString(event.getLine()),
                 MESSAGE_PLACEHOLDER, message,
-                RULE_ID_PLACEHOLDER, ruleKey.toRuleId())));
+                RULE_ID_PLACEHOLDER, escape(ruleKey.toRuleId()))));
         }
         else {
             results.add(fillTemplate(resultLineOnly, Map.of(
@@ -358,7 +358,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
                 URI_PLACEHOLDER, renderFileNameUri(event.getFileName()),
                 LINE_PLACEHOLDER, Integer.toString(event.getLine()),
                 MESSAGE_PLACEHOLDER, message,
-                RULE_ID_PLACEHOLDER, ruleKey.toRuleId())));
+                RULE_ID_PLACEHOLDER, escape(ruleKey.toRuleId()))));
         }
     }
 
@@ -389,7 +389,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
         final String result;
         if (module != null && module.getViolationMessageKeys().contains(violationKey)) {
             result = messageWithId
-                    .replace(MESSAGE_ID_PLACEHOLDER, violationKey)
+                    .replace(MESSAGE_ID_PLACEHOLDER, escape(violationKey))
                     .replace(MESSAGE_TEXT_PLACEHOLDER, escape(event.getMessage()));
         }
         else {
