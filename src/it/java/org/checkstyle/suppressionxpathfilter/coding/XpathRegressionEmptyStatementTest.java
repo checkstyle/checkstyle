@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck;
 
 public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport {
@@ -45,12 +43,8 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
 
     @Test
     public void testForLoopEmptyStatement() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathEmptyStatementLoops.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyStatementCheck.class);
         final String[] expectedViolation = {
-            "5:36: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
+            "11:36: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
@@ -58,18 +52,16 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                         + "/SLIST/LITERAL_FOR/EMPTY_STAT"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyStatementLoops.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testIfBlockEmptyStatement() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathEmptyStatementConditionals.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyStatementCheck.class);
         final String[] expectedViolation = {
-            "6:19: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
+            "12:19: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
@@ -77,18 +69,16 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                         + "/SLIST/LITERAL_IF/EMPTY_STAT"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyStatementConditionals.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testWhileLoopEmptyStatement() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathEmptyStatementWhile.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyStatementCheck.class);
         final String[] expectedViolation = {
-            "5:21: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
+            "11:21: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
@@ -96,8 +86,10 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                         + "/SLIST/LITERAL_WHILE/EMPTY_STAT"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyStatementWhile.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
