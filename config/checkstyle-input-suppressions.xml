@@ -125,10 +125,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="/checks/javadoc/javadocparagraph/InputJavadocParagraphIncorrectOpenClosedTag3\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/javadoc/missingjavadocpackage/nojavadoc/annotation/blockcomment/package-info\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/javadoc/missingjavadocpackage/nojavadoc/annotation/package-info\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="/checks/javadoc/writetag/InputWriteTagEnumsAndAnnotations\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="/checks/whitespace/emptylineseparator/InputEmptyLineSeparatorWithJavadoc2\.java"/>
