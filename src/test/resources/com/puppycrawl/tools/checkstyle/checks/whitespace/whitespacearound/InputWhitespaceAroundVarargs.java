@@ -9,7 +9,7 @@ allowEmptyCatches = (default)false
 allowEmptySwitchBlockStatements = (default)false
 ignoreEnhancedForColon = (default)true
 tokens = ELLIPSIS
-
+enforceWhitespaceAroundArrayInit = (default)false
 
 */
 
