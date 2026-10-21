@@ -2,12 +2,13 @@
 <module name="Checker">
   <module name="RegexpMultiline">
     <property name="format" value="Test.*string"/>
+    <property name="ignoreCase" value="true"/>
     <property name="fileExtensions" value="java"/>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpmultiline;
-// violation 6 lines above 'Line matches the illegal pattern'
+// violation 7 lines above 'Line matches the illegal pattern'
 // xdoc section - start
 class Example7 {
   void testMethod1() {
@@ -29,8 +30,10 @@ class Example7 {
     // violation below 'Line matches the illegal pattern'
     System.out.println("Test #1: this is a test string");
 
+    // violation below 'Line matches the illegal pattern'
     System.out.println("TeSt #2: This is a test string");
 
+    // violation below 'Line matches the illegal pattern'
     System.out.println("TEST #3: This is a test string");
     int i = 5;
 
@@ -38,6 +41,7 @@ class Example7 {
     // violation below 'Line matches the illegal pattern'
     System.out.println("Test #4: This is a test string");
 
+    // violation below 'Line matches the illegal pattern'
     System.out.println("TEst #5: This is a test string");
   }
 }
