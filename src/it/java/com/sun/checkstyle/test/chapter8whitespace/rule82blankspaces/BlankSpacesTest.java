@@ -45,4 +45,9 @@ public class BlankSpacesTest extends AbstractSunModuleTestSupport {
         verifyWithWholeConfig(getPath("InputNoWhitespaceAfterInvalid.java"));
     }
 
+    @Test
+    public void testNoWhitespaceBeforeInvalid() throws Exception {
+        verifyWithWholeConfig(getPath("InputNoWhitespaceBeforeInvalid.java"));
+    }
+
 }
