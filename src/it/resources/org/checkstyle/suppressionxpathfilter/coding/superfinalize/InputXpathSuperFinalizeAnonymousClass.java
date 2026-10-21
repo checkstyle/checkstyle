@@ -1,3 +1,9 @@
+/*
+SuperFinalize
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.superfinalize;
 
 public class InputXpathSuperFinalizeAnonymousClass
@@ -6,7 +12,7 @@ public class InputXpathSuperFinalizeAnonymousClass
     {
         Object anonymousClassObject = new Object() {
             @Override
-            protected void finalize() // warn
+            protected void finalize() // violation "Method 'finalize' should call 'super.finalize'."
             {
             }
         };

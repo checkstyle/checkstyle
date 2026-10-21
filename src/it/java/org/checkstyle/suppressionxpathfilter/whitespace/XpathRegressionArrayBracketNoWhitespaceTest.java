@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.ArrayBracketNoWhitespaceCheck;
 
 public class XpathRegressionArrayBracketNoWhitespaceTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionArrayBracketNoWhitespaceTest extends AbstractXpathTe
 
     @Test
     public void testArrayBracketNoWhitespacePreceded() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathArrayBracketNoWhitespacePreceded.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ArrayBracketNoWhitespaceCheck.class);
-
         final String[] expectedViolation = {
-            "4:9: " + getCheckMessage(ArrayBracketNoWhitespaceCheck.class,
+            "10:9: " + getCheckMessage(ArrayBracketNoWhitespaceCheck.class,
                     ArrayBracketNoWhitespaceCheck.MSG_WS_PRECEDED, "["),
         };
 
@@ -62,19 +54,15 @@ public class XpathRegressionArrayBracketNoWhitespaceTest extends AbstractXpathTe
                 + "/VARIABLE_DEF[./IDENT[@text='bad']]/TYPE/ARRAY_DECLARATOR"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathArrayBracketNoWhitespacePreceded.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testArrayBracketNoWhitespaceFollowed() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathArrayBracketNoWhitespaceFollowed.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ArrayBracketNoWhitespaceCheck.class);
-
         final String[] expectedViolation = {
-            "5:32: " + getCheckMessage(ArrayBracketNoWhitespaceCheck.class,
+            "11:32: " + getCheckMessage(ArrayBracketNoWhitespaceCheck.class,
                     ArrayBracketNoWhitespaceCheck.MSG_WS_FOLLOWED, "["),
         };
 
@@ -85,19 +73,15 @@ public class XpathRegressionArrayBracketNoWhitespaceTest extends AbstractXpathTe
                 + "/ASSIGN/EXPR/LITERAL_NEW/ARRAY_DECLARATOR"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathArrayBracketNoWhitespaceFollowed.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testArrayBracketNoWhitespaceNotFollowed() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathArrayBracketNoWhitespaceNotFollowed.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ArrayBracketNoWhitespaceCheck.class);
-
         final String[] expectedViolation = {
-            "6:26: " + getCheckMessage(ArrayBracketNoWhitespaceCheck.class,
+            "12:26: " + getCheckMessage(ArrayBracketNoWhitespaceCheck.class,
                     ArrayBracketNoWhitespaceCheck.MSG_WS_NOT_FOLLOWED, "]"),
         };
 
@@ -108,7 +92,9 @@ public class XpathRegressionArrayBracketNoWhitespaceTest extends AbstractXpathTe
                 + "/ASSIGN/EXPR/PLUS[./NUM_INT[@text='5']]/INDEX_OP[./IDENT[@text='arr']]/RBRACK"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathArrayBracketNoWhitespaceNotFollowed.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }

@@ -1,3 +1,9 @@
+/*
+ParameterAssignment
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.parameterassignment;
 
 public class InputXpathParameterAssignmentMethods {
@@ -6,7 +12,7 @@ public class InputXpathParameterAssignmentMethods {
         int i = field;
         this.field = field;
         i++;
-        field += 1; // warn
+        field += 1; // violation "Assignment of parameter 'field' is not allowed."
         this.field++;
     }
     // without parameters
