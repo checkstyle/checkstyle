@@ -46,6 +46,7 @@ public class InputUnnecessaryNullCheckWithInstanceOfOne {
             System.out.println("Text length: " + text.length());
         }
 
+        // violation below 'Unnecessary nullity check'
         if (s != null && s instanceof String && s.toString().equals("abc")) { }
 
         if (b != null  && b.toString().equals("abc") && b instanceof String) { }
