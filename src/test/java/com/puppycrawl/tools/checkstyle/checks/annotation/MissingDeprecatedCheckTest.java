@@ -89,10 +89,10 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     public void testBadDeprecatedJavadoc() throws Exception {
 
         final String[] expected = {
-            "29: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "38: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "48: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "55: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "30: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "40: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "51: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "59: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verifyWithInlineConfigParser(
