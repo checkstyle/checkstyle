@@ -197,6 +197,7 @@ public class SuppressWarningsHolder extends AbstractCheck {
      */
     public static boolean isSuppressed(AuditEvent event) {
         final List<Entry> entries = ENTRIES.get();
+        final String fileName = event.getFileName();
         final String sourceName = event.getSourceName();
         final String checkAlias = getAlias(sourceName);
         final int line = event.getLine();
@@ -212,7 +213,8 @@ public class SuppressWarningsHolder extends AbstractCheck {
                     || getDefaultAlias(checkName).equalsIgnoreCase(checkAlias)
                     || getDefaultAlias(sourceName).equalsIgnoreCase(checkName);
             if (afterStart && beforeEnd
-                    && (nameMatches || checkName.equals(event.getModuleId()))) {
+                    && (nameMatches || checkName.equals(event.getModuleId()))
+                    && entry.fileName().equals(fileName)) {
                 suppressed = true;
                 break;
             }
@@ -282,7 +284,7 @@ public class SuppressWarningsHolder extends AbstractCheck {
         }
         if ("SuppressWarnings".equals(identifier)) {
             getAnnotationTarget(ast).ifPresent(targetAST -> {
-                addSuppressions(getAllAnnotationValues(ast), targetAST);
+                addSuppressions(getAllAnnotationValues(ast), targetAST, getFilePath());
             });
         }
     }
@@ -294,8 +296,11 @@ public class SuppressWarningsHolder extends AbstractCheck {
      *            - list of check names
      * @param targetAST
      *            - annotation target
+     * @param fileName
+     *            - path to the file that contains the annotation
      */
-    private static void addSuppressions(List<String> values, DetailAST targetAST) {
+    private static void addSuppressions(List<String> values, DetailAST targetAST,
+                                        String fileName) {
         // get text range of target
         final int firstLine = targetAST.getLineNo();
         final int firstColumn = targetAST.getColumnNo();
@@ -315,7 +320,7 @@ public class SuppressWarningsHolder extends AbstractCheck {
         for (String value : values) {
             // strip off the checkstyle-only prefix if present
             final String checkName = removeCheckstylePrefixIfExists(value);
-            entries.add(new Entry(checkName, firstLine, firstColumn,
+            entries.add(new Entry(fileName, checkName, firstLine, firstColumn,
                     lastLine, lastColumn));
         }
     }
@@ -509,13 +514,14 @@ public class SuppressWarningsHolder extends AbstractCheck {
     /**
      * Records a particular suppression for a region of a file.
      *
+     * @param fileName    the path to the file that contains the suppression region
      * @param checkName   the source name of the suppressed check
      * @param firstLine   the first line of the suppression region
      * @param firstColumn the first column of the suppression region
      * @param lastLine    the last line of the suppression region
      * @param lastColumn  the last column of the suppression region
      */
-    private record Entry(String checkName, int firstLine,
+    private record Entry(String fileName, String checkName, int firstLine,
                          int firstColumn, int lastLine, int lastColumn) {
 
     }

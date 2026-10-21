@@ -179,6 +179,7 @@
           <exclude name="**/InputTreeWalkerSkipParsingException2.java"/>
           <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityDefault.java"/>
           <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityIgnore.java"/>
+          <exclude name="**/InputSuppressWarningsFilterUnparsableFile.java"/>
           <exclude name="**/InputDefaultLoggerTestException.java"/>
         </fileset>
       </path>
@@ -221,6 +222,7 @@
           <exclude name="**/InputTreeWalkerSkipParsingException2.java"/>
           <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityDefault.java"/>
           <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityIgnore.java"/>
+          <exclude name="**/InputSuppressWarningsFilterUnparsableFile.java"/>
           <exclude name="**/InputDefaultLoggerTestException.java"/>
           <!-- This check does not apply to grammar input files -->
           <exclude name="**/grammar/**/*"/>
