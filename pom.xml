@@ -5282,6 +5282,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheckTest</param>
               </targetTests>
@@ -5292,6 +5293,8 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <excludedMethods>
+                <!-- Defensive copying: https://github.com/hcoles/pitest/issues/1462 -->
+                <param>copyOfArray</param>
                 <!-- destroy method was added in case module had to free up resources
                 before ending, but currently it does ThreadLocal cleanup,
                 to satisfy sonar violation. But right now checkstyle is not multi threading tool.
