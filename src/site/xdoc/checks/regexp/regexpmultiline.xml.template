@@ -145,7 +145,7 @@
         </code></pre></div>
         <hr class="example-separator"/>
         <p id="Example7-config">
-        To configure the check to match a minimum of two test strings:
+        To configure the check to match test strings regardless of case:
         </p>
         <macro name="example">
           <param name="path"
