@@ -61,6 +61,18 @@ public class AvoidNoArgumentSuperConstructorCallCheckTest
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "32:9: " + getCheckMessage(MSG_CTOR),
+            "40:9: " + getCheckMessage(MSG_CTOR),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputAvoidNoArgumentSuperConstructorCallFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
     public void testTokens() {
         final AvoidNoArgumentSuperConstructorCallCheck check =
             new AvoidNoArgumentSuperConstructorCallCheck();
