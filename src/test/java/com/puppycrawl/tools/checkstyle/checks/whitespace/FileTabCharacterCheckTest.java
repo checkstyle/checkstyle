@@ -19,12 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_CONTAINS_TAB;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_FILE_CONTAINS_TAB;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
+
+import java.io.File;
+import java.nio.charset.StandardCharsets;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 
 public class FileTabCharacterCheckTest extends AbstractModuleTestSupport {
 
@@ -70,6 +76,96 @@ public class FileTabCharacterCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputFileTabCharacterSimple1.java"),
             expected);
+    }
+
+    @Test
+    public void testFileExtensionsDefault() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_CONTAINS_TAB),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFileTabCharacterExtensionsDefault.java"), expected);
+    }
+
+    @Test
+    public void testFileExtensionsEmpty() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_CONTAINS_TAB),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFileTabCharacterExtensionsEmpty.java"), expected);
+    }
+
+    @Test
+    public void testFileExtensionsJava() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_CONTAINS_TAB),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFileTabCharacterExtensionsJava.java"), expected);
+    }
+
+    @Test
+    public void testFileExtensionsDot() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_CONTAINS_TAB),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFileTabCharacterExtensionsDot.java"), expected);
+    }
+
+    @Test
+    public void testFileExtensionsMultiple() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_CONTAINS_TAB),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFileTabCharacterExtensionsMultiple.java"), expected);
+    }
+
+    @Test
+    public void testFileExtensionsNonMatching() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputFileTabCharacterExtensionsNonMatching.java"), expected);
+    }
+
+    @Test
+    public void testFileExtensionsCase() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputFileTabCharacterExtensionsCase.java"), expected);
+    }
+
+    @Test
+    public void testFileExtensionsCompound() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_CONTAINS_TAB),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFileTabCharacterExtensionsCompound.java.txt"), expected);
+    }
+
+    @Test
+    public void testFileExtensionsCompoundMismatch() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputFileTabCharacterExtensionsCompoundMismatch.txt"), expected);
+    }
+
+    @Test
+    public void testFileExtensionsAfterFailedSetter() throws Exception {
+        final FileTabCharacterCheck check = new FileTabCharacterCheck();
+        check.configure(createModuleConfig(FileTabCharacterCheck.class));
+        getExpectedThrowable(NullPointerException.class,
+                () -> check.setFileExtensions("java", null));
+        final File file = new File(getPath("InputFileTabCharacterExtensionsJava.java"));
+        final FileText fileText = new FileText(file, StandardCharsets.UTF_8.name());
+        final NullPointerException exception = getExpectedThrowable(NullPointerException.class,
+                () -> check.process(file, fileText));
+        assertWithMessage("A matching extension must not hide the later null after a failed setter")
+                .that(exception.getClass())
+                .isEqualTo(NullPointerException.class);
     }
 
 }
