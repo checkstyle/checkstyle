@@ -120,8 +120,6 @@
             files="/checks/javadoc/missingjavadocpackage/nojavadoc/annotation/blockcomment/package-info\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="/checks/javadoc/missingjavadocpackage/nojavadoc/annotation/package-info\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/whitespace/emptylineseparator/InputEmptyLineSeparatorWithJavadoc2\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/InputFormattedNonemptyBlocksLeftRightCurly\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
