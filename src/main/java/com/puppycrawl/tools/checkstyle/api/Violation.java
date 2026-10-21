@@ -27,7 +27,6 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 import com.puppycrawl.tools.checkstyle.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * Represents a violation that can be localised. The translations come from
@@ -261,13 +260,25 @@ public final class Violation implements Comparable<Violation> {
             this.args = null;
         }
         else {
-            this.args = UnmodifiableCollectionUtil.copyOfArray(args, args.length);
+            this.args = copyOfArray(args, args.length);
         }
         this.bundle = bundle;
         this.severityLevel = severityLevel;
         this.moduleId = moduleId;
         this.sourceClass = sourceClass;
         this.customMessage = customMessage;
+    }
+
+    /**
+     * Creates a copy of array.
+     *
+     * @param <T> The type of array
+     * @param array Array to create a copy of
+     * @param length length of array
+     * @return copy of array
+     */
+    private static <T> T[] copyOfArray(T[] array, int length) {
+        return Arrays.copyOf(array, length);
     }
 
     /**
