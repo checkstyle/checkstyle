@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UseEnhancedSwitchCheck;
 
 public class XpathRegressionUseEnhancedSwitchTest
@@ -43,27 +41,24 @@ public class XpathRegressionUseEnhancedSwitchTest
 
     @Test
     public void testSimple() throws Exception {
-        final File fileToProcess = new File(getPath("InputXpathUseEnhancedSwitchSimple.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(UseEnhancedSwitchCheck.class);
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(UseEnhancedSwitchCheck.class, UseEnhancedSwitchCheck.MSG_KEY),
+            "12:9: " + getCheckMessage(UseEnhancedSwitchCheck.class,
+                    UseEnhancedSwitchCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathUseEnhancedSwitchSimple']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUseEnhancedSwitchSimple.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testExpressions() throws Exception {
-        final File fileToProcess = new File(getPath("InputXpathUseEnhancedSwitchExpressions.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(UseEnhancedSwitchCheck.class);
         final String[] expectedViolation = {
-            "5:18: " + getCheckMessage(UseEnhancedSwitchCheck.class,
+            "11:18: " + getCheckMessage(UseEnhancedSwitchCheck.class,
                 UseEnhancedSwitchCheck.MSG_KEY),
         };
 
@@ -75,17 +70,15 @@ public class XpathRegressionUseEnhancedSwitchTest
             exprXpathQuery,
             exprXpathQuery + "/LITERAL_SWITCH"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUseEnhancedSwitchExpressions.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testExpressionsValid() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathUseEnhancedSwitchReturn.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(UseEnhancedSwitchCheck.class);
         final String[] expectedViolation = {
-            "6:13: " + getCheckMessage(UseEnhancedSwitchCheck.class,
+            "12:13: " + getCheckMessage(UseEnhancedSwitchCheck.class,
                 UseEnhancedSwitchCheck.MSG_KEY),
         };
 
@@ -93,7 +86,9 @@ public class XpathRegressionUseEnhancedSwitchTest
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathUseEnhancedSwitchReturn']]"
             + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_FOR/SLIST/LITERAL_SWITCH"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUseEnhancedSwitchReturn.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
