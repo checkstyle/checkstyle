@@ -104,11 +104,26 @@ public abstract class AbstractFileSetCheck
         fileContext.fileContents = new FileContents(fileText);
         fileContext.violations.clear();
         // Process only what interested in
-        if (CommonUtil.matchesFileExtension(file, fileExtensions)) {
+        if (matchesFileExtension(file)) {
             processFiltered(file, fileText);
         }
         final SortedSet<Violation> result = new TreeSet<>(fileContext.violations);
         fileContext.violations.clear();
+        return result;
+    }
+
+    /**
+     * Tests whether a file matches the configured, normalized extensions.
+     *
+     * @param file the file to check
+     * @return whether the file matches
+     */
+    private boolean matchesFileExtension(File file) {
+        boolean result = true;
+        if (fileExtensions != null && fileExtensions.length > 0) {
+            final String fileName = file.getName();
+            result = Arrays.stream(fileExtensions).anyMatch(fileName::endsWith);
+        }
         return result;
     }
 
