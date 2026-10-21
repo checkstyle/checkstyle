@@ -6,6 +6,8 @@
    - The issue you are trying to fix/resolve **must** have the `"approved"` label.
    - If an issue exists, reference it in the Pull Request description:
      Example: `"Issue: #XXXXXX"`
+- **Run basic validation on your local**
+   - Run `mvnw clean verify` before PR creation, it must pass without any errors.
 - **Commit message** should adhere to the following rules:
    - MUST match any one of the following patterns:
 
