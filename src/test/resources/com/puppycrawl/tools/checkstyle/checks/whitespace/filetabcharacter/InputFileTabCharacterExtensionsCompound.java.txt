@@ -1,0 +1,9 @@
+/*
+FileTabCharacter
+eachLine = true
+fileExtensions = java.txt
+
+
+*/
+
+	value // violation 'Line contains a tab character.'
