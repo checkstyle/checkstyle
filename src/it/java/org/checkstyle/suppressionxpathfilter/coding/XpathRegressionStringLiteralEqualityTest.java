@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck;
 
 public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestSupport {
@@ -46,12 +44,8 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
 
     @Test
     public void testEqualityTrue() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathStringLiteralEqualityTrue.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
-            "6:17: " + getCheckMessage(StringLiteralEqualityCheck.class,
+            "12:17: " + getCheckMessage(StringLiteralEqualityCheck.class,
                     StringLiteralEqualityCheck.MSG_KEY, "=="),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -66,18 +60,15 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
 
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathStringLiteralEqualityTrue.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testEqualityFalse() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathStringLiteralEqualityFalse.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
-            "6:20: " + getCheckMessage(StringLiteralEqualityCheck.class,
+            "12:20: " + getCheckMessage(StringLiteralEqualityCheck.class,
                     StringLiteralEqualityCheck.MSG_KEY, "!="),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -92,18 +83,15 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
 
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathStringLiteralEqualityFalse.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testEqualityExp() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathStringLiteralEqualityExp.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
-            "6:29: " + getCheckMessage(StringLiteralEqualityCheck.class,
+            "12:29: " + getCheckMessage(StringLiteralEqualityCheck.class,
                     StringLiteralEqualityCheck.MSG_KEY, "=="),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -115,8 +103,9 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
 
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathStringLiteralEqualityExp.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }

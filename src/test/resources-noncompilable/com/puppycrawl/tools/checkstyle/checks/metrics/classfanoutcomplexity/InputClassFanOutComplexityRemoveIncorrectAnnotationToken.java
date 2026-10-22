@@ -57,30 +57,6 @@ import com.tngtech.archunit.thirdparty.com.google.common.annotations.GwtIncompat
 import junit.framework.AssertionFailedError;
 
 
-/**
- * Tester that runs automated sanity tests for any given class. A typical use case is to test static
- * factory classes like:
- *
- * <pre>
- * interface Book {...}
- * public class Books {
- *   public static Book hardcover(String title) {...}
- *   public static Book paperback(String title) {...}
- * }
- * </pre>
- *
- * <p>And all the created {@code Book} instances can be tested with:
- *
- * <pre>
- * new InputClassFanOutComplexityRemoveIncorrectAnnotationToken()
- *     .forAllPublicStaticMethods(Books.class)
- *     .thatReturn(Book.class)
- *     .testEquals(); // or testNulls(), testSerializable() etc.
- * </pre>
- *
- * @author Ben Yu
- * @since 14.0
- */
 @MyAnnotation
 @GwtIncompatible
 public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
@@ -164,9 +140,6 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
         }
     }
 
-    /**
-     * Factories with the least number of parameters are listed first.
-     */
     private static <T> ImmutableList<Invokable<?, ? extends T>> getFactories(TypeToken<T> type) {
         List<Invokable<?, ? extends T>> factories = Lists.newArrayList();
         for (Method method : type.getRawType().getDeclaredMethods()) {
@@ -191,11 +164,6 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
         for (Invokable<?, ?> factory : factories) {
             factory.setAccessible(true);
         }
-        // Sorts methods/constructors with least number of parameters first since it's likely
-        // easier to
-        // fill dummy parameter values for them. Ties are broken by name then by the string
-        // form of the
-        // parameter list.
         return BY_NUMBER_OF_PARAMETERS
                 .compound(BY_METHOD_NAME)
                 .compound(BY_PARAMETERS)
@@ -223,12 +191,6 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
         return returnValue;
     }
 
-    /**
-     * Sets the default value for {@code type}. The default value isn't used in testing {@link
-     * Object#equals} because more than one sample instances are needed for testing inequality.
-     * To set
-     * distinct values for equality testing, use {@link #setDistinctValues} instead.
-     */
     public <T> InputClassFanOutComplexityRemoveIncorrectAnnotationToken setDefault(Class<T> type,
                                                                                    T value) {
         nullPointerTester.setDefault(type, value);
@@ -236,25 +198,6 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
         return this;
     }
 
-    /**
-     * Sets distinct values for {@code type}, so that when a class {@code Foo} is tested for {@link
-     * Object#equals} and {@link Object#hashCode}, and its construction requires a
-     * parameter of {@code
-     * type}, the distinct values of {@code type} can be passed as parameters to create {@code Foo}
-     * instances that are unequal.
-     *
-     * <p>Calling {@code setDistinctValues(type, v1, v2)} also sets the default value for
-     * {@code type}
-     * that's used for {@link #testNulls}.
-     *
-     * <p>Only necessary for types where
-     * {@link InputClassFanOutComplexityRemoveIncorrectAnnotationToken} doesn't
-     * already know how to create
-     * distinct values.
-     *
-     * @return this tester instance
-     * @since 17.0
-     */
     public <T> InputClassFanOutComplexityRemoveIncorrectAnnotationToken
     setDistinctValues(Class<T> type, T value1, T value2) {
         checkNotNull(type);
@@ -266,32 +209,6 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
         return this;
     }
 
-    /**
-     * Tests that {@code cls} properly checks null on all constructor and method parameters that
-     * aren't annotated nullable (according to the rules of {@link NullPointerTester}). In details:
-     *
-     * <ul>
-     *   <li>All non-private static methods are checked such that passing null for any parameter
-     *       that's not annotated nullable should throw {@link NullPointerException}.
-     *   <li>If there is any non-private constructor or non-private static factory method
-     *   declared by
-     *       {@code cls}, all non-private instance methods will be checked too using the instance
-     *       created by invoking the constructor or static factory method.
-     *   <li>If there is any non-private constructor or non-private static factory method
-     *   declared by
-     *       {@code cls}:
-     *       <ul>
-     *         <li>Test will fail if default value for a parameter cannot be determined.
-     *         <li>Test will fail if the factory method returns null so testing instance methods is
-     *             impossible.
-     *         <li>Test will fail if the constructor or factory method throws exception.
-     *       </ul>
-     *   <li>If there is no non-private constructor or non-private static factory method declared by
-     *       {@code cls}, instance methods are skipped for nulls test.
-     *   <li>Nulls test is not performed on method return values unless the method is a non-private
-     *       static factory method whose return type is {@code cls} or {@code cls}'s subtype.
-     * </ul>
-     */
     public void testNulls(Class<?> cls) {
         try {
             doTestNulls(cls, Visibility.PACKAGE_PRIVATE);
@@ -329,68 +246,6 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
         return false;
     }
 
-    /**
-     * Tests the {@link Object#equals} and {@link Object#hashCode} of {@code cls}. In details:
-     *
-     * <ul>
-     *   <li>The non-private constructor or non-private static factory method with the most
-     *   parameters
-     *       is used to construct the sample instances. In case of tie, the candidate constructors
-     *       or
-     *       factories are tried one after another until one can be used to construct sample
-     *       instances.
-     *   <li>For the constructor or static factory method used to construct instances, it's checked
-     *       that when equal parameters are passed, the result instance should also be equal; and
-     *       vice
-     *       versa.
-     *   <li>If a non-private constructor or non-private static factory method exists:
-     *       <ul>
-     *         <li>Test will fail if default value for a parameter cannot be determined.
-     *         <li>Test will fail if the factory method returns null so testing instance methods is
-     *             impossible.
-     *         <li>Test will fail if the constructor or factory method throws exception.
-     *       </ul>
-     *   <li>If there is no non-private constructor or non-private static factory method declared by
-     *       {@code cls}, no test is performed.
-     *   <li>Equality test is not performed on method return values unless the method is a
-     *   non-private
-     *       static factory method whose return type is {@code cls} or {@code cls}'s subtype.
-     *   <li>Inequality check is not performed against state mutation methods such as {@link
-     *       List#add}, or functional update methods such as {@link
-     *       com.google.common.base.Joiner#skipNulls}.
-     * </ul>
-     *
-     * <p>Note that constructors taking a builder object cannot be tested effectively because
-     * semantics of builder can be arbitrarily complex. Still, a factory class can be created in the
-     * test to facilitate equality testing. For example:
-     *
-     * <pre>
-     * public class FooTest {
-     *
-     *   private static class FooFactoryForTest {
-     *     public static Foo create(String a, String b, int c, boolean d) {
-     *       return Foo.builder()
-     *           .setA(a)
-     *           .setB(b)
-     *           .setC(c)
-     *           .setD(d)
-     *           .build();
-     *     }
-     *   }
-     *
-     *   public void testEquals() {
-     *     new InputClassFanOutComplexityRemoveIncorrectAnnotationToken()
-     *       .forAllPublicStaticMethods(FooFactoryForTest.class)
-     *       .thatReturn(Foo.class)
-     *       .testEquals();
-     *   }
-     * }
-     * </pre>
-     *
-     * <p>It will test that Foo objects created by the {@code create(a, b, c, d)} factory
-     * method with
-     * equal parameters are equal and vice versa, thus indirectly tests the builder equality.
-     */
     public void testEquals(Class<?> cls) {
         try {
             doTestEquals(cls);
@@ -438,15 +293,6 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
         throwFirst(nullErrors);
     }
 
-    /**
-     * Instantiates {@code cls} by invoking one of its non-private constructors or non-private
-     * static
-     * factory methods with the parameters automatically provided using dummy values.
-     *
-     * @return The instantiated instance, or {@code null} if the class has no non-private
-     * constructor
-     * or factory method to be constructed.
-     */
     <T> @Nullable T instantiate(Class<T> cls)
             throws ParameterNotInstantiableException, IllegalAccessException,
             InvocationTargetException,
@@ -488,29 +334,12 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
         return null;
     }
 
-    /**
-     * Instantiates using {@code factory}. If {@code factory} is annotated nullable and
-     * returns null,
-     * null will be returned.
-     *
-     * @throws ParameterNotInstantiableException if the static methods cannot be invoked because the
-     *                                           default value of a parameter cannot be determined.
-     * @throws IllegalAccessException            if the class isn't public or is nested inside a
-     * non-public
-     *                                           class, preventing its methods from being
-     *                                           accessible.
-     * @throws InvocationTargetException         if a static method threw exception.
-     */
     private <T> @Nullable T instantiate(Invokable<?, ? extends T> factory)
             throws ParameterNotInstantiableException, InvocationTargetException,
             IllegalAccessException {
         return invoke(factory, getDummyArguments(factory));
     }
 
-    /**
-     * Returns an object responsible for performing sanity tests against the return values of all
-     * public static methods declared by {@code cls}, excluding superclasses.
-     */
     public FactoryMethodReturnValueTester forAllPublicStaticMethods(Class<?> cls) {
         ImmutableList.Builder<Invokable<?, ?>> builder = ImmutableList.builder();
         for (Method method : cls.getDeclaredMethods()) {
@@ -559,11 +388,6 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
         tester.testEquals();
     }
 
-    /**
-     * Returns dummy factory arguments that are equal to {@code args} but may be different
-     * instances,
-     * to be used to construct a second instance of the same equality group.
-     */
     private List<Object> generateEqualFactoryArguments(
             Invokable<?, ?> factory, List<Parameter> params, List<Object> args)
             throws ParameterNotInstantiableException, FactoryMethodReturnsNullException,
@@ -572,26 +396,18 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
         for (int i = 0; i < args.size(); i++) {
             Parameter param = params.get(i);
             Object arg = args.get(i);
-            // Use new fresh value generator because 'args' were populated with new fresh generator
-            // each.
-            // Two newFreshValueGenerator() instances should normally generate equal value sequence.
             Object shouldBeEqualArg = generateDummyArg(param, newFreshValueGenerator());
             if (arg != shouldBeEqualArg
                     && Objects.equal(arg, shouldBeEqualArg)
                     && hashCodeInsensitiveToArgReference(factory, args, i, shouldBeEqualArg)
                     && hashCodeInsensitiveToArgReference(
                     factory, args, i, generateDummyArg(param, newFreshValueGenerator()))) {
-                // If the implementation uses identityHashCode(), referential equality is
-                // probably intended. So no point in using an equal-but-different factory argument.
-                // We check twice to avoid confusion caused by accidental hash collision.
                 equalArgs.set(i, shouldBeEqualArg);
             }
         }
         return equalArgs;
     }
 
-    // distinctValues is a type-safe class-values mapping, but we don't have a type-safe data
-    // structure to hold the mappings.
     @SuppressWarnings({"unchecked", "rawtypes"})
     private FreshValueGenerator newFreshValueGenerator() {
         FreshValueGenerator generator =
@@ -642,10 +458,6 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
         return null;
     }
 
-    /**
-     * Thrown if the test tries to invoke a constructor or static factory method but failed because
-     * the dummy value of a constructor or method parameter is unknown.
-     */
     @VisibleForTesting
     static class ParameterNotInstantiableException extends Exception {
         public ParameterNotInstantiableException(Parameter parameter) {
@@ -657,11 +469,6 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
         }
     }
 
-    /**
-     * Thrown if the test fails to generate two distinct non-null values of a constructor or factory
-     * parameter in order to test {@link Object#equals} and {@link Object#hashCode} of the declaring
-     * class.
-     */
     @VisibleForTesting
     static class ParameterHasNoDistinctValueException extends Exception {
         ParameterHasNoDistinctValueException(Parameter parameter) {
@@ -673,10 +480,6 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
         }
     }
 
-    /**
-     * Thrown if the test tries to invoke a static factory method to test instance methods but the
-     * factory returned null.
-     */
     @VisibleForTesting
     static class FactoryMethodReturnsNullException extends Exception {
         public FactoryMethodReturnsNullException(Invokable<?, ?> factory) {
@@ -724,9 +527,6 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
         }
     }
 
-    /**
-     * Runs sanity tests against return values of static factory methods declared by a class.
-     */
     public final class FactoryMethodReturnValueTester {
         private final Set<String> packagesToTest = Sets.newHashSet();
         private final Class<?> declaringClass;
@@ -744,27 +544,11 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
             packagesToTest.add(Reflection.getPackageName(declaringClass));
         }
 
-        /**
-         * Specifies that only the methods that are declared to return {@code returnType} or its
-         * subtype
-         * are tested.
-         *
-         * @return this tester object
-         */
         public FactoryMethodReturnValueTester thatReturn(Class<?> returnType) {
             returnTypeToTest = returnType;
             return this;
         }
 
-        /**
-         * Tests null checks against the instance methods of the return values, if any.
-         *
-         * <p>Test fails if default value cannot be determined for a constructor or factory
-         * method
-         * parameter, or if the constructor or factory method throws exception.
-         *
-         * @return this tester
-         */
         public FactoryMethodReturnValueTester testNulls() throws Exception {
             for (Invokable<?, ?> factory : getFactoriesToTest()) {
                 Object instance = instantiate(factory);
@@ -785,17 +569,6 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
             return this;
         }
 
-        /**
-         * Tests {@link Object#equals} and {@link Object#hashCode} against the return values of the
-         * static methods, by asserting that when equal parameters are passed to the same static
-         * method,
-         * the return value should also be equal; and vice versa.
-         *
-         * <p>Test fails if default value cannot be determined for a constructor or factory method
-         * parameter, or if the constructor or factory method throws exception.
-         *
-         * @return this tester
-         */
         public FactoryMethodReturnValueTester testEquals() throws Exception {
             for (Invokable<?, ?> factory : getFactoriesToTest()) {
                 try {
@@ -807,14 +580,6 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
             return this;
         }
 
-        /**
-         * Runs serialization test on the return values of the static methods.
-         *
-         * <p>Test fails if default value cannot be determined for a constructor or factory method
-         * parameter, or if the constructor or factory method throws exception.
-         *
-         * @return this tester
-         */
         public FactoryMethodReturnValueTester testSerializable() throws Exception {
             for (Invokable<?, ?> factory : getFactoriesToTest()) {
                 Object instance = instantiate(factory);
@@ -833,14 +598,6 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
             return this;
         }
 
-        /**
-         * Runs equals and serialization test on the return values.
-         *
-         * <p>Test fails if default value cannot be determined for a constructor or factory method
-         * parameter, or if the constructor or factory method throws exception.
-         *
-         * @return this tester
-         */
         public FactoryMethodReturnValueTester testEqualsAndSerializable() throws Exception {
             for (Invokable<?, ?> factory : getFactoriesToTest()) {
                 try {

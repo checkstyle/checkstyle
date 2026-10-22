@@ -123,11 +123,11 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
             "39:1: " + getCheckMessage(MSG_KEY_SINGLE, 36, 0, 8),
             "45:1: " + getCheckMessage(MSG_KEY_SINGLE, 43, 0, 8),
             "52:5: " + getCheckMessage(MSG_KEY_SINGLE, 48, 4, 8),
-            "56:13: " + getCheckMessage(MSG_KEY_SINGLE, 55, 12, 8),
-            "62:1: " + getCheckMessage(MSG_KEY_SINGLE, 60, 0, 8),
-            "67:1: " + getCheckMessage(MSG_KEY_SINGLE, 66, 0, 8),
-            "82:1: " + getCheckMessage(MSG_KEY_SINGLE, 79, 0, 8),
-            "94:13: " + getCheckMessage(MSG_KEY_SINGLE, 92, 12, 8),
+            "57:13: " + getCheckMessage(MSG_KEY_SINGLE, 56, 12, 8),
+            "63:1: " + getCheckMessage(MSG_KEY_SINGLE, 61, 0, 8),
+            "68:1: " + getCheckMessage(MSG_KEY_SINGLE, 67, 0, 8),
+            "83:1: " + getCheckMessage(MSG_KEY_SINGLE, 80, 0, 8),
+            "95:13: " + getCheckMessage(MSG_KEY_SINGLE, 93, 12, 8),
         };
         final String testInputFile = "InputCommentsIndentationCommentIsAtTheEndOfBlockSix.java";
         verifyWithInlineConfigParser(getPath(testInputFile), expected);
@@ -339,11 +339,11 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCommentsAfterAnnotation() throws Exception {
         final String[] expected = {
-            "21:5: " + getCheckMessage(MSG_KEY_SINGLE, 22, 4, 0),
-            "25:9: " + getCheckMessage(MSG_KEY_SINGLE, 26, 8, 4),
-            "43:5: " + getCheckMessage(MSG_KEY_SINGLE, 44, 4, 0),
-            "48:9: " + getCheckMessage(MSG_KEY_SINGLE, 49, 8, 4),
-            "57:3: " + getCheckMessage(MSG_KEY_SINGLE, 58, 2, 4),
+            "22:5: " + getCheckMessage(MSG_KEY_SINGLE, 23, 4, 0),
+            "27:9: " + getCheckMessage(MSG_KEY_SINGLE, 28, 8, 4),
+            "46:5: " + getCheckMessage(MSG_KEY_SINGLE, 47, 4, 0),
+            "52:9: " + getCheckMessage(MSG_KEY_SINGLE, 53, 8, 4),
+            "62:3: " + getCheckMessage(MSG_KEY_SINGLE, 63, 2, 4),
         };
         final String testInputFile = "InputCommentsIndentationAfterAnnotation.java";
         verifyWithInlineConfigParser(getPath(testInputFile), expected);
