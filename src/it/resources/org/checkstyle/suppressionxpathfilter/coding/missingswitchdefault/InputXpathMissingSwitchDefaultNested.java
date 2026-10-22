@@ -1,3 +1,9 @@
+/*
+MissingSwitchDefault
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.missingswitchdefault;
 
 public class InputXpathMissingSwitchDefaultNested {
@@ -9,7 +15,7 @@ public class InputXpathMissingSwitchDefaultNested {
             case 2:
                 break;
             default:
-                switch (key) { // warn
+                switch (key) { // violation 'switch without "default" clause.'
                     case 2:
                         break;
                 }

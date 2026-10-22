@@ -1,8 +1,14 @@
+/*
+SuperFinalize
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.superfinalize;
 
 class InputXpathSuperFinalizeInnerClass
 {
-    public void finalize() // warn
+    public void finalize() // violation "Method 'finalize' should call 'super.finalize'."
     {
         class InnerClass
         {

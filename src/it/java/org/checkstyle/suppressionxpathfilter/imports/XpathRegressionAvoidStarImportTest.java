@@ -19,14 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.imports;
 
-import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
 
 public class XpathRegressionAvoidStarImportTest
@@ -47,62 +44,53 @@ public class XpathRegressionAvoidStarImportTest
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathAvoidStarImportOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "3:42: " + getCheckMessage(CLASS,
+            "14:42: " + getCheckMessage(CLASS,
                 AvoidStarImportCheck.MSG_KEY, "javax.swing.WindowConstants.*"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/STATIC_IMPORT/DOT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidStarImportOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathAvoidStarImportTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "4:15: " + getCheckMessage(CLASS,
+            "15:15: " + getCheckMessage(CLASS,
                 AvoidStarImportCheck.MSG_KEY, "java.io.*"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/IMPORT/DOT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidStarImportTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathAvoidStarImportThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "3:17: " + getCheckMessage(CLASS,
+            "14:17: " + getCheckMessage(CLASS,
                 AvoidStarImportCheck.MSG_KEY, "java.util.*"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/IMPORT/DOT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidStarImportThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

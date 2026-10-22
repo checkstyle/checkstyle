@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck;
 
 public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport
 
     @Test
     public void testCovariantEqualsInClass() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathCovariantEqualsInClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CovariantEqualsCheck.class);
-
         final String[] expectedViolation = {
-            "5:20: " + getCheckMessage(CovariantEqualsCheck.class,
+            "11:20: " + getCheckMessage(CovariantEqualsCheck.class,
                         CovariantEqualsCheck.MSG_KEY),
         };
 
@@ -62,20 +54,16 @@ public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='equals']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCovariantEqualsInClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testCovariantEqualsInEnum() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathCovariantEqualsInEnum.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CovariantEqualsCheck.class);
-
         final String[] expectedViolation = {
-            "7:20: " + getCheckMessage(CovariantEqualsCheck.class,
+            "13:20: " + getCheckMessage(CovariantEqualsCheck.class,
                         CovariantEqualsCheck.MSG_KEY),
         };
 
@@ -84,21 +72,16 @@ public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport
                 + "[./IDENT[@text='InputXpathCovariantEqualsInEnum']]"
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='equals']");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCovariantEqualsInEnum.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testCovariantEqualsInRecord() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathCovariantEqualsInRecord.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CovariantEqualsCheck.class);
-
         final String[] expectedViolation = {
-            "7:20: " + getCheckMessage(CovariantEqualsCheck.class,
+            "13:20: " + getCheckMessage(CovariantEqualsCheck.class,
                         CovariantEqualsCheck.MSG_KEY),
         };
 
@@ -107,8 +90,10 @@ public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport
                 + "[./IDENT[@text='InputXpathCovariantEqualsInRecord']]"
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='equals']");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCovariantEqualsInRecord.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

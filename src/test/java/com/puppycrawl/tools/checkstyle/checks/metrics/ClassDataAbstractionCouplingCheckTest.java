@@ -110,8 +110,10 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
                         () -> createChecker(checkConfig));
         assertWithMessage("Invalid exception message")
             .that(exc.getMessage())
-            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker");
+        assertWithMessage("Invalid exception message")
+            .that(exc.getCause().getMessage())
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.checks."
                 + "metrics.ClassDataAbstractionCouplingCheck");
         assertWithMessage("Invalid exception message,")
             .that(exc.getCause().getCause().getCause().getCause().getMessage())

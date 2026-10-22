@@ -21,14 +21,12 @@ package org.checkstyle.suppressionxpathfilter.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.ParameterAssignmentCheck.MSG_KEY;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.ParameterAssignmentCheck;
 
 public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSupport {
@@ -45,15 +43,8 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
 
     @Test
     public void testMethods() throws Exception {
-        final String filePath =
-                getPath("InputXpathParameterAssignmentMethods.java");
-        final File fileToProcess = new File(filePath);
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParameterAssignmentCheck.class);
-
         final String[] expectedViolations = {
-            "9:15: " + getCheckMessage(ParameterAssignmentCheck.class, MSG_KEY, "field"),
+            "15:15: " + getCheckMessage(ParameterAssignmentCheck.class, MSG_KEY, "field"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -67,21 +58,16 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
             + "/SLIST/EXPR/PLUS_ASSIGN[./IDENT[@text='field']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathParameterAssignmentMethods.java"),
+                expectedXpathQueries, expectedViolations);
 
     }
 
     @Test
     public void testLambdas() throws Exception {
-        final String filePath =
-                getPath("InputXpathParameterAssignmentLambdas.java");
-        final File fileToProcess = new File(filePath);
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParameterAssignmentCheck.class);
-
         final String[] expectedViolations = {
-            "9:32: " + getCheckMessage(ParameterAssignmentCheck.class, MSG_KEY, "q"),
+            "15:32: " + getCheckMessage(ParameterAssignmentCheck.class, MSG_KEY, "q"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -95,20 +81,15 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
             + "@text='q']]/EXPR/POST_INC[./IDENT[@text='q']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathParameterAssignmentLambdas.java"),
+                expectedXpathQueries, expectedViolations);
     }
 
     @Test
     public void testCtor() throws Exception {
-        final String filePath =
-                getPath("InputXpathParameterAssignmentCtor.java");
-        final File fileToProcess = new File(filePath);
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParameterAssignmentCheck.class);
-
         final String[] expectedViolations = {
-            "9:15: " + getCheckMessage(ParameterAssignmentCheck.class, MSG_KEY, "field"),
+            "15:15: " + getCheckMessage(ParameterAssignmentCheck.class, MSG_KEY, "field"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -124,7 +105,9 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
             + "/SLIST/EXPR/PLUS_ASSIGN[./IDENT[@text='field']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathParameterAssignmentCtor.java"),
+                expectedXpathQueries, expectedViolations);
     }
 
 }

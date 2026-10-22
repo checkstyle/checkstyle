@@ -199,4 +199,26 @@ public class ExecutableStatementCountCheckTest
                 getPath("InputExecutableStatementCountLambdas.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_KEY, 31, 30),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputExecutableStatementCountCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCustom() throws Exception {
+        final String[] expected = {
+            "15:24: " + getCheckMessage(MSG_KEY, 3, 2),
+            "24:1: " + getCheckMessage(MSG_KEY, 3, 2),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputExecutableStatementCountCompactSourceFileCustom.java"),
+                expected);
+    }
+
 }

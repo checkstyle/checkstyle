@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck;
 
 public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport {
@@ -45,13 +43,8 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
 
     @Test
     public void testInnerAssignment() throws Exception {
-        final File fileToProcess = new
-                File(getPath("InputXpathInnerAssignment.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(InnerAssignmentCheck.class);
-
         final String[] expectedViolation = {
-            "7:15: " + getCheckMessage(InnerAssignmentCheck.class, InnerAssignmentCheck.MSG_KEY),
+            "13:15: " + getCheckMessage(InnerAssignmentCheck.class, InnerAssignmentCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = List.of(
@@ -61,18 +54,16 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
                         + "/SLIST/EXPR/ASSIGN[./IDENT[@text='a']]/ASSIGN[./IDENT[@text='b']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInnerAssignment.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testArrays() throws Exception {
-        final File fileToProcess = new
-                File(getPath("InputXpathInnerAssignmentArrays.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(InnerAssignmentCheck.class);
-
         final String[] expectedViolation = {
-            "6:55: " + getCheckMessage(InnerAssignmentCheck.class, InnerAssignmentCheck.MSG_KEY),
+            "12:55: " + getCheckMessage(InnerAssignmentCheck.class, InnerAssignmentCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -88,18 +79,16 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
                 + "/ASSIGN/EXPR/LITERAL_NEW/ARRAY_INIT/EXPR/ASSIGN[./IDENT[@text='myDouble']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInnerAssignmentArrays.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMethodCall() throws Exception {
-        final File fileToProcess = new
-                File(getPath("InputXpathInnerAssignmentMethodCall.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(InnerAssignmentCheck.class);
-
         final String[] expectedViolation = {
-            "6:46: " + getCheckMessage(InnerAssignmentCheck.class, InnerAssignmentCheck.MSG_KEY),
+            "12:46: " + getCheckMessage(InnerAssignmentCheck.class, InnerAssignmentCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -121,7 +110,10 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
                 + "/EXPR/ASSIGN[./IDENT[@text='value']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInnerAssignmentMethodCall.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

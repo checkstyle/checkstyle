@@ -22,9 +22,13 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import java.io.File;
 
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.SetSystemProperty;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
+@SetSystemProperty(key = "config.folder",
+    value = "src/xdocs-examples/resources/"
+        + "com/puppycrawl/tools/checkstyle/checks/imports/importcontrol")
 public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
     @Override
@@ -47,8 +51,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                     ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(getPath("Example1.java"), expected);
     }
 
@@ -56,8 +58,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     public void testExample2() throws Exception {
         final String[] expected = {};
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(getPath("Example2.java"), expected);
     }
 
@@ -80,8 +80,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 + "/resources/" + getPackageLocation() + "/"
                 + "filters/Example3.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
@@ -99,8 +97,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 + "/resources/" + getPackageLocation() + "/"
                 + "newdomain/dao/UseCase1.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
@@ -113,8 +109,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 ImportControlCheck.MSG_DISALLOWED, "java.io.File"),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(getPath("UseCase2.java"), expected);
     }
 
@@ -140,8 +134,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 + "/resources/" + getPackageLocation() + "/"
                 + "someImports/UseCase3.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
@@ -166,8 +158,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 + "/resources/" + getPackageLocation() + "/"
                 + "someImports/UseCase4.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
@@ -182,8 +172,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 + "/resources/" + getPackageLocation() + "/"
                 + "gui/UseCase5.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
@@ -205,8 +193,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 + "/resources/" + getPackageLocation() + "/"
                 + "filters/UseCase6.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
@@ -233,8 +219,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 + "/resources/" + getPackageLocation() + "/"
                 + "someImports/UseCase7.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
@@ -253,8 +237,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
             + "/resources/" + getPackageLocation() + "/"
             + "someImports/UseCase8.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
@@ -271,8 +253,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                     ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(getPath("UseCase9.java"), expected);
     }
 
@@ -285,8 +265,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                     ImportControlCheck.MSG_DISALLOWED, "java.sql"),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(getNonCompilablePath("Example4.java"), expected);
     }
 
@@ -299,8 +277,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                     ImportControlCheck.MSG_DISALLOWED, "java.xml"),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(getNonCompilablePath("Example5.java"), expected);
     }
 

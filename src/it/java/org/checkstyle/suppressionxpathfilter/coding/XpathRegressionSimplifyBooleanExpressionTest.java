@@ -21,7 +21,6 @@ package org.checkstyle.suppressionxpathfilter.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck.MSG_KEY;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -29,7 +28,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck;
 
 public class XpathRegressionSimplifyBooleanExpressionTest extends AbstractXpathTestSupport {
@@ -46,14 +44,8 @@ public class XpathRegressionSimplifyBooleanExpressionTest extends AbstractXpathT
 
     @Test
     public void testSimple() throws Exception {
-        final String fileName = "InputXpathSimplifyBooleanExpressionSimple.java";
-        final File fileToProcess = new File(getPath(fileName));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(SimplifyBooleanExpressionCheck.class);
-
         final String[] expectedViolations = {
-            "8:13: " + getCheckMessage(SimplifyBooleanExpressionCheck.class, MSG_KEY),
+            "14:13: " + getCheckMessage(SimplifyBooleanExpressionCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQuery = Arrays.asList(
@@ -65,20 +57,16 @@ public class XpathRegressionSimplifyBooleanExpressionTest extends AbstractXpathT
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_IF/EXPR/LNOT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQuery);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSimplifyBooleanExpressionSimple.java"),
+                expectedXpathQuery,
+                expectedViolations);
     }
 
     @Test
     public void testAnonymous() throws Exception {
-        final String fileName =
-                "InputXpathSimplifyBooleanExpressionAnonymous.java";
-        final File fileToProcess = new File(getPath(fileName));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(SimplifyBooleanExpressionCheck.class);
-
         final String[] expectedViolations = {
-            "8:19: " + getCheckMessage(SimplifyBooleanExpressionCheck.class, MSG_KEY),
+            "14:19: " + getCheckMessage(SimplifyBooleanExpressionCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQuery = Arrays.asList(
@@ -92,20 +80,16 @@ public class XpathRegressionSimplifyBooleanExpressionTest extends AbstractXpathT
                 + "[./IDENT[@text='test']]/SLIST/LITERAL_IF/EXPR/EQUAL[./IDENT[@text='a']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQuery);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSimplifyBooleanExpressionAnonymous.java"),
+                expectedXpathQuery,
+                expectedViolations);
     }
 
     @Test
     public void testInterface() throws Exception {
-        final String fileName =
-                "InputXpathSimplifyBooleanExpressionInterface.java";
-        final File fileToProcess = new File(getPath(fileName));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(SimplifyBooleanExpressionCheck.class);
-
         final String[] expectedViolations = {
-            "7:20: " + getCheckMessage(SimplifyBooleanExpressionCheck.class, MSG_KEY),
+            "13:20: " + getCheckMessage(SimplifyBooleanExpressionCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQuery = Collections.singletonList(
@@ -115,7 +99,10 @@ public class XpathRegressionSimplifyBooleanExpressionTest extends AbstractXpathT
                 + "[@text='test']]/SLIST/LITERAL_IF/EXPR/LNOT/NOT_EQUAL[./IDENT[@text='b']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQuery);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSimplifyBooleanExpressionInterface.java"),
+                expectedXpathQuery,
+                expectedViolations);
     }
 
 }

@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck;
 
 public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
 
     @Test
     public void testMissingCtor() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathMissingCtor.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingCtorCheck.class);
-
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(MissingCtorCheck.class,
+            "9:1: " + getCheckMessage(MissingCtorCheck.class,
                     MissingCtorCheck.MSG_KEY),
         };
 
@@ -65,20 +57,15 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
                     + "@text='InputXpathMissingCtor']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMissingCtor.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathMissingCtorInner.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingCtorCheck.class);
-
         final String[] expectedViolation = {
-            "9:5: " + getCheckMessage(MissingCtorCheck.class,
+            "15:5: " + getCheckMessage(MissingCtorCheck.class,
                     MissingCtorCheck.MSG_KEY),
         };
 
@@ -94,20 +81,15 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
                     + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/LITERAL_CLASS"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMissingCtorInner.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testNestedInInterface() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathMissingCtorInInterface.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingCtorCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(MissingCtorCheck.class,
+            "10:5: " + getCheckMessage(MissingCtorCheck.class,
                     MissingCtorCheck.MSG_KEY),
         };
 
@@ -123,8 +105,9 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
                     + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='NestedClass']]/LITERAL_CLASS"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMissingCtorInInterface.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }

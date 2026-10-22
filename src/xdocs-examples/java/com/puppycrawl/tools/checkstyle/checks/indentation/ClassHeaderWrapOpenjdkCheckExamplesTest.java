@@ -17,22 +17,32 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.sun.checkstyle.test.chapter4indentation.rule42wrappinglines;
+package com.puppycrawl.tools.checkstyle.checks.indentation;
+
+import static com.puppycrawl.tools.checkstyle.checks.indentation.ClassHeaderWrapOpenjdkCheck.MSG_KEY_NOT_ON_NEW_LINE;
+import static com.puppycrawl.tools.checkstyle.checks.indentation.ClassHeaderWrapOpenjdkCheck.MSG_KEY_UNNECESSARY_WRAP;
 
 import org.junit.jupiter.api.Test;
 
-import com.sun.checkstyle.test.base.AbstractSunModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-public class IndentationTest extends AbstractSunModuleTestSupport {
+public class ClassHeaderWrapOpenjdkCheckExamplesTest
+    extends AbstractExamplesModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
-        return "com/sun/checkstyle/test/chapter4indentation/rule42wrappinglines";
+        return "com/puppycrawl/tools/checkstyle/checks/indentation/"
+                + "classheaderwrapopenjdk";
     }
 
     @Test
-    public void testIndentation() throws Exception {
-        verifyWithWholeConfig(getPath("InputIndentation.java"));
+    public void testExample1() throws Exception {
+        final String[] expected = {
+            "20:33: " + getCheckMessage(MSG_KEY_NOT_ON_NEW_LINE, "implements"),
+            "25:3: " + getCheckMessage(MSG_KEY_UNNECESSARY_WRAP),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
 }

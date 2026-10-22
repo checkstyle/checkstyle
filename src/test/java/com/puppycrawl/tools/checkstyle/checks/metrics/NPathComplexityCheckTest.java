@@ -50,6 +50,29 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_KEY, 400, 200),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNPathComplexityCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCustom() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_KEY, 6, 4),
+            "32:1: " + getCheckMessage(MSG_KEY, 5, 4),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNPathComplexityCompactSourceFileCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testCalculation() throws Exception {
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, 2, 0),

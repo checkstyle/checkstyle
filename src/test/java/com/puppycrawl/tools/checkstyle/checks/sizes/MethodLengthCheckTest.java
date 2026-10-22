@@ -36,6 +36,24 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMethodLengthCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCustom() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_KEY, 5, 4, "main"),
+            "29:1: " + getCheckMessage(MSG_KEY, 5, 4, "overLimit"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMethodLengthCompactSourceFileCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final MethodLengthCheck checkObj = new MethodLengthCheck();
         assertWithMessage("MethodLengthCheck#getRequiredTokens should return empty array "

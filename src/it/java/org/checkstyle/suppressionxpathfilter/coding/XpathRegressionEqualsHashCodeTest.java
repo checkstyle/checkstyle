@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck;
 
 public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport {
@@ -43,13 +41,8 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
 
     @Test
     public void testEqualsOnly() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathEqualsHashCodeEqualsOnly.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(EqualsHashCodeCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(EqualsHashCodeCheck.class,
+            "10:5: " + getCheckMessage(EqualsHashCodeCheck.class,
                     EqualsHashCodeCheck.MSG_KEY_HASHCODE),
         };
 
@@ -65,18 +58,16 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
                         + "METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEqualsHashCodeEqualsOnly.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testHashCodeOnly() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathEqualsHashCodeHashCodeOnly.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(EqualsHashCodeCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(EqualsHashCodeCheck.class,
+            "10:5: " + getCheckMessage(EqualsHashCodeCheck.class,
                     EqualsHashCodeCheck.MSG_KEY_EQUALS),
         };
 
@@ -92,18 +83,16 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='hashCode']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEqualsHashCodeHashCodeOnly.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNestedCase() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathEqualsHashCodeNestedCase.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(EqualsHashCodeCheck.class);
-
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(EqualsHashCodeCheck.class,
+            "11:9: " + getCheckMessage(EqualsHashCodeCheck.class,
                     EqualsHashCodeCheck.MSG_KEY_HASHCODE),
         };
 
@@ -123,7 +112,10 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEqualsHashCodeNestedCase.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

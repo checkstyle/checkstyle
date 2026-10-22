@@ -19,14 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.design;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
 
 public class XpathRegressionOneTopLevelClassTest extends AbstractXpathTestSupport {
@@ -45,71 +42,59 @@ public class XpathRegressionOneTopLevelClassTest extends AbstractXpathTestSuppor
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathOneTopLevelClassFirst.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
-
         final String[] expectedViolation = {
-            "7:1: " + getCheckMessage(OneTopLevelClassCheck.class,
+            "14:1: " + getCheckMessage(OneTopLevelClassCheck.class,
                 OneTopLevelClassCheck.MSG_KEY, "ViolatingSecondClass"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='ViolatingSecondClass']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='ViolatingSecondClass']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='ViolatingSecondClass']]/LITERAL_CLASS"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOneTopLevelClassFirst.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-            new File(getPath("InputXpathOneTopLevelClassSecond.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(OneTopLevelClassCheck.class);
-
         final String[] expectedViolation = {
-            "7:1: " + getCheckMessage(OneTopLevelClassCheck.class,
+            "14:1: " + getCheckMessage(OneTopLevelClassCheck.class,
                                       OneTopLevelClassCheck.MSG_KEY, "ViolationClass"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/ENUM_DEF[./IDENT[@text='ViolationClass']]",
             "/COMPILATION_UNIT/ENUM_DEF[./IDENT[@text='ViolationClass']]/MODIFIERS",
             "/COMPILATION_UNIT/ENUM_DEF[./IDENT[@text='ViolationClass']]/ENUM"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                         expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOneTopLevelClassSecond.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-            new File(getPath("InputXpathOneTopLevelClassThird.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(OneTopLevelClassCheck.class);
-
         final String[] expectedViolation = {
-            "7:1: " + getCheckMessage(OneTopLevelClassCheck.class,
+            "14:1: " + getCheckMessage(OneTopLevelClassCheck.class,
                                       OneTopLevelClassCheck.MSG_KEY, "Violating3Class"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT[@text='Violating3Class']]",
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT[@text='Violating3Class']]/MODIFIERS",
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT[@text='Violating3Class']]/LITERAL_INTERFACE"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                         expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOneTopLevelClassThird.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

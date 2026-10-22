@@ -169,6 +169,8 @@
           <item name="NestedIfDepth" href="checks/coding/nestedifdepth.html"/>
           <item name="NestedTryDepth" href="checks/coding/nestedtrydepth.html"/>
           <item name="NoArrayTrailingComma" href="checks/coding/noarraytrailingcomma.html"/>
+          <item name="NoCauseGetMessageInExceptionConstructor"
+                href="checks/coding/nocausegetmessageinexceptionconstructor.html"/>
           <item name="NoClone" href="checks/coding/noclone.html"/>
           <item name="NoEnumTrailingComma" href="checks/coding/noenumtrailingcomma.html"/>
           <item name="NoFinalizer" href="checks/coding/nofinalizer.html"/>
@@ -306,6 +308,8 @@
           <item name="ArrayTypeStyle" href="checks/misc/arraytypestyle.html"/>
           <item name="AvoidEscapedUnicodeCharacters"
                 href="checks/misc/avoidescapedunicodecharacters.html"/>
+          <item name="ClassHeaderWrapOpenjdk"
+                href="checks/misc/classheaderwrapopenjdk.html"/>
           <item name="CommentsIndentation" href="checks/misc/commentsindentation.html"/>
           <item name="DescendantToken" href="checks/misc/descendanttoken.html"/>
           <item name="FinalParameters" href="checks/misc/finalparameters.html"/>
@@ -407,6 +411,8 @@
           <item name="NoWhitespaceBefore" href="checks/whitespace/nowhitespacebefore.html"/>
           <item name="NoWhitespaceBeforeCaseDefaultColon"
                 href="checks/whitespace/nowhitespacebeforecasedefaultcolon.html"/>
+          <item name="OpenjdkMethodParameterAlignment"
+                href="checks/whitespace/openjdkmethodparameteralignment.html"/>
           <item name="OperatorWrap" href="checks/whitespace/operatorwrap.html"/>
           <item name="ParenPad" href="checks/whitespace/parenpad.html"/>
           <item name="SeparatorWrap" href="checks/whitespace/separatorwrap.html"/>

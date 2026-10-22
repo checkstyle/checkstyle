@@ -17,22 +17,35 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.sun.checkstyle.test.chapter7statements.rule72compoundstatements;
+package com.puppycrawl.tools.checkstyle.checks.whitespace;
+
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.OpenjdkMethodParameterAlignmentCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.OpenjdkMethodParameterAlignmentCheck.MSG_WRAP;
 
 import org.junit.jupiter.api.Test;
 
-import com.sun.checkstyle.test.base.AbstractSunModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-public class RightCurlyTest extends AbstractSunModuleTestSupport {
+public class OpenjdkMethodParameterAlignmentExamplesTest
+        extends AbstractExamplesModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
-        return "com/sun/checkstyle/test/chapter7statements/rule72compoundstatements";
+        return "com/puppycrawl/tools/checkstyle/checks/whitespace/openjdkmethodparameteralignment";
     }
 
     @Test
-    public void testRightCurlyInvalid() throws Exception {
-        verifyWithWholeConfig(getPath("InputRightCurlyInvalid.java"));
+    public void testExample1() throws Exception {
+        final String[] expected = {
+            "15:3: " + getCheckMessage(MSG_KEY),
+            "23:8: " + getCheckMessage(MSG_KEY),
+            "27:8: " + getCheckMessage(MSG_KEY),
+            "32:8: " + getCheckMessage(MSG_WRAP),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("Example1.java"), expected
+        );
     }
 
 }

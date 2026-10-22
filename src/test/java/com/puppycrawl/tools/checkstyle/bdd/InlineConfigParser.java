@@ -266,29 +266,6 @@ public final class InlineConfigParser {
     );
 
     /**
-     * Checks in which violation message is not yet fully specified in all input files.
-     * Temporary suppression until
-     * <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
-     * is fully resolved for these checks. Remove entries here as their input files
-     * are updated with proper violation messages.
-     */
-    private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-            "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck"
-    );
-
-    /**
-     * Input files where violation messages are not yet fully specified with quoted
-     * messages. Temporary suppression until these files are updated with proper
-     * violation messages. Remove entries here as their input files are fixed.
-     * <a href="https://github.com/checkstyle/checkstyle/issues/20954">#20954</a>
-     */
-    private static final Set<String> SUPPRESSED_VALIDATE_MESSAGE_FILES = Set.of();
-
-    /**
      * Input files where default values for properties are intentionally not specified.
      * This two required for pitest coverage in javadoc and util profiles:
      * checks/javadoc/abstractjavadoc/InputAbstractJavadocTokensPass.java
@@ -419,7 +396,7 @@ public final class InlineConfigParser {
                     + inputFilePath, exc);
         }
         try {
-            setViolations(testInputConfigBuilder, lines, setFilteredViolations, inputFilePath);
+            setViolations(testInputConfigBuilder, lines, setFilteredViolations);
         }
         catch (CheckstyleException exc) {
             throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
@@ -504,7 +481,7 @@ public final class InlineConfigParser {
                 new TestInputConfiguration.Builder();
         testInputConfigBuilder.setXmlConfiguration(xmlConfig);
         try {
-            setViolations(testInputConfigBuilder, lines, false, inputFilePath);
+            setViolations(testInputConfigBuilder, lines, false);
         }
         catch (CheckstyleException exc) {
             throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
@@ -1074,21 +1051,17 @@ public final class InlineConfigParser {
     }
 
     private static boolean shouldSpecifyViolationMessage(
-            TestInputConfiguration.Builder inputConfigBuilder, String inputFilePath) {
+            TestInputConfiguration.Builder inputConfigBuilder) {
 
         boolean result = false;
 
         final List<ModuleInputConfiguration> moduleLists =
                 inputConfigBuilder.getChildrenModules();
 
-        final boolean isSuppressedFile = SUPPRESSED_VALIDATE_MESSAGE_FILES.stream()
-                .anyMatch(Path.of(inputFilePath)::endsWith);
-
-        if (!isSuppressedFile && moduleLists.size() == 1) {
+        if (moduleLists.size() == 1) {
             final String moduleName = moduleLists.getFirst().getModuleName();
 
-            if (!PERMANENT_SUPPRESSED_CHECKS.contains(moduleName)
-                    && !SUPPRESSED_CHECKS.contains(moduleName)) {
+            if (!PERMANENT_SUPPRESSED_CHECKS.contains(moduleName)) {
                 result = true;
             }
         }
@@ -1098,12 +1071,11 @@ public final class InlineConfigParser {
 
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
                                       List<String> lines,
-                                      boolean useFilteredViolations,
-                                      String inputFilePath)
+                                      boolean useFilteredViolations)
             throws CheckstyleException {
 
         final boolean specifyViolationMessage =
-                shouldSpecifyViolationMessage(inputConfigBuilder, inputFilePath);
+                shouldSpecifyViolationMessage(inputConfigBuilder);
 
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
             setViolations(inputConfigBuilder, lines,

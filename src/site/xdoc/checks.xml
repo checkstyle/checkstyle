@@ -269,6 +269,18 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/misc/classheaderwrapopenjdk.html#ClassHeaderWrapOpenjdk">
+                ClassHeaderWrapOpenjdk
+              </a>
+            </td>
+            <td>
+              Checks that a wrapped class, interface, enum, or record header is wrapped according to
+              the <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-wrapping-class-declarations">
+              OpenJDK Java Style Guide</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/modifier/classmemberimpliedmodifier.html#ClassMemberImpliedModifier">
                 ClassMemberImpliedModifier
               </a>
@@ -1551,6 +1563,18 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/nocausegetmessageinexceptionconstructor.html#NoCauseGetMessageInExceptionConstructor">
+                NoCauseGetMessageInExceptionConstructor
+              </a>
+            </td>
+            <td>
+              Checks that throw statements within catch blocks do not use the caught exception's
+              getMessage() call when the thrown exception is the same type as the caught exception,
+              as rethrowing the same exception type with its own message is redundant.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/noclone.html#NoClone">
                 NoClone
               </a>
@@ -1681,6 +1705,17 @@
             <td>
               Verifies that annotations are properly placed by <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-annotations">
               OpenJDK Style</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/whitespace/openjdkmethodparameteralignment.html#OpenjdkMethodParameterAlignment">
+                OpenjdkMethodParameterAlignment
+              </a>
+            </td>
+            <td>
+              Checks that the parameters of a wrapped method declaration follow one of the two forms
+              allowed by the OpenJDK style guidelines.
             </td>
           </tr>
           <tr>

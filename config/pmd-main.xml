@@ -60,6 +60,8 @@
                         //MethodDeclaration[@Name='processFile']
                     | //ClassDeclaration[@SimpleName='TranslationCheck']
                         //MethodDeclaration[@Name='getTranslationKeys']
+                    | //ClassDeclaration[@SimpleName='UniquePropertiesCheck']
+                        //MethodDeclaration[@Name='processFiltered']
                     | //ClassDeclaration[@SimpleName='TreeWalker']
                         //MethodDeclaration[@Name='processFiltered']"/>
     </properties>
