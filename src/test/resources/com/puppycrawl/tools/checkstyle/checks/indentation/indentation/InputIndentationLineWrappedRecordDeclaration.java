@@ -23,7 +23,7 @@ class InputIndentationLineWrappedRecordDeclaration {                    //indent
         String greeting                                                 //indent:8 exp:8
     ) implements Interf {                                               //indent:4 exp:4
         @Override                                                       //indent:8 exp:8
-    public String sayHello() {                                          //indent:4 exp:4
+    public String sayHello() {                                          //indent:4 exp:8 warn
             return greeting();                                          //indent:12 exp:12
         }                                                               //indent:8 exp:8
     }                                                                   //indent:4 exp:4
@@ -32,7 +32,7 @@ class InputIndentationLineWrappedRecordDeclaration {                    //indent
         String greeting                                                 //indent:8 exp:8
 ) implements Interf {                                                   //indent:0 exp:4 warn
         @Override                                                       //indent:8 exp:8
-    public String sayHello() {                                          //indent:4 exp:4
+    public String sayHello() {                                          //indent:4 exp:8 warn
             return greeting();                                          //indent:12 exp:12
         }                                                               //indent:8 exp:8
     }                                                                   //indent:4 exp:4
