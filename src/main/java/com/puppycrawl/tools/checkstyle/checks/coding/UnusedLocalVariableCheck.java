@@ -267,7 +267,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             TokenTypes.CTOR_DEF,
             TokenTypes.STATIC_INIT,
             TokenTypes.INSTANCE_INIT,
-            TokenTypes.COMPILATION_UNIT,
             TokenTypes.LAMBDA,
             TokenTypes.ENUM_DEF,
             TokenTypes.RECORD_DEF,
@@ -328,9 +327,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     public void leaveToken(DetailAST ast) {
         if (TokenUtil.isOfType(ast, SCOPES)) {
             logViolations(ast, variables);
-        }
-        else if (ast.getType() == TokenTypes.COMPILATION_UNIT) {
-            leaveCompilationUnit();
         }
         else if (isNonLocalTypeDeclaration(ast)) {
             depth--;
@@ -535,8 +531,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * separately after processing all the other nodes. This is being done
      * due to the fact the instance variables of local anon inner classes can
      * cast a shadow on local variables.
+     *
+     * @param rootAST the root of the tree
      */
-    private void leaveCompilationUnit() {
+    @Override
+    public void finishTree(DetailAST rootAST) {
         anonInnerClassHolders.forEach(holder -> {
             iterateOverBlockContainingLocalAnonInnerClass(holder, new ArrayDeque<>());
         });
@@ -667,9 +666,15 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         else {
             final List<TypeDeclDesc> typeDeclWithSameName = typeDeclWithSameName(shortNameOfClass);
             if (!typeDeclWithSameName.isEmpty()) {
+                final TypeDeclDesc outerTypeDecl = anonInnerAstToTypeDeclDesc.get(literalNewAst);
+                String outerTypeDeclName = "";
+                // anon inner class in a top-level method of a compact source file
+                // has no enclosing type declaration
+                if (outerTypeDecl != null) {
+                    outerTypeDeclName = outerTypeDecl.getQualifiedName();
+                }
                 obtainedClass = getClosestMatchingTypeDeclaration(
-                        anonInnerAstToTypeDeclDesc.get(literalNewAst).getQualifiedName(),
-                        typeDeclWithSameName);
+                        outerTypeDeclName, typeDeclWithSameName);
             }
         }
         return obtainedClass;
