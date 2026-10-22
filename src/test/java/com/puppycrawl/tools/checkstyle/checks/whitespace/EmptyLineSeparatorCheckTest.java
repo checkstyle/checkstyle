@@ -49,20 +49,30 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMultipleLinesEmptyWithJavadoc() throws Exception {
-
         final String[] expected = {
-            "27:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "24:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
             "43:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
-            "51:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "49:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
             "56:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
-            "65:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "62:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
             "75:13: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
-            "86:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
-            "93:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "85:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "92:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
             "99:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
-        };
+            };
         verifyWithInlineXmlConfig(
                 getPath("InputEmptyLineSeparatorWithJavadoc.java"), expected);
+    }
+
+    @Test
+    public void testViolationLocationForMembersWithoutModifiers() throws Exception {
+        final String[] expected = {
+            "16:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "21:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "26:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+        };
+        verifyWithInlineXmlConfig(getPath("InputEmptyLineSeparatorCommentLocation.java"),
+                expected);
     }
 
     @Test
