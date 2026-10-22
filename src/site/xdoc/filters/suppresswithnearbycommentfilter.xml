@@ -70,8 +70,7 @@
       </subsection>
       <subsection name="Notes" id="SuppressWithNearbyCommentFilter_Notes">
         <p>
-          SuppressWithNearbyCommentFilter can suppress Checks that have
-          Treewalker as parent module.
+          SuppressWithNearbyCommentFilter can suppress Checks that have Treewalker as parent module.
         </p>
       </subsection>
       <subsection name="Properties" id="SuppressWithNearbyCommentFilter_Properties">

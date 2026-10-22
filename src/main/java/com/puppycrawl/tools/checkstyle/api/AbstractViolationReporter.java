@@ -30,11 +30,9 @@ import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
  *
  * @noinspection NoopMethodInAbstractClass
  * @noinspectionreason NoopMethodInAbstractClass - we allow each check to
- *      define these methods, as needed. They should be overridden only
- *      by demand in subclasses
+ *      define these methods, as needed. They should be overridden only by demand in subclasses
  */
-public abstract class AbstractViolationReporter
-    extends AbstractAutomaticBean {
+public abstract class AbstractViolationReporter extends AbstractAutomaticBean {
 
     /** The severity level of any violations found. */
     private SeverityLevel severityLevel = SeverityLevel.ERROR;
@@ -103,8 +101,7 @@ public abstract class AbstractViolationReporter
     }
 
     /**
-     * Returns an unmodifiable map instance containing the custom messages
-     * for this configuration.
+     * Returns an unmodifiable map instance containing the custom messages for this configuration.
      *
      * @return unmodifiable map containing custom messages
      */
@@ -127,8 +124,7 @@ public abstract class AbstractViolationReporter
      * com/foo/messages.properties, com/foo/messages_de.properties, etc.
      * </p>
      *
-     * @return name of a resource bundle that contains the messages
-     *     used by this module.
+     * @return name of a resource bundle that contains the messages used by this module.
      */
     protected String getMessageBundle() {
         final String className = getClass().getName();
@@ -139,8 +135,7 @@ public abstract class AbstractViolationReporter
      * For unit tests, especially with a class with no package name.
      *
      * @param className class name of the module.
-     * @return name of a resource bundle that contains the messages
-     *     used by the module.
+     * @return name of a resource bundle that contains the messages used by the module.
      */
     private static String getMessageBundle(final String className) {
         final String messageBundle;

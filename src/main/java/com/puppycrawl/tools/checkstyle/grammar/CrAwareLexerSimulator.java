@@ -29,14 +29,12 @@ import org.antlr.v4.runtime.dfa.DFA;
 /**
  * Extends the LexerATNSimulator class in order to override
  * the 'consume()' method so that we can handle '\r' line
- * endings (pre-OSX macOS line endings) correctly in the
- * ANTLR lexer.
+ * endings (pre-OSX macOS line endings) correctly in the ANTLR lexer.
  */
 public class CrAwareLexerSimulator extends LexerATNSimulator {
 
     /**
-     * Constructs a CrAwareLexerSimulator to interpret the input
-     * from the lexer.
+     * Constructs a CrAwareLexerSimulator to interpret the input from the lexer.
      *
      * @param lexer the current lexer
      * @param augmented the augmented transition network
@@ -50,8 +48,7 @@ public class CrAwareLexerSimulator extends LexerATNSimulator {
     }
 
     /**
-     * Overrides the 'consume()' method to add support for
-     * '\r' (carriage return) line endings.
+     * Overrides the 'consume()' method to add support for '\r' (carriage return) line endings.
      *
      * @param input the Character stream of the file we are parsing
      */

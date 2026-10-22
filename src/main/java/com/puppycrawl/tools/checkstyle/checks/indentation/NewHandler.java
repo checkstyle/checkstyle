@@ -149,8 +149,7 @@ public class NewHandler extends AbstractExpressionHandler {
     /**
      * A shortcut for the corresponding property.
      *
-     * @return value of lineWrappingIndentation property
-     *         from the indentation context
+     * @return value of lineWrappingIndentation property from the indentation context
      */
     private int getLineWrappingIndent() {
         return getContext().getLineWrappingIndentation();

@@ -44,7 +44,10 @@ public class InputUnnecessaryParenthesesLambdas {
                     return t1 -> t2 -> apply(t1, t2);
         }
         default Function1<T1, CheckedFunction1<T2, R>> curried2() {
-            return (t1) -> (t2) -> apply(t1, t2); // 2 violations
+            return (t1) -> (t2) -> apply(t1, t2);
+            // 2 violations above:
+            //  'Unnecessary parentheses around lambda value'
+            //  'Unnecessary parentheses around lambda value'
         }
         default Function1<T1, CheckedFunction1<T2, R>> curried3() {
             return (t1) -> t2 -> apply(t1, t2); // violation 'parentheses around lambda value'

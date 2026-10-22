@@ -5,20 +5,25 @@
       <property name="severity" value="info"/>
     </module>
     <module name="MethodName"/>
+    <module
+        name="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck">
+      <property name="severity" value="warning"/>
+    </module>
   </module>
-  <module name="SeverityMatchFilter">
-    <property name="severity" value="info"/>
-    <property name="acceptOnMatch" value="false"/>
-  </module>
+  <module name="SeverityMatchFilter"/>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.severitymatchfilter;
 
 // xdoc section - start
 public class Example1 {
-  // filtered violation below 'must match pattern'
-  public void method1(int V1){} // ok, ParameterName's severity is info
+  // filtered violation below 'must be private'
+  int field1;
 
-  public void Method2(){} // violation, MethodName's severity is defaulted to error
+  // filtered violation below 'must match pattern'
+  public void method1(int V1){}
+
+  // violation below 'must match pattern'
+  public void Method2(){}
 }
 // xdoc section - end

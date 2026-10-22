@@ -34,8 +34,7 @@ import javax.swing.tree.TreeModel;
 /**
  * A TreeCellRenderer that displays a JTree.
  */
-class TreeTableCellRenderer extends JTree implements
-        TableCellRenderer {
+class TreeTableCellRenderer extends JTree implements TableCellRenderer {
 
     /**
      * Serial ID.
@@ -70,8 +69,7 @@ class TreeTableCellRenderer extends JTree implements
     }
 
     /**
-     * UpdateUI is overridden to set the colors of the Tree's renderer
-     * to match that of the table.
+     * UpdateUI is overridden to set the colors of the Tree's renderer to match that of the table.
      */
     @Override
     public void updateUI() {
@@ -79,7 +77,7 @@ class TreeTableCellRenderer extends JTree implements
         // Make the tree's cell renderer use the table's cell selection
         // colors.
         final TreeCellRenderer tcr = getCellRenderer();
-        if (tcr instanceof DefaultTreeCellRenderer renderer) {
+        if (tcr instanceof final DefaultTreeCellRenderer renderer) {
             renderer.setBorderSelectionColor(null);
             renderer.setTextSelectionColor(
                     UIManager.getColor(COLOR_KEY_TABLE_SELECTION_FOREGROUND));
@@ -89,8 +87,7 @@ class TreeTableCellRenderer extends JTree implements
     }
 
     /**
-     * Sets the row height of the tree, and forwards the row height to
-     * the table.
+     * Sets the row height of the tree, and forwards the row height to the table.
      */
     @Override
     public void setRowHeight(int newRowHeight) {
@@ -112,8 +109,7 @@ class TreeTableCellRenderer extends JTree implements
     }
 
     /**
-     * Subclassed to translate the graphics such that the last visible
-     * row will be drawn at 0,0.
+     * Subclassed to translate the graphics such that the last visible row will be drawn at 0,0.
      */
     @Override
     public void paint(Graphics graph) {

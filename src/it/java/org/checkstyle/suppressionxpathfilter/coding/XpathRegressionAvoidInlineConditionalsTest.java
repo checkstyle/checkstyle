@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.AvoidInlineConditionalsCheck;
 
 public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTestSupport {
@@ -44,14 +42,8 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
 
     @Test
     public void testInlineConditionalsVariableDef() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathAvoidInlineConditionalsVariableDef.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidInlineConditionalsCheck.class);
-
         final String[] expectedViolation = {
-            "5:50: " + getCheckMessage(AvoidInlineConditionalsCheck.class,
+            "11:50: " + getCheckMessage(AvoidInlineConditionalsCheck.class,
                 AvoidInlineConditionalsCheck.MSG_KEY),
         };
 
@@ -66,20 +58,16 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
                         + "/VARIABLE_DEF[./IDENT[@text='b']]/ASSIGN/EXPR/QUESTION"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidInlineConditionalsVariableDef.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInlineConditionalsAssign() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathAvoidInlineConditionalsAssign.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidInlineConditionalsCheck.class);
-
         final String[] expectedViolation = {
-            "7:43: " + getCheckMessage(AvoidInlineConditionalsCheck.class,
+            "13:43: " + getCheckMessage(AvoidInlineConditionalsCheck.class,
                 AvoidInlineConditionalsCheck.MSG_KEY),
         };
 
@@ -90,20 +78,16 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
                         + "/EXPR/ASSIGN[./IDENT[@text='b']]/QUESTION"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidInlineConditionalsAssign.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInlineConditionalsAssert() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathAvoidInlineConditionalsAssert.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidInlineConditionalsCheck.class);
-
         final String[] expectedViolation = {
-            "8:31: " + getCheckMessage(AvoidInlineConditionalsCheck.class,
+            "14:31: " + getCheckMessage(AvoidInlineConditionalsCheck.class,
                 AvoidInlineConditionalsCheck.MSG_KEY),
         };
 
@@ -118,8 +102,10 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
                         + "/LITERAL_ASSERT/EXPR/QUESTION"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidInlineConditionalsAssert.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

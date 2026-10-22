@@ -48,21 +48,18 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * @since 3.0
  */
 @FileStatefulCheck
-public class EqualsHashCodeCheck
-        extends AbstractCheck {
+public class EqualsHashCodeCheck extends AbstractCheck {
 
     // implementation note: we have to use the following members to
     // keep track of definitions in different inner classes
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_HASHCODE = "equals.noHashCode";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_EQUALS = "equals.noEquals";
 

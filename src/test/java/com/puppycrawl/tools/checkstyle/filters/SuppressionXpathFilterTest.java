@@ -106,7 +106,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid error message")
             .that(exc.getMessage())
             .isEqualTo("Unable to parse " + fileName
-                + " - invalid files or checks or message format for suppress-xpath");
+                + " - invalid files or checks or message format for suppress-xpath: abc");
     }
 
     @Test

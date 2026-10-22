@@ -26,8 +26,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 public enum LeftCurlyOption {
 
     /**
-     * Represents the policy for placing the brace at the end of line. For
-     * example:
+     * Represents the policy for placing the brace at the end of line. For example:
      * <pre>
      * if (condition) {
      *     ...
@@ -61,8 +60,7 @@ public enum LeftCurlyOption {
     NLOW,
 
     /**
-     * Represents the policy that the brace must always be on a new line. For
-     * example:
+     * Represents the policy that the brace must always be on a new line. For example:
      * <pre>
      * if (condition)
      * {
@@ -70,5 +68,29 @@ public enum LeftCurlyOption {
      * </pre>
      */
     NL,
+
+    /**
+     * Represents the policy that if the whole block fits on a single line,
+     * then apply the {@code EOL} rule.
+     * Otherwise apply the {@code NL} rule.
+     *
+     * <p>Checkstyle will allow a block that opens and closes on one line:
+     *
+     * {@snippet lang="text" :
+     * if (condition) { doSomething(); }
+     * }
+     *
+     * <p>But for a block spanning multiple lines, Checkstyle will enforce:
+     *
+     * {@snippet lang="text" :
+     * if (condition)
+     * {
+     *     ...
+     * }
+     * }
+     *
+     * @since 14.4.0
+     */
+    NL_OR_SINGLELINE,
 
 }

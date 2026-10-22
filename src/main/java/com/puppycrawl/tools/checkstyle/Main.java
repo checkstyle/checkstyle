@@ -63,18 +63,15 @@ import picocli.CommandLine.ParseResult;
 public final class Main {
 
     /**
-     * A key pointing to the error counter
-     * message in the "messages.properties" file.
+     * A key pointing to the error counter message in the "messages.properties" file.
      */
     public static final String ERROR_COUNTER = "Main.errorCounter";
     /**
-     * A key pointing to the load properties exception
-     * message in the "messages.properties" file.
+     * A key pointing to the load properties exception message in the "messages.properties" file.
      */
     public static final String LOAD_PROPERTIES_EXCEPTION = "Main.loadProperties";
     /**
-     * A key pointing to the create listener exception
-     * message in the "messages.properties" file.
+     * A key pointing to the create listener exception message in the "messages.properties" file.
      */
     public static final String CREATE_LISTENER_EXCEPTION = "Main.createListener";
 
@@ -87,6 +84,9 @@ public final class Main {
     /** Exit code returned when execution finishes with {@link CheckstyleException}. */
     private static final int EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE = -2;
 
+    /** Maximum exit code, so the number of errors can not wrap around to 0. */
+    private static final int MAX_EXIT_CODE = 255;
+
     /**
      * Client code should not create instances of this class, but use
      * {@link #main(String[])} method instead.
@@ -96,7 +96,8 @@ public final class Main {
 
     /**
      * Loops over the files specified checking them for errors. The exit code
-     * is the number of errors found in all the files.
+     * is the number of errors found in all the files, but no more than 255,
+     * so it can not wrap around to 0 on a multiple of 256 errors.
      *
      * @param args the command line arguments.
      * @throws IOException if there is a problem with files access
@@ -152,7 +153,7 @@ public final class Main {
                 System.err.println(errorCounterViolation.getMessage());
             }
         }
-        Runtime.getRuntime().exit(exitStatus);
+        Runtime.getRuntime().exit(Math.min(exitStatus, MAX_EXIT_CODE));
     }
 
     /**
@@ -462,8 +463,7 @@ public final class Main {
     }
 
     /**
-     * Creates a new instance of the root module that will control and run
-     * Checkstyle.
+     * Creates a new instance of the root module that will control and run Checkstyle.
      *
      * @param name The name of the module. This will either be a short name that
      *        will have to be found or the complete package name.
@@ -562,6 +562,7 @@ public final class Main {
      * @noinspectionreason PackageVisibleInnerClass - we keep this enum package visible for tests
      */
     /* package */ enum OutputFormat {
+
         /** XML output format. */
         XML,
         /** SARIF output format. */
@@ -603,10 +604,12 @@ public final class Main {
         public String toString() {
             return name().toLowerCase(Locale.ROOT);
         }
+
     }
 
     /** Log Filter used in debug mode. */
     private static final class OnlyCheckstyleLoggersFilter implements Filter {
+
         /** Name of the package used to filter on. */
         private final String packageName = Main.class.getPackage().getName();
 
@@ -627,6 +630,7 @@ public final class Main {
         public boolean isLoggable(LogRecord logRecord) {
             return logRecord.getLoggerName().startsWith(packageName);
         }
+
     }
 
     /**
@@ -636,8 +640,7 @@ public final class Main {
      *              MismatchedQueryAndUpdateOfCollection, LocalCanBeFinal
      * @noinspectionreason FieldMayBeFinal - usage of picocli requires
      *      suppression of above inspections
-     * @noinspectionreason CanBeFinal - usage of picocli requires
-     *      suppression of above inspections
+     * @noinspectionreason CanBeFinal - usage of picocli requires suppression of above inspections
      * @noinspectionreason MismatchedQueryAndUpdateOfCollection - list of files is gathered and used
      *      via reflection by picocli library
      * @noinspectionreason LocalCanBeFinal - usage of picocli requires
@@ -915,6 +918,7 @@ public final class Main {
             }
             return result;
         }
+
     }
 
 }

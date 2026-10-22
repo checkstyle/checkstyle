@@ -81,26 +81,22 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 public class DeclarationOrderCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_CONSTRUCTOR = "declaration.order.constructor";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_STATIC = "declaration.order.static";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_INSTANCE = "declaration.order.instance";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_ACCESS = "declaration.order.access";
 
@@ -117,8 +113,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
     private static final int STATE_METHOD_DEF = 4;
 
     /**
-     * List of Declaration States. This is necessary due to
-     * inner classes that have their own state.
+     * List of Declaration States. This is necessary due to inner classes that have their own state.
      */
     private Deque<ScopeState> scopeStates;
 
@@ -209,8 +204,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
 
     /**
      * Checks whether the given token type is a container of class-level
-     * members: an object block, or the implicit class of a JEP 512 compact
-     * source file.
+     * members: an object block, or the implicit class of a JEP 512 compact source file.
      *
      * @param type the token type to check
      * @return true if the type holds class-level members
@@ -280,8 +274,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
 
     /**
      * Checks if given modifiers are valid in substate of given
-     * state({@code Scope}), if it is it updates substate or else it
-     * logs violation.
+     * state({@code Scope}), if it is it updates substate or else it logs violation.
      *
      * @param modifiersAst modifiers to process
      * @param state current state
@@ -397,6 +390,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
         private ScopeState() {
             // no code by default
         }
+
     }
 
 }

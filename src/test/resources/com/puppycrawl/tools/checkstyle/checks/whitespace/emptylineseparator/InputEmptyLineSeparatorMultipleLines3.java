@@ -27,4 +27,35 @@ public class InputEmptyLineSeparatorMultipleLines3 {
 
         bar"""; // violation 4 lines above ''VARIABLE_DEF' should be separated from previous line.'
 
+    // some """Test method name 'test_FOO_bar' segment must be more
+    // than a character, start lowercase, and not have a single lowercase followed by
+    // uppercase, or consecutive uppercase."""
+
+
+    @InputEmptyLineSeparatorMultipleLines.Test
+    void testing_c() {}
+
+    // -----------------------------------------------------------------
+    // Generic methods taking a Level as parameter
+    // -----------------------------------------------------------------
+
+
+    @InputEmptyLineSeparatorMultipleLines.Override
+    public boolean isLoggable() {
+        return false;
+    }
+
+    // getSomeName is inherited and filtered out by NoAttrScope.INHERITED
+    // getSomeInt is inherited but overridden here, so NoAttrScope.INHERITED has no effect
+    // getSomeLong is inherited and overridden here,
+    //      and even with scope INHERITED its @NoAttribute takes precedence
+
+    // isChild overrides nothing so with INHERITED it's not filtered out
+
+
+    @InputEmptyLineSeparatorMultipleLines.Override
+    public int getSomeInt() {
+        return 43;
+    }
+
 }

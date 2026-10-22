@@ -36,8 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class SuperCloneCheckTest
-    extends AbstractModuleTestSupport {
+public class SuperCloneCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

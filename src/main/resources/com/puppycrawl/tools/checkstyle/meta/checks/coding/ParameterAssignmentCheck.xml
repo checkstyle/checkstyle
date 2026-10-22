@@ -10,11 +10,9 @@
 
  &lt;p&gt;
  Rationale:
- Parameter assignment is often considered poor
- programming practice. Forcing developers to declare
+ Parameter assignment is often considered poor programming practice. Forcing developers to declare
  parameters as final is often onerous. Having a check
- ensure that parameters are never assigned would give
- the best of both worlds.
+ ensure that parameters are never assigned would give the best of both worlds.
  &lt;/p&gt;</description>
          <message-keys>
             <message-key key="parameter.assignment"/>

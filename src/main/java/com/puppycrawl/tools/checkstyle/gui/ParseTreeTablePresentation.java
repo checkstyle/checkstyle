@@ -132,7 +132,7 @@ public class ParseTreeTablePresentation {
     public Object getValueAt(Object node, int column) {
         final Object result;
 
-        if (node instanceof DetailNode detailNode) {
+        if (node instanceof final DetailNode detailNode) {
             result = getValueAtDetailNode(detailNode, column);
         }
         else {
@@ -152,7 +152,7 @@ public class ParseTreeTablePresentation {
     public Object getChild(Object parent, int index) {
         final Object result;
 
-        if (parent instanceof DetailNode parentNode) {
+        if (parent instanceof final DetailNode parentNode) {
             DetailNode node = parentNode.getFirstChild();
             for (int nodeIndex = 0; nodeIndex < index; nodeIndex++) {
                 node = node.getNextSibling();
@@ -175,7 +175,7 @@ public class ParseTreeTablePresentation {
     public int getChildCount(Object parent) {
         int result = 0;
 
-        if (parent instanceof DetailNode parentNode) {
+        if (parent instanceof final DetailNode parentNode) {
             DetailNode node = parentNode.getFirstChild();
             while (node != null) {
                 node = node.getNextSibling();
@@ -220,14 +220,12 @@ public class ParseTreeTablePresentation {
     /**
      * Return the index of child in parent.  If either {@code parent}
      * or {@code child} is {@code null}, returns -1.
-     * If either {@code parent} or {@code child} don't
-     * belong to this tree model, returns -1.
+     * If either {@code parent} or {@code child} don't belong to this tree model, returns -1.
      *
      * @param parent a node in the tree, obtained from this data source.
      * @param child the node we are interested in.
      * @return the index of the child in the parent, or -1 if either
-     *     {@code child} or {@code parent} are {@code null}
-     *     or don't belong to this tree model.
+     *     {@code child} or {@code parent} are {@code null} or don't belong to this tree model.
      */
     public int getIndexOfChild(Object parent, Object child) {
         int index = -1;

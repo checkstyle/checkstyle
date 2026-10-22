@@ -30,6 +30,8 @@ jobs:
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Set milestone on issue
         env:

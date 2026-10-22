@@ -140,6 +140,8 @@
           <item name="EmptyStatement" href="checks/coding/emptystatement.html"/>
           <item name="EqualsAvoidNull" href="checks/coding/equalsavoidnull.html"/>
           <item name="EqualsHashCode" href="checks/coding/equalshashcode.html"/>
+          <item name="ExceptionThrowShouldUseContext"
+                href="checks/coding/exceptionthrowshouldusecontext.html"/>
           <item name="ExplicitInitialization" href="checks/coding/explicitinitialization.html"/>
           <item name="ExpressionOverBlockLambda"
                 href="checks/coding/expressionoverblocklambda.html"/>
@@ -167,6 +169,8 @@
           <item name="NestedIfDepth" href="checks/coding/nestedifdepth.html"/>
           <item name="NestedTryDepth" href="checks/coding/nestedtrydepth.html"/>
           <item name="NoArrayTrailingComma" href="checks/coding/noarraytrailingcomma.html"/>
+          <item name="NoCauseGetMessageInExceptionConstructor"
+                href="checks/coding/nocausegetmessageinexceptionconstructor.html"/>
           <item name="NoClone" href="checks/coding/noclone.html"/>
           <item name="NoEnumTrailingComma" href="checks/coding/noenumtrailingcomma.html"/>
           <item name="NoFinalizer" href="checks/coding/nofinalizer.html"/>
@@ -177,6 +181,7 @@
           <item name="ParameterAssignment" href="checks/coding/parameterassignment.html"/>
           <item name="PatternVariableAssignment"
                 href="checks/coding/patternvariableassignment.html"/>
+          <item name="RedundantThis" href="checks/coding/redundantthis.html"/>
           <item name="RequireThis" href="checks/coding/requirethis.html"/>
           <item name="ReturnCount" href="checks/coding/returncount.html"/>
           <item name="SimplifyBooleanExpression"
@@ -271,6 +276,8 @@
                 href="checks/javadoc/javadoctagcontinuationindentation.html"/>
           <item name="JavadocThrowsOrder" href="checks/javadoc/javadocthrowsorder.html"/>
           <item name="JavadocType" href="checks/javadoc/javadoctype.html"/>
+          <item name="JavadocUtilizingTrailingSpace"
+                href="checks/javadoc/javadocutilizingtrailingspace.html"/>
           <item name="JavadocVariable" href="checks/javadoc/javadocvariable.html"/>
           <item name="MissingJavadocMethod" href="checks/javadoc/missingjavadocmethod.html"/>
           <item name="MissingJavadocPackage" href="checks/javadoc/missingjavadocpackage.html"/>
@@ -301,6 +308,8 @@
           <item name="ArrayTypeStyle" href="checks/misc/arraytypestyle.html"/>
           <item name="AvoidEscapedUnicodeCharacters"
                 href="checks/misc/avoidescapedunicodecharacters.html"/>
+          <item name="ClassHeaderWrapOpenjdk"
+                href="checks/misc/classheaderwrapopenjdk.html"/>
           <item name="CommentsIndentation" href="checks/misc/commentsindentation.html"/>
           <item name="DescendantToken" href="checks/misc/descendanttoken.html"/>
           <item name="FinalParameters" href="checks/misc/finalparameters.html"/>
@@ -392,6 +401,8 @@
                 href="checks/whitespace/emptyforinitializerpad.html"/>
           <item name="EmptyForIteratorPad" href="checks/whitespace/emptyforiteratorpad.html"/>
           <item name="EmptyLineSeparator" href="checks/whitespace/emptylineseparator.html"/>
+          <item name="EmptyLineWrappingInBlock"
+                href="checks/whitespace/emptylinewrappinginblock.html"/>
           <item name="FileTabCharacter" href="checks/whitespace/filetabcharacter.html"/>
           <item name="GenericWhitespace" href="checks/whitespace/genericwhitespace.html"/>
           <item name="MethodParamPad" href="checks/whitespace/methodparampad.html"/>
@@ -400,6 +411,8 @@
           <item name="NoWhitespaceBefore" href="checks/whitespace/nowhitespacebefore.html"/>
           <item name="NoWhitespaceBeforeCaseDefaultColon"
                 href="checks/whitespace/nowhitespacebeforecasedefaultcolon.html"/>
+          <item name="OpenjdkMethodParameterAlignment"
+                href="checks/whitespace/openjdkmethodparameteralignment.html"/>
           <item name="OperatorWrap" href="checks/whitespace/operatorwrap.html"/>
           <item name="ParenPad" href="checks/whitespace/parenpad.html"/>
           <item name="SeparatorWrap" href="checks/whitespace/separatorwrap.html"/>

@@ -25,8 +25,7 @@ import java.util.Deque;
 import java.util.List;
 
 /**
- * Represents a full identifier, including dots, with associated
- * position information.
+ * Represents a full identifier, including dots, with associated position information.
  *
  * <p>
  * Identifiers such as {@code java.util.HashMap} are spread across
@@ -247,8 +246,7 @@ public final class FullIdent {
     }
 
     /**
-     * Append the specified token and also recalibrate the first line and
-     * column.
+     * Append the specified token and also recalibrate the first line and column.
      *
      * @param ast the token to append
      */

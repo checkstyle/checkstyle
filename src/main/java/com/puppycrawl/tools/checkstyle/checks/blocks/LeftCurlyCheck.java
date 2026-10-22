@@ -41,24 +41,20 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * @since 3.0
  */
 @StatelessCheck
-public class LeftCurlyCheck
-    extends AbstractCheck {
+public class LeftCurlyCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_LINE_NEW = "line.new";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_LINE_PREVIOUS = "line.previous";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_LINE_BREAK_AFTER = "line.break.after";
 
@@ -267,8 +263,7 @@ public class LeftCurlyCheck
     }
 
     /**
-     * Find the last token of type {@code TokenTypes.ANNOTATION}
-     * under the given set of modifiers.
+     * Find the last token of type {@code TokenTypes.ANNOTATION} under the given set of modifiers.
      *
      * @param modifiers {@code DetailAST}.
      * @return Optional containing the last annotation, if found.
@@ -304,10 +299,45 @@ public class LeftCurlyCheck
             else if (option == LeftCurlyOption.EOL) {
                 validateEol(startToken, brace);
             }
+            else if (option == LeftCurlyOption.NL_OR_SINGLELINE) {
+                validateNlOrSingleline(brace, braceLine);
+            }
             else if (!TokenUtil.areOnSameLine(startToken, brace)) {
                 validateNewLinePosition(brace, startToken, braceLine);
             }
         }
+    }
+
+    /**
+     * Validate NL_OR_SINGLELINE case. A brace that opens a block which ends on
+     * the same line is allowed to stay at the end of that line, otherwise the NL rule is applied.
+     *
+     * @param brace brace AST
+     * @param braceLine line content
+     */
+    private void validateNlOrSingleline(DetailAST brace, int... braceLine) {
+        if (!isSingleLineBlock(brace)
+                && !CodePointUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+            log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
+        }
+    }
+
+    /**
+     * Checks whether the block opened by the given left curly brace ends on the
+     * same line, that is, its matching right curly brace is on that same line.
+     *
+     * @param brace token for left curly brace
+     * @return true if the whole block fits on a single line
+     */
+    private static boolean isSingleLineBlock(DetailAST brace) {
+        final DetailAST block;
+        if (brace.getType() == TokenTypes.LCURLY) {
+            block = brace.getParent();
+        }
+        else {
+            block = brace;
+        }
+        return TokenUtil.areOnSameLine(brace, block.getLastChild());
     }
 
     /**

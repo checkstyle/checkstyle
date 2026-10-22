@@ -69,8 +69,7 @@
           Limitations: Nothing is currently done about static variables
           or catch-blocks.  Static methods invoked on a class name seem to be OK;
           both the class name and the method name have a DOT parent.
-          Non-static methods invoked on either this or a variable name seem to be
-          OK, likewise.
+          Non-static methods invoked on either this or a variable name seem to be OK, likewise.
         </p>
       </subsection>
 
@@ -136,7 +135,7 @@ class Example1 {
   }
 
   void foo(int field3) {
-    // violation below, reference to instance variable "field3" requires "this"
+    // violation below 'Reference to instance variable 'field3' needs "this.".'
     field3 = field3;
   }
 }
@@ -166,7 +165,7 @@ class Example2 {
 
   Example2(int field1) {
     this.field1 = field1;
-    field2 = 0; // violation, reference to instance variable "field2" requires "this"
+    field2 = 0; // violation 'Reference to instance variable 'field2' needs "this.".'
     foo(5); // ok, checkMethods is false
   }
 
@@ -175,7 +174,7 @@ class Example2 {
   }
 
   void foo(int field3) {
-    // violation below, reference to instance variable "field3" requires "this"
+    // violation below 'Reference to instance variable 'field3' needs "this.".'
     field3 = field3;
   }
 }
@@ -202,7 +201,7 @@ class Example3 {
   Example3(int field1) {
     this.field1 = field1;
     field2 = 0;
-    foo(5); // violation, method call "foo(5)" requires "this"
+    foo(5); // violation 'Method call to 'foo' needs "this.".'
   }
 
   void method2(int i) {
@@ -235,8 +234,8 @@ class Example4 {
 
   Example4(int field1) {
     this.field1 = field1;
-    field2 = 0; // violation, reference to instance variable "field2" requires "this"
-    foo(5); // violation, method call "foo(5)" requires "this"
+    field2 = 0; // violation 'Reference to instance variable 'field2' needs "this.".'
+    foo(5); // violation 'Method call to 'foo' needs "this.".'
   }
 
   void method2(int i) {
@@ -244,7 +243,7 @@ class Example4 {
   }
 
   void foo(int field3) {
-    // violation below, reference to instance variable "field3" requires "this"
+    // violation below 'Reference to instance variable 'field3' needs "this.".'
     field3 = field3;
   }
 }
@@ -281,7 +280,7 @@ class UseCase1 {
     if (field1 &gt; 0) {
       field1 = -field1;
     }
-    // violation below, reference to instance variable "field2" requires "this"
+    // violation below 'Reference to instance variable 'field2' needs "this.".'
     field2 *= field1;
   }
 }

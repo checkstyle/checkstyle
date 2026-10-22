@@ -37,12 +37,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 3.2
  */
 @StatelessCheck
-public class IllegalTokenTextCheck
-    extends AbstractCheck {
+public class IllegalTokenTextCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "illegal.token.text";
 
@@ -117,8 +115,7 @@ public class IllegalTokenTextCheck
      * Setter to define the message which is used to notify about violations;
      * if empty then the default message is used.
      *
-     * @param message custom message which should be used
-     *                 to report about violations.
+     * @param message custom message which should be used to report about violations.
      * @since 3.2
      */
     public void setMessage(String message) {

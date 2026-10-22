@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
 
 public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport {
@@ -40,14 +38,8 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathUncommentedMainDefault.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UncommentedMainCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(UncommentedMainCheck.class,
+            "11:5: " + getCheckMessage(UncommentedMainCheck.class,
                         UncommentedMainCheck.MSG_KEY),
         };
 
@@ -63,20 +55,16 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUncommentedMainDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInStaticClass() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathUncommentedMainInStaticClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UncommentedMainCheck.class);
-
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(UncommentedMainCheck.class,
+            "12:9: " + getCheckMessage(UncommentedMainCheck.class,
                         UncommentedMainCheck.MSG_KEY),
         };
 
@@ -95,20 +83,16 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUncommentedMainInStaticClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInRecord() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathUncommentedMainInRecord.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UncommentedMainCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(UncommentedMainCheck.class,
+            "11:5: " + getCheckMessage(UncommentedMainCheck.class,
                         UncommentedMainCheck.MSG_KEY),
         };
 
@@ -124,8 +108,10 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUncommentedMainInRecord.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

@@ -44,7 +44,7 @@ import picocli.CommandLine.ParseResult;
 /**
  * This class is used internally in the build process to write a property file
  * with short descriptions (the first sentences) of TokenTypes constants.
- * Request: 724871
+ * Request: 724871.
  * For IDE plugins (like the eclipse plugin) it would be useful to have
  * programmatic access to the first sentence of the TokenType constants,
  * so they can use them in their configuration gui.
@@ -349,6 +349,7 @@ public final class JavadocPropertiesGenerator {
         private CliOptions() {
             // no code by default
         }
+
     }
 
 }

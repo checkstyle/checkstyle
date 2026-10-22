@@ -69,18 +69,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * @since 3.0
  */
 @StatelessCheck
-public class InnerAssignmentCheck
-        extends AbstractCheck {
+public class InnerAssignmentCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "assignment.inner.avoid";
 
     /**
-     * Allowed AST types from an assignment AST node
-     * towards the root.
+     * Allowed AST types from an assignment AST node towards the root.
      */
     private static final int[][] ALLOWED_ASSIGNMENT_CONTEXT = {
         {TokenTypes.EXPR, TokenTypes.SLIST},
@@ -97,8 +94,7 @@ public class InnerAssignmentCheck
     };
 
     /**
-     * Allowed AST types from an assignment AST node
-     * towards the root.
+     * Allowed AST types from an assignment AST node towards the root.
      */
     private static final int[][] CONTROL_CONTEXT = {
         {TokenTypes.EXPR, TokenTypes.LITERAL_DO},
@@ -109,8 +105,7 @@ public class InnerAssignmentCheck
     };
 
     /**
-     * Allowed AST types from a comparison node (above an assignment)
-     * towards the root.
+     * Allowed AST types from a comparison node (above an assignment) towards the root.
      */
     private static final int[][] ALLOWED_ASSIGNMENT_IN_COMPARISON_CONTEXT = {
         {TokenTypes.EXPR, TokenTypes.LITERAL_WHILE},
@@ -263,8 +258,7 @@ public class InnerAssignmentCheck
     }
 
     /**
-     * Tests whether the provided AST is in
-     * one of the given contexts.
+     * Tests whether the provided AST is in one of the given contexts.
      *
      * @param ast the AST from which to start walking towards root
      * @param contextSet the contexts to test against.

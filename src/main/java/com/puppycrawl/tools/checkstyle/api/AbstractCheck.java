@@ -30,12 +30,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * The base class for checks.
  *
- * @see <a href="{@docRoot}/../writing-checks.html" target="_top">Writing
- *     your own checks</a>
+ * @see <a href="{@docRoot}/../writing-checks.html" target="_top">Writing your own checks</a>
  * @noinspection NoopMethodInAbstractClass
  * @noinspectionreason NoopMethodInAbstractClass - we allow each check to
- *      define these methods, as needed. They should be overridden only
- *      by demand in subclasses
+ *      define these methods, as needed. They should be overridden only by demand in subclasses
  */
 public abstract class AbstractCheck extends AbstractViolationReporter {
 
@@ -249,8 +247,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     /**
      * Helper method to log a Violation.
      *
-     * @param ast a node to get line id column numbers associated
-     *             with the violation
+     * @param ast a node to get line id column numbers associated with the violation
      * @param key key to locale violation format
      * @param args arguments to format
      */
@@ -338,6 +335,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * The actual context holder.
      */
     private static final class FileContext {
+
         /** The sorted set for collecting violations. */
         private final SortedSet<Violation> violations = new TreeSet<>();
 
@@ -350,6 +348,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
         private FileContext() {
             // no code by default
         }
+
     }
 
 }

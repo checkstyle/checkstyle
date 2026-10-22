@@ -36,7 +36,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file:report${message}.java"
+                  "uri": "file:report$%7Bmessage%7D.java"
                 },
                 "region": {
                   "startColumn": 1,

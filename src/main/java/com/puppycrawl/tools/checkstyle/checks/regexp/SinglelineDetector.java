@@ -89,8 +89,8 @@ public class SinglelineDetector {
      * @param matcher       the matcher to use
      */
     private void checkLine(int lineNo, Matcher matcher) {
-        int startPosition = 0;
-        while (matcher.find(startPosition)) {
+        boolean found = matcher.find();
+        while (found) {
             // match is found, check for intersection with comment
             final int startCol = matcher.start(0);
             final int endCol = matcher.end(0);
@@ -101,7 +101,7 @@ public class SinglelineDetector {
 
             if (options.getSuppressor()
                     .shouldSuppress(lineNo, startCol, lineNo, endCol - 1)) {
-                startPosition = endCol;
+                found = matcher.find();
             }
             else {
                 currentMatches++;

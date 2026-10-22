@@ -31,8 +31,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class EmptyLineSeparatorCheckTest
-    extends AbstractModuleTestSupport {
+public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
@@ -501,6 +500,17 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testEmptyLineSeparatorEnumSharedLine() throws Exception {
+        final String[] expected = {
+            "21:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "28:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorEnumSharedLine.java"), expected);
+    }
+
+    @Test
     public void testEmptyLineBetweenEnumConstantWithComments() throws Exception {
         final String[] expected = {
             "29:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
@@ -767,31 +777,31 @@ public class EmptyLineSeparatorCheckTest
             "86:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
             "94:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
             "99:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "106:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
-            "119:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
-            "132:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
-            "139:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "149:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
-            "164:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
-            "181:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "CLASS_DEF"),
-            "187:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "106:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "120:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "134:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "141:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "151:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "167:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "185:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "CLASS_DEF"),
             "191:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "197:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "209:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
-            "222:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
-            "236:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "239:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
-            "244:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
-            "260:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "269:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "282:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "287:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "293:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "301:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "310:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "316:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "336:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "344:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "195:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "201:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "213:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "227:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "242:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "245:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
+            "250:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "267:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "276:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "289:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "294:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "300:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "308:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "317:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "323:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "343:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "351:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorWithComments.java"), expected);
@@ -924,7 +934,17 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testMultipleLines() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "24:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "29:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "30:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "38:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "50:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "59:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "75:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "82:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "CLASS_DEF"),
+            "93:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorMultipleLines.java"),
                 expected);
@@ -934,6 +954,7 @@ public class EmptyLineSeparatorCheckTest
     public void testMultipleLines2() throws Exception {
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+            "28:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorMultipleLines2.java"),
@@ -947,6 +968,17 @@ public class EmptyLineSeparatorCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorMultipleLines3.java"),
+                expected);
+    }
+
+    @Test
+    public void testMultipleLines4() throws Exception {
+        final String[] expected = {
+            "25:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "36:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorMultipleLines4.java"),
                 expected);
     }
 

@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
 
 public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
 
     @Test
     public void testFallThrough() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathFallThrough.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(FallThroughCheck.class);
-
         final String[] expectedViolation = {
-            "11:13: " + getCheckMessage(FallThroughCheck.class,
+            "19:13: " + getCheckMessage(FallThroughCheck.class,
                 FallThroughCheck.MSG_FALL_THROUGH),
         };
 
@@ -66,21 +58,16 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
                 + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathFallThrough.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testDefaultCase() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathFallThroughDefaultCase.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(FallThroughCheck.class);
-        moduleConfig.addProperty("checkLastCaseGroup", "true");
-
         final String[] expectedViolation = {
-            "10:17: " + getCheckMessage(FallThroughCheck.class,
+            "18:17: " + getCheckMessage(FallThroughCheck.class,
                 FallThroughCheck.MSG_FALL_THROUGH_LAST),
         };
 
@@ -95,20 +82,16 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
                 + "/LITERAL_SWITCH/CASE_GROUP/LITERAL_DEFAULT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathFallThroughDefaultCase.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testCharSwitch() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathFallThroughCharSwitch.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(FallThroughCheck.class);
-
         final String[] expectedViolation = {
-            "13:17: " + getCheckMessage(FallThroughCheck.class,
+            "21:17: " + getCheckMessage(FallThroughCheck.class,
                 FallThroughCheck.MSG_FALL_THROUGH),
         };
 
@@ -127,8 +110,10 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
                 + "/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathFallThroughCharSwitch.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

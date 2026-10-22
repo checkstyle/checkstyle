@@ -28,6 +28,11 @@ if [ ! -e "$word_splitter" ]; then
     rm -f "$word_splitter"
     exit 6
   fi
+  # Strip hex runs of 7+ chars (git SHAs, sha256 digests) before tokenization
+  # so dependabot bumps of SHA-pinned actions do not produce stray letter
+  # fragments that would otherwise require whitelist updates on every bump.
+  perl -i -pe 's{(\s+s/\$rsqm/[^;]+;)}{$1\n  s/\\b[0-9a-fA-F]{7,}\\b/ /g;}' \
+    "$word_splitter"
   chmod u+x "$word_splitter"
   echo "Retrieved."
   ls -la "$word_splitter"

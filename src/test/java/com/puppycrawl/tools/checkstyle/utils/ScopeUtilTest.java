@@ -32,8 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class ScopeUtilTest
-    extends AbstractModuleTestSupport {
+public class ScopeUtilTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

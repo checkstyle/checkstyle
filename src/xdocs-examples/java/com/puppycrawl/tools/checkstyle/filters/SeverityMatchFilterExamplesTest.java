@@ -19,11 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck.MSG_INVALID_PATTERN;
-
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck;
 
@@ -39,18 +38,78 @@ public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestS
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expectedWithoutFilter = {
-            "20:27: " + getCheckMessage(ParameterNameCheck.class, MSG_INVALID_PATTERN,
+            "21:7: " + getCheckMessage(VisibilityModifierCheck.class,
+                    VisibilityModifierCheck.MSG_KEY, "field1"),
+            "24:27: " + getCheckMessage(ParameterNameCheck.class,
+                    ParameterNameCheck.MSG_INVALID_PATTERN,
                     "V1", pattern),
-            "22:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+            "27:15: " + getCheckMessage(MethodNameCheck.class,
+                    ParameterNameCheck.MSG_INVALID_PATTERN,
                     "Method2", pattern),
         };
 
         final String[] expectedWithFilter = {
-            "22:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+            "27:15: " + getCheckMessage(MethodNameCheck.class,
+                    ParameterNameCheck.MSG_INVALID_PATTERN,
                     "Method2", pattern),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expectedWithoutFilter = {
+            "23:7: " + getCheckMessage(VisibilityModifierCheck.class,
+                    VisibilityModifierCheck.MSG_KEY, "field1"),
+            "26:27: " + getCheckMessage(ParameterNameCheck.class,
+                    ParameterNameCheck.MSG_INVALID_PATTERN,
+                    "V1", pattern),
+            "29:15: " + getCheckMessage(MethodNameCheck.class,
+                    ParameterNameCheck.MSG_INVALID_PATTERN,
+                    "Method2", pattern),
+        };
+
+        final String[] expectedWithFilter = {
+            "26:27: " + getCheckMessage(ParameterNameCheck.class,
+                    ParameterNameCheck.MSG_INVALID_PATTERN,
+                    "V1", pattern),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expectedWithoutFilter = {
+            "24:7: " + getCheckMessage(VisibilityModifierCheck.class,
+                    VisibilityModifierCheck.MSG_KEY, "field1"),
+            "27:27: " + getCheckMessage(ParameterNameCheck.class,
+                    ParameterNameCheck.MSG_INVALID_PATTERN,
+                    "V1", pattern),
+            "30:15: " + getCheckMessage(MethodNameCheck.class,
+                    ParameterNameCheck.MSG_INVALID_PATTERN,
+                    "Method2", pattern),
+        };
+
+        final String[] expectedWithFilter = {
+            "27:27: " + getCheckMessage(ParameterNameCheck.class,
+                    ParameterNameCheck.MSG_INVALID_PATTERN,
+                    "V1", pattern),
+            "30:15: " + getCheckMessage(MethodNameCheck.class,
+                    ParameterNameCheck.MSG_INVALID_PATTERN,
+                    "Method2", pattern),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example3.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }

@@ -228,6 +228,12 @@ public final class InlineConfigParser {
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
 
+    /** Package of xpath regression Inputs, followed by the check's sub-package. */
+    private static final String XPATH_INPUT_ROOT = "org.checkstyle.suppressionxpathfilter.";
+
+    /** Root package of checks. */
+    private static final String CHECKS_PACKAGE = "com.puppycrawl.tools.checkstyle.checks.";
+
     private static final String LATEST_DTD = String.format(Locale.ROOT,
             "<!DOCTYPE module PUBLIC \"%s\" \"%s\">%n",
             ConfigurationLoader.DTD_PUBLIC_CS_ID_1_3,
@@ -258,47 +264,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck",
             "com.puppycrawl.tools.checkstyle.checks.TranslationCheck"
     );
-
-    /**
-     * Checks in which violation message is not yet fully specified in all input files.
-     * Temporary suppression until
-     * <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
-     * is fully resolved for these checks. Remove entries here as their input files
-     * are updated with proper violation messages.
-     */
-    private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-            "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck",
-            "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"
-    );
-
-    /**
-     * Input files where violation messages are not yet fully specified with quoted
-     * messages. Temporary suppression until these files are updated with proper
-     * violation messages. Remove entries here as their input files are fixed.
-     * <a href="https://github.com/checkstyle/checkstyle/issues/20954">#20954</a>
-     */
-    private static final Set<String> SUPPRESSED_VALIDATE_MESSAGE_FILES = Set.of();
 
     /**
      * Input files where default values for properties are intentionally not specified.
@@ -393,6 +358,8 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck");
         MODULE_MAPPINGS.put("EmptyLineSeparator",
                 "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck");
+        MODULE_MAPPINGS.put("EmptyLineWrappingInBlock",
+                "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineWrappingInBlockCheck");
         MODULE_MAPPINGS.put("LocalVariableName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck");
         MODULE_MAPPINGS.put("ModifierOrder",
@@ -429,7 +396,7 @@ public final class InlineConfigParser {
                     + inputFilePath, exc);
         }
         try {
-            setViolations(testInputConfigBuilder, lines, setFilteredViolations, inputFilePath);
+            setViolations(testInputConfigBuilder, lines, setFilteredViolations);
         }
         catch (CheckstyleException exc) {
             throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
@@ -514,7 +481,7 @@ public final class InlineConfigParser {
                 new TestInputConfiguration.Builder();
         testInputConfigBuilder.setXmlConfiguration(xmlConfig);
         try {
-            setViolations(testInputConfigBuilder, lines, false, inputFilePath);
+            setViolations(testInputConfigBuilder, lines, false);
         }
         catch (CheckstyleException exc) {
             throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
@@ -675,15 +642,36 @@ public final class InlineConfigParser {
             final int endIndex = path.lastIndexOf(moduleName.toLowerCase(Locale.ROOT));
             if (endIndex == -1) {
                 throw new CheckstyleException("Unable to resolve module name: " + moduleName
-                    + ". Please check for spelling errors or specify fully qualified class name.");
+                        + ". Please check for spelling errors or specify fully qualified "
+                        + " class name.");
             }
-            final int beginIndex = path.indexOf("com.puppycrawl");
-            fullyQualifiedClassName = path.substring(beginIndex, endIndex) + moduleName;
+            fullyQualifiedClassName =
+                    getPackageName(path, endIndex, moduleName) + moduleName;
             if (!fullyQualifiedClassName.endsWith("Filter")) {
                 fullyQualifiedClassName += "Check";
             }
         }
         return fullyQualifiedClassName;
+    }
+
+    private static String getPackageName(String path, int endIndex, String moduleName)
+            throws CheckstyleException {
+        final String packageName;
+        final int beginIndex = path.indexOf("com.puppycrawl");
+        if (beginIndex == -1) {
+            final int rootIndex = path.indexOf(XPATH_INPUT_ROOT);
+            if (rootIndex == -1) {
+                throw new CheckstyleException("Unable to resolve module name: " + moduleName
+                        + ". Please check for spelling errors or specify "
+                        + " fully qualified class name.");
+            }
+            packageName = CHECKS_PACKAGE
+                    + path.substring(rootIndex + XPATH_INPUT_ROOT.length(), endIndex);
+        }
+        else {
+            packageName = path.substring(beginIndex, endIndex);
+        }
+        return packageName;
     }
 
     private static String getFilePath(String fileName, String inputFilePath) {
@@ -837,16 +825,16 @@ public final class InlineConfigParser {
         if (value == null) {
             defaultValueAsString = NULL_STRING;
         }
-        else if (value instanceof String strValue) {
+        else if (value instanceof final String strValue) {
             defaultValueAsString = toStringForStringValue(strValue);
         }
         else if (value.getClass().isArray()) {
             defaultValueAsString = toStringConvertForArrayValue(value);
         }
-        else if (value instanceof BitSet set) {
+        else if (value instanceof final BitSet set) {
             defaultValueAsString = toStringForBitSetValue(set);
         }
-        else if (value instanceof Collection<?> values) {
+        else if (value instanceof final Collection<?> values) {
             defaultValueAsString = toStringForCollectionValue(values);
         }
         else {
@@ -1063,21 +1051,17 @@ public final class InlineConfigParser {
     }
 
     private static boolean shouldSpecifyViolationMessage(
-            TestInputConfiguration.Builder inputConfigBuilder, String inputFilePath) {
+            TestInputConfiguration.Builder inputConfigBuilder) {
 
         boolean result = false;
 
         final List<ModuleInputConfiguration> moduleLists =
                 inputConfigBuilder.getChildrenModules();
 
-        final boolean isSuppressedFile = SUPPRESSED_VALIDATE_MESSAGE_FILES.stream()
-                .anyMatch(Path.of(inputFilePath)::endsWith);
-
-        if (!isSuppressedFile && moduleLists.size() == 1) {
+        if (moduleLists.size() == 1) {
             final String moduleName = moduleLists.getFirst().getModuleName();
 
-            if (!PERMANENT_SUPPRESSED_CHECKS.contains(moduleName)
-                    && !SUPPRESSED_CHECKS.contains(moduleName)) {
+            if (!PERMANENT_SUPPRESSED_CHECKS.contains(moduleName)) {
                 result = true;
             }
         }
@@ -1087,12 +1071,11 @@ public final class InlineConfigParser {
 
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
                                       List<String> lines,
-                                      boolean useFilteredViolations,
-                                      String inputFilePath)
+                                      boolean useFilteredViolations)
             throws CheckstyleException {
 
         final boolean specifyViolationMessage =
-                shouldSpecifyViolationMessage(inputConfigBuilder, inputFilePath);
+                shouldSpecifyViolationMessage(inputConfigBuilder);
 
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
             setViolations(inputConfigBuilder, lines,

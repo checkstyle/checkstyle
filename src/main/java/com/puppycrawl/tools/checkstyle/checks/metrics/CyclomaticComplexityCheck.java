@@ -33,8 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <div>
  * Checks cyclomatic complexity against a specified limit. It is a measure of
  * the minimum number of possible paths through the source and therefore the
- * number of required tests, it is not about quality of code! It is only
- * applied to methods, c-tors,
+ * number of required tests, it is not about quality of code! It is only applied to methods, c-tors,
  * <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html">
  * static initializers and instance initializers</a>.
  * </div>
@@ -76,12 +75,10 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * @since 3.2
  */
 @FileStatefulCheck
-public class CyclomaticComplexityCheck
-    extends AbstractCheck {
+public class CyclomaticComplexityCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "cyclomaticComplexity";
 
@@ -215,8 +212,7 @@ public class CyclomaticComplexityCheck
     }
 
     /**
-     * Hook called when visiting a token. Will not be called the method
-     * definition tokens.
+     * Hook called when visiting a token. Will not be called the method definition tokens.
      *
      * @param ast the token being visited
      */

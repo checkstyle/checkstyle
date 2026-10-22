@@ -26,8 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
-public class NoCloneCheckTest
-    extends AbstractModuleTestSupport {
+public class NoCloneCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

@@ -62,8 +62,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * A case in a switch statement does not implicitly form a block.
  * Thus, to be able to introduce local variables that have case scope
  * it is necessary to open a nested block. This is supported, set
- * the allowInSwitchCase property to true and include all statements
- * of the case in the block.
+ * the allowInSwitchCase property to true and include all statements of the case in the block.
  * </p>
  *
  * @since 3.1
@@ -72,8 +71,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class AvoidNestedBlocksCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_BLOCK_NESTED = "block.nested";
 

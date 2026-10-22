@@ -54,13 +54,13 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * To suppress violation for snippet inline tag:
  * </p>
  *
- * <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
- *     &lt;module name="SuppressionSingleFilter"&gt;
- *       &lt;property name="checks" value="PreferCodeOrSnippetJavadocInlineTag"/&gt;
- *       &lt;property name="files" value="file-name"/&gt;
- *       &lt;property name="message" value="Use snippet inline tag instead of.*"/&gt;
- *     &lt;/module&gt;
- * </code></pre></div>
+ * {@snippet lang="xml" :
+ * <module name="SuppressionSingleFilter">
+ *   <property name="checks" value="PreferCodeOrSnippetJavadocInlineTag"/>
+ *   <property name="files" value="file-name"/>
+ *   <property name="message" value="Use snippet inline tag instead of.*"/>
+ * </module>
+ * }
  *
  * <b>Not Flagged :</b>
  * <ul>
@@ -75,14 +75,12 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 public class PreferCodeOrSnippetJavadocInlineTagCheck extends AbstractJavadocCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_SINGLE_LINE = "prefer.code.javadoc.singleline.tag";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_MULTI_LINE = "prefer.code.javadoc.multiline.tag";
 

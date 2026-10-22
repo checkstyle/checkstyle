@@ -22,10 +22,10 @@ import java.util.Set;
 class UseCase3 {
   private int myPrivateField1;
 
-  int field1; // violation, must have visibility modifier 'must be private'
-
-  protected String field2; // violation, protected not allowed 'must be private'
-
+  int field1;
+  // violation above, must have visibility modifier ''field1' must be private'
+  protected String field2;
+  // violation above, protected not allowed ''field2' must be private'
   // violation below, not final nor matching pattern 'must be private'
   public int field3 = 42;
 
@@ -47,8 +47,8 @@ class UseCase3 {
   public final ImmutableMap<String, Object> objects1 = null;
 
   @java.lang.Deprecated
-  String annotatedString; // violation, annotation not configured 'must be private'
-
+  String annotatedString;
+  // violation above, annotation not configured ''annotatedString' must be private'
   @Deprecated
   String shortCustomAnnotated;
   // violation 2 lines below 'must be private'

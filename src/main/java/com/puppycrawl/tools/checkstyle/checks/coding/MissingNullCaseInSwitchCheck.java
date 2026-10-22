@@ -71,8 +71,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class MissingNullCaseInSwitchCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "missing.switch.nullcase";
 
@@ -158,8 +157,7 @@ public class MissingNullCaseInSwitchCheck extends AbstractCheck {
 
     /**
      * Checks if the given case contains a string in its label.
-     * It may contain a single string literal or a string literal
-     * in a concatenated expression.
+     * It may contain a single string literal or a string literal in a concatenated expression.
      *
      * @param caseAST the AST node representing {@code LITERAL_CASE}
      * @return true if switch block contains a string case label

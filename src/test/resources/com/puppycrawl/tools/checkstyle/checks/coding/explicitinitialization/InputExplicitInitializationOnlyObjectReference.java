@@ -18,7 +18,10 @@ public class InputExplicitInitializationOnlyObjectReference {
     private boolean b2 = true;
     private boolean b3;
     private String str = "";
-    java.lang.String str1 = null, str3 = null; // 2 violations
+    java.lang.String str1 = null, str3 = null;
+    // 2 violations above:
+    //    'Variable 'str1' explicitly initialized to 'null' (default value for its type).'
+    //    'Variable 'str3' explicitly initialized to 'null' (default value for its type).'
     int ar1[] = null; // violation ''ar1' explicitly initialized'
     int ar2[] = new int[1];
     int ar3[];

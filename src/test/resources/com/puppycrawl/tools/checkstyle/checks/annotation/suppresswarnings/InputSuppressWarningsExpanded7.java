@@ -44,9 +44,9 @@ public class InputSuppressWarningsExpanded7
             @SuppressWarnings(value={"unused"})
             Object o = new InputSuppressWarningsExpanded7() {
 
+                // violation 2 lines below 'The warning 'unchecked' cannot be suppressed'
                 @Override
                 @SuppressWarnings(value={"unchecked"})
-                // violation above 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }
@@ -61,9 +61,9 @@ public class InputSuppressWarningsExpanded7
         int cool();
     }
 
+    // violation 2 lines below 'The warning '' cannot be suppressed at this location'
     @Documented
     @SuppressWarnings(value={})
-    // violation above 'The warning '' cannot be suppressed at this location'
     @interface MoreSweetness {
         // 2 violations 3 lines below:
         // 'cannot be suppressed at this location'

@@ -32,8 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Rationale: Similar to anonymous inner classes, if lambda body becomes very long
  * it is hard to understand and to see the flow of the method
- * where the lambda is defined. Therefore, long lambda body
- * should usually be extracted to method.
+ * where the lambda is defined. Therefore, long lambda body should usually be extracted to method.
  * </p>
  *
  * @since 8.37
@@ -42,8 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class LambdaBodyLengthCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "maxLen.lambdaBody";
 

@@ -80,7 +80,8 @@
       </subsection>
       <subsection name="Notes" id="SuppressionXpathSingleFilter_Notes">
         <p>
-          <code>SuppressionXpathSingleFilter</code> can suppress Checks that have <code>Treewalker</code> as parent module.
+          <code>SuppressionXpathSingleFilter</code> can suppress Checks that have <code>Treewalker</code> as
+          parent module.
         </p>
       </subsection>
       <subsection name="Properties" id="SuppressionXpathSingleFilter_Properties">

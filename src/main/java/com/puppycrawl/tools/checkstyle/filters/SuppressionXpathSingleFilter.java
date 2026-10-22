@@ -50,7 +50,8 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
  *
  * <p>
  * Notes:
- * {@code SuppressionXpathSingleFilter} can suppress Checks that have {@code Treewalker} as parent module.
+ * {@code SuppressionXpathSingleFilter} can suppress Checks that have {@code Treewalker} as
+ * parent module.
  * </p>
  *
  * @since 8.18
@@ -142,8 +143,7 @@ public class SuppressionXpathSingleFilter extends AbstractAutomaticBean implemen
     }
 
     /**
-     * Setter to define a string matched against the ID of the check associated
-     * with an audit event.
+     * Setter to define a string matched against the ID of the check associated with an audit event.
      *
      * @param id the ID of the check
      * @since 8.18

@@ -88,8 +88,7 @@
         </p>
 
         <p>Fields in interfaces and annotations are automatically
-          public, static and final, so these modifiers are redundant as
-          well.</p>
+          public, static and final, so these modifiers are redundant as well.</p>
 
         <p>As annotations are a form of interface, their fields are also
           automatically public, static and final just as their

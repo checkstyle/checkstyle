@@ -17,7 +17,7 @@ class Example3 {
   Example3(int field1) {
     this.field1 = field1;
     field2 = 0;
-    foo(5); // violation, method call "foo(5)" requires "this"
+    foo(5); // violation 'Method call to 'foo' needs "this.".'
   }
 
   void method2(int i) {

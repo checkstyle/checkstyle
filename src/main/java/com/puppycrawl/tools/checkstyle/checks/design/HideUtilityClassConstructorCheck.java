@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * If you make the constructor protected you may want to consider the following constructor
  * implementation technique to disallow instantiating subclasses:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet :
  * public class StringUtils // not final to allow subclassing
  * {
  *   protected StringUtils() {
@@ -55,16 +55,21 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  *     // ...
  *   }
  * }
- * </code></pre></div>
+ * }
  *
  * @since 3.1
+ * @noinspection EmptyClass, NonFinalUtilityClass, UtilityClassWithoutPrivateConstructor,
+ *      NewExceptionWithoutArguments
+ * @noinspectionreason EmptyClass - until IDEA-394242
+ * @noinspectionreason NonFinalUtilityClass - until IDEA-394413
+ * @noinspectionreason UtilityClassWithoutPrivateConstructor - until IDEA-394416
+ * @noinspectionreason NewExceptionWithoutArguments - until IDEA-394415
  */
 @StatelessCheck
 public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "hide.utility.class";
 

@@ -66,11 +66,11 @@ public class IllegalIdentifierNameCheckExamplesTest extends AbstractExamplesModu
 
     @Test
     public void testExample3() throws Exception {
-        final String format = "^(?!var$|\\S*\\$)\\S+$";
+        final String format =
+                "(?i)^(?!(when|record|yield|var|permits|sealed|open|transitive|_)$|(.*\\$)).+$";
 
         final String[] expected = {
-            "16:11: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            "20:10: " + getCheckMessage(MSG_INVALID_PATTERN, "test$stuff", format),
+            "24:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);

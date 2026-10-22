@@ -22,8 +22,7 @@ package com.puppycrawl.tools.checkstyle.api;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 
 /**
- * Contains the constants for all the tokens contained in the Abstract
- * Syntax Tree.
+ * Contains the constants for all the tokens contained in the Abstract Syntax Tree.
  *
  * <p>Implementation detail: This class has been introduced to break
  * the circular dependency between packages.</p>
@@ -92,8 +91,7 @@ public final class TokenTypes {
      * which is one of the three mutually exclusive compilation-unit
      * forms ({@code OrdinaryCompilationUnit}, {@code CompactCompilationUnit},
      * {@code ModularCompilationUnit}). Import declarations and top-level members
-     * appear as direct children of this node. Compact source files cannot declare
-     * a package.
+     * appear as direct children of this node. Compact source files cannot declare a package.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -143,8 +141,7 @@ public final class TokenTypes {
 
     /**
      * Modifiers for type, method, and field declarations.  The
-     * modifiers element is always present even though it may have no
-     * children.
+     * modifiers element is always present even though it may have no children.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -162,8 +159,7 @@ public final class TokenTypes {
      *  `--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html">Java
      *     Language Specification, &sect;8</a>
      * @see #LITERAL_PUBLIC
      * @see #LITERAL_PROTECTED
@@ -184,8 +180,7 @@ public final class TokenTypes {
     /**
      * An object block.  These are children of class, interface, enum,
      * annotation and enum constant declarations.
-     * Also, object blocks are children of the new keyword when defining
-     * anonymous inner types.
+     * Also, object blocks are children of the new keyword when defining anonymous inner types.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -374,8 +369,7 @@ public final class TokenTypes {
 
     /**
      * A field or local variable declaration.  The children are
-     * modifiers, type, the identifier name, and an optional
-     * assignment statement.
+     * modifiers, type, the identifier name, and an optional assignment statement.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -444,8 +438,7 @@ public final class TokenTypes {
      *      `--RCURLY -> }
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.6">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.6">Java
      *     Language Specification&sect;8.6</a>
      * @see #SLIST
      * @see #OBJBLOCK
@@ -478,8 +471,7 @@ public final class TokenTypes {
      *      `--RCURLY -> }
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.7">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.7">Java
      *     Language Specification, &sect;8.7</a>
      * @see #SLIST
      * @see #OBJBLOCK
@@ -551,8 +543,7 @@ public final class TokenTypes {
      *     `--RCURLY -> }
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html">Java
      *     Language Specification, &sect;8</a>
      * @see #MODIFIERS
      * @see #IDENT
@@ -586,8 +577,7 @@ public final class TokenTypes {
      *     `--RCURLY -> }
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-9.html">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-9.html">Java
      *     Language Specification, &sect;9</a>
      * @see #MODIFIERS
      * @see #IDENT
@@ -627,8 +617,7 @@ public final class TokenTypes {
      * `--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.4">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.4">Java
      *     Language Specification &sect;7.4</a>
      * @see #DOT
      * @see #IDENT
@@ -643,8 +632,7 @@ public final class TokenTypes {
      * <p>If the array declaration represents a type, then the type of
      * the array elements is the first child.  Multidimensional arrays
      * may be regarded as arrays of arrays.  In other words, the first
-     * child of the array declaration is another array
-     * declaration.</p>
+     * child of the array declaration is another array declaration.</p>
      *
      * <p>For example:</p>
      * {@snippet :
@@ -665,11 +653,9 @@ public final class TokenTypes {
      *
      * <p>The array declaration may also represent an inline array
      * definition.  In this case, the first child will be either an
-     * expression specifying the length of the array or an array
-     * initialization block.</p>
+     * expression specifying the length of the array or an array initialization block.</p>
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-10.html">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-10.html">Java
      *     Language Specification &sect;10</a>
      * @see #TYPE
      * @see #ARRAY_INIT
@@ -680,8 +666,7 @@ public final class TokenTypes {
     /**
      * An extends clause.  This appears as part of class and interface
      * definitions.  This element appears even if the
-     * {@code extends} keyword is not explicitly used.  The child
-     * is an optional identifier.
+     * {@code extends} keyword is not explicitly used.  The child is an optional identifier.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -715,8 +700,7 @@ public final class TokenTypes {
     /**
      * An implements clause.  This always appears in a class or enum
      * declaration, even if there are no implemented interfaces.  The
-     * children are a comma separated list of zero or more
-     * identifiers.
+     * children are a comma separated list of zero or more identifiers.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -781,8 +765,7 @@ public final class TokenTypes {
     public static final int PARAMETERS = JavaLanguageLexer.PARAMETERS;
     /**
      * A parameter declaration. The last parameter in a list of parameters may
-     * be variable length (indicated by the ELLIPSIS child node immediately
-     * after the TYPE child).
+     * be variable length (indicated by the ELLIPSIS child node immediately after the TYPE child).
      *
      * <p>For example</p>
      * {@snippet :
@@ -875,8 +858,7 @@ public final class TokenTypes {
      *          `--RCURLY -> }
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.7">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.7">Java
      *     Language Specification, &sect;14.7</a>
      * @see #SLIST
      */
@@ -905,8 +887,7 @@ public final class TokenTypes {
      *         `--RPAREN -> )
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.16">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.16">Java
      *     Language Specification, &sect;15.16</a>
      * @see #EXPR
      * @see #TYPE
@@ -954,8 +935,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.14.1">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.14.1">Java
      *     Language Specification, &sect;15.14.1</a>
      * @see #EXPR
      * @see #INC
@@ -977,8 +957,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.14.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.14.2">Java
      *     Language Specification, &sect;15.14.2</a>
      * @see #EXPR
      * @see #DEC
@@ -1175,8 +1154,7 @@ public final class TokenTypes {
     public static final int ARRAY_INIT = JavaLanguageLexer.ARRAY_INIT;
     /**
      * An import declaration.  Import declarations are option, but
-     * must appear after the package declaration and before the first type
-     * declaration.
+     * must appear after the package declaration and before the first type declaration.
      *
      * <p>For example:</p>
      *
@@ -1196,8 +1174,7 @@ public final class TokenTypes {
      * `--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.5">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.5">Java
      *     Language Specification &sect;7.5</a>
      * @see #DOT
      * @see #IDENT
@@ -1224,8 +1201,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.4">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.4">Java
      *     Language Specification, &sect;15.15.4</a>
      * @see #EXPR
      */
@@ -1248,8 +1224,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.3">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.3">Java
      *     Language Specification, &sect;15.15.3</a>
      * @see #EXPR
      */
@@ -1257,8 +1232,7 @@ public final class TokenTypes {
     /**
      * A group of case clauses.  Case clauses with no associated
      * statements are grouped together into a case group.  The last
-     * child is a statement list containing the statements to execute
-     * upon a match.
+     * child is a statement list containing the statements to execute upon a match.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -1301,8 +1275,7 @@ public final class TokenTypes {
      */
     public static final int CASE_GROUP = JavaLanguageLexer.CASE_GROUP;
     /**
-     * An expression list.  The children are a comma separated list of
-     * expressions.
+     * An expression list.  The children are a comma separated list of expressions.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -1337,8 +1310,7 @@ public final class TokenTypes {
     /**
      * A for loop initializer.  This is a child of
      * {@code LITERAL_FOR}.  The children of this element may be
-     * a comma separated list of variable declarations, an expression
-     * list, or empty.
+     * a comma separated list of variable declarations, an expression list, or empty.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -1384,8 +1356,7 @@ public final class TokenTypes {
     public static final int FOR_INIT = JavaLanguageLexer.FOR_INIT;
     /**
      * A for loop condition.  This is a child of
-     * {@code LITERAL_FOR}.  The child of this element is an
-     * optional expression.
+     * {@code LITERAL_FOR}.  The child of this element is an optional expression.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -1432,8 +1403,7 @@ public final class TokenTypes {
 
     /**
      * A for loop iterator.  This is a child of
-     * {@code LITERAL_FOR}.  The child of this element is an
-     * optional expression list.
+     * {@code LITERAL_FOR}.  The child of this element is an optional expression list.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -1480,8 +1450,7 @@ public final class TokenTypes {
 
     /**
      * The empty statement.  This goes in place of an
-     * {@code SLIST} for a {@code for} or {@code while}
-     * loop body.
+     * {@code SLIST} for a {@code for} or {@code while} loop body.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -1498,8 +1467,7 @@ public final class TokenTypes {
      *  `--EMPTY_STAT -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.6">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.6">Java
      *     Language Specification, &sect;14.6</a>
      * @see #LITERAL_FOR
      * @see #LITERAL_WHILE
@@ -1963,11 +1931,9 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.5.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.5.2">Java
      *     Language Specification, &sect;7.5.2</a>
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.17.1">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.17.1">Java
      *     Language Specification, &sect;15.17.1</a>
      * @see #EXPR
      * @see #IMPORT
@@ -2124,8 +2090,7 @@ public final class TokenTypes {
 
     /**
      * The {@code synchronized} keyword.  This may be used as a
-     * modifier of a method or in the definition of a synchronized
-     * block.
+     * modifier of a method or in the definition of a synchronized block.
      *
      * <p>For example:</p>
      *
@@ -2163,8 +2128,7 @@ public final class TokenTypes {
         JavaLanguageLexer.LITERAL_SYNCHRONIZED;
 
     /**
-     * The {@code volatile} keyword. This may be used as a
-     * modifier of a field.
+     * The {@code volatile} keyword. This may be used as a modifier of a field.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -2190,8 +2154,7 @@ public final class TokenTypes {
 
     /**
      * The {@code class} keyword.  This element appears both
-     * as part of a class declaration, and inline to reference a
-     * class object.
+     * as part of a class declaration, and inline to reference a class object.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -2232,8 +2195,7 @@ public final class TokenTypes {
         JavaLanguageLexer.LITERAL_CLASS;
 
     /**
-     * The {@code interface} keyword. This token appears in
-     * interface definition.
+     * The {@code interface} keyword. This token appears in interface definition.
      *
      * <p>For example:</p>
      *
@@ -2524,8 +2486,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.1">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.1">Java
      *     Language Specification, &sect;15.26.1</a>
      * @see #EXPR
      */
@@ -2558,8 +2519,7 @@ public final class TokenTypes {
      *      `--RCURLY -> }
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.4.4">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.4.4">Java
      *     Language Specification, &sect;8.4.4</a>
      * @see #IDENT
      * @see #DOT
@@ -2685,8 +2645,7 @@ public final class TokenTypes {
     /**
      * The {@code for} keyword.  The children are {@code (},
      * an initializer, a condition, an iterator, a {@code )} and
-     * either a statement list, a single expression, or an empty
-     * statement.
+     * either a statement list, a single expression, or an empty statement.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -2908,8 +2867,7 @@ public final class TokenTypes {
 
     /**
      * The {@code return} keyword.  The first child is an
-     * optional expression for the return value.  The last child is a
-     * semicolon.
+     * optional expression for the return value.  The last child is a semicolon.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -3020,8 +2978,7 @@ public final class TokenTypes {
      *  `--RCURLY -> }
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.10">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.10">Java
      *     Language Specification, &sect;14.10</a>
      * @see #LPAREN
      * @see #EXPR
@@ -3058,8 +3015,7 @@ public final class TokenTypes {
      *  `--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.17">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.17">Java
      *     Language Specification, &sect;14.17</a>
      * @see #SLIST
      * @see #EXPR
@@ -3159,8 +3115,7 @@ public final class TokenTypes {
         JavaLanguageLexer.LITERAL_CASE;
 
     /**
-     * The {@code default} keyword.  This element has no
-     * children.
+     * The {@code default} keyword.  This element has no children.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -3215,8 +3170,7 @@ public final class TokenTypes {
 
     /**
      * The {@code try} keyword.  The children are a statement
-     * list, zero or more catch blocks and then an optional finally
-     * block.
+     * list, zero or more catch blocks and then an optional finally block.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -3233,8 +3187,7 @@ public final class TokenTypes {
      *          `--RCURLY -> }
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.19">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.19">Java
      *     Language Specification, &sect;14.19</a>
      * @see #SLIST
      * @see #LITERAL_CATCH
@@ -3522,8 +3475,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      *     Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      */
@@ -3545,8 +3497,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      *     Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      */
@@ -3570,8 +3521,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      *     Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      */
@@ -3593,8 +3543,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      *     Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      */
@@ -3613,15 +3562,13 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      *     Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      */
     public static final int MOD_ASSIGN = JavaLanguageLexer.MOD_ASSIGN;
     /**
-     * The {@code >>=} (signed right shift assignment)
-     * operator.
+     * The {@code >>=} (signed right shift assignment) operator.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -3637,15 +3584,13 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      *     Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      */
     public static final int SR_ASSIGN = JavaLanguageLexer.SR_ASSIGN;
     /**
-     * The {@code >>>=} (unsigned right shift assignment)
-     * operator.
+     * The {@code >>>=} (unsigned right shift assignment) operator.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -3661,8 +3606,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      *     Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      */
@@ -3670,8 +3614,7 @@ public final class TokenTypes {
     /**
      * The {@code <<=} (left shift assignment) operator.
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      *     Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      */
@@ -3693,8 +3636,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      *     Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      */
@@ -3702,8 +3644,7 @@ public final class TokenTypes {
     /**
      * The {@code ^=} (bitwise exclusive OR assignment) operator.
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      *     Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      */
@@ -3725,16 +3666,14 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      *     Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      */
     public static final int BOR_ASSIGN = JavaLanguageLexer.BOR_ASSIGN;
     /**
      * The {@code ?} (conditional) operator.  Technically,
-     * the colon is also part of this operator, but it appears as a
-     * separate token.
+     * the colon is also part of this operator, but it appears as a separate token.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -3762,8 +3701,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.25">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.25">Java
      *     Language Specification, &sect;15.25</a>
      * @see #EXPR
      * @see #COLON
@@ -3793,8 +3731,7 @@ public final class TokenTypes {
      *  |   |--RCURLY -> }
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.24">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.24">Java
      *     Language Specification, &sect;15.24</a>
      * @see #EXPR
      */
@@ -3821,8 +3758,7 @@ public final class TokenTypes {
      *  |   |--RCURLY -> }
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.23">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.23">Java
      *     Language Specification, &sect;15.23</a>
      * @see #EXPR
      */
@@ -3846,8 +3782,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.1">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.1">Java
      *     Language Specification, &sect;15.22.1</a>
      * @see #EXPR
      */
@@ -3855,8 +3790,7 @@ public final class TokenTypes {
     /**
      * The {@code ^} (bitwise exclusive OR) operator.
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.1">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.1">Java
      *     Language Specification, &sect;15.22.1</a>
      * @see #EXPR
      */
@@ -3880,8 +3814,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.1">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.1">Java
      *     Language Specification, &sect;15.22.1</a>
      * @see #EXPR
      */
@@ -4060,8 +3993,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.20.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.20.2">Java
      *     Language Specification, &sect;15.20.2</a>
      * @see #EXPR
      * @see #METHOD_CALL
@@ -4093,8 +4025,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
      *     Language Specification, &sect;15.19</a>
      * @see #EXPR
      */
@@ -4118,8 +4049,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
      *     Language Specification, &sect;15.19</a>
      * @see #EXPR
      */
@@ -4141,8 +4071,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
      *     Language Specification, &sect;15.19</a>
      * @see #EXPR
      */
@@ -4166,8 +4095,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.18">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.18">Java
      *     Language Specification, &sect;15.18</a>
      * @see #EXPR
      */
@@ -4191,8 +4119,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.18">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.18">Java
      *     Language Specification, &sect;15.18</a>
      * @see #EXPR
      */
@@ -4216,8 +4143,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.17.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.17.2">Java
      *     Language Specification, &sect;15.17.2</a>
      * @see #EXPR
      */
@@ -4241,8 +4167,7 @@ public final class TokenTypes {
      * SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.17.3">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.17.3">Java
      *     Language Specification, &sect;15.17.3</a>
      * @see #EXPR
      */
@@ -4263,8 +4188,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.1">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.1">Java
      *     Language Specification, &sect;15.15.1</a>
      * @see #EXPR
      * @see #POST_INC
@@ -4286,8 +4210,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.2">Java
      *     Language Specification, &sect;15.15.2</a>
      * @see #EXPR
      * @see #POST_DEC
@@ -4311,8 +4234,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.5">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.5">Java
      *     Language Specification, &sect;15.15.5</a>
      * @see #EXPR
      */
@@ -4335,8 +4257,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.6">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.6">Java
      *     Language Specification, &sect;15.15.6</a>
      * @see #EXPR
      */
@@ -4362,8 +4283,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.3">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.3">Java
      *     Language Specification, &sect;3.10.3</a>
      * @see #EXPR
      * @see #LITERAL_FALSE
@@ -4392,8 +4312,7 @@ public final class TokenTypes {
      *  `--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.3">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.3">Java
      *     Language Specification, &sect;3.10.3</a>
      * @see #EXPR
      * @see #LITERAL_TRUE
@@ -4422,8 +4341,7 @@ public final class TokenTypes {
      *  `--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.7">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.7">Java
      *     Language Specification, &sect;3.10.7</a>
      * @see #EXPR
      */
@@ -4432,8 +4350,7 @@ public final class TokenTypes {
 
     /**
      * The {@code new} keyword.  This element is used to define
-     * new instances of objects, new arrays, and new anonymous inner
-     * classes.
+     * new instances of objects, new arrays, and new anonymous inner classes.
      *
      * <p>For example:</p>
      *
@@ -4577,16 +4494,14 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">Java
      *     Language Specification, &sect;3.10.1</a>
      * @see #EXPR
      * @see #NUM_LONG
      */
     public static final int NUM_INT = JavaLanguageLexer.NUM_INT;
     /**
-     * A character literal.  This is a (possibly escaped) character
-     * enclosed in single quotes.
+     * A character literal.  This is a (possibly escaped) character enclosed in single quotes.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -4601,8 +4516,7 @@ public final class TokenTypes {
      *    `--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.4">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.4">Java
      *     Language Specification, &sect;3.10.4</a>
      * @see #EXPR
      */
@@ -4628,8 +4542,7 @@ public final class TokenTypes {
      *  |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.5">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.5">Java
      *     Language Specification, &sect;3.10.5</a>
      * @see #EXPR
      */
@@ -4654,8 +4567,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.2">Java
      *     Language Specification, &sect;3.10.2</a>
      * @see #EXPR
      * @see #NUM_DOUBLE
@@ -4663,8 +4575,7 @@ public final class TokenTypes {
     public static final int NUM_FLOAT = JavaLanguageLexer.NUM_FLOAT;
     /**
      * A long integer literal.  These are almost the same as integer
-     * literals, but they have an {@code L} or {@code l}
-     * (ell) suffix.
+     * literals, but they have an {@code L} or {@code l} (ell) suffix.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -4680,8 +4591,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">Java
      *     Language Specification, &sect;3.10.1</a>
      * @see #EXPR
      * @see #NUM_INT
@@ -4689,8 +4599,7 @@ public final class TokenTypes {
     public static final int NUM_LONG = JavaLanguageLexer.NUM_LONG;
     /**
      * A double precision floating point literal.  This is a floating
-     * point number with an optional {@code D} or {@code d}
-     * suffix.
+     * point number with an optional {@code D} or {@code d} suffix.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -4706,8 +4615,7 @@ public final class TokenTypes {
      * |--SEMI -> ;
      * }
      *
-     * @see <a
-     *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.2">Java
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.2">Java
      *     Language Specification, &sect;3.10.2</a>
      * @see #EXPR
      * @see #NUM_FLOAT
@@ -4715,8 +4623,7 @@ public final class TokenTypes {
     public static final int NUM_DOUBLE = JavaLanguageLexer.NUM_DOUBLE;
 
     /**
-     * The {@code assert} keyword.  This is only for Java 1.4 and
-     * later.
+     * The {@code assert} keyword.  This is only for Java 1.4 and later.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -4739,8 +4646,7 @@ public final class TokenTypes {
 
     /**
      * A static import declaration.  Static import declarations are optional,
-     * but must appear after the package declaration and before the type
-     * declaration.
+     * but must appear after the package declaration and before the type declaration.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -4759,8 +4665,7 @@ public final class TokenTypes {
      * `--SEMI -> ;
      * }
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
-     *     JSR201</a>
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201"> JSR201</a>
      * @see #LITERAL_STATIC
      * @see #DOT
      * @see #IDENT
@@ -4772,8 +4677,7 @@ public final class TokenTypes {
         JavaLanguageLexer.STATIC_IMPORT;
 
     /**
-     * An enum declaration. Its notable children are
-     * enum constant declarations followed by
+     * An enum declaration. Its notable children are enum constant declarations followed by
      * any construct that may be expected in a class body.
      *
      * <p>For example:</p>
@@ -4823,8 +4727,7 @@ public final class TokenTypes {
      *      `--RCURLY -> }
      * }
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
-     *     JSR201</a>
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201"> JSR201</a>
      * @see #MODIFIERS
      * @see #ENUM
      * @see #IDENT
@@ -4838,8 +4741,7 @@ public final class TokenTypes {
         JavaLanguageLexer.ENUM_DEF;
 
     /**
-     * The {@code enum} keyword.  This element appears
-     * as part of an enum declaration.
+     * The {@code enum} keyword.  This element appears as part of an enum declaration.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -4869,8 +4771,7 @@ public final class TokenTypes {
 
     /**
      * An enum constant declaration. Its notable children are annotations,
-     * arguments and object block akin to an anonymous
-     * inner class' body.
+     * arguments and object block akin to an anonymous inner class' body.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -4908,8 +4809,7 @@ public final class TokenTypes {
      *   |       `--RCURLY -> }
      * }
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
-     *     JSR201</a>
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201"> JSR201</a>
      * @see #ANNOTATIONS
      * @see #MODIFIERS
      * @see #IDENT
@@ -4995,8 +4895,7 @@ public final class TokenTypes {
      *      `--RCURLY -> }
      * }
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
-     *     JSR201</a>
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201"> JSR201</a>
      * @see #MODIFIERS
      * @see #LITERAL_INTERFACE
      * @see #IDENT
@@ -5009,8 +4908,7 @@ public final class TokenTypes {
     /**
      * An annotation field declaration.  The notable children are modifiers,
      * field type, field name and an optional default value (a conditional
-     * compile-time constant expression). Default values may also be
-     * annotations.
+     * compile-time constant expression). Default values may also be annotations.
      *
      * <p>For example:</p>
      *
@@ -5034,8 +4932,7 @@ public final class TokenTypes {
      *  `--SEMI -> ;
      * }
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
-     *     JSR201</a>
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201"> JSR201</a>
      * @see #MODIFIERS
      * @see #TYPE
      * @see #LITERAL_DEFAULT
@@ -5068,8 +4965,7 @@ public final class TokenTypes {
      *  `--SEMI -> ;
      * }
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
-     *     JSR201</a>
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201"> JSR201</a>
      * @see #ANNOTATION
      * @see #AT
      * @see #IDENT
@@ -5112,8 +5008,7 @@ public final class TokenTypes {
      *  `--RPAREN -> )
      * }
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
-     *     JSR201</a>
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201"> JSR201</a>
      * @see #MODIFIERS
      * @see #IDENT
      * @see #ANNOTATION_MEMBER_VALUE_PAIR
@@ -5147,8 +5042,7 @@ public final class TokenTypes {
      *  `--RPAREN -> )
      * }
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
-     *     JSR201</a>
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201"> JSR201</a>
      * @see #ANNOTATION
      * @see #IDENT
      */
@@ -5160,8 +5054,7 @@ public final class TokenTypes {
      * Initializers can not be nested.
      * An initializer may be present as a default to an annotation
      * member, as the single default value to an annotation
-     * (e.g. @Annotation({1,2})) or as the value of an annotation
-     * member value pair.
+     * (e.g. @Annotation({1,2})) or as the value of an annotation member value pair.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -5184,8 +5077,7 @@ public final class TokenTypes {
      *  `--RPAREN -> )
      * }
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
-     *     JSR201</a>
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201"> JSR201</a>
      * @see #ANNOTATION
      * @see #IDENT
      * @see #ANNOTATION_MEMBER_VALUE_PAIR
@@ -5196,8 +5088,7 @@ public final class TokenTypes {
     /**
      * A list of type parameters to a class, interface or
      * method definition. Children are LT, at least one
-     * TYPE_PARAMETER, zero or more of: a COMMAs followed by a single
-     * TYPE_PARAMETER and a final GT.
+     * TYPE_PARAMETER, zero or more of: a COMMAs followed by a single TYPE_PARAMETER and a final GT.
      *
      * <p>For example:</p>
      *
@@ -5318,8 +5209,7 @@ public final class TokenTypes {
 
     /**
      * A type arguments to a type reference or a method/ctor invocation.
-     * Children are either: type name or wildcard type with possible type
-     * upper or lower bounds.
+     * Children are either: type name or wildcard type with possible type upper or lower bounds.
      *
      * <p>For example: {@code List< ? super List> list }</p>
      *
@@ -5384,8 +5274,7 @@ public final class TokenTypes {
 
     /**
      * An upper bounds on a wildcard type argument or type parameter.
-     * This node has one child - the type that is being used for
-     * the bounding.
+     * This node has one child - the type that is being used for the bounding.
      *
      * <p>For example: {@code List< ? extends Number> list;}</p>
      *
@@ -5448,8 +5337,7 @@ public final class TokenTypes {
 
     /**
      * An {@code @} symbol - signifying an annotation instance or the prefix
-     * to the interface literal signifying the definition of an annotation
-     * declaration.
+     * to the interface literal signifying the definition of an annotation declaration.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -5471,8 +5359,7 @@ public final class TokenTypes {
      * `--SEMI -> ;
      * }
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
-     *     JSR201</a>
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201"> JSR201</a>
      */
     public static final int AT = JavaLanguageLexer.AT;
 
@@ -5508,8 +5395,7 @@ public final class TokenTypes {
      *       `--RCURLY -> }
      * }
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
-     *     JSR201</a>
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201"> JSR201</a>
      */
     public static final int ELLIPSIS = JavaLanguageLexer.ELLIPSIS;
 
@@ -5711,9 +5597,9 @@ public final class TokenTypes {
      * End of block comment: '* /'.
      *
      * <p>For example:</p>
-     * <pre>{@code
+     * {@snippet :
      * /*comment* /
-     * }</pre>
+     * }
      *
      * <p>parses as:</p>
      * {@snippet :
@@ -5783,8 +5669,7 @@ public final class TokenTypes {
             JavaLanguageLexer.PATTERN_VARIABLE_DEF;
 
     /**
-     * The {@code record} keyword.  This element appears
-     * as part of a record declaration.
+     * The {@code record} keyword.  This element appears as part of a record declaration.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -6032,8 +5917,7 @@ public final class TokenTypes {
             JavaLanguageLexer.TEXT_BLOCK_CONTENT;
 
     /**
-     * End of a Java 15 text block literal, delimited by three
-     * double quotes.
+     * End of a Java 15 text block literal, delimited by three double quotes.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -6063,8 +5947,7 @@ public final class TokenTypes {
             JavaLanguageLexer.TEXT_BLOCK_LITERAL_END;
 
     /**
-     * The {@code yield} keyword.  This element appears
-     * as part of a yield statement.
+     * The {@code yield} keyword.  This element appears as part of a yield statement.
      *
      * <p>For example:</p>
      * {@snippet :
@@ -6993,8 +6876,7 @@ public final class TokenTypes {
 
     /**
      * A to clause. Limits an {@link #EXPORTS} or {@link #OPENS} directive to
-     * the named friend modules. Its children are the module names, separated
-     * by commas.
+     * the named friend modules. Its children are the module names, separated by commas.
      *
      * <p>For example:</p>
      * {@snippet :

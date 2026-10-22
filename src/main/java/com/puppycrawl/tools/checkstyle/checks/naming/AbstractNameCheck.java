@@ -32,8 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  */
 @StatelessCheck
-public abstract class AbstractNameCheck
-    extends AbstractCheck {
+public abstract class AbstractNameCheck extends AbstractCheck {
 
     /** The key for the message. */
     private final String messageKey;
@@ -53,12 +52,10 @@ public abstract class AbstractNameCheck
     }
 
     /**
-     * Decides whether the name of an AST should be checked against
-     * the format regexp.
+     * Decides whether the name of an AST should be checked against the format regexp.
      *
      * @param ast the AST to check.
-     * @return true if the IDENT subnode of ast should be checked against
-     *     the format regexp.
+     * @return true if the IDENT subnode of ast should be checked against the format regexp.
      */
     protected abstract boolean mustCheckName(DetailAST ast);
 

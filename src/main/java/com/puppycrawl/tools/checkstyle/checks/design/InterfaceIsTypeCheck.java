@@ -46,12 +46,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @since 3.1
  */
 @StatelessCheck
-public final class InterfaceIsTypeCheck
-        extends AbstractCheck {
+public final class InterfaceIsTypeCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "interface.type";
 

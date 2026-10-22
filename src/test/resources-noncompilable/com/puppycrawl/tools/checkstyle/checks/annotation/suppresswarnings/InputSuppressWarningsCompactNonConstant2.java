@@ -44,9 +44,9 @@ public class InputSuppressWarningsCompactNonConstant2
             @SuppressWarnings({"unused"})
             Object o = new InputSuppressWarningsCompactNonConstant2() {
 
+                // violation 2 lines below 'The warning 'unchecked' cannot be suppressed'
                 @Override
                 @SuppressWarnings({"unchecked"})
-                // violation above 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }
@@ -61,9 +61,9 @@ public class InputSuppressWarningsCompactNonConstant2
         int cool();
     }
 
+    // violation 2 lines below 'The warning '' cannot be suppressed at this location'
     @Documented
     @SuppressWarnings({})
-    // violation above 'The warning '' cannot be suppressed at this location'
     @interface MoreSweetness {
         // 2 violations 3 lines below:
         // 'cannot be suppressed at this location'
@@ -121,24 +121,24 @@ public class InputSuppressWarningsCompactNonConstant2
         public void aCond2() {
 
         }
-        // violation 6 lines below 'The warning 'unchecked' cannot be suppressed at this location'
-        // 4 violations 6 lines below:
+        // violation 13 lines below 'The warning 'unchecked' cannot be suppressed at this location'
+        // 4 violations 13 lines below:
         // 'cannot be suppressed at this location'
         // 'cannot be suppressed at this location'
         // 'cannot be suppressed at this location'
         // 'cannot be suppressed at this location'
+        // 2 violations 9 lines below:
+        // 'cannot be suppressed at this location'
+        // 'cannot be suppressed at this location'
+        // 2 violations 7 lines below:
+        // 'cannot be suppressed at this location'
+        // 'cannot be suppressed at this location'
+        // violation 5 lines below 'The warning 'unused' cannot be suppressed at this location'
         @java.lang.SuppressWarnings({(false) ? "unchecked" :
                 ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused",
             (false) ? "unchecked" : ("" == "") ? (false) ? (true) ? "" :
                     "foo" : "   " :
                     "unused"})
-        // 2 violations 3 lines above:
-        // 'cannot be suppressed at this location'
-        // 'cannot be suppressed at this location'
-        // 2 violations 5 lines above:
-        // 'cannot be suppressed at this location'
-        // 'cannot be suppressed at this location'
-        // violation 7 lines above 'The warning 'unused' cannot be suppressed at this location'
         public void seriously() {
 
         }

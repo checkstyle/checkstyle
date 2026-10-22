@@ -25,8 +25,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
-public class IllegalTokenCheckTest
-    extends AbstractModuleTestSupport {
+public class IllegalTokenCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

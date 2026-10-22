@@ -188,14 +188,14 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "60:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
             "66:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
             "66:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "NullPointerException"),
-            "71:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
-            "79:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
-            "83:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "WrongParam"),
-            "85:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
-            "85:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aTwo"),
-            "91:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "Unneeded"),
-            "92: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
-            "101:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
+            "74:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "82:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "86:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "WrongParam"),
+            "88:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "88:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aTwo"),
+            "97:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "Unneeded"),
+            "98: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
+            "107:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
 
         };
         verifyWithInlineConfigParser(

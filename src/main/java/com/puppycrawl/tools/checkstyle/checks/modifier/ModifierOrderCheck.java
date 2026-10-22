@@ -78,24 +78,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @since 3.0
  */
 @FileStatefulCheck
-public class ModifierOrderCheck
-    extends AbstractCheck {
+public class ModifierOrderCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_ANNOTATION_ORDER = "annotation.order";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_MODIFIER_ORDER = "mod.order";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_MODIFIER_CUSTOM_ORDER = "mod.custom.order";
 
@@ -188,12 +184,10 @@ public class ModifierOrderCheck
     }
 
     /**
-     * Checks if the modifiers were added in the order suggested
-     * in the Java language specification.
+     * Checks if the modifiers were added in the order suggested in the Java language specification.
      *
      * @param modifiers list of modifier AST tokens
-     * @return null if the order is correct, otherwise returns the offending
-     *     modifier AST.
+     * @return null if the order is correct, otherwise returns the offending modifier AST.
      */
     private DetailAST checkOrderSuggestedByJls(List<DetailAST> modifiers) {
         final Iterator<DetailAST> iterator = modifiers.iterator();

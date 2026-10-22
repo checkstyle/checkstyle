@@ -56,7 +56,6 @@ public record InputTextBlocksInAnnotation(
   void method1() {
   }
 
-
   // violation 3 lines below 'Opening quotes (""") of text-block must be on the new line'
   // violation 2 lines below 'Each line of text in the text block must be indented'
   // violation 3 lines below 'Text-block quotes are not vertically aligned'

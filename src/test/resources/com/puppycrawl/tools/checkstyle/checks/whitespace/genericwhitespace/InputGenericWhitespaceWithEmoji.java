@@ -37,7 +37,10 @@ public class InputGenericWhitespaceWithEmoji {
     public int getConstructor(Class<?>... parameterTypes)
     {
         Collections.<Object>emptySet();
-        Collections. /*da sd😆sd*/ <Object> emptySet(); // 2 violations
+        Collections. /*da sd😆sd*/ <Object> emptySet();
+        // 2 violations above:
+        //  ''<' is preceded with whitespace.'
+        //  ''>' is followed by whitespace.'
         return 666;
     }
     Object ok2 = new <String>Outer.Inner();

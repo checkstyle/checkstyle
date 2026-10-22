@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Setup local maven cache
         uses: actions/cache/restore@v6
@@ -29,7 +31,7 @@ jobs:
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - name: Set up JDK
-        uses: actions/setup-java@v6.0.1
+        uses: actions/setup-java@v6.1.0
         with:
           java-version: '21'
           distribution: 'temurin'
@@ -39,7 +41,7 @@ jobs:
           ./.ci/site-latest.sh generate-site
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v6
+        uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd  # v6
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

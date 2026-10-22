@@ -127,6 +127,16 @@
           </tr>
           <tr>
             <td>
+              <a href="exceptionthrowshouldusecontext.html#ExceptionThrowShouldUseContext">
+                ExceptionThrowShouldUseContext
+              </a>
+            </td>
+            <td>
+              Checks that exception throw statements in catch blocks use context variables.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="explicitinitialization.html#ExplicitInitialization">
                 ExplicitInitialization
               </a>
@@ -386,6 +396,18 @@
           </tr>
           <tr>
             <td>
+              <a href="nocausegetmessageinexceptionconstructor.html#NoCauseGetMessageInExceptionConstructor">
+                NoCauseGetMessageInExceptionConstructor
+              </a>
+            </td>
+            <td>
+              Checks that throw statements within catch blocks do not use the caught exception's
+              getMessage() call when the thrown exception is the same type as the caught exception,
+              as rethrowing the same exception type with its own message is redundant.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="noclone.html#NoClone">
                 NoClone
               </a>
@@ -463,6 +485,18 @@
             </td>
             <td>
               Checks for assignment of pattern variables.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="redundantthis.html#RedundantThis">
+                RedundantThis
+              </a>
+            </td>
+            <td>
+              Checks that references to instance variables and methods of the current object avoid
+              unnecessary use of <code>this</code>, unless it is required to resolve ambiguity with
+              a shadowed field.
             </td>
           </tr>
           <tr>

@@ -96,8 +96,7 @@ public class ObjectBlockHandler extends BlockParentHandler {
     /**
      * A shortcut for the corresponding property.
      *
-     * @return value of lineWrappingIndentation property
-     *         from the indentation context
+     * @return value of lineWrappingIndentation property from the indentation context
      */
     private int getLineWrappingIndentation() {
         return getContext().getLineWrappingIndentation();

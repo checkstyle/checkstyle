@@ -30,8 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class FileLengthCheckTest
-    extends AbstractModuleTestSupport {
+public class FileLengthCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
@@ -80,8 +79,10 @@ public class FileLengthCheckTest
         assertWithMessage("Invalid exception message")
             .that(exc.getMessage())
             .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.checks."
-                + "sizes.FileLengthCheck - "
-                + "illegal value 'abc' for property 'max'");
+                + "sizes.FileLengthCheck");
+        assertWithMessage("Invalid exception message")
+            .that(exc.getCause().getMessage())
+            .isEqualTo("illegal value 'abc' for property 'max'");
     }
 
     @Test

@@ -89,31 +89,26 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * @since 3.1
  */
 @StatelessCheck
-public class NewlineAtEndOfFileCheck
-    extends AbstractFileSetCheck {
+public class NewlineAtEndOfFileCheck extends AbstractFileSetCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_UNABLE_OPEN = "unable.open";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_NO_NEWLINE_EOF = "noNewlineAtEOF";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_NO_NEWLINE_EOF_WITH_SEPARATOR =
             "noNewlineAtEofWithSeparator";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_WRONG_ENDING = "wrong.line.end";
 
@@ -155,8 +150,7 @@ public class NewlineAtEndOfFileCheck
      * Reads the file provided and checks line separators.
      *
      * @param file the file to be processed
-     * @throws IOException When an IO error occurred while reading from the
-     *         file provided
+     * @throws IOException When an IO error occurred while reading from the file provided
      */
     private void readAndCheckFile(File file) throws IOException {
         // Cannot use lines as the line separators have been removed!
@@ -186,8 +180,7 @@ public class NewlineAtEndOfFileCheck
      * @param file The reader for the content to check
      * @param separator The line separator
      * @return boolean Whether the content ends with a line separator
-     * @throws IOException When an IO error occurred while reading from the
-     *         provided reader
+     * @throws IOException When an IO error occurred while reading from the provided reader
      */
     private static boolean endsWithNewline(RandomAccessFile file, LineSeparatorOption separator)
             throws IOException {

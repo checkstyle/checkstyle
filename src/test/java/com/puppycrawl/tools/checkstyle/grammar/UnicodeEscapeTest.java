@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Tests that extended unicode escapes can be parsed.
  */
-public class UnicodeEscapeTest
-    extends AbstractModuleTestSupport {
+public class UnicodeEscapeTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

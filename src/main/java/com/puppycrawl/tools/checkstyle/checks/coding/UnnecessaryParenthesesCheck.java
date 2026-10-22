@@ -65,8 +65,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>
  * In the first case, given that <em>a</em>, <em>b</em>, and <em>c</em> are
- * all {@code int} variables, the parentheses around {@code a + b}
- * are not needed.
+ * all {@code int} variables, the parentheses around {@code a + b} are not needed.
  * In the second case, parentheses are required as <em>q</em>, <em>r</em> are
  * of type {@code int} and <em>p</em> is of type {@code boolean}
  * and removing parentheses will give a compile-time error. Even if <em>q</em>
@@ -104,44 +103,37 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class UnnecessaryParenthesesCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_IDENT = "unnecessary.paren.ident";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_ASSIGN = "unnecessary.paren.assign";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_EXPR = "unnecessary.paren.expr";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_LITERAL = "unnecessary.paren.literal";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_STRING = "unnecessary.paren.string";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_RETURN = "unnecessary.paren.return";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_LAMBDA = "unnecessary.paren.lambda";
 
@@ -480,10 +472,8 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     /**
      * Tests if the given {@code DetailAST} is surrounded by parentheses.
      *
-     * @param ast the {@code DetailAST} to check if it is surrounded by
-     *        parentheses.
-     * @return {@code true} if {@code ast} is surrounded by
-     *         parentheses.
+     * @param ast the {@code DetailAST} to check if it is surrounded by parentheses.
+     * @return {@code true} if {@code ast} is surrounded by parentheses.
      */
     private static boolean isSurrounded(DetailAST ast) {
         final DetailAST prev = ast.getPreviousSibling();
@@ -495,8 +485,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      *
      * @param ast a {@code DetailAST} whose type is
      *        {@code TokenTypes.EXPR}.
-     * @return {@code true} if the expression is surrounded by
-     *         parentheses.
+     * @return {@code true} if the expression is surrounded by parentheses.
      */
     private static boolean isExprSurrounded(DetailAST ast) {
         return ast.getFirstChild().getType() == TokenTypes.LPAREN;
@@ -505,8 +494,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     /**
      * Checks whether an expression is surrounded by parentheses.
      *
-     * @param ast the {@code DetailAST} to check if it is surrounded by
-     *        parentheses.
+     * @param ast the {@code DetailAST} to check if it is surrounded by parentheses.
      */
     private void checkExpression(DetailAST ast) {
         // If 'parentToSkip' == 'ast', then we've already logged a
@@ -529,10 +517,8 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      * Checks if conditional, relational, bitwise binary operator, unary and postfix operators
      * in expressions are surrounded by unnecessary parentheses.
      *
-     * @param ast the {@code DetailAST} to check if it is surrounded by
-     *        unnecessary parentheses.
-     * @return {@code true} if the expression is surrounded by
-     *         unnecessary parentheses.
+     * @param ast the {@code DetailAST} to check if it is surrounded by unnecessary parentheses.
+     * @return {@code true} if the expression is surrounded by unnecessary parentheses.
      */
     private static boolean unnecessaryParenAroundOperators(DetailAST ast) {
         final int type = ast.getType();
@@ -674,8 +660,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
 
     /**
      * Returns the specified string chopped to {@code MAX_QUOTED_LENGTH}
-     * plus an ellipsis (...) if the length of the string exceeds {@code
-     * MAX_QUOTED_LENGTH}.
+     * plus an ellipsis (...) if the length of the string exceeds {@code MAX_QUOTED_LENGTH}.
      *
      * @param value the string to potentially chop.
      * @return the chopped string if {@code string} is longer than

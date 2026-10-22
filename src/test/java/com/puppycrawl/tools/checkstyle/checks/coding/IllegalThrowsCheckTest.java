@@ -89,8 +89,7 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Test to validate the IllegalThrowsCheck with <b>ignoreOverriddenMethods</b>
-     * property.
+     * Test to validate the IllegalThrowsCheck with <b>ignoreOverriddenMethods</b> property.
      */
     @Test
     public void testIgnoreOverriddenMethods() throws Exception {
@@ -102,15 +101,14 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Test to validate the IllegalThrowsCheck without <b>ignoreOverriddenMethods</b>
-     * property.
+     * Test to validate the IllegalThrowsCheck without <b>ignoreOverriddenMethods</b> property.
      */
     @Test
     public void testNotIgnoreOverriddenMethods() throws Exception {
 
         final String[] expected = {
-            "17:36: " + getCheckMessage(MSG_KEY, "RuntimeException"),
-            "22:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "18:36: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "24:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 
         verifyWithInlineConfigParser(

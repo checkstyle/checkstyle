@@ -38,6 +38,26 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "22:22: " + getCheckMessage(MSG_KEY, 21, 20),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputAnonInnerLengthCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCustom() throws Exception {
+        final String[] expected = {
+            "15:26: " + getCheckMessage(MSG_KEY, 3, 2),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputAnonInnerLengthCompactSourceFileCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final AnonInnerLengthCheck checkObj = new AnonInnerLengthCheck();
         final int[] expected = {TokenTypes.LITERAL_NEW};

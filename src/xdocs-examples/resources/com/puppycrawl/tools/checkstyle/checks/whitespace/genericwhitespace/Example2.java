@@ -12,11 +12,11 @@ import java.util.*;
 
 // xdoc section - start
 class Example2 {
-  List <String> l; // violation "<" followed by whitespace
-  public<T> void foo() {} // violation "<" not preceded with whitespace
-  List a = new ArrayList<> (); // violation ">" followed by whitespace
-  Map<Integer, String>m; // violation ">" not followed by whitespace
-  HashSet<Integer > set; // violation ">" preceded with whitespace
-  record License<T> () {} // violation ">" followed by whitespace
+  List <String> l; // violation ''<' is preceded with whitespace.'
+  public<T> void foo() {} // violation ''<' is not preceded with whitespace.'
+  List a = new ArrayList<> (); // violation ''>' is followed by whitespace.'
+  Map<Integer, String>m; // violation ''>' is followed by an illegal character.'
+  HashSet<Integer > set; // violation ''>' is preceded with whitespace.'
+  record License<T> () {} // violation ''>' is followed by whitespace.'
 }
 // xdoc section - end

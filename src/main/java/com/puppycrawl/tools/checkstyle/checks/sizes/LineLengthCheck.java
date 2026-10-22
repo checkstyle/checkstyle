@@ -53,22 +53,23 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * <li>
  * Trailing comments are taken into consideration while calculating the line length.
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet :
  * import java.util.regex.Pattern; // The length of this comment will be taken into consideration
- * </code></pre></div>
+ * }
  * In the example above the length of the import statement is just 31 characters but total length
  * will be 94 characters.
  * </li>
  * </ul>
  *
  * @since 3.0
+ * @noinspection EmptyClass
+ * @noinspectionreason EmptyClass - until IDEA-394242
  */
 @StatelessCheck
 public class LineLengthCheck extends AbstractFileSetCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "maxLineLen";
 

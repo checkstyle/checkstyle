@@ -19,12 +19,10 @@
 
 package org.checkstyle.suppressionxpathfilter;
 
-import java.io.File;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck;
 
 public class XpathRegressionFinalParametersTest extends AbstractXpathTestSupport {
@@ -38,14 +36,8 @@ public class XpathRegressionFinalParametersTest extends AbstractXpathTestSupport
 
     @Test
     public void testMethod() throws Exception {
-        final File fileToProcess =
-                  new File(getPath("InputXpathFinalParametersMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(FinalParametersCheck.class);
-
         final String[] expectedViolation = {
-            "5:24: " + getCheckMessage(FinalParametersCheck.class,
+            "14:24: " + getCheckMessage(FinalParametersCheck.class,
                     FinalParametersCheck.MSG_KEY, "argOne"),
         };
 
@@ -76,21 +68,16 @@ public class XpathRegressionFinalParametersTest extends AbstractXpathTestSupport
                     + "/PARAMETERS/PARAMETER_DEF[./IDENT[@text='argOne']]/TYPE/LITERAL_INT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathFinalParametersMethod.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testCtor() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathFinalParametersCtor.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(FinalParametersCheck.class);
-
-        moduleConfig.addProperty("tokens", "CTOR_DEF");
-
         final String[] expectedViolation = {
-            "5:42: " + getCheckMessage(FinalParametersCheck.class,
+            "14:42: " + getCheckMessage(FinalParametersCheck.class,
                         FinalParametersCheck.MSG_KEY, "argOne"),
         };
 
@@ -126,21 +113,16 @@ public class XpathRegressionFinalParametersTest extends AbstractXpathTestSupport
                         + "/PARAMETERS/PARAMETER_DEF[./IDENT[@text='argOne']]/TYPE/LITERAL_INT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathFinalParametersCtor.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testAnonymous() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathFinalParametersAnonymous.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(FinalParametersCheck.class);
-
-        moduleConfig.addProperty("ignorePrimitiveTypes", "true");
-
         final String[] expectedViolation = {
-            "11:32: " + getCheckMessage(FinalParametersCheck.class,
+            "20:32: " + getCheckMessage(FinalParametersCheck.class,
                     FinalParametersCheck.MSG_KEY, "argOne"),
         };
 
@@ -185,7 +167,10 @@ public class XpathRegressionFinalParametersTest extends AbstractXpathTestSupport
                         + "/PARAMETER_DEF[./IDENT[@text='argOne']]/TYPE/IDENT[@text='String']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathFinalParametersAnonymous.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
 }

@@ -47,7 +47,7 @@
           If you make the constructor protected you may want to consider the following constructor
           implementation technique to disallow instantiating subclasses:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 public class StringUtils // not final to allow subclassing
 {
   protected StringUtils() {
@@ -96,7 +96,7 @@ public class StringUtils // not final to allow subclassing
 </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation below 'should not have a public or default constructor'
+// violation below 'Utility classes should not have a public or default constructor.'
 @java.lang.Deprecated
 class Example1 {
 
@@ -123,12 +123,13 @@ class Bar {
   }
 }
 
-@Deprecated // violation 'should not have a public or default constructor'
+// violation below 'Utility classes should not have a public or default constructor.'
+@Deprecated
 class UtilityClass {
 
   static float f;
 }
-// violation below 'should not have a public or default constructor'
+// violation below 'Utility classes should not have a public or default constructor.'
 @SpringBootApplication
 class Application1 {
 
@@ -179,7 +180,8 @@ class Bar2 {
   }
 }
 
-@Deprecated // violation 'should not have a public or default constructor'
+// violation below 'Utility classes should not have a public or default constructor.'
+@Deprecated
 class UtilityClass2 {
 
   static float f;

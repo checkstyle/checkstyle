@@ -43,12 +43,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @since 3.0
  */
 @StatelessCheck
-public class TodoCommentCheck
-        extends AbstractCheck {
+public class TodoCommentCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "todo.match";
 

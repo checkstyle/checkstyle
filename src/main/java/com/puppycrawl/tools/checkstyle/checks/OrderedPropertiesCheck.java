@@ -137,8 +137,7 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
 
     /**
      * Method returns the index number where the key is detected (starting at 0).
-     * To assure that we get the correct line it starts at the point
-     * of the last occurrence.
+     * To assure that we get the correct line it starts at the point of the last occurrence.
      * Also, the previousProp should be in file before propKey.
      *
      * @param startLineNo start searching at line
@@ -246,6 +245,7 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
 
             return null;
         }
+
     }
 
 }

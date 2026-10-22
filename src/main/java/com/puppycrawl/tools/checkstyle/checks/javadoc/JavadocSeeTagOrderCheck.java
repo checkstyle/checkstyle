@@ -54,31 +54,30 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>Inside each member group, fields come first, then constructors, then
  * methods. Overloaded constructors and methods with the same name must be
- * grouped together and ordered by the number of parameters, with the fewest
- * parameters first.</p>
+ * grouped together and ordered by the number of parameters, with the fewest parameters first.</p>
  *
  * <p>For example, this is the order recommended by the OpenJDK documentation
  * comments style guide:</p>
- * <div class="wrapper"><pre>
- * &#64;see #field
- * &#64;see #Constructor(Type, Type...)
- * &#64;see #Constructor(Type id, Type id...)
- * &#64;see #method(Type, Type,...)
- * &#64;see #method(Type id, Type, id...)
- * &#64;see Class
- * &#64;see Class#field
- * &#64;see Class#Constructor(Type, Type...)
- * &#64;see Class#Constructor(Type id, Type id)
- * &#64;see Class#method(Type, Type,...)
- * &#64;see Class#method(Type id, Type id,...)
- * &#64;see package.Class
- * &#64;see package.Class#field
- * &#64;see package.Class#Constructor(Type, Type...)
- * &#64;see package.Class#Constructor(Type id, Type id)
- * &#64;see package.Class#method(Type, Type,...)
- * &#64;see package.Class#method(Type id, Type, id)
- * &#64;see package
- * </pre></div>
+ * {@snippet lang="text" :
+ * @see #field
+ * @see #Constructor(Type, Type...)
+ * @see #Constructor(Type id, Type id...)
+ * @see #method(Type, Type,...)
+ * @see #method(Type id, Type, id...)
+ * @see Class
+ * @see Class#field
+ * @see Class#Constructor(Type, Type...)
+ * @see Class#Constructor(Type id, Type id)
+ * @see Class#method(Type, Type,...)
+ * @see Class#method(Type id, Type id,...)
+ * @see package.Class
+ * @see package.Class#field
+ * @see package.Class#Constructor(Type, Type...)
+ * @see package.Class#Constructor(Type id, Type id)
+ * @see package.Class#method(Type, Type,...)
+ * @see package.Class#method(Type id, Type, id)
+ * @see package
+ * }
  *
  * <p>References that are not in a recognizable structured form (for example
  * {@code @see "Effective Java"}, or an HTML anchor) are ignored for ordering
@@ -256,10 +255,10 @@ public class JavadocSeeTagOrderCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Category of a {@code @see} reference, ordered from the closest to the most
-     * distant access.
+     * Category of a {@code @see} reference, ordered from the closest to the most distant access.
      */
     private enum Category {
+
         /** Local member such as {@code #field} or {@code #method()}. */
         LOCAL(0),
         /** Simple type reference such as {@code OtherClass}. */
@@ -303,6 +302,7 @@ public class JavadocSeeTagOrderCheck extends AbstractJavadocCheck {
      * against another kind within their own category.
      */
     private enum Kind {
+
         /** A field reference such as {@code #field}. */
         FIELD(0),
         /** A constructor reference such as {@code #Example()}. */
@@ -339,8 +339,7 @@ public class JavadocSeeTagOrderCheck extends AbstractJavadocCheck {
      *
      * @param category category that defines the primary structural ordering
      * @param kind whether the reference is a field, constructor, or method
-     * @param qualifier owning type name, or an empty string for local and
-     *     non-member references
+     * @param qualifier owning type name, or an empty string for local and non-member references
      * @param name simple member or type name used for grouping
      * @param parameterCount number of parameters, used to order overloaded methods
      * @param text full reference text used for messages

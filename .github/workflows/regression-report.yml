@@ -23,7 +23,7 @@ env:
   # yamllint disable-line rule:line-length
   DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/test-configs/main/extractor/src/main/resources/list-of-projects.yml"
   BASE_TEST_CONFIGS_URL: "https://raw.githubusercontent.com/checkstyle/test-configs/main"
-  EXTRACTOR_VERSION: 2024-10-08
+  EXTRACTOR_VERSION: 2026-10-20
   DIFF_TOOL_VERSION: "1.0-2026-08-26"
   PATCH_DIFF_TOOL_VERSION: "0.1-SNAPSHOT"
   CACHE_KEY: "regression-report-${{ github.run_id }}"
@@ -55,12 +55,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  check_pr_status:
+  check_triggerer:
     if: |
       (github.event.issue.pull_request || inputs.pr-number != '')
-      && (github.event_name != 'issue_comment'
-          || contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'),
-                      github.event.comment.author_association))
       && (startsWith(inputs.trigger-phrase || github.event.comment.body,
                      'Github, generate report for ')
           ||  startsWith(inputs.trigger-phrase || github.event.comment.body,
@@ -77,6 +74,38 @@ jobs:
                          'Github, generate baseline report')
           ||  startsWith(inputs.trigger-phrase || github.event.comment.body,
                          'GitHub, generate baseline report'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Reject comment from untrusted triggerer
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AUTHOR_ASSOCIATION: ${{ github.event.comment.author_association }}
+          LOGIN: ${{ github.event.comment.user.login }}
+          REPO: ${{ github.repository }}
+          MIN_MERGED_PRS: 5
+        run: |
+          set -eu
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Trusted via workflow_dispatch"
+            exit 0
+          fi
+          case "$AUTHOR_ASSOCIATION" in
+            OWNER|MEMBER|COLLABORATOR)
+              echo "Trusted via author_association=$AUTHOR_ASSOCIATION"
+              exit 0
+              ;;
+          esac
+          QUERY="repo:$REPO+is:pr+is:merged+author:$LOGIN"
+          COUNT=$(gh api "search/issues?q=$QUERY" --jq .total_count)
+          echo "Merged PR count for $LOGIN in $REPO: $COUNT (threshold $MIN_MERGED_PRS)"
+          if [ "$COUNT" -ge "$MIN_MERGED_PRS" ]; then
+            exit 0
+          fi
+          echo "Rejecting: $LOGIN has $COUNT merged PRs, below threshold $MIN_MERGED_PRS"
+          exit 1
+
+  check_pr_status:
+    needs: check_triggerer
 
     runs-on: ubuntu-latest
     steps:
@@ -122,24 +151,28 @@ jobs:
       - name: Checkout PR branch
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: ${{ steps.get_pr_details.outputs.fork_repo }}
           ref: ${{ steps.get_pr_details.outputs.branch }}
 
       - name: Checkout master branch
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: checkstyle/checkstyle
           path: .ci-temp/checkstyle
 
       - name: Setup Git remotes
+        env:
+          FORK_REPO: ${{ steps.get_pr_details.outputs.fork_repo }}
+          BRANCH: ${{ steps.get_pr_details.outputs.branch }}
         run: |
           cd .ci-temp/checkstyle
           git remote add upstream https://github.com/checkstyle/checkstyle.git
-          git remote add forked https://github.com/${{ steps.get_pr_details.outputs.fork_repo }}.git
+          git remote add forked "https://github.com/$FORK_REPO.git"
           git fetch upstream
           git fetch forked
-          git checkout -b ${{ steps.get_pr_details.outputs.branch }} \
-               forked/${{ steps.get_pr_details.outputs.branch }}
+          git checkout -b "$BRANCH" "forked/$BRANCH"
 
       - name: Tar workspace artifact
         run: |
@@ -309,14 +342,14 @@ jobs:
           ./.ci/append-to-github-output.sh "input_file" "$FOUND_FILE"
 
       - name: Download Extractor JAR
-        uses: robinraju/release-downloader@v1.8
+        uses: robinraju/release-downloader@28fc21f50d76778e7023361aa1f863e717d3d56f  # v1.13
         with:
           repository: "checkstyle/test-configs"
           tag: "extractor-${{env.EXTRACTOR_VERSION}}"
           fileName: "extractor-all-${{env.EXTRACTOR_VERSION}}.jar"
 
       - name: Set up Java 21
-        uses: actions/setup-java@v6.0.1
+        uses: actions/setup-java@v6.1.0
         with:
           distribution: 'temurin'
           java-version: '21'
@@ -679,7 +712,7 @@ jobs:
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - name: Download DiffTool JAR
-        uses: robinraju/release-downloader@v1.8
+        uses: robinraju/release-downloader@28fc21f50d76778e7023361aa1f863e717d3d56f  # v1.13
         with:
           repository: "checkstyle/test-configs"
           tag: "diff-java-tool-${{ env.DIFF_TOOL_VERSION }}"
@@ -687,7 +720,7 @@ jobs:
           out-file-path: ".ci-temp"
 
       - name: Download patch-diff-report-tool JAR
-        uses: robinraju/release-downloader@v1.8
+        uses: robinraju/release-downloader@28fc21f50d76778e7023361aa1f863e717d3d56f  # v1.13
         with:
           repository: "checkstyle/contribution"
           tag: "patch-diff-report-tool-${{ env.PATCH_DIFF_TOOL_VERSION }}"
@@ -696,7 +729,7 @@ jobs:
           out-file-path: ".ci-temp"
 
       - name: Set up Java 21
-        uses: actions/setup-java@v6.0.1
+        uses: actions/setup-java@v6.1.0
         with:
           distribution: 'temurin'
           java-version: '21'
@@ -873,6 +906,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: checkstyle/checkstyle
 
       - name: Download report artifact
@@ -888,7 +922,7 @@ jobs:
           rm regression-report.tar
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v6
+        uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd  # v6
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -1102,7 +1136,7 @@ jobs:
           ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
 
       - name: Comment PR
-        uses: peter-evans/create-or-update-comment@v5
+        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9  # v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}

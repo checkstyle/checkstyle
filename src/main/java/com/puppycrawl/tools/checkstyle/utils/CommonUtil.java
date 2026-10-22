@@ -191,8 +191,7 @@ public final class CommonUtil {
 
     /**
      * Returns the length of a String prefix with tabs expanded.
-     * Each tab is counted as the number of characters is
-     * takes to jump to the next tab stop.
+     * Each tab is counted as the number of characters is takes to jump to the next tab stop.
      *
      * @param inputString
      *            the input String
@@ -288,7 +287,7 @@ public final class CommonUtil {
             return targetClass.getConstructor(parameterTypes);
         }
         catch (NoSuchMethodException exc) {
-            throw new IllegalStateException(exc);
+            throw new IllegalStateException(targetClass.getName(), exc);
         }
     }
 
@@ -310,7 +309,7 @@ public final class CommonUtil {
             return constructor.newInstance(parameters);
         }
         catch (InstantiationException | IllegalAccessException | InvocationTargetException exc) {
-            throw new IllegalStateException(exc);
+            throw new IllegalStateException(constructor.getName(), exc);
         }
     }
 
@@ -327,7 +326,8 @@ public final class CommonUtil {
                 closeable.close();
             }
             catch (IOException exc) {
-                throw new IllegalStateException("Cannot close the stream", exc);
+                throw new IllegalStateException("Cannot close the stream "
+                        + closeable.getClass().getName(), exc);
             }
         }
     }

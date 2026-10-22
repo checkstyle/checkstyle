@@ -62,6 +62,8 @@
 
   <!-- till https://issues.apache.org/jira/browse/MRELEASE-1008 -->
   <suppress id="lineLength" files="pom.xml"/>
+  <!-- pinned docker digest for actionlint cannot be split, see Issue #21642 -->
+  <suppress id="lineLength" files=".github/workflows/actionlint.yml"/>
   <!-- this file cannot be line wraped -->
   <suppress id="lineLength" files="config/signatures.txt"/>
   <suppress id="lineLength" files="config/signatures-test.txt"/>
@@ -90,6 +92,8 @@
          files="src/test/resources/.*/abstractjavadoc/InputAbstractJavadocPosition.*\.java"/>
   <suppress id="lineLength"
          files="src/test/resources/.*/abstractjavadoc/InputAbstractJavadocLeaveToken.*\.java"/>
+  <suppress id="lineLength"
+         files="src/test/resources/.*/javadocutilizingtrailingspace/InputJavadocUtilizingTrailingSpace.*\.java"/>
   <!-- Indentation inputs align trailing comments and can exceed the line length limit. -->
   <suppress id="lineLength"
          files="src/test/resources/.*/indentation/indentation/InputIndentation.*\.java"/>
@@ -99,7 +103,6 @@
          files="src/it/resources/.*/ruleimportstatements/.*\.java"/>
   <suppress id="lineLength"
          files="src/test/resources/.*/checks/whitespace/whitespaceafter/example1/package-info\.java"/>
-
   <!-- we can not change expected as it will require change of main class logic -->
   <suppress id="lineLength"
          files="src/test/resources/.*/.*ExpectedXMLLogger.*\.xml"/>
@@ -200,6 +203,10 @@
              files="src/test/resources/.*/defaultlogger/ExpectedDefaultLoggerErrorsTestIgnoreSeverityLevel\.txt"/>
   <suppress id="noEmptyFile"
              files="src/test/resources/.*/InputLineEndingOneLineLf\.txt"/>
+  <suppress id="noEmptyFile"
+             files="src/test/resources/.*/regexpmultiline/InputRegexpMultilineMinimum\.txt"/>
+  <suppress id="noEmptyFile"
+             files="src/test/resources/.*/regexpmultiline/InputRegexpMultilineMinimumCustomMessage\.txt"/>
   <!-- can be empty until new modern syntax started to be used -->
   <suppress id="noEmptyFile"
             files="config/google-java-format/excluded/noncompilable-input-paths\.txt"/>
@@ -267,6 +274,8 @@
   <suppress id="propertiesMacroMustExist"
           files="src/site/xdoc/checks/coding/equalshashcode.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src/site/xdoc/checks/coding/exceptionthrowshouldusecontext.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
           files="src/site/xdoc/checks/coding/expressionoverblocklambda.xml.template"/>
   <suppress id="propertiesMacroMustExist"
           files="src/site/xdoc/checks/coding/innerassignment.xml.template"/>
@@ -280,6 +289,8 @@
          files="src/site/xdoc/checks/coding/multiplevariabledeclarations.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/coding/noarraytrailingcomma.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src/site/xdoc/checks/coding/nocausegetmessageinexceptionconstructor.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/coding/noclone.xml.template"/>
   <suppress id="propertiesMacroMustExist"
@@ -325,6 +336,8 @@
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/misc/openjdkmethodthrowsalignment.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src/site/xdoc/checks/misc/classheaderwrapopenjdk.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]imports[\\/]unnecessaryfullyqualifiedtype.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/javadoc/javadocendcommentdelimiter.xml.template"/>
@@ -344,6 +357,8 @@
          files="src/site/xdoc/checks/whitespace/genericwhitespace.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/whitespace/nowhitespacebeforecasedefaultcolon.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src/site/xdoc/checks/whitespace/openjdkmethodparameteralignment.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/filters/suppresswarningsfilter.xml.template"/>
   <suppress id="propertiesMacroMustExist"

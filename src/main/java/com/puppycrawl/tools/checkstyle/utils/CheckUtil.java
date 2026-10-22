@@ -136,8 +136,7 @@ public final class CheckUtil {
 
     /**
      * Parses the string argument as an integer or a long in the radix specified by
-     * the second argument. The characters in the string must all be digits of
-     * the specified radix.
+     * the second argument. The characters in the string must all be digits of the specified radix.
      *
      * @param text the String containing the integer representation to be
      *     parsed. Precondition: text contains a parsable int.
@@ -287,8 +286,7 @@ public final class CheckUtil {
      *
      * <p>A receiver parameter is a special parameter that
      * represents the object for which the method is invoked.
-     * It is denoted by the reserved keyword {@code this}
-     * in the method declaration. Check
+     * It is denoted by the reserved keyword {@code this} in the method declaration. Check
      * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
      * PARAMETER_DEF</a>
      * </p>

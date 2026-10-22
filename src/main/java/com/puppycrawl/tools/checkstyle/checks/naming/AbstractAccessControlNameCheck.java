@@ -24,8 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * Abstract class for checking a class member (field/method)'s name conforms to
- * a specified pattern.
+ * Abstract class for checking a class member (field/method)'s name conforms to a specified pattern.
  *
  * <p>
  * This class extends {@link AbstractNameCheck} with support for access level
@@ -43,8 +42,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </ol>
  *
  */
-public abstract class AbstractAccessControlNameCheck
-    extends AbstractNameCheck {
+public abstract class AbstractAccessControlNameCheck extends AbstractNameCheck {
 
     /** If true, applies the check be public members. */
     private boolean applyToPublic = true;
@@ -99,8 +97,7 @@ public abstract class AbstractAccessControlNameCheck
 
     /**
      * Checks if given modifiers has public access.
-     * There are 2 cases - it is either has explicit modifier, or it is
-     * in annotation or interface.
+     * There are 2 cases - it is either has explicit modifier, or it is in annotation or interface.
      *
      * @param modifiers - modifiers to check
      * @return true if public

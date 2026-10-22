@@ -19,7 +19,7 @@ public class Example2 {
     String a2 = "StringContents";
     String a3 = "DuoString" + "DuoString"; // ok, two occurrences are allowed
     String a4 = "SingleString";
-    String a5 = ", " + ", " + ", "; // violation, three occurrences are NOT allowed
+    String a5 = ", " + ", " + ", "; // violation '", " appears 3 times'
   }
 }
 // xdoc section - end

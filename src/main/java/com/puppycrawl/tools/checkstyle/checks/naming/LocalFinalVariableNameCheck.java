@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 /**
  * <div>
  * Checks that local final variable names conform to a specified pattern.
- *  A catch parameter and resources in try statements
- * are considered to be a local, final variables.
+ *  A catch parameter and resources in try statements are considered to be a local, final variables.
  * </div>
  *
  * <p>
@@ -39,12 +38,10 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *
  * @since 3.0
  */
-public class LocalFinalVariableNameCheck
-    extends AbstractNameCheck {
+public class LocalFinalVariableNameCheck extends AbstractNameCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
 

@@ -27,8 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class HexLiteralCaseCheckTest
-        extends AbstractModuleTestSupport {
+public class HexLiteralCaseCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
@@ -101,6 +100,17 @@ public class HexLiteralCaseCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputHexLiteralCaseCheck2.java"), expected
         );
+    }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "11:13: " + getCheckMessage(MSG_KEY),
+            "16:11: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputHexLiteralCaseCompactSourceFile.java"),
+                expected);
     }
 
 }

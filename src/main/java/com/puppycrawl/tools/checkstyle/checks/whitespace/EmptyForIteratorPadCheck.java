@@ -42,18 +42,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 3.0
  */
 @StatelessCheck
-public class EmptyForIteratorPadCheck
-    extends AbstractCheck {
+public class EmptyForIteratorPadCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WS_FOLLOWED = "ws.followed";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
 

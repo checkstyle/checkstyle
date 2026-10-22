@@ -18,7 +18,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Contains the regular expression checks that are bundled with the main
- * distribution.
+ * Contains the regular expression checks that are bundled with the main distribution.
  */
 package com.puppycrawl.tools.checkstyle.checks.regexp;

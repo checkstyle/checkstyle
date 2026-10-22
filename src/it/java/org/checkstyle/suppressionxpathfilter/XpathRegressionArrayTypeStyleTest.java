@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck;
 
 public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport {
@@ -37,14 +35,8 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
 
     @Test
     public void testVariable() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathArrayTypeStyleVariable.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ArrayTypeStyleCheck.class);
-
         final String[] expectedViolation = {
-            "4:19: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
+            "11:19: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -54,20 +46,16 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
                         + "./IDENT[@text='String']]/ARRAY_DECLARATOR"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathArrayTypeStyleVariable.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMethodDef() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathArrayTypeStyleMethodDef.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ArrayTypeStyleCheck.class);
-
         final String[] expectedViolation = {
-            "4:19: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
+            "11:19: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -76,20 +64,16 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getData']]/TYPE/ARRAY_DECLARATOR"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathArrayTypeStyleMethodDef.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testParameter() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathArrayTypeStyleParameter.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ArrayTypeStyleCheck.class);
-
         final String[] expectedViolation = {
-            "4:28: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
+            "11:28: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -100,8 +84,10 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
                     + "/TYPE[./IDENT[@text='String']]/ARRAY_DECLARATOR"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathArrayTypeStyleParameter.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

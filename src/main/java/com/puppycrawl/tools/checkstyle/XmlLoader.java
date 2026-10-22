@@ -33,8 +33,7 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * Contains the common implementation of a loader, for loading a configuration
- * from an XML file.
+ * Contains the common implementation of a loader, for loading a configuration from an XML file.
  *
  * <p>
  * The error handling policy can be described as being austere, dead set,
@@ -49,8 +48,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * @noinspectionreason ThisEscapedInObjectConstruction - only reference is used and not
  *      accessed until initialized
  */
-public class XmlLoader
-    extends DefaultHandler {
+public class XmlLoader extends DefaultHandler {
 
     /** Maps public id to resolve to resource name for the DTD. */
     private final Map<String, String> publicIdToResourceNameMap;

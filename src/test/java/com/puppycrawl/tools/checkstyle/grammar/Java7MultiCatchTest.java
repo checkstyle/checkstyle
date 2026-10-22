@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Tests Java 7 multi-catch can be parsed.
  */
-public class Java7MultiCatchTest
-    extends AbstractModuleTestSupport {
+public class Java7MultiCatchTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

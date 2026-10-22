@@ -28,8 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class CyclomaticComplexityCheckTest
-    extends AbstractModuleTestSupport {
+public class CyclomaticComplexityCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
@@ -223,6 +222,27 @@ public class CyclomaticComplexityCheckTest
         verifyWithInlineConfigParser(
                 getPath(
                         "InputCyclomaticComplexitySwitchBlocks6.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_KEY, 12, 10),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputCyclomaticComplexityCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileSwitchAsSinglePoint() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_KEY, 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputCyclomaticComplexityCompactSwitchAsSinglePoint.java"),
+                expected);
     }
 
 }

@@ -1,3 +1,10 @@
+/*
+SimplifyBooleanReturn
+tokens = (default)LITERAL_IF
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.simplifybooleanreturn;
 
 import java.util.ArrayList;
@@ -8,7 +15,7 @@ public class InputXpathSimplifyBooleanReturnIfBooleanReturnBoolean {
         ArrayList<Boolean> boolList
             = new ArrayList<Boolean>(Arrays.asList(false, true, false, false));
         boolList.stream().filter(statement -> {
-            if (!statement) { // warn
+            if (!statement) { // violation 'Conditional logic can be removed.'
                 return true;
             }
             else {

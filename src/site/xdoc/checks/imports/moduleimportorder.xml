@@ -50,8 +50,7 @@
         </li>
         <li>
           adds a separation between module imports and other imports: ensures that the module
-          import block is separated from type and static imports by, at least, one blank
-          line or comment
+          import block is separated from type and static imports by, at least, one blank line or comment
         </li>
         </ul>
 

@@ -123,8 +123,7 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
-     * A message dispatcher is used to fire violations to
-     * interested audit listeners.
+     * A message dispatcher is used to fire violations to interested audit listeners.
      *
      * @return the current MessageDispatcher.
      */
@@ -162,8 +161,7 @@ public abstract class AbstractFileSetCheck
     /**
      * Makes copy of file extensions and returns them.
      *
-     * @return file extensions that identify the files that pass the
-     *     filter of this FileSetCheck.
+     * @return file extensions that identify the files that pass the filter of this FileSetCheck.
      */
     public String[] getFileExtensions() {
         return Arrays.copyOf(fileExtensions, fileExtensions.length);
@@ -269,6 +267,7 @@ public abstract class AbstractFileSetCheck
      * The actual context holder.
      */
     private static final class FileContext {
+
         /** The sorted set for collecting violations. */
         private final SortedSet<Violation> violations = new TreeSet<>();
 
@@ -281,6 +280,7 @@ public abstract class AbstractFileSetCheck
         private FileContext() {
             // no code by default
         }
+
     }
 
 }

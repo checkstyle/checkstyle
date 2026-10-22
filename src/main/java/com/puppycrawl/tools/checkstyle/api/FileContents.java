@@ -29,7 +29,6 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.grammar.CommentListener;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
@@ -39,8 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 public final class FileContents implements CommentListener {
 
     /**
-     * The pattern to match a single-line comment containing only the comment
-     * itself -- no code.
+     * The pattern to match a single-line comment containing only the comment itself -- no code.
      */
     private static final String MATCH_SINGLELINE_COMMENT_PAT = "^\\s*//.*$";
     /** Compiled regexp to match a single-line comment line. */
@@ -282,15 +280,14 @@ public final class FileContents implements CommentListener {
      * @return if the specified line consists only of tabs and spaces.
      */
     public boolean lineIsBlank(int lineNo) {
-        return CommonUtil.isBlank(line(lineNo));
+        return line(lineNo).isBlank();
     }
 
     /**
      * Checks if the specified line is a single-line comment without code.
      *
      * @param lineNo  the line number to check
-     * @return if the specified line consists of only a single-line comment
-     *         without code.
+     * @return if the specified line consists of only a single-line comment without code.
      */
     public boolean lineIsComment(int lineNo) {
         return MATCH_SINGLELINE_COMMENT.matcher(line(lineNo)).matches();
@@ -367,8 +364,7 @@ public final class FileContents implements CommentListener {
 
     /**
      * Returns a map of all block comments. The key is the line number, the
-     * value is a {@link List} of block comment {@link TextBlock}s
-     * that start at that line.
+     * value is a {@link List} of block comment {@link TextBlock}s that start at that line.
      *
      * @return the map of comments
      */

@@ -30,8 +30,7 @@
  Limitations: Nothing is currently done about static variables
  or catch-blocks.  Static methods invoked on a class name seem to be OK;
  both the class name and the method name have a DOT parent.
- Non-static methods invoked on either this or a variable name seem to be
- OK, likewise.
+ Non-static methods invoked on either this or a variable name seem to be OK, likewise.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="checkFields" type="boolean">

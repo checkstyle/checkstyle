@@ -117,6 +117,7 @@ public class TreeTableModelAdapter extends AbstractTableModel {
      * TreeExpansionListener that can update the table when tree changes.
      */
     private final class UpdatingTreeExpansionListener implements TreeExpansionListener {
+
         /**
          * Creates a new {@code UpdatingTreeExpansionListener} instance.
          */
@@ -142,6 +143,7 @@ public class TreeTableModelAdapter extends AbstractTableModel {
      * TreeModelListener that can update the table when tree changes.
      */
     private final class UpdatingTreeModelListener implements TreeModelListener {
+
         /**
          * Creates a new {@code UpdatingTreeModelListener} instance.
          */

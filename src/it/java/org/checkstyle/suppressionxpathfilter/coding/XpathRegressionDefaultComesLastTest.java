@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck;
 
 public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSupport {
@@ -46,14 +44,8 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
 
     @Test
     public void testNonEmptyCase() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathDefaultComesLastNonEmptyCase.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(DefaultComesLastCheck.class);
-
         final String[] expectedViolation = {
-            "8:13: " + getCheckMessage(DefaultComesLastCheck.class,
+            "15:13: " + getCheckMessage(DefaultComesLastCheck.class,
                     DefaultComesLastCheck.MSG_KEY),
         };
 
@@ -68,21 +60,15 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
                 + "/LITERAL_DEFAULT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathDefaultComesLastNonEmptyCase.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testEmptyCase() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathDefaultComesLastEmptyCase.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(DefaultComesLastCheck.class);
-        moduleConfig.addProperty("skipIfLastAndSharedWithCase", "true");
-
         final String[] expectedViolation = {
-            "15:13: " + getCheckMessage(DefaultComesLastCheck.class,
+            "22:13: " + getCheckMessage(DefaultComesLastCheck.class,
                 DefaultComesLastCheck.MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
         };
 
@@ -93,20 +79,15 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
                 + "/LITERAL_DEFAULT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathDefaultComesLastEmptyCase.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testSwitchInInterface() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathDefaultComesLastSwitchInInterface.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(DefaultComesLastCheck.class);
-
         final String[] expectedViolation = {
-            "6:13: " + getCheckMessage(DefaultComesLastCheck.class,
+            "13:13: " + getCheckMessage(DefaultComesLastCheck.class,
                     DefaultComesLastCheck.MSG_KEY),
         };
 
@@ -114,15 +95,18 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                 + "[@text='InputXpathDefaultComesLastSwitchInInterface']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/CASE_GROUP"
-                + "[./SLIST/SINGLE_LINE_COMMENT/COMMENT_CONTENT[@text=' warn\\n']]",
+                + "[./SLIST/SINGLE_LINE_COMMENT/COMMENT_CONTENT"
+                + "[@text=' violation &apos;&apos;Default should be last label in the switch."
+                + "&apos;&apos;\\n']]",
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                 + "[@text='InputXpathDefaultComesLastSwitchInInterface']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/CASE_GROUP"
                 + "/LITERAL_DEFAULT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathDefaultComesLastSwitchInInterface.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }

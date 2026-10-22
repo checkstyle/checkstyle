@@ -25,8 +25,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
-public class SuperFinalizeCheckTest
-    extends AbstractModuleTestSupport {
+public class SuperFinalizeCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
@@ -51,6 +50,16 @@ public class SuperFinalizeCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputSuperFinalizeMethodReference.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputSuperFinalizeCompactSourceFile.java"),
+                expected);
     }
 
 }

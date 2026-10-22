@@ -18,7 +18,10 @@ class InputJavadocVariableOddCases {
 
     /** Javadoc */
     private static enum PathStatus {
-        INVALID, CHECKED }; // 2 violations
+        INVALID, CHECKED };
+        // 2 violations above:
+        //    'Missing a Javadoc comment'
+        //    'Missing a Javadoc comment'
 
     // the following is taken
     // from openjdk25/src/java.base/share/classes/jdk/internal/vm/Continuation.java

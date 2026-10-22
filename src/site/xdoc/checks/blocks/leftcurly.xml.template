@@ -96,6 +96,19 @@
         <macro name="example">
             <param name="path" value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/UseCase1.java"/>
             <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          To configure the check to apply the <code>nl_or_singleline</code>
+          policy, allowing blocks that open and close on one line:
+        </p>
+        <macro name="example">
+            <param name="path" value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/UseCase2.java"/>
+            <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase2-code">Example: </p>
+        <macro name="example">
+            <param name="path" value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/UseCase2.java"/>
+            <param name="type" value="code"/>
         </macro>
       </subsection>
 

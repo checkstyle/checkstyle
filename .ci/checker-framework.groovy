@@ -188,7 +188,7 @@ private static List<CheckerFrameworkError> getErrorFromText(final List<List<Stri
     final List<CheckerFrameworkError> errors = new ArrayList<>()
     final Pattern errorExtractingPattern = Pattern
         .compile('.*[\\\\/](src[\\\\/].*\\.java):\\[(\\d+)[^]]*][^\\[]*\\[([^]]*)](.*)')
-    final Pattern filePathExtractingPattern = Pattern.compile('\\[WARNING] (.*\\.java)')
+    final Pattern filePathExtractingPattern = Pattern.compile('\\[WARNING] (.*?\\.java):\\[')
     final int fileNameGroup = 1
     final int lineNumberGroup = 2
     final int specifierGroup = 3

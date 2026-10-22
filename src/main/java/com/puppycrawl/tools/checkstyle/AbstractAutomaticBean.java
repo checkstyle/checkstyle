@@ -107,8 +107,7 @@ public abstract class AbstractAutomaticBean
     /**
      * Creates a BeanUtilsBean that is configured to use
      * type converters that throw a ConversionException
-     * instead of using the default value when something
-     * goes wrong.
+     * instead of using the default value when something goes wrong.
      *
      * @return a configured BeanUtilsBean
      */
@@ -334,6 +333,7 @@ public abstract class AbstractAutomaticBean
 
     /** A converter that converts a string to a pattern. */
     private static final class PatternConverter implements Converter {
+
         /**
          * Creates a new {@code PatternConverter} instance.
          */
@@ -351,6 +351,7 @@ public abstract class AbstractAutomaticBean
 
     /** A converter that converts a comma-separated string into an array of patterns. */
     private static final class PatternArrayConverter implements Converter {
+
         /**
          * Creates a new {@code PatternArrayConverter} instance.
          */
@@ -373,10 +374,12 @@ public abstract class AbstractAutomaticBean
 
             return result.toArray(new Pattern[0]);
         }
+
     }
 
     /** A converter that converts strings to severity level. */
     private static final class SeverityLevelConverter implements Converter {
+
         /**
          * Creates a new {@code SeverityLevelConverter} instance.
          */
@@ -394,6 +397,7 @@ public abstract class AbstractAutomaticBean
 
     /** A converter that converts strings to scope. */
     private static final class ScopeConverter implements Converter {
+
         /**
          * Creates a new {@code ScopeConverter} instance.
          */
@@ -411,6 +415,7 @@ public abstract class AbstractAutomaticBean
 
     /** A converter that converts strings to uri. */
     private static final class UriConverter implements Converter {
+
         /**
          * Creates a new {@code UriConverter} instance.
          */
@@ -430,7 +435,7 @@ public abstract class AbstractAutomaticBean
                     result = CommonUtil.getUriByFilename(url);
                 }
                 catch (CheckstyleException exc) {
-                    throw new IllegalArgumentException(exc);
+                    throw new IllegalArgumentException(url, exc);
                 }
             }
 
@@ -445,6 +450,7 @@ public abstract class AbstractAutomaticBean
      * with these characters.
      */
     private static final class RelaxedStringArrayConverter implements Converter {
+
         /**
          * Creates a new {@code RelaxedStringArrayConverter} instance.
          */

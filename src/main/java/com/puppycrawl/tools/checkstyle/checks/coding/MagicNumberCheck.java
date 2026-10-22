@@ -60,8 +60,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class MagicNumberCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "magic.number";
 
@@ -282,8 +281,7 @@ public class MagicNumberCheck extends AbstractCheck {
      * A valid hash code method is considered to be a method of the signature
      * {@code public int hashCode()}.
      *
-     * @param ast the AST from which to search for an enclosing hash code
-     *     method definition
+     * @param ast the AST from which to search for an enclosing hash code method definition
      *
      * @return {@code true} if {@code ast} is in the scope of a valid hash code method.
      */
@@ -313,8 +311,7 @@ public class MagicNumberCheck extends AbstractCheck {
     }
 
     /**
-     * Decides whether the number of an AST is in the ignore list of this
-     * check.
+     * Decides whether the number of an AST is in the ignore list of this check.
      *
      * @param ast the AST to check
      * @return true if the number of ast is in the ignore list of this check.
@@ -392,8 +389,7 @@ public class MagicNumberCheck extends AbstractCheck {
     /**
      * Setter to ignore magic numbers in hashCode methods.
      *
-     * @param ignoreHashCodeMethod decide whether to ignore
-     *     hash code methods
+     * @param ignoreHashCodeMethod decide whether to ignore hash code methods
      * @since 5.3
      */
     public void setIgnoreHashCodeMethod(boolean ignoreHashCodeMethod) {
@@ -413,8 +409,7 @@ public class MagicNumberCheck extends AbstractCheck {
     /**
      * Setter to ignore magic numbers in field declarations.
      *
-     * @param ignoreFieldDeclaration decide whether to ignore magic numbers
-     *     in field declaration
+     * @param ignoreFieldDeclaration decide whether to ignore magic numbers in field declaration
      * @since 6.6
      */
     public void setIgnoreFieldDeclaration(boolean ignoreFieldDeclaration) {

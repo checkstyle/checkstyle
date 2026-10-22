@@ -271,8 +271,7 @@ public class SuppressionCommentFilter
     }
 
     /**
-     * Collects all the suppression tags for all comments into a list and
-     * sorts the list.
+     * Collects all the suppression tags for all comments into a list and sorts the list.
      */
     private void tagSuppressions() {
         tags.clear();
@@ -289,8 +288,7 @@ public class SuppressionCommentFilter
     }
 
     /**
-     * Appends the suppressions in a collection of comments to the full
-     * set of suppression tags.
+     * Appends the suppressions in a collection of comments to the full set of suppression tags.
      *
      * @param comments the set of comments.
      */
@@ -343,8 +341,7 @@ public class SuppressionCommentFilter
      * A Tag holds a suppression comment and its location, and determines
      * whether the suppression turns checkstyle reporting on or off.
      */
-    private static final class Tag
-        implements Comparable<Tag> {
+    private static final class Tag implements Comparable<Tag> {
 
         /** The text of the tag. */
         private final String text;
@@ -435,8 +432,7 @@ public class SuppressionCommentFilter
 
         /**
          * Determines the column number of the tag in the source file.
-         * Will be 0 for all lines of multiline comment, except the
-         * first line.
+         * Will be 0 for all lines of multiline comment, except the first line.
          *
          * @return the column number of the tag in the source file.
          */
@@ -445,8 +441,7 @@ public class SuppressionCommentFilter
         }
 
         /**
-         * Determines whether the suppression turns checkstyle reporting on or
-         * off.
+         * Determines whether the suppression turns checkstyle reporting on or off.
          *
          * @return {@code ON} if the suppression turns reporting on.
          */
@@ -455,8 +450,7 @@ public class SuppressionCommentFilter
         }
 
         /**
-         * Compares the position of this tag in the file
-         * with the position of another tag.
+         * Compares the position of this tag in the file with the position of another tag.
          *
          * @param object the tag to compare with this one.
          * @return a negative number if this tag is before the other tag,
@@ -508,8 +502,7 @@ public class SuppressionCommentFilter
         }
 
         /**
-         * Determines whether the source of an audit event
-         * matches the text of this tag.
+         * Determines whether the source of an audit event matches the text of this tag.
          *
          * @param event the {@code TreeWalkerAuditEvent} to check.
          * @return true if the source of event matches the text of this tag.

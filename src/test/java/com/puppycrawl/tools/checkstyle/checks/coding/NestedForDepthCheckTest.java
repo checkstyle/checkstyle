@@ -40,8 +40,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
      * statements. As the test input has 4 layers of for-statements below
      * the top-level for statement, this must cause 2 error-messages.
      *
-     * @throws Exception necessary to fulfill JUnit's
-     *     interface-requirements for test-methods.
+     * @throws Exception necessary to fulfill JUnit's interface-requirements for test-methods.
      */
     @Test
     public void testNestedForDepthCheckCustomMaxLevelTwo() throws Exception {
@@ -61,11 +60,9 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
      * Call the check allowing 4 layers of nested for-statements. This
      * means the top-level for can contain up to 4 levels of nested for
      * statements. As the test input has 4 layers of for-statements below
-     * the top-level for statement, this must not cause an
-     * error-message.
+     * the top-level for statement, this must not cause an error-message.
      *
-     * @throws Exception necessary to fulfill JUnit's
-     *     interface-requirements for test-methods.
+     * @throws Exception necessary to fulfill JUnit's interface-requirements for test-methods.
      */
     @Test
     public void testNestedForDepthCheckCustomMaxLevelFour() throws Exception {

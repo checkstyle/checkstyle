@@ -31,8 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class ConstantNameCheckTest
-    extends AbstractModuleTestSupport {
+public class ConstantNameCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
@@ -61,8 +60,10 @@ public class ConstantNameCheckTest
         assertWithMessage("Invalid exception message")
             .that(exc.getMessage())
             .isEqualTo("cannot initialize module "
-                + "com.puppycrawl.tools.checkstyle.TreeWalker - "
-                + "cannot initialize module "
+                + "com.puppycrawl.tools.checkstyle.TreeWalker");
+        assertWithMessage("Invalid exception message")
+            .that(exc.getCause().getMessage())
+            .isEqualTo("cannot initialize module "
                 + "com.puppycrawl.tools.checkstyle.checks."
                 + "naming.ConstantNameCheck");
     }

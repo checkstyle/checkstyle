@@ -27,8 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class InterfaceIsTypeCheckTest
-    extends AbstractModuleTestSupport {
+public class InterfaceIsTypeCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

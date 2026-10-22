@@ -26,8 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
-public class FileTabCharacterCheckTest
-    extends AbstractModuleTestSupport {
+public class FileTabCharacterCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

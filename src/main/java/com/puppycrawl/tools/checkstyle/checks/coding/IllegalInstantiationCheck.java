@@ -39,8 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <p>
  * Rationale: Depending on the project, for some classes it might be
- * preferable to create instances through factory methods rather than
- * calling the constructor.
+ * preferable to create instances through factory methods rather than calling the constructor.
  * </p>
  *
  * <p>
@@ -52,8 +51,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <p>
  * Some extremely performance sensitive projects may require the use of factory
- * methods for other classes as well, to enforce the usage of number caches or
- * object pools.
+ * methods for other classes as well, to enforce the usage of number caches or object pools.
  * </p>
  *
  * <p>
@@ -64,12 +62,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 3.0
  */
 @FileStatefulCheck
-public class IllegalInstantiationCheck
-    extends AbstractCheck {
+public class IllegalInstantiationCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "instantiation.avoid";
 
@@ -192,8 +188,7 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * Processes one of the collected "new" tokens when walking tree
-     * has finished.
+     * Processes one of the collected "new" tokens when walking tree has finished.
      *
      * @param newTokenAst the "new" token.
      */

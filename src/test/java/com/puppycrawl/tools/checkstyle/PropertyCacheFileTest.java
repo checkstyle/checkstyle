@@ -493,7 +493,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
                 .that(ex)
                     .hasCauseThat()
                         .hasMessageThat()
-                        .isEqualTo("Unable to calculate hashcode.");
+                        .isEqualTo("Unable to calculate hashcode for "
+                                + config.getClass().getName());
         }
     }
 

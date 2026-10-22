@@ -234,8 +234,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     }
 
     /**
-     * Creates new context for the implicit class declared by a compact
-     * compilation unit (JEP 512).
+     * Creates new context for the implicit class declared by a compact compilation unit (JEP 512).
      *
      * @param compactCompilationUnit COMPACT_COMPILATION_UNIT node.
      */
@@ -487,6 +486,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             }
             return result;
         }
+
     }
 
 }

@@ -45,8 +45,7 @@
 
         <p>
           Rationale: Depending on the project, for some classes it might be
-          preferable to create instances through factory methods rather than
-          calling the constructor.
+          preferable to create instances through factory methods rather than calling the constructor.
         </p>
 
         <p>
@@ -58,8 +57,7 @@
 
         <p>
           Some extremely performance sensitive projects may require the use of factory
-          methods for other classes as well, to enforce the usage of number caches or
-          object pools.
+          methods for other classes as well, to enforce the usage of number caches or object pools.
         </p>
       </subsection>
 

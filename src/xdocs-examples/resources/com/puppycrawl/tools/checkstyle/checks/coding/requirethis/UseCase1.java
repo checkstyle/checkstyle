@@ -19,7 +19,7 @@ class UseCase1 {
     if (field1 > 0) {
       field1 = -field1;
     }
-    // violation below, reference to instance variable "field2" requires "this"
+    // violation below 'Reference to instance variable 'field2' needs "this.".'
     field2 *= field1;
   }
 }

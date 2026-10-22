@@ -29,8 +29,7 @@ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class FinalLocalVariableCheckTest
-    extends AbstractModuleTestSupport {
+public class FinalLocalVariableCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
@@ -43,19 +42,19 @@ public class FinalLocalVariableCheckTest
         final String[] expected = {
             "17:13: " + getCheckMessage(MSG_KEY, "i"),
             "17:16: " + getCheckMessage(MSG_KEY, "j"),
-            "19:18: " + getCheckMessage(MSG_KEY, "runnable"),
-            "29:13: " + getCheckMessage(MSG_KEY, "i"),
-            "33:13: " + getCheckMessage(MSG_KEY, "z"),
-            "35:16: " + getCheckMessage(MSG_KEY, "obj"),
-            "39:16: " + getCheckMessage(MSG_KEY, "x"),
-            "45:18: " + getCheckMessage(MSG_KEY, "runnable"),
-            "49:21: " + getCheckMessage(MSG_KEY, "q"),
-            "65:13: " + getCheckMessage(MSG_KEY, "i"),
-            "69:13: " + getCheckMessage(MSG_KEY, "z"),
-            "71:16: " + getCheckMessage(MSG_KEY, "obj"),
-            "75:16: " + getCheckMessage(MSG_KEY, "x"),
-            "83:21: " + getCheckMessage(MSG_KEY, "w"),
-            "85:26: " + getCheckMessage(MSG_KEY, "runnable"),
+            "22:18: " + getCheckMessage(MSG_KEY, "runnable"),
+            "32:13: " + getCheckMessage(MSG_KEY, "i"),
+            "36:13: " + getCheckMessage(MSG_KEY, "z"),
+            "38:16: " + getCheckMessage(MSG_KEY, "obj"),
+            "42:16: " + getCheckMessage(MSG_KEY, "x"),
+            "48:18: " + getCheckMessage(MSG_KEY, "runnable"),
+            "52:21: " + getCheckMessage(MSG_KEY, "q"),
+            "68:13: " + getCheckMessage(MSG_KEY, "i"),
+            "72:13: " + getCheckMessage(MSG_KEY, "z"),
+            "74:16: " + getCheckMessage(MSG_KEY, "obj"),
+            "78:16: " + getCheckMessage(MSG_KEY, "x"),
+            "86:21: " + getCheckMessage(MSG_KEY, "w"),
+            "88:26: " + getCheckMessage(MSG_KEY, "runnable"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableOne.java"), expected);
@@ -314,6 +313,34 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
+    public void testThrowScopes() throws Exception {
+        final String[] expected = {
+            "19:13: " + getCheckMessage(MSG_KEY, "value"),
+            "35:13: " + getCheckMessage(MSG_KEY, "value"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalLocalVariableThrowScopes.java"), expected);
+    }
+
+    @Test
+    public void testThrow() throws Exception {
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_KEY, "value"),
+            "31:13: " + getCheckMessage(MSG_KEY, "value"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalLocalVariableThrow.java"), expected);
+    }
+
+    @Test
+    public void testThrowBranches() throws Exception {
+        final String[] expected = {
+            "40:13: " + getCheckMessage(MSG_KEY, "value"),
+            "75:13: " + getCheckMessage(MSG_KEY, "value"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableThrowBranches.java"), expected);
+    }
+
+    @Test
     public void testBreakOrReturn() throws Exception {
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_KEY, "e"),
@@ -471,8 +498,30 @@ public class FinalLocalVariableCheckTest
             "31:9: " + getCheckMessage(MSG_KEY, "local"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFinalLocalVariableCompactSourceFile.java"),
+                getNonCompilablePath("compact/InputFinalLocalVariableCompactSourceFile.java"),
             expected);
+    }
+
+    @Test
+    public void testCompactSourceFileEnhancedForLoopVariable() throws Exception {
+        final String[] expected = {
+            "14:14: " + getCheckMessage(MSG_KEY, "value"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputFinalLocalVariableCompactEnhancedFor.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileUnnamedVariable() throws Exception {
+        final String[] expected = {
+            "12:9: " + getCheckMessage(MSG_KEY, "_"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputFinalLocalVariableCompactUnnamed.java"),
+                expected);
     }
 
 }

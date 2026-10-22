@@ -100,8 +100,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * <b>Note:</b> To search for things that mean something in XML, like
  * {@literal <} you need to escape them like {@literal &}lt;. This is required so the
- * XML parser does not act on them, but instead passes the correct
- * character to the regexp engine.
+ * XML parser does not act on them, but instead passes the correct character to the regexp engine.
  * </p>
  *
  * @since 4.0
@@ -110,20 +109,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class RegexpCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_ILLEGAL_REGEXP = "illegal.regexp";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_REQUIRED_REGEXP = "required.regexp";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_DUPLICATE_REGEXP = "duplicate.regexp";
 

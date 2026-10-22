@@ -27,8 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class InnerAssignmentCheckTest
-    extends AbstractModuleTestSupport {
+public class InnerAssignmentCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

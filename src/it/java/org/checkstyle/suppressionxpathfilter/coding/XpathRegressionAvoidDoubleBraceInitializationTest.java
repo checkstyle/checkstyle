@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.AvoidDoubleBraceInitializationCheck;
 
 public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractXpathTestSupport {
@@ -46,13 +44,8 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
 
     @Test
     public void testClassFields() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathAvoidDoubleBraceInitializationClassFields.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "6:41: " + getCheckMessage(CLAZZ, AvoidDoubleBraceInitializationCheck.MSG_KEY),
+            "12:41: " + getCheckMessage(CLAZZ, AvoidDoubleBraceInitializationCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -66,18 +59,16 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
                 + "LITERAL_NEW[./IDENT[@text='ArrayList']]/OBJBLOCK/LCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathAvoidDoubleBraceInitializationClassFields.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testMethodDef() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathAvoidDoubleBraceInitializationMethodDef.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "7:31: " + getCheckMessage(CLAZZ, AvoidDoubleBraceInitializationCheck.MSG_KEY),
+            "13:31: " + getCheckMessage(CLAZZ, AvoidDoubleBraceInitializationCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -93,18 +84,16 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
                 + "/OBJBLOCK/LCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathAvoidDoubleBraceInitializationMethodDef.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testInnerClassFields() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathAvoidDoubleBraceInitializationInnerClassFields.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "9:76: " + getCheckMessage(CLAZZ, AvoidDoubleBraceInitializationCheck.MSG_KEY),
+            "15:76: " + getCheckMessage(CLAZZ, AvoidDoubleBraceInitializationCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -121,7 +110,10 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
                 + "/OBJBLOCK/LCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathAvoidDoubleBraceInitializationInnerClassFields.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
 }

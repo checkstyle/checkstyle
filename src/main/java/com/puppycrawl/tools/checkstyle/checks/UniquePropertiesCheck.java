@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serial;
 import java.nio.file.Files;
@@ -90,7 +89,10 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
         try (InputStream inputStream = Files.newInputStream(file.toPath())) {
             properties.load(inputStream);
         }
-        catch (IOException exc) {
+        // -@cs[IllegalCatch] Properties.load can throw unchecked exceptions such as
+        // IllegalArgumentException on a malformed unicode escape, so any exception
+        // from reading the file is reported rather than aborting the audit.
+        catch (final Exception exc) {
             log(1, MSG_IO_EXCEPTION_KEY, file.getPath(),
                     exc.getLocalizedMessage());
         }
@@ -105,15 +107,13 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Method returns line number the key is detected in the checked properties
-     * files first.
+     * Method returns line number the key is detected in the checked properties files first.
      *
      * @param fileText
      *            {@link FileText} object contains the lines to process
      * @param keyName
      *            key name to look for
-     * @return line number of first occurrence. If no key found in properties
-     *         file, 1 is returned
+     * @return line number of first occurrence. If no key found in properties file, 1 is returned
      */
     private static int getLineNumber(FileText fileText, String keyName) {
         final Pattern keyPattern = getKeyPattern(keyName);
@@ -185,7 +185,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
         @Override
         public synchronized Object put(Object key, Object value) {
             final Object oldValue = super.put(key, value);
-            if (oldValue != null && key instanceof String keyString) {
+            if (oldValue != null && key instanceof final String keyString) {
 
                 duplicatedKeys.put(keyString,
                         duplicatedKeys.getOrDefault(keyString, 0) + 1);

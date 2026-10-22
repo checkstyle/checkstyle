@@ -21,13 +21,11 @@ package org.checkstyle.suppressionxpathfilter;
 
 import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck.MSG_KEY;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck;
 
 public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXpathTestSupport {
@@ -41,14 +39,8 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathAvoidEscapedUnicodeCharactersDefault.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
-
         final String[] expectedViolation = {
-            "4:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "15:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -62,22 +54,16 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
                 + "/ASSIGN/EXPR/STRING_LITERAL[@text='\\u03bcs']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidEscapedUnicodeCharactersDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testControlCharacters() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathAvoidEscapedUnicodeCharactersControlCharacters.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
-        moduleConfig.addProperty("allowEscapesForControlCharacters", "true");
-
         final String[] expectedViolation = {
-            "4:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "15:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -93,21 +79,16 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
                 + "/ASSIGN/EXPR/STRING_LITERAL[@text='\\u03bcs']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidEscapedUnicodeCharactersControlCharacters.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTailComment() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathAvoidEscapedUnicodeCharactersTailComment.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
-        moduleConfig.addProperty("allowByTailComment", "true");
-
         final String[] expectedViolation = {
-            "4:45: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "15:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -123,21 +104,16 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
                 + "/ASSIGN/EXPR/STRING_LITERAL[@text='\\u03bcs']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidEscapedUnicodeCharactersTailComment.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testAllCharactersEscaped() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathAvoidEscapedUnicodeCharactersAllEscaped.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
-        moduleConfig.addProperty("allowIfAllCharactersEscaped", "true");
-
         final String[] expectedViolation = {
-            "4:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "15:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -153,21 +129,16 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
                     + "/ASSIGN/EXPR/STRING_LITERAL[@text='\\u03bcs']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidEscapedUnicodeCharactersAllEscaped.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNonPrintableCharacters() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathAvoidEscapedUnicodeCharactersNonPrintable.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
-        moduleConfig.addProperty("allowNonPrintableEscapes", "true");
-
         final String[] expectedViolation = {
-            "4:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "15:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -183,8 +154,10 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
                 + "/ASSIGN/EXPR/STRING_LITERAL[@text='\\u03bcs']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidEscapedUnicodeCharactersNonPrintable.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

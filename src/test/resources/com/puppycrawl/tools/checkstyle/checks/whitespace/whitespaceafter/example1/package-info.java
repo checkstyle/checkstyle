@@ -5,6 +5,6 @@ tokens = COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_WHILE, \
 
 
 */
-
+// violation below '')' is not followed by whitespace'
 @SuppressWarnings("")package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter.example1;
-// violation above '')' is not followed by whitespace'
+

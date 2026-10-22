@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Tests varargs can be parsed.
  */
-public class VarargTest
-    extends AbstractModuleTestSupport {
+public class VarargTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

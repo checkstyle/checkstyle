@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheck;
 
 public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
@@ -43,14 +41,8 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
 
     @Test
     public void testInnerClone() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathSuperCloneInnerClone.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(SuperCloneCheck.class);
-
         final String[] expectedViolation = {
-            "6:23: " + getCheckMessage(SuperCloneCheck.class, SuperCloneCheck.MSG_KEY, "clone"),
+            "12:23: " + getCheckMessage(SuperCloneCheck.class, SuperCloneCheck.MSG_KEY, "clone"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -60,20 +52,16 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='clone']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSuperCloneInnerClone.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNoSuperClone() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathSuperCloneNoSuperClone.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(SuperCloneCheck.class);
-
         final String[] expectedViolation = {
-            "6:23: " + getCheckMessage(SuperCloneCheck.class, SuperCloneCheck.MSG_KEY, "clone"),
+            "12:23: " + getCheckMessage(SuperCloneCheck.class, SuperCloneCheck.MSG_KEY, "clone"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -83,20 +71,16 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='clone']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSuperCloneNoSuperClone.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testPlainAndSubclasses() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathSuperClonePlainAndSubclasses.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(SuperCloneCheck.class);
-
         final String[] expectedViolation = {
-            "4:19: " + getCheckMessage(SuperCloneCheck.class, SuperCloneCheck.MSG_KEY, "clone"),
+            "10:19: " + getCheckMessage(SuperCloneCheck.class, SuperCloneCheck.MSG_KEY, "clone"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -105,8 +89,10 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='clone']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSuperClonePlainAndSubclasses.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

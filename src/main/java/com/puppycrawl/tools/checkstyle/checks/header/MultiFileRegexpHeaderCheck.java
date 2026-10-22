@@ -53,7 +53,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  */
 @FileStatefulCheck
 public class MultiFileRegexpHeaderCheck
-        extends AbstractFileSetCheck implements ExternalResourceHolder {
+        extends AbstractFileSetCheck
+        implements ExternalResourceHolder {
 
     /**
      * Constant indicating that no header line mismatch was found.
@@ -61,14 +62,12 @@ public class MultiFileRegexpHeaderCheck
     public static final int MISMATCH_CODE = -1;
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_HEADER_MISSING = "multi.file.regexp.header.missing";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_HEADER_MISMATCH = "multi.file.regexp.header.mismatch";
 

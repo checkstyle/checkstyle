@@ -135,8 +135,10 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid exception message")
                 .that(exc.getMessage())
                 .isEqualTo("cannot initialize module"
-                    + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
-                    + " - Cannot set property 'headerFile' to ''");
+                    + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck");
+        assertWithMessage("Invalid exception message")
+                .that(exc.getCause().getMessage())
+                .isEqualTo("Cannot set property 'headerFile' to ''");
     }
 
     @Test
@@ -199,8 +201,10 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid exception message")
                 .that(exc.getMessage())
                 .isEqualTo("cannot initialize module"
-                    + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
-                    + " - Cannot set property 'header' to '^(.*\\n.*)'");
+                    + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck");
+        assertWithMessage("Invalid exception message")
+                .that(exc.getCause().getMessage())
+                .isEqualTo("Cannot set property 'header' to '^(.*\\n.*)'");
     }
 
     @Test
@@ -290,13 +294,10 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRegexpHeaderSmallHeader() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
-        checkConfig.addProperty("multiLines", "3, 6");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputRegexpHeaderSmallHeader.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderSmallHeaderConfig.java"),
+                getPath("InputRegexpHeaderSmallHeader.java"), expected);
     }
 
     @Test
@@ -326,13 +327,10 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnoreLinesSorted() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader5.header"));
-        checkConfig.addProperty("multiLines", "7,5,3");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputRegexpHeaderIgnoreLinesSorted.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderIgnoreLinesSortedForRegexpConfig.java"),
+                getPath("InputRegexpHeaderIgnoreLinesSorted.java"), expected);
     }
 
     @Test
@@ -372,12 +370,10 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCharsetProperty1() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader7.header"));
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        final String path = getPath("InputRegexpHeader4.java");
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, path, expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeader4CharsetProperty1Config.java"),
+                getPath("InputRegexpHeader4.java"), expected);
     }
 
     @Test
@@ -397,14 +393,10 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCharsetProperty3() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFile",
-                getPath("InputRegexpHeader7.header"));
-        checkConfig.addProperty("charset", "US-ASCII");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        final String path = getPath("InputRegexpHeader3.java");
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, path, expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeader3CharsetProperty3Config.java"),
+                getPath("InputRegexpHeader3.java"), expected);
     }
 
 }

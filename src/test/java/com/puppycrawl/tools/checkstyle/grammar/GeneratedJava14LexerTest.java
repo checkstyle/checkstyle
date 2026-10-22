@@ -34,8 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Tests GeneratedJava14Lexer.
  */
-public class GeneratedJava14LexerTest
-    extends AbstractModuleTestSupport {
+public class GeneratedJava14LexerTest extends AbstractModuleTestSupport {
 
     /**
      * Is {@code true} if current default encoding is UTF-8.

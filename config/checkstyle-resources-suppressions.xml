@@ -118,6 +118,8 @@
   <suppress id="noTrailingWhitespace"
     files="/InputJavadocContentLocationTrailingSpace\.java"/>
   <suppress id="noTrailingWhitespace"
+    files="/InputJavadocUtilizingTrailingSpaceIgnoreTooShortPatternSpaces\.java"/>
+  <suppress id="noTrailingWhitespace"
     files="/InputJavadocParagraphCorrect\.java"/>
   <suppress id="noTrailingWhitespace"
     files="/InputJavadocTagContinuationIndentationGuavaFalsePositive\.java"/>
@@ -145,6 +147,10 @@
     files="javadoctagcontinuationindentation/InputJavadocTagContinuationIndentationDescription\.java"/>
 
   <!-- intentional problem for testing -->
+  <suppress id="JavadocUtilizingTrailingSpace"
+    files="src[\\/]test[\\/]resources[\\/].*[\\/]Input.*\.java"/>
+
+  <!-- intentional problem for testing -->
   <suppress checks="FileTabCharacter"
     files="/InputJavadocWithCrAsNewline\.javadoc"/>
   <suppress checks="FileTabCharacter"
@@ -157,6 +163,8 @@
     files="/InputUnclosedParagraphFollowedByJavadocTag\.javadoc"/>
   <suppress checks="FileTabCharacter"
     files="/InputFileTabCharacter\.java"/>
+  <suppress checks="FileTabCharacter"
+    files="/InputJavadocUtilizingTrailingSpaceEdgeCases\.java"/>
   <suppress checks="FileTabCharacter"
     files="/InputMainGenerateChecksAndFilesSuppressionsTabWidth\.java"/>
   <suppress checks="FileTabCharacter"
@@ -206,6 +214,8 @@
   <suppress checks="FileTabCharacter"
     files="/InputJavadocLeadingAsteriskAlignTabs\.java"/>
   <suppress checks="FileTabCharacter"
+    files="/InputJavadocLeadingAsteriskAlignIndentationTabs\.java"/>
+  <suppress checks="FileTabCharacter"
     files="/InputJavadocMissingWhitespaceAfterAsteriskValidWithTab\.java"/>
   <suppress checks="FileTabCharacter"
     files="/InputAbbreviationAsWordInNameOverridableMethod\.java"/>
@@ -248,6 +258,9 @@
   <!-- intentional tabs for testing SummaryJavadocCheck with tab-formatted javadoc -->
   <suppress checks="FileTabCharacter"
     files="/InputSummaryJavadocForbiddenFragmentsTabFormatted\.java"/>
+  <!-- intentional tabs, the check expands them to the configured tab width -->
+  <suppress checks="FileTabCharacter"
+    files="/InputOpenjdkMethodParameterAlignmentTabs.*\.java"/>
 
   <!-- This file must not have a package statement, for testing purposes -->
   <suppress checks="PackageDeclarationCheck"
@@ -280,6 +293,14 @@
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/InputJavadocTypeJavadoc\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/InputJavadocTypeJavadoc_3\.java"/>
+  <suppress checks="FileLength"
+    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodTags1One\.java"/>
+  <suppress checks="FileLength"
+    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodTags1Three\.java"/>
+  <suppress checks="FileLength"
+    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/InputRequireThisTryWithResourcesOnlyOverlappingFalse\.java"/>
+  <suppress checks="FileLength"
+    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesOperatorsAndCasts\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/InputRegexpSinglelineJavaSemantic7\.java"/>
   <suppress checks="FileLength"
@@ -388,10 +409,6 @@
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/InputEmptyLineSeparator2\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespaceafter/InputWhitespaceAfterDefaultConfig\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespaceafter/InputWhitespaceAfterTypeCast\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/InputParenPadLeftRightAndNoSpace2\.java"/>
   <suppress checks="FileLength"

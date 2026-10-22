@@ -36,10 +36,12 @@ public class DescendantIterator implements AxisIterator {
      * Enum defines starting node for iterator.
      */
     public enum StartWith {
+
         /** Start with current node. */
         CURRENT_NODE,
         /** Omit current node and start with child nodes. */
         CHILDREN,
+
     }
 
     /**

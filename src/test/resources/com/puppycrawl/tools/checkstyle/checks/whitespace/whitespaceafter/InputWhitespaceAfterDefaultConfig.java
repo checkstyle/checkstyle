@@ -78,28 +78,6 @@ final class InputWhitespaceAfterDefaultConfig
         return 0;
     }
 
-    /** method that is 20 lines long **/
-    private void longMethod()
-    {
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-    }
 
     /** constructor that is 10 lines long **/
     private InputWhitespaceAfterDefaultConfig()
@@ -113,36 +91,6 @@ final class InputWhitespaceAfterDefaultConfig
         // a line
         // a line
     }
-
-    /** test local variables */
-    private void localVariables()
-    {
-        // normal decl
-        int abc = 0;
-        int ABC = 0;
-
-        // final decls
-        final int cde = 0;
-        final int CDE = 0;
-
-        // decl in for loop init statement
-        for (int k = 0; k < 1; k++)
-        {
-            String innerBlockVariable = "";
-        }
-        for (int I = 0; I < 1; I++)
-        {
-            String InnerBlockVariable = "";
-        }
-    }
-
-    /** test method pattern */
-    void ALL_UPPERCASE_METHOD()
-    {
-    }
-
-    /** test illegal constant **/
-    private static final int BAD__NAME = 3;
 
     // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
     // long line that has a tab ->	<- and would be OK if tab counted as 1 char
@@ -161,68 +109,4 @@ final class InputWhitespaceAfterDefaultConfig
   	        int tab5 =1;
     }
 
-    // MEMME:
-    /* MEMME: a
-     * MEMME:
-     * OOOO
-     */
-    /* NOTHING */
-    /* YES */ /* MEMME: x */ /* YES!! */
-
-    /** test long comments **/
-    void veryLong()
-    {
-        /*
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          enough talk */
-    }
-
-    /**
-     * @see to lazy to document all args. Testing excessive # args
-     **/
-    void toManyArgs(int aArg1, int aArg2, int aArg3, int aArg4, int aArg5,
-                    int aArg6, int aArg7, int aArg8, int aArg9)
-    {
-    }
-}
-
-/** Test class for variable naming in for each clause. */
-class InputSimple2
-{
-    /** Some more Javadoc. */
-    public void doSomething()
-    {
-        //"O" should be named "o"
-        for (Object O : new java.util.ArrayList())
-        {
-
-        }
-    }
-}
-
-/** Test enum for member naming check */
-enum MyEnum1
-{
-    /** ABC constant */
-    ABC,
-
-    /** XYZ constant */
-    XYZ;
-
-    /** Should be mSomeMember */
-    private int someMember;
 }

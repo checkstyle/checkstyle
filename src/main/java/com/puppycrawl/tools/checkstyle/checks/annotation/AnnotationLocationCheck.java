@@ -83,32 +83,27 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class AnnotationLocationCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_ANNOTATION_LOCATION_ALONE = "annotation.location.alone";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_ANNOTATION_LOCATION = "annotation.location";
 
     /**
-     * Allow single parameterless annotation to be located on the same line as
-     * target element.
+     * Allow single parameterless annotation to be located on the same line as target element.
      */
     private boolean allowSamelineSingleParameterlessAnnotation = true;
 
     /**
-     * Allow one and only parameterized annotation to be located on the same line as
-     * target element.
+     * Allow one and only parameterized annotation to be located on the same line as target element.
      */
     private boolean allowSamelineParameterizedAnnotation;
 
     /**
-     * Allow annotation(s) to be located on the same line as
-     * target element.
+     * Allow annotation(s) to be located on the same line as target element.
      */
     private boolean allowSamelineMultipleAnnotations;
 
@@ -142,8 +137,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to allow annotation(s) to be located on the same line as
-     * target element.
+     * Setter to allow annotation(s) to be located on the same line as target element.
      *
      * @param allow User's value of allowSamelineMultipleAnnotations.
      * @since 6.0

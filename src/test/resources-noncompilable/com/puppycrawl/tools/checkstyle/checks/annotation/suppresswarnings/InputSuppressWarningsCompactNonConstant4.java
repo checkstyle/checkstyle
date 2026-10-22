@@ -39,9 +39,9 @@ public class InputSuppressWarningsCompactNonConstant4 {
             @SuppressWarnings({"unused"})
             Object o = new InputSuppressWarningsCompactNonConstant4() {
 
+                // violation 2 lines below 'The warning 'unchecked' cannot be suppressed'
                 @Override
                 @SuppressWarnings({"unchecked"})
-                // violation above 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }
@@ -85,19 +85,19 @@ public class InputSuppressWarningsCompactNonConstant4 {
         // violation below 'The warning 'unchecked' cannot be suppressed at this location'
         @SuppressWarnings({(false) ? "" : "unchecked"})
         public Cond() {}
-        // 2 violations 3 lines below:
+        // 2 violations 6 lines below:
+        // 'cannot be suppressed at this location'
+        // 'cannot be suppressed at this location'
+        // 2 violations 4 lines below:
         // 'cannot be suppressed at this location'
         // 'cannot be suppressed at this location'
         @SuppressWarnings({(false) ? (true) ? "   " : "unused" : "unchecked",
             (false) ? (true) ? "   " : "unused" : "unchecked"})
-        // 2 violations above:
-        // 'cannot be suppressed at this location'
-        // 'cannot be suppressed at this location'
         public void aCond1() {}
+        // 2 violations 3 lines below:
+        // 'cannot be suppressed at this location'
+        // 'cannot be suppressed at this location'
         @SuppressWarnings({(false) ? "unchecked" : (true) ? "   " : "unused"})
-        // 2 violations above:
-        // 'cannot be suppressed at this location'
-        // 'cannot be suppressed at this location'
         public void aCond2() {}
         // violation below 'The warning 'unchecked' cannot be suppressed at this location'
         @java.lang.SuppressWarnings({(false) ? "unchecked" :
@@ -106,8 +106,8 @@ public class InputSuppressWarningsCompactNonConstant4 {
                 // violation below 'The warning 'unchecked' cannot be suppressed at this location'
             (false) ? "unchecked" : ("" == "") ? (false) ? (true) ? "" :
                     "foo" : "   " :
+                    // violation below 'The warning 'unused' cannot be suppressed at this location'
                     "unused"})
-        // violation above 'The warning 'unused' cannot be suppressed at this location'
         public void seriously() {
 
         }

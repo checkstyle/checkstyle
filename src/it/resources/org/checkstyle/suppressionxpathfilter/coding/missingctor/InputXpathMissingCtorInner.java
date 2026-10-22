@@ -1,3 +1,9 @@
+/*
+MissingCtor
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.missingctor;
 
 public class InputXpathMissingCtorInner {
@@ -6,7 +12,7 @@ public class InputXpathMissingCtorInner {
 
     }
 
-    class InnerClass { // warn
+    class InnerClass { // violation 'Class should define a constructor.'
 
     }
 

@@ -39,8 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * legacy code, they often either aren't configurable enough or
  * just can't anticipate how format should be done. Sometimes this is
  * personal preference, other times it is practical experience. In any
- * case, this check should just ensure that a minimal set of indentation
- * rules is followed.
+ * case, this check should just ensure that a minimal set of indentation rules is followed.
  * </p>
  *
  * <p>
@@ -58,17 +57,17 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * <p>
  * Example:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
- * if ((condition1 &amp;&amp; condition2)
- *         || (condition3 &amp;&amp; condition4)    // line wrap with bigger indentation
- *         ||!(condition5 &amp;&amp; condition6)) { // line wrap with bigger indentation
+ * {@snippet :
+ * if ((condition1 && condition2)
+ *         || (condition3 && condition4)    // line wrap with bigger indentation
+ *         ||!(condition5 && condition6)) { // line wrap with bigger indentation
  *   field.doSomething()                    // basic offset
  *       .doSomething()                     // line wrap
- *       .doSomething( c -&gt; {               // line wrap
+ *       .doSomething( c -> {               // line wrap
  *         return c.doSome();               // basic offset
  *       });
  * }
- * </code></pre></div>
+ * }
  *
  * @since 3.1
  */
@@ -107,26 +106,22 @@ public class IndentationCheck extends AbstractCheck {
      */
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_ERROR = IndentationContext.MSG_ERROR;
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_ERROR_MULTI = IndentationContext.MSG_ERROR_MULTI;
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_CHILD_ERROR = IndentationContext.MSG_CHILD_ERROR;
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_CHILD_ERROR_MULTI =
         IndentationContext.MSG_CHILD_ERROR_MULTI;

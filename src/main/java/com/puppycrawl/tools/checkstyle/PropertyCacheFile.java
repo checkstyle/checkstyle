@@ -47,10 +47,8 @@ import com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil;
  * that have checked ok(no validation events) and their associated
  * timestamp. It is used to optimize Checkstyle between few launches.
  * It is mostly useful for plugin and extensions of Checkstyle.
- * It uses a property file
- * for storage.  A hashcode of the Configuration is stored in the
- * cache file to ensure the cache is invalidated when the
- * configuration has changed.
+ * It uses a property file for storage.  A hashcode of the Configuration is stored in the
+ * cache file to ensure the cache is invalidated when the configuration has changed.
  *
  */
 public final class PropertyCacheFile {
@@ -58,8 +56,7 @@ public final class PropertyCacheFile {
     /**
      * The property key to use for storing the hashcode of the
      * configuration. To avoid name clashes with the files that are
-     * checked the key is chosen in such a way that it cannot be a
-     * valid file name.
+     * checked the key is chosen in such a way that it cannot be a valid file name.
      */
     public static final String CONFIG_HASH_KEY = "configuration*?";
 
@@ -203,6 +200,15 @@ public final class PropertyCacheFile {
     }
 
     /**
+     * Returns the cache file name.
+     *
+     * @return the cache file name.
+     */
+    public String getFileName() {
+        return fileName;
+    }
+
+    /**
      * Calculates the hashcode for the serializable object based on its content.
      *
      * @param object serializable object.
@@ -225,7 +231,8 @@ public final class PropertyCacheFile {
         }
         catch (final IOException | NoSuchAlgorithmException exc) {
             // rethrow as unchecked exception
-            throw new IllegalStateException("Unable to calculate hashcode.", exc);
+            throw new IllegalStateException("Unable to calculate hashcode for "
+                    + object.getClass().getName(), exc);
         }
     }
 
@@ -384,8 +391,7 @@ public final class PropertyCacheFile {
      * @param location       resource location.
      * @param contentHashSum content hash sum.
      */
-    private record ExternalResource(String location,
-                                    String contentHashSum) {
+    private record ExternalResource(String location, String contentHashSum) {
     }
 
 }

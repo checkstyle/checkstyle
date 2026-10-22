@@ -70,8 +70,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class NoWhitespaceAfterCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "ws.followed";
 
@@ -135,8 +134,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     /**
      * Setter to control whether whitespace is allowed if the token is at a linebreak.
      *
-     * @param allowLineBreaks whether whitespace should be
-     *     flagged at linebreaks.
+     * @param allowLineBreaks whether whitespace should be flagged at linebreaks.
      * @since 3.0
      */
     public void setAllowLineBreaks(boolean allowLineBreaks) {
@@ -453,8 +451,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     }
 
     /**
-     * Gets the dot preceding a class member array index operation or class
-     * reference.
+     * Gets the dot preceding a class member array index operation or class reference.
      *
      * @param leftBracket the ast we are checking
      * @return dot preceding the left bracket

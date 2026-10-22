@@ -58,8 +58,7 @@ public class SeverityMatchFilter
      * Control whether the filter accepts an audit event if and only if there
      * is a match between the event's severity level and property severity.
      * If acceptOnMatch is {@code false}, then the filter accepts an audit event
-     * if and only if there is not a match between the event's severity level
-     * and property severity.
+     * if and only if there is not a match between the event's severity level and property severity.
      */
     private boolean acceptOnMatch = true;
 
@@ -87,8 +86,7 @@ public class SeverityMatchFilter
      * If acceptOnMatch is {@code false}, then the filter accepts an audit event
      * if and only if there is not a match between the event's severity level and property severity.
      *
-     * @param acceptOnMatch if true, accept on matches; if
-     *     false, reject on matches.
+     * @param acceptOnMatch if true, accept on matches; if false, reject on matches.
      * @since 3.2
      */
     public final void setAcceptOnMatch(boolean acceptOnMatch) {

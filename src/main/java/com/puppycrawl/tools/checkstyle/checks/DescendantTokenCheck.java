@@ -49,26 +49,22 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class DescendantTokenCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_MIN = "descendant.token.min";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_MAX = "descendant.token.max";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_SUM_MIN = "descendant.token.sum.min";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_SUM_MAX = "descendant.token.sum.max";
 
@@ -125,7 +121,7 @@ public class DescendantTokenCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         // reset counts
         Arrays.fill(counts, 0);
-        countTokens(ast, 0);
+        countTokens(ast);
 
         if (sumTokenCounts) {
             logAsTotal(ast);
@@ -210,25 +206,42 @@ public class DescendantTokenCheck extends AbstractCheck {
 
     /**
      * Counts the number of occurrences of descendant tokens.
+     * The tree is traversed iteratively, as deeply nested trees
+     * (for example long string concatenations) would overflow the stack.
      *
-     * @param ast the root token for descendants.
-     * @param depth the maximum depth of the counted descendants.
+     * @param root the root token for descendants.
      */
-    private void countTokens(DetailAST ast, int depth) {
-        if (depth <= maximumDepth) {
+    private void countTokens(DetailAST root) {
+        DetailAST node = null;
+        if (maximumDepth >= 0) {
+            node = root;
+        }
+        int depth = 0;
+        while (node != null) {
             // update count
             if (depth >= minimumDepth) {
-                final int type = ast.getType();
+                final int type = node.getType();
                 if (type <= counts.length) {
                     counts[type - 1]++;
                 }
             }
-            DetailAST child = ast.getFirstChild();
-            final int nextDepth = depth + 1;
-            while (child != null) {
-                countTokens(child, nextDepth);
-                child = child.getNextSibling();
+            DetailAST next = null;
+            if (depth < maximumDepth) {
+                next = node.getFirstChild();
             }
+            if (next == null) {
+                while (next == null && depth > 0) {
+                    next = node.getNextSibling();
+                    if (next == null) {
+                        node = node.getParent();
+                        depth--;
+                    }
+                }
+            }
+            else {
+                depth++;
+            }
+            node = next;
         }
     }
 

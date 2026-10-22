@@ -43,8 +43,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Loads a filter chain of suppressions.
  */
-public final class SuppressionsLoader
-    extends XmlLoader {
+public final class SuppressionsLoader extends XmlLoader {
 
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_0 =
@@ -188,7 +187,8 @@ public final class SuppressionsLoader
         }
         catch (final PatternSyntaxException exc) {
             // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
-            throw new SAXException("invalid files or checks or message format", exc);
+            throw new SAXException("invalid files or checks or message format for checks: "
+                    + checks, exc);
         }
         return suppress;
     }
@@ -217,8 +217,8 @@ public final class SuppressionsLoader
         }
         catch (final PatternSyntaxException exc) {
             // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
-            throw new SAXException("invalid files or checks or message format for suppress-xpath",
-                    exc);
+            throw new SAXException("invalid files or checks or message format for suppress-xpath: "
+                    + checks, exc);
         }
         return filter;
     }

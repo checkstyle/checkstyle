@@ -73,8 +73,7 @@ if (p == (q &lt;= r)) {}
 
         <p>
           In the first case, given that <em>a</em>, <em>b</em>, and <em>c</em> are
-          all <code>int</code> variables, the parentheses around <code>a + b</code>
-          are not needed.
+          all <code>int</code> variables, the parentheses around <code>a + b</code> are not needed.
           In the second case, parentheses are required as <em>q</em>, <em>r</em> are
           of type <code>int</code> and <em>p</em> is of type <code>boolean</code>
           and removing parentheses will give a compile-time error. Even if <em>q</em>
@@ -350,7 +349,10 @@ class Example1 {
     for (int i = (0); i &lt; 10; i++) {
       // violation below 'Unnecessary parentheses around assignment right-hand side'
       int x = (i + 1);
-      sumOfSquares += (square(x,x));  // 2 violations
+      sumOfSquares += (square(x,x));
+      // 2 violations above:
+      //  'Unnecessary parentheses around assignment right-hand side'
+      //  'Unnecessary parentheses around identifier 'square''
     }
   }
 
@@ -407,6 +409,9 @@ class Example2 {
 
       int x = (i + 1);
       sumOfSquares += (square(x,x));
+
+
+
     }
   }
 

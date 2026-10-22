@@ -47,8 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * pattern variables</a>.
  * Doesn't check
  * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.12.3">
- * array components</a> as array
- * components are classified as different kind of variables by
+ * array components</a> as array components are classified as different kind of variables by
  * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/index.html">JLS</a>.
  * </div>
  *
@@ -58,14 +57,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class UnusedLocalVariableCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_UNUSED_LOCAL_VARIABLE = "unused.local.var";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_UNUSED_NAMED_LOCAL_VARIABLE = "unused.named.local.var";
 
@@ -158,8 +155,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
 
     /**
      * Keeps track of all the type declarations present in the file.
-     * Pops the type out of the stack while leaving the type
-     * in visitor pattern.
+     * Pops the type out of the stack while leaving the type in visitor pattern.
      */
     private final Deque<TypeDeclDesc> typeDeclarations = new ArrayDeque<>();
 
@@ -169,8 +165,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private final Map<DetailAST, TypeDeclDesc> typeDeclAstToTypeDeclDesc = new LinkedHashMap<>();
 
     /**
-     * Maps local anonymous inner class to the TypeDeclDesc object
-     * containing it.
+     * Maps local anonymous inner class to the TypeDeclDesc object containing it.
      */
     private final Map<DetailAST, TypeDeclDesc> anonInnerAstToTypeDeclDesc = new HashMap<>();
 
@@ -855,8 +850,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Visit all ast nodes under {@link UnusedLocalVariableCheck#anonInnerClassHolders} once
-     * again.
+     * Visit all ast nodes under {@link UnusedLocalVariableCheck#anonInnerClassHolders} once again.
      *
      * @param ast ast
      * @param variablesStack stack of all the relevant variables in the scope
@@ -888,8 +882,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Leave all ast nodes under {@link UnusedLocalVariableCheck#anonInnerClassHolders} once
-     * again.
+     * Leave all ast nodes under {@link UnusedLocalVariableCheck#anonInnerClassHolders} once again.
      *
      * @param ast ast
      * @param variablesStack stack of all the relevant variables in the scope
@@ -969,8 +962,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * an operand of a stand-alone increment or decrement.
      *
      * @param identAst ast of type {@code TokenTypes#IDENT}
-     * @return true if identAst is used as an operand of stand-alone
-     *         increment or decrement
+     * @return true if identAst is used as an operand of stand-alone increment or decrement
      */
     private static boolean isStandAloneIncrementOrDecrement(DetailAST identAst) {
         final DetailAST parent = identAst.getParent();
@@ -982,8 +974,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
 
     /**
      * A variable with increment or decrement operator is considered used if it
-     * is used as an argument or as an array index or for assigning value
-     * to a variable.
+     * is used as an argument or as an array index or for assigning value to a variable.
      *
      * @param exprAst ast of type {@link TokenTypes#EXPR}
      * @return true if variable nested in exprAst is used
@@ -1103,8 +1094,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
 
         /**
-         * Register the variable as an instance variable or
-         * class variable.
+         * Register the variable as an instance variable or class variable.
          */
         /* package */ void registerAsInstOrClassVar() {
             instVarOrClassVar = true;
@@ -1137,8 +1127,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
 
         /**
-         * Is a forced-name pattern variable from a switch label or
-         * instanceof record Destructuring.
+         * Is a forced-name pattern variable from a switch label or instanceof record Destructuring.
          *
          * @return true if this variable was declared in a context where
          *         pre-JDK 22 forces a name to be given even when unused
@@ -1146,6 +1135,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         /* package */ boolean isNamedPatternVar() {
             return namedPatternVar;
         }
+
     }
 
     /**
@@ -1245,6 +1235,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         /* package */ void addInstOrClassVar(VariableDesc variableDesc) {
             instanceAndClassVarStack.push(variableDesc);
         }
+
     }
 
 }

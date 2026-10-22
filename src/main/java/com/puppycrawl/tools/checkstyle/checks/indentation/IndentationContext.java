@@ -25,8 +25,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * Immutable view of everything an indentation handler needs from the surrounding
- * {@code IndentationCheck}, so handlers do not hold a direct reference back to
- * the check.
+ * {@code IndentationCheck}, so handlers do not hold a direct reference back to the check.
  */
 public final class IndentationContext {
 

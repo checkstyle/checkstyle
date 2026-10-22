@@ -8,7 +8,8 @@ case $1 in
 guava-with-google-checks)
   CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   echo CS_version: "$CS_POM_VERSION"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
@@ -31,7 +32,8 @@ guava-with-google-checks)
 guava-with-sun-checks)
   CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   echo CS_version: "$CS_POM_VERSION"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
@@ -53,7 +55,8 @@ guava-with-sun-checks)
 
 openjdk17-with-checks-nonjavadoc-error)
   LOCAL_GIT_REPO=$(pwd)
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   checkout_from https://github.com/checkstyle/contribution
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
@@ -75,7 +78,8 @@ openjdk17-with-checks-nonjavadoc-error)
 
 openjdk19-with-checks-nonjavadoc-error)
   LOCAL_GIT_REPO=$(pwd)
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   checkout_from https://github.com/checkstyle/contribution
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
@@ -97,7 +101,8 @@ openjdk19-with-checks-nonjavadoc-error)
 
 openjdk20-with-checks-nonjavadoc-error)
   LOCAL_GIT_REPO=$(pwd)
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   checkout_from https://github.com/checkstyle/contribution
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
@@ -119,7 +124,8 @@ openjdk20-with-checks-nonjavadoc-error)
 
 openjdk25-with-checks-nonjavadoc-error)
   LOCAL_GIT_REPO=$(pwd)
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   checkout_from https://github.com/checkstyle/contribution
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
@@ -142,7 +148,8 @@ openjdk25-with-checks-nonjavadoc-error)
 no-exception-lucene-and-others-javadoc)
   CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cp config/projects-to-test/projects-for-no-exception-javadoc.config \
@@ -166,7 +173,8 @@ no-exception-cassandra-storm-tapestry-javadoc)
   CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   checkout_from https://github.com/checkstyle/contribution
   cp config/projects-to-test/projects-for-no-exception-javadoc.config \
       .ci-temp/contribution/checkstyle-tester
@@ -188,7 +196,8 @@ no-exception-hadoop-apache-groovy-scouter-javadoc)
   CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   checkout_from https://github.com/checkstyle/contribution
   cp config/projects-to-test/projects-for-no-exception-javadoc.config \
       .ci-temp/contribution/checkstyle-tester
@@ -211,7 +220,8 @@ no-exception-only-javadoc)
   CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties

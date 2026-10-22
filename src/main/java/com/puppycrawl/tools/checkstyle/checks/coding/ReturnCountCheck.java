@@ -44,8 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * and lambdas that have no return type (IE 'return;'). It will only count
  * visible return statements. Return statements not normally written, but
  * implied, at the end of the method/constructor definition will not be taken
- * into account. To disallow "return;" in void return type methods, use a value
- * of 0.
+ * into account. To disallow "return;" in void return type methods, use a value of 0.
  * </p>
  *
  * <p>
@@ -59,13 +58,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class ReturnCountCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "return.count";
     /**
-     * A key pointing to the warning message text in "messages.properties"
-     * file.
+     * A key pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_VOID = "return.countVoid";
 
@@ -125,8 +122,7 @@ public final class ReturnCountCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to specify maximum allowed number of return statements
-     * in non-void methods/lambdas.
+     * Setter to specify maximum allowed number of return statements in non-void methods/lambdas.
      *
      * @param max maximum allowed number of return statements.
      * @since 3.2
@@ -259,8 +255,7 @@ public final class ReturnCountCheck extends AbstractCheck {
         }
 
         /**
-         * Checks if number of return statements in the method are more
-         * than allowed.
+         * Checks if number of return statements in the method are more than allowed.
          *
          * @param ast method def associated with this context.
          */

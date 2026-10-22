@@ -435,6 +435,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
         private FileContext() {
             // no code by default
         }
+
     }
 
 }

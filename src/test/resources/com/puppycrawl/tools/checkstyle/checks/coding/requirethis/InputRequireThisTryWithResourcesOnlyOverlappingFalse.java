@@ -104,11 +104,17 @@ public class InputRequireThisTryWithResourcesOnlyOverlappingFalse implements Aut
                     + fldStreamReader.toString())) { }
 
             String a = fldStreamReader.toString()
-                    + fldBufferedReader.toString() + fldScanner.toString(); // 2 violations
+                    + fldBufferedReader.toString() + fldScanner.toString();
+                    // 2 violations above:
+                    //    'Reference to instance variable 'fldBufferedReader' needs "this.".'
+                    //    'Reference to instance variable 'fldScanner' needs "this.".'
         }
         catch (IOException e) {
             String a = fldStreamReader.toString() // violation '.*variable 'fldStreamReader'.*'
-                    + fldBufferedReader.toString() + fldScanner.toString(); // 2 violations
+                    + fldBufferedReader.toString() + fldScanner.toString();
+                    // 2 violations above:
+                    //    'Reference to instance variable 'fldBufferedReader' needs "this.".'
+                    //    'Reference to instance variable 'fldScanner' needs "this.".'
         }
     }
 

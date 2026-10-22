@@ -36,8 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * <div>
  * Restricts using
  * <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3">
- * Unicode escapes</a>
- * (such as &#92;u221e). It is possible to allow using escapes for
+ * Unicode escapes</a> (such as &#92;u221e). It is possible to allow using escapes for
  * <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters">
  * non-printable, control characters</a>.
  * Also, this check can be configured to allow using escapes
@@ -48,12 +47,10 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * @since 5.8
  */
 @FileStatefulCheck
-public class AvoidEscapedUnicodeCharactersCheck
-    extends AbstractCheck {
+public class AvoidEscapedUnicodeCharactersCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "forbid.escaped.unicode.char";
 

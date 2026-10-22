@@ -55,14 +55,12 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testStaticHeader() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
-        checkConfig.addProperty("ignoreLines", "");
         final String[] expected = {
             "1: " + getCheckMessage(MSG_MISSING),
         };
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputHeader.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderStaticConfig.java"),
+                getPath("InputHeader.java"), expected);
     }
 
     @Test
@@ -90,9 +88,13 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
-                        .startsWith("cannot initialize module"
-                            + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
-                            + " - illegal value ");
+                        .isEqualTo("cannot initialize module"
+                            + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck");
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasCauseThat()
+                .hasMessageThat()
+                        .startsWith("illegal value ");
         assertWithMessage("Invalid cause exception message")
                 .that(ex)
                 .hasCauseThat()
@@ -113,8 +115,12 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
                 .that(ex)
                 .hasMessageThat()
                         .isEqualTo("cannot initialize module"
-                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
-                                + " - Cannot set property 'charset' to 'XSO-8859-1'");
+                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck");
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasCauseThat()
+                .hasMessageThat()
+                        .isEqualTo("Cannot set property 'charset' to 'XSO-8859-1'");
         assertWithMessage("Invalid cause exception message")
                 .that(ex)
                 .hasCauseThat()
@@ -134,8 +140,12 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
                 .that(ex)
                 .hasMessageThat()
                         .isEqualTo("cannot initialize module"
-                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
-                                + " - Cannot set property 'headerFile' to ''");
+                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck");
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasCauseThat()
+                .hasMessageThat()
+                        .isEqualTo("Cannot set property 'headerFile' to ''");
         assertWithMessage("Invalid cause exception message")
                 .that(ex)
                 .hasCauseThat()
@@ -156,22 +166,24 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
                 .that(ex)
                 .hasMessageThat()
                         .isEqualTo("cannot initialize module"
-                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
-                                + " - Cannot set property 'headerFile' to 'null'");
+                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck");
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasCauseThat()
+                .hasMessageThat()
+                        .isEqualTo("Cannot set property 'headerFile' to 'null'");
     }
 
     @Test
     public void testNotMatch() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
-        checkConfig.addProperty("ignoreLines", "");
         final String[] expected = {
             "2: " + getCheckMessage(MSG_MISMATCH,
                     "// checkstyle: Checks Java source code and other text files for adherence to a"
                         + " set of rules."),
         };
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputHeaderjava2.header"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderjava2NotMatchConfig.java"),
+                getPath("InputHeaderjava2NotMatch.header"), expected);
     }
 
     @Test
@@ -253,11 +265,10 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnoreLinesSorted() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
-        checkConfig.addProperty("ignoreLines", "4,2,3");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHeaderjava3.header"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderjava3IgnoreLinesSortedConfig.java"),
+                getPath("InputHeaderjava3.header"), expected);
     }
 
     @Test
@@ -320,7 +331,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
             assertWithMessage("Invalid exception message")
                     .that(ex)
                     .hasMessageThat()
-                            .isEqualTo("unable to load header");
+                            .isEqualTo("unable to load header: header");
         }
     }
 

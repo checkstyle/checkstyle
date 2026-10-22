@@ -40,8 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  * If none of the criteria are configured, the element accepts all events.
  *
  */
-public class SuppressFilterElement
-    implements Filter {
+public class SuppressFilterElement implements Filter {
 
     /** The regexp to match file names against. */
     private final Pattern fileRegexp;

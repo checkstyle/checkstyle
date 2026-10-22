@@ -61,8 +61,7 @@
           When this is a matter of the code in question and not personal preference,
           the best place to override the policy is in the code itself. Semi-structured
           comments can be associated with the check. This is sometimes superior to
-          a separate suppressions file, which must be kept up-to-date as the source
-          file is edited.
+          a separate suppressions file, which must be kept up-to-date as the source file is edited.
         </p>
 
         <p>

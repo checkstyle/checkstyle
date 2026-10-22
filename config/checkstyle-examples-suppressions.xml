@@ -116,6 +116,8 @@
     files="operatorwrap/Example1.java"/>
   <suppress id="discouragedRegexpInViolationMessage"
     files="operatorwrap/Example2.java"/>
+  <suppress id="discouragedRegexpInViolationMessage"
+    files="operatorwrap/Example3.java"/>
   <!-- it prints user regexp -->
   <suppress id="discouragedRegexpInViolationMessage"
             files="regexponfilename/Example[24].*"/>
@@ -127,6 +129,16 @@
   <!-- Example is longer than FileLength limit by design -->
   <suppress checks="FileLength"
             files="googlenonconstantfieldname/Example1.java"/>
+
+  <!-- XdocsExamplesAstConsistencyTest requires Example2 to keep Example1's javadoc
+       text and code line positions, and the property config costs two extra lines -->
+  <suppress checks="FileLength"
+            files="javadocleadingasteriskalign/Example2.java"/>
+
+  <!-- The javadoc text is fixed by that same test, so the inline violation marker
+       it needs cannot be shortened or moved off the line -->
+  <suppress checks="LineLength"
+            files="javadocleadingasteriskalign/Example2.java"/>
 
   <!-- Suppress forbidden regex messages for avoidstarimport examples -->
   <suppress id="forbiddenRegexpInViolationMessage"
@@ -197,7 +209,7 @@
   <suppress checks="LineLength" files="classdataabstractioncoupling/UseCase6.java"/>
 
   <!-- Example needs to have really long regex format properly shown in config  -->
-  <suppress checks="LineLength" files="illegalidentifiername/Example[2].java"/>
+  <suppress checks="LineLength" files="illegalidentifiername/Example[23].java"/>
 
   <!-- Example must show PackageDeclaration violations -->
   <suppress checks="PackageDeclaration"
@@ -212,5 +224,9 @@
   <!-- Exclude canonical names list longer than 85 characters  -->
   <suppress checks="LineLength"
             files="annotateddeclarationvisibility/Example3.java"/>
+
+  <!-- Example files contain intentionally long Javadoc lines to demonstrate the check -->
+  <suppress checks="LineLength"
+            files="javadocutilizingtrailingspace[\\/]Example.*\.java"/>
 
 </suppressions>

@@ -80,8 +80,7 @@ public class UnnecessaryTypeArgumentsWithRecordPatternCheck extends AbstractChec
     }
 
     /**
-     * Determines whether explicit type arguments in a record pattern
-     * are unnecessary.
+     * Determines whether explicit type arguments in a record pattern are unnecessary.
      *
      * @param typeArgs TYPE_ARGUMENTS ast node
      * @return true if the type arguments are necessary, false otherwise

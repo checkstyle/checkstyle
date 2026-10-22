@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck.MSG_KEY_SINGLE;
+import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG;
@@ -41,7 +42,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -135,31 +135,21 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
     @Test
     public void testSuppressionCommentsInPropertiesFile() throws Exception {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        filterCfg.addProperty("offCommentFormat", "# CHECKSTYLE:OFF");
-        filterCfg.addProperty("onCommentFormat", "# CHECKSTYLE:ON");
-
-        final DefaultConfiguration checkCfg = createModuleConfig(RegexpSinglelineCheck.class);
-        checkCfg.addProperty("format", "^key[0-9]=$");
-
         final String[] suppressed = {
-            "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "13: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^key[0-9]=$"),
         };
 
         final String[] violationMessages = {
-            "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "13: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^key[0-9]=$"),
-            "4: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "16: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^key[0-9]=$"),
         };
 
-        verifySuppressed(
-            "InputSuppressWithPlainTextCommentFilter.properties",
-            removeSuppressed(violationMessages, suppressed),
-            filterCfg, checkCfg
-        );
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithPlainTextCommentFilter.properties"),
+            violationMessages, removeSuppressed(violationMessages, suppressed));
     }
 
     @Test
@@ -727,29 +717,23 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
     @Test
     public void testCheckFormatAnchoredToIndentationCheckFqcn() throws Exception {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        filterCfg.addProperty("checkFormat", "\\.IndentationCheck$");
-        filterCfg.addProperty("offCommentFormat", "CSOFF");
-        filterCfg.addProperty("onCommentFormat", "CSON");
-
-        final DefaultConfiguration twCfg =
-            createModuleConfig(TreeWalker.class);
-        twCfg.addChild(createModuleConfig(IndentationCheck.class));
-        twCfg.addChild(createModuleConfig(CommentsIndentationCheck.class));
-
-        final DefaultConfiguration checkerConfig = createRootConfig(null);
-        checkerConfig.addProperty("fileExtensions", "java");
-        checkerConfig.addChild(filterCfg);
-        checkerConfig.addChild(twCfg);
-
-        final String[] expected = {
-            "5:5: " + getCheckMessage(CommentsIndentationCheck.class, MSG_KEY_SINGLE, 6, 4, 0),
+        final String[] suppressedViolationMessages = {
+            "32:4: " + getCheckMessage(IndentationCheck.class, MSG_ERROR,
+                "member def type", 3, 4),
         };
 
-        verify(checkerConfig,
-            getPath("InputSuppressWithPlainTextCommentFilterIndentationAnchored.java"),
-            expected);
+        final String[] expectedViolationMessages = {
+            "29:5: " + getCheckMessage(CommentsIndentationCheck.class, MSG_KEY_SINGLE,
+                30, 4, 0),
+            "32:4: " + getCheckMessage(IndentationCheck.class, MSG_ERROR,
+                "member def type", 3, 4),
+        };
+
+        verifyFilterWithInlineConfigParser(
+                getPath("InputSuppressWithPlainTextCommentFilterIndentationAnchored.java"),
+                expectedViolationMessages,
+                removeSuppressed(expectedViolationMessages, suppressedViolationMessages)
+        );
     }
 
     @Test

@@ -44,8 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class NewlineAtEndOfFileCheckTest
-    extends AbstractModuleTestSupport {
+public class NewlineAtEndOfFileCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
@@ -172,8 +171,10 @@ public class NewlineAtEndOfFileCheckTest
         assertWithMessage("Error message is unexpected")
                 .that(exc.getMessage())
                 .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle."
-                        + "checks.NewlineAtEndOfFileCheck - "
-                        + "Cannot set property 'lineSeparator' to 'ct'");
+                        + "checks.NewlineAtEndOfFileCheck");
+        assertWithMessage("Error message is unexpected")
+                .that(exc.getCause().getMessage())
+                .isEqualTo("Cannot set property 'lineSeparator' to 'ct'");
     }
 
     @Test
@@ -259,6 +260,7 @@ public class NewlineAtEndOfFileCheckTest
         public int read(byte[] bytes) {
             return 0;
         }
+
     }
 
 }

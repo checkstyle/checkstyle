@@ -53,8 +53,7 @@ import net.sf.saxon.trans.XPathException;
 
 /**
  * This example shows how to create a simple TreeTable component,
- * by using a JTree as a renderer (and editor) for the cells in a
- * particular column in the JTable.
+ * by using a JTree as a renderer (and editor) for the cells in a particular column in the JTable.
  * <a href=
  * "https://docs.oracle.com/cd/E48246_01/apirefs.1111/e13403/oracle/ide/controls/TreeTableModel.html">
  * Original&nbsp;Source&nbsp;Location</a>
@@ -169,7 +168,7 @@ public final class TreeTable extends JTable {
      * Generate Xpath.
      */
     private void generateXpath() {
-        if (tree.getLastSelectedPathComponent() instanceof DetailAST ast) {
+        if (tree.getLastSelectedPathComponent() instanceof final DetailAST ast) {
             final String xpath = XpathQueryGenerator.generateXpathQuery(ast);
             xpathEditor.setText(xpath);
         }
@@ -229,8 +228,7 @@ public final class TreeTable extends JTable {
     }
 
     /**
-     * Updates the Treetable by expanding paths in the tree and highlighting
-     * associated code.
+     * Updates the Treetable by expanding paths in the tree and highlighting associated code.
      *
      * @param xpath the XPath query to show in case of no match
      * @param nodes the deque of DetailAST nodes to match in TreeTable and XPath editor
@@ -250,8 +248,7 @@ public final class TreeTable extends JTable {
     }
 
     /**
-     * Expands path in tree table to given node so that user can
-     * see the node.
+     * Expands path in tree table to given node so that user can see the node.
      *
      * @param node node to expand table by
      */
@@ -265,8 +262,7 @@ public final class TreeTable extends JTable {
     }
 
     /**
-     * Generates a String with all matching XPath queries separated
-     * by newlines.
+     * Generates a String with all matching XPath queries separated by newlines.
      *
      * @param nodes deque of nodes to generate queries for
      * @return complete text of all XPath expressions separated by newlines.
@@ -358,11 +354,11 @@ public final class TreeTable extends JTable {
     }
 
     /**
-     * TreeTableCellEditor implementation. Component returned is the
-     * JTree.
+     * TreeTableCellEditor implementation. Component returned is the JTree.
      */
     private final class TreeTableCellEditor extends BaseCellEditor implements
             TableCellEditor {
+
         /**
          * Creates a new {@code TreeTableCellEditor} instance.
          */
@@ -392,8 +388,7 @@ public final class TreeTable extends JTable {
          * up/down should also be implemented in terms of the table.
          * By returning false this also has the added benefit that clicking
          * outside of the bounds of the tree node, but still in the tree
-         * column will select the row, whereas if this returned true
-         * that wouldn't be the case.
+         * column will select the row, whereas if this returned true that wouldn't be the case.
          *
          * <p>By returning false we are also enforcing the policy that
          * the tree will never be editable (at least by a key sequence).
@@ -402,7 +397,7 @@ public final class TreeTable extends JTable {
          */
         @Override
         public boolean isCellEditable(EventObject event) {
-            if (event instanceof MouseEvent mouseEvent) {
+            if (event instanceof final MouseEvent mouseEvent) {
                 for (int counter = getColumnCount() - 1; counter >= 0;
                      counter--) {
                     if (getColumnClass(counter) == ParseTreeTableModel.class) {

@@ -28,8 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class ParameterNumberCheckTest
-    extends AbstractModuleTestSupport {
+public class ParameterNumberCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
@@ -168,6 +167,32 @@ public class ParameterNumberCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNumberIgnoreAnnotatedByFullyQualifiedClassName.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactDefault() throws Exception {
+        final String[] expected = {
+            "16:6: " + getCheckMessage(MSG_KEY, 7, 8),
+            "20:6: " + getCheckMessage(MSG_KEY, 7, 8),
+            "24:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "29:5: " + getCheckMessage(MSG_KEY, 7, 8),
+            "33:17: " + getCheckMessage(MSG_KEY, 7, 8),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputParameterNumberCompactDefault.java"), expected);
+    }
+
+    @Test
+    public void testCompactProperties() throws Exception {
+        final String[] expected = {
+            "20:6: " + getCheckMessage(MSG_KEY, 2, 3),
+            "30:6: " + getCheckMessage(MSG_KEY, 2, 3),
+            "34:10: " + getCheckMessage(MSG_KEY, 2, 3),
+            "39:5: " + getCheckMessage(MSG_KEY, 2, 3),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputParameterNumberCompactProperties.java"),
                 expected);
     }
 

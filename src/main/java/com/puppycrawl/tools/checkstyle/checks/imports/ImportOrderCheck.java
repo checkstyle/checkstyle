@@ -65,36 +65,30 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * @since 3.2
  */
 @FileStatefulCheck
-public class ImportOrderCheck
-    extends AbstractCheck {
+public class ImportOrderCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_SEPARATION = "import.separation";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_SEPARATED_IN_GROUP = "import.groups.separated.internally";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_ORDERING_LEX = "import.ordering.lex";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_ORDERING_STATIC = "import.ordering.static";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_ORDERING_GROUP = "import.ordering.group";
 
@@ -186,8 +180,7 @@ public class ImportOrderCheck
     private boolean sortStaticImportsAlphabetically;
 
     /**
-     * Control whether to use container ordering (Eclipse IDE term) for static imports
-     * or not.
+     * Control whether to use container ordering (Eclipse IDE term) for static imports or not.
      */
     private boolean useContainerOrderingForStatic;
 
@@ -264,8 +257,7 @@ public class ImportOrderCheck
      * It doesn't affect sorting for static imports.
      *
      * @param ordered
-     *            whether lexicographic ordering of imports within a group
-     *            required or not.
+     *            whether lexicographic ordering of imports within a group required or not.
      * @since 3.2
      */
     public void setOrdered(boolean ordered) {
@@ -291,8 +283,7 @@ public class ImportOrderCheck
      * When the property {@code option} is set to {@code top} or {@code bottom},
      * this property requires {@code staticGroups} to be enabled.
      * When the property {@code option} is set to {@code under} or {@code above},
-     * this property allows blank lines between static and non-static imports
-     * within the same group.
+     * this property allows blank lines between static and non-static imports within the same group.
      *
      * @param separatedStaticGroups
      *            whether groups should be separated by one blank line or comment.
@@ -441,8 +432,7 @@ public class ImportOrderCheck
 
     /**
      * Handles the case when the current import belongs to a group
-     * that comes after the previous group. Verifies whether a
-     * separator between groups is required.
+     * that comes after the previous group. Verifies whether a separator between groups is required.
      *
      * @param isStatic whether the current import is static
      * @param ast the AST node of the current import
@@ -605,8 +595,7 @@ public class ImportOrderCheck
      *
      * @param importName1 first import name
      * @param importName2 second import name
-     * @param caseSensitive whether the comparison of fully qualified import names is
-     *                      case-sensitive
+     * @param caseSensitive whether the comparison of fully qualified import names is case-sensitive
      * @return the value {@code 0} if str1 is equal to str2; a value
      *         less than {@code 0} if str is less than the str2 (container order
      *         or lexicographical); and a value greater than {@code 0} if str1 is greater than str2

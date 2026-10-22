@@ -85,12 +85,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * @since 3.0
  */
 @FileStatefulCheck
-public class HiddenFieldCheck
-    extends AbstractCheck {
+public class HiddenFieldCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "hidden.field";
 
@@ -352,8 +350,7 @@ public class HiddenFieldCheck
     }
 
     /**
-     * Determines whether an AST node is in a static method or static
-     * initializer.
+     * Determines whether an AST node is in a static method or static initializer.
      *
      * @param ast the node to check.
      * @return true if ast is in a static method or a static block;
@@ -387,8 +384,7 @@ public class HiddenFieldCheck
      * name 'setXyz', one parameter named 'xyz', and return type void
      * (default behavior) or return type is name of the class in which
      * such method is declared (allowed only if
-     * {@link #setSetterCanReturnItsClass(boolean)} is called with
-     * value <em>true</em>).
+     * {@link #setSetterCanReturnItsClass(boolean)} is called with value <em>true</em>).
      *
      * @param ast the AST to check.
      * @param name the name of ast.
@@ -450,8 +446,7 @@ public class HiddenFieldCheck
     }
 
     /**
-     * Capitalizes a given property name the way we expect to see it in
-     * a setter name.
+     * Capitalizes a given property name the way we expect to see it in a setter name.
      *
      * @param name a property name
      * @return capitalized property name
@@ -468,8 +463,7 @@ public class HiddenFieldCheck
     }
 
     /**
-     * Decides whether to ignore an AST node that is the parameter of a
-     * constructor.
+     * Decides whether to ignore an AST node that is the parameter of a constructor.
      *
      * @param ast the AST to check.
      * @return true if ast should be ignored because check property
@@ -487,8 +481,7 @@ public class HiddenFieldCheck
     }
 
     /**
-     * Decides whether to ignore an AST node that is the parameter of an
-     * abstract method.
+     * Decides whether to ignore an AST node that is the parameter of an abstract method.
      *
      * @param ast the AST to check.
      * @return true if ast should be ignored because check property
@@ -519,8 +512,7 @@ public class HiddenFieldCheck
     /**
      * Setter to allow to ignore the parameter of a property setter method.
      *
-     * @param ignoreSetter decide whether to ignore the parameter of
-     *     a property setter method.
+     * @param ignoreSetter decide whether to ignore the parameter of a property setter method.
      * @since 3.2
      */
     public void setIgnoreSetter(boolean ignoreSetter) {
@@ -534,8 +526,7 @@ public class HiddenFieldCheck
      * @param setterCanReturnItsClass if true then setter can return
      *        either void or class in which it is declared. If false then
      *        in order to be recognized as setter method (otherwise
-     *        already recognized as a setter) must return void.  Later is
-     *        the default behavior.
+     *        already recognized as a setter) must return void.  Later is the default behavior.
      * @since 6.3
      */
     public void setSetterCanReturnItsClass(
@@ -546,8 +537,7 @@ public class HiddenFieldCheck
     /**
      * Setter to control whether to ignore constructor parameters.
      *
-     * @param ignoreConstructorParameter decide whether to ignore
-     *     constructor parameters.
+     * @param ignoreConstructorParameter decide whether to ignore constructor parameters.
      * @since 3.2
      */
     public void setIgnoreConstructorParameter(
@@ -558,8 +548,7 @@ public class HiddenFieldCheck
     /**
      * Setter to control whether to ignore parameters of abstract methods.
      *
-     * @param ignoreAbstractMethods decide whether to ignore
-     *     parameters of abstract methods.
+     * @param ignoreAbstractMethods decide whether to ignore parameters of abstract methods.
      * @since 4.0
      */
     public void setIgnoreAbstractMethods(
@@ -662,14 +651,12 @@ public class HiddenFieldCheck
         }
 
         /**
-         * Check if current frame is embedded in class or enum with
-         * specific name.
+         * Check if current frame is embedded in class or enum with specific name.
          *
          * @param classOrEnumName name of class or enum that we are looking
          *     for in the chain of field frames.
          *
-         * @return true if current frame is embedded in class or enum
-         *     with name classOrNameName
+         * @return true if current frame is embedded in class or enum with name classOrNameName
          */
         private boolean isEmbeddedIn(String classOrEnumName) {
             FieldFrame currentFrame = this;

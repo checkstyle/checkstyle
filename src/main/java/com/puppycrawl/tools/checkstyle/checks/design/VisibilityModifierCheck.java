@@ -105,24 +105,20 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *
  * <p>
  * Notes:
- * Top-level fields of compact source files
- * (<a href="https://openjdk.org/jeps/512">JEP 512</a>)
+ * Top-level fields of compact source files (<a href="https://openjdk.org/jeps/512">JEP 512</a>)
  * are skipped by design. Their access modifiers do not provide the encapsulation
  * that this check enforces for ordinary classes.
  * Public members are not flagged if the name matches the public
- * member regular expression (contains {@code "^serialVersionUID$"} by
- * default).
+ * member regular expression (contains {@code "^serialVersionUID$"} by default).
  * </p>
  *
  * @since 3.0
  */
 @FileStatefulCheck
-public class VisibilityModifierCheck
-    extends AbstractCheck {
+public class VisibilityModifierCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "variable.notPrivate";
 
@@ -194,8 +190,7 @@ public class VisibilityModifierCheck
     private Set<String> immutableClassShortNames;
 
     /**
-     * Specify annotations canonical names which ignore variables in
-     * consideration.
+     * Specify annotations canonical names which ignore variables in consideration.
      */
     private Set<String> ignoreAnnotationCanonicalNames = DEFAULT_IGNORE_ANNOTATIONS;
 
@@ -222,8 +217,7 @@ public class VisibilityModifierCheck
     }
 
     /**
-     * Setter to specify annotations canonical names which ignore variables
-     * in consideration.
+     * Setter to specify annotations canonical names which ignore variables in consideration.
      *
      * @param annotationNames array of ignore annotations canonical names.
      * @since 6.5
@@ -730,10 +724,8 @@ public class VisibilityModifierCheck
     }
 
     /**
-     * Checks whether the AST is annotated with
-     * an annotation containing the passed in regular
-     * expression and return the AST representing that
-     * annotation.
+     * Checks whether the AST is annotated with an annotation containing the passed in regular
+     * expression and return the AST representing that annotation.
      *
      * <p>
      * This method will not look for imports or package

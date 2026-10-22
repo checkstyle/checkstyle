@@ -217,7 +217,9 @@ public class Example2 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalIdentifierName"&gt;
-      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+      &lt;property name="format"
+        value="(?i)^(?!(when|record|yield|var|permits|sealed|open|transitive|_)$|(.*\$)).+$"/&gt;
+      &lt;property name="tokens" value="RECORD_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -225,13 +227,13 @@ public class Example2 {
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-  Integer var = 4; // violation 'Name 'var' must match pattern'
+  Integer var = 4;
   int record = 15;
   String yield = "yield";
 
-  String test$stuff = "test"; // violation 'must match pattern'
+  String test$stuff = "test";
   String when = "today";
-  record Record(Record r){}
+  record Record(Record r){} // violation 'Name 'Record' must match pattern'
 
   record R(Record record){}
 

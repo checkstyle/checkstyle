@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Tests Java 7 try-with-resources can be parsed.
  */
-public class Java7TryWithResourcesTest
-    extends AbstractModuleTestSupport {
+public class Java7TryWithResourcesTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

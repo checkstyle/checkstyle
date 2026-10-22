@@ -71,7 +71,8 @@ public class TokenUtilTest {
         assertWithMessage("Invalid exception message: %s", message)
                 .that(message.startsWith("java.lang.IllegalAccessException: ")
                         && message.contains("com.puppycrawl.tools.checkstyle.utils.TokenUtil")
-                        && message.contains("access a member of class java.lang.Integer"))
+                        && message.contains("access a member of class java.lang.Integer")
+                        && message.endsWith(" for field " + field.getName()))
                 .isTrue();
     }
 

@@ -182,6 +182,7 @@ public record TestInputConfiguration(List<ModuleInputConfiguration> childrenModu
         public List<ModuleInputConfiguration> getChildrenModules() {
             return Collections.unmodifiableList(childrenModules);
         }
+
     }
 
 }

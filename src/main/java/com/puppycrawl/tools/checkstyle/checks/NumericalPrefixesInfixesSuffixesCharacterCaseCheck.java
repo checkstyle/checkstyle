@@ -46,20 +46,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class NumericalPrefixesInfixesSuffixesCharacterCaseCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_PREFIX = "numerical.literal.prefix";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_INFIX = "numerical.literal.infix";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_SUFFIX = "numerical.literal.suffix";
 

@@ -76,8 +76,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 public class MissingJavadocMethodCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_JAVADOC_MISSING = "javadoc.missing.named";
 
@@ -334,7 +333,8 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
 
                 if (slist != null) {
                     DetailAST expr = slist.getFirstChild();
-                    while (expr.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+                    while (expr.getType() == TokenTypes.SINGLE_LINE_COMMENT
+                            || expr.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
                         expr = expr.getNextSibling();
                     }
                     getterMethod = expr.getType() == TokenTypes.LITERAL_RETURN;
@@ -392,7 +392,8 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         DetailAST child = detailAst.getFirstChild();
 
         while (child != null) {
-            if (child.getType() != TokenTypes.SINGLE_LINE_COMMENT) {
+            if (child.getType() != TokenTypes.SINGLE_LINE_COMMENT
+                    && child.getType() != TokenTypes.BLOCK_COMMENT_BEGIN) {
                 childCount += 1;
             }
             child = child.getNextSibling();

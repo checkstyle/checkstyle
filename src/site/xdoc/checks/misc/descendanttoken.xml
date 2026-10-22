@@ -1233,6 +1233,10 @@ class UseCase8 {
       <subsection name="Example of Usage" id="DescendantToken_Example_of_Usage">
         <ul>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+DescendantToken">
+            Sun Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+DescendantToken">
             Checkstyle Style</a>
           </li>

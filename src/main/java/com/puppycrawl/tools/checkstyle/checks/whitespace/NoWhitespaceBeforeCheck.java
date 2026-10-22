@@ -39,12 +39,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 3.0
  */
 @StatelessCheck
-public class NoWhitespaceBeforeCheck
-    extends AbstractCheck {
+public class NoWhitespaceBeforeCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "ws.preceded";
 
@@ -130,8 +128,7 @@ public class NoWhitespaceBeforeCheck
     /**
      * Setter to control whether whitespace is allowed if the token is at a linebreak.
      *
-     * @param allowLineBreaks whether whitespace should be
-     *     flagged at line breaks.
+     * @param allowLineBreaks whether whitespace should be flagged at line breaks.
      * @since 3.0
      */
     public void setAllowLineBreaks(boolean allowLineBreaks) {

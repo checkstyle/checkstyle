@@ -34,8 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-public class FinalClassCheckTest
-    extends AbstractModuleTestSupport {
+public class FinalClassCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

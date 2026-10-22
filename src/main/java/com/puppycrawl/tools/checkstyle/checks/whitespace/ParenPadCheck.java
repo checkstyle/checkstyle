@@ -49,26 +49,22 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WS_FOLLOWED = "ws.followed";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WS_PRECEDED = "ws.preceded";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
 
@@ -255,8 +251,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     }
 
     /**
-     * Checks whether {@link TokenTypes#RPAREN} is a closing paren
-     * of a {@link TokenTypes#TYPECAST}.
+     * Checks whether {@link TokenTypes#RPAREN} is a closing paren of a {@link TokenTypes#TYPECAST}.
      *
      * @param ast of a {@code TokenTypes#RPAREN} to check.
      * @return true if ast is a closing paren of a {@code TokenTypes#TYPECAST}.

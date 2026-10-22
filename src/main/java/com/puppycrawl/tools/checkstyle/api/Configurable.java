@@ -24,8 +24,7 @@ package com.puppycrawl.tools.checkstyle.api;
  * Note: Configuring of object mean copy user defined properties to object.
  * Contextualizing is inheriting some properties from parent that are provided by user
  * to parent object or created by parent object.
- * The general idea of
- * Configuration/Configurable was taken from <a target="_top"
+ * The general idea of Configuration/Configurable was taken from <a target="_top"
  * href="https://avalon.apache.org/closed.html">Jakarta's Avalon framework</a>.
  */
 @FunctionalInterface

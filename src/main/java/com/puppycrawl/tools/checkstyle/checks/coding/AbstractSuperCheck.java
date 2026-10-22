@@ -35,8 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </div>
  */
 @FileStatefulCheck
-public abstract class AbstractSuperCheck
-        extends AbstractCheck {
+public abstract class AbstractSuperCheck extends AbstractCheck {
 
     /**
      * A key pointing to the warning message text in "messages.properties" file.
@@ -97,8 +96,7 @@ public abstract class AbstractSuperCheck
     }
 
     /**
-     * Determines whether a 'super' literal is a call to the super method
-     * for this check.
+     * Determines whether a 'super' literal is a call to the super method for this check.
      *
      * @param literalSuperAst the AST node of a 'super' literal.
      * @return true if ast is a call to the super method for this check.
@@ -232,8 +230,7 @@ public abstract class AbstractSuperCheck
         }
 
         /**
-         * Determines whether the overriding method has a call to the super
-         * method.
+         * Determines whether the overriding method has a call to the super method.
          *
          * @return true if the overriding method has a call to the super method.
          */

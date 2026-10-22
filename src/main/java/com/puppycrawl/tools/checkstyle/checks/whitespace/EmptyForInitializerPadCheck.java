@@ -34,26 +34,23 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * space is required at an empty for initializer, or such white space is
  * forbidden. No check occurs if there is a line wrap at the initializer, as in
  * </div>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * for (
- *     ; i &lt; j; i++, j--)
- *  </code></pre></div>
+ *     ; i < j; i++, j--)
+ * }
  *
  * @since 3.4
  */
 @StatelessCheck
-public class EmptyForInitializerPadCheck
-    extends AbstractCheck {
+public class EmptyForInitializerPadCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_PRECEDED = "ws.preceded";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_NOT_PRECEDED = "ws.notPreceded";
 

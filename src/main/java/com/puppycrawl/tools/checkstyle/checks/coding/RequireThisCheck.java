@@ -27,6 +27,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
@@ -66,8 +67,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Limitations: Nothing is currently done about static variables
  * or catch-blocks.  Static methods invoked on a class name seem to be OK;
  * both the class name and the method name have a DOT parent.
- * Non-static methods invoked on either this or a variable name seem to be
- * OK, likewise.
+ * Non-static methods invoked on either this or a variable name seem to be OK, likewise.
  * </p>
  *
  * @since 3.4
@@ -77,15 +77,16 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class RequireThisCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_METHOD = "require.this.method";
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_VARIABLE = "require.this.variable";
+
+    /** Initial capacity for the set of visited supertype names. */
+    private static final int SUPER_TYPES_CAPACITY = 8;
 
     /** Set of all declaration tokens. */
     private static final BitSet DECLARATION_TOKENS = TokenUtil.asBitSet(
@@ -387,7 +388,9 @@ public class RequireThisCheck extends AbstractCheck {
                 && !isLambdaParameter(ast)) {
             final AbstractFrame fieldFrame = findClassFrame(ast, LookMode.NO_LOOK_FOR_METHOD);
 
-            if (fieldFrame != null && ((ClassFrame) fieldFrame).hasInstanceMember(ast)) {
+            if (fieldFrame != null
+                    && ((ClassFrame) fieldFrame).hasInstanceMember(ast)
+                    && !isInheritedByAnonymousClass(ast, fieldFrame)) {
                 frame = getClassFrameWhereViolationIsFound(ast);
             }
         }
@@ -454,7 +457,7 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.COMPACT_COMPILATION_UNIT ->
                 frameStack.addFirst(new CompactCompilationUnitFrame(frame, ast));
 
-            case TokenTypes.SLIST -> frameStack.addFirst(new BlockFrame(frame, ast));
+            case TokenTypes.SLIST -> frameStack.addFirst(createBlockFrame(frame, ast));
 
             case TokenTypes.METHOD_DEF -> collectMethodDeclarations(frameStack, ast, frame);
 
@@ -481,7 +484,7 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.LITERAL_NEW -> {
                 final DetailAST lastChild = ast.getLastChild();
                 if (lastChild != null && lastChild.getType() == TokenTypes.OBJBLOCK) {
-                    frameStack.addFirst(new AnonymousClassFrame(frame, ast.toString()));
+                    frameStack.addFirst(new AnonymousClassFrame(frame, ast));
                 }
             }
 
@@ -495,6 +498,23 @@ public class RequireThisCheck extends AbstractCheck {
                 // do nothing
             }
         }
+    }
+
+    /**
+     * Creates a block frame with the declarations visible in its scope.
+     *
+     * @param frame enclosing frame.
+     * @param ast statement list token.
+     * @return the block frame.
+     */
+    private static BlockFrame createBlockFrame(AbstractFrame frame, DetailAST ast) {
+        AbstractFrame parent = frame;
+        if (ast.getParent().getType() == TokenTypes.LITERAL_FINALLY
+                && frame.getType() == FrameType.TRY_WITH_RESOURCES_FRAME) {
+            // Resources are not in scope in their associated finally block.
+            parent = frame.getParent();
+        }
+        return new BlockFrame(parent, ast);
     }
 
     /**
@@ -1001,11 +1021,109 @@ public class RequireThisCheck extends AbstractCheck {
             final AbstractFrame frame = findFrame(ast, LookMode.LOOK_FOR_METHOD);
             if (frame != null
                     && ((ClassFrame) frame).hasInstanceMethod(ast)
-                    && !((ClassFrame) frame).hasStaticMethod(ast)) {
+                    && !((ClassFrame) frame).hasStaticMethod(ast)
+                    && !isInheritedByAnonymousClass(ast, frame)) {
                 result = frame;
             }
         }
         return result;
+    }
+
+    /**
+     * Checks whether the name is declared by a type that an anonymous class, located between
+     * the current position and the declaring frame, extends or implements. Such a name is a
+     * member of the anonymous class, so it does not refer to the declaring frame's member.
+     * Only types declared in the same file can be inspected.
+     *
+     * @param ident IDENT ast of the field or the method call.
+     * @param declaringFrame the frame where the member was found.
+     * @return true if the name is inherited by an anonymous class before reaching the frame.
+     */
+    private boolean isInheritedByAnonymousClass(DetailAST ident, AbstractFrame declaringFrame) {
+        boolean result = false;
+        AbstractFrame frame = current.peek();
+        while (frame != declaringFrame) {
+            if (frame instanceof AnonymousClassFrame anonymousFrame
+                    && isDeclaredInSuperTypes(ident, anonymousFrame.getLiteralNew())) {
+                result = true;
+                break;
+            }
+            frame = frame.getParent();
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether the name is declared by any type named in the given token or by
+     * any of their supertypes declared in the same file.
+     *
+     * @param ident IDENT ast of the field or the method call.
+     * @param typeHolder token whose direct children name the types to start from.
+     * @return true if one of the types declares the name.
+     */
+    private boolean isDeclaredInSuperTypes(DetailAST ident, DetailAST typeHolder) {
+        final Deque<String> pending = new ArrayDeque<>();
+        addTypeNames(pending, typeHolder);
+        final Set<String> visited = HashSet.newHashSet(SUPER_TYPES_CAPACITY);
+        boolean result = false;
+        while (!pending.isEmpty()) {
+            final String typeName = pending.pop();
+            if (visited.add(typeName)) {
+                for (AbstractFrame candidate : frames.values()) {
+                    if (candidate instanceof ClassFrame classFrame
+                            && typeName.equals(candidate.getFrameName())) {
+                        if (declaresName(classFrame, ident)) {
+                            result = true;
+                        }
+                        final DetailAST typeDef = candidate.getFrameNameIdent().getParent();
+                        addTypeNames(pending, typeDef.findFirstToken(TokenTypes.EXTENDS_CLAUSE));
+                        addTypeNames(pending,
+                                typeDef.findFirstToken(TokenTypes.IMPLEMENTS_CLAUSE));
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether the class frame declares an inheritable field or method matching the ident.
+     * Private members are not inherited by subclasses, so they are ignored.
+     *
+     * @param classFrame frame to look in.
+     * @param ident IDENT ast of the field or the method call.
+     * @return true if the frame declares the name as an inheritable member.
+     */
+    private static boolean declaresName(ClassFrame classFrame, DetailAST ident) {
+        final boolean result;
+        if (ident.getParent().getType() == TokenTypes.METHOD_CALL) {
+            result = classFrame.hasInheritableMethod(ident);
+        }
+        else {
+            result = classFrame.hasInheritableField(ident);
+        }
+        return result;
+    }
+
+    /**
+     * Adds simple names of the types that are direct children of the token.
+     *
+     * @param names collection to add names to.
+     * @param typeHolder token holding types, may be null.
+     */
+    private static void addTypeNames(Deque<String> names,
+                                     @Nullable DetailAST typeHolder) {
+        if (typeHolder != null) {
+            for (DetailAST child = typeHolder.getFirstChild(); child != null;
+                    child = child.getNextSibling()) {
+                if (child.getType() == TokenTypes.IDENT) {
+                    names.add(child.getText());
+                }
+                else if (child.getType() == TokenTypes.DOT) {
+                    names.add(child.getLastChild().getText());
+                }
+            }
+        }
     }
 
     /**
@@ -1307,6 +1425,7 @@ public class RequireThisCheck extends AbstractCheck {
             return identToFind.equals(ast.getText())
                 && CheckUtil.isBeforeInSource(ast, ident);
         }
+
     }
 
     /**
@@ -1426,8 +1545,7 @@ public class RequireThisCheck extends AbstractCheck {
          * Checks if a given name is a known instance member of the class.
          *
          * @param ident the IDENT ast of the name to check.
-         * @return true is the given name is a name of a known
-         *         instance member of the class.
+         * @return true is the given name is a name of a known instance member of the class.
          */
         /* package */ boolean hasInstanceMember(final DetailAST ident) {
             return containsFieldOrVariableDef(instanceMembers, ident);
@@ -1437,8 +1555,7 @@ public class RequireThisCheck extends AbstractCheck {
          * Checks if a given name is a known instance method of the class.
          *
          * @param ident the IDENT ast of the method call to check.
-         * @return true if the given ast is correspondent to a known
-         *         instance method of the class.
+         * @return true if the given ast is correspondent to a known instance method of the class.
          */
         /* package */ boolean hasInstanceMethod(final DetailAST ident) {
             return containsMethodDef(instanceMethods, ident);
@@ -1448,11 +1565,52 @@ public class RequireThisCheck extends AbstractCheck {
          * Checks if a given name is a known static method of the class.
          *
          * @param ident the IDENT ast of the method call to check.
-         * @return true is the given ast is correspondent to a known
-         *         instance method of the class.
+         * @return true is the given ast is correspondent to a known instance method of the class.
          */
         /* package */ boolean hasStaticMethod(final DetailAST ident) {
             return containsMethodDef(staticMethods, ident);
+        }
+
+        /**
+         * Checks whether the declaration of the member has the private modifier.
+         *
+         * @param memberIdent IDENT ast of the member declaration.
+         * @return true if the member is private.
+         */
+        private static boolean isPrivate(DetailAST memberIdent) {
+            final DetailAST modifiers =
+                    memberIdent.getParent().findFirstToken(TokenTypes.MODIFIERS);
+            return modifiers != null
+                    && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
+        }
+
+        /**
+         * Checks whether the frame declares a non-private field with the ident's name.
+         *
+         * @param ident the IDENT ast of the field reference.
+         * @return true if a non-private field with the same name is declared.
+         */
+        /* package */ boolean hasInheritableField(final DetailAST ident) {
+            return Stream.concat(instanceMembers.stream(), staticMembers.stream())
+                    .anyMatch(member -> {
+                        return member.getText().equals(ident.getText())
+                                && !isPrivate(member);
+                    });
+        }
+
+        /**
+         * Checks whether the frame declares a non-private method matching the method call.
+         *
+         * @param ident the IDENT ast of the method call.
+         * @return true if a non-private method with the same name and number of parameters
+         *         is declared.
+         */
+        /* package */ boolean hasInheritableMethod(final DetailAST ident) {
+            return Stream.concat(instanceMethods.stream(), staticMethods.stream())
+                    .anyMatch(method -> {
+                        return isSimilarSignature(ident, method)
+                                && !isPrivate(method);
+                    });
         }
 
         /**
@@ -1524,8 +1682,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         /**
-         * Whether the set contains a method definition with the
-         *     same name and number of parameters.
+         * Whether the set contains a method definition with the same name and number of parameters.
          *
          * @param set the set of definitions.
          * @param ident the specified method call IDENT ast.
@@ -1573,20 +1730,33 @@ public class RequireThisCheck extends AbstractCheck {
         /** The name of the frame. */
         private final String frameName;
 
+        /** The {@code LITERAL_NEW} token that creates this anonymous class. */
+        private final DetailAST literalNew;
+
         /**
          * Creates anonymous class frame.
          *
          * @param parent parent frame.
-         * @param frameName name of the frame.
+         * @param literalNew {@code LITERAL_NEW} token that creates the anonymous class.
          */
-        /* package */ AnonymousClassFrame(AbstractFrame parent, String frameName) {
+        /* package */ AnonymousClassFrame(AbstractFrame parent, DetailAST literalNew) {
             super(parent, null);
-            this.frameName = frameName;
+            frameName = literalNew.toString();
+            this.literalNew = literalNew;
         }
 
         @Override
         public String getFrameName() {
             return frameName;
+        }
+
+        /**
+         * Returns the {@code LITERAL_NEW} token that creates this anonymous class.
+         *
+         * @return the {@code LITERAL_NEW} token.
+         */
+        /* package */ DetailAST getLiteralNew() {
+            return literalNew;
         }
 
     }

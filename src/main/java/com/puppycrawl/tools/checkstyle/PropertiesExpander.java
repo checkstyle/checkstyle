@@ -25,12 +25,10 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * Resolves external properties from an
- * underlying {@code Properties} object.
+ * Resolves external properties from an underlying {@code Properties} object.
  *
  */
-public final class PropertiesExpander
-    implements PropertyResolver {
+public final class PropertiesExpander implements PropertyResolver {
 
     /** The underlying values. */
     private final Map<String, String> values;
@@ -38,8 +36,7 @@ public final class PropertiesExpander
     /**
      * Creates a new PropertiesExpander.
      *
-     * @param properties the underlying properties to use for
-     *     property resolution.
+     * @param properties the underlying properties to use for property resolution.
      * @throws IllegalArgumentException when properties argument is null
      */
     public PropertiesExpander(Properties properties) {

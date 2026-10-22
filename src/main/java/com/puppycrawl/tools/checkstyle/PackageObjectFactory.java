@@ -117,8 +117,7 @@ public class PackageObjectFactory implements ModuleFactory {
      * Creates a new {@code PackageObjectFactory} instance.
      *
      * @param packageNames package names to use
-     * @param moduleClassLoader class loader used to load Checkstyle
-     *          core and custom modules
+     * @param moduleClassLoader class loader used to load Checkstyle core and custom modules
      */
     public PackageObjectFactory(Set<String> packageNames, ClassLoader moduleClassLoader) {
         this(packageNames, moduleClassLoader, ModuleLoadOption.SEARCH_REGISTERED_PACKAGES);
@@ -128,8 +127,7 @@ public class PackageObjectFactory implements ModuleFactory {
      * Creates a new {@code PackageObjectFactory} instance.
      *
      * @param packageName The package name to use
-     * @param moduleClassLoader class loader used to load Checkstyle
-     *          core and custom modules
+     * @param moduleClassLoader class loader used to load Checkstyle core and custom modules
      * @throws IllegalArgumentException if moduleClassLoader is null or packageNames is null
      */
     public PackageObjectFactory(String packageName, ClassLoader moduleClassLoader) {
@@ -148,8 +146,7 @@ public class PackageObjectFactory implements ModuleFactory {
      * Creates a new {@code PackageObjectFactory} instance.
      *
      * @param packageNames package names to use
-     * @param moduleClassLoader class loader used to load Checkstyle
-     *          core and custom modules
+     * @param moduleClassLoader class loader used to load Checkstyle core and custom modules
      * @param moduleLoadOption loading option
      * @throws IllegalArgumentException if moduleClassLoader is null or packageNames contains null
      */
@@ -577,6 +574,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.PatternVariableAssignmentCheck");
         NAME_TO_FULL_MODULE_NAME.put("ParameterAssignmentCheck",
                 BASE_PACKAGE + ".checks.coding.ParameterAssignmentCheck");
+        NAME_TO_FULL_MODULE_NAME.put("RedundantThisCheck",
+                BASE_PACKAGE + ".checks.coding.RedundantThisCheck");
         NAME_TO_FULL_MODULE_NAME.put("RequireThisCheck",
                 BASE_PACKAGE + ".checks.coding.RequireThisCheck");
         NAME_TO_FULL_MODULE_NAME.put("ReturnCountCheck",
@@ -631,6 +630,10 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.UnusedTryResourceShouldBeUnnamedCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnnecessaryTypeArgumentsWithRecordPatternCheck",
                 BASE_PACKAGE + ".checks.coding.UnnecessaryTypeArgumentsWithRecordPatternCheck");
+        NAME_TO_FULL_MODULE_NAME.put("NoCauseGetMessageInExceptionConstructorCheck",
+                BASE_PACKAGE + ".checks.coding.NoCauseGetMessageInExceptionConstructorCheck");
+        NAME_TO_FULL_MODULE_NAME.put("ExceptionThrowShouldUseContextCheck",
+                BASE_PACKAGE + ".checks.coding.ExceptionThrowShouldUseContextCheck");
     }
 
     /**
@@ -703,6 +706,8 @@ public class PackageObjectFactory implements ModuleFactory {
      * Fill short-to-full module names map with Checks from indentation package.
      */
     private static void fillChecksFromIndentationPackage() {
+        NAME_TO_FULL_MODULE_NAME.put("ClassHeaderWrapOpenjdkCheck",
+                BASE_PACKAGE + ".checks.indentation.ClassHeaderWrapOpenjdkCheck");
         NAME_TO_FULL_MODULE_NAME.put("CommentsIndentationCheck",
                 BASE_PACKAGE + ".checks.indentation.CommentsIndentationCheck");
         NAME_TO_FULL_MODULE_NAME.put("IndentationCheck",
@@ -763,6 +768,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.javadoc.JavadocThrowsOrderCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocTypeCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocTypeCheck");
+        NAME_TO_FULL_MODULE_NAME.put("JavadocUtilizingTrailingSpaceCheck",
+                BASE_PACKAGE + ".checks.javadoc.JavadocUtilizingTrailingSpaceCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocVariableCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocVariableCheck");
         NAME_TO_FULL_MODULE_NAME.put("MissingJavadocMethodCheck",
@@ -933,6 +940,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.whitespace.EmptyForIteratorPadCheck");
         NAME_TO_FULL_MODULE_NAME.put("EmptyLineSeparatorCheck",
                 BASE_PACKAGE + ".checks.whitespace.EmptyLineSeparatorCheck");
+        NAME_TO_FULL_MODULE_NAME.put("EmptyLineWrappingInBlockCheck",
+                BASE_PACKAGE + ".checks.whitespace.EmptyLineWrappingInBlockCheck");
         NAME_TO_FULL_MODULE_NAME.put("FileTabCharacterCheck",
                 BASE_PACKAGE + ".checks.whitespace.FileTabCharacterCheck");
         NAME_TO_FULL_MODULE_NAME.put("GenericWhitespaceCheck",
@@ -947,6 +956,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.whitespace.NoWhitespaceBeforeCheck");
         NAME_TO_FULL_MODULE_NAME.put("NoWhitespaceBeforeCaseDefaultColonCheck",
                 BASE_PACKAGE + ".checks.whitespace.NoWhitespaceBeforeCaseDefaultColonCheck");
+        NAME_TO_FULL_MODULE_NAME.put("OpenjdkMethodParameterAlignmentCheck",
+                BASE_PACKAGE + ".checks.whitespace.OpenjdkMethodParameterAlignmentCheck");
         NAME_TO_FULL_MODULE_NAME.put("OperatorWrapCheck",
                 BASE_PACKAGE + ".checks.whitespace.OperatorWrapCheck");
         NAME_TO_FULL_MODULE_NAME.put("ParenPadCheck",

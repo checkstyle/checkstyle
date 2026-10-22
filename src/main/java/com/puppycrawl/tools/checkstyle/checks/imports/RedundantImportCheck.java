@@ -45,24 +45,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @since 3.0
  */
 @FileStatefulCheck
-public class RedundantImportCheck
-    extends AbstractCheck {
+public class RedundantImportCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_LANG = "import.lang";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_SAME = "import.same";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_DUPLICATE = "import.duplicate";
 

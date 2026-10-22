@@ -47,18 +47,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 3.0
  */
 @StatelessCheck
-public class EmptyBlockCheck
-    extends AbstractCheck {
+public class EmptyBlockCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_BLOCK_NO_STATEMENT = "block.noStatement";
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_BLOCK_EMPTY = "block.empty";
 
@@ -198,8 +195,7 @@ public class EmptyBlockCheck
     }
 
     /**
-     * Checks is all lines from 'lineFrom' to 'lineTo' (exclusive)
-     * contain whitespaces only.
+     * Checks is all lines from 'lineFrom' to 'lineTo' (exclusive) contain whitespaces only.
      *
      * @param lineFrom
      *            check from this line number

@@ -31,8 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * This class checks line-wrapping into definitions and expressions. The
- * line-wrapping indentation should be not less than value of the
- * lineWrappingIndentation parameter.
+ * line-wrapping indentation should be not less than value of the lineWrappingIndentation parameter.
  *
  */
 public class LineWrappingHandler {
@@ -151,13 +150,28 @@ public class LineWrappingHandler {
         final int currentIndent = firstNodeIndent + indentLevel;
 
         for (DetailAST node : firstNodesOnLines.values()) {
+            checkNodeIndentation(node, firstNodeIndent, currentIndent);
+        }
+    }
+
+    /**
+     * Checks whether the indentation of the node on the wrapped line is correct.
+     *
+     * @param node the node for which to check.
+     * @param firstNodeIndent indentation first line before wrapped lines used.
+     * @param currentIndent indentation all wrapped lines should use.
+     */
+    private void checkNodeIndentation(DetailAST node, int firstNodeIndent, int currentIndent) {
+        if (!checkForNullParameterChild(node) && !checkForMethodLparenNewLine(node)
+                && shouldProcessTextBlockLiteral(node)) {
             final int currentType = node.getType();
-            if (checkForNullParameterChild(node) || checkForMethodLparenNewLine(node)
-                    || !shouldProcessTextBlockLiteral(node)) {
-                continue;
-            }
             if (currentType == TokenTypes.RPAREN) {
-                logWarningMessage(node, firstNodeIndent);
+                if (node.getParent().getType() == TokenTypes.RECORD_PATTERN_DEF) {
+                    logWarningMessage(node, currentIndent);
+                }
+                else {
+                    logWarningMessage(node, firstNodeIndent);
+                }
             }
             else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
                 logWarningMessage(node, currentIndent);
@@ -296,8 +310,7 @@ public class LineWrappingHandler {
      * Checks line wrapping into annotations.
      *
      * @param atNode block tag node.
-     * @param firstNodesOnLines map which contains
-     *     first nodes as values and line numbers as keys.
+     * @param firstNodesOnLines map which contains first nodes as values and line numbers as keys.
      * @param indentLevel line wrapping indentation.
      */
     private void checkAnnotationIndentation(DetailAST atNode,

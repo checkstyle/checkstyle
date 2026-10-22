@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY;
 
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.SetSystemProperty;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -66,21 +67,15 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    @SetSystemProperty(key = "line.separator", value = "\r\n")
     public void testLinesAreProperlySplitSystemIndependently() throws Exception {
         final String[] expected = {
             "25:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "53:78: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "87:29: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
-        final String originalLineSeparator = System.lineSeparator();
-        try {
-            System.setProperty("line.separator", "\r\n");
-            verifyWithInlineConfigParser(
-                    getPath("InputEmptyCatchBlockDefaultLF.java"), expected);
-        }
-        finally {
-            System.setProperty("line.separator", originalLineSeparator);
-        }
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyCatchBlockDefaultLF.java"), expected);
     }
 
     @Test

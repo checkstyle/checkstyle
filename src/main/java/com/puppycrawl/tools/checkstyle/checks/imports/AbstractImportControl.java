@@ -24,8 +24,7 @@ import java.util.Deque;
 
 /**
  * Represents a tree of import rules for controlling whether packages or
- * classes are allowed to be used. Each instance must have a single parent or
- * be the root node.
+ * classes are allowed to be used. Each instance must have a single parent or be the root node.
  */
 public abstract class AbstractImportControl {
 
@@ -116,8 +115,7 @@ public abstract class AbstractImportControl {
     }
 
     /**
-     * Checks whether any of the rules for this node control access to
-     * a specified package or file.
+     * Checks whether any of the rules for this node control access to a specified package or file.
      *
      * @param inPkg the package doing the import.
      * @param inFileName the file name doing the import.

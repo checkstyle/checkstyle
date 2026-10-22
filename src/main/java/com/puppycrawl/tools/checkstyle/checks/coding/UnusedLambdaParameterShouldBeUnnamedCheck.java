@@ -63,15 +63,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_UNUSED_LAMBDA_PARAMETER = "unused.lambda.parameter";
 
     /**
      * Invalid parents of the lambda parameter identifier.
-     * These are tokens that can not be parents for a lambda
-     * parameter identifier.
+     * These are tokens that can not be parents for a lambda parameter identifier.
      */
     private static final int[] INVALID_LAMBDA_PARAM_IDENT_PARENTS = {
         TokenTypes.DOT,
@@ -223,14 +221,12 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
     private static final class LambdaParameterDetails {
 
         /**
-         * Ast of type {@link TokenTypes#LAMBDA} enclosing the lambda
-         * parameter.
+         * Ast of type {@link TokenTypes#LAMBDA} enclosing the lambda parameter.
          */
         private final DetailAST enclosingLambda;
 
         /**
-         * Ast of type {@link TokenTypes#IDENT} of the given
-         * lambda parameter.
+         * Ast of type {@link TokenTypes#IDENT} of the given lambda parameter.
          */
         private final DetailAST identifierAst;
 
@@ -267,8 +263,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
         }
 
         /**
-         * Get ast of type {@link TokenTypes#IDENT} of the given
-         * lambda parameter.
+         * Get ast of type {@link TokenTypes#IDENT} of the given lambda parameter.
          *
          * @return ast of type {@code TokenTypes#IDENT} of the given lambda parameter
          */
@@ -284,6 +279,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
         private boolean isUsed() {
             return used;
         }
+
     }
 
 }

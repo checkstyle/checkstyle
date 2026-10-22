@@ -32,22 +32,18 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </div>
  *
  * <p>
- * The closing delimiter of a Javadoc comment is <code>*&#47;</code>. This check reports
+ * The closing delimiter of a Javadoc comment is {@code *}{@code /}. This check reports
  * Javadoc comments whose closing delimiter is preceded by another asterisk, such as
- * <code>**&#47;</code> or <code>***&#47;</code>.
+ * {@code **}{@code /} or {@code ***}{@code /}.
  * </p>
  *
- * @noinspection HtmlTagCanBeJavadocTag
- * @noinspectionreason HtmlTagCanBeJavadocTag - HTML code tags allow escaping the slash
- *      in Javadoc delimiter examples without rendering the entity text.
  * @since 14.1.0
  */
 @StatelessCheck
 public class JavadocEndCommentDelimiterCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "javadoc.end.delimiter";
 

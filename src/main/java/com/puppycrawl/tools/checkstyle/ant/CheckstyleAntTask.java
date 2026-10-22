@@ -110,8 +110,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Whether to execute ignored modules - some modules may log above
-     * their severity depending on their configuration so
-     * need to be included.
+     * their severity depending on their configuration so need to be included.
      */
     private boolean executeIgnoredModules;
 
@@ -127,11 +126,9 @@ public class CheckstyleAntTask extends Task {
     ////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Tells this task to write failure message to the named property when there
-     * is a violation.
+     * Tells this task to write failure message to the named property when there is a violation.
      *
-     * @param propertyName the name of the property to set
-     *                      in the event of a failure.
+     * @param propertyName the name of the property to set in the event of a failure.
      */
     public void setFailureProperty(String propertyName) {
         failureProperty = propertyName;
@@ -237,8 +234,7 @@ public class CheckstyleAntTask extends Task {
     ////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Sets a properties file for use instead
-     * of individually setting them.
+     * Sets a properties file for use instead of individually setting them.
      *
      * @param props the properties File to use
      */
@@ -413,8 +409,7 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
-     * Create the Properties object based on the arguments specified
-     * to the ANT task.
+     * Create the Properties object based on the arguments specified to the ANT task.
      *
      * @return the properties for property expansion
      * @throws BuildException if the properties file could not be loaded.

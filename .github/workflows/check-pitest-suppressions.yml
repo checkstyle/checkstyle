@@ -1,0 +1,33 @@
+name: 'Check Pitest Suppressions'
+
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened, closed ]
+    branches: '*'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-pitest-suppressions:
+    if: github.event.action != 'closed' && github.repository == 'checkstyle/checkstyle'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Fetch base branch
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          git fetch origin "$BASE_REF"
+
+      - name: Check pitest suppressions
+        env:
+          BASE_BRANCH: origin/${{ github.base_ref }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: ./.ci/validation.sh git-check-pitest-suppressions

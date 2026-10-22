@@ -44,8 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class AvoidInlineConditionalsCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "inline.conditional.avoid";
 

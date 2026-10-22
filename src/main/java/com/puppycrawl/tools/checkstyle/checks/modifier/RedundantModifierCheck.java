@@ -86,8 +86,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  *
  * <p>Fields in interfaces and annotations are automatically
- * public, static and final, so these modifiers are redundant as
- * well.</p>
+ * public, static and final, so these modifiers are redundant as well.</p>
  *
  * <p>As annotations are a form of interface, their fields are also
  * automatically public, static and final just as their
@@ -165,12 +164,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * @since 3.0
  */
 @StatelessCheck
-public class RedundantModifierCheck
-    extends AbstractCheck {
+public class RedundantModifierCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "redundantModifier";
 
@@ -314,8 +311,7 @@ public class RedundantModifierCheck
      * Check if the variable is unnamed and has redundant final modifier.
      *
      * @param ast node of type {@link TokenTypes#VARIABLE_DEF}
-     *     or {@link TokenTypes#PATTERN_VARIABLE_DEF}
-     *     or {@link TokenTypes#PARAMETER_DEF}
+     *     or {@link TokenTypes#PATTERN_VARIABLE_DEF} or {@link TokenTypes#PARAMETER_DEF}
      */
     private void checkUnnamedVariables(DetailAST ast) {
         if (jdkVersion >= JDK_22 && isUnnamedVariable(ast)) {
@@ -327,8 +323,7 @@ public class RedundantModifierCheck
      * Check if the variable is unnamed.
      *
      * @param ast node of type {@link TokenTypes#VARIABLE_DEF}
-     *     or {@link TokenTypes#PATTERN_VARIABLE_DEF}
-     *     or {@link TokenTypes#PARAMETER_DEF}
+     *     or {@link TokenTypes#PATTERN_VARIABLE_DEF} or {@link TokenTypes#PARAMETER_DEF}
      * @return true if the variable is unnamed
      */
     private static boolean isUnnamedVariable(DetailAST ast) {

@@ -48,8 +48,8 @@ public class InputFieldAnnotations {
   InputFieldAnnotations obj = new InputFieldAnnotations();
 
   /** Testing. */
+  // violation below 'Annotation 'SomeAnnotation2' should be alone on line.'
   @SomeAnnotation1 @SomeAnnotation2
-  // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
   void test1() {}
 
   @SomeAnnotation1 @SomeAnnotation2 void test2() {}
