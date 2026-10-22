@@ -75,6 +75,16 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             TokenTypes.LITERAL_THROWS
     );
 
+    /** Tokens of type definitions and compact source file that can contain methods. */
+    private static final Set<Integer> TYPE_DEFINITION_TOKENS = Set.of(
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT
+    );
+
     /**
      * Specify the maximum distance between a variable's declaration and its first usage.
      * Value should be greater than 0.
@@ -313,8 +323,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                  TokenTypes.LITERAL_SYNCHRONIZED ->
                 ast.getParent().getPreviousSibling();
             case TokenTypes.METHOD_DEF, TokenTypes.INSTANCE_INIT ->
-                getFirstPredecessorOfTypes(
-                Set.of(TokenTypes.CLASS_DEF), ast).getPreviousSibling();
+                getFirstPredecessorOfTypes(TYPE_DEFINITION_TOKENS, ast).getPreviousSibling();
             default -> ast.getPreviousSibling();
         };
     }
