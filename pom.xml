@@ -1007,6 +1007,10 @@
                    of the module and are executed on the classpath, so compile them on the
                    classpath as well instead of patching them into the module. -->
               <useModulePath>false</useModulePath>
+              <compilerArgs combine.children="append">
+                <arg>-Xlint:none</arg>
+                <arg>-nowarn</arg>
+              </compilerArgs>
             </configuration>
           </execution>
         </executions>

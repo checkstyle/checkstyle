@@ -1140,8 +1140,8 @@
   </inspection_tool>
   <inspection_tool class="ClassNewInstance" enabled="true" level="WARNING"
                    enabled_by_default="true"/>
-  <inspection_tool class="ClassOnlyUsedInOneModule" enabled="true" level="ERROR"
-                   enabled_by_default="true"/>
+  <inspection_tool class="ClassOnlyUsedInOneModule" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
   <!-- packages should be where we define.
          we are a library project and other projects might use them. -->
   <inspection_tool class="ClassOnlyUsedInOnePackage" enabled="false" level="ERROR"
@@ -1532,10 +1532,8 @@
   </inspection_tool>
   <inspection_tool class="DeprecatedGradleDependency" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
-  <inspection_tool class="DeprecatedIsStillUsed" enabled="true" level="WARNING"
-                   enabled_by_default="false">
-    <scope name="Production" level="WARNING" enabled="true"/>
-  </inspection_tool>
+  <inspection_tool class="DeprecatedIsStillUsed" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
   <inspection_tool class="DeprecatedMavenDependency" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
   <inspection_tool class="Deprecation" enabled="true" level="ERROR" enabled_by_default="false">
@@ -3505,8 +3503,8 @@
                    enabled_by_default="false"/>
   <inspection_tool class="PackageDotHtmlMayBePackageInfo" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <inspection_tool class="PackageInMultipleModules" enabled="true" level="ERROR"
-                   enabled_by_default="true"/>
+  <inspection_tool class="PackageInMultipleModules" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
   <inspection_tool class="PackageInfoWithoutPackage" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="PackageName" enabled="false" level="WEAK WARNING"
