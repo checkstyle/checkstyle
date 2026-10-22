@@ -150,8 +150,51 @@ public class LineWrappingHandler {
         final int currentIndent = firstNodeIndent + indentLevel;
 
         for (DetailAST node : firstNodesOnLines.values()) {
-            checkNodeIndentation(node, firstNodeIndent, currentIndent);
+            checkNodeIndentation(node, firstNodeIndent,
+                    getNodeIndent(node, firstLineNode, indentLevel, currentIndent));
         }
+    }
+
+    /**
+     * Gets the indentation a wrapped line should use. Continuation lines of a chained method
+     * call are based on the line where the chain starts, so when the chain itself starts on
+     * a wrapped line, its continuation lines are indented from that line instead of from
+     * the first line of the whole statement.
+     *
+     * @param node the first node on the wrapped line.
+     * @param firstLineNode the first node of the checked range.
+     * @param indentLevel indentation all wrapped lines should use.
+     * @param currentIndent indentation based on the first line of the checked range.
+     * @return the indentation the given node should use.
+     */
+    private int getNodeIndent(DetailAST node, DetailAST firstLineNode, int indentLevel,
+            int currentIndent) {
+        int result = currentIndent;
+        if (node.getType() == TokenTypes.DOT
+                && node.getParent().getType() == TokenTypes.METHOD_CALL) {
+            final DetailAST chainStart = getChainStart(node);
+            if (chainStart.getLineNo() != firstLineNode.getLineNo()
+                    && expandedTabsColumnNo(chainStart) == getLineStart(chainStart)) {
+                result = getLineStart(chainStart) + indentLevel;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Gets the first node of the expression a chained method call is invoked on, walking
+     * down through the nested calls and dots of the chain.
+     *
+     * @param dot a dot node of a method call inside a chain.
+     * @return the first node of the chain's target expression.
+     */
+    private static DetailAST getChainStart(DetailAST dot) {
+        DetailAST node = dot.getFirstChild();
+        while (node.getType() == TokenTypes.METHOD_CALL
+                || node.getType() == TokenTypes.DOT) {
+            node = node.getFirstChild();
+        }
+        return node;
     }
 
     /**
