@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="suppressedErrors">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="checkerFrameworkError" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="fileName" type="xs:string"/>
+              <xs:element name="specifier" type="xs:string"/>
+              <xs:element name="message" type="xs:string"/>
+              <xs:element name="lineContent" type="xs:string"/>
+              <xs:element name="details" type="xs:string" minOccurs="0"/>
+            </xs:all>
+            <!-- Boolean.parseBoolean in the reader does not accept XML's numeric booleans. -->
+            <xs:attribute name="unstable" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="true"/>
+                  <xs:enumeration value="false"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
