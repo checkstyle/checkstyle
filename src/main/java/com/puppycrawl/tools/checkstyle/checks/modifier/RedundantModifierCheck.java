@@ -69,11 +69,20 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * {@code final} modifier on unnamed variables when using JDK 22 or later.
  * </li>
+ * <li>
+ * {@code public} modifier on top-level methods of compact source files.
+ * </li>
  * </ol>
  *
  * <p>
- * ATTENTION: Top-level members of compact source files are skipped from validation by this check.
+ * ATTENTION: Except for the {@code public} modifier on top-level methods,
+ * top-level members of compact source files are skipped from validation by this check.
  * </p>
+ *
+ * <p>The implicitly declared class of a compact source file is final and cannot be
+ * referenced by name from other classes, so the {@code public} modifier on its
+ * top-level methods is redundant.
+ * See <a href="https://openjdk.org/jeps/512">JEP 512</a> for more info.</p>
  *
  * <p>
  * interfaces by definition are abstract so the {@code abstract} modifier is redundant on them.
@@ -441,6 +450,19 @@ public class RedundantModifierCheck extends AbstractCheck {
 
         if (ast.findFirstToken(TokenTypes.SLIST) == null) {
             processAbstractMethodParameters(ast);
+        }
+
+        checkCompactSourceFileMethodModifiers(ast);
+    }
+
+    /**
+     * Checks if top-level method of compact source file has redundant public modifier.
+     *
+     * @param methodDef method AST
+     */
+    private void checkCompactSourceFileMethodModifiers(DetailAST methodDef) {
+        if (methodDef.getParent().getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
+            checkForRedundantModifier(methodDef, TokenTypes.LITERAL_PUBLIC);
         }
     }
 
