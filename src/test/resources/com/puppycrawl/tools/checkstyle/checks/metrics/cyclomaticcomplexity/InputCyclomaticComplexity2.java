@@ -48,9 +48,9 @@ public class InputCyclomaticComplexity2 {
         }
     }
 
-    /** Inner */
     // NP = 0
-    // violation below 'Cyclomatic Complexity is 1 (max allowed is 0).'
+    // violation 2 lines below 'Cyclomatic Complexity is 1 (max allowed is 0).'
+    /** Inner */
     public InputCyclomaticComplexity2(int aParam)
     {
         Runnable runnable = new Runnable() {
