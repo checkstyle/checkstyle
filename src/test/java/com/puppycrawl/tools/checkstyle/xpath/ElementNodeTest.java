@@ -34,11 +34,9 @@ import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.xpath.iterators.DescendantIterator;
-import net.sf.saxon.om.AxisInfo;
-import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
+import net.sf.saxon.om.SequenceIterator;
 import net.sf.saxon.tree.iter.ArrayIterator;
-import net.sf.saxon.tree.iter.AxisIterator;
 import net.sf.saxon.tree.iter.EmptyIterator;
 
 public class ElementNodeTest extends AbstractPathTestSupport {
@@ -183,7 +181,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
 
         assertWithMessage("Invalid text attribute")
-            .that(elementNode.getAttributeValue((NamespaceUri) null, "text"))
+            .that(elementNode.getAttributeValue(null, "text"))
             .isEqualTo("HelloWorld");
     }
 
@@ -194,8 +192,8 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         detailAST.setText("HelloWorld");
 
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
-        try (AxisIterator first = elementNode.iterateAxis(AxisInfo.ATTRIBUTE);
-             AxisIterator second = elementNode.iterateAxis(AxisInfo.ATTRIBUTE)) {
+        try (SequenceIterator first = elementNode.iterateAttributeAxis(null);
+             SequenceIterator second = elementNode.iterateAttributeAxis(null)) {
             assertWithMessage("Expected same attribute node")
                 .that(second.next())
                 .isSameInstanceAs(first.next());
@@ -211,7 +209,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
 
         assertWithMessage("Must be null")
-            .that(elementNode.getAttributeValue((NamespaceUri) null, "text"))
+            .that(elementNode.getAttributeValue(null, "text"))
             .isNull();
     }
 
@@ -224,7 +222,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
 
         assertWithMessage("Must be null")
-            .that(elementNode.getAttributeValue((NamespaceUri) null, "testattr"))
+            .that(elementNode.getAttributeValue(null, "testattr"))
             .isNull();
     }
 
@@ -233,12 +231,12 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.METHOD_DEF);
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
-        try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.CHILD)) {
+        try (SequenceIterator iterator = elementNode.iterateChildAxis(null)) {
             assertWithMessage("Invalid iterator")
                     .that(iterator)
                     .isInstanceOf(EmptyIterator.class);
         }
-        try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.DESCENDANT)) {
+        try (SequenceIterator iterator = elementNode.iterateDescendantAxis(null)) {
             assertWithMessage("Invalid iterator")
                     .that(iterator)
                     .isInstanceOf(EmptyIterator.class);
@@ -253,12 +251,12 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         childAst.setType(TokenTypes.VARIABLE_DEF);
         detailAST.addChild(childAst);
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
-        try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.CHILD)) {
+        try (SequenceIterator iterator = elementNode.iterateChildAxis(null)) {
             assertWithMessage("Invalid iterator")
                     .that(iterator)
-                    .isInstanceOf(ArrayIterator.class);
+                    .isInstanceOf(ArrayIterator.OfNodes.class);
         }
-        try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.DESCENDANT)) {
+        try (SequenceIterator iterator = elementNode.iterateDescendantAxis(null)) {
             assertWithMessage("Invalid iterator")
                     .that(iterator)
                     .isInstanceOf(DescendantIterator.class);
@@ -276,12 +274,12 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final AbstractNode parentNode = new ElementNode(rootNode, rootNode, parentAST, 1, 0);
 
         final AbstractNode elementNode = parentNode.getChildren().getFirst();
-        try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.FOLLOWING_SIBLING)) {
+        try (SequenceIterator iterator = elementNode.iterateFollowingSiblingAxis(null)) {
             assertWithMessage("Invalid iterator")
                     .that(iterator)
                     .isInstanceOf(EmptyIterator.class);
         }
-        try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.PRECEDING_SIBLING)) {
+        try (SequenceIterator iterator = elementNode.iteratePrecedingSiblingAxis(null)) {
             assertWithMessage("Invalid iterator")
                     .that(iterator)
                     .isInstanceOf(EmptyIterator.class);

@@ -203,7 +203,7 @@ public class TreeTableTest extends AbstractGuiTestSupport {
         xpathTextArea.setText("!*7^");
         findNodeButton.doClick();
 
-        final String expected = "!*7^\nUnexpected token \"!\" at start of expression";
+        final String expected = "!*7^\nUnexpected token ! before ...7^";
 
         assertWithMessage("Unexpected XPath text area text")
                 .that(xpathTextArea.getText())

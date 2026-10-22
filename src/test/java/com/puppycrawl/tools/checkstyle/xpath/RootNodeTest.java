@@ -34,10 +34,12 @@ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import net.sf.saxon.om.AxisInfo;
+import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
-import net.sf.saxon.tree.iter.AxisIterator;
+import net.sf.saxon.om.SequenceIterator;
+import net.sf.saxon.pattern.nodetest.NodePredicate;
 import net.sf.saxon.tree.iter.EmptyIterator;
+import net.sf.saxon.type.Untyped;
 
 public class RootNodeTest extends AbstractPathTestSupport {
 
@@ -137,36 +139,20 @@ public class RootNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testIterate() {
-        try (AxisIterator following = rootNode.iterateAxis(AxisInfo.FOLLOWING)) {
-            assertWithMessage("Result iterator does not match expected")
-                .that(following)
-                .isEqualTo(EmptyIterator.ofNodes());
-        }
-        try (AxisIterator followingSibling = rootNode.iterateAxis(AxisInfo.FOLLOWING_SIBLING)) {
-            assertWithMessage("Result iterator does not match expected")
-                .that(followingSibling)
-                .isEqualTo(EmptyIterator.ofNodes());
-        }
-        try (AxisIterator preceding = rootNode.iterateAxis(AxisInfo.PRECEDING)) {
-            assertWithMessage("Result iterator does not match expected")
-                .that(preceding)
-                .isEqualTo(EmptyIterator.ofNodes());
-        }
-        try (AxisIterator precedingSibling = rootNode.iterateAxis(AxisInfo.PRECEDING_SIBLING)) {
-            assertWithMessage("Result iterator does not match expected")
-                .that(precedingSibling)
-                .isEqualTo(EmptyIterator.ofNodes());
-        }
-        try (AxisIterator parent = rootNode.iterateAxis(AxisInfo.PARENT)) {
-            assertWithMessage("Result iterator does not match expected")
-                .that(parent)
-                .isEqualTo(EmptyIterator.ofNodes());
-        }
-        try (AxisIterator parentNull = rootNode.iterateAxis(AxisInfo.PARENT, null)) {
-            assertWithMessage("Result iterator does not match expected")
-                .that(parentNull)
-                .isEqualTo(EmptyIterator.ofNodes());
-        }
+        assertEmptyIterator(rootNode.iterateAncestorAxis(null));
+        assertEmptyIterator(rootNode.iterateFollowingAxis(null));
+        assertEmptyIterator(rootNode.iterateFollowingSiblingAxis(null));
+        assertEmptyIterator(rootNode.iteratePrecedingAxis(null));
+        assertEmptyIterator(rootNode.iteratePrecedingSiblingAxis(null));
+        assertEmptyIterator(rootNode.iterateParentAxis(null));
+    }
+
+    @Test
+    public void testIterateWithRejectingPredicate() {
+        final NodePredicate rejectAll = node -> false;
+        assertEmptyIterator(rootNode.iterateSelfAxis(rejectAll));
+        assertEmptyIterator(rootNode.iterateAncestorOrSelfAxis(rejectAll));
+        assertEmptyIterator(rootNode.iterateDescendantOrSelfAxis(rejectAll));
     }
 
     @Test
@@ -176,15 +162,23 @@ public class RootNodeTest extends AbstractPathTestSupport {
                 .that(emptyRootNode.hasChildNodes())
                 .isFalse();
 
-        try (AxisIterator iterator = emptyRootNode.iterateAxis(AxisInfo.DESCENDANT)) {
-            assertWithMessage("Result iterator does not match expected")
-                .that(iterator)
-                .isEqualTo(EmptyIterator.ofNodes());
+        assertSameEmptyIterator(emptyRootNode.iterateDescendantAxis(null));
+        assertSameEmptyIterator(emptyRootNode.iterateChildAxis(null));
+    }
+
+    private static void assertEmptyIterator(SequenceIterator iterator) {
+        try (SequenceIterator closeable = iterator) {
+            assertWithMessage("Result iterator should be empty")
+                .that(closeable.next())
+                .isNull();
         }
-        try (AxisIterator iterator = emptyRootNode.iterateAxis(AxisInfo.CHILD)) {
-            assertWithMessage("Result iterator does not match expected")
-                .that(iterator)
-                .isEqualTo(EmptyIterator.ofNodes());
+    }
+
+    private static void assertSameEmptyIterator(SequenceIterator iterator) {
+        try (SequenceIterator closeable = iterator) {
+            assertWithMessage("Childless root should return the shared empty iterator")
+                .that(closeable)
+                .isSameInstanceAs(EmptyIterator.getInstance());
         }
     }
 
@@ -201,7 +195,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testGetAttributeValue() {
         final UnsupportedOperationException exc =
                 getExpectedThrowable(UnsupportedOperationException.class, () -> {
-                    rootNode.getAttributeValue("", "");
+                    rootNode.getAttributeValue(NamespaceUri.NULL, "");
                 });
         assertWithMessage("Invalid exception message")
             .that(exc.getMessage())
@@ -342,20 +336,29 @@ public class RootNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetPrefix() {
-        final UnsupportedOperationException exc =
-                getExpectedThrowable(UnsupportedOperationException.class, rootNode::getPrefix);
-        assertWithMessage("Invalid exception message")
-            .that(exc.getMessage())
-            .isEqualTo("Operation is not supported");
+        assertWithMessage("Invalid prefix")
+                .that(rootNode.getPrefix())
+                .isEmpty();
     }
 
     @Test
     public void testGetSchemaType() {
+        assertWithMessage("Invalid schema type")
+            .that(rootNode.getSchemaType())
+            .isEqualTo(Untyped.getInstance());
+    }
+
+    @Test
+    public void testIterateAttributeAxis() {
         final UnsupportedOperationException exc =
-                getExpectedThrowable(UnsupportedOperationException.class, rootNode::getSchemaType);
+                getExpectedThrowable(UnsupportedOperationException.class, () -> {
+                    try (SequenceIterator iterator = rootNode.iterateAttributeAxis(null)) {
+                        iterator.next();
+                    }
+                });
         assertWithMessage("Invalid exception message")
-            .that(exc.getMessage())
-            .isEqualTo("Operation is not supported");
+                .that(exc.getMessage())
+                .isEqualTo("Operation is not supported");
     }
 
     @Test

@@ -22,15 +22,14 @@ package com.puppycrawl.tools.checkstyle.xpath.iterators;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.NodeInfo;
-import net.sf.saxon.tree.iter.AxisIterator;
-import net.sf.saxon.tree.iter.SingleNodeIterator;
+import net.sf.saxon.om.SequenceIterator;
+import net.sf.saxon.tree.iter.SingletonIterator;
 
 /**
  * Recursive-free implementation of the descendant axis iterator.
  */
-public class DescendantIterator implements AxisIterator {
+public class DescendantIterator implements SequenceIterator {
 
     /**
      * Enum defines starting node for iterator.
@@ -51,7 +50,7 @@ public class DescendantIterator implements AxisIterator {
     /**
      * Descendant axis iterator.
      */
-    private AxisIterator descendantEnum;
+    private SequenceIterator descendantEnum;
 
     /**
      * Create an iterator over the "descendant" axis.
@@ -61,10 +60,10 @@ public class DescendantIterator implements AxisIterator {
      */
     public DescendantIterator(NodeInfo start, StartWith startWith) {
         if (startWith == StartWith.CURRENT_NODE) {
-            descendantEnum = SingleNodeIterator.makeIterator(start);
+            descendantEnum = SingletonIterator.makeIterator(start);
         }
         else if (startWith == StartWith.CHILDREN) {
-            descendantEnum = start.iterateAxis(AxisInfo.CHILD);
+            descendantEnum = start.iterateChildAxis(null);
         }
     }
 
@@ -81,10 +80,10 @@ public class DescendantIterator implements AxisIterator {
                 if (queue.isEmpty()) {
                     break;
                 }
-                descendantEnum = queue.poll().iterateAxis(AxisInfo.CHILD);
+                descendantEnum = queue.poll().iterateChildAxis(null);
             }
             else {
-                result = descendantEnum.next();
+                result = (NodeInfo) descendantEnum.next();
                 if (result == null) {
                     descendantEnum = null;
                 }
