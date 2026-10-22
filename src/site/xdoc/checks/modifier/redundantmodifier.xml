@@ -71,11 +71,20 @@
         <li>
           <code>final</code> modifier on unnamed variables when using JDK 22 or later.
         </li>
+        <li>
+          <code>public</code> modifier on top-level methods of compact source files.
+        </li>
         </ol>
 
         <p>
-          ATTENTION: Top-level members of compact source files are skipped from validation by this check.
+          ATTENTION: Except for the <code>public</code> modifier on top-level methods,
+          top-level members of compact source files are skipped from validation by this check.
         </p>
+
+        <p>The implicitly declared class of a compact source file is final and cannot be
+          referenced by name from other classes, so the <code>public</code> modifier on its
+          top-level methods is redundant.
+          See <a href="https://openjdk.org/jeps/512">JEP 512</a> for more info.</p>
 
         <p>
           interfaces by definition are abstract so the <code>abstract</code> modifier is redundant on them.

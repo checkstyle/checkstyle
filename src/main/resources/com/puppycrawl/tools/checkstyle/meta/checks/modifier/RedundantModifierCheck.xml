@@ -42,11 +42,20 @@
  &lt;li&gt;
  &lt;code&gt;final&lt;/code&gt; modifier on unnamed variables when using JDK 22 or later.
  &lt;/li&gt;
+ &lt;li&gt;
+ &lt;code&gt;public&lt;/code&gt; modifier on top-level methods of compact source files.
+ &lt;/li&gt;
  &lt;/ol&gt;
 
  &lt;p&gt;
- ATTENTION: Top-level members of compact source files are skipped from validation by this check.
+ ATTENTION: Except for the &lt;code&gt;public&lt;/code&gt; modifier on top-level methods,
+ top-level members of compact source files are skipped from validation by this check.
  &lt;/p&gt;
+
+ &lt;p&gt;The implicitly declared class of a compact source file is final and cannot be
+ referenced by name from other classes, so the &lt;code&gt;public&lt;/code&gt; modifier on its
+ top-level methods is redundant.
+ See &lt;a href="https://openjdk.org/jeps/512"&gt;JEP 512&lt;/a&gt; for more info.&lt;/p&gt;
 
  &lt;p&gt;
  interfaces by definition are abstract so the &lt;code&gt;abstract&lt;/code&gt; modifier is redundant on them.
