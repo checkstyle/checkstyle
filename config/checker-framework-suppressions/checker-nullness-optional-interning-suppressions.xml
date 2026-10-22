@@ -3532,19 +3532,19 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg1 of Map.put.</message>
-    <lineContent>anonInnerAstToTypeDeclDesc.put(literalNewAst, typeDeclarations.peek());</lineContent>
+    <message>incompatible argument for parameter outerClassQualifiedName of CheckUtil.getQualifiedTypeDeclarationName.</message>
+    <lineContent>.getQualifiedTypeDeclarationName(packageName, outerClassQualifiedName, className);</lineContent>
     <details>
-      found   : @Initialized @Nullable TypeDeclDesc
-      required: @Initialized @NonNull TypeDeclDesc
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull String
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter outerClassQualifiedName of CheckUtil.getQualifiedTypeDeclarationName.</message>
-    <lineContent>.getQualifiedTypeDeclarationName(packageName, outerClassQualifiedName, className);</lineContent>
+    <message>incompatible argument for parameter outerTypeDeclName of UnusedLocalVariableCheck.getClosestMatchingTypeDeclaration.</message>
+    <lineContent>anonInnerAstToOuterTypeDeclName.get(literalNewAst),</lineContent>
     <details>
       found   : @Initialized @Nullable String
       required: @Initialized @NonNull String
@@ -3609,13 +3609,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference anonInnerAstToTypeDeclDesc.get(literalNewAst)</message>
-    <lineContent>anonInnerAstToTypeDeclDesc.get(literalNewAst).getQualifiedName(),</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference ident</message>
     <lineContent>final VariableDesc desc = new VariableDesc(ident.getText());</lineContent>
   </checkerFrameworkError>
@@ -3674,6 +3667,13 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference typeDeclarations.peek()</message>
     <lineContent>outerClassQualifiedName = typeDeclarations.peek().getQualifiedName();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference typeDeclarations.peek()</message>
+    <lineContent>outerTypeDeclName = typeDeclarations.peek().getQualifiedName();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
