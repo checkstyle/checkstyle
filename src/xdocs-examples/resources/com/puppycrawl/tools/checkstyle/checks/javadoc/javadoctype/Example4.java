@@ -11,10 +11,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 import javax.annotation.processing.Generated;
 // xdoc section - start
 /**
- * @author a
- * @version $Revision1$
+ * @author
+ * @version 1.0
  */
-public class Example4 {
+public class Example4 { // violation 'Type Javadoc tag @version must match pattern'
   /**
    * @author a
    * @version $Revision1$
@@ -43,5 +43,8 @@ public class Example4 {
   /** */
   @Generated("tool")
   public class ClassG<T> {}
+
+  /** */
+  public interface InterfaceH<T> {} // violation 'missing @param '<T>' tag.'
 }
 // xdoc section - end
