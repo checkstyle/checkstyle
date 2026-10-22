@@ -200,7 +200,5 @@
             files="/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/InputSummaryJavadocInlineDefault\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/InputSummaryJavadocInlineForbidden\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexity2\.java"/>
 
 </suppressions>
