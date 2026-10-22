@@ -80,3 +80,9 @@ exclude:
   - name: Java9RedundantRequiresStatement
     paths:
       - src/main/java/module-info.java
+
+  # Differing compiler args in default-testCompile cause IntelliJ/Qodana to model main and
+  # test as separate modules, producing false-positive split-package and cross-module warnings.
+  - name: PackageInMultipleModules
+  - name: ClassOnlyUsedInOneModule
+  - name: DeprecatedIsStillUsed
