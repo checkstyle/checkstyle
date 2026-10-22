@@ -1,7 +1,17 @@
+/*
+MethodParamPad
+allowLineBreaks = (default)false
+option = space
+tokens = (default)CTOR_DEF, CTOR_CALL, LITERAL_NEW, METHOD_CALL, METHOD_DEF, SUPER_CTOR_CALL, \
+         ENUM_CONSTANT_DEF, RECORD_DEF, RECORD_PATTERN_DEF
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.whitespace.methodparampad;
 
 public class InputXpathMethodParamPadThree {
-    public void sayHello(String name) { //warn
+    public void sayHello(String name) { // violation "'(' is not preceded with whitespace."
 
     }
 }
