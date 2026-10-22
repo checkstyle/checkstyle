@@ -171,7 +171,7 @@ public class RedundantThisCheck extends AbstractCheck {
             }
             case TokenTypes.LITERAL_SWITCH -> scopeStack.push(new HashSet<>());
             case TokenTypes.SLIST -> {
-                if (isScopeBlock(ast)) {
+                if (!isCaseGroupBody(ast)) {
                     scopeStack.push(new HashSet<>());
                 }
             }
@@ -196,22 +196,22 @@ public class RedundantThisCheck extends AbstractCheck {
                 TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF,
                 TokenTypes.LITERAL_CATCH, TokenTypes.LITERAL_TRY,
                 TokenTypes.LITERAL_SWITCH)
-                || ast.getType() == TokenTypes.SLIST && isScopeBlock(ast)) {
+                || ast.getType() == TokenTypes.SLIST && !isCaseGroupBody(ast)) {
             scopeStack.pop();
         }
     }
 
     /**
-     * Checks whether the given {@code SLIST} opens its own scope. The statements of
-     * an old-style switch case group do not: a local variable declared in one case
-     * group stays in scope until the end of the whole switch block (JLS 6.3), which
-     * is tracked as a scope of its own.
+     * Checks whether the given {@code SLIST} is the statement list of an old-style
+     * switch case group. Such a list does not open its own scope: a local variable
+     * declared in one case group stays in scope until the end of the whole switch
+     * block (JLS 6.3), which is tracked as a scope of its own.
      *
      * @param slist the {@code SLIST} token
-     * @return {@code true} if the block opens its own scope
+     * @return {@code true} if the block is the body of a case group
      */
-    private static boolean isScopeBlock(DetailAST slist) {
-        return slist.getParent().getType() != TokenTypes.CASE_GROUP;
+    private static boolean isCaseGroupBody(DetailAST slist) {
+        return slist.getParent().getType() == TokenTypes.CASE_GROUP;
     }
 
     @Override
