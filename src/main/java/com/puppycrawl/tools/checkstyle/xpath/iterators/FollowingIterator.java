@@ -19,27 +19,26 @@
 
 package com.puppycrawl.tools.checkstyle.xpath.iterators;
 
-import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.NodeInfo;
-import net.sf.saxon.tree.iter.AxisIterator;
+import net.sf.saxon.om.SequenceIterator;
 
 /**
  * Recursive-free implementation of the following axis iterator.
  */
-public class FollowingIterator implements AxisIterator {
+public class FollowingIterator implements SequenceIterator {
 
     /**
      * Ancestor axis iterator.
      */
-    private final AxisIterator ancestorEnum;
+    private final SequenceIterator ancestorEnum;
     /**
      * Following-sibling axis iterator.
      */
-    private AxisIterator siblingEnum;
+    private SequenceIterator siblingEnum;
     /**
      * Descendant axis iterator.
      */
-    private AxisIterator descendantEnum;
+    private SequenceIterator descendantEnum;
 
     /**
      * Create an iterator over the "following" axis.
@@ -47,8 +46,8 @@ public class FollowingIterator implements AxisIterator {
      * @param start the initial context node.
      */
     public FollowingIterator(NodeInfo start) {
-        ancestorEnum = start.iterateAxis(AxisInfo.ANCESTOR);
-        siblingEnum = start.iterateAxis(AxisInfo.FOLLOWING_SIBLING);
+        ancestorEnum = start.iterateAncestorAxis(null);
+        siblingEnum = start.iterateFollowingSiblingAxis(null);
     }
 
     /**
@@ -62,22 +61,22 @@ public class FollowingIterator implements AxisIterator {
 
         do {
             if (descendantEnum != null) {
-                result = descendantEnum.next();
+                result = (NodeInfo) descendantEnum.next();
             }
 
             if (result == null) {
-                result = siblingEnum.next();
+                result = (NodeInfo) siblingEnum.next();
                 if (result != null) {
-                    descendantEnum = result.iterateAxis(AxisInfo.DESCENDANT);
+                    descendantEnum = result.iterateDescendantAxis(null);
                 }
             }
 
             if (result == null) {
-                final NodeInfo parent = ancestorEnum.next();
+                final NodeInfo parent = (NodeInfo) ancestorEnum.next();
                 if (parent == null) {
                     break;
                 }
-                siblingEnum = parent.iterateAxis(AxisInfo.FOLLOWING_SIBLING);
+                siblingEnum = parent.iterateFollowingSiblingAxis(null);
             }
         } while (result == null);
         return result;

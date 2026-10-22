@@ -24,12 +24,12 @@ import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 import net.sf.saxon.om.NodeInfo;
-import net.sf.saxon.tree.iter.AxisIterator;
+import net.sf.saxon.om.SequenceIterator;
 
 /**
  * Iterates list in backward direction.
  */
-public class ReverseListIterator implements AxisIterator {
+public class ReverseListIterator implements SequenceIterator {
 
     /**
      * List of nodes.

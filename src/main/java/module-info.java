@@ -47,11 +47,7 @@ open module com.puppycrawl.tools.checkstyle {
     requires org.slf4j;
     // AbstractNode in the exported xpath package implements Saxon's NodeInfo,
     // so Saxon types are part of Checkstyle's public API and must be readable by consumers.
-    // Published Saxon-HE releases (up to and including 12.10 and 13.0) ship no
-    // Automatic-Module-Name, so this is the filename-derived name. Saxonica has added
-    // Automatic-Module-Name "net.sf.saxon" on their 12 and 13 branches,
-    // see https://saxonica.plan.io/issues/7193 (rename here once a fixed release is adopted).
-    requires transitive Saxon.HE;
+    requires transitive net.sf.saxon;
     // Compile-time only annotations, not needed at runtime:
     // javax.annotation.Nullable (jsr305) and org.jspecify.annotations (via guava).
     requires static jsr305;

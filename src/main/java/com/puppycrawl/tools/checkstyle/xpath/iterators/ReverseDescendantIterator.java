@@ -23,16 +23,15 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Queue;
 
-import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.NodeInfo;
-import net.sf.saxon.tree.iter.AxisIterator;
+import net.sf.saxon.om.SequenceIterator;
 
 /**
  * Recursive-free implementation of the descendant axis iterator. Difference between this iterator
  * and {@link DescendantIterator} in traversal order of the child nodes. In some cases it is useful
  * to iterate from last child backwards to the first one, for example in {@link PrecedingIterator}.
  */
-public class ReverseDescendantIterator implements AxisIterator {
+public class ReverseDescendantIterator implements SequenceIterator {
 
     /**
      * Queue for sibling nodes.
@@ -49,19 +48,19 @@ public class ReverseDescendantIterator implements AxisIterator {
      * @param start the initial context node.
      */
     public ReverseDescendantIterator(NodeInfo start) {
-        pushToStack(start.iterateAxis(AxisInfo.CHILD));
+        pushToStack(start.iterateChildAxis(null));
     }
 
     /**
      * Pushes all children to the stack.
      *
-     * @param iterateAxis {@link AxisInfo#CHILD} axis iterator.
+     * @param iterateAxis child axis iterator.
      */
-    private void pushToStack(AxisIterator iterateAxis) {
-        NodeInfo nodeInfo = iterateAxis.next();
+    private void pushToStack(SequenceIterator iterateAxis) {
+        NodeInfo nodeInfo = (NodeInfo) iterateAxis.next();
         while (nodeInfo != null) {
             stack.addLast(nodeInfo);
-            nodeInfo = iterateAxis.next();
+            nodeInfo = (NodeInfo) iterateAxis.next();
         }
     }
 
@@ -78,7 +77,7 @@ public class ReverseDescendantIterator implements AxisIterator {
                 if (queue.isEmpty()) {
                     break;
                 }
-                pushToStack(queue.poll().iterateAxis(AxisInfo.CHILD));
+                pushToStack(queue.poll().iterateChildAxis(null));
             }
             else {
                 result = stack.removeLast();
