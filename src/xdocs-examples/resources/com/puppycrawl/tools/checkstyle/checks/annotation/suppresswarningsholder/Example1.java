@@ -22,8 +22,8 @@ class Example1 {
   private int J;
 
   @SuppressWarnings("ParamListShouldBeShort")
-    public void needsLotsOfParameters1 (int a,
-     int b, int c, int d, int e, int f, int g, int h) {}
+  public void needsLotsOfParameters1 (int a,
+    int b, int c, int d, int e, int f, int g, int h) {}
 
   private int [] ARR; // violation ''int' is followed by whitespace'
   // violation above 'Name 'ARR' must match pattern'
@@ -31,7 +31,7 @@ class Example1 {
   private int [] ARRAY;
   // violation 2 lines below 'More than 7 parameters (found 8)'
   @SuppressWarnings("paramcounter")
-    public void needsLotsOfParameters2 (int a,
-     int b, int c, int d, int e, int f, int g, int h) {}
+  public void needsLotsOfParameters2 (int a,
+    int b, int c, int d, int e, int f, int g, int h) {}
 }
 // xdoc section - end
