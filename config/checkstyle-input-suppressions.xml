@@ -126,8 +126,6 @@
             files="/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/InputNonemptyBlocksLeftRightCurly\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="/it/resources/com/google/checkstyle/test/chapter4formatting/rule4861blockcommentstyle/InputCommentsIndentationSurroundingCode\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/it/resources/com/google/checkstyle/test/chapter5naming/rule523methodnames/InputMethodName\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="/it/resources/com/google/checkstyle/test/chapter7javadoc/rule711generalform/InputIncorrectJavadocLeadingAsteriskAlignment\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
@@ -138,8 +136,6 @@
             files="/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/InputIncorrectRequireEmptyLineBeforeBlockTagGroup\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulevariabledeclarations/onevariableperline/InputOneVariablePerDeclaration\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/google/checkstyle/test/chapter5naming/rule523methodnames/InputMethodName2\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="/com/google/checkstyle/test/chapter6programpractice/rule61overridealwaysused/InputOverrideAlwaysUsedForRecord\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
