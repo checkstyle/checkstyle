@@ -3,8 +3,8 @@ package com.google.checkstyle.test.chapter6programpractice.rule61overridealwaysu
 /** Some javadoc. */
 public record InputOverrideAlwaysUsedForRecordGeneric<T>(T value) {
 
+  // violation 2 lines below 'method must include @java.lang.Override annotation.'
   /** Some javadoc. */
-  // violation below 'method must include @java.lang.Override annotation.'
   public T value() {
     return value;
   }
@@ -18,8 +18,8 @@ interface Printable {
 // violation below 'Top-level class Document has to reside in its own source file.'
 record Document(String title) implements Printable {
 
+  // violation 2 lines below 'method must include @java.lang.Override annotation.'
   /** Some javadoc. */
-  // violation below 'method must include @java.lang.Override annotation.'
   public String title() {
     return title.toUpperCase();
   }

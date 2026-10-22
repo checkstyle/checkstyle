@@ -5,14 +5,14 @@ import java.util.Locale;
 /** Some javadoc. */
 public record InputOverrideAlwaysUsedForRecordViolation(String name, int age) {
 
+  // violation 2 lines below 'method must include @java.lang.Override annotation.'
   /** Some javadoc. */
-  // violation below 'method must include @java.lang.Override annotation.'
   public String name() {
     return name.toUpperCase(Locale.ROOT);
   }
 
+  // violation 2 lines below 'method must include @java.lang.Override annotation.'
   /** Some javadoc. */
-  // violation below 'method must include @java.lang.Override annotation.'
   public int age() {
     return age;
   }
