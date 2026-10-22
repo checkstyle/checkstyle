@@ -314,7 +314,14 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 ast.getParent().getPreviousSibling();
             case TokenTypes.METHOD_DEF, TokenTypes.INSTANCE_INIT ->
                 getFirstPredecessorOfTypes(
-                Set.of(TokenTypes.CLASS_DEF), ast).getPreviousSibling();
+                Set.of(
+                    TokenTypes.CLASS_DEF,
+                    TokenTypes.INTERFACE_DEF,
+                    TokenTypes.ANNOTATION_DEF,
+                    TokenTypes.ENUM_DEF,
+                    TokenTypes.RECORD_DEF,
+                    TokenTypes.COMPACT_COMPILATION_UNIT
+                ), ast).getPreviousSibling();
             default -> ast.getPreviousSibling();
         };
     }
