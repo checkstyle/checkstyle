@@ -9171,7 +9171,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter nodes of OfNodes constructor.</message>
-    <lineContent>getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));</lineContent>
+    <lineContent>getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY)), predicate);</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractNode @Initialized @NonNull []
       required: @Initialized @NonNull AbstractNode @Initialized @NonNull []
@@ -9236,7 +9236,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
     <specifier>toarray.nullable.elements.not.newarray</specifier>
     <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
-    <lineContent>getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));</lineContent>
+    <lineContent>getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY)), predicate);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -9271,7 +9271,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractRootNode.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter nodes of OfNodes constructor.</message>
-    <lineContent>getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));</lineContent>
+    <lineContent>getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY)), predicate);</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractNode @Initialized @NonNull []
       required: @Initialized @NonNull AbstractNode @Initialized @NonNull []
@@ -9293,7 +9293,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractRootNode.java</fileName>
     <specifier>toarray.nullable.elements.not.newarray</specifier>
     <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
-    <lineContent>getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));</lineContent>
+    <lineContent>getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY)), predicate);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -9359,12 +9359,34 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of GNode.iterateChildAxis.</message>
+    <lineContent>descendantEnum = queue.poll().iterateChildAxis(null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull NodePredicate
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of GNode.iterateChildAxis.</message>
+    <lineContent>descendantEnum = start.iterateChildAxis(null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull NodePredicate
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
     <specifier>assignment</specifier>
     <message>incompatible types in assignment.</message>
     <lineContent>descendantEnum = null;</lineContent>
     <details>
       found   : null (NullType)
-      required: @Initialized @NonNull AxisIterator
+      required: @Initialized @NonNull SequenceIterator
     </details>
   </checkerFrameworkError>
 
@@ -9372,7 +9394,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference queue.poll()</message>
-    <lineContent>descendantEnum = queue.poll().iterateAxis(AxisInfo.CHILD);</lineContent>
+    <lineContent>descendantEnum = queue.poll().iterateChildAxis(null);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -9395,9 +9417,86 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of GNode.iterateFollowingSiblingAxis.</message>
+    <lineContent>siblingEnum = parent.iterateFollowingSiblingAxis(null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull NodePredicate
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of GNode.iterateFollowingSiblingAxis.</message>
+    <lineContent>siblingEnum = start.iterateFollowingSiblingAxis(null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull NodePredicate
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter predicate of GNode.iterateAncestorAxis.</message>
+    <lineContent>ancestorEnum = start.iterateAncestorAxis(null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull NodePredicate
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter predicate of GNode.iterateDescendantAxis.</message>
+    <lineContent>descendantEnum = result.iterateDescendantAxis(null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull NodePredicate
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: descendantEnum</message>
     <lineContent>public FollowingIterator(NodeInfo start) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of GNode.iteratePrecedingSiblingAxis.</message>
+    <lineContent>previousSiblingEnum = result.iteratePrecedingSiblingAxis(null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull NodePredicate
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of GNode.iteratePrecedingSiblingAxis.</message>
+    <lineContent>previousSiblingEnum = start.iteratePrecedingSiblingAxis(null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull NodePredicate
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter predicate of GNode.iterateAncestorAxis.</message>
+    <lineContent>ancestorEnum = start.iterateAncestorAxis(null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull NodePredicate
+    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -9409,16 +9508,38 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseDescendantIterator.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of GNode.iterateChildAxis.</message>
+    <lineContent>pushToStack(queue.poll().iterateChildAxis(null));</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull NodePredicate
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseDescendantIterator.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of GNode.iterateChildAxis.</message>
+    <lineContent>pushToStack(start.iterateChildAxis(null));</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull NodePredicate
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseDescendantIterator.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference queue.poll()</message>
-    <lineContent>pushToStack(queue.poll().iterateAxis(AxisInfo.CHILD));</lineContent>
+    <lineContent>pushToStack(queue.poll().iterateChildAxis(null));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseDescendantIterator.java</fileName>
     <specifier>method.invocation</specifier>
-    <message>call to pushToStack(net.sf.saxon.tree.iter.AxisIterator) not allowed on the given receiver.</message>
-    <lineContent>pushToStack(start.iterateAxis(AxisInfo.CHILD));</lineContent>
+    <message>call to pushToStack(net.sf.saxon.om.SequenceIterator) not allowed on the given receiver.</message>
+    <lineContent>pushToStack(start.iterateChildAxis(null));</lineContent>
     <details>
       found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.xpath.iterators.ReverseDescendantIterator.class) @NonNull ReverseDescendantIterator
       required: @Initialized @NonNull ReverseDescendantIterator

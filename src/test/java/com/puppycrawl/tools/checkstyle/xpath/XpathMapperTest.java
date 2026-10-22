@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
 
 public class XpathMapperTest extends AbstractModuleTestSupport {
@@ -581,7 +582,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         final ElementNode classDefNode = (ElementNode) nodes.getFirst();
         assertWithMessage("Not existing attribute should have null value")
-                .that(classDefNode.getAttributeValue("", "noneExistingAttribute"))
+                .that(classDefNode.getAttributeValue(NamespaceUri.NULL, "noneExistingAttribute"))
                 .isNull();
     }
 

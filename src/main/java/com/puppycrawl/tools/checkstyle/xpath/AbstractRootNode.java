@@ -21,14 +21,15 @@ package com.puppycrawl.tools.checkstyle.xpath;
 
 import com.puppycrawl.tools.checkstyle.xpath.iterators.DescendantIterator;
 import net.sf.saxon.Configuration;
-import net.sf.saxon.om.AxisInfo;
+import net.sf.saxon.om.GNode;
 import net.sf.saxon.om.GenericTreeInfo;
 import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
+import net.sf.saxon.om.SequenceIterator;
+import net.sf.saxon.pattern.nodetest.NodePredicate;
 import net.sf.saxon.tree.iter.ArrayIterator;
-import net.sf.saxon.tree.iter.AxisIterator;
 import net.sf.saxon.tree.iter.EmptyIterator;
-import net.sf.saxon.tree.iter.SingleNodeIterator;
+import net.sf.saxon.tree.iter.SingletonIterator;
 import net.sf.saxon.type.Type;
 
 /**
@@ -53,11 +54,11 @@ public abstract class AbstractRootNode extends AbstractNode {
      * Compares current object with specified for order.
      * Throws {@code UnsupportedOperationException} because functionality not required here.
      *
-     * @param nodeInfo another {@code NodeInfo} object
+     * @param other another {@code GNode} object
      * @return number representing order of current object to specified one
      */
     @Override
-    public int compareOrder(NodeInfo nodeInfo) {
+    public int compareOrder(GNode other) {
         throw throwUnsupportedOperationException();
     }
 
@@ -115,45 +116,163 @@ public abstract class AbstractRootNode extends AbstractNode {
     }
 
     /**
-     * Determines axis iteration algorithm. Throws {@code UnsupportedOperationException} in case,
-     * when there is no axis iterator for given axisNumber.
+     * Returns ancestor axis iterator. Root has no ancestors.
      *
-     * @param axisNumber element from {@code AxisInfo}
-     * @return {@code AxisIterator} object
+     * @param predicate filter for the iterator, may be null
+     * @return empty iterator
      */
     @Override
-    public AxisIterator iterateAxis(int axisNumber) {
-        return switch (axisNumber) {
-            case AxisInfo.ANCESTOR,
-                 AxisInfo.PARENT,
-                 AxisInfo.FOLLOWING,
-                 AxisInfo.FOLLOWING_SIBLING,
-                 AxisInfo.PRECEDING,
-                 AxisInfo.PRECEDING_SIBLING -> EmptyIterator.ofNodes();
+    public SequenceIterator iterateAncestorAxis(NodePredicate predicate) {
+        return createEmptyIterator();
+    }
 
-            case AxisInfo.ANCESTOR_OR_SELF,
-                 AxisInfo.SELF -> SingleNodeIterator.makeIterator(this);
+    /**
+     * Returns parent axis iterator. Root has no parent.
+     *
+     * @param predicate filter for the iterator, may be null
+     * @return empty iterator
+     */
+    @Override
+    public SequenceIterator iterateParentAxis(NodePredicate predicate) {
+        return createEmptyIterator();
+    }
 
-            case AxisInfo.CHILD -> {
-                if (hasChildNodes()) {
-                    yield new ArrayIterator.OfNodes<>(
-                            getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));
-                }
-                yield EmptyIterator.ofNodes();
-            }
+    /**
+     * Returns following axis iterator. Root has no following nodes.
+     *
+     * @param predicate filter for the iterator, may be null
+     * @return empty iterator
+     */
+    @Override
+    public SequenceIterator iterateFollowingAxis(NodePredicate predicate) {
+        return createEmptyIterator();
+    }
 
-            case AxisInfo.DESCENDANT -> {
-                if (hasChildNodes()) {
-                    yield new DescendantIterator(this, DescendantIterator.StartWith.CHILDREN);
-                }
-                yield EmptyIterator.ofNodes();
-            }
+    /**
+     * Returns following-sibling axis iterator. Root has no siblings.
+     *
+     * @param predicate filter for the iterator, may be null
+     * @return empty iterator
+     */
+    @Override
+    public SequenceIterator iterateFollowingSiblingAxis(NodePredicate predicate) {
+        return createEmptyIterator();
+    }
 
-            case AxisInfo.DESCENDANT_OR_SELF ->
-                new DescendantIterator(this, DescendantIterator.StartWith.CURRENT_NODE);
+    /**
+     * Returns preceding axis iterator. Root has no preceding nodes.
+     *
+     * @param predicate filter for the iterator, may be null
+     * @return empty iterator
+     */
+    @Override
+    public SequenceIterator iteratePrecedingAxis(NodePredicate predicate) {
+        return createEmptyIterator();
+    }
 
-            default -> throw throwUnsupportedOperationException();
-        };
+    /**
+     * Returns preceding-sibling axis iterator. Root has no siblings.
+     *
+     * @param predicate filter for the iterator, may be null
+     * @return empty iterator
+     */
+    @Override
+    public SequenceIterator iteratePrecedingSiblingAxis(NodePredicate predicate) {
+        return createEmptyIterator();
+    }
+
+    /**
+     * Returns ancestor-or-self axis iterator.
+     *
+     * @param predicate filter for the iterator, may be null
+     * @return iterator over the current node
+     */
+    @Override
+    public SequenceIterator iterateAncestorOrSelfAxis(NodePredicate predicate) {
+        return filter(SingletonIterator.makeIterator(this), predicate);
+    }
+
+    /**
+     * Returns self axis iterator.
+     *
+     * @param predicate filter for the iterator, may be null
+     * @return iterator over the current node
+     */
+    @Override
+    public SequenceIterator iterateSelfAxis(NodePredicate predicate) {
+        return filter(SingletonIterator.makeIterator(this), predicate);
+    }
+
+    /**
+     * Returns child axis iterator.
+     *
+     * @param predicate filter for the iterator, may be null
+     * @return iterator over the children
+     */
+    @Override
+    public SequenceIterator iterateChildAxis(NodePredicate predicate) {
+        final SequenceIterator result;
+        if (hasChildNodes()) {
+            result = filter(new ArrayIterator.OfNodes<>(
+                    getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY)), predicate);
+        }
+        else {
+            result = createEmptyIterator();
+        }
+        return result;
+    }
+
+    /**
+     * Returns descendant axis iterator.
+     *
+     * @param predicate filter for the iterator, may be null
+     * @return iterator over the descendants
+     */
+    @Override
+    public SequenceIterator iterateDescendantAxis(NodePredicate predicate) {
+        final SequenceIterator result;
+        if (hasChildNodes()) {
+            result = filter(
+                new DescendantIterator(this, DescendantIterator.StartWith.CHILDREN), predicate);
+        }
+        else {
+            result = createEmptyIterator();
+        }
+        return result;
+    }
+
+    /**
+     * Returns descendant-or-self axis iterator.
+     *
+     * @param predicate filter for the iterator, may be null
+     * @return iterator over the current node and its descendants
+     */
+    @Override
+    public SequenceIterator iterateDescendantOrSelfAxis(NodePredicate predicate) {
+        return filter(
+            new DescendantIterator(this, DescendantIterator.StartWith.CURRENT_NODE), predicate);
+    }
+
+    /**
+     * Attribute axis is not supported for the root node.
+     *
+     * @param predicate filter for the iterator, may be null
+     * @return never
+     */
+    @Override
+    public SequenceIterator iterateAttributeAxis(NodePredicate predicate) {
+        throw throwUnsupportedOperationException();
+    }
+
+    /**
+     * Namespace axis is not supported for the root node.
+     *
+     * @param predicate filter for the iterator, may be null
+     * @return never
+     */
+    @Override
+    public SequenceIterator iterateNamespaceAxis(NodePredicate predicate) {
+        throw throwUnsupportedOperationException();
     }
 
     /**
@@ -164,6 +283,15 @@ public abstract class AbstractRootNode extends AbstractNode {
     @Override
     public int getDepth() {
         return 0;
+    }
+
+    /**
+     * Creates an iterator without items.
+     *
+     * @return the shared empty iterator
+     */
+    private static SequenceIterator createEmptyIterator() {
+        return EmptyIterator.getInstance();
     }
 
     /**

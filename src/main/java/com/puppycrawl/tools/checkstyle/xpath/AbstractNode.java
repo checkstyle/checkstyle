@@ -29,13 +29,14 @@ import net.sf.saxon.om.NamespaceBinding;
 import net.sf.saxon.om.NamespaceMap;
 import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
+import net.sf.saxon.om.SequenceIterator;
 import net.sf.saxon.om.TreeInfo;
-import net.sf.saxon.pattern.NodePredicate;
+import net.sf.saxon.pattern.nodetest.NodePredicate;
 import net.sf.saxon.s9api.Location;
 import net.sf.saxon.str.UnicodeString;
-import net.sf.saxon.tree.iter.AxisIterator;
 import net.sf.saxon.tree.util.Navigator;
 import net.sf.saxon.type.SchemaType;
+import net.sf.saxon.type.Untyped;
 
 /**
  * Represents general class for {@code ElementNode}, {@code RootNode} and {@code AttributeNode}.
@@ -140,19 +141,22 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Determines axis iteration algorithm.
+     * Applies the node predicate to the given axis iterator, if a predicate is provided.
      *
-     * @param axisNumber element from {@code AxisInfo}
-     * @param nodeTest filter for iterator
-     * @return {@code AxisIterator} object
+     * @param iterator axis iterator
+     * @param predicate filter for the iterator, may be null
+     * @return filtered iterator, or the same iterator if there is no predicate
      */
-    @Override
-    public AxisIterator iterateAxis(int axisNumber, NodePredicate nodeTest) {
-        AxisIterator axisIterator = iterateAxis(axisNumber);
-        if (nodeTest != null) {
-            axisIterator = new Navigator.AxisFilter(axisIterator, nodeTest);
+    protected static SequenceIterator filter(SequenceIterator iterator,
+                                             NodePredicate predicate) {
+        final SequenceIterator result;
+        if (predicate == null) {
+            result = iterator;
         }
-        return axisIterator;
+        else {
+            result = Navigator.filter(iterator, predicate);
+        }
+        return result;
     }
 
     /**
@@ -344,25 +348,25 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns prefix. Throws {@code UnsupportedOperationException}, because no child class
-     * implements it and this method is not used for querying.
+     * Returns prefix. Nodes of the xpath tree are never in a namespace,
+     * so the prefix is always empty.
      *
-     * @return prefix
+     * @return empty string
      */
     @Override
-    public final String getPrefix() {
-        throw createUnsupportedOperationException();
+    public String getPrefix() {
+        return "";
     }
 
     /**
-     * Returns type of the schema. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns type of the schema. Nodes of the xpath tree are never schema-validated,
+     * so they are always untyped.
      *
-     * @return type of the schema
+     * @return untyped schema type
      */
     @Override
-    public final SchemaType getSchemaType() {
-        throw createUnsupportedOperationException();
+    public SchemaType getSchemaType() {
+        return Untyped.getInstance();
     }
 
     /**
@@ -372,7 +376,7 @@ public abstract class AbstractNode implements NodeInfo {
      * @return AtomicSequence
      */
     @Override
-    public final AtomicSequence atomize() {
+    public AtomicSequence atomize() {
         throw createUnsupportedOperationException();
     }
 
