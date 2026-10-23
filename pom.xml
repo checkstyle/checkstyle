@@ -510,6 +510,20 @@
     </dependency>
   </dependencies>
 
+  <repositories>
+    <repository>
+      <id>jvnet-nexus-releases</id>
+      <name>Redirected legacy jvnet repository</name>
+      <url>https://repo.maven.apache.org/maven2</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
   <build>
     <pluginManagement>
       <plugins>
@@ -1185,17 +1199,17 @@
                     <exclude>com.puppycrawl.tools.checkstyle.gui.BaseCellEditor</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.CodeSelector</exclude>
                     <exclude>
-                             com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper
+                      com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper
                     </exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTable</exclude>
                     <exclude>
-                             com.puppycrawl.tools.checkstyle.gui.TreeTable.TreeTableCellEditor
+                      com.puppycrawl.tools.checkstyle.gui.TreeTable.TreeTableCellEditor
                     </exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableCellRenderer</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter</exclude>
                     <exclude>
-                             com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter.UpdatingTreeModelListener
+                      com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter.UpdatingTreeModelListener
                     </exclude>
                     <!-- Metadata Generator related classes -->
                     <exclude>com.puppycrawl.tools.checkstyle.meta.ModuleDetails*</exclude>
@@ -3198,8 +3212,8 @@
                 </path>
               </annotationProcessorPaths>
               <annotationProcessors>
-          <!-- RegexChecker disabled, runtime exceptions are sufficient, see https://github.com/checkstyle/checkstyle/issues/12567 -->
-          <!-- <annotationProcessor>org.checkerframework.checker.regex.RegexChecker</annotationProcessor> -->
+                <!-- RegexChecker disabled, runtime exceptions are sufficient, see https://github.com/checkstyle/checkstyle/issues/12567 -->
+                <!-- <annotationProcessor>org.checkerframework.checker.regex.RegexChecker</annotationProcessor> -->
                 <annotationProcessor>org.checkerframework.checker.propkey.PropertyKeyChecker</annotationProcessor>
                 <annotationProcessor>org.checkerframework.checker.compilermsgs.CompilerMessagesChecker</annotationProcessor>
               </annotationProcessors>
