@@ -93,8 +93,6 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/19803 -->
   <suppress id="violationBetweenJavadocAndMethod"
-            files="/checks/coding/onestatementperline/InputOneStatementPerLineSingleLineSmallTalkStyle\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="/checks/indentation/commentsindentation/InputCommentsIndentationCommentIsAtTheEndOfBlockFour\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="/checks/javadoc/javadocparagraph/InputJavadocParagraphCheck1\.java"/>
