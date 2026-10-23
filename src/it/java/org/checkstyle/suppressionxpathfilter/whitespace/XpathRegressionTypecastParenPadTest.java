@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,8 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck;
 
 public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSupport {
@@ -47,14 +44,8 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
 
     @Test
     public void testLeftFollowed() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathTypecastParenPadLeftFollowed.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(TypecastParenPadCheck.class);
-
         final String[] expectedViolation = {
-            "4:18: " + getCheckMessage(TypecastParenPadCheck.class,
+            "10:18: " + getCheckMessage(TypecastParenPadCheck.class,
                     TypecastParenPadCheck.MSG_WS_FOLLOWED, "("),
         };
 
@@ -67,21 +58,16 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR/TYPECAST"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTypecastParenPadLeftFollowed.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testLeftNotFollowed() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathTypecastParenPadLeftNotFollowed.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(TypecastParenPadCheck.class);
-        moduleConfig.addProperty("option", PadOption.SPACE.toString());
-
         final String[] expectedViolation = {
-            "4:18: " + getCheckMessage(TypecastParenPadCheck.class,
+            "11:18: " + getCheckMessage(TypecastParenPadCheck.class,
                     TypecastParenPadCheck.MSG_WS_NOT_FOLLOWED, "("),
         };
 
@@ -94,20 +80,16 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR/TYPECAST"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTypecastParenPadLeftNotFollowed.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testRightPreceded() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathTypecastParenPadRightPreceded.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(TypecastParenPadCheck.class);
-
         final String[] expectedViolation = {
-            "4:26: " + getCheckMessage(TypecastParenPadCheck.class,
+            "10:26: " + getCheckMessage(TypecastParenPadCheck.class,
                     TypecastParenPadCheck.MSG_WS_PRECEDED, ")"),
         };
 
@@ -117,21 +99,16 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR/TYPECAST/RPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTypecastParenPadRightPreceded.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testRightNotPreceded() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathTypecastParenPadRightNotPreceded.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(TypecastParenPadCheck.class);
-        moduleConfig.addProperty("option", PadOption.SPACE.toString());
-
         final String[] expectedViolation = {
-            "4:26: " + getCheckMessage(TypecastParenPadCheck.class,
+            "11:26: " + getCheckMessage(TypecastParenPadCheck.class,
                     TypecastParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
         };
 
@@ -141,8 +118,10 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR/TYPECAST/RPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTypecastParenPadRightNotPreceded.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
