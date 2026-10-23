@@ -2,7 +2,7 @@
 OperatorWrap
 option = NL
 tokens = LAMBDA
-
+shouldWrapAtHigherLevel = (default)false
 
 */
 
