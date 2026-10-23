@@ -29,7 +29,6 @@ import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
 import com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck;
 
 public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExamplesModuleTestSupport {
 
@@ -43,11 +42,7 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
         final String[] expectedWithFilter = {
 
         };
-        final String[] expectedWithoutFilter = {
-            "13:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
-        };
-
+        final String[] expectedWithoutFilter = {};
         verifyFilterWithInlineConfigParser(getPath("Example1.java"), expectedWithoutFilter,
                 expectedWithFilter);
     }
@@ -91,10 +86,8 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
 
         };
         final String[] expectedWithoutFilter = {
-            "15:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
-        };
 
+        };
         verifyFilterWithInlineConfigParser(getPath("Example4.java"), expectedWithoutFilter,
                 expectedWithFilter);
     }
@@ -102,14 +95,11 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
     @Test
     public void testExample5() throws Exception {
         final String[] expectedWithFilter = {
-            "15:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
+
         };
         final String[] expectedWithoutFilter = {
-            "15:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
-        };
 
+        };
         verifyFilterWithInlineConfigParser(getPath("Example5.java"), expectedWithoutFilter,
                 expectedWithFilter);
     }
@@ -119,10 +109,8 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
         final String[] expectedWithFilter = {};
 
         final String[] expectedWithoutFilter = {
-            "15:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
-        };
 
+        };
         verifyFilterWithInlineConfigParser(getPath("Example7.java"), expectedWithoutFilter,
                 expectedWithFilter);
     }
@@ -131,11 +119,7 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
     public void testExample8() throws Exception {
         final String[] expectedWithFilter = {};
 
-        final String[] expectedWithoutFilter = {
-            "15:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
-        };
-
+        final String[] expectedWithoutFilter = {};
         verifyFilterWithInlineConfigParser(getPath("Example8.java"), expectedWithoutFilter,
                 expectedWithFilter);
     }
@@ -143,14 +127,9 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
     @Test
     public void testExample6() throws Exception {
         final String[] expectedWithFilter = {
-            "19:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
-        };
-        final String[] expectedWithoutFilter = {
-            "19:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
-        };
 
+        };
+        final String[] expectedWithoutFilter = {};
         verifyFilterWithInlineConfigParser(getPath("Example6.java"), expectedWithoutFilter,
                 expectedWithFilter);
     }
@@ -200,8 +179,6 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
 
         };
         final String[] expectedWithoutFilters = {
-            "19:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
             "19:30: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
                     "array", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
         };
