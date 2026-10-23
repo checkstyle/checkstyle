@@ -67,24 +67,24 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testItWithAllowsOn() throws Exception {
         final String[] expected = {
-            "44:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
-            "47:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "61:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "63:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "65:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "85:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "87:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "89:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
-            "91:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "99:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
-            "101:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "102:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "105:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "106:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
-            "107:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "108:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
-            "109:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "110:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "45:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "48:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "62:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "64:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "66:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "86:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "88:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "90:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
+            "92:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "100:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
+            "102:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "103:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "106:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "107:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "108:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "109:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
+            "110:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "111:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNeedBracesTestItWithAllowsOn.java"), expected);
@@ -107,6 +107,22 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputNeedBracesSingleLineStatements.java"), expected);
+    }
+
+    @Test
+    public void testAllowSameLineTrailingSubstatement() throws Exception {
+        final String[] expected = {
+            "41:14: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "49:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "51:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "61:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "71:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
+            "81:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
+            "87:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNeedBracesAllowSameLineTrailingSubstatement.java"),
+                expected);
     }
 
     @Test
@@ -460,6 +476,17 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("compact/InputNeedBracesCompactSourceFileEmptyLoopBody.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileTrailingSubstatement() throws Exception {
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "compact/InputNeedBracesCompactSourceFileTrailingSubstatement.java"),
                 expected);
     }
 
