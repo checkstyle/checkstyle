@@ -46,6 +46,11 @@ public final class InputForStatements {
             total += i;
         }
 
+        // violation 3 lines below """'}' at column 25 should have
+        // line break before."""
+        for (int i = 0; i < limit; i++) {
+            total += i; }
+
         // 2 violations 3 lines below:
         //   ''for' construct must use '{}'s.'
         //   'Empty statement.'
