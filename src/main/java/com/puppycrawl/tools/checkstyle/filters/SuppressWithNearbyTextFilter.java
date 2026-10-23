@@ -172,9 +172,12 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
 
             if (!cachedFileAbsolutePath.equals(eventFileTextAbsolutePath)) {
                 final FileText currentFileText = getFileText(eventFileTextAbsolutePath);
+                cachedFileAbsolutePath = eventFileTextAbsolutePath;
 
-                if (currentFileText != null) {
-                    cachedFileAbsolutePath = currentFileText.getFile().getAbsolutePath();
+                if (currentFileText == null) {
+                    suppressions.clear();
+                }
+                else {
                     collectSuppressions(currentFileText);
                 }
             }
