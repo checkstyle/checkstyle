@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCaseDefaultColonCheck;
 
 public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
@@ -47,15 +45,8 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathNoWhitespaceBeforeCaseDefaultColonOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
-
         final String[] expectedViolation = {
-            "6:20: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
+            "12:20: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
                     NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
@@ -65,21 +56,16 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE/COLON"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoWhitespaceBeforeCaseDefaultColonOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathNoWhitespaceBeforeCaseDefaultColonTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
-
         final String[] expectedViolation = {
-            "10:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
+            "16:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
                     NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
@@ -90,21 +76,16 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
                     + "/LITERAL_DEFAULT/COLON"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoWhitespaceBeforeCaseDefaultColonTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathNoWhitespaceBeforeCaseDefaultColonThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
-
         final String[] expectedViolation = {
-            "7:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
+            "13:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
                         NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
@@ -115,21 +96,16 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
                     + "/LITERAL_CASE/COLON"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoWhitespaceBeforeCaseDefaultColonThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testFour() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathNoWhitespaceBeforeCaseDefaultColonFour.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
-
         final String[] expectedViolation = {
-            "11:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
+            "17:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
                         NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
@@ -140,8 +116,10 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
                     + "/LITERAL_DEFAULT/COLON"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoWhitespaceBeforeCaseDefaultColonFour.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

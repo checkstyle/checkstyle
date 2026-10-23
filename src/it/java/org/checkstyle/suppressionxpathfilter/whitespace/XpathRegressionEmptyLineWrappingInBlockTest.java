@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineWrappingInBlockCheck;
 
 public class XpathRegressionEmptyLineWrappingInBlockTest extends AbstractXpathTestSupport {
@@ -46,17 +44,8 @@ public class XpathRegressionEmptyLineWrappingInBlockTest extends AbstractXpathTe
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathEmptyLineWrappingInBlockOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyLineWrappingInBlockCheck.class);
-        moduleConfig.addProperty("tokens", "CLASS_DEF");
-        moduleConfig.addProperty("topSeparator", "empty_line");
-        moduleConfig.addProperty("bottomSeparator", "empty_line_allowed");
-
         final String[] expectedViolation = {
-            "3:52: " + getCheckMessage(EmptyLineWrappingInBlockCheck.class,
+            "13:52: " + getCheckMessage(EmptyLineWrappingInBlockCheck.class,
                     EmptyLineWrappingInBlockCheck.MSG_EMPTY_LINE_WRAPPING_TOP_ONE, "{"),
         };
 
@@ -66,23 +55,16 @@ public class XpathRegressionEmptyLineWrappingInBlockTest extends AbstractXpathTe
                 baseXpathOne + "/OBJBLOCK",
                 baseXpathOne + "/OBJBLOCK/LCURLY"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyLineWrappingInBlockOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathEmptyLineWrappingInBlockTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyLineWrappingInBlockCheck.class);
-        moduleConfig.addProperty("tokens", "METHOD_DEF");
-        moduleConfig.addProperty("topSeparator", "no_empty_line");
-        moduleConfig.addProperty("bottomSeparator", "empty_line");
-
         final String[] expectedViolation = {
-            "4:21: " + getCheckMessage(EmptyLineWrappingInBlockCheck.class,
+            "13:21: " + getCheckMessage(EmptyLineWrappingInBlockCheck.class,
                     EmptyLineWrappingInBlockCheck.MSG_EMPTY_LINE_WRAPPING_TOP_NO, "{"),
         };
 
@@ -91,23 +73,16 @@ public class XpathRegressionEmptyLineWrappingInBlockTest extends AbstractXpathTe
         final List<String> expectedXpathQueries = Collections.singletonList(
                 baseXpathTwo + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyLineWrappingInBlockTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathEmptyLineWrappingInBlockThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyLineWrappingInBlockCheck.class);
-        moduleConfig.addProperty("tokens", "METHOD_DEF");
-        moduleConfig.addProperty("topSeparator", "empty_line_allowed");
-        moduleConfig.addProperty("bottomSeparator", "no_empty_line");
-
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(EmptyLineWrappingInBlockCheck.class,
+            "16:5: " + getCheckMessage(EmptyLineWrappingInBlockCheck.class,
                     EmptyLineWrappingInBlockCheck.MSG_EMPTY_LINE_WRAPPING_BOTTOM_NO, "}"),
         };
 
@@ -116,8 +91,10 @@ public class XpathRegressionEmptyLineWrappingInBlockTest extends AbstractXpathTe
         final List<String> expectedXpathQueries = Collections.singletonList(
                 baseXpathThree + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bar']]/SLIST/RCURLY"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyLineWrappingInBlockThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

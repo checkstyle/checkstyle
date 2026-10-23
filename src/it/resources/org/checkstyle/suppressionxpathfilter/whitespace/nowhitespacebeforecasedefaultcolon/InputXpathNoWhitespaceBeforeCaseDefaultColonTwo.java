@@ -1,3 +1,9 @@
+/*
+NoWhitespaceBeforeCaseDefaultColon
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.whitespace.nowhitespacebeforecasedefaultcolon;
 
 public class InputXpathNoWhitespaceBeforeCaseDefaultColonTwo {
@@ -7,7 +13,7 @@ public class InputXpathNoWhitespaceBeforeCaseDefaultColonTwo {
                 break;
             case 2:
                 break;
-            default : // warn
+            default : // violation "':' is preceded with whitespace."
                 break;
         }
     }
