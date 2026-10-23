@@ -165,9 +165,9 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private final Map<DetailAST, TypeDeclDesc> typeDeclAstToTypeDeclDesc = new LinkedHashMap<>();
 
     /**
-     * Maps local anonymous inner class to the TypeDeclDesc object containing it.
+     * Maps local anonymous inner class to the qualified name of the type declaration containing it.
      */
-    private final Map<DetailAST, TypeDeclDesc> anonInnerAstToTypeDeclDesc = new HashMap<>();
+    private final Map<DetailAST, String> anonInnerAstToOuterTypeDeclName = new HashMap<>();
 
     /**
      * Set of tokens of type {@link UnusedLocalVariableCheck#ANONYMOUS_CLASS_PARENT_TOKENS}
@@ -267,7 +267,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             TokenTypes.CTOR_DEF,
             TokenTypes.STATIC_INIT,
             TokenTypes.INSTANCE_INIT,
-            TokenTypes.COMPILATION_UNIT,
             TokenTypes.LAMBDA,
             TokenTypes.ENUM_DEF,
             TokenTypes.RECORD_DEF,
@@ -291,7 +290,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         variables.clear();
         typeDeclarations.clear();
         typeDeclAstToTypeDeclDesc.clear();
-        anonInnerAstToTypeDeclDesc.clear();
+        anonInnerAstToOuterTypeDeclName.clear();
         anonInnerClassHolders.clear();
         packageName = null;
         depth = 0;
@@ -328,9 +327,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     public void leaveToken(DetailAST ast) {
         if (TokenUtil.isOfType(ast, SCOPES)) {
             logViolations(ast, variables);
-        }
-        else if (ast.getType() == TokenTypes.COMPILATION_UNIT) {
-            leaveCompilationUnit();
         }
         else if (isNonLocalTypeDeclaration(ast)) {
             depth--;
@@ -406,7 +402,13 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param literalNewAst literalNewAst
      */
     private void visitLocalAnonInnerClass(DetailAST literalNewAst) {
-        anonInnerAstToTypeDeclDesc.put(literalNewAst, typeDeclarations.peek());
+        String outerTypeDeclName = "";
+        // anon inner class in a top-level method of a compact source file
+        // has no enclosing type declaration
+        if (!typeDeclarations.isEmpty()) {
+            outerTypeDeclName = typeDeclarations.peek().getQualifiedName();
+        }
+        anonInnerAstToOuterTypeDeclName.put(literalNewAst, outerTypeDeclName);
         anonInnerClassHolders.add(getBlockContainingLocalAnonInnerClass(literalNewAst));
     }
 
@@ -535,8 +537,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * separately after processing all the other nodes. This is being done
      * due to the fact the instance variables of local anon inner classes can
      * cast a shadow on local variables.
+     *
+     * @param rootAST the root of the tree
      */
-    private void leaveCompilationUnit() {
+    @Override
+    public void finishTree(DetailAST rootAST) {
         anonInnerClassHolders.forEach(holder -> {
             iterateOverBlockContainingLocalAnonInnerClass(holder, new ArrayDeque<>());
         });
@@ -668,7 +673,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             final List<TypeDeclDesc> typeDeclWithSameName = typeDeclWithSameName(shortNameOfClass);
             if (!typeDeclWithSameName.isEmpty()) {
                 obtainedClass = getClosestMatchingTypeDeclaration(
-                        anonInnerAstToTypeDeclDesc.get(literalNewAst).getQualifiedName(),
+                        anonInnerAstToOuterTypeDeclName.get(literalNewAst),
                         typeDeclWithSameName);
             }
         }
