@@ -7368,39 +7368,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ParenPadCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter ast of AbstractParenPadCheck.processLeft.</message>
-    <lineContent>processLeft(ast.findFirstToken(TokenTypes.LPAREN));</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailAST
-      required: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ParenPadCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter ast of AbstractParenPadCheck.processRight.</message>
-    <lineContent>processRight(ast.findFirstToken(TokenTypes.RPAREN));</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailAST
-      required: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ParenPadCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter ast of AbstractParenPadCheck.processRight.</message>
-    <lineContent>processRight(ast.findFirstToken(TokenTypes.RPAREN));</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailAST
-      required: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ParenPadCheck.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter ast of AbstractParenPadCheck.processRight.</message>
     <lineContent>processRight(ast.findFirstToken(TokenTypes.RPAREN));</lineContent>
     <details>
@@ -7465,20 +7432,6 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference forIterator</message>
     <lineContent>result = !forIterator.hasChildren();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ParenPadCheck.java</fileName>
-    <specifier>not.interned</specifier>
-    <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>while (currentNode.getNextSibling() == null &amp;&amp; currentNode.getParent() != ast) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ParenPadCheck.java</fileName>
-    <specifier>not.interned</specifier>
-    <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>while (currentNode.getNextSibling() == null &amp;&amp; currentNode.getParent() != ast) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
