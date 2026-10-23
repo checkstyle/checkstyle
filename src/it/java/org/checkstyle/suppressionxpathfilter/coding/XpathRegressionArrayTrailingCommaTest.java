@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck;
 
 public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupport {
@@ -46,14 +44,8 @@ public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupp
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathArrayTrailingCommaLinear.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ArrayTrailingCommaCheck.class);
-
         final String[] expectedViolation = {
-            "16:9: " + getCheckMessage(ArrayTrailingCommaCheck.class,
+            "23:9: " + getCheckMessage(ArrayTrailingCommaCheck.class,
                 ArrayTrailingCommaCheck.MSG_KEY),
         };
 
@@ -68,20 +60,16 @@ public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupp
                 + "/ARRAY_INIT/EXPR/NUM_INT[@text='3']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathArrayTrailingCommaLinear.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathArrayTrailingCommaMatrix.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ArrayTrailingCommaCheck.class);
-
         final String[] expectedViolation = {
-            "17:9: " + getCheckMessage(ArrayTrailingCommaCheck.class,
+            "24:9: " + getCheckMessage(ArrayTrailingCommaCheck.class,
                 ArrayTrailingCommaCheck.MSG_KEY),
         };
 
@@ -92,38 +80,36 @@ public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupp
                 + "/ARRAY_INIT/ARRAY_INIT[./EXPR/NUM_INT[@text='5']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathArrayTrailingCommaMatrix.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testInsideMethod() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathArrayTrailingCommaInsideMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ArrayTrailingCommaCheck.class);
-
         final String[] expectedViolation = {
-            "9:17: " + getCheckMessage(ArrayTrailingCommaCheck.class,
+            "16:17: " + getCheckMessage(ArrayTrailingCommaCheck.class,
                 ArrayTrailingCommaCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathArrayTrailingCommaInsideMethod']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='a']]/ASSIGN/EXPR/LITERAL_NEW"
-                        + "/ARRAY_INIT/EXPR[./NUM_INT[@text='3']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathArrayTrailingCommaInsideMethod']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='a']]/ASSIGN/EXPR/LITERAL_NEW"
-                        + "/ARRAY_INIT/EXPR/NUM_INT[@text='3']"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathArrayTrailingCommaInsideMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='a']]/ASSIGN/EXPR/LITERAL_NEW"
+                + "/ARRAY_INIT/EXPR[./NUM_INT[@text='3']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathArrayTrailingCommaInsideMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='a']]/ASSIGN/EXPR/LITERAL_NEW"
+                + "/ARRAY_INIT/EXPR/NUM_INT[@text='3']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathArrayTrailingCommaInsideMethod.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
 }

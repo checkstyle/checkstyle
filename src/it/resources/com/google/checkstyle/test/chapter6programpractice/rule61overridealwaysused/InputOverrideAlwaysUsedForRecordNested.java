@@ -13,8 +13,8 @@ public record InputOverrideAlwaysUsedForRecordNested(String outer) {
   /** Some javadoc. */
   public record Inner(String inner) {
 
+    // violation 2 lines below 'method must include @java.lang.Override annotation.'
     /** Some javadoc. */
-    // violation below 'method must include @java.lang.Override annotation.'
     public String inner() {
       return inner.toLowerCase(Locale.ROOT);
     }

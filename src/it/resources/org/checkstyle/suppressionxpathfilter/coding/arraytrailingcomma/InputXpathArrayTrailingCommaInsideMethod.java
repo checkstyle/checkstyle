@@ -1,3 +1,10 @@
+/*
+ArrayTrailingComma
+alwaysDemandTrailingComma = (default)false
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.arraytrailingcomma;
 
 public class InputXpathArrayTrailingCommaInsideMethod {
@@ -6,7 +13,7 @@ public class InputXpathArrayTrailingCommaInsideMethod {
         int[] a = new int[] {
                 1,
                 2,
-                3 // warn
+                3 // violation 'Array should contain trailing comma.'
         };
     }
 }
