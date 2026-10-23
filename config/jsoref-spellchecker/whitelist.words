@@ -1396,6 +1396,7 @@ subdir
 subelements
 subext
 sublink
+subpath
 subscope
 sudo
 suitebuilder
