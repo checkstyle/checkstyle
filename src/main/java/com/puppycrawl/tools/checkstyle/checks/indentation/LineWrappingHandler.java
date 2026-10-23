@@ -181,6 +181,12 @@ public class LineWrappingHandler {
 
     /**
      * Checks for annotation indentation.
+     * Only the annotations which lead the checked construct are processed here,
+     * that is the run of annotations which starts with the annotation of the
+     * first line and ends at the first token which is not an annotation.
+     * Annotations after such a token do not lead the construct: each of them
+     * starts a wrapped line of the construct, so their lines are left in the
+     * map and are checked by the caller with the line wrapping indentation.
      *
      * @param firstNodesOnLines the nodes which are present in the beginning of each line.
      * @param indentLevel line wrapping indentation.
@@ -189,18 +195,16 @@ public class LineWrappingHandler {
             NavigableMap<Integer, DetailAST> firstNodesOnLines, int indentLevel) {
         final DetailAST firstLineNode = firstNodesOnLines.get(firstNodesOnLines.firstKey());
         DetailAST node = firstLineNode.getParent();
-        while (node != null) {
-            if (node.getType() == TokenTypes.ANNOTATION) {
-                final DetailAST atNode = node.getFirstChild();
-                final NavigableMap<Integer, DetailAST> annotationLines =
-                        firstNodesOnLines.subMap(
-                                node.getLineNo(),
-                                true,
-                                getNextNodeLine(firstNodesOnLines, node),
-                                true
-                        );
-                checkAnnotationIndentation(atNode, annotationLines, indentLevel);
-            }
+        while (node != null && node.getType() == TokenTypes.ANNOTATION) {
+            final DetailAST atNode = node.getFirstChild();
+            final NavigableMap<Integer, DetailAST> annotationLines =
+                    firstNodesOnLines.subMap(
+                            node.getLineNo(),
+                            true,
+                            getNextNodeLine(firstNodesOnLines, node),
+                            true
+                    );
+            checkAnnotationIndentation(atNode, annotationLines, indentLevel);
             node = node.getNextSibling();
         }
     }
@@ -335,8 +339,7 @@ public class LineWrappingHandler {
                     && (isCurrentNodeCloseAnnotationAloneInLine
                     || node.getType() == TokenTypes.AT
                     && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
-                        || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)
-                    || TokenUtil.areOnSameLine(node, atNode))) {
+                        || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS))) {
                 logWarningMessage(node, firstNodeIndent);
             }
             else if (!isArrayInitPresentInAncestors) {
