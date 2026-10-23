@@ -22,10 +22,17 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.NoCauseGetMessageInExceptionConstructorCheck.MSG_KEY;
 
+import java.io.File;
+import java.util.Collection;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class NoCauseGetMessageInExceptionConstructorCheckTest extends AbstractModuleTestSupport {
 
@@ -139,6 +146,26 @@ public class NoCauseGetMessageInExceptionConstructorCheckTest extends AbstractMo
         final String[] expected = {};
         verifyWithInlineConfigParser(
                 getPath("InputNoCauseGetMessageInExceptionConstructorCoverage.java"), expected);
+    }
+
+    @Test
+    public void testClearState() throws Exception {
+        final NoCauseGetMessageInExceptionConstructorCheck check =
+            new NoCauseGetMessageInExceptionConstructorCheck();
+
+        final DetailAST root = JavaParser.parseFile(
+            new File(getPath("InputNoCauseGetMessageInExceptionConstructorDefault.java")),
+            JavaParser.Options.WITHOUT_COMMENTS);
+
+        final Optional<DetailAST> literalCatch = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.LITERAL_CATCH);
+
+        assertWithMessage("State is not cleared on beginTree")
+            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                literalCatch.orElseThrow(),
+                "catchScopes",
+                catchScopes -> ((Collection<?>) catchScopes).isEmpty()))
+            .isTrue();
     }
 
 }
