@@ -1,10 +1,18 @@
+/*
+AnonInnerLength
+max = (default)20
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.sizes.anoninnerlength;
 
 import java.util.Comparator;
 
 public class InputXpathAnonInnerLengthDefault {
     public void test() {
-        Runnable runnable = new Runnable() { // warn: inner class is 26 lines (max=20)
+        // violation below 'Anonymous inner class length is 26 lines (max allowed is 20).'
+        Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 int x = 10;

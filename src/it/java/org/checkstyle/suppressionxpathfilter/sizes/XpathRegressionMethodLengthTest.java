@@ -21,14 +21,11 @@ package org.checkstyle.suppressionxpathfilter.sizes;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck.MSG_KEY;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck;
 
 public class XpathRegressionMethodLengthTest extends AbstractXpathTestSupport {
@@ -47,18 +44,12 @@ public class XpathRegressionMethodLengthTest extends AbstractXpathTestSupport {
 
     @Test
     public void testSimple() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMethodLengthSimple.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(MethodLengthCheck.class);
-        moduleConfig.addProperty("max", "10");
-
         final String[] expectedViolations = {
-            "4:5: " + getCheckMessage(MethodLengthCheck.class, MSG_KEY,
+            "14:5: " + getCheckMessage(MethodLengthCheck.class, MSG_KEY,
                     11, 10, "InputXpathMethodLengthSimple"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='InputXpathMethodLengthSimple']]"
                         + "/OBJBLOCK/CTOR_DEF[./IDENT"
@@ -74,24 +65,19 @@ public class XpathRegressionMethodLengthTest extends AbstractXpathTestSupport {
                         + "/MODIFIERS/LITERAL_PROTECTED"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMethodLengthSimple.java"),
+                expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
     public void testNoEmptyLines() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMethodLengthNoEmptyLines.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(MethodLengthCheck.class);
-        moduleConfig.addProperty("max", "5");
-        moduleConfig.addProperty("countEmpty", "false");
-        moduleConfig.addProperty("tokens", "METHOD_DEF");
-
         final String[] expectedViolations = {
-            "15:5: " + getCheckMessage(MethodLengthCheck.class, MSG_KEY, 6, 5, "methodOne"),
+            "25:5: " + getCheckMessage(MethodLengthCheck.class, MSG_KEY, 6, 5, "methodOne"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='InputXpathMethodLengthNoEmptyLines']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodOne']]",
@@ -104,23 +90,19 @@ public class XpathRegressionMethodLengthTest extends AbstractXpathTestSupport {
                         + "/MODIFIERS/LITERAL_PROTECTED"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMethodLengthNoEmptyLines.java"),
+                expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
     public void testSingleToken() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathMethodLengthSingleToken.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(MethodLengthCheck.class);
-        moduleConfig.addProperty("max", "1");
-        moduleConfig.addProperty("tokens", "METHOD_DEF");
-
         final String[] expectedViolations = {
-            "9:9: " + getCheckMessage(MethodLengthCheck.class, MSG_KEY, 3, 1, "methodOne"),
+            "19:9: " + getCheckMessage(MethodLengthCheck.class, MSG_KEY, 3, 1, "methodOne"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='InputXpathMethodLengthSingleToken']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]/ASSIGN/EXPR/LITERAL_NEW"
@@ -139,7 +121,10 @@ public class XpathRegressionMethodLengthTest extends AbstractXpathTestSupport {
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMethodLengthSingleToken.java"),
+                expectedXpathQueries,
+                expectedViolations);
     }
 
 }

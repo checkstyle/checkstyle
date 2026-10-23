@@ -19,14 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.sizes;
 
-import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LambdaBodyLengthCheck;
 
 public class XpathRegressionLambdaBodyLengthTest
@@ -47,59 +44,56 @@ public class XpathRegressionLambdaBodyLengthTest
 
     @Test
     public void testDefaultMax() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathLambdaBodyLengthDefaultMax.java"));
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
-            "7:48: " + getCheckMessage(CLASS, LambdaBodyLengthCheck.MSG_KEY, 11, 10),
+            "15:48: " + getCheckMessage(CLASS, LambdaBodyLengthCheck.MSG_KEY, 11, 10),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathLambdaBodyLengthDefaultMax']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST"
                 + "/VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathLambdaBodyLengthDefaultMax.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testCustomMax() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathLambdaBodyLengthCustomMax.java"));
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
-        moduleConfig.addProperty("max", "5");
         final String[] expectedViolation = {
-            "7:25: " + getCheckMessage(CLASS, LambdaBodyLengthCheck.MSG_KEY, 6, 5),
+            "15:25: " + getCheckMessage(CLASS, LambdaBodyLengthCheck.MSG_KEY, 6, 5),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathLambdaBodyLengthCustomMax']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST"
                 + "/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/LAMBDA");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathLambdaBodyLengthCustomMax.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNestedBlockViolation() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathLambdaBodyLengthNested.java"));
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
-        moduleConfig.addProperty("max", "5");
-
         final String[] expectedViolation = {
-            "5:25: " + getCheckMessage(CLASS, LambdaBodyLengthCheck.MSG_KEY, 11, 5),
+            "13:25: " + getCheckMessage(CLASS, LambdaBodyLengthCheck.MSG_KEY, 11, 5),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathLambdaBodyLengthNested']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST"
                 + "/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/LAMBDA");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathLambdaBodyLengthNested.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
