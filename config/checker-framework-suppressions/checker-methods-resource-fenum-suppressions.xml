@@ -144,66 +144,143 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractNode.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>[required.method.not.called]</message>
-    <lineContent>AxisIterator axisIterator = iterateAxis(axisNumber);</lineContent>
+    <lineContent>new DescendantIterator(this, DescendantIterator.StartWith.CHILDREN), predicate);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>new DescendantIterator(this, DescendantIterator.StartWith.CURRENT_NODE), predicate);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>result = filter(new ArrayIterator.OfNodes&lt;&gt;(</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>return filter(getFollowingSiblingsIterator(), predicate);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>return filter(getPrecedingSiblingsIterator(), predicate);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>return filter(new FollowingIterator(this), predicate);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>return filter(new PrecedingIterator(this), predicate);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractRootNode.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>new DescendantIterator(this, DescendantIterator.StartWith.CHILDREN), predicate);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractRootNode.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>new DescendantIterator(this, DescendantIterator.StartWith.CURRENT_NODE), predicate);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractRootNode.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>result = filter(new ArrayIterator.OfNodes&lt;&gt;(</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractRootNode.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>return filter(SingletonIterator.makeIterator(this), predicate);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractRootNode.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>[required.method.not.called]</message>
+    <lineContent>return filter(SingletonIterator.makeIterator(this), predicate);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>[required.method.not.called]</message>
-    <lineContent>descendantEnum = SingleNodeIterator.makeIterator(start);</lineContent>
+    <lineContent>descendantEnum = SingletonIterator.makeIterator(start);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>[required.method.not.called]</message>
-    <lineContent>descendantEnum = queue.poll().iterateAxis(AxisInfo.CHILD);</lineContent>
+    <lineContent>descendantEnum = queue.poll().iterateChildAxis(null);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>[required.method.not.called]</message>
-    <lineContent>descendantEnum = start.iterateAxis(AxisInfo.CHILD);</lineContent>
+    <lineContent>descendantEnum = start.iterateChildAxis(null);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>[required.method.not.called]</message>
-    <lineContent>ancestorEnum = start.iterateAxis(AxisInfo.ANCESTOR);</lineContent>
+    <lineContent>ancestorEnum = start.iterateAncestorAxis(null);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>[required.method.not.called]</message>
-    <lineContent>descendantEnum = result.iterateAxis(AxisInfo.DESCENDANT);</lineContent>
+    <lineContent>descendantEnum = result.iterateDescendantAxis(null);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>[required.method.not.called]</message>
-    <lineContent>siblingEnum = parent.iterateAxis(AxisInfo.FOLLOWING_SIBLING);</lineContent>
+    <lineContent>siblingEnum = parent.iterateFollowingSiblingAxis(null);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>[required.method.not.called]</message>
-    <lineContent>siblingEnum = start.iterateAxis(AxisInfo.FOLLOWING_SIBLING);</lineContent>
+    <lineContent>siblingEnum = start.iterateFollowingSiblingAxis(null);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>[required.method.not.called]</message>
-    <lineContent>ancestorEnum = start.iterateAxis(AxisInfo.ANCESTOR);</lineContent>
+    <lineContent>ancestorEnum = start.iterateAncestorAxis(null);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -217,27 +294,27 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>[required.method.not.called]</message>
-    <lineContent>previousSiblingEnum = result.iterateAxis(AxisInfo.PRECEDING_SIBLING);</lineContent>
+    <lineContent>previousSiblingEnum = result.iteratePrecedingSiblingAxis(null);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>[required.method.not.called]</message>
-    <lineContent>previousSiblingEnum = start.iterateAxis(AxisInfo.PRECEDING_SIBLING);</lineContent>
+    <lineContent>previousSiblingEnum = start.iteratePrecedingSiblingAxis(null);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseDescendantIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>[required.method.not.called]</message>
-    <lineContent>pushToStack(queue.poll().iterateAxis(AxisInfo.CHILD));</lineContent>
+    <lineContent>pushToStack(queue.poll().iterateChildAxis(null));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseDescendantIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>[required.method.not.called]</message>
-    <lineContent>pushToStack(start.iterateAxis(AxisInfo.CHILD));</lineContent>
+    <lineContent>pushToStack(start.iterateChildAxis(null));</lineContent>
   </checkerFrameworkError>
 </suppressedErrors>

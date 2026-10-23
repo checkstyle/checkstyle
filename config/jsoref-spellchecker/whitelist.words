@@ -532,6 +532,7 @@ Gjs
 GLIBC
 globbing
 GMetrics
+GNode
 gnupg
 google
 googleblog
@@ -978,6 +979,7 @@ nocode
 nocodeinfile
 nocstylearray
 NODESET
+nodetest
 noembed
 noenumtrailingcomma
 nofinalizer

@@ -21,10 +21,15 @@ package com.puppycrawl.tools.checkstyle.xpath;
 
 import java.util.List;
 
+import net.sf.saxon.om.AtomicSequence;
+import net.sf.saxon.om.GNode;
 import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
-import net.sf.saxon.tree.iter.AxisIterator;
+import net.sf.saxon.om.SequenceIterator;
+import net.sf.saxon.pattern.nodetest.NodePredicate;
+import net.sf.saxon.str.StringView;
 import net.sf.saxon.type.Type;
+import net.sf.saxon.value.StringValue;
 
 /**
  * Represents attribute of the element.
@@ -54,11 +59,11 @@ public class AttributeNode extends AbstractNode {
      * Compares current object with specified for order.
      * Throws {@code UnsupportedOperationException} because functionality not required here.
      *
-     * @param nodeInfo another {@code NodeInfo} object
+     * @param other another {@code GNode} object
      * @return number representing order of current object to specified one
      */
     @Override
-    public int compareOrder(NodeInfo nodeInfo) {
+    public int compareOrder(GNode other) {
         throw throwUnsupportedOperationException();
     }
 
@@ -95,6 +100,11 @@ public class AttributeNode extends AbstractNode {
         return Type.ATTRIBUTE;
     }
 
+    @Override
+    public AtomicSequence atomize() {
+        return StringValue.makeUntypedAtomic(StringView.of(value));
+    }
+
     /**
      * Returns parent.  Never called for attribute node, throws
      * {@code UnsupportedOperationException}.
@@ -129,14 +139,38 @@ public class AttributeNode extends AbstractNode {
     }
 
     /**
-     * Determines axis iteration algorithm. Attribute node can not be iterated, throws
+     * Child axis. Attribute node has no children, throws
      * {@code UnsupportedOperationException}.
      *
-     * @param axisNumber element from {@code AxisInfo}
-     * @return {@code AxisIterator} object
+     * @param predicate filter for the iterator, may be null
+     * @return never
      */
     @Override
-    public AxisIterator iterateAxis(int axisNumber) {
+    public SequenceIterator iterateChildAxis(NodePredicate predicate) {
+        throw throwUnsupportedOperationException();
+    }
+
+    /**
+     * Following-sibling axis. Attribute node can not be iterated, throws
+     * {@code UnsupportedOperationException}.
+     *
+     * @param predicate filter for the iterator, may be null
+     * @return never
+     */
+    @Override
+    public SequenceIterator iterateFollowingSiblingAxis(NodePredicate predicate) {
+        throw throwUnsupportedOperationException();
+    }
+
+    /**
+     * Preceding-sibling axis. Attribute node can not be iterated, throws
+     * {@code UnsupportedOperationException}.
+     *
+     * @param predicate filter for the iterator, may be null
+     * @return never
+     */
+    @Override
+    public SequenceIterator iteratePrecedingSiblingAxis(NodePredicate predicate) {
         throw throwUnsupportedOperationException();
     }
 

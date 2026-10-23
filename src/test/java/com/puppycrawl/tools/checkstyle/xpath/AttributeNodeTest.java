@@ -25,9 +25,8 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpecte
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.NamespaceUri;
-import net.sf.saxon.tree.iter.AxisIterator;
+import net.sf.saxon.om.SequenceIterator;
 
 public class AttributeNodeTest {
 
@@ -84,7 +83,7 @@ public class AttributeNodeTest {
     public void testGetAttributeValue() {
         final UnsupportedOperationException exc =
                 getExpectedThrowable(UnsupportedOperationException.class, () -> {
-                    attributeNode.getAttributeValue("", "");
+                    attributeNode.getAttributeValue(NamespaceUri.NULL, "");
                 });
         assertWithMessage("Invalid exception message")
             .that(exc.getMessage())
@@ -127,17 +126,53 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void testIterate() {
+    public void testIterateChildAxis() {
         final UnsupportedOperationException exc =
                 getExpectedThrowable(UnsupportedOperationException.class,
-                        () -> callIterateAxis(attributeNode));
+                        () -> callIterateChildAxis(attributeNode));
         assertWithMessage("Invalid exception message")
             .that(exc.getMessage())
             .isEqualTo("Operation is not supported");
     }
 
-    private static void callIterateAxis(AttributeNode node) {
-        try (AxisIterator ignored = node.iterateAxis(AxisInfo.SELF)) {
+    @Test
+    public void testIterateFollowingSiblingAxis() {
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class,
+                        () -> callIterateFollowingSiblingAxis(attributeNode));
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
+    }
+
+    @Test
+    public void testIteratePrecedingSiblingAxis() {
+        final UnsupportedOperationException exc =
+                getExpectedThrowable(UnsupportedOperationException.class,
+                        () -> callIteratePrecedingSiblingAxis(attributeNode));
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("Operation is not supported");
+    }
+
+    private static void callIterateChildAxis(AttributeNode node) {
+        try (SequenceIterator ignored = node.iterateChildAxis(null)) {
+            assertWithMessage("Exception is expected")
+                    .that(ignored)
+                    .isNotNull();
+        }
+    }
+
+    private static void callIterateFollowingSiblingAxis(AttributeNode node) {
+        try (SequenceIterator ignored = node.iterateFollowingSiblingAxis(null)) {
+            assertWithMessage("Exception is expected")
+                    .that(ignored)
+                    .isNotNull();
+        }
+    }
+
+    private static void callIteratePrecedingSiblingAxis(AttributeNode node) {
+        try (SequenceIterator ignored = node.iteratePrecedingSiblingAxis(null)) {
             assertWithMessage("Exception is expected")
                     .that(ignored)
                     .isNotNull();
