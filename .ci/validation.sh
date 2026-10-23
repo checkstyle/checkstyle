@@ -1681,7 +1681,7 @@ ci-temp-check)
       echo "$value"
     done
 
-    exit ${#FILES_NO_CONCURRENCY[@]}
+    exit $(( ${#FILES_NO_CONCURRENCY[@]} > 255 ? 255 : ${#FILES_NO_CONCURRENCY[@]} ))
     ;;
 
 check-wildcards-on-pitest-target-classes)
@@ -1697,7 +1697,7 @@ check-wildcards-on-pitest-target-classes)
     echo "Append asterisks to the following pitest target classes in pom.xml:"
     echo "$CLASSES_NO_WILDCARD"
   fi
-  exit "$CLASSES_NO_WILDCARD_COUNT"
+  exit $(( CLASSES_NO_WILDCARD_COUNT > 255 ? 255 : CLASSES_NO_WILDCARD_COUNT ))
   ;;
 
 verify)
