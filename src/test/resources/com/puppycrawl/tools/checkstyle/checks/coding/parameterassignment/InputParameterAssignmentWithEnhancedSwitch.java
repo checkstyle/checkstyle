@@ -23,4 +23,17 @@ public class InputParameterAssignmentWithEnhancedSwitch {
             default -> "also correct";
         };
     }
+
+    public void lambdaInSwitchRule() {
+        java.util.function.Consumer<Integer> action = switch (1) {
+            case 1 -> x -> {
+                x = 2; // violation 'Assignment of parameter 'x' is not allowed.'
+            };
+            default -> null;
+        };
+        java.util.function.IntUnaryOperator op = switch (1) {
+            case 1 -> x -> ++x; // violation 'Assignment of parameter 'x' is not allowed.'
+            default -> x -> x;
+        };
+    }
 }
