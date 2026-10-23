@@ -1805,6 +1805,30 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testLineWrappedChainedMethodCalls() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String fileName = getPath("InputIndentationLineWrappedChainedMethodCalls.java");
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_ERROR, ".", 12, 16),
+            "18:13: " + getCheckMessage(MSG_ERROR, ".", 12, 16),
+            "34:21: " + getCheckMessage(MSG_ERROR, ".", 20, 12),
+            "51:21: " + getCheckMessage(MSG_ERROR, "makeChainable", 20, 16),
+            "52:21: " + getCheckMessage(MSG_ERROR, ".", 20, 16),
+            "53:21: " + getCheckMessage(MSG_ERROR, ".", 20, 16),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testInvalidArrayInitWithTrueStrictCondition()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
