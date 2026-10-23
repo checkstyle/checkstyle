@@ -1,3 +1,11 @@
+/*
+DesignForExtension
+ignoredAnnotations = Override
+requiredJavadocPhrase = This[\\s\\S]*implementation
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.design.designforextension;
 
 import java.util.HashMap;
@@ -20,7 +28,7 @@ public class InputXpathDesignForExtensionWithEnum
     /**
    * Some comments ...
    */
-    public void processData() {      // warn
+    public void processData() {      // violation 'looks like designed for extension'
         Map<String, Status> data = new HashMap<>();
         data.put("test", Status.PENDING);
     }
