@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
 
 public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMethodParamPadOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodParamPadCheck.class);
-
         final String[] expectedViolation = {
-            "4:37: " + getCheckMessage(MethodParamPadCheck.class,
+            "14:37: " + getCheckMessage(MethodParamPadCheck.class,
                 MethodParamPadCheck.MSG_WS_PRECEDED, "("),
         };
 
@@ -62,20 +54,16 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
                 + "/METHOD_DEF[./IDENT[@text='InputMethodParamPad']]/LPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMethodParamPadOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMethodParamPadTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodParamPadCheck.class);
-
         final String[] expectedViolation = {
-            "5:13: " + getCheckMessage(MethodParamPadCheck.class,
+            "15:13: " + getCheckMessage(MethodParamPadCheck.class,
                 MethodParamPadCheck.MSG_LINE_PREVIOUS, "("),
         };
 
@@ -85,21 +73,16 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
                 + "/METHOD_DEF[./IDENT[@text='sayHello']]/LPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMethodParamPadTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMethodParamPadThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodParamPadCheck.class);
-        moduleConfig.addProperty("option", "space");
-
         final String[] expectedViolation = {
-            "4:25: " + getCheckMessage(MethodParamPadCheck.class,
+            "14:25: " + getCheckMessage(MethodParamPadCheck.class,
                 MethodParamPadCheck.MSG_WS_NOT_PRECEDED, "("),
         };
 
@@ -109,8 +92,10 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
                 + "/METHOD_DEF[./IDENT[@text='sayHello']]/LPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMethodParamPadThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

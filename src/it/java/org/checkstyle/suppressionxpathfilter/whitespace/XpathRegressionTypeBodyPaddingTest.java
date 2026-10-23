@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.TypeBodyPaddingCheck;
 
 public class XpathRegressionTypeBodyPaddingTest extends AbstractXpathTestSupport {
@@ -46,14 +44,8 @@ public class XpathRegressionTypeBodyPaddingTest extends AbstractXpathTestSupport
 
     @Test
     public void testAfterLcurly() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathTypeBodyPaddingAfterLcurly.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(TypeBodyPaddingCheck.class);
-
         final String[] expectedViolation = {
-            "3:51: " + getCheckMessage(TypeBodyPaddingCheck.class,
+            "16:51: " + getCheckMessage(TypeBodyPaddingCheck.class,
                     TypeBodyPaddingCheck.MSG_AFTER_LCURLY),
         };
 
@@ -64,20 +56,16 @@ public class XpathRegressionTypeBodyPaddingTest extends AbstractXpathTestSupport
                 + "[./IDENT[@text='InputXpathTypeBodyPaddingAfterLcurly']]/OBJBLOCK/LCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTypeBodyPaddingAfterLcurly.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testBeforeRcurly() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathTypeBodyPaddingBeforeRcurly.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(TypeBodyPaddingCheck.class);
-
         final String[] expectedViolation = {
-            "6:1: " + getCheckMessage(TypeBodyPaddingCheck.class,
+            "18:1: " + getCheckMessage(TypeBodyPaddingCheck.class,
                     TypeBodyPaddingCheck.MSG_BEFORE_RCURLY),
         };
 
@@ -86,20 +74,16 @@ public class XpathRegressionTypeBodyPaddingTest extends AbstractXpathTestSupport
                 + "[./IDENT[@text='InputXpathTypeBodyPaddingBeforeRcurly']]/OBJBLOCK/RCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTypeBodyPaddingBeforeRcurly.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEnum() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathTypeBodyPaddingEnum.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(TypeBodyPaddingCheck.class);
-
         final String[] expectedViolation = {
-            "3:43: " + getCheckMessage(TypeBodyPaddingCheck.class,
+            "16:43: " + getCheckMessage(TypeBodyPaddingCheck.class,
                     TypeBodyPaddingCheck.MSG_AFTER_LCURLY),
         };
 
@@ -110,8 +94,10 @@ public class XpathRegressionTypeBodyPaddingTest extends AbstractXpathTestSupport
                 + "[./IDENT[@text='InputXpathTypeBodyPaddingEnum']]/OBJBLOCK/LCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTypeBodyPaddingEnum.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

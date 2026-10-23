@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.AvoidNoArgumentSuperConstructorCallCheck;
 
 public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
@@ -47,14 +45,8 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathAvoidNoArgumentSuperConstructorCallDefault.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(CLASS,
+            "11:9: " + getCheckMessage(CLASS,
                 AvoidNoArgumentSuperConstructorCallCheck.MSG_CTOR),
         };
 
@@ -66,20 +58,15 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
                     + "/SLIST/SUPER_CTOR_CALL"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidNoArgumentSuperConstructorCallDefault.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathAvoidNoArgumentSuperConstructorCallInnerClass.java"
-        ));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "7:17: " + getCheckMessage(CLASS,
+            "13:17: " + getCheckMessage(CLASS,
                 AvoidNoArgumentSuperConstructorCallCheck.MSG_CTOR),
         };
 
@@ -92,19 +79,15 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
                 + "/SLIST/SUPER_CTOR_CALL"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidNoArgumentSuperConstructorCallInnerClass.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testStaticInnerClass() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathAvoidNoArgumentSuperConstructorCallStaticInner.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "6:13: " + getCheckMessage(CLASS,
+            "12:13: " + getCheckMessage(CLASS,
                 AvoidNoArgumentSuperConstructorCallCheck.MSG_CTOR),
         };
 
@@ -116,7 +99,9 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
                 + "/SLIST/SUPER_CTOR_CALL"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidNoArgumentSuperConstructorCallStaticInner.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }

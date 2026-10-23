@@ -1147,28 +1147,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileText.java</fileName>
     <specifier>assignment</specifier>
     <message>incompatible types in assignment.</message>
-    <lineContent>lines = textLines.toArray(CommonUtil.EMPTY_STRING_ARRAY);</lineContent>
-    <details>
-      found   : @Initialized @Nullable String @Initialized @NonNull []
-      required: @Initialized @NonNull String @Initialized @NonNull []
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileText.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>this.lines = lines.toArray(CommonUtil.EMPTY_STRING_ARRAY);</lineContent>
-    <details>
-      found   : @Initialized @Nullable String @Initialized @NonNull []
-      required: @Initialized @NonNull String @Initialized @NonNull []
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileText.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
     <lineContent>charset = null;</lineContent>
     <details>
       found   : null (NullType)
@@ -1195,20 +1173,6 @@
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: lineBreaks</message>
     <lineContent>public FileText(FileText fileText) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileText.java</fileName>
-    <specifier>toarray.nullable.elements.not.newarray</specifier>
-    <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
-    <lineContent>lines = textLines.toArray(CommonUtil.EMPTY_STRING_ARRAY);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileText.java</fileName>
-    <specifier>toarray.nullable.elements.not.newarray</specifier>
-    <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
-    <lineContent>this.lines = lines.toArray(CommonUtil.EMPTY_STRING_ARRAY);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -2417,6 +2381,42 @@
       type of expression: @Initialized @Nullable DetailAST
       method return type: @Initialized @NonNull DetailAST
     </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalPatternVariableCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of Collection.add.</message>
+    <lineContent>patternVariableIdentsArray.add(ident);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalPatternVariableCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of List.add.</message>
+    <lineContent>patternVariableIdentsArray.add(ident);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalPatternVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference modifiers</message>
+    <lineContent>modifiers.findFirstToken(TokenTypes.FINAL) != null;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalPatternVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference rparen</message>
+    <lineContent>branches.add(rparen.getNextSibling());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -7236,13 +7236,6 @@
       found   : @Initialized @Nullable DetailAST
       required: @Initialized @NonNull DetailAST
     </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/EmptyLineSeparatorCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference firstConstant</message>
-    <lineContent>if (firstConstant.getLineNo() == ast.getLineNo()</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

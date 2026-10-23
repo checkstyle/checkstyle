@@ -19,16 +19,13 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
 
 public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTestSupport {
 
@@ -46,14 +43,8 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
 
     @Test
     public void testPreceded() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathEmptyForInitializerPadPreceded.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyForInitializerPadCheck.class);
-
         final String[] expectedViolation = {
-            "5:15: " + getCheckMessage(EmptyForInitializerPadCheck.class,
+            "12:15: " + getCheckMessage(EmptyForInitializerPadCheck.class,
                     EmptyForInitializerPadCheck.MSG_PRECEDED, ";"),
         };
 
@@ -66,21 +57,16 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/SEMI[1]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyForInitializerPadPreceded.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNotPreceded() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathEmptyForInitializerPadNotPreceded.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyForInitializerPadCheck.class);
-        moduleConfig.addProperty("option", PadOption.SPACE.toString());
-
         final String[] expectedViolation = {
-            "5:14: " + getCheckMessage(EmptyForInitializerPadCheck.class,
+            "12:14: " + getCheckMessage(EmptyForInitializerPadCheck.class,
                     EmptyForInitializerPadCheck.MSG_NOT_PRECEDED, ";"),
         };
 
@@ -93,20 +79,16 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/SEMI[1]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyForInitializerPadNotPreceded.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testPrecededStaticInit() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathEmptyForInitializerPadPrecededStaticInit.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyForInitializerPadCheck.class);
-
         final String[] expectedViolation = {
-            "6:15: " + getCheckMessage(EmptyForInitializerPadCheck.class,
+            "13:15: " + getCheckMessage(EmptyForInitializerPadCheck.class,
                     EmptyForInitializerPadCheck.MSG_PRECEDED, ";"),
         };
 
@@ -119,8 +101,10 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
                     + "/OBJBLOCK/STATIC_INIT/SLIST/LITERAL_FOR/SEMI[1]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyForInitializerPadPrecededStaticInit.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

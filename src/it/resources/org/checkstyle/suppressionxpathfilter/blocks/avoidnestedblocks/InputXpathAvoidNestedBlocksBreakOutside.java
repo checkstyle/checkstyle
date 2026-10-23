@@ -1,3 +1,9 @@
+/*
+AvoidNestedBlocks
+allowInSwitchCase = (default)false
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.blocks.avoidnestedblocks;
 
 public class InputXpathAvoidNestedBlocksBreakOutside {
@@ -5,7 +11,7 @@ public class InputXpathAvoidNestedBlocksBreakOutside {
         int x;
         int y;
         switch (a) {
-            case 0: { // warn: break outside block
+            case 0: { // violation 'Avoid using nested blocks.'
                 x = 2;
                 y = -2;
             }

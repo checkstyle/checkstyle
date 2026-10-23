@@ -212,7 +212,6 @@ public class XdocsPagesTest {
             "MissingSwitchDefault",
             "ModifierOrder",
             "NewlineAtEndOfFile",
-            "NoWhitespaceBefore",
             "PackageName",
             "ParameterName",
             "ParameterNumber",
@@ -230,7 +229,6 @@ public class XdocsPagesTest {
             "UnusedImports",
             "UpperEll",
             "VisibilityModifier",
-            "WhitespaceAfter",
             "WhitespaceAround"
     );
 

@@ -19,16 +19,13 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
 
 public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSupport {
 
@@ -46,14 +43,8 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
 
     @Test
     public void testFollowed() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathEmptyForIteratorPadFollowed.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyForIteratorPadCheck.class);
-
         final String[] expectedViolation = {
-            "5:34: " + getCheckMessage(EmptyForIteratorPadCheck.class,
+            "12:34: " + getCheckMessage(EmptyForIteratorPadCheck.class,
                     EmptyForIteratorPadCheck.MSG_WS_FOLLOWED, ";"),
         };
 
@@ -66,21 +57,16 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
                 + "/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/RPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyForIteratorPadFollowed.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNotFollowed() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathEmptyForIteratorPadNotFollowed.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyForIteratorPadCheck.class);
-        moduleConfig.addProperty("option", PadOption.SPACE.toString());
-
         final String[] expectedViolation = {
-            "5:33: " + getCheckMessage(EmptyForIteratorPadCheck.class,
+            "12:33: " + getCheckMessage(EmptyForIteratorPadCheck.class,
                     EmptyForIteratorPadCheck.MSG_WS_NOT_FOLLOWED, ";"),
         };
 
@@ -93,20 +79,16 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
                 + "/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/RPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyForIteratorPadNotFollowed.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testFollowedStaticInit() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathEmptyForIteratorPadFollowedStaticInit.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyForIteratorPadCheck.class);
-
         final String[] expectedViolation = {
-            "5:31: " + getCheckMessage(EmptyForIteratorPadCheck.class,
+            "12:31: " + getCheckMessage(EmptyForIteratorPadCheck.class,
                     EmptyForIteratorPadCheck.MSG_WS_FOLLOWED, ";"),
         };
 
@@ -119,8 +101,10 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
                 + "/STATIC_INIT/SLIST/LITERAL_FOR/RPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyForIteratorPadFollowedStaticInit.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
