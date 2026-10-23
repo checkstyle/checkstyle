@@ -22,32 +22,38 @@ public class InputSummaryJavadocInlineForbidden {
      */
     void foo3() {
     }
+    // violation 2 lines below 'Summary .* missing an ending period.'
     /**
      * {@summary This code is wrong }
-     */ // violation above 'Summary .* missing an ending period.'
+     */
     void foo5() {
     }
+    // violation 2 lines below 'Summary .* missing an ending period.'
     /**
      * {@summary This code {@see Javadoc} is wrong }
-     */ // violation above 'Summary .* missing an ending period.'
+     */
     void foo6() {
     }
+    // violation 2 lines below 'Summary .* missing an ending period.'
     /**
      * {@summary As of , replaced by {@link #setBounds(int, int, int, int)}}
-     */ // violation above 'Summary .* missing an ending period.'
+     */
     void foo11() {
     }
+    // violation 2 lines below 'Forbidden summary fragment.'
     /**
      * {@summary This method returns something.}
-     */ // violation above 'Forbidden summary fragment.'
+     */
     public static final byte NUL = 0;
+    // violation 2 lines below 'Summary javadoc is missing.'
     /**
      * {@summary <a href="mailto:vlad@htmlbook.ru"/>}
-     */ // violation above 'Summary javadoc is missing.'
+     */
     class InnerInputCorrectJavaDocParagraphCheck {
+        // violation 2 lines below 'Summary .* missing an ending period.'
         /**
          * {@summary foooo@foooo}
-         */ // violation above 'Summary .* missing an ending period.'
+         */
         public static final byte NUL = 0;
 
         /**
