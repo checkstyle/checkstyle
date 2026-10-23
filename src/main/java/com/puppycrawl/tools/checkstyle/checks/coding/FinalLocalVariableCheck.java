@@ -451,7 +451,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * If token is CASE_GROUP or SWITCH_RULE and there is another {@code case} following.
+     * If a terminating CASE_GROUP or a SWITCH_RULE has another {@code case} following.
      *
      * @param ast token to be checked
      * @return true if token is CASE_GROUP or SWITCH_RULE and there is another {@code case}
@@ -460,7 +460,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private static boolean isCaseTokenWithAnotherCaseFollowing(DetailAST ast) {
         boolean result = false;
         if (ast.getType() == TokenTypes.CASE_GROUP) {
+            final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
             result = findLastCaseGroupWhichContainsSlist(ast.getParent()) != ast;
+            result = result && slist != null && CheckUtil.isTerminated(slist);
         }
         else if (ast.getType() == TokenTypes.SWITCH_RULE) {
             result = ast.getNextSibling().getType() == TokenTypes.SWITCH_RULE;
