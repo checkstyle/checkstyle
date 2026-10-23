@@ -871,12 +871,21 @@
                   <br />
                   <br />
                   <span class="wrapper inline">
-                    <img src="images/ban_red.png" alt=""/>
+                    <img src="images/ok_green.png" alt=""/>
                   </span>
+                  <a href="checks/coding/emptystatement.html#EmptyStatement">
+                    EmptyStatement
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyStatement">
+                    config
+                  </a>)
+                  <br />
+                  <br />
                   The empty for statement form
                   <code>for (initialization; condition; update);</code>
-                  is intentionally not allowed: Checkstyle's config is stricter
-                  than Sun here, so NeedBraces and EmptyStatement report it.
+                  is allowed as required by Sun: NeedBraces and EmptyStatement
+                  are configured with <code>allowEmptyLoopBody</code>
+                  in the Sun configuration.
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter7statements/rule75forstatements">
