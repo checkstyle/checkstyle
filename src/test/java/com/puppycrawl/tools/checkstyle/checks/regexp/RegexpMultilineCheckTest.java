@@ -238,4 +238,41 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
                 getPath("InputRegexpMultilineMultilineSupport2.java"), expected);
     }
 
+    @Test
+    public void testReportGroupNotParticipating() throws Exception {
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "(foo)?(ba[r])"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpMultilineReportGroupNotParticipating.java"), expected);
+    }
+
+    @Test
+    public void testReportGroupOutOfRange() throws Exception {
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "(foo)?(ba[r])"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpMultilineReportGroupOutOfRange.java"), expected);
+    }
+
+    @Test
+    public void testReportGroupNegative() throws Exception {
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "(ba[r])"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpMultilineReportGroupNegative.java"), expected);
+    }
+
+    @Test
+    public void testReportGroup() throws Exception {
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_REGEXP_EXCEEDED,
+                        "(// CONTEXT\\s*)(System\\.out\\.print\\()"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpMultilineReportGroup.java"), expected);
+    }
+
 }
