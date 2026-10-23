@@ -177,7 +177,8 @@ public class ImmutabilityTest {
         "com.puppycrawl.tools.checkstyle.checks.naming.RecordTypeParameterNameCheck",
         "com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck",
         "com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck",
-        "com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck"
+        "com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck",
+        "com.puppycrawl.tools.checkstyle.checks.sizes.JavaLineLengthCheck"
     );
 
     /**
