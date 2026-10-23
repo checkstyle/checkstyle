@@ -36,7 +36,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/innerassignment/Example1.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
         <p id="Example2-code">Example 2:</p>
         <macro name="example">
           <param name="path"

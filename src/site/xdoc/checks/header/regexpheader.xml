@@ -109,7 +109,7 @@
 package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
 // ok, as by default there is not specific header defined to validate it presence
 public class Example1 { }
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
         <p id="Example2-raw">
           To configure the check to use header file <code>&quot;java.header&quot;</code> and
           <code>10</code> and <code>13</code> multi-lines:
@@ -156,7 +156,7 @@ public class Example2 {
     // Some code
 }
 // violation first line 'Missing a header - not enough lines in file.'
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
         <p id="Example3-raw">
           To configure the check to verify that each file starts with the
           header
@@ -186,7 +186,7 @@ package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
 public class Example3 {
     // Some code
 }
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
         <p id="Example4-raw">
           For regex containing <code>&quot;.*&quot;</code>
         </p>

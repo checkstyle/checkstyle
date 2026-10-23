@@ -144,7 +144,7 @@ class Example3 {
     a = arg; // ok, indented using spaces
   }
 }
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
         <p id="Example4-code">Example - Test.xml:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
@@ -152,7 +152,7 @@ class Example3 {
   &lt;FirstName&gt;John&lt;/FirstName&gt; // violation 'File contains tab characters'
   &lt;LastName&gt;Doe&lt;/LastName&gt;    &lt;!-- OK, only first occurrence in file reported --&gt;
 &lt;/UserAccount&gt;
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
         <p id="Example5-code">Example - Test.html:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;head&gt;
