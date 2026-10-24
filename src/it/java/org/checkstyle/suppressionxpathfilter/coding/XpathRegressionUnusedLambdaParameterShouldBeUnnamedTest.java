@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnusedLambdaParameterShouldBeUnnamedCheck;
 
 public class XpathRegressionUnusedLambdaParameterShouldBeUnnamedTest
@@ -47,15 +45,8 @@ public class XpathRegressionUnusedLambdaParameterShouldBeUnnamedTest
 
     @Test
     public void testSimple() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathUnusedLambdaParameterShouldBeUnnamedSimple.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedLambdaParameterShouldBeUnnamedCheck.class);
-
         final String[] expectedViolation = {
-            "9:41: " + getCheckMessage(UnusedLambdaParameterShouldBeUnnamedCheck.class,
+            "15:41: " + getCheckMessage(UnusedLambdaParameterShouldBeUnnamedCheck.class,
                     UnusedLambdaParameterShouldBeUnnamedCheck.MSG_UNUSED_LAMBDA_PARAMETER,
                     "x"),
         };
@@ -85,21 +76,15 @@ public class XpathRegressionUnusedLambdaParameterShouldBeUnnamedTest
                 + "[@text='f']]/ASSIGN/LAMBDA/PARAMETERS/PARAMETER_DEF/IDENT[@text='x']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnusedLambdaParameterShouldBeUnnamedSimple.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testNested() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathUnusedLambdaParameterShouldBeUnnamedNested.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedLambdaParameterShouldBeUnnamedCheck.class);
-
         final String[] expectedViolation = {
-            "10:45: " + getCheckMessage(UnusedLambdaParameterShouldBeUnnamedCheck.class,
+            "16:45: " + getCheckMessage(UnusedLambdaParameterShouldBeUnnamedCheck.class,
                     UnusedLambdaParameterShouldBeUnnamedCheck.MSG_UNUSED_LAMBDA_PARAMETER,
                     "y"),
         };
@@ -131,21 +116,15 @@ public class XpathRegressionUnusedLambdaParameterShouldBeUnnamedTest
                 + "./IDENT[@text='f1']]/ASSIGN/LAMBDA/SLIST/VARIABLE_DEF["
                 + "./IDENT[@text='f']]/ASSIGN/LAMBDA/PARAMETERS/PARAMETER_DEF/IDENT[@text='y']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnusedLambdaParameterShouldBeUnnamedNested.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testStaticBlock() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathUnusedLambdaParameterShouldBeUnnamedStaticBlock.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedLambdaParameterShouldBeUnnamedCheck.class);
-
         final String[] expectedViolation = {
-            "8:41: " + getCheckMessage(UnusedLambdaParameterShouldBeUnnamedCheck.class,
+            "14:41: " + getCheckMessage(UnusedLambdaParameterShouldBeUnnamedCheck.class,
                     UnusedLambdaParameterShouldBeUnnamedCheck.MSG_UNUSED_LAMBDA_PARAMETER,
                     "x"),
         };
@@ -173,8 +152,9 @@ public class XpathRegressionUnusedLambdaParameterShouldBeUnnamedTest
                 + "/ASSIGN/LAMBDA/PARAMETERS/PARAMETER_DEF/IDENT[@text='x']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnusedLambdaParameterShouldBeUnnamedStaticBlock.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }

@@ -1,3 +1,9 @@
+/*
+UnusedCatchParameterShouldBeUnnamed
+
+
+*/
+
 
 package org.checkstyle.suppressionxpathfilter.coding.unusedcatchparametershouldbeunnamed;
 
@@ -11,7 +17,8 @@ public class InputXpathUnusedCatchParameterShouldBeUnnamedNested {
             try {
                 int z = 5 / 0;
             }
-            catch (Exception exception) {  // warn
+            catch (Exception exception) {
+            // violation above "Unused catch parameter 'exception' should be unnamed."
                 System.out.println("infinity");
             }
             e.printStackTrace();
