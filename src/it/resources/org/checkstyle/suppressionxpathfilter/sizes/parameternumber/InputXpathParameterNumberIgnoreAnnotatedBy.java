@@ -1,3 +1,13 @@
+/*
+ParameterNumber
+max = 2
+ignoreAnnotatedBy = MyAnno
+ignoreOverriddenMethods = (default)false
+tokens = (default)METHOD_DEF, CTOR_DEF
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.sizes.parameternumber;
 
 public class InputXpathParameterNumberIgnoreAnnotatedBy {
@@ -12,7 +22,8 @@ public class InputXpathParameterNumberIgnoreAnnotatedBy {
 
                             }
 
-                            void checkedMethod(int a, @MyAnno int b, int c) { // warn
+                            // violation below 'More than 2 parameters'
+                            void checkedMethod(int a, @MyAnno int b, int c) {
 
                             }
                         };
