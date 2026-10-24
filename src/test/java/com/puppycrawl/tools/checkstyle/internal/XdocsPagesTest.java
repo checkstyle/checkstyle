@@ -777,9 +777,13 @@ public class XdocsPagesTest {
                     "src/main/resources/com/puppycrawl/tools/checkstyle/configuration_1_3.dtd")
                     .getCanonicalPath();
 
-            code = "<?xml version=\"1.0\"?>\n<!DOCTYPE module PUBLIC "
-                    + "\"-//Checkstyle//DTD Checkstyle Configuration 1.3//EN\" \"" + dtdPath
-                    + "\">\n" + code;
+            final String template =
+                """
+                <?xml version="1.0"?>
+                <!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN" "%s">
+                %s\
+                """;
+            code = String.format(Locale.ROOT, template, dtdPath, code);
         }
         return code;
     }
