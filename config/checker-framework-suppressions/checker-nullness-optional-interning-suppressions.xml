@@ -3315,6 +3315,13 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>names.add(ast.findFirstToken(TokenTypes.IDENT).getText());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference ast.getParent().findFirstToken(TokenTypes.PARAMETERS)</message>
     <lineContent>ast.getParent().findFirstToken(TokenTypes.PARAMETERS).getChildCount();</lineContent>
   </checkerFrameworkError>
@@ -3380,6 +3387,34 @@
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: frames</message>
     <lineContent>public RequireThisCheck() {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>case TokenTypes.QUESTION -&gt; child == skipParentheses(cond.getNextSibling());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>case TokenTypes.QUESTION -&gt; child == skipParentheses(cond.getNextSibling());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>if (child != cond &amp;&amp; TokenUtil.isOfType(parent, TokenTypes.LITERAL_IF,</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>if (child != cond &amp;&amp; TokenUtil.isOfType(parent, TokenTypes.LITERAL_IF,</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
