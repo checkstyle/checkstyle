@@ -21,14 +21,12 @@ package org.checkstyle.suppressionxpathfilter.sizes;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck.MSG_KEY;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
 
 public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport {
@@ -45,13 +43,11 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathParameterNumberDefault.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(ParameterNumberCheck.class);
+        final String filePath =
+                getPath("InputXpathParameterNumberDefault.java");
 
         final String[] expectedViolations = {
-            "5:10: " + getCheckMessage(ParameterNumberCheck.class, MSG_KEY, 7, 11),
+            "16:10: " + getCheckMessage(ParameterNumberCheck.class, MSG_KEY, 7, 11),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -60,21 +56,16 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='myMethod']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
-
+        verifyXpathWithInlineConfigParser(filePath, expectedXpathQueries, expectedViolations);
     }
 
     @Test
     public void testMethods() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathParameterNumberMethods.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(ParameterNumberCheck.class);
-        moduleConfig.addProperty("max", "10");
-        moduleConfig.addProperty("tokens", "METHOD_DEF");
+        final String filePath =
+                getPath("InputXpathParameterNumberMethods.java");
 
         final String[] expectedViolations = {
-            "7:10: " + getCheckMessage(ParameterNumberCheck.class, MSG_KEY, 10, 11),
+            "18:10: " + getCheckMessage(ParameterNumberCheck.class, MSG_KEY, 10, 11),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -83,20 +74,16 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
                + "/OBJBLOCK/METHOD_DEF/IDENT[@text='myMethod']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(filePath, expectedXpathQueries, expectedViolations);
     }
 
     @Test
     public void testIgnoreOverriddenMethods() throws Exception {
         final String filePath =
                 getPath("InputXpathParameterNumberIgnoreOverriddenMethods.java");
-        final File fileToProcess = new File(filePath);
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(ParameterNumberCheck.class);
-        moduleConfig.addProperty("ignoreOverriddenMethods", "true");
 
         final String[] expectedViolations = {
-            "6:13: " + getCheckMessage(ParameterNumberCheck.class, MSG_KEY, 7, 8),
+            "17:13: " + getCheckMessage(ParameterNumberCheck.class, MSG_KEY, 7, 8),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -106,21 +93,16 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
                 + "[@text='InputXpathParameterNumberIgnoreOverriddenMethods']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(filePath, expectedXpathQueries, expectedViolations);
     }
 
     @Test
     public void testIgnoreAnnotatedBy() throws Exception {
         final String filePath =
                 getPath("InputXpathParameterNumberIgnoreAnnotatedBy.java");
-        final File fileToProcess = new File(filePath);
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(ParameterNumberCheck.class);
-        moduleConfig.addProperty("ignoreAnnotatedBy", "MyAnno");
-        moduleConfig.addProperty("max", "2");
 
         final String[] expectedViolations = {
-            "15:34: " + getCheckMessage(ParameterNumberCheck.class, MSG_KEY, 2, 3),
+            "26:34: " + getCheckMessage(ParameterNumberCheck.class, MSG_KEY, 2, 3),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -133,7 +115,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='checkedMethod']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(filePath, expectedXpathQueries, expectedViolations);
     }
 
 }

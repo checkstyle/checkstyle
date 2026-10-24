@@ -1,6 +1,19 @@
+/*
+MethodCount
+maxTotal = (default)100
+maxPrivate = (default)100
+maxPackage = (default)100
+maxProtected = 1
+maxPublic = (default)100
+tokens = (default)CLASS_DEF, ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, \
+         ANNOTATION_DEF, METHOD_DEF, RECORD_DEF, COMPACT_COMPILATION_UNIT
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.sizes.methodcount;
 
-class InputXpathMethodCountProtected { // warn
+class InputXpathMethodCountProtected { // violation 'Number of protected methods'
     protected void foo() {}
     protected void foo1() {}
 }
