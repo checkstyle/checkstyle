@@ -168,6 +168,28 @@ public class ImportControlLoaderTest {
             assertWithMessage("Import matching expanded allow module should be allowed")
                 .that(sub.checkAccess("com.example.child", "AnyFile", "java.base"))
                 .isEqualTo(AccessResult.ALLOWED);
+        }
+        finally {
+            System.clearProperty("ic.loader.root");
+            System.clearProperty("ic.loader.sub");
+            System.clearProperty("ic.loader.allowed");
+            System.clearProperty("ic.loader.clazz");
+            System.clearProperty("ic.loader.module");
+        }
+    }
+
+    @Test
+    @SetSystemProperty(key = "ic.loader.root", value = "com")
+    @SetSystemProperty(key = "ic.loader.sub", value = "child")
+    @SetSystemProperty(key = "ic.loader.allowed", value = "allowed.pkg")
+    @SetSystemProperty(key = "ic.loader.clazz", value = "some.Class")
+    @SetSystemProperty(key = "ic.loader.module", value = "java.base")
+    public void testLoadWithPropertyExpansionDollarSigns() throws Exception {
+        try {
+            final AbstractImportControl root =
+                    ImportControlLoader.load(
+                        new File(getPath("InputImportControlLoaderPropertyExpansion.xml"))
+                            .toURI());
             final AbstractImportControl literal =
                     root.locateFinest("com.example.a$b", "AnyFile");
             assertWithMessage("Import from literal dollar subpackage should be allowed")
