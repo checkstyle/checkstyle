@@ -48,7 +48,6 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
-        <hr class="example-separator"/>
 
         <p id="Example2-raw">
           To configure the check to use multiple header files:
@@ -79,7 +78,6 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
-        <hr class="example-separator"/>
 
         <p id="Example3-raw">
           To configure the check to verify that each file starts with one of
@@ -97,7 +95,6 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
-        <hr class="example-separator"/>
 
         <p id="Example4-raw">
           For a configuration where any header is accepted:

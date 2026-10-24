@@ -141,7 +141,7 @@ StaticMethodCandidateCheck.name = Static Method Candidate
 public class Example1 { // ⤶
 // ⤶
 } // ⤶ // ok, file ends with a new line.
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
 
         <p id="Example2-code">Violation Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">

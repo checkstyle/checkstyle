@@ -99,7 +99,6 @@ public sealed interface Example2 permits Example2SubA, Example2SubB {
 final class Example2SubA implements Example2 {
 }
 </code></pre></div>
-        <hr class="example-separator"/>
         <p id="Example2SubB-code">
           The second file contains a permitted subclass declared in a separate compilation unit:
         </p>

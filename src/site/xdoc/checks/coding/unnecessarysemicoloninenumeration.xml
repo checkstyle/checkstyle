@@ -68,7 +68,7 @@ enum Five {
     B
     ; // violation 'Unnecessary semicolon'
 }
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
         <p id="Example2-code">
           Example of good cases
         </p>

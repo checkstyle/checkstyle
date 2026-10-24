@@ -46,7 +46,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/header/regexpheader/Example1.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
         <p id="Example2-raw">
           To configure the check to use header file <code>"java.header"</code> and
           <code>10</code> and <code>13</code> multi-lines:
@@ -67,7 +67,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/header/regexpheader/Example2.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
         <p id="Example3-raw">
           To configure the check to verify that each file starts with the
           header
@@ -88,7 +88,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/header/regexpheader/Example3.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
         <p id="Example4-raw">
           For regex containing <code>".*"</code>
         </p>
