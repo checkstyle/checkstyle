@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.blocks;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,9 +26,7 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
-import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption;
 
 public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
 
@@ -47,14 +44,8 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathLeftCurlyOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(LeftCurlyCheck.class);
-
         final String[] expectedViolation = {
-            "4:1: " + getCheckMessage(LeftCurlyCheck.class,
+            "17:1: " + getCheckMessage(LeftCurlyCheck.class,
                 LeftCurlyCheck.MSG_KEY_LINE_PREVIOUS, "{", 1),
         };
 
@@ -65,21 +56,16 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
                     + "[./IDENT[@text='InputXpathLeftCurlyOne']]/OBJBLOCK/LCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathLeftCurlyOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathLeftCurlyTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(LeftCurlyCheck.class);
-        moduleConfig.addProperty("option", LeftCurlyOption.NL.toString());
-
         final String[] expectedViolation = {
-            "3:37: " + getCheckMessage(LeftCurlyCheck.class,
+            "16:37: " + getCheckMessage(LeftCurlyCheck.class,
                 LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 37),
         };
 
@@ -90,20 +76,16 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
                     + "[./IDENT[@text='InputXpathLeftCurlyTwo']]/OBJBLOCK/LCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathLeftCurlyTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathLeftCurlyThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(LeftCurlyCheck.class);
-
         final String[] expectedViolation = {
-            "5:19: " + getCheckMessage(LeftCurlyCheck.class,
+            "18:19: " + getCheckMessage(LeftCurlyCheck.class,
                 LeftCurlyCheck.MSG_KEY_LINE_BREAK_AFTER, "{", 19),
         };
 
@@ -113,8 +95,10 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
                 + "/METHOD_DEF[./IDENT[@text='sample']]/SLIST/LITERAL_IF/SLIST"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathLeftCurlyThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
