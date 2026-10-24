@@ -19,12 +19,10 @@
 
 package org.checkstyle.suppressionxpathfilter;
 
-import java.io.File;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
 
 public class XpathRegressionDescendantTokenTest extends AbstractXpathTestSupport {
@@ -38,18 +36,8 @@ public class XpathRegressionDescendantTokenTest extends AbstractXpathTestSupport
 
     @Test
     public void testSwitchNoDefault() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathDescendantTokenSwitchNoDefault.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(DescendantTokenCheck.class);
-        moduleConfig.addProperty("tokens", "LITERAL_SWITCH");
-        moduleConfig.addProperty("maximumDepth", "2");
-        moduleConfig.addProperty("limitedTokens", "LITERAL_DEFAULT");
-        moduleConfig.addProperty("minimumNumber", "1");
-
         final String[] expected = {
-            "7:9: " + getCheckMessage(DescendantTokenCheck.class,
+            "22:9: " + getCheckMessage(DescendantTokenCheck.class,
                     DescendantTokenCheck.MSG_KEY_MIN,
                     0, 1, "LITERAL_SWITCH", "LITERAL_DEFAULT"),
         };
@@ -61,23 +49,16 @@ public class XpathRegressionDescendantTokenTest extends AbstractXpathTestSupport
                     + "[@text='testMethod1']]/SLIST/LITERAL_SWITCH"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathDescendantTokenSwitchNoDefault.java"),
+                expectedXpathQueries,
+                expected);
     }
 
     @Test
     public void testSwitchTooManyCases() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathDescendantTokenSwitchTooManyCases.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(DescendantTokenCheck.class);
-        moduleConfig.addProperty("tokens", "LITERAL_SWITCH");
-        moduleConfig.addProperty("limitedTokens", "LITERAL_CASE");
-        moduleConfig.addProperty("maximumDepth", "2");
-        moduleConfig.addProperty("maximumNumber", "1");
-
         final String[] expected = {
-            "8:13: " + getCheckMessage(DescendantTokenCheck.class,
+            "23:13: " + getCheckMessage(DescendantTokenCheck.class,
                     DescendantTokenCheck.MSG_KEY_MAX,
                     2, 1, "LITERAL_SWITCH", "LITERAL_CASE"),
         };
@@ -90,23 +71,16 @@ public class XpathRegressionDescendantTokenTest extends AbstractXpathTestSupport
                         + "/ASSIGN/LAMBDA/SLIST/LITERAL_SWITCH"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathDescendantTokenSwitchTooManyCases.java"),
+                expectedXpathQueries,
+                expected);
     }
 
     @Test
     public void testNestedSwitch() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathDescendantTokenNestedSwitch.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(DescendantTokenCheck.class);
-
-        moduleConfig.addProperty("tokens", "CASE_GROUP");
-        moduleConfig.addProperty("limitedTokens", "LITERAL_SWITCH");
-        moduleConfig.addProperty("maximumNumber", "0");
-
         final String[] expected = {
-            "12:13: " + getCheckMessage(DescendantTokenCheck.class,
+            "27:13: " + getCheckMessage(DescendantTokenCheck.class,
                     DescendantTokenCheck.MSG_KEY_MAX,
                     1, 0, "CASE_GROUP", "LITERAL_SWITCH"),
         };
@@ -122,7 +96,10 @@ public class XpathRegressionDescendantTokenTest extends AbstractXpathTestSupport
                 + "CASE_GROUP/LITERAL_CASE"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathDescendantTokenNestedSwitch.java"),
+                expectedXpathQueries,
+                expected);
     }
 
 }

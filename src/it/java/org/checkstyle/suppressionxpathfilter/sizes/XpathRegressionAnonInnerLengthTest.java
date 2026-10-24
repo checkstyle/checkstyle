@@ -19,14 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.sizes;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck;
 
 public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport {
@@ -45,18 +42,12 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess =
-            new File(getPath("InputXpathAnonInnerLengthDefault.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(AnonInnerLengthCheck.class);
-
         final String[] expectedViolation = {
-            "7:29: " + getCheckMessage(AnonInnerLengthCheck.class,
+            "15:29: " + getCheckMessage(AnonInnerLengthCheck.class,
                 AnonInnerLengthCheck.MSG_KEY, 26, 20),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathAnonInnerLengthDefault']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
@@ -69,26 +60,21 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
                 + "/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='Runnable']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-            expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnonInnerLengthDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMaxLength() throws Exception {
         final int maxLen = 5;
-        final File fileToProcess =
-                new File(getPath("InputXpathAnonInnerLength.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnonInnerLengthCheck.class);
-        moduleConfig.addProperty("max", String.valueOf(maxLen));
-
         final String[] expectedViolation = {
-            "7:35: " + getCheckMessage(AnonInnerLengthCheck.class,
+            "15:35: " + getCheckMessage(AnonInnerLengthCheck.class,
                     AnonInnerLengthCheck.MSG_KEY, 6, maxLen),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathAnonInnerLength']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='compare']]/SLIST"
@@ -100,26 +86,21 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
                         + "/LITERAL_NEW[./IDENT[@text='Comparator']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnonInnerLength.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testField() throws Exception {
         final int maxLen = 5;
-        final File fileToProcess =
-                new File(getPath("InputXpathAnonInnerLengthField.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnonInnerLengthCheck.class);
-        moduleConfig.addProperty("max", String.valueOf(maxLen));
-
         final String[] expectedViolation = {
-            "4:25: " + getCheckMessage(AnonInnerLengthCheck.class,
+            "12:25: " + getCheckMessage(AnonInnerLengthCheck.class,
                     AnonInnerLengthCheck.MSG_KEY, 9, maxLen),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathAnonInnerLengthField']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='runnable']]"
@@ -130,8 +111,10 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
                         + "/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='Runnable']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnonInnerLengthField.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

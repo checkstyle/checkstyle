@@ -1,8 +1,9 @@
-/*
-OuterTypeNumber
-max = (default)1
-
-
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="OuterTypeNumber"/>
+  </module>
+</module>
 */
 
 // non-compiled with javac: Compilable with Java25

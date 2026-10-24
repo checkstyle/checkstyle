@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.sizes;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck;
 
 public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
@@ -43,16 +41,11 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathMethodCountDefault.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(MethodCountCheck.class);
-        moduleConfig.addProperty("maxTotal", "1");
+        final String filePath =
+            getPath("InputXpathMethodCountDefault.java");
 
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(MethodCountCheck.class,
+            "16:1: " + getCheckMessage(MethodCountCheck.class,
                 MethodCountCheck.MSG_MANY_METHODS, 2, 1),
         };
 
@@ -69,21 +62,16 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
                     + "/LITERAL_CLASS"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(filePath, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testPrivate() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathMethodCountPrivate.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(MethodCountCheck.class);
-        moduleConfig.addProperty("maxPrivate", "1");
+        final String filePath =
+            getPath("InputXpathMethodCountPrivate.java");
 
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(MethodCountCheck.class,
+            "16:1: " + getCheckMessage(MethodCountCheck.class,
                 MethodCountCheck.MSG_PRIVATE_METHODS, 2, 1),
         };
 
@@ -100,52 +88,42 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
                     + "/LITERAL_CLASS"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(filePath, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testPackage() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathMethodCountDefault.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(MethodCountCheck.class);
-        moduleConfig.addProperty("maxPackage", "1");
+        final String filePath =
+            getPath("InputXpathMethodCountPackage.java");
 
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(MethodCountCheck.class,
+            "16:1: " + getCheckMessage(MethodCountCheck.class,
                 MethodCountCheck.MSG_PACKAGE_METHODS, 2, 1),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMethodCountDefault']]",
+                    + "[./IDENT[@text='InputXpathMethodCountPackage']]",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMethodCountDefault']]"
+                    + "[./IDENT[@text='InputXpathMethodCountPackage']]"
                     + "/MODIFIERS",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMethodCountDefault']]"
+                    + "[./IDENT[@text='InputXpathMethodCountPackage']]"
                     + "/LITERAL_CLASS"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(filePath, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testProtected() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathMethodCountProtected.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(MethodCountCheck.class);
-        moduleConfig.addProperty("maxProtected", "1");
+        final String filePath =
+            getPath("InputXpathMethodCountProtected.java");
 
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(MethodCountCheck.class,
+            "16:1: " + getCheckMessage(MethodCountCheck.class,
                 MethodCountCheck.MSG_PROTECTED_METHODS, 2, 1),
         };
 
@@ -162,21 +140,16 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
                     + "/LITERAL_CLASS"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(filePath, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testPublic() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathMethodCountPublic.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(MethodCountCheck.class);
-        moduleConfig.addProperty("maxPublic", "1");
+        final String filePath =
+            getPath("InputXpathMethodCountPublic.java");
 
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(MethodCountCheck.class,
+            "16:1: " + getCheckMessage(MethodCountCheck.class,
                 MethodCountCheck.MSG_PUBLIC_METHODS, 2, 1),
         };
 
@@ -193,7 +166,7 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
                     + "/LITERAL_CLASS"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(filePath, expectedXpathQueries, expectedViolation);
     }
 
 }

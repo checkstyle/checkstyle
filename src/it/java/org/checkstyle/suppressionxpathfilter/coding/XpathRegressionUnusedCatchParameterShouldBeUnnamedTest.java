@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnusedCatchParameterShouldBeUnnamedCheck;
 
 public class XpathRegressionUnusedCatchParameterShouldBeUnnamedTest
@@ -47,15 +45,8 @@ public class XpathRegressionUnusedCatchParameterShouldBeUnnamedTest
 
     @Test
     public void testSimple() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathUnusedCatchParameterShouldBeUnnamedSimple.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedCatchParameterShouldBeUnnamedCheck.class);
-
         final String[] expectedViolation = {
-            "10:16: " + getCheckMessage(UnusedCatchParameterShouldBeUnnamedCheck.class,
+            "16:16: " + getCheckMessage(UnusedCatchParameterShouldBeUnnamedCheck.class,
                     UnusedCatchParameterShouldBeUnnamedCheck.MSG_UNUSED_CATCH_PARAMETER,
                     "e"),
         };
@@ -81,21 +72,15 @@ public class XpathRegressionUnusedCatchParameterShouldBeUnnamedTest
                         + "/TYPE/IDENT[@text='Exception']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnusedCatchParameterShouldBeUnnamedSimple.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testNested() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathUnusedCatchParameterShouldBeUnnamedNested.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedCatchParameterShouldBeUnnamedCheck.class);
-
         final String[] expectedViolation = {
-            "14:20: " + getCheckMessage(UnusedCatchParameterShouldBeUnnamedCheck.class,
+            "20:20: " + getCheckMessage(UnusedCatchParameterShouldBeUnnamedCheck.class,
                     UnusedCatchParameterShouldBeUnnamedCheck.MSG_UNUSED_CATCH_PARAMETER,
                     "exception"),
         };
@@ -122,21 +107,15 @@ public class XpathRegressionUnusedCatchParameterShouldBeUnnamedTest
                         + "/LITERAL_CATCH/SLIST/LITERAL_TRY/LITERAL_CATCH/PARAMETER_DEF"
                         + "[./IDENT[@text='exception']]/TYPE/IDENT[@text='Exception']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnusedCatchParameterShouldBeUnnamedNested.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testConstructor() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathUnusedCatchParameterShouldBeUnnamedConstructor.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedCatchParameterShouldBeUnnamedCheck.class);
-
         final String[] expectedViolation = {
-            "10:16: " + getCheckMessage(UnusedCatchParameterShouldBeUnnamedCheck.class,
+            "16:16: " + getCheckMessage(UnusedCatchParameterShouldBeUnnamedCheck.class,
                     UnusedCatchParameterShouldBeUnnamedCheck.MSG_UNUSED_CATCH_PARAMETER,
                     "e"),
         };
@@ -166,8 +145,9 @@ public class XpathRegressionUnusedCatchParameterShouldBeUnnamedTest
                         + "/TYPE/IDENT[@text='Exception']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnusedCatchParameterShouldBeUnnamedConstructor.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }

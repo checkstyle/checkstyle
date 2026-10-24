@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck;
 
 public class XpathRegressionNoLineWrapTest extends AbstractXpathTestSupport {
@@ -43,15 +41,8 @@ public class XpathRegressionNoLineWrapTest extends AbstractXpathTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathNoLineWrapDefault.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoLineWrapCheck.class);
-
         final String[] expectedViolation = {
-            "1:1: " + getCheckMessage(NoLineWrapCheck.class,
+            "10:1: " + getCheckMessage(NoLineWrapCheck.class,
                     NoLineWrapCheck.MSG_KEY, "package"),
         };
 
@@ -59,21 +50,16 @@ public class XpathRegressionNoLineWrapTest extends AbstractXpathTestSupport {
                 "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoLineWrapDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMethodDef() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathNoLineWrapTokensMethodDef.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoLineWrapCheck.class);
-        moduleConfig.addProperty("tokens", "METHOD_DEF");
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(NoLineWrapCheck.class,
+            "12:5: " + getCheckMessage(NoLineWrapCheck.class,
                     NoLineWrapCheck.MSG_KEY, "METHOD_DEF"),
         };
 
@@ -94,21 +80,16 @@ public class XpathRegressionNoLineWrapTest extends AbstractXpathTestSupport {
 
                 );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoLineWrapTokensMethodDef.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTokensCtorDef() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathNoLineWrapTokensCtorDef.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoLineWrapCheck.class);
-        moduleConfig.addProperty("tokens", "CTOR_DEF");
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(NoLineWrapCheck.class,
+            "13:5: " + getCheckMessage(NoLineWrapCheck.class,
                     NoLineWrapCheck.MSG_KEY, "CTOR_DEF"),
         };
 
@@ -127,7 +108,10 @@ public class XpathRegressionNoLineWrapTest extends AbstractXpathTestSupport {
                     + "/OBJBLOCK/CTOR_DEF/IDENT[@text='InputXpathNoLineWrapTokensCtorDef']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoLineWrapTokensCtorDef.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

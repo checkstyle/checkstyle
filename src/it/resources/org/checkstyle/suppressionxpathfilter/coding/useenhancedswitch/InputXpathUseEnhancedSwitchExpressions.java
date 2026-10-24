@@ -1,8 +1,14 @@
+/*
+UseEnhancedSwitch
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.useenhancedswitch;
 
 public class InputXpathUseEnhancedSwitchExpressions {
     public void test(int input) {
-        int id = switch (input) { // warn
+        int id = switch (input) { // violation 'Switch can be replaced with enhanced switch.'
             case 0:
                 System.err.println("zero");
                 yield 0;

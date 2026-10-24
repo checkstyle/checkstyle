@@ -19,16 +19,13 @@
 
 package org.checkstyle.suppressionxpathfilter.blocks;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck;
-import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
 
 public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
 
@@ -46,14 +43,8 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathRightCurlyOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RightCurlyCheck.class);
-
         final String[] expectedViolation = {
-            "8:9: " + getCheckMessage(RightCurlyCheck.class,
+            "16:9: " + getCheckMessage(RightCurlyCheck.class,
                 RightCurlyCheck.MSG_KEY_LINE_SAME, "}", 9),
         };
 
@@ -63,21 +54,16 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
                 + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_IF/SLIST/RCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathRightCurlyOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathRightCurlyTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RightCurlyCheck.class);
-        moduleConfig.addProperty("option", RightCurlyOption.ALONE.toString());
-
         final String[] expectedViolation = {
-            "9:15: " + getCheckMessage(RightCurlyCheck.class,
+            "17:15: " + getCheckMessage(RightCurlyCheck.class,
                 RightCurlyCheck.MSG_KEY_LINE_ALONE, "}", 15),
         };
 
@@ -87,21 +73,16 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
                 + "/METHOD_DEF[./IDENT[@text='fooMethod']]/SLIST/LITERAL_TRY/SLIST/RCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathRightCurlyTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathRightCurlyThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RightCurlyCheck.class);
-        moduleConfig.addProperty("option", RightCurlyOption.ALONE.toString());
-
         final String[] expectedViolation = {
-            "5:72: " + getCheckMessage(RightCurlyCheck.class,
+            "13:72: " + getCheckMessage(RightCurlyCheck.class,
                 RightCurlyCheck.MSG_KEY_LINE_ALONE, "}", 72),
         };
 
@@ -111,21 +92,16 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
                 + "/METHOD_DEF[./IDENT[@text='sample']]/SLIST/LITERAL_IF/SLIST/RCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathRightCurlyThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testFour() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathRightCurlyFour.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RightCurlyCheck.class);
-        moduleConfig.addProperty("option", RightCurlyOption.SAME.toString());
-
         final String[] expectedViolation = {
-            "7:27: " + getCheckMessage(RightCurlyCheck.class,
+            "15:27: " + getCheckMessage(RightCurlyCheck.class,
                 RightCurlyCheck.MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
         };
 
@@ -135,8 +111,10 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
                 + "/METHOD_DEF[./IDENT[@text='sample']]/SLIST/LITERAL_IF/SLIST/RCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathRightCurlyFour.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

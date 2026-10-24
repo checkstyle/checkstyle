@@ -12,7 +12,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 // xdoc section - start
 /** Documented. */
 public class Example5 {
-  /** Javadoc. */
   public class A {}
 
   private class B {}
@@ -20,10 +19,10 @@ public class Example5 {
   protected class C {}
   /** Javadoc. */
   class D {}
-  /** Javadoc. */
+
   @SpringBootApplication
   private class App {}
-  /** Javadoc. */
+
   @Configuration
   private class Config {}
   /** Javadoc. */

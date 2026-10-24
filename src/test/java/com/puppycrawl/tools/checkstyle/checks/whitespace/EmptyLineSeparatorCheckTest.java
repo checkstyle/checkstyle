@@ -490,6 +490,17 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testEmptyLineSeparatorEnumSharedLine() throws Exception {
+        final String[] expected = {
+            "21:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "28:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorEnumSharedLine.java"), expected);
+    }
+
+    @Test
     public void testEmptyLineBetweenEnumConstantWithComments() throws Exception {
         final String[] expected = {
             "29:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),

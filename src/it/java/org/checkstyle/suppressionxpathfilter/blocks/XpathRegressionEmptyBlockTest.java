@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.blocks;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck;
 
 public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
@@ -45,33 +43,26 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
 
     @Test
     public void testEmptyForLoopEmptyBlock() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathEmptyBlockEmpty.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyBlockCheck.class);
-        moduleConfig.addProperty("option", "TEXT");
         final String[] expectedViolation = {
-            "5:38: " + getCheckMessage(EmptyBlockCheck.class,
+            "15:38: " + getCheckMessage(EmptyBlockCheck.class,
                 EmptyBlockCheck.MSG_KEY_BLOCK_EMPTY, "for"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyBlockEmpty']]"
+                    + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyBlockText']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='emptyLoop']]"
                     + "/SLIST/LITERAL_FOR/SLIST"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyBlockText.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEmptyForLoopEmptyStatement() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathEmptyBlockEmpty.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyBlockCheck.class);
         final String[] expectedViolation = {
-            "5:38: " + getCheckMessage(EmptyBlockCheck.class,
+            "15:38: " + getCheckMessage(EmptyBlockCheck.class,
                 EmptyBlockCheck.MSG_KEY_BLOCK_NO_STATEMENT),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -80,18 +71,16 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='emptyLoop']]"
                         + "/SLIST/LITERAL_FOR/SLIST"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyBlockEmpty.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEmptyTryCatchBlock() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathEmptyBlockTryCatch.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyBlockCheck.class);
         final String[] expectedViolation = {
-            "5:13: " + getCheckMessage(EmptyBlockCheck.class,
+            "15:13: " + getCheckMessage(EmptyBlockCheck.class,
                 EmptyBlockCheck.MSG_KEY_BLOCK_NO_STATEMENT),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -100,8 +89,10 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='emptyTryCatch']]"
                         + "/SLIST/LITERAL_TRY/SLIST"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEmptyBlockTryCatch.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

@@ -1,3 +1,9 @@
+/*
+MissingOverrideOnRecordAccessor
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.annotation.missingoverrideonrecordaccessor;
 
 public record InputXpathMissingOverrideOnRecordAccessorNested(String outer) {
@@ -9,7 +15,8 @@ public record InputXpathMissingOverrideOnRecordAccessorNested(String outer) {
 
     public record Inner(String value) {
 
-        public String value() { // warn 'method must include @java.lang.Override annotation.'
+// violation below 'Record component accessor method must include @java.lang.Override annotation.'
+        public String value() {
             return value.trim();
         }
     }

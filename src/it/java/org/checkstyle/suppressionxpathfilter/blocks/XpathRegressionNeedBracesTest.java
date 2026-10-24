@@ -21,14 +21,12 @@ package org.checkstyle.suppressionxpathfilter.blocks;
 
 import static com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck.MSG_KEY_NEED_BRACES;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck;
 
 public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
@@ -47,14 +45,8 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
 
     @Test
     public void testDo() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathNeedBracesDo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NeedBracesCheck.class);
-
         final String[] expectedViolation = {
-            "13:9: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "do"),
+            "22:9: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "do"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -63,21 +55,16 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_DO"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNeedBracesDo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testSingleLine() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathNeedBracesSingleLine.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NeedBracesCheck.class);
-        moduleConfig.addProperty("allowSingleLineStatement", "true");
-
         final String[] expectedViolation = {
-            "16:9: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "if"),
+            "25:9: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "if"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -86,22 +73,16 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_IF"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNeedBracesSingleLine.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testSingleLineLambda() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathNeedBracesSingleLineLambda.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NeedBracesCheck.class);
-        moduleConfig.addProperty("tokens", "LAMBDA");
-        moduleConfig.addProperty("allowSingleLineStatement", "true");
-
         final String[] expectedViolation = {
-            "4:29: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "->"),
+            "13:29: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "->"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -110,20 +91,16 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r3']]/ASSIGN/LAMBDA"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNeedBracesSingleLineLambda.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEmptyLoopBody() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathNeedBracesEmptyLoopBody.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NeedBracesCheck.class);
-
         final String[] expectedViolation = {
-            "9:9: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "while"),
+            "18:9: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "while"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -132,8 +109,10 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_WHILE"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNeedBracesEmptyLoopBody.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

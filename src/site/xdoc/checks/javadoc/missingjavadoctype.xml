@@ -140,18 +140,17 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /** Documented. */
 public class Example1 {
-  /** Javadoc. */
-  public class A {}
+  public class A {} // violation 'Missing a Javadoc comment for 'A'.'
 
   private class B {}
 
   protected class C {}
   /** Javadoc. */
   class D {}
-  /** Javadoc. */
+
   @SpringBootApplication
   private class App {}
-  /** Javadoc. */
+
   @Configuration
   private class Config {}
   /** Javadoc. */
@@ -179,19 +178,18 @@ public class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /** Documented. */
 public class Example2 {
-  /** Javadoc. */
-  public class A {}
+  public class A {} // violation 'Missing a Javadoc comment for 'A'.'
 
-  private class B {}   // violation 'Missing a Javadoc comment for 'B'.'
+  private class B {} // violation 'Missing a Javadoc comment for 'B'.'
 
   protected class C {} // violation 'Missing a Javadoc comment for 'C'.'
   /** Javadoc. */
   class D {}
-  /** Javadoc. */
-  @SpringBootApplication
+
+  @SpringBootApplication // violation 'Missing a Javadoc comment for 'App'.'
   private class App {}
-  /** Javadoc. */
-  @Configuration
+
+  @Configuration // violation 'Missing a Javadoc comment for 'Config'.'
   private class Config {}
   /** Javadoc. */
   private class E {}
@@ -218,7 +216,6 @@ public class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /** Documented. */
 public class Example3 {
-  /** Javadoc. */
   public class A {}
 
   private class B {} // violation 'Missing a Javadoc comment for 'B'.'
@@ -226,11 +223,11 @@ public class Example3 {
   protected class C {}
   /** Javadoc. */
   class D {}
-  /** Javadoc. */
-  @SpringBootApplication
+
+  @SpringBootApplication // violation 'Missing a Javadoc comment for 'App'.'
   private class App {}
-  /** Javadoc. */
-  @Configuration
+
+  @Configuration // violation 'Missing a Javadoc comment for 'Config'.'
   private class Config {}
   /** Javadoc. */
   private class E {}
@@ -259,18 +256,17 @@ public class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /** Documented. */
 public class Example4 {
-  /** Javadoc. */
-  public class A {}
+  public class A {} // violation 'Missing a Javadoc comment for 'A'.'
 
-  private class B {}   // violation 'Missing a Javadoc comment for 'B'.'
+  private class B {} // violation 'Missing a Javadoc comment for 'B'.'
 
   protected class C {} // violation 'Missing a Javadoc comment for 'C'.'
   /** Javadoc. */
   class D {}
-  /** Javadoc. */
+
   @SpringBootApplication
   private class App {}
-  /** Javadoc. */
+
   @Configuration
   private class Config {}
   /** Javadoc. */
@@ -297,7 +293,6 @@ public class Example4 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /** Documented. */
 public class Example5 {
-  /** Javadoc. */
   public class A {}
 
   private class B {}
@@ -305,10 +300,10 @@ public class Example5 {
   protected class C {}
   /** Javadoc. */
   class D {}
-  /** Javadoc. */
+
   @SpringBootApplication
   private class App {}
-  /** Javadoc. */
+
   @Configuration
   private class Config {}
   /** Javadoc. */

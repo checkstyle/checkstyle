@@ -1,7 +1,14 @@
+/*
+UnnecessaryPermitsClause
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.unnecessarypermitsclause;
 
 public sealed class InputXpathUnnecessaryPermitsClauseMultipleSealedClasses
-        permits FirstImpl, SecondImpl {    // warn
+        permits FirstImpl, SecondImpl {
+        // violation above "Unnecessary 'permits' clause for classes in the same compilation unit."
 }
 
 final class FirstImpl
