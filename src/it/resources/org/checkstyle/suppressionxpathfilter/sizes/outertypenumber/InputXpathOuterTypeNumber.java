@@ -1,4 +1,11 @@
-package org.checkstyle.suppressionxpathfilter.sizes.outertypenumber; //warn
+/*
+OuterTypeNumber
+max = 0
+
+
+*/
+
+package org.checkstyle.suppressionxpathfilter.sizes.outertypenumber; // violation 'Outer types defined is 3 (max allowed is 0).'
 
 public class InputXpathOuterTypeNumber {
     int i; int j;
