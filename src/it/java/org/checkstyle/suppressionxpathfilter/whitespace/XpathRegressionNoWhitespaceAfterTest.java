@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck;
 
 public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSupport {
@@ -46,14 +44,8 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
 
     @Test
     public void testNoWhitespaceAfter() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathNoWhitespaceAfter.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoWhitespaceAfterCheck.class);
-
         final String[] expectedViolation = {
-            "4:15: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+            "13:15: " + getCheckMessage(NoWhitespaceAfterCheck.class,
                     NoWhitespaceAfterCheck.MSG_KEY, "-"),
         };
 
@@ -67,21 +59,16 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
                 + "./NUM_INT[@text='1']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoWhitespaceAfter.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTokens() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathNoWhitespaceAfterTokens.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoWhitespaceAfterCheck.class);
-        moduleConfig.addProperty("tokens", "DOT");
-
         final String[] expectedViolation = {
-            "4:16: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+            "12:16: " + getCheckMessage(NoWhitespaceAfterCheck.class,
                     NoWhitespaceAfterCheck.MSG_KEY, "."),
         };
 
@@ -93,21 +80,16 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
                 + "/DOT[./IDENT[@text='java']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoWhitespaceAfterTokens.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testAllowLineBreaks() throws Exception {
-        final File fileToProcess =
-            new File(getPath("InputXpathNoWhitespaceAfterLineBreaks.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(NoWhitespaceAfterCheck.class);
-        moduleConfig.addProperty("allowLineBreaks", "false");
-
         final String[] expectedViolation = {
-            "6:13: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+            "15:13: " + getCheckMessage(NoWhitespaceAfterCheck.class,
                 NoWhitespaceAfterCheck.MSG_KEY, "."),
         };
 
@@ -132,8 +114,10 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
                 + "/TYPE/DOT[./IDENT[@text='String']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-            expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathNoWhitespaceAfterLineBreaks.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
 }
