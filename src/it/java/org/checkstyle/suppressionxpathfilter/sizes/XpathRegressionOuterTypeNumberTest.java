@@ -19,14 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.sizes;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck;
 
 public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport {
@@ -45,67 +42,53 @@ public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess =
-            new File(getPath("InputXpathOuterTypeNumberDefault.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(OuterTypeNumberCheck.class);
-
         final String[] expectedViolation = {
-            "1:1: " + getCheckMessage(OuterTypeNumberCheck.class,
+            "8:1: " + getCheckMessage(OuterTypeNumberCheck.class,
                 OuterTypeNumberCheck.MSG_KEY, 2, 1),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-            expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOuterTypeNumberDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMax() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathOuterTypeNumber.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(OuterTypeNumberCheck.class);
-        moduleConfig.addProperty("max", "0");
-
         final String[] expectedViolation = {
-            "1:1: " + getCheckMessage(OuterTypeNumberCheck.class,
+            "8:1: " + getCheckMessage(OuterTypeNumberCheck.class,
                 OuterTypeNumberCheck.MSG_KEY, 3, 0),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOuterTypeNumber.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathOuterTypeNumberThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(OuterTypeNumberCheck.class);
-        moduleConfig.addProperty("max", "2");
-
         final String[] expectedViolation = {
-            "1:1: " + getCheckMessage(OuterTypeNumberCheck.class,
+            "8:1: " + getCheckMessage(OuterTypeNumberCheck.class,
                     OuterTypeNumberCheck.MSG_KEY, 3, 2),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOuterTypeNumberThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
