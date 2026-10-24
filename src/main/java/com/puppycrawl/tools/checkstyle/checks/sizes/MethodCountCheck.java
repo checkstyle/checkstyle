@@ -154,6 +154,11 @@ public final class MethodCountCheck extends AbstractCheck {
     }
 
     @Override
+    public void beginTree(DetailAST rootAST) {
+        counters.clear();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.METHOD_DEF) {
             if (isInLatestScopeDefinition(ast)) {
