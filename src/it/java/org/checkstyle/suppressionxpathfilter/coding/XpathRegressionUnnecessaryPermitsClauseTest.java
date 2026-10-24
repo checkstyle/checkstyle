@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryPermitsClauseCheck;
 
 public class XpathRegressionUnnecessaryPermitsClauseTest extends AbstractXpathTestSupport {
@@ -43,15 +41,8 @@ public class XpathRegressionUnnecessaryPermitsClauseTest extends AbstractXpathTe
     @Test
     public void testSealedClasses() throws Exception {
 
-        final File fileToProcess = new File(
-            getPath("InputXpathUnnecessaryPermitsClauseSealedClasses.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnnecessaryPermitsClauseCheck.class);
-
         final String[] expectedViolation = {
-            "4:9: " + getCheckMessage(UnnecessaryPermitsClauseCheck.class,
+            "10:9: " + getCheckMessage(UnnecessaryPermitsClauseCheck.class,
                 UnnecessaryPermitsClauseCheck.MSG_KEY),
         };
 
@@ -61,22 +52,17 @@ public class XpathRegressionUnnecessaryPermitsClauseTest extends AbstractXpathTe
                         + "/PERMITS_CLAUSE[./IDENT[@text='A']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessaryPermitsClauseSealedClasses.java"),
+                expectedXpathQueries, expectedViolation);
 
     }
 
     @Test
     public void testSealedInterfaces() throws Exception {
 
-        final File fileToProcess = new File(
-            getPath("InputXpathUnnecessaryPermitsClauseSealedInterfaces.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UnnecessaryPermitsClauseCheck.class);
-
         final String[] expectedViolation = {
-            "4:9: " + getCheckMessage(UnnecessaryPermitsClauseCheck.class,
+            "10:9: " + getCheckMessage(UnnecessaryPermitsClauseCheck.class,
                 UnnecessaryPermitsClauseCheck.MSG_KEY),
         };
 
@@ -86,20 +72,15 @@ public class XpathRegressionUnnecessaryPermitsClauseTest extends AbstractXpathTe
                         + "/PERMITS_CLAUSE[./IDENT[@text='InternalService']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessaryPermitsClauseSealedInterfaces.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testMultipleSealedClassesAndInterface() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathUnnecessaryPermitsClauseMultipleSealedClasses.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnnecessaryPermitsClauseCheck.class);
-
         final String[] expectedViolation = {
-            "4:9: " + getCheckMessage(UnnecessaryPermitsClauseCheck.class,
+            "10:9: " + getCheckMessage(UnnecessaryPermitsClauseCheck.class,
                 UnnecessaryPermitsClauseCheck.MSG_KEY),
 
         };
@@ -111,7 +92,9 @@ public class XpathRegressionUnnecessaryPermitsClauseTest extends AbstractXpathTe
                         + "/PERMITS_CLAUSE[./IDENT[@text='FirstImpl']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessaryPermitsClauseMultipleSealedClasses.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }

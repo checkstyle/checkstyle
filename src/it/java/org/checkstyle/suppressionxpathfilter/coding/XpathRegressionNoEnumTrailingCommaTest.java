@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.NoEnumTrailingCommaCheck;
 
 public class XpathRegressionNoEnumTrailingCommaTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionNoEnumTrailingCommaTest extends AbstractXpathTestSup
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathNoEnumTrailingCommaOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoEnumTrailingCommaCheck.class);
-
         final String[] expectedViolation = {
-            "7:12: " + getCheckMessage(NoEnumTrailingCommaCheck.class,
+            "13:12: " + getCheckMessage(NoEnumTrailingCommaCheck.class,
                     NoEnumTrailingCommaCheck.MSG_KEY),
         };
 
@@ -62,19 +54,15 @@ public class XpathRegressionNoEnumTrailingCommaTest extends AbstractXpathTestSup
                     + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Foo3']]/OBJBLOCK/COMMA[2]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoEnumTrailingCommaOne.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathNoEnumTrailingCommaTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoEnumTrailingCommaCheck.class);
-
         final String[] expectedViolation = {
-            "5:25: " + getCheckMessage(NoEnumTrailingCommaCheck.class,
+            "11:25: " + getCheckMessage(NoEnumTrailingCommaCheck.class,
                     NoEnumTrailingCommaCheck.MSG_KEY),
         };
 
@@ -84,19 +72,15 @@ public class XpathRegressionNoEnumTrailingCommaTest extends AbstractXpathTestSup
                     + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Foo6']]/OBJBLOCK/COMMA[2]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoEnumTrailingCommaTwo.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathNoEnumTrailingCommaInnerClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoEnumTrailingCommaCheck.class);
-
         final String[] expectedViolation = {
-            "7:16: " + getCheckMessage(NoEnumTrailingCommaCheck.class,
+            "13:16: " + getCheckMessage(NoEnumTrailingCommaCheck.class,
                     NoEnumTrailingCommaCheck.MSG_KEY),
         };
 
@@ -107,7 +91,9 @@ public class XpathRegressionNoEnumTrailingCommaTest extends AbstractXpathTestSup
                     + "[./IDENT[@text='Foo']]/OBJBLOCK/COMMA[2]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoEnumTrailingCommaInnerClass.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
