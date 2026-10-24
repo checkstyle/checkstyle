@@ -65,12 +65,6 @@ public class ArchUnitTest {
         Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.log(int, int, java.lang\
         .String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils\
         .CommonUtil.lengthExpandedTabs(java.lang.String, int, int)>\
-        """,
-        """
-        Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(java.io.File, \
-        com.puppycrawl.tools.checkstyle.api.FileText)> calls method <com.puppycrawl.tools\
-        .checkstyle.utils.CommonUtil.matchesFileExtension(java.io.File, [Ljava.lang\
-        .String;)>\
         """
     );
 
