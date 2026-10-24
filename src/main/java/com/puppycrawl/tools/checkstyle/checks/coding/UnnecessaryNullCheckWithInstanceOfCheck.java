@@ -119,8 +119,8 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
         Optional<DetailAST> nullCheckNode = Optional.empty();
         final DetailAST instanceOfIdent = instanceOfNode.findFirstToken(TokenTypes.IDENT);
 
-        if (instanceOfIdent != null
-            && !containsVariableDereference(logicalAndNode, instanceOfIdent.getText())) {
+            if (instanceOfIdent != null
+                && !containsVariableDereference(logicalAndNode, instanceOfIdent)) {
 
             nullCheckNode = searchForNullCheck(logicalAndNode, instanceOfNode, instanceOfIdent);
         }
@@ -234,36 +234,43 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if the given AST node contains a method call or field access
-     * on the specified variable.
+     * Checks if the given AST node contains a field access or method call on the
+     * variable of the instanceof operand, evaluated before that operand.
      *
      * @param node the AST node to check
-     * @param variableName the name of the variable
-     * @return true if the variable is dereferenced, false otherwise
+     * @param instanceOfIdent the identifier from the instanceof expression
+     * @return true if the variable is dereferenced before the instanceof, false otherwise
      */
-    private static boolean containsVariableDereference(DetailAST node, String variableName) {
+    private static boolean containsVariableDereference(DetailAST node,
+        DetailAST instanceOfIdent) {
 
         boolean found = false;
+        DetailAST child = node.getFirstChild();
 
-        if (node.getType() == TokenTypes.DOT
-            || node.getType() == TokenTypes.METHOD_CALL
-            || node.getType() == TokenTypes.LAND
-            || node.getType() == TokenTypes.LOR) {
-
-            DetailAST firstChild = node.getFirstChild();
-
-            while (firstChild != null) {
-                if (variableName.equals(firstChild.getText())
-                        && firstChild.getNextSibling() != null
-                        && firstChild.getNextSibling().getType() != TokenTypes.ELIST
-                            || containsVariableDereference(firstChild, variableName)) {
-                    found = true;
-                    break;
-                }
-                firstChild = firstChild.getNextSibling();
-            }
+        while (child != null && !found) {
+            found = node.getType() == TokenTypes.DOT
+                    && instanceOfIdent.getText().equals(child.getText())
+                    && child.getNextSibling() != null
+                    && isBefore(child, instanceOfIdent)
+                || containsVariableDereference(child, instanceOfIdent);
+            child = child.getNextSibling();
         }
         return found;
+    }
+
+    /**
+     * Checks if the first node appears earlier in the source than the second node.
+     *
+     * @param first the node expected to appear first
+     * @param second the node expected to appear second
+     * @return true if first is located before second, false otherwise
+     */
+    private static boolean isBefore(DetailAST first, DetailAST second) {
+        int result = Integer.compare(first.getLineNo(), second.getLineNo());
+        if (result == 0) {
+            result = Integer.compare(first.getColumnNo(), second.getColumnNo());
+        }
+        return result == -1;
     }
 
     /**
