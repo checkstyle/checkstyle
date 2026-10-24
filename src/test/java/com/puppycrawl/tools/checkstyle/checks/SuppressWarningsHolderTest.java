@@ -25,18 +25,21 @@ import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_K
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
@@ -51,6 +54,9 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
+
+    @TempDir
+    public File temporaryFolder;
 
     @Override
     public String getPackageLocation() {
@@ -230,6 +236,27 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         assertWithMessage("Event is not suppressed")
                 .that(SuppressWarningsHolder.isSuppressed(event))
                 .isTrue();
+    }
+
+    @Test
+    public void testEntriesAreRemovedWhenProcessingFails() throws Exception {
+        final File suppressedFile = new File(temporaryFolder, "A.java");
+        Files.writeString(suppressedFile.toPath(), "@SuppressWarnings(\"all\")\nclass A {\n}\n");
+        final File unparsableFile = new File(temporaryFolder, "B.java");
+        Files.writeString(unparsableFile.toPath(), "class B {\n");
+        final Checker checker = createChecker(createModuleConfig(SuppressWarningsHolder.class));
+
+        getExpectedThrowable(CheckstyleException.class,
+                () -> checker.process(List.of(suppressedFile, unparsableFile)),
+                "Parse exception is expected");
+
+        final Violation violation =
+            new Violation(2, 1, null, null, null, "id", MemberNameCheck.class, "msg");
+        final AuditEvent event =
+            new AuditEvent(checker, suppressedFile.getPath(), violation);
+        assertWithMessage("Suppressions of a failed run must not be left on the thread")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isFalse();
     }
 
     @Test

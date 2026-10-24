@@ -225,14 +225,19 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             final List<File> targetFiles = files.stream()
                     .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
                     .toList();
-            processFiles(targetFiles);
+            try {
+                processFiles(targetFiles);
 
-            // Finish up
-            // It may also log!!!
-            fileSetChecks.forEach(FileSetCheck::finishProcessing);
-
-            // It may also log!!!
-            fileSetChecks.forEach(FileSetCheck::destroy);
+                // Finish up
+                // It may also log!!!
+                fileSetChecks.forEach(FileSetCheck::finishProcessing);
+            }
+            finally {
+                // Always destroy, so that thread local state of checks is removed
+                // from the current thread even if processing failed.
+                // It may also log!!!
+                fileSetChecks.forEach(FileSetCheck::destroy);
+            }
 
             errorCount = counter.getCount();
         }
