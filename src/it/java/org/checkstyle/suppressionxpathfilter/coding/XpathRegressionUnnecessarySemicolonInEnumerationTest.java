@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInEnumerationCheck;
 
 public class XpathRegressionUnnecessarySemicolonInEnumerationTest
@@ -47,14 +45,8 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
 
     @Test
     public void testSimple() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathUnnecessarySemicolonInEnumerationSimple.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnnecessarySemicolonInEnumerationCheck.class);
-
         final String[] expectedViolation = {
-            "11:10: " + getCheckMessage(UnnecessarySemicolonInEnumerationCheck.class,
+            "17:10: " + getCheckMessage(UnnecessarySemicolonInEnumerationCheck.class,
                 UnnecessarySemicolonInEnumerationCheck.MSG_SEMI),
         };
 
@@ -62,20 +54,15 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
                 "/COMPILATION_UNIT/ENUM_DEF[./IDENT[@text='Bad']]/OBJBLOCK/SEMI"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessarySemicolonInEnumerationSimple.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testAll() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathUnnecessarySemicolonInEnumerationAll.java"
-        ));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnnecessarySemicolonInEnumerationCheck.class);
-
         final String[] expectedViolation = {
-            "4:52: " + getCheckMessage(UnnecessarySemicolonInEnumerationCheck.class,
+            "10:52: " + getCheckMessage(UnnecessarySemicolonInEnumerationCheck.class,
                 UnnecessarySemicolonInEnumerationCheck.MSG_SEMI),
         };
 
@@ -85,19 +72,15 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
                 + "/OBJBLOCK/SEMI"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessarySemicolonInEnumerationAll.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testInnerEnum() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathUnnecessarySemicolonInEnumerationInnerEnum.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnnecessarySemicolonInEnumerationCheck.class);
-
         final String[] expectedViolation = {
-            "6:17: " + getCheckMessage(UnnecessarySemicolonInEnumerationCheck.class,
+            "12:17: " + getCheckMessage(UnnecessarySemicolonInEnumerationCheck.class,
                 UnnecessarySemicolonInEnumerationCheck.MSG_SEMI),
         };
 
@@ -108,7 +91,9 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
                 + "/OBJBLOCK/SEMI"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessarySemicolonInEnumerationInnerEnum.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
