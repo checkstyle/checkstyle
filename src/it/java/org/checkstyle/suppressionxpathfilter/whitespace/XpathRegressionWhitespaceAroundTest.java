@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
 
 public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
 
     @Test
     public void testWhitespaceAroundNotPreceded() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathWhitespaceAroundNotPreceded.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(WhitespaceAroundCheck.class);
-
         final String[] expectedViolation = {
-            "4:12: " + getCheckMessage(WhitespaceAroundCheck.class,
+            "25:12: " + getCheckMessage(WhitespaceAroundCheck.class,
                     WhitespaceAroundCheck.MSG_WS_NOT_PRECEDED, "="),
         };
 
@@ -62,20 +54,16 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
                 + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathWhitespaceAroundNotPreceded.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testWhitespaceAroundNotFollowed() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathWhitespaceAroundNotFollowed.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(WhitespaceAroundCheck.class);
-
         final String[] expectedViolation = {
-            "4:13: " + getCheckMessage(WhitespaceAroundCheck.class,
+            "25:13: " + getCheckMessage(WhitespaceAroundCheck.class,
                     WhitespaceAroundCheck.MSG_WS_NOT_FOLLOWED, "="),
         };
 
@@ -85,20 +73,16 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
                 + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathWhitespaceAroundNotFollowed.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testWhitespaceAroundLambda() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathWhitespaceAroundLambda.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(WhitespaceAroundCheck.class);
-
         final String[] expectedViolation = {
-            "7:48: " + getCheckMessage(WhitespaceAroundCheck.class,
+            "29:48: " + getCheckMessage(WhitespaceAroundCheck.class,
                     WhitespaceAroundCheck.MSG_WS_NOT_PRECEDED, "->"),
         };
 
@@ -109,8 +93,10 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
                 + "[@text='function']]/ASSIGN/LAMBDA"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathWhitespaceAroundLambda.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
