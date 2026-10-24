@@ -114,7 +114,16 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
     public void testCompactSourceFile() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputOuterTypeNumberCompactSourceFile.java"), expected);
+                getNonCompilablePath("compact/InputOuterTypeNumberCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCustom() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputOuterTypeNumberCompactSourceFileCustom.java"),
+                expected);
     }
 
     /**
