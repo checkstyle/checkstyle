@@ -228,8 +228,7 @@ public class XdocsPagesTest {
             "TypeName",
             "UnusedImports",
             "UpperEll",
-            "VisibilityModifier",
-            "WhitespaceAround"
+            "VisibilityModifier"
     );
 
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
