@@ -9,5 +9,5 @@ package com.puppycrawl.tools.checkstyle.checks.outertypefilename;
 
 // xdoc section - start
 // violation below 'The name of the outer type and the file do not match.'
-class Example5ButNotSameName {}
+class UseCase3ButNotSameName {}
 // xdoc section - end

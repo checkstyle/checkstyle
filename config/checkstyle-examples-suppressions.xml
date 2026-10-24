@@ -12,9 +12,9 @@
   
   <!-- The files have no exampleClassName by design. -->
   <suppress id="exampleClassName"
-    files="outertypefilename/Example3.java"/>
+    files="outertypefilename/UseCase1.java"/>
   <suppress id="exampleClassName"
-    files="outertypefilename/Example4.java"/>
+    files="outertypefilename/UseCase2.java"/>
   <suppress id="exampleClassName"
     files="unnecessarysemicoloninenumeration/Example1.java"/>
   <suppress id="exampleClassName"
