@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceBeforeEmptyBodyCheck;
 
 public class XpathRegressionWhitespaceBeforeEmptyBodyTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionWhitespaceBeforeEmptyBodyTest extends AbstractXpathT
 
     @Test
     public void testWhitespaceBeforeEmptyBodySwitch() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathWhitespaceBeforeEmptyBodySwitch.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(WhitespaceBeforeEmptyBodyCheck.class);
-
         final String[] expectedViolation = {
-            "6:19: " + getCheckMessage(WhitespaceBeforeEmptyBodyCheck.class,
+            "16:19: " + getCheckMessage(WhitespaceBeforeEmptyBodyCheck.class,
                         WhitespaceBeforeEmptyBodyCheck.MSG_KEY, "{"),
         };
 
@@ -62,20 +54,16 @@ public class XpathRegressionWhitespaceBeforeEmptyBodyTest extends AbstractXpathT
                         + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/LCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathWhitespaceBeforeEmptyBodySwitch.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testWhitespaceBeforeEmptyBodyMethod() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathWhitespaceBeforeEmptyBodyMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(WhitespaceBeforeEmptyBodyCheck.class);
-
         final String[] expectedViolation = {
-            "5:15: " + getCheckMessage(WhitespaceBeforeEmptyBodyCheck.class,
+            "15:15: " + getCheckMessage(WhitespaceBeforeEmptyBodyCheck.class,
                     WhitespaceBeforeEmptyBodyCheck.MSG_KEY, "{"),
         };
 
@@ -85,20 +73,16 @@ public class XpathRegressionWhitespaceBeforeEmptyBodyTest extends AbstractXpathT
                     + "/METHOD_DEF[./IDENT[@text='foo']]/SLIST"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathWhitespaceBeforeEmptyBodyMethod.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testWhitespaceBeforeEmptyBodyLoop() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathWhitespaceBeforeEmptyBodyLoop.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(WhitespaceBeforeEmptyBodyCheck.class);
-
         final String[] expectedViolation = {
-            "6:36: " + getCheckMessage(WhitespaceBeforeEmptyBodyCheck.class,
+            "16:36: " + getCheckMessage(WhitespaceBeforeEmptyBodyCheck.class,
                     WhitespaceBeforeEmptyBodyCheck.MSG_KEY, "{"),
         };
 
@@ -108,8 +92,10 @@ public class XpathRegressionWhitespaceBeforeEmptyBodyTest extends AbstractXpathT
                         + "/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/SLIST"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathWhitespaceBeforeEmptyBodyLoop.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

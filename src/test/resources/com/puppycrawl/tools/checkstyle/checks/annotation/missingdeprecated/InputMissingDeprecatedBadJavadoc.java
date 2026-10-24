@@ -23,19 +23,21 @@ public class InputMissingDeprecatedBadJavadoc
     @Deprecated
     enum Rock {
 
+        // violation 4 lines below '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
         /**
          *
          */
-        @Bleh2(bleh=1) // violation '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
+        @Bleh2(bleh=1)
         @Deprecated
         Metallica
     }
 }
 
+// violation 4 lines below '.*@java.lang.Deprecated annotation and @deprecated.*description.'
 /**
  *
  */
-@Deprecated // violation '.*@java.lang.Deprecated annotation and @deprecated.*description.'
+@Deprecated
 interface Foo2 {
     @Deprecated
     interface Bar {
@@ -43,15 +45,17 @@ interface Foo2 {
     }
 }
 
+// violation 3 lines below '.*@java.lang.Deprecated annotation and @deprecated.*description.'
 /**
  */
-@Deprecated // violation '.*@java.lang.Deprecated annotation and @deprecated.*description.'
+@Deprecated
 @interface Bleh2 {
 
+    // violation 5 lines below '.*@java.lang.Deprecated annotation and @deprecated.*description.'
     /**
      *
      * @return
      */
-    @Deprecated // violation '.*@java.lang.Deprecated annotation and @deprecated.*description.'
+    @Deprecated
     int bleh();
 }

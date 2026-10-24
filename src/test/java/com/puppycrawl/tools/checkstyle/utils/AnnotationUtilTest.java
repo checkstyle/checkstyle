@@ -307,7 +307,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
             "22:28: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
-            "40:36: " + getCheckMessage(SuppressWarningsCheck.class,
+            "41:36: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
             "69:28: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),

@@ -19,14 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.sizes;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck;
 
 public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestSupport {
@@ -45,19 +42,13 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathRecordComponentNumberDefault.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RecordComponentNumberCheck.class);
-
         final String[] expectedViolation = {
-            "8:1: " + getCheckMessage(RecordComponentNumberCheck.class,
+            "12:1: " + getCheckMessage(RecordComponentNumberCheck.class,
                     RecordComponentNumberCheck.MSG_KEY,
                     15, 8),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputXpathRecordComponentNumberDefault']]",
             "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputXpathRecordComponentNumberDefault']]"
                     + "/MODIFIERS",
@@ -65,26 +56,21 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathRecordComponentNumberDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testCustomMax() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathRecordComponentNumberCustomMax.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RecordComponentNumberCheck.class);
-        moduleConfig.addProperty("max", "1");
-
         final String[] expectedViolation = {
-            "9:5: " + getCheckMessage(RecordComponentNumberCheck.class,
+            "13:5: " + getCheckMessage(RecordComponentNumberCheck.class,
                     RecordComponentNumberCheck.MSG_KEY,
                     2, 1),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathRecordComponentNumberCustomMax']]"
                     + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathRecordComponentNumberCustomMax']]"
@@ -94,25 +80,21 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
                     + "/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathRecordComponentNumberCustomMax.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathRecordComponentNumberInnerClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RecordComponentNumberCheck.class);
-
         final String[] expectedViolation = {
-            "10:9: " + getCheckMessage(RecordComponentNumberCheck.class,
+            "14:9: " + getCheckMessage(RecordComponentNumberCheck.class,
                     RecordComponentNumberCheck.MSG_KEY,
                     13, 8),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathRecordComponentNumberInnerClass']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
@@ -128,8 +110,10 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
                 + "/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathRecordComponentNumberInnerClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

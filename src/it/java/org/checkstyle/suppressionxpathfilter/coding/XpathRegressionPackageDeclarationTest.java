@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck;
 
 public class XpathRegressionPackageDeclarationTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionPackageDeclarationTest extends AbstractXpathTestSupp
 
     @Test
     public void testWrongPackage() throws Exception {
-        final File fileToProcess =
-                new File(getNonCompilablePath("InputXpathWrongPackage.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(PackageDeclarationCheck.class);
-
         final String[] expectedViolation = {
-            "2:1: " + getCheckMessage(PackageDeclarationCheck.class,
+            "9:1: " + getCheckMessage(PackageDeclarationCheck.class,
                     PackageDeclarationCheck.MSG_KEY_MISMATCH),
         };
 
@@ -60,20 +52,16 @@ public class XpathRegressionPackageDeclarationTest extends AbstractXpathTestSupp
                 "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getNonCompilablePath("InputXpathWrongPackage.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMissingPackage() throws Exception {
-        final File fileToProcess =
-                new File(getNonCompilablePath("InputXpathMissingPackage.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(PackageDeclarationCheck.class);
-
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(PackageDeclarationCheck.class,
+            "10:1: " + getCheckMessage(PackageDeclarationCheck.class,
                     PackageDeclarationCheck.MSG_KEY_MISSING),
         };
 
@@ -86,20 +74,16 @@ public class XpathRegressionPackageDeclarationTest extends AbstractXpathTestSupp
                         + "[./IDENT[@text='InputXpathMissingPackage']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getNonCompilablePath("InputXpathMissingPackage.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMissingPackageWithInnerClass() throws Exception {
-        final File fileToProcess =
-                new File(getNonCompilablePath("InputXpathPackageDeclarationInnerClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(PackageDeclarationCheck.class);
-
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(PackageDeclarationCheck.class,
+            "10:1: " + getCheckMessage(PackageDeclarationCheck.class,
                     PackageDeclarationCheck.MSG_KEY_MISSING),
         };
 
@@ -113,8 +97,10 @@ public class XpathRegressionPackageDeclarationTest extends AbstractXpathTestSupp
                 + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getNonCompilablePath("InputXpathPackageDeclarationInnerClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

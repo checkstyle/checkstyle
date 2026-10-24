@@ -18,9 +18,10 @@ public class InputSummaryJavadocHtmlFormat {
      * <p><b>{@summary Normal Javadoc.}</b></p>
      */
     private void foo1() {}
+    // violation 2 lines below 'Summary .* missing an ending period.'
     /**
      * <p><b><i>{@summary Normal Javadoc}</i></b></p>
-     */ // violation above 'Summary .* missing an ending period.'
+     */
     private void foo2() {}
 
     /**
@@ -37,9 +38,10 @@ public class InputSummaryJavadocHtmlFormat {
      * <p>{@code Code.}</p>
      */
     private void foo6() {}
+    // violation 2 lines below 'Summary javadoc is missing.'
     /**
      * <p>{@summary}</p>
-     */ // violation above 'Summary javadoc is missing.'
+     */
     private void foo11() {}
 
     /**

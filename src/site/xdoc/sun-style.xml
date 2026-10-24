@@ -1040,6 +1040,17 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
                   </span>
+                  <a href="checks/whitespace/nowhitespacebefore.html#NoWhitespaceBefore">
+                    NoWhitespaceBefore
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
+                    config
+                  </a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
                   <a href="checks/whitespace/whitespaceafter.html#WhitespaceAfter">
                     WhitespaceAfter
                   </a>

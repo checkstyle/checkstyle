@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_MISSING_TAG_WITH_QUOTES;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_TAG_FORMAT;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_UNKNOWN_TAG;
 
 import org.junit.jupiter.api.Test;
@@ -39,6 +40,7 @@ public class JavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
             "28:6: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
             "36:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
             "39:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
+            "46:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -49,6 +51,7 @@ public class JavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
         final String[] expected = {
             "30:6: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
             "38:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
+            "48:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -57,9 +60,11 @@ public class JavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "\\S"),
             "30:6: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
             "38:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
             "41:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
+            "48:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -68,10 +73,11 @@ public class JavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
             "30:6: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
             "38:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
             "41:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
-
+            "48:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -100,6 +106,7 @@ public class JavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
         final String[] expected = {
             "38:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
             "41:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
+            "48:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
         };
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
@@ -112,6 +119,7 @@ public class JavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
             "38:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
             "41:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
             "44:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
+            "48:3: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
         };
 
         verifyWithInlineConfigParser(getPath("Example8.java"), expected);
