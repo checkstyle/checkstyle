@@ -1007,6 +1007,32 @@
                    of the module and are executed on the classpath, so compile them on the
                    classpath as well instead of patching them into the module. -->
               <useModulePath>false</useModulePath>
+              <compileSourceRoots>
+                <compileSourceRoot>${project.basedir}/src/test/java</compileSourceRoot>
+                <compileSourceRoot>${project.basedir}/src/it/java</compileSourceRoot>
+                <compileSourceRoot>${project.basedir}/src/xdocs-examples/java</compileSourceRoot>
+              </compileSourceRoots>
+            </configuration>
+          </execution>
+          <execution>
+            <id>compile-test-input-resources</id>
+            <phase>test-compile</phase>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
+            <configuration>
+              <useModulePath>false</useModulePath>
+              <showWarnings>false</showWarnings>
+              <skip>${checkstyle.skipCompileInputResources}</skip>
+              <compileSourceRoots>
+                <compileSourceRoot>${project.basedir}/src/test/resources</compileSourceRoot>
+                <compileSourceRoot>${project.basedir}/src/it/resources</compileSourceRoot>
+                <compileSourceRoot>${project.basedir}/src/xdocs-examples/resources</compileSourceRoot>
+              </compileSourceRoots>
+              <compilerArgs combine.children="append">
+                <arg>-Xlint:none</arg>
+                <arg>-nowarn</arg>
+              </compilerArgs>
             </configuration>
           </execution>
         </executions>
@@ -2796,9 +2822,19 @@
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${compiler.plugin.version}</version>
             <executions>
-              <!-- Skip the default-testCompile execution as we don't want to execute the testCompile goal twice -->
+              <!-- Skip testCompile executions as we don't want to execute the testCompile goal twice -->
               <execution>
                 <id>default-testCompile</id>
+                <phase>test-compile</phase>
+                <goals>
+                  <goal>testCompile</goal>
+                </goals>
+                <configuration>
+                  <skip>true</skip>
+                </configuration>
+              </execution>
+              <execution>
+                <id>compile-test-input-resources</id>
                 <phase>test-compile</phase>
                 <goals>
                   <goal>testCompile</goal>
