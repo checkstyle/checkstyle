@@ -94,7 +94,6 @@ fi
 echo "Formatting all Input files file at src/it/resources/com/google/checkstyle/test :"
 COMPILABLE_INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.java" \
   | grep -v -x -f config/google-java-format/excluded/compilable-input-paths.txt \
-  | grep -v -E '/InputFormatted[^/]*\.java$' \
   | xargs -r grep "$MARKER_FLAG" ': Compilable with Java25' || true
   ))
 
@@ -105,7 +104,6 @@ done
 echo "Formatting all Non-compilable Input files file at src/it/resources-noncompilable/com/google/checkstyle/test :"
 NON_COMPILABLE_INPUT_PATHS=($(find src/it/resources-noncompilable/com/google/checkstyle/test/ -name "Input*.java" \
   | grep -v -x -f config/google-java-format/excluded/noncompilable-input-paths.txt \
-  | grep -v -E '/InputFormatted[^/]*\.java$' \
   | xargs -r grep "$MARKER_FLAG" ': Compilable with Java25' || true
   ))
 
