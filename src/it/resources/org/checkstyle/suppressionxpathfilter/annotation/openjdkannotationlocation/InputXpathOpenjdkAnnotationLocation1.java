@@ -1,9 +1,20 @@
+/*
+OpenjdkAnnotationLocation
+tokens = (default)CLASS_DEF, INTERFACE_DEF, PACKAGE_DEF, ENUM_CONSTANT_DEF, \
+         ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF, \
+         RECORD_DEF, COMPACT_CTOR_DEF, MODULE_DEF
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.annotation.openjdkannotationlocation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
-@ClassAnnotation("bar") class InputXpathOpenjdkAnnotationLocation1 { //warn
+@ClassAnnotation("bar") class InputXpathOpenjdkAnnotationLocation1 {
+// violation above """Annotations must be on a separate line
+// from 'InputXpathOpenjdkAnnotationLocation1'."""
 
 }
 
