@@ -181,12 +181,15 @@ public class LineWrappingHandler {
 
     /**
      * Checks for annotation indentation.
-     * Only the annotations which lead the checked construct are processed here,
-     * that is the run of annotations which starts with the annotation of the
-     * first line and ends at the first token which is not an annotation.
-     * Annotations after such a token do not lead the construct: each of them
-     * starts a wrapped line of the construct, so their lines are left in the
-     * map and are checked by the caller with the line wrapping indentation.
+     * An annotation which starts a wrapped line of the checked construct is
+     * not processed here: its line is left in the map and is checked by the
+     * caller with the line wrapping indentation. An annotation starts a
+     * wrapped line when another token of the construct, like a modifier,
+     * already appeared before it and the annotation is the first token of
+     * its line, or when such an annotation starts the next line, in which
+     * case the line of the current annotation is left in the map as well.
+     * Any other annotation is processed here, and the lines it spans keep
+     * the treatment they had before such wrapped annotations were checked.
      *
      * @param firstNodesOnLines the nodes which are present in the beginning of each line.
      * @param indentLevel line wrapping indentation.
@@ -195,18 +198,58 @@ public class LineWrappingHandler {
             NavigableMap<Integer, DetailAST> firstNodesOnLines, int indentLevel) {
         final DetailAST firstLineNode = firstNodesOnLines.get(firstNodesOnLines.firstKey());
         DetailAST node = firstLineNode.getParent();
-        while (node != null && node.getType() == TokenTypes.ANNOTATION) {
-            final DetailAST atNode = node.getFirstChild();
-            final NavigableMap<Integer, DetailAST> annotationLines =
-                    firstNodesOnLines.subMap(
-                            node.getLineNo(),
-                            true,
-                            getNextNodeLine(firstNodesOnLines, node),
-                            true
-                    );
-            checkAnnotationIndentation(atNode, annotationLines, indentLevel);
+        boolean nonAnnotationTokenSeen = false;
+        while (node != null) {
+            if (node.getType() == TokenTypes.ANNOTATION) {
+                final DetailAST atNode = node.getFirstChild();
+                if (!isLeftForLineWrappingCheck(firstNodesOnLines, node, nonAnnotationTokenSeen)) {
+                    final NavigableMap<Integer, DetailAST> annotationLines =
+                            firstNodesOnLines.subMap(
+                                    node.getLineNo(),
+                                    true,
+                                    getNextNodeLine(firstNodesOnLines, node),
+                                    true
+                            );
+                    checkAnnotationIndentation(atNode, annotationLines, indentLevel);
+                }
+            }
+            else {
+                nonAnnotationTokenSeen = true;
+            }
             node = node.getNextSibling();
         }
+    }
+
+    /**
+     * Checks whether the line of the given annotation should be left in the map
+     * for the caller to check with the line wrapping indentation. That is the
+     * case when a token which is not an annotation already appeared before the
+     * annotation and the annotation is the first token of its line, or the
+     * first token of the next line is an annotation.
+     *
+     * @param firstNodesOnLines the nodes which are present in the beginning of each line.
+     * @param node the annotation node to check.
+     * @param nonAnnotationTokenSeen whether a token which is not an annotation
+     *        already appeared before the annotation.
+     * @return true if the line of the annotation should be left in the map.
+     */
+    private static boolean isLeftForLineWrappingCheck(
+            NavigableMap<Integer, DetailAST> firstNodesOnLines, DetailAST node,
+            boolean nonAnnotationTokenSeen) {
+        boolean left = false;
+        if (nonAnnotationTokenSeen) {
+            final DetailAST atNode = node.getFirstChild();
+            if (firstNodesOnLines.get(atNode.getLineNo()) == atNode) {
+                left = true;
+            }
+            else {
+                final DetailAST nextLineNode =
+                        firstNodesOnLines.get(getNextNodeLine(firstNodesOnLines, node));
+                left = nextLineNode != null && nextLineNode.getType() == TokenTypes.AT
+                        && nextLineNode.getLineNo() > atNode.getLineNo();
+            }
+        }
+        return left;
     }
 
     /**
@@ -339,7 +382,8 @@ public class LineWrappingHandler {
                     && (isCurrentNodeCloseAnnotationAloneInLine
                     || node.getType() == TokenTypes.AT
                     && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
-                        || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS))) {
+                        || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)
+                    || TokenUtil.areOnSameLine(node, atNode))) {
                 logWarningMessage(node, firstNodeIndent);
             }
             else if (!isArrayInitPresentInAncestors) {
