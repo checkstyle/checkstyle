@@ -67,7 +67,6 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             TokenTypes.CTOR_DEF,
             TokenTypes.STATIC_INIT,
             TokenTypes.INSTANCE_INIT,
-            TokenTypes.COMPILATION_UNIT,
             TokenTypes.LAMBDA,
             TokenTypes.ENUM_DEF,
             TokenTypes.RECORD_DEF,
@@ -100,7 +99,6 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             TokenTypes.CTOR_DEF,
             TokenTypes.STATIC_INIT,
             TokenTypes.INSTANCE_INIT,
-            TokenTypes.COMPILATION_UNIT,
             TokenTypes.LAMBDA,
             TokenTypes.ENUM_DEF,
             TokenTypes.RECORD_DEF,
@@ -402,6 +400,50 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFileAnonInnerClass() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "a"),
+            "36:9: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "a"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputUnusedLocalVariableCompactSourceFileAnonInner.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileAnonInnerClass2() throws Exception {
+        final String[] expected = {
+            "11:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "a"),
+            "25:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "c"),
+            "32:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "d"),
+            "45:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "e"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputUnusedLocalVariableCompactSourceFileAnonInner2.java"),
+                expected);
+    }
+
+    @Test
+    public void testAnonInnerClassInLocalClassField() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableAnonInnerClassInLocalClassField.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileNestedAnonInnerClass() throws Exception {
+        final String[] expected = {
+            "11:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "a"),
+            "44:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "a2"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputUnusedLocalVariableCompactSourceFileNestedAnonInner.java"),
+                expected);
+    }
+
+    @Test
     public void testUnusedLocalVariableTernaryAndExpressions() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -634,7 +676,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         };
         assertWithMessage("State is not cleared on beginTree")
                 .that(isClear.test(TestUtil.getInternalState(
-                        check, "anonInnerAstToTypeDeclDesc", Object.class)))
+                        check, "anonInnerAstToOuterTypeDeclName", Object.class)))
                 .isTrue();
         final Predicate<Object> isQueueClear = anonInnerClassHolders -> {
             return ((Collection<?>) anonInnerClassHolders).isEmpty();
