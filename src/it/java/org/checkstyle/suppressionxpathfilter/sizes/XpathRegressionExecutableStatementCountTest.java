@@ -21,14 +21,12 @@ package org.checkstyle.suppressionxpathfilter.sizes;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck.MSG_KEY;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck;
 
 public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTestSupport {
@@ -47,15 +45,9 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
     public void testDefaultConfig() throws Exception {
         final String filePath =
                 getPath("InputXpathExecutableStatementCountDefault.java");
-        final File fileToProcess = new File(filePath);
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ExecutableStatementCountCheck.class);
-
-        moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolations = {
-            "4:5: " + getCheckMessage(ExecutableStatementCountCheck.class, MSG_KEY, 3, 0),
+            "13:5: " + getCheckMessage(ExecutableStatementCountCheck.class, MSG_KEY, 3, 0),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -72,24 +64,16 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
             + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
-
+        verifyXpathWithInlineConfigParser(filePath, expectedXpathQueries, expectedViolations);
     }
 
     @Test
     public void testCustomMax() throws Exception {
         final String filePath =
                 getPath("InputXpathExecutableStatementCountCustomMax.java");
-        final File fileToProcess = new File(filePath);
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ExecutableStatementCountCheck.class);
-
-        moduleConfig.addProperty("max", "0");
-        moduleConfig.addProperty("tokens", "CTOR_DEF");
 
         final String[] expectedViolations = {
-            "4:5: " + getCheckMessage(ExecutableStatementCountCheck.class, MSG_KEY, 2, 0),
+            "12:5: " + getCheckMessage(ExecutableStatementCountCheck.class, MSG_KEY, 2, 0),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -109,23 +93,16 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
             + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(filePath, expectedXpathQueries, expectedViolations);
     }
 
     @Test
     public void testLambdas() throws Exception {
         final String filePath =
                 getPath("InputXpathExecutableStatementCountLambdas.java");
-        final File fileToProcess = new File(filePath);
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ExecutableStatementCountCheck.class);
-
-        moduleConfig.addProperty("max", "1");
-        moduleConfig.addProperty("tokens", "LAMBDA");
 
         final String[] expectedViolations = {
-            "7:22: " + getCheckMessage(ExecutableStatementCountCheck.class, MSG_KEY, 2, 1),
+            "15:22: " + getCheckMessage(ExecutableStatementCountCheck.class, MSG_KEY, 2, 1),
         };
 
         final List<String> expectedXpathQueries = List.of(
@@ -134,7 +111,7 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='c']]/ASSIGN/LAMBDA"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(filePath, expectedXpathQueries, expectedViolations);
     }
 
 }
