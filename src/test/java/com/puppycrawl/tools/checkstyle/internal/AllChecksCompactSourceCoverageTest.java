@@ -184,7 +184,6 @@ public class AllChecksCompactSourceCoverageTest {
         "NumericalPrefixesInfixesSuffixesCharacterCaseCheck",
         "OneTopLevelClassCheck",
         "OperatorWrapCheck",
-        "OuterTypeNumberCheck",
         "OverloadMethodsDeclarationOrderCheck",
         "PackageAnnotationCheck",
         "PackageDeclarationCheck",
