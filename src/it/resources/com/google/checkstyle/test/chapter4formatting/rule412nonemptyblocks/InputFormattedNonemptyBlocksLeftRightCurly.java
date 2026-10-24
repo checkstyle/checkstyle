@@ -216,10 +216,10 @@ class InputRightCurlyOther22 {
   }
 }
 
+// violation 4 lines below 'Top-level class FooCtor2 has to reside in its own source file.'
 /**
  * Test input for closing brace if that brace terminates a statement or the body of a constructor.
  */
-// violation below 'Top-level class FooCtor2 has to reside in its own source file.'
 class FooCtor2 {
   int i3;
 
@@ -228,18 +228,18 @@ class FooCtor2 {
   }
 }
 
+// violation 2 lines below 'Top-level class FooMethod2 has to reside in its own source file.'
 /** Test input for closing brace if that brace terminates a statement or the body of a method. */
-// violation below 'Top-level class FooMethod2 has to reside in its own source file.'
 class FooMethod2 {
   public void fooMethod() {
     int i = 1;
   }
 }
 
+// violation 4 lines below 'Top-level class FooInner2 has to reside in its own source file.'
 /**
  * Test input for closing brace if that brace terminates a statement or the body of a named class.
  */
-// violation below 'Top-level class FooInner2 has to reside in its own source file.'
 class FooInner2 {
   class InnerFoo {
     public void fooInnerMethod() {}
