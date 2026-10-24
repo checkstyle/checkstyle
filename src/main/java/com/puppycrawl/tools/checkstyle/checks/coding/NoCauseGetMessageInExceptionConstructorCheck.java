@@ -99,6 +99,11 @@ public class NoCauseGetMessageInExceptionConstructorCheck extends AbstractCheck 
     }
 
     @Override
+    public void beginTree(DetailAST rootAST) {
+        catchScopes.clear();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.LITERAL_CATCH) {
             catchScopes.push(ast);
