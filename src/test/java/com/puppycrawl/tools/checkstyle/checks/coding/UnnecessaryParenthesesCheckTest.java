@@ -45,7 +45,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    public void testOperators() throws Exception {
 
         final String[] expected = {
             "18:22: " + getCheckMessage(MSG_ASSIGN),
@@ -84,20 +84,30 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "93:17: " + getCheckMessage(MSG_ASSIGN),
             "95:11: " + getCheckMessage(MSG_ASSIGN),
             "97:16: " + getCheckMessage(MSG_RETURN),
-            "107:13: " + getCheckMessage(MSG_EXPR),
-            "111:16: " + getCheckMessage(MSG_EXPR),
-            "116:19: " + getCheckMessage(MSG_EXPR),
-            "117:23: " + getCheckMessage(MSG_LITERAL, "4000"),
-            "122:19: " + getCheckMessage(MSG_ASSIGN),
-            "124:11: " + getCheckMessage(MSG_ASSIGN),
-            "124:16: " + getCheckMessage(MSG_LITERAL, "3"),
-            "128:26: " + getCheckMessage(MSG_ASSIGN),
-            "139:11: " + getCheckMessage(MSG_ASSIGN),
-            "139:14: " + getCheckMessage(MSG_STRING, "\"12345678901234567890123\""),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputUnnecessaryParenthesesOperatorsAndCasts.java"), expected);
+                getPath("InputUnnecessaryParenthesesOperators.java"), expected);
+    }
+
+    @Test
+    public void testCasts() throws Exception {
+
+        final String[] expected = {
+            "23:13: " + getCheckMessage(MSG_EXPR),
+            "27:16: " + getCheckMessage(MSG_EXPR),
+            "32:19: " + getCheckMessage(MSG_EXPR),
+            "33:23: " + getCheckMessage(MSG_LITERAL, "4000"),
+            "38:19: " + getCheckMessage(MSG_ASSIGN),
+            "40:11: " + getCheckMessage(MSG_ASSIGN),
+            "40:16: " + getCheckMessage(MSG_LITERAL, "3"),
+            "44:26: " + getCheckMessage(MSG_ASSIGN),
+            "55:11: " + getCheckMessage(MSG_ASSIGN),
+            "55:14: " + getCheckMessage(MSG_STRING, "\"12345678901234567890123\""),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryParenthesesCasts.java"), expected);
     }
 
     @Test
