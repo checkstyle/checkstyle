@@ -24,7 +24,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -91,7 +91,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     private static final String DEFAULT_CHECK_FORMAT = ".*";
 
     /** List of suppressions from the file. By default, Its null. */
-    private final Collection<Suppression> currentFileSuppressionCache = new ArrayList<>();
+    private final List<Suppression> currentFileSuppressionCache = new ArrayList<>();
 
     /** File name that was suppressed. By default, Its empty. */
     private String currentFileName = "";
@@ -229,7 +229,13 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     private void cacheSuppressions(FileText fileText) {
         for (int lineNo = 0; lineNo < fileText.size(); lineNo++) {
             final Optional<Suppression> suppression = getSuppression(fileText, lineNo);
-            suppression.ifPresent(currentFileSuppressionCache::add);
+            // ON suppressions before the first OFF suppression can not change the result
+            suppression
+                .filter(item -> {
+                    return item.suppressionType == SuppressionType.OFF
+                        || !currentFileSuppressionCache.isEmpty();
+                })
+                .ifPresent(currentFileSuppressionCache::add);
         }
     }
 
@@ -263,18 +269,23 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
      * the given {@link AuditEvent}. The nearest suppression is the suppression which scope
      * is before the line and column of the event.
      *
-     * @param suppressions collection of {@code Suppression} instances.
+     * @param suppressions list of {@code Suppression} instances ordered by line.
      * @param event {@code AuditEvent} instance.
      * @return {@code Suppression} instance.
      */
-    private static Suppression getNearestSuppression(Collection<Suppression> suppressions,
+    private static Suppression getNearestSuppression(List<Suppression> suppressions,
                                                      AuditEvent event) {
-        return suppressions
-            .stream()
-            .filter(suppression -> suppression.isMatch(event))
-            .reduce((first, second) -> second)
-            .filter(suppression -> suppression.suppressionType != SuppressionType.ON)
-            .orElse(null);
+        Suppression result = null;
+        for (int index = suppressions.size() - 1; index >= 0; index--) {
+            final Suppression suppression = suppressions.get(index);
+            if (suppression.isMatch(event)) {
+                if (suppression.suppressionType == SuppressionType.OFF) {
+                    result = suppression;
+                }
+                break;
+            }
+        }
+        return result;
     }
 
     /** Enum which represents the type of the suppression. */
