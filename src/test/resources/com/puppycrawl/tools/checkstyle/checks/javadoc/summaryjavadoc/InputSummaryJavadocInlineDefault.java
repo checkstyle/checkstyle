@@ -18,13 +18,15 @@ class InputSummaryJavadocInlineDefault {
      * {@summary A simple correct Javadoc.}
      */
     void foo1() {}
+    // violation 2 lines below 'Summary .* missing an ending period.'
     /**
      * {@summary This code is wrong }
-     */ // violation above 'Summary .* missing an ending period.'
+     */
     void foo5(){}
+    // violation 2 lines below 'Summary .* missing an ending period.'
     /**
      * {@summary This code {@see Javadoc} is wrong }
-     */ // violation above 'Summary .* missing an ending period.'
+     */
     void foo6(){}
     // violation below 'Summary javadoc is missing.'
     /**
@@ -36,13 +38,15 @@ class InputSummaryJavadocInlineDefault {
      * {@summary <p>This code is right.</p>}
      */
     void foo8(){}
+    // violation 2 lines below 'Summary .* missing an ending period.'
     /**
      * {@summary As of , replaced by {@link #setBounds(int,int,int,int)}}
-     */ // violation above 'Summary .* missing an ending period.'
+     */
     void foo11() {}
+    // violation 2 lines below 'Summary .* missing an ending period.'
     /**
      * {@summary {@throws Exception if a problem occurs}}
-     */ // violation above 'Summary .* missing an ending period.'
+     */
     void foo12() throws Exception {}
 
     /** {@summary An especially short bit of Javadoc.} */
@@ -52,13 +56,15 @@ class InputSummaryJavadocInlineDefault {
      * {@summary Some Javadoc.}
      */
     public static final byte NUL = 0;
+    // violation 2 lines below 'Summary javadoc is missing.'
     /**
      * {@summary <a href="mailto:vlad@htmlbook.ru"/>}
-     */ // violation above 'Summary javadoc is missing.'
+     */
     class InnerInputCorrectJavaDocParagraphCheck {
+        // violation 2 lines below 'Summary .* missing an ending period.'
         /**
          * {@summary foooo@foooo}
-         */ // violation above 'Summary .* missing an ending period.'
+         */
         public static final byte NUL = 0;
 
         /**

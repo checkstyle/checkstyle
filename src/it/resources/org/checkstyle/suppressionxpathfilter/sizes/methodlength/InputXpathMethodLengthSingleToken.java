@@ -1,3 +1,12 @@
+/*
+MethodLength
+max = 1
+countEmpty = (default)true
+tokens = METHOD_DEF
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.sizes.methodlength;
 
 public class InputXpathMethodLengthSingleToken {
@@ -6,7 +15,8 @@ public class InputXpathMethodLengthSingleToken {
 
     InputXpathMethodLengthSingleToken a =
             new InputXpathMethodLengthSingleToken(){
-        public void methodOne(){ // warn
+        // violation below 'Method methodOne length is 3 lines (max allowed is 1).'
+        public void methodOne(){
 
         }
     };

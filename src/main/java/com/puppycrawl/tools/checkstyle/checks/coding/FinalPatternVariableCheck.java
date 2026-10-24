@@ -209,8 +209,7 @@ public class FinalPatternVariableCheck extends AbstractCheck {
     /**
      * Gets statements that follow conditional where pattern variable scope
      * extends. Only returns top-level statements that are siblings of the
-     * conditional, excluding statements nested in control structures like
-     * while loops.
+     * conditional, excluding statements nested in control structures like while loops.
      *
      * @param conditionalStatement The if statement.
      * @return List of statement nodes in the extended scope.
@@ -270,8 +269,7 @@ public class FinalPatternVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Gets the type of ASSIGN tokens that matches with what follows the
-     * preceding branch.
+     * Gets the type of ASSIGN tokens that matches with what follows the preceding branch.
      *
      * @param preAssignBranch branch preceding ASSIGN token types.
      * @return type of ASSIGN token.
