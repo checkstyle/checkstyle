@@ -33,8 +33,8 @@ class InputAtclauseOrderIncorrect4 implements Serializable {
      * @serialData Some javadoc.
      * @author max
      */
-    // violation 6 lines below 'Block tags have to appear in the order .[@author.*'
     class InnerClassWithAnnotations4 {
+        // violation 5 lines below 'Block tags have to appear in the order .[@author.*'
         /**
          * Some text.
          * @param aString Some text.

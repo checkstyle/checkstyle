@@ -127,7 +127,7 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInvalidJavadocPositionOnCompactConstructorsWithAnnotation() throws Exception {
         final String[] expected = {
-            "47:9: " + getCheckMessage(MSG_KEY),
+            "48:9: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
