@@ -1,6 +1,7 @@
 Aapt
 aarch
 abbreviationaswordinname
+abcd
 abstractcheck
 abstractclassname
 abstractfileset
@@ -459,6 +460,7 @@ fieldannotations
 filebasic
 filechooser
 filefilter
+filejava
 filelength
 fileorganization
 filepath
@@ -648,6 +650,7 @@ innerassignment
 Innerclass
 innertypelast
 inplace
+inputtmp
 instanceof
 Intelli
 intellij
@@ -823,7 +826,6 @@ linkplain
 linksource
 linux
 Lisetskii
-Ljava
 lkuehne
 LNOT
 localctx
@@ -1504,6 +1506,8 @@ ub
 uber
 ubuntu
 ucc
+ud
+ude
 UElement
 ufeff
 ul

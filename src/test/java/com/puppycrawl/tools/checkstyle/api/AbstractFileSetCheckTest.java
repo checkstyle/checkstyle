@@ -29,8 +29,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -105,6 +109,55 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Internal message should be empty")
                 .that(internalMessages)
                 .isEmpty();
+    }
+
+    @MethodSource("fileExtensionCases")
+    @ParameterizedTest
+    public final void testProcessFileExtensions(String[] extensions, String fileName,
+                                                int expectedViolations)
+            throws Exception {
+        final DummyFileSetCheck check = new DummyFileSetCheck();
+        check.configure(new DefaultConfiguration("filesetcheck"));
+        if (extensions != null) {
+            check.setFileExtensions(extensions);
+        }
+        final File file = new File(fileName);
+
+        assertWithMessage("Processing %s with extensions %s", fileName, Arrays.toString(extensions))
+                .that(check.process(file, new FileText(file, Collections.emptyList())))
+                .hasSize(expectedViolations);
+    }
+
+    private static Stream<Arguments> fileExtensionCases() {
+        return Stream.of(
+                Arguments.of(null, "input.txt", 1),
+                Arguments.of(new String[0], "input.txt", 1),
+                Arguments.of(new String[] {"tmp"}, "input.tmp", 1),
+                Arguments.of(new String[] {".tmp"}, "input.tmp", 1),
+                Arguments.of(new String[] {"tmp"}, "input.txt", 0),
+                Arguments.of(new String[] {"xml", "tmp"}, "input.tmp", 1),
+                Arguments.of(new String[] {"TMP"}, "input.tmp", 0),
+                Arguments.of(new String[] {"tar.gz"}, "archive.tar.gz", 1),
+                Arguments.of(new String[] {"tar.gz"}, "archive.gz", 0),
+                Arguments.of(new String[] {""}, "input.", 1),
+                Arguments.of(new String[] {""}, "input", 0),
+                Arguments.of(new String[] {"tmp"}, "inputtmp", 0),
+                Arguments.of(new String[] {"tmp"}, "parent.tmp/input.txt", 0),
+                Arguments.of(new String[] {"tmp"}, "parent.txt/input.tmp", 1));
+    }
+
+    @Test
+    public void testFileExtensionsAreCopiedOnSet() throws Exception {
+        final DummyFileSetCheck check = new DummyFileSetCheck();
+        check.configure(new DefaultConfiguration("filesetcheck"));
+        final String[] extensions = {"tmp"};
+        check.setFileExtensions(extensions);
+        extensions[0] = "txt";
+        final File file = new File("input.tmp");
+
+        assertWithMessage("Changing the supplied array must not change accepted extensions")
+                .that(check.process(file, new FileText(file, Collections.emptyList())))
+                .hasSize(1);
     }
 
     @Test
