@@ -3833,6 +3833,17 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedPrivateFieldCheck.java</fileName>
     <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg1 of Map.put.</message>
+    <lineContent>lambdaScope.put(paramIdent.getText(), null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedPrivateFieldCheck.java</fileName>
+    <specifier>argument</specifier>
     <message>incompatible argument for parameter modifiers of UnusedPrivateFieldCheck.isPrivate.</message>
     <lineContent>final boolean isPrivateField = isPrivate(modifiers);</lineContent>
     <details>
