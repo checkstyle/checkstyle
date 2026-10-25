@@ -247,7 +247,7 @@ public class Example4 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpSingleline"&gt;
-    &lt;property name="format" value="COPYRIGHTED"/&gt;
+    &lt;property name="format" value="COPY[R]IGHTED"/&gt;
     &lt;property name="maximum" value="1"/&gt;
     &lt;property name="ignoreCase" value="true"/&gt;
   &lt;/module&gt;
@@ -257,9 +257,9 @@ public class Example4 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * This file is copyrighted under CC.
- */ // violation above 'Line matches the illegal pattern'
+ */ // ok, the first occurrence is allowed
 public class Example5 {
-
+  // This method is copyrighted. // violation 'Line matches the illegal pattern'
   void myFunction() {
     try {
       doSomething();
