@@ -303,11 +303,22 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
     private static boolean isNullCheckRedundant(DetailAST instanceOfIdent,
         final DetailAST nullCheckNode) {
 
-        final DetailAST nullCheckIdent = nullCheckNode.findFirstToken(TokenTypes.IDENT);
-        return nullCheckIdent != null
-                && (isNullLiteral(nullCheckNode.getFirstChild().getNextSibling())
-                    || isNullLiteral(nullCheckNode.getFirstChild()))
-                && instanceOfIdent.getText().equals(nullCheckIdent.getText());
+        boolean hasNull = false;
+        boolean hasIdent = false;
+
+        DetailAST child = nullCheckNode.getFirstChild();
+        while (child != null) {
+            if (isNullLiteral(child)) {
+                hasNull = true;
+            }
+            else if (child.getType() == TokenTypes.IDENT
+                    && instanceOfIdent.getText().equals(child.getText())) {
+                hasIdent = true;
+            }
+            child = child.getNextSibling();
+        }
+
+        return hasNull && hasIdent;
     }
 
 }
