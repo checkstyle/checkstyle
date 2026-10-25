@@ -35,6 +35,7 @@ import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.junitpioneer.jupiter.SetSystemProperty;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -164,6 +165,18 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Cause message should contain uri")
                 .that(exception.getCause().getMessage())
                 .isEqualTo("unable to find " + uri);
+    }
+
+    @Test
+    @SetSystemProperty(key = "ic.check.pkg", value = "importcontrol")
+    @SetSystemProperty(key = "ic.check.allowed", value = "java.io")
+    public void testPropertyExpansion() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_DISALLOWED, "java.util.ArrayList"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputImportControlPropertyExpansion.java"), expected);
     }
 
     @Test

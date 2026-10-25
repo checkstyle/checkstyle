@@ -227,17 +227,90 @@ public final class ImportControlLoader extends XmlLoader {
         final AbstractImportRule rule;
 
         if (module != null) {
-            rule = new ModuleImportRule(isAllow, isLocalOnly, module, regex);
+            rule = new ModuleImportRule(isAllow, isLocalOnly, replaceProperties(module), regex);
         }
         else if (pkg != null) {
             final boolean exactMatch = attributes.getValue("exact-match") != null;
-            rule = new PkgImportRule(isAllow, isLocalOnly, pkg, exactMatch, regex);
+            rule = new PkgImportRule(isAllow, isLocalOnly, replaceProperties(pkg), exactMatch,
+                    regex);
         }
         else {
             final String clazz = safeGet(attributes, "class");
             rule = new ClassImportRule(isAllow, isLocalOnly, clazz, regex);
         }
         return rule;
+    }
+
+    /**
+     * Replaces {@code ${xxx}} style constructions in the given value with the values
+     * of the corresponding system properties. A {@code $$} pair is replaced with a
+     * single {@code $}, and a {@code $} that does not start a property reference is
+     * left unchanged, in the same way as property replacement in configuration files.
+     *
+     * @param value the value to scan for property references.
+     * @return the value with all property references replaced.
+     * @throws SAXException if a property reference is not closed or the referenced
+     *         property has not been set.
+     */
+    private static String replaceProperties(String value) throws SAXException {
+        final int length = value.length();
+        final StringBuilder result = new StringBuilder(length);
+        int pos = 0;
+        while (pos < length) {
+            final int dollar = value.indexOf('$', pos);
+            if (dollar == -1) {
+                result.append(value, pos, length);
+                pos = length;
+            }
+            else {
+                result.append(value, pos, dollar);
+                if (dollar == length - 1) {
+                    result.append('$');
+                    pos = dollar + 1;
+                }
+                else if (value.charAt(dollar + 1) == '$') {
+                    result.append('$');
+                    pos = dollar + 2;
+                }
+                else if (value.charAt(dollar + 1) == '{') {
+                    pos = expandProperty(value, dollar, result);
+                }
+                else {
+                    result.append(value, dollar, dollar + 2);
+                    pos = dollar + 2;
+                }
+            }
+        }
+        return result.toString();
+    }
+
+    /**
+     * Expands a single {@code ${xxx}} property reference that starts at the given dollar sign
+     * position and appends the value of the referenced system property to the result.
+     *
+     * @param value the value being scanned for property references.
+     * @param dollar the position of the dollar sign that starts the reference.
+     * @param result the buffer the property value is appended to.
+     * @return the position just after the closing brace of the reference.
+     * @throws SAXException if the property reference is not closed or the referenced
+     *         property has not been set.
+     */
+    private static int expandProperty(String value, int dollar, StringBuilder result)
+            throws SAXException {
+        final int endName = value.indexOf('}', dollar);
+        if (endName == -1) {
+            // -@cs[IllegalInstantiation] SAXException is in the signature of callers
+            throw new SAXException("Syntax error in property: " + value);
+        }
+        final String propertyName = value.substring(dollar + 2, endName);
+        final String propertyValue = System.getProperty(propertyName);
+        if (propertyValue == null) {
+            // -@cs[IllegalInstantiation] SAXException is in the signature of callers
+            throw new SAXException(
+                    "Property ${" + propertyName + "} has not been set");
+        }
+        result.append(propertyValue);
+        return endName + 1;
     }
 
     /**
@@ -372,7 +445,7 @@ public final class ImportControlLoader extends XmlLoader {
             // of the only method which calls the current one
             throw new SAXException("missing attribute " + name);
         }
-        return returnValue;
+        return replaceProperties(returnValue);
     }
 
 }
