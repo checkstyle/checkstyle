@@ -62,7 +62,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *
  * <p>
  * When it comes to code quality measurement by this metric level 10 is very
- * good level as a ultimate target (that is hard to archive). Do not be ashamed
+ * good level as an ultimate target (that is hard to archive). Do not be ashamed
  * to have complexity level 15 or even higher, but keep it below 20 to catch
  * really bad-designed code automatically.
  * </p>

@@ -71,7 +71,7 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- The check validates a XML document when it loads the document. To validate against
+ The check validates an XML document when it loads the document. To validate against
  the above DTD, include the following document type declaration in your XML document:
  &lt;/p&gt;
  &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;

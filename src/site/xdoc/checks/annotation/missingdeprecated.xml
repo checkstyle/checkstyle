@@ -41,7 +41,7 @@
         <p>
           Both ways of flagging deprecation serve their own purpose.
           The &#64;Deprecated annotation is used for compilers and development tools.
-          The &#64;deprecated javadoc tag is used to document why something is deprecated
+          The &#64;deprecated Javadoc tag is used to document why something is deprecated
           and what, if any, alternatives exist.
         </p>
 
@@ -52,15 +52,15 @@
 
         <p>
           Package deprecation is an exception to the rule of always using the
-          javadoc tag and annotation to deprecate. It is not clear if the javadoc
+          Javadoc tag and annotation to deprecate. It is not clear if the Javadoc
           tool will support it or not as newer versions keep flip-flopping on if
           it is supported or will cause an error. See
           <a href="https://bugs.openjdk.org/browse/JDK-8160601">JDK-8160601</a>.
-          The deprecated javadoc tag is currently the only way to say why the package
+          The deprecated Javadoc tag is currently the only way to say why the package
           is deprecated and what to use instead. Until this is resolved, if you don't
           want to print violations on package-info, you can use a
           <a href="https://checkstyle.org/filters/index.html">filter</a> to ignore
-          these files until the javadoc tool faithfully supports it. An example config
+          these files until the Javadoc tool faithfully supports it. An example config
           using SuppressionSingleFilter is:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code>

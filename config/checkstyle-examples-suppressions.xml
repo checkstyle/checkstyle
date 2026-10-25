@@ -32,7 +32,7 @@
   <suppress id="exampleFileXmlConfigPresence"
     files="abbreviationaswordinname/SuperClass.java"/>
 
-  <!-- non class example files -->
+  <!-- non-class example files -->
   <suppress id="exampleFileName" files="package-info.java"/>
   <suppress id="exampleClassName" files="package-info.java"/>
 
@@ -130,12 +130,12 @@
   <suppress checks="FileLength"
             files="googlenonconstantfieldname/Example1.java"/>
 
-  <!-- XdocsExamplesAstConsistencyTest requires Example2 to keep Example1's javadoc
+  <!-- XdocsExamplesAstConsistencyTest requires Example2 to keep Example1's Javadoc
        text and code line positions, and the property config costs two extra lines -->
   <suppress checks="FileLength"
             files="javadocleadingasteriskalign/Example2.java"/>
 
-  <!-- The javadoc text is fixed by that same test, so the inline violation marker
+  <!-- The Javadoc text is fixed by that same test, so the inline violation marker
        it needs cannot be shortened or moved off the line -->
   <suppress checks="LineLength"
             files="javadocleadingasteriskalign/Example2.java"/>
@@ -189,7 +189,7 @@
   <suppress checks="NewlineAtEndOfFile"
     files="newlineatendoffile/(Example|UseCase)\d+.*"/>
 
-  <!-- We need to maintain indentation on xml part -->
+  <!-- We need to maintain indentation on XML part -->
   <suppress checks="LineLength"
     files="annotation/suppresswarningsholder/Example2.java"/>
 

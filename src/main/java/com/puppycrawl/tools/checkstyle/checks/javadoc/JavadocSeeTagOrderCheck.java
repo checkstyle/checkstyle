@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * <div>
  * Checks that multiple {@code @see} tags are ordered in a predictable way,
- * roughly following the order in which their arguments are searched for by javadoc,
+ * roughly following the order in which their arguments are searched for by Javadoc,
  * from nearest to farthest access, from least-qualified to fully-qualified.
  * </div>
  *
@@ -84,7 +84,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * purposes, so the check only reports violations when it is confident about
  * the correct order. References using the {@code Type##fragment} syntax to
  * link to a named fragment within a page (rather than to a member) are
- * intentionally ignored as well, since such fragments are not javadoc type
+ * intentionally ignored as well, since such fragments are not Javadoc type
  * or member references and cannot be meaningfully compared to one.</p>
  *
  * @since 14.2.0
@@ -384,7 +384,7 @@ public class JavadocSeeTagOrderCheck extends AbstractJavadocCheck {
         /**
          * Checks whether the given reference uses the {@code Type##fragment} syntax to
          * link to a named fragment within a page, recognizable by two consecutive hash
-         * signs among its children. Such references are not javadoc type or member
+         * signs among its children. Such references are not Javadoc type or member
          * references and cannot be meaningfully compared to one.
          *
          * @param reference the reference node

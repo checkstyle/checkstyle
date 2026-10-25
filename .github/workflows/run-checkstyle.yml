@@ -1,7 +1,7 @@
 #####################################################################################
 # GitHub Action to run checkstyle with:
 #  config URL
-#  target java file URL
+#  target Java file URL
 #
 # Output is printed in console terminal
 #

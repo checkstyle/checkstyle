@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # this execution should stay on GitHub actions due to time/ memory limits in other CI
+  # this execution should stay on GitHub Actions due to time/ memory limits in other CI
   shellcheck:
     if: github.event.action != 'closed' && github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-latest

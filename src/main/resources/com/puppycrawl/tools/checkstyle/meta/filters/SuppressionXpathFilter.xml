@@ -30,7 +30,7 @@
  &lt;/ul&gt;
 
  &lt;p&gt;
- Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
+ Also, the filter does not support suppressions inside Javadoc reported by Javadoc checks:
  &lt;/p&gt;
  &lt;ul id="JavadocChecks"&gt;
  &lt;li&gt;
