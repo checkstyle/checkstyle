@@ -197,19 +197,13 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testInlineRegexpHeaderConsecutiveNewlinesThroughConfigFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", getUriString("InputRegexpHeaderNewLines.header"));
-
-        final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
-        checkInstance.configure(checkConfig);
-
         final String[] expected = {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$",
                     getUriString("InputRegexpHeaderNewLines.header")),
         };
-        verify(checkConfig,
-                getPath("InputRegexpHeaderConsecutiveNewLines.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderNewlinesThroughConfigFileConfig.java"),
+                getPath("InputRegexpHeaderNewlinesThroughConfigFile.java"), expected);
     }
 
     @Test
