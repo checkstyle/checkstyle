@@ -1,3 +1,13 @@
+/*
+FinalLocalVariable
+validateEnhancedForLoopVariable = (default)false
+validateUnnamedVariables = (default)false
+tokens = (default)IDENT, CTOR_DEF, METHOD_DEF, SLIST, OBJBLOCK, COMPACT_COMPILATION_UNIT, \
+         LITERAL_BREAK, LITERAL_FOR, VARIABLE_DEF, EXPR
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.finallocalvariable;
 
 public class InputXpathFinalLocalVariableConditionals {
@@ -8,7 +18,8 @@ public class InputXpathFinalLocalVariableConditionals {
             if (true) {
                 from = 0;
             } else if (true) {
-                boolean body = false; // warn
+                // violation below 'Variable 'body' should be declared final.'
+                boolean body = false;
                 if (body) return;
                 from = 0;
             } else {
@@ -19,4 +30,3 @@ public class InputXpathFinalLocalVariableConditionals {
         }
     }
 }
-
