@@ -1,9 +1,20 @@
+/*
+VariableDeclarationUsageDistance
+allowedDistance = 1
+ignoreFinal = false
+ignoreVariablePattern = (default)
+validateBetweenScopes = true
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.variabledeclarationusagedistance;
 
 
 public class InputXpathVariableDeclarationUsageDistanceTwo {
     public void testMethod2() {
-        int count; // warn
+        // violation below 'Distance .* is 2, but allowed 1.'
+        int count;
         int a = 3;
         int b = 2;
         {

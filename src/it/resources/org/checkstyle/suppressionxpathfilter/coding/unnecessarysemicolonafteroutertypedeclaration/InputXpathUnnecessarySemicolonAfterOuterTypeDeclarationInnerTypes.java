@@ -1,3 +1,10 @@
+/*
+UnnecessarySemicolonAfterOuterTypeDeclaration
+tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.unnecessarysemicolonafteroutertypedeclaration;
 
 interface InputXpathUnnecessarySemicolonAfterOuterTypeDeclarationInnerTypes {
@@ -18,7 +25,7 @@ interface InputXpathUnnecessarySemicolonAfterOuterTypeDeclarationInnerTypes {
 
     };
 
-}; //warn
+}; // violation 'Unnecessary semicolon\.'
 
 class NoSemicolonAfter {
 

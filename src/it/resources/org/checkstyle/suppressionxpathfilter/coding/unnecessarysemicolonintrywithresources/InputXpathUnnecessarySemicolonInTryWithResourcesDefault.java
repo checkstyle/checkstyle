@@ -1,3 +1,10 @@
+/*
+UnnecessarySemicolonInTryWithResources
+allowWhenNoBraceAfterSemicolon = (default)true
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.unnecessarysemicolonintrywithresources;
 
 import java.io.PipedReader;
@@ -8,7 +15,8 @@ public class InputXpathUnnecessarySemicolonInTryWithResourcesDefault {
         try(Reader good = new PipedReader()){}
         try(Reader good = new PipedReader();Reader better = new PipedReader()){}
 
-        try(Reader bad = new PipedReader();Reader worse = new PipedReader();){} //warn
+        // violation below 'Unnecessary semicolon\.'
+        try(Reader bad = new PipedReader();Reader worse = new PipedReader();){}
 
     }
 }
