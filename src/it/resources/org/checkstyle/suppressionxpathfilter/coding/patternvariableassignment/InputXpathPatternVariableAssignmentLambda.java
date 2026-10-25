@@ -1,3 +1,9 @@
+/*
+PatternVariableAssignment
+
+
+*/
+
 // Java16
 package org.checkstyle.suppressionxpathfilter.coding.patternvariableassignment;
 
@@ -9,7 +15,8 @@ public class InputXpathPatternVariableAssignmentLambda {
 
         items.forEach(item -> {
             if (item instanceof Integer x) {
-                x = 3; // warn
+                // violation below 'Assignment of pattern variable 'x' is not allowed.'
+                x = 3;
             }
         });
     }

@@ -1,3 +1,12 @@
+/*
+MultipleStringLiterals
+allowedDuplicates = 2
+ignoreOccurrenceContext = (default)ANNOTATION
+ignoreStringsRegexp = (default)^""$
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.multiplestringliterals;
 
 public class InputXpathMultipleStringLiteralsAllowDuplicates {
@@ -5,6 +14,7 @@ public class InputXpathMultipleStringLiteralsAllowDuplicates {
     public void myTest() {
       String a2 = "StringContents";
       String a3 = "DoubleString" + "DoubleString";
-      String a5 = ", " + ", " + ", "; // warn
+      // violation below 'The String ", " appears 3 times in the file.'
+      String a5 = ", " + ", " + ", ";
    }
 }
