@@ -17,8 +17,8 @@ public class InputAnnotationUseStyleNoTrailingComma
   @SuppressWarnings({"common"})
   public void foo() {
 
+      // violation 2 lines below 'Annotation array values must contain trailing comma'
       /** Suppress warnings */
-      // violation below 'Annotation array values must contain trailing comma'
       @SuppressWarnings({"common","foo"})
       Object o = new Object() {
 
