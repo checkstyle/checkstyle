@@ -28,7 +28,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck;
 
 public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSupport {
@@ -50,11 +49,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsClassDefinition.java"));
 
-        final DefaultConfiguration configuration =
-                createModuleConfig(SuppressWarningsCheck.class);
-
         final String[] expectedViolations = {
-            "3:19: " + getCheckMessage(SuppressWarningsCheck.class,
+            "14:19: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED,
                     ""),
         };
@@ -73,7 +69,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
                 + "/EXPR/STRING_LITERAL[@text='']"
         );
 
-        runVerifications(configuration, fileToCheck, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToCheck.getPath(), expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
@@ -81,11 +78,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsParameterDefinition.java"));
 
-        final DefaultConfiguration configuration =
-                createModuleConfig(SuppressWarningsCheck.class);
-
         final String[] expectedViolations = {
-            "5:76: " + getCheckMessage(SuppressWarningsCheck.class,
+            "16:76: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED,
                     ""),
         };
@@ -112,7 +106,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
                 + "/EXPR/STRING_LITERAL[@text='']"
         );
 
-        runVerifications(configuration, fileToCheck, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToCheck.getPath(), expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
@@ -120,11 +115,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsVariableDefinition.java"));
 
-        final DefaultConfiguration configuration =
-                createModuleConfig(SuppressWarningsCheck.class);
-
         final String[] expectedViolations = {
-            "4:27: " + getCheckMessage(SuppressWarningsCheck.class,
+            "14:27: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED,
                     ""),
         };
@@ -147,7 +139,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
                 + "/EXPR/STRING_LITERAL[@text='']"
         );
 
-        runVerifications(configuration, fileToCheck, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToCheck.getPath(), expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
@@ -155,11 +148,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsEnumDefinition.java"));
 
-        final DefaultConfiguration configuration =
-                createModuleConfig(SuppressWarningsCheck.class);
-
         final String[] expectedViolations = {
-            "3:19: " + getCheckMessage(SuppressWarningsCheck.class,
+            "14:19: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED,
                     ""),
         };
@@ -178,7 +168,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
                 + "/EXPR/STRING_LITERAL[@text='']"
         );
 
-        runVerifications(configuration, fileToCheck, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToCheck.getPath(), expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
@@ -186,11 +177,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsInterfaceDefinition.java"));
 
-        final DefaultConfiguration configuration =
-                createModuleConfig(SuppressWarningsCheck.class);
-
         final String[] expectedViolations = {
-            "3:19: " + getCheckMessage(SuppressWarningsCheck.class,
+            "14:19: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED,
                     ""),
         };
@@ -209,7 +197,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
                 + "/EXPR/STRING_LITERAL[@text='']"
         );
 
-        runVerifications(configuration, fileToCheck, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToCheck.getPath(), expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
@@ -217,11 +206,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsEnumConstantDefinition.java"));
 
-        final DefaultConfiguration configuration =
-                createModuleConfig(SuppressWarningsCheck.class);
-
         final String[] expectedViolations = {
-            "4:27: " + getCheckMessage(SuppressWarningsCheck.class,
+            "14:27: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED,
                     ""),
         };
@@ -244,7 +230,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
                 + "/EXPR/STRING_LITERAL[@text='']"
         );
 
-        runVerifications(configuration, fileToCheck, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToCheck.getPath(), expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
@@ -252,11 +239,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsMethodDefinition.java"));
 
-        final DefaultConfiguration configuration =
-                createModuleConfig(SuppressWarningsCheck.class);
-
         final String[] expectedViolations = {
-            "10:23: " + getCheckMessage(SuppressWarningsCheck.class,
+            "21:23: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED,
                     ""),
         };
@@ -279,7 +263,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
                + "/EXPR/STRING_LITERAL[@text='']"
         );
 
-        runVerifications(configuration, fileToCheck, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToCheck.getPath(), expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
@@ -287,11 +272,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsAnnotationDefinition.java"));
 
-        final DefaultConfiguration configuration =
-                createModuleConfig(SuppressWarningsCheck.class);
-
         final String[] expectedViolations = {
-            "3:19: " + getCheckMessage(SuppressWarningsCheck.class,
+            "14:19: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED,
                     ""),
         };
@@ -310,7 +292,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
                 + "/EXPR/STRING_LITERAL[@text='']"
         );
 
-        runVerifications(configuration, fileToCheck, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToCheck.getPath(), expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
@@ -318,11 +301,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsAnnotationFieldDefinition.java"));
 
-        final DefaultConfiguration configuration =
-                createModuleConfig(SuppressWarningsCheck.class);
-
         final String[] expectedViolations = {
-            "4:27: " + getCheckMessage(SuppressWarningsCheck.class,
+            "14:27: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED,
                     ""),
         };
@@ -345,7 +325,8 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
                 + "/EXPR/STRING_LITERAL[@text='']"
         );
 
-        runVerifications(configuration, fileToCheck, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToCheck.getPath(), expectedXpathQueries,
+                expectedViolations);
     }
 
 }
