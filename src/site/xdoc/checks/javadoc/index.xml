@@ -17,7 +17,7 @@
             </td>
             <td>
               Checks the order of <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
-              javadoc block-tags or javadoc tags</a>.
+              Javadoc block-tags or Javadoc tags</a>.
             </td>
           </tr>
           <tr>
@@ -82,7 +82,7 @@
             </td>
             <td>
               Checks that a <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/javadoc/doc-comment-spec.html#block-tags">
-              javadoc block tag</a> appears only at the beginning of a line, ignoring leading
+              Javadoc block tag</a> appears only at the beginning of a line, ignoring leading
               asterisks and white space.
             </td>
           </tr>
@@ -158,7 +158,7 @@
               </a>
             </td>
             <td>
-              Checks if the javadoc has <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
+              Checks if the Javadoc has <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
               leading asterisks</a> on each line.
             </td>
           </tr>
@@ -232,7 +232,7 @@
             </td>
             <td>
               Checks that multiple <code>@see</code> tags are ordered in a predictable way, roughly
-              following the order in which their arguments are searched for by javadoc, from nearest
+              following the order in which their arguments are searched for by Javadoc, from nearest
               to farthest access, from least-qualified to fully-qualified.
             </td>
           </tr>

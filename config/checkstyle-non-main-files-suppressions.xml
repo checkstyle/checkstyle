@@ -431,7 +431,7 @@
   <suppress id="exampleMacroMustExist"
             files="src/site/xdoc/checks/[a-z]+\.xml"/>
 
-  <!-- Index templates don't need parent module macro by design -->
+  <!-- Index templates don't need the parent module macro by design -->
   <suppress id="parentModuleMacroMustExist"
             files="src/site/xdoc/checks/index\.xml\.template"/>
   <suppress id="parentModuleMacroMustExist"
@@ -439,7 +439,7 @@
   <!-- Root checks template doesn't need parent module macro by design -->
   <suppress id="parentModuleMacroMustExist"
             files="src/site/xdoc/checks\.xml\.template"/>
-  <!-- Category overview pages don't need parent module macro by design -->
+  <!-- Category overview pages don't need the parent module macro by design -->
   <suppress id="parentModuleMacroMustExist"
             files="src/site/xdoc/checks/[a-z]+\.xml"/>
 

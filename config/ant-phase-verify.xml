@@ -126,7 +126,7 @@
           <exclude name="hs_err_pid*"/>
           <exclude name="replay_pid*"/>
 
-          <!-- Apple MAC OSX hidden file -->
+          <!-- Apple Mac OS X hidden file -->
           <exclude name=".DS_Store" />
 
           <!-- NonDex files -->

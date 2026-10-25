@@ -10,6 +10,11 @@ failureConditions:
 profile:
   path: intellij-idea-inspections.xml
 
+# Grammar inspection (GrazieInspection) is provided by this plugin,
+# it is not bundled in the Qodana image
+plugins:
+  - id: tanvd.grazi
+
 exclude:
   - name: All
     paths:
@@ -75,8 +80,34 @@ exclude:
     paths:
       - src/main/java/module-info.java
   # "requires org.slf4j" looks unused to static analysis, but org.reflections is an
-  # automatic module that cannot declare its own slf4j runtime dependency, so this
+  # automatic module that cannot declare its own SLF4J runtime dependency, so this
   # module must require it or resolution fails at run time (SARIF metadata loading)
   - name: Java9RedundantRequiresStatement
     paths:
       - src/main/java/module-info.java
+
+  # Grammar inspection reports false positives on content that is not prose:
+  # emoji shortcodes, commented-out YAML keys, domain names, generated tool output,
+  # Groovy string delimiters, quoted violation messages and parser test inputs.
+  # Module metadata is generated from Javadoc of modules (prose is fixed there) and
+  # includes code samples and a property description hardcoded in
+  # checkstyle-files-generator. Violation messages are user-visible output.
+  - name: GrazieInspection
+    paths:
+      # until https://github.com/checkstyle/checkstyle/issues/11592 is fully resolved
+      - src/site/
+      - src/main/resources/com/puppycrawl/tools/checkstyle/meta/
+      - src/main/resources/com/puppycrawl/tools/checkstyle/checks/annotation/messages.properties
+      - src/main/resources/com/puppycrawl/tools/checkstyle/checks/coding/messages.properties
+      - src/main/resources/com/puppycrawl/tools/checkstyle/checks/design/messages.properties
+      - src/main/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/messages.properties
+      - src/main/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/messages_tr.properties
+      - .github/FUNDING.yml
+      - .github/GSOC.md
+      - .github/workflows/release-copy-github-io-to-sourceforge.yml
+      - .github/workflows/release.yml
+      - config/checker-framework-suppressions/
+      - config/error-prone-suppressions/
+      - config/codenarc-rules.groovy.txt
+      - docs/specifying-violations.md
+      - src/test/resources-noncompilable/

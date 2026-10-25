@@ -51,7 +51,7 @@ not already done so, please read through the following documentation provided by
   more challenging issues, like bug fixes and new features.
   Once you have a good understanding of the project and have an idea
   of what you would like to work on, create a draft proposal. We are happy to help you refine your
-  proposal and provide feedback. The best way to share your draft proposal is through Google docs.
+  proposal and provide feedback. The best way to share your draft proposal is through Google Docs.
 - **Submit Your Proposal.** Now that you have refined your proposal, submit it through the
   GSoC website **before the final submission deadline**.
 

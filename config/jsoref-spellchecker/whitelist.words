@@ -36,6 +36,7 @@ annotationwithoutjavadoc
 anoninner
 anoninnerlength
 antfile
+antipattern
 antlib
 antlr
 ANTLRv
@@ -547,6 +548,7 @@ gpgv
 gradle
 gradlew
 graphicsenv
+grazi
 grep
 grepped
 groovyism
@@ -566,7 +568,7 @@ gz
 hadoop
 hamcrest
 Haml
-Hardcoded
+hardcoded
 hashcode
 hashtable
 hazelcast
@@ -1322,6 +1324,7 @@ sevntu
 shellcheck
 shengchen
 Shiell
+shortcodes
 sickboy
 simplestatements
 Simplifiable
@@ -1434,6 +1437,7 @@ tac
 tagconventions
 Taglib
 taglist
+tanvd
 taskdef
 tbody
 tcr

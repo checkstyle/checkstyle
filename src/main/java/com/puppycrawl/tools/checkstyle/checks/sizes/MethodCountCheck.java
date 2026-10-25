@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <p>
  * Methods defined in anonymous classes are not counted towards any totals.
  * Counts only go towards the main type declaration parent, and are kept separate
- * from it's children's inner types.
+ * from its children's inner types.
  * </p>
  * {@snippet lang="text" :
  * public class ExampleClass {

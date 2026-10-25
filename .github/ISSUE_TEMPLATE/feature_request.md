@@ -51,7 +51,7 @@ see examples:
 
 **Not a feature?**
 If (Check, property, new behavior) that you are requesting is already
-implemented and you are unsatisfied with their behaviour, report it here
+implemented, and you are unsatisfied with their behaviour, report it here
 in bug template format:
 
 - https://checkstyle.org/report_issue.html#How_to_report_a_bug.3F
