@@ -184,6 +184,12 @@ public class CyclomaticComplexityCheck extends AbstractCheck {
     }
 
     @Override
+    public void beginTree(DetailAST rootAST) {
+        valueStack.clear();
+        currentValue = INITIAL_VALUE;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF,
