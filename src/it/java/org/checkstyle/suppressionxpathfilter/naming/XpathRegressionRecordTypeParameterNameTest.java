@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.RecordTypeParameterNameCheck;
 
 public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTestSupport {
@@ -45,16 +43,10 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
 
     @Test
     public void testTypeDeclared() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathRecordTypeParameterNameTypeDeclared.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RecordTypeParameterNameCheck.class);
-
         final String pattern = "^[A-Z]$";
 
         final String[] expectedViolation = {
-            "10:55: " + getCheckMessage(RecordTypeParameterNameCheck.class,
+            "17:55: " + getCheckMessage(RecordTypeParameterNameCheck.class,
                     RecordTypeParameterNameCheck.MSG_INVALID_PATTERN, "foo", pattern),
         };
 
@@ -67,22 +59,18 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
                     + "TYPE_PARAMETER/IDENT[@text='foo']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathRecordTypeParameterNameTypeDeclared.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTypeDefault() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathRecordTypeParameterNameTypeDefault.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RecordTypeParameterNameCheck.class);
-
         final String pattern = "^[A-Z]$";
 
         final String[] expectedViolation = {
-            "4:60: " + getCheckMessage(RecordTypeParameterNameCheck.class,
+            "11:60: " + getCheckMessage(RecordTypeParameterNameCheck.class,
                     RecordTypeParameterNameCheck.MSG_INVALID_PATTERN, "t", pattern),
         };
 
@@ -95,22 +83,18 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
                     + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='t']"
                 );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathRecordTypeParameterNameTypeDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNested() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathRecordTypeParameterNameNested.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RecordTypeParameterNameCheck.class);
-
         final String pattern = "^[A-Z]$";
 
         final String[] expectedViolation = {
-            "6:25: " + getCheckMessage(RecordTypeParameterNameCheck.class,
+            "13:25: " + getCheckMessage(RecordTypeParameterNameCheck.class,
                     RecordTypeParameterNameCheck.MSG_INVALID_PATTERN, "abc", pattern),
         };
 
@@ -127,8 +111,10 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
                 + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='abc']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathRecordTypeParameterNameNested.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
