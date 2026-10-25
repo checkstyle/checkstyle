@@ -1,3 +1,13 @@
+/*
+FinalLocalVariable
+validateEnhancedForLoopVariable = true
+validateUnnamedVariables = (default)false
+tokens = (default)IDENT, CTOR_DEF, METHOD_DEF, SLIST, OBJBLOCK, COMPACT_COMPILATION_UNIT, \
+         LITERAL_BREAK, LITERAL_FOR, VARIABLE_DEF, EXPR
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.finallocalvariable;
 
 public class InputXpathFinalLocalVariableEnhancedFor {
@@ -5,7 +15,8 @@ public class InputXpathFinalLocalVariableEnhancedFor {
     {
         final java.util.List<Object> list = new java.util.ArrayList<>();
 
-        for(Object a : list){ // warn
+        // violation below 'Variable 'a' should be declared final.'
+        for(Object a : list){
         }
     }
 }
