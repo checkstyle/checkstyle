@@ -377,17 +377,13 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCharsetProperty2() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("charset", "US-ASCII");
-        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader7.header"));
         final String[] expected = {
             // -@cs[RegexpSinglelineJava] need for testing
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// some.class.��������.passed"),
         };
-        final String path = getPath("InputRegexpHeader4.java");
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, path, expected);
-
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderCharsetProperty2Config.java"),
+                getPath("InputRegexpHeaderCharsetProperty2.java"), expected);
     }
 
     @Test
