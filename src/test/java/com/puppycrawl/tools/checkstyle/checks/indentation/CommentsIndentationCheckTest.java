@@ -23,11 +23,30 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck.MSG_KEY_BLOCK;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck.MSG_KEY_SINGLE;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -435,6 +454,252 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
             getPath("InputCommentsIndentationSwitchWhen.java"),
             expected);
+    }
+
+    @Test
+    public void testPreviousStatementOne() throws Exception {
+        final String[] expected = {
+            "20:13: " + getCheckMessage(MSG_KEY_SINGLE, 21, 12, 8),
+            "54:9: " + getCheckMessage(MSG_KEY_SINGLE, 49, 8, 12),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputCommentsIndentationPreviousStatementOne.java"),
+            expected);
+    }
+
+    @Test
+    public void testPreviousStatementTwo() throws Exception {
+        final String[] expected = {
+            "33:11: " + getCheckMessage(MSG_KEY_SINGLE, 34, 10, 12),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputCommentsIndentationPreviousStatementTwo.java"),
+            expected);
+    }
+
+    /**
+     * Verifies that the previous statement of a comment found by the check is the same node
+     * as found by the plain pre-order traverse of the enclosing block, which evaluates every
+     * node, for every comment (including trailing ones) in all inputs of indentation checks,
+     * compilable and non-compilable.
+     * It guards optimizations of the search.
+     *
+     * @throws Exception if inputs can not be parsed or methods can not be invoked.
+     */
+    @Test
+    public void testPreviousStatementIsSameAsFoundByFullTraverse() throws Exception {
+        int commentsCount = 0;
+        for (Path input : getIndentationInputs()) {
+            final FileText fileText = new FileText(input.toFile(), StandardCharsets.UTF_8.name());
+            final DetailAST root = JavaParser.parseFileText(fileText,
+                JavaParser.Options.WITH_COMMENTS);
+            final CommentsIndentationCheck check = new CommentsIndentationCheck();
+            check.setFileContents(new FileContents(fileText));
+            check.beginTree(root);
+            for (DetailAST comment : getComments(root)) {
+                final DetailAST expected = findByFullTraverse(check, comment);
+                final DetailAST actual = TestUtil.invokeMethod(check,
+                    "getOneLinePreviousStatement", DetailAST.class, comment);
+                assertWithMessage("Previous statement of comment at %s:%s in %s",
+                        comment.getLineNo(), comment.getColumnNo(), input)
+                    .that(actual)
+                    .isSameInstanceAs(expected);
+                commentsCount++;
+            }
+        }
+        assertWithMessage("Inputs must contain comments")
+            .that(commentsCount)
+            .isGreaterThan(10_000);
+    }
+
+    /**
+     * The check is stateless, one instance processes all files, while data about the current
+     * file is kept in a thread-local context. Verifies that the reused instance reports the same
+     * violations as a new instance for every input of indentation checks.
+     *
+     * @throws Exception if inputs can not be parsed or checked.
+     */
+    @Test
+    public void testCheckInstanceIsReusedForManyFiles() throws Exception {
+        final CommentsIndentationCheck reusedCheck = createCheck();
+        int violationsCount = 0;
+        for (Path input : getIndentationInputs()) {
+            final FileText fileText = new FileText(input.toFile(), StandardCharsets.UTF_8.name());
+            final DetailAST root = JavaParser.parseFileText(fileText,
+                JavaParser.Options.WITH_COMMENTS);
+            final List<String> expected = getViolations(createCheck(), fileText, root);
+            assertWithMessage("Violations in %s", input)
+                .that(getViolations(reusedCheck, fileText, root))
+                .containsExactlyElementsIn(expected)
+                .inOrder();
+            violationsCount += expected.size();
+        }
+        assertWithMessage("Inputs must contain violations")
+            .that(violationsCount)
+            .isGreaterThan(100);
+    }
+
+    /**
+     * Searching the previous statement of a comment in a class body used to evaluate every
+     * node of the class before the comment (including bodies of all previous methods), so
+     * this input took more than 30 seconds. Now it takes less than a second, the limit
+     * leaves a wide margin for slow machines.
+     *
+     * @throws Exception if the input can not be parsed or checked.
+     */
+    @Test
+    public void testPerformanceOfClassWithManyComments() throws Exception {
+        final FileText fileText = createClassWithManyComments();
+        final DetailAST root = JavaParser.parseFileText(fileText,
+            JavaParser.Options.WITH_COMMENTS);
+        final List<DetailAST> comments = getComments(root);
+        final CommentsIndentationCheck check = createCheck();
+        check.setFileContents(new FileContents(fileText));
+        check.beginTree(root);
+
+        final long start = System.currentTimeMillis();
+        for (DetailAST comment : comments) {
+            check.visitToken(comment);
+        }
+        final long elapsedSeconds =
+            TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - start);
+
+        assertWithMessage("Comments must be checked")
+            .that(comments)
+            .hasSize(4000);
+        assertWithMessage("Comments must be correctly indented")
+            .that(check.getViolations())
+            .isEmpty();
+        assertWithMessage("Seconds taken to check class with many commented methods")
+            .that(elapsedSeconds)
+            .isLessThan(10);
+    }
+
+    /**
+     * Creates a class with 1000 methods with correctly indented comments.
+     *
+     * @return text of the class.
+     */
+    private static FileText createClassWithManyComments() {
+        final List<String> lines = new ArrayList<>();
+        lines.add("public class InputCommentsIndentationManyComments {");
+        for (int index = 0; index < 1000; index++) {
+            lines.add("    /**");
+            lines.add("     * Method " + index + ".");
+            lines.add("     */");
+            lines.add("    public int method" + index + "(int value) {");
+            lines.add("        // comment");
+            lines.add("        int result = value;");
+            lines.add("        switch (result) {");
+            lines.add("            case 1:");
+            lines.add("                result++;");
+            lines.add("                // fall through");
+            lines.add("            default:");
+            lines.add("                result--;");
+            lines.add("        }");
+            lines.add("        return result; // trailing");
+            lines.add("    }");
+        }
+        lines.add("}");
+        return new FileText(new File("InputCommentsIndentationManyComments.java"), lines);
+    }
+
+    /**
+     * Gets compilable and non-compilable inputs of indentation checks.
+     *
+     * @return paths of the inputs, sorted.
+     * @throws IOException if the inputs can not be listed.
+     */
+    private List<Path> getIndentationInputs() throws IOException {
+        final List<Path> inputs = new ArrayList<>();
+        for (String directory : List.of(getPath(""), getNonCompilablePath(""))) {
+            try (Stream<Path> paths = Files.walk(Path.of(directory).getParent())) {
+                paths.filter(path -> path.toString().endsWith(".java")).forEach(inputs::add);
+            }
+        }
+        inputs.sort(null);
+        return inputs;
+    }
+
+    private static CommentsIndentationCheck createCheck() throws CheckstyleException {
+        final CommentsIndentationCheck check = new CommentsIndentationCheck();
+        check.configure(new DefaultConfiguration("CommentsIndentation"));
+        return check;
+    }
+
+    private static List<String> getViolations(CommentsIndentationCheck check, FileText fileText,
+            DetailAST root) {
+        check.clearViolations();
+        check.setFileContents(new FileContents(fileText));
+        check.beginTree(root);
+        for (DetailAST comment : getComments(root)) {
+            check.visitToken(comment);
+        }
+        final List<String> violations = new ArrayList<>();
+        for (Violation violation : check.getViolations()) {
+            violations.add(violation.getLineNo() + ":" + violation.getColumnNo() + ": "
+                + violation.getViolation());
+        }
+        return violations;
+    }
+
+    /**
+     * Finds the previous statement of a comment by evaluating every node of the pre-order
+     * traverse of the enclosing block (and the siblings following it) until a node is found.
+     *
+     * @param check the check.
+     * @param comment the comment.
+     * @return the previous statement or null.
+     * @throws ReflectiveOperationException if methods can not be invoked.
+     */
+    private static DetailAST findByFullTraverse(CommentsIndentationCheck check, DetailAST comment)
+            throws ReflectiveOperationException {
+        DetailAST root = comment.getParent();
+        while (root != null && !isBlockStart(root)) {
+            root = root.getParent();
+        }
+        final Deque<DetailAST> stack = new ArrayDeque<>();
+        DetailAST previousStatement = null;
+        DetailAST node = root;
+        while (previousStatement == null && (node != null || !stack.isEmpty())) {
+            if (node == null) {
+                node = stack.pop();
+            }
+            previousStatement = TestUtil.invokeMethod(check, "findPreviousStatement",
+                DetailAST.class, comment, node);
+            if (node.getNextSibling() != null) {
+                stack.push(node.getNextSibling());
+            }
+            node = node.getFirstChild();
+        }
+        return previousStatement;
+    }
+
+    private static boolean isBlockStart(DetailAST ast) {
+        return ast.getType() == TokenTypes.SLIST
+            || ast.getType() == TokenTypes.OBJBLOCK
+            || ast.getType() == TokenTypes.ARRAY_INIT
+            || ast.getType() == TokenTypes.CASE_GROUP;
+    }
+
+    private static List<DetailAST> getComments(DetailAST root) {
+        final List<DetailAST> comments = new ArrayList<>();
+        final Deque<DetailAST> stack = new ArrayDeque<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            final DetailAST node = stack.pop();
+            if (node.getType() == TokenTypes.SINGLE_LINE_COMMENT
+                    || node.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                comments.add(node);
+            }
+            if (node.getNextSibling() != null) {
+                stack.push(node.getNextSibling());
+            }
+            if (node.getFirstChild() != null) {
+                stack.push(node.getFirstChild());
+            }
+        }
+        return comments;
     }
 
 }
