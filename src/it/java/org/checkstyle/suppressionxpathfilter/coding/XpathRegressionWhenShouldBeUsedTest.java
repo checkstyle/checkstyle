@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.WhenShouldBeUsedCheck;
 
 public class XpathRegressionWhenShouldBeUsedTest
@@ -44,14 +42,8 @@ public class XpathRegressionWhenShouldBeUsedTest
 
     @Test
     public void testSimple() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathWhenShouldBeUsedSimple.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(WhenShouldBeUsedCheck.class);
         final String[] expectedViolation = {
-            "7:13: " + getCheckMessage(WhenShouldBeUsedCheck.class,
+            "13:13: " + getCheckMessage(WhenShouldBeUsedCheck.class,
                     WhenShouldBeUsedCheck.MSG_KEY),
         };
 
@@ -63,19 +55,20 @@ public class XpathRegressionWhenShouldBeUsedTest
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
                         + "LITERAL_SWITCH/SWITCH_RULE/LITERAL_CASE"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathWhenShouldBeUsedSimple.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNested() throws Exception {
-        final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathWhenShouldBeUsedNested.java"));
+        final String fileToProcess =
+                getNonCompilablePath(
+                        "InputXpathWhenShouldBeUsedNested.java");
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(WhenShouldBeUsedCheck.class);
         final String[] expectedViolation = {
-            "10:21: " + getCheckMessage(WhenShouldBeUsedCheck.class,
+            "16:21: " + getCheckMessage(WhenShouldBeUsedCheck.class,
                     WhenShouldBeUsedCheck.MSG_KEY),
         };
 
@@ -92,19 +85,13 @@ public class XpathRegressionWhenShouldBeUsedTest
                 + "SWITCH_RULE/SLIST/"
                 + "LITERAL_SWITCH/SWITCH_RULE/LITERAL_CASE"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testStaticInit() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathWhenShouldBeUsedStaticInit.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(WhenShouldBeUsedCheck.class);
         final String[] expectedViolation = {
-            "8:13: " + getCheckMessage(WhenShouldBeUsedCheck.class,
+            "14:13: " + getCheckMessage(WhenShouldBeUsedCheck.class,
                     WhenShouldBeUsedCheck.MSG_KEY),
         };
 
@@ -115,7 +102,10 @@ public class XpathRegressionWhenShouldBeUsedTest
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathWhenShouldBeUsedStaticInit']]"
                 + "/OBJBLOCK/STATIC_INIT/SLIST/LITERAL_SWITCH/SWITCH_RULE/LITERAL_CASE"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathWhenShouldBeUsedStaticInit.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
