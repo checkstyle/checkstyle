@@ -5245,11 +5245,18 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheckTest</param>
               </targetTests>
+              <!-- Preserve the defensive-copy wrapper treatment from pitest-utils.
+                   See https://github.com/hcoles/pitest/issues/1462 -->
+              <excludedClasses>
+                <class>com.puppycrawl.tools.checkstyle.api.ApiArrayUtil</class>
+              </excludedClasses>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.api.ApiArrayUtil</avoidCallsTo>
               </avoidCallsTo>
               <excludedTestClasses>
                 <param>*.Input*</param>

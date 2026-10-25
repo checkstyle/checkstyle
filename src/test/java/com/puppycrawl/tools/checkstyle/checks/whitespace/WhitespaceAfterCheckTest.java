@@ -36,6 +36,50 @@ public class WhitespaceAfterCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTabColumnsWithXpathFilter() throws Exception {
+        final String[] expectedUnfiltered = {
+            "19:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "20:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+        };
+        final String[] expectedFiltered = {
+            "20:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+        };
+        verifyFilterWithInlineConfigParser(
+                getPath("InputWhitespaceAfterTabColumnsWithFilter.java"),
+                expectedUnfiltered, expectedFiltered);
+    }
+
+    @Test
+    public void testTabWidthFour() throws Exception {
+        final String[] expected = {
+            "15:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "16:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "17:25: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "18:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "19:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "20:16: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "21:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceAfterTabWidthFour.java"), expected);
+    }
+
+    @Test
+    public void testTabWidthEight() throws Exception {
+        final String[] expected = {
+            "15:25: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "16:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "17:33: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "18:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "19:18: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "20:16: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "21:25: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceAfterTabWidthEight.java"), expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final WhitespaceAfterCheck checkObj = new WhitespaceAfterCheck();
         assertWithMessage(
