@@ -525,6 +525,37 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/UseCase9.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="UseCase10-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/UseCase10.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control15-raw">
+          Property references in the import control file are expanded from system
+          properties before the rules are applied. The properties are defined when
+          checkstyle is launched, for example by passing the system properties
+          <code>ic.docs.package=importcontrol</code> and
+          <code>ic.docs.allowed=java.io</code> on the command line, so the root
+          package and the allowed package below can be changed for each run without
+          editing the import control file.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control15.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="UseCase10-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/UseCase10.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
       <subsection name="Example of Usage" id="ImportControl_Example_of_Usage">
