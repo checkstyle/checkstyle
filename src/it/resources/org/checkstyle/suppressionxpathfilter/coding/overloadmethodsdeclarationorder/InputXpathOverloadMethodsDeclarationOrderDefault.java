@@ -1,3 +1,10 @@
+/*
+OverloadMethodsDeclarationOrder
+orderByIncreasingParameterCount = (default)false
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.overloadmethodsdeclarationorder;
 
 public class InputXpathOverloadMethodsDeclarationOrderDefault {
@@ -10,8 +17,9 @@ public class InputXpathOverloadMethodsDeclarationOrderDefault {
         //do stuff
     }
 
-    // violation because overloads shouldn't be separated
-    public void overloadMethod(String s, Boolean b, int i) { //warn
+    // violation 2 lines below """All overloaded methods should be placed next to each
+    // other. Previous overloaded method located at line '12'."""
+    public void overloadMethod(String s, Boolean b, int i) {
         //do stuff
     }
 
