@@ -1,6 +1,13 @@
+/*
+UnnecessarySemicolonAfterTypeMemberDeclaration
+tokens = METHOD_DEF
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.unnecessarysemicolonaftertypememberdeclaration;
 
 public class InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationTokens {
-    void method() {}; //warn
+    void method() {}; // violation 'Unnecessary semicolon\.'
     public InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationTokens() {};
 }

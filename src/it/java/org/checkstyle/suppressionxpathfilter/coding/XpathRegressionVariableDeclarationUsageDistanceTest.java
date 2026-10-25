@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
 
 public class XpathRegressionVariableDeclarationUsageDistanceTest extends AbstractXpathTestSupport {
@@ -45,18 +43,8 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathVariableDeclarationUsageDistanceOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
-        moduleConfig.addProperty("allowedDistance", "1");
-        moduleConfig.addProperty("ignoreVariablePattern", "");
-        moduleConfig.addProperty("validateBetweenScopes", "true");
-        moduleConfig.addProperty("ignoreFinal", "false");
-
         final String[] expectedViolation = {
-            "7:9: " + getCheckMessage(VariableDeclarationUsageDistanceCheck.class,
+            "18:9: " + getCheckMessage(VariableDeclarationUsageDistanceCheck.class,
                     VariableDeclarationUsageDistanceCheck.MSG_KEY, "temp", 2, 1),
         };
 
@@ -79,25 +67,16 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='temp']]/TYPE/LITERAL_INT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathVariableDeclarationUsageDistanceOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathVariableDeclarationUsageDistanceTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
-
-        moduleConfig.addProperty("allowedDistance", "1");
-        moduleConfig.addProperty("ignoreVariablePattern", "");
-        moduleConfig.addProperty("validateBetweenScopes", "true");
-        moduleConfig.addProperty("ignoreFinal", "false");
-
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(VariableDeclarationUsageDistanceCheck.class,
+            "17:9: " + getCheckMessage(VariableDeclarationUsageDistanceCheck.class,
                     VariableDeclarationUsageDistanceCheck.MSG_KEY, "count", 2, 1),
         };
 
@@ -120,24 +99,16 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='count']]/TYPE/LITERAL_INT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathVariableDeclarationUsageDistanceTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testConstructor() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathVariableDeclarationUsageDistanceConstructor.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
-        moduleConfig.addProperty("allowedDistance", "1");
-        moduleConfig.addProperty("ignoreVariablePattern", "");
-        moduleConfig.addProperty("validateBetweenScopes", "true");
-        moduleConfig.addProperty("ignoreFinal", "false");
-
         final String[] expectedViolation = {
-            "7:9: " + getCheckMessage(VariableDeclarationUsageDistanceCheck.class,
+            "18:9: " + getCheckMessage(VariableDeclarationUsageDistanceCheck.class,
                     VariableDeclarationUsageDistanceCheck.MSG_KEY, "temp", 2, 1),
         };
 
@@ -164,8 +135,10 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='temp']]/TYPE/LITERAL_INT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathVariableDeclarationUsageDistanceConstructor.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
