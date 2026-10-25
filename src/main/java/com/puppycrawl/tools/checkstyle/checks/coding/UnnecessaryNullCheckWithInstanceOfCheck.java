@@ -284,16 +284,6 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if the given AST node is a null literal.
-     *
-     * @param node AST node to check
-     * @return true if the node is a null literal, false otherwise
-     */
-    private static boolean isNullLiteral(DetailAST node) {
-        return node.getType() == TokenTypes.LITERAL_NULL;
-    }
-
-    /**
      * Determines if the null check is redundant with the instanceof check.
      *
      * @param instanceOfIdent the identifier from the instanceof check
@@ -305,8 +295,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
 
         final DetailAST nullCheckIdent = nullCheckNode.findFirstToken(TokenTypes.IDENT);
         return nullCheckIdent != null
-                && (isNullLiteral(nullCheckNode.getFirstChild().getNextSibling())
-                    || isNullLiteral(nullCheckNode.getFirstChild()))
+                && nullCheckNode.findFirstToken(TokenTypes.LITERAL_NULL) != null
                 && instanceOfIdent.getText().equals(nullCheckIdent.getText());
     }
 
