@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGroupingCheck;
 
 public class XpathRegressionConstructorsDeclarationGroupingTest extends AbstractXpathTestSupport {
@@ -46,14 +44,9 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
 
     @Test
     public void testClass() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathConstructorsDeclarationGroupingClass.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "10:5: " + getCheckMessage(CLAZZ,
-                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 6),
+            "18:5: " + getCheckMessage(CLAZZ,
+                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 13),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -73,19 +66,16 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
 
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathConstructorsDeclarationGroupingClass.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testEnum() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathConstructorsDeclarationGroupingEnum.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "12:5: " + getCheckMessage(CLAZZ,
-                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 8),
+            "20:5: " + getCheckMessage(CLAZZ,
+                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 15),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -106,19 +96,16 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
                         + "[@text='InputXpathConstructorsDeclarationGroupingEnum']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathConstructorsDeclarationGroupingEnum.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testRecords() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathConstructorsDeclarationGroupingRecords.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "14:5: " + getCheckMessage(CLAZZ,
-                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 8),
+            "22:5: " + getCheckMessage(CLAZZ,
+                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 15),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -139,7 +126,9 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathConstructorsDeclarationGroupingRecords.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
