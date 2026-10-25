@@ -1,8 +1,10 @@
-name: IDEA inspections
 on:
   pull_request:
     types: [ opened, synchronize, reopened, closed ]
     branches: [ master ]
+
+permissions:
+  contents: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
