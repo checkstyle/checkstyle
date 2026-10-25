@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck;
 
 public class XpathRegressionOverloadMethodsDeclarationOrderTest extends AbstractXpathTestSupport {
@@ -46,14 +44,12 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathOverloadMethodsDeclarationOrderDefault.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
+        final String fileToProcess =
+                getPath("InputXpathOverloadMethodsDeclarationOrderDefault.java");
 
         final String[] expectedViolation = {
-            "14:5: " + getCheckMessage(CLAZZ,
-                        OverloadMethodsDeclarationOrderCheck.MSG_KEY, "5"),
+            "22:5: " + getCheckMessage(CLAZZ,
+                        OverloadMethodsDeclarationOrderCheck.MSG_KEY, "12"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -69,19 +65,17 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testAnonymous() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathOverloadMethodsDeclarationOrderAnonymous.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
+        final String fileToProcess =
+                getPath("InputXpathOverloadMethodsDeclarationOrderAnonymous.java");
 
         final String[] expectedViolation = {
-            "30:9: " + getCheckMessage(CLAZZ,
-                    OverloadMethodsDeclarationOrderCheck.MSG_KEY, "21"),
+            "38:9: " + getCheckMessage(CLAZZ,
+                    OverloadMethodsDeclarationOrderCheck.MSG_KEY, "28"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -103,19 +97,17 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testEnum() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathOverloadMethodsDeclarationOrderEnum.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
+        final String fileToProcess =
+                getPath("InputXpathOverloadMethodsDeclarationOrderEnum.java");
 
         final String[] expectedViolation = {
-            "15:5: " + getCheckMessage(CLAZZ,
-                        OverloadMethodsDeclarationOrderCheck.MSG_KEY, "7"),
+            "24:5: " + getCheckMessage(CLAZZ,
+                        OverloadMethodsDeclarationOrderCheck.MSG_KEY, "14"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -131,7 +123,7 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
 }

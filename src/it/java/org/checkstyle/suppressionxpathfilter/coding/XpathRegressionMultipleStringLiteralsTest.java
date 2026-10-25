@@ -21,7 +21,6 @@ package org.checkstyle.suppressionxpathfilter.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck.MSG_KEY;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -29,7 +28,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck;
 
 public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTestSupport {
@@ -47,14 +45,11 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathMultipleStringLiteralsDefault.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MultipleStringLiteralsCheck.class);
+        final String fileToProcess =
+                getPath("InputXpathMultipleStringLiteralsDefault.java");
 
         final String[] expectedViolations = {
-            "4:16: " + getCheckMessage(MultipleStringLiteralsCheck.class,
+            "14:16: " + getCheckMessage(MultipleStringLiteralsCheck.class,
                     MSG_KEY, "\"StringContents\"", 2),
         };
 
@@ -69,20 +64,16 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
                 + "/ASSIGN/EXPR/STRING_LITERAL[@text='StringContents']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolations);
     }
 
     @Test
     public void testAllowDuplicates() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathMultipleStringLiteralsAllowDuplicates.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MultipleStringLiteralsCheck.class);
-        moduleConfig.addProperty("allowedDuplicates", "2");
+        final String fileToProcess =
+                getPath("InputXpathMultipleStringLiteralsAllowDuplicates.java");
 
         final String[] expectedViolations = {
-            "8:19: " + getCheckMessage(MultipleStringLiteralsCheck.class,
+            "18:19: " + getCheckMessage(MultipleStringLiteralsCheck.class,
                     MSG_KEY, "\", \"", 3),
         };
 
@@ -94,20 +85,16 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
                 + "/PLUS/STRING_LITERAL[@text=', ']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolations);
     }
 
     @Test
     public void testIgnoreRegexp() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathMultipleStringLiteralsIgnoreRegexp.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MultipleStringLiteralsCheck.class);
-        moduleConfig.addProperty("ignoreStringsRegexp", "((\"\")|(\", \"))$");
+        final String fileToProcess =
+                getPath("InputXpathMultipleStringLiteralsIgnoreRegexp.java");
 
         final String[] expectedViolations = {
-            "7:19: " + getCheckMessage(MultipleStringLiteralsCheck.class,
+            "17:19: " + getCheckMessage(MultipleStringLiteralsCheck.class,
                     MSG_KEY, "\"DoubleString\"", 2),
         };
 
@@ -118,21 +105,16 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
                 + "[./IDENT[@text='a3']]/ASSIGN/EXPR/PLUS/STRING_LITERAL[@text='DoubleString']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolations);
     }
 
     @Test
     public void testIgnoreOccurrenceContext() throws Exception {
-        final String filePath =
-                "InputXpathMultipleStringLiteralsIgnoreOccurrenceContext.java";
-        final File fileToProcess = new File(getPath(filePath));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MultipleStringLiteralsCheck.class);
-        moduleConfig.addProperty("ignoreOccurrenceContext", "");
+        final String fileToProcess =
+                getPath("InputXpathMultipleStringLiteralsIgnoreOccurrenceContext.java");
 
         final String[] expectedViolations = {
-            "5:17: " + getCheckMessage(MultipleStringLiteralsCheck.class,
+            "15:17: " + getCheckMessage(MultipleStringLiteralsCheck.class,
                     MSG_KEY, "\"unchecked\"", 3),
         };
 
@@ -147,7 +129,7 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
                + "/ASSIGN/EXPR/STRING_LITERAL[@text='unchecked']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolations);
     }
 
 }

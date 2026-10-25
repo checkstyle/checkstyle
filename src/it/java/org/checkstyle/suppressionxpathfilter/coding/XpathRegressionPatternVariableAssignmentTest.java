@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck;
 
 public class XpathRegressionPatternVariableAssignmentTest extends AbstractXpathTestSupport {
@@ -44,15 +42,11 @@ public class XpathRegressionPatternVariableAssignmentTest extends AbstractXpathT
 
     @Test
     public void testMethod() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathPatternVariableAssignmentMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(PatternVariableAssignmentCheck.class);
+        final String fileToProcess =
+                getPath("InputXpathPatternVariableAssignmentMethod.java");
 
         final String[] expectedViolation = {
-            "8:7: " + getCheckMessage(PatternVariableAssignmentCheck.class,
+            "15:7: " + getCheckMessage(PatternVariableAssignmentCheck.class,
                     PatternVariableAssignmentCheck.MSG_KEY,
                     "s"),
         };
@@ -61,21 +55,17 @@ public class XpathRegressionPatternVariableAssignmentTest extends AbstractXpathT
             + "./IDENT[@text='InputXpathPatternVariableAssignmentMethod']]/OBJBLOCK/METHOD_DEF["
             + "./IDENT[@text='test']]/SLIST/LITERAL_IF/SLIST/EXPR/ASSIGN/IDENT[@text='s']");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testLambda() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathPatternVariableAssignmentLambda.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(PatternVariableAssignmentCheck.class);
+        final String fileToProcess =
+                getPath("InputXpathPatternVariableAssignmentLambda.java");
 
         final String[] expectedViolation = {
-            "12:17: " + getCheckMessage(PatternVariableAssignmentCheck.class,
+            "19:17: " + getCheckMessage(PatternVariableAssignmentCheck.class,
                     PatternVariableAssignmentCheck.MSG_KEY,
                     "x"),
         };
@@ -85,21 +75,17 @@ public class XpathRegressionPatternVariableAssignmentTest extends AbstractXpathT
             + "./IDENT[@text='foo']]/SLIST/EXPR/METHOD_CALL/ELIST/LAMBDA["
             + "./IDENT[@text='item']]/SLIST/LITERAL_IF/SLIST/EXPR/ASSIGN/IDENT[@text='x']");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testClass() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathPatternVariableAssignmentClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(PatternVariableAssignmentCheck.class);
+        final String fileToProcess =
+                getPath("InputXpathPatternVariableAssignmentClass.java");
 
         final String[] expectedViolation = {
-            "10:21: " + getCheckMessage(PatternVariableAssignmentCheck.class,
+            "17:21: " + getCheckMessage(PatternVariableAssignmentCheck.class,
                     PatternVariableAssignmentCheck.MSG_KEY,
                     "x"),
         };
@@ -110,8 +96,8 @@ public class XpathRegressionPatternVariableAssignmentTest extends AbstractXpathT
             + "LITERAL_NEW[./IDENT[@text='AnonymousClass']]/OBJBLOCK/METHOD_DEF["
             + "./IDENT[@text='test']]/SLIST/LITERAL_IF/SLIST/EXPR/ASSIGN/IDENT[@text='x']");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries,
+                expectedViolation);
     }
 
 }
