@@ -94,11 +94,10 @@ public class ArchUnitTest {
         "com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck",
-        "com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding."
-            + "NoCauseGetMessageInExceptionConstructorCheck",
+         + "NoCauseGetMessageInExceptionConstructorCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck",
         "com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck",
         "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck",
