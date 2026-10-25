@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck;
 
 public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupport {
@@ -44,13 +42,8 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
 
     @Test
     public void testMethodDef() throws Exception {
-        final File fileToProcess = new
-                File(getPath("InputXpathFinalLocalVariableMethodDef.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(FinalLocalVariableCheck.class);
-
         final String[] expectedViolation = {
-            "5:13: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "16:13: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "x"),
         };
 
@@ -61,18 +54,16 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
                         + "/SLIST/VARIABLE_DEF/IDENT[@text='x']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathFinalLocalVariableMethodDef.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testForLoop() throws Exception {
-        final File fileToProcess = new
-                File(getPath("InputXpathFinalLocalVariableForLoop.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(FinalLocalVariableCheck.class);
-
         final String[] expectedViolation = {
-            "6:17: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "17:17: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "x"),
         };
 
@@ -83,18 +74,16 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
                     + "LITERAL_FOR/SLIST/VARIABLE_DEF/IDENT[@text='x']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathFinalLocalVariableForLoop.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testSwitchCase() throws Exception {
-        final File fileToProcess = new
-                File(getPath("InputXpathFinalLocalVariableSwitchCase.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(FinalLocalVariableCheck.class);
-
         final String[] expectedViolation = {
-            "8:25: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "19:25: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "foo"),
         };
 
@@ -106,18 +95,16 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
                     + "LITERAL_SWITCH/CASE_GROUP/SLIST/VARIABLE_DEF/IDENT[@text='foo']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathFinalLocalVariableSwitchCase.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final File fileToProcess = new
-                File(getPath("InputXpathFinalLocalVariableInnerClass.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(FinalLocalVariableCheck.class);
-
         final String[] expectedViolation = {
-            "7:17: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "18:17: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "shouldBeFinal"),
         };
 
@@ -129,19 +116,16 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
                     + "/SLIST/VARIABLE_DEF/IDENT[@text='shouldBeFinal']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathFinalLocalVariableInnerClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testParameterDef() throws Exception {
-        final File fileToProcess = new
-                File(getPath("InputXpathFinalLocalVariableParameterDef.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(FinalLocalVariableCheck.class);
-        moduleConfig.addProperty("tokens", "PARAMETER_DEF");
-
         final String[] expectedViolation = {
-            "4:28: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "14:28: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "aArg"),
         };
 
@@ -152,19 +136,16 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
                     + "/PARAMETERS/PARAMETER_DEF/IDENT[@text='aArg']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathFinalLocalVariableParameterDef.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEnhancedFor() throws Exception {
-        final File fileToProcess = new
-                File(getPath("InputXpathFinalLocalVariableEnhancedFor.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(FinalLocalVariableCheck.class);
-        moduleConfig.addProperty("validateEnhancedForLoopVariable", "true");
-
         final String[] expectedViolation = {
-            "8:20: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "19:20: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "a"),
         };
 
@@ -175,19 +156,16 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
                     + "/SLIST/LITERAL_FOR/FOR_EACH_CLAUSE/VARIABLE_DEF/IDENT[@text='a']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathFinalLocalVariableEnhancedFor.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testCtor() throws Exception {
-        final File fileToProcess = new
-                File(getPath("InputXpathFinalLocalVariableCtor.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(FinalLocalVariableCheck.class);
-        moduleConfig.addProperty("tokens", "PARAMETER_DEF");
-
         final String[] expectedViolation = {
-            "4:42: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "14:42: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "a"),
         };
 
@@ -199,18 +177,16 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
                     + "/PARAMETERS/PARAMETER_DEF/IDENT[@text='a']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathFinalLocalVariableCtor.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTryBlock() throws Exception {
-        final File fileToProcess = new
-                File(getPath("InputXpathFinalLocalVariableTryBlock.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(FinalLocalVariableCheck.class);
-
         final String[] expectedViolation = {
-            "6:17: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "17:17: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "start"),
         };
 
@@ -221,18 +197,16 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
                     + "/SLIST/LITERAL_TRY/SLIST/VARIABLE_DEF/IDENT[@text='start']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathFinalLocalVariableTryBlock.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testConditionals() throws Exception {
-        final File fileToProcess = new
-                File(getPath("InputXpathFinalLocalVariableConditionals.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(FinalLocalVariableCheck.class);
-
         final String[] expectedViolation = {
-            "11:25: " + getCheckMessage(FinalLocalVariableCheck.class,
+            "22:25: " + getCheckMessage(FinalLocalVariableCheck.class,
                     FinalLocalVariableCheck.MSG_KEY, "body"),
         };
 
@@ -244,7 +218,10 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
                     + "/SLIST/VARIABLE_DEF/IDENT[@text='body']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathFinalLocalVariableConditionals.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

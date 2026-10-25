@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck;
 
 public class XpathRegressionIllegalSymbolTest extends AbstractXpathTestSupport {
@@ -45,15 +43,9 @@ public class XpathRegressionIllegalSymbolTest extends AbstractXpathTestSupport {
 
     @Test
     public void testEmoji() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalSymbolEmoji.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalSymbolCheck.class);
-        moduleConfig.addProperty("symbolCodes", "0x2705");
-
         final String[] expectedViolation = {
-            "4:18: " + getCheckMessage(IllegalSymbolCheck.class, IllegalSymbolCheck.MSG_KEY, "✅"),
+            "13:18: " + getCheckMessage(IllegalSymbolCheck.class,
+                    IllegalSymbolCheck.MSG_KEY, "✅"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -61,21 +53,17 @@ public class XpathRegressionIllegalSymbolTest extends AbstractXpathTestSupport {
                 + "/OBJBLOCK/SINGLE_LINE_COMMENT/COMMENT_CONTENT[@text=' ✅ // warn\\n']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalSymbolEmoji.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testAsciiOnly() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalSymbolAsciiOnly.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalSymbolCheck.class);
-        moduleConfig.addProperty("symbolCodes", "0x0080-0x10FFFF");
-
         final String[] expectedViolation = {
-            "4:18: " + getCheckMessage(IllegalSymbolCheck.class, IllegalSymbolCheck.MSG_KEY, "é"),
+            "13:18: " + getCheckMessage(IllegalSymbolCheck.class,
+                    IllegalSymbolCheck.MSG_KEY, "é"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -83,22 +71,17 @@ public class XpathRegressionIllegalSymbolTest extends AbstractXpathTestSupport {
                 + "/OBJBLOCK/SINGLE_LINE_COMMENT/COMMENT_CONTENT[@text=' café // warn\\n']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalSymbolAsciiOnly.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testStringLiteral() throws Exception {
-        final File fileToProcess =
-            new File(getPath("InputXpathIllegalSymbolStringLiteral.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(IllegalSymbolCheck.class);
-        moduleConfig.addProperty("symbolCodes", "0x2705");
-        moduleConfig.addProperty("tokens", "STRING_LITERAL");
-
         final String[] expectedViolation = {
-            "4:20: " + getCheckMessage(IllegalSymbolCheck.class, IllegalSymbolCheck.MSG_KEY, "✅"),
+            "13:20: " + getCheckMessage(IllegalSymbolCheck.class,
+                    IllegalSymbolCheck.MSG_KEY, "✅"),
         };
 
         final List<String> expectedXpathQueries = List.of(
@@ -110,8 +93,10 @@ public class XpathRegressionIllegalSymbolTest extends AbstractXpathTestSupport {
                 + "/ASSIGN/EXPR/STRING_LITERAL[@text='Hello ✅']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-            expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalSymbolStringLiteral.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
