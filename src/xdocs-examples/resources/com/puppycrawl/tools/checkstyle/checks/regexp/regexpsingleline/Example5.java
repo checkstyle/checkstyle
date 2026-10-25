@@ -1,7 +1,7 @@
 /*xml
 <module name="Checker">
   <module name="RegexpSingleline">
-    <property name="format" value="COPYRIGHTED"/>
+    <property name="format" value="COPYRIGHT(ED)"/>
     <property name="maximum" value="1"/>
     <property name="ignoreCase" value="true"/>
   </module>
@@ -11,9 +11,9 @@ package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
 // xdoc section - start
 /**
  * This file is copyrighted under CC.
- */ // violation above 'Line matches the illegal pattern'
+ */ // ok, the first occurrence is allowed
 public class Example5 {
-
+  // This method is copyrighted. // violation 'Line matches the illegal pattern'
   void myFunction() {
     try {
       doSomething();
