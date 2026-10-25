@@ -412,6 +412,109 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnicodeEscapesInIdentifiers() throws Exception {
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputJavaParserUnicodeEscapesInIdentifiers.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+
+        final List<String> declaredNames = new ArrayList<>();
+        final List<String> identifierTexts = new ArrayList<>();
+        collectIdentifierData(root, declaredNames, identifierTexts);
+
+        final String supplementaryLetter = Character.toString(0x10400);
+        final String combiningAccent = Character.toString(0x1D17B);
+        assertWithMessage("Unexpected names decoded from unicode escapes")
+            .that(declaredNames)
+            .containsExactly("abc", "bcd", "multipleescapes", supplementaryLetter + "abc",
+                    "def" + supplementaryLetter, supplementaryLetter + combiningAccent,
+                    "foo", "param", "localvar");
+        assertWithMessage("No identifier should keep a raw unicode escape")
+            .that(identifierTexts.stream().anyMatch(text -> text.indexOf('\\') >= 0))
+            .isFalse();
+
+        final Optional<DetailAST> firstVariable = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.VARIABLE_DEF);
+        final DetailAST name = findFirstIdentChild(firstVariable.orElseThrow());
+        assertWithMessage("Unexpected name of first variable")
+            .that(name.getText())
+            .isEqualTo("abc");
+        assertWithMessage("Identifier should point at the start of the raw escape")
+            .that(name.getLineNo())
+            .isEqualTo(5);
+        assertWithMessage("Identifier should point at the start of the raw escape")
+            .that(name.getColumnNo())
+            .isEqualTo(8);
+    }
+
+    @Test
+    public void testUnicodeEscapesInLiteralsAndCommentsAreNotDecoded() throws Exception {
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputJavaParserUnicodeEscapesInLiteralsAndComments.java")),
+                JavaParser.Options.WITH_COMMENTS);
+
+        final Optional<DetailAST> stringLiteral = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.STRING_LITERAL);
+        assertWithMessage("String literal should keep its raw escaped text")
+            .that(stringLiteral.orElseThrow().getText())
+            .isEqualTo("\"a\\u0061b\"");
+
+        final Optional<DetailAST> charLiteral = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.CHAR_LITERAL);
+        assertWithMessage("Char literal should keep its raw escaped text")
+            .that(charLiteral.orElseThrow().getText())
+            .isEqualTo("'\\u0061'");
+    }
+
+    @Test
+    public void testUnicodeEscapesBrokenIdentifier() throws Exception {
+        final File input = new File(
+                getNonCompilablePath("InputJavaParserUnicodeEscapesBrokenIdentifier.java"));
+        try {
+            JavaParser.parseFile(input, JavaParser.Options.WITHOUT_COMMENTS);
+            assertWithMessage("exception expected").fail();
+        }
+        catch (CheckstyleException exc) {
+            assertWithMessage("Invalid exception message")
+                .that(exc.toString())
+                .isEqualTo(CheckstyleException.class.getName()
+                            + ": IllegalStateException occurred while parsing file "
+                            + input.getAbsolutePath() + ".");
+        }
+    }
+
+    private static void collectIdentifierData(DetailAST ast, List<String> declaredNames,
+                                              List<String> identifierTexts) {
+        DetailAST current = ast;
+        while (current != null) {
+            if (current.getType() == TokenTypes.IDENT) {
+                identifierTexts.add(current.getText());
+            }
+            if (current.getType() == TokenTypes.VARIABLE_DEF
+                    || current.getType() == TokenTypes.PARAMETER_DEF) {
+                declaredNames.add(findFirstIdentChild(current).getText());
+            }
+            DetailAST child = current.getFirstChild();
+            while (current != null && child == null) {
+                child = current.getNextSibling();
+                current = current.getParent();
+            }
+            current = child;
+        }
+    }
+
+    private static DetailAST findFirstIdentChild(DetailAST ast) {
+        DetailAST result = null;
+        DetailAST child = ast.getFirstChild();
+        while (child != null && result == null) {
+            if (child.getType() == TokenTypes.IDENT) {
+                result = child;
+            }
+            child = child.getNextSibling();
+        }
+        return result;
+    }
+
+    @Test
     public void testReturnValueOfAppendHiddenCommentNodes()
             throws Exception {
         final String[] expected = {
