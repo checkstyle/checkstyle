@@ -19,15 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck;
 
 public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSupport {
@@ -46,17 +43,11 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
 
     @Test
     public void testField() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalTokenTextField.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenTextCheck.class);
-        moduleConfig.addProperty("format", "12345");
-        moduleConfig.addProperty("tokens", "NUM_INT");
         final String[] expectedViolation = {
-            "4:33: " + getCheckMessage(IllegalTokenTextCheck.class,
+            "15:33: " + getCheckMessage(IllegalTokenTextCheck.class,
                         IllegalTokenTextCheck.MSG_KEY, "12345"),
         };
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT"
                     + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenTextField']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='illegalNumber']]"
@@ -67,23 +58,19 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
                     + "/ASSIGN/EXPR/NUM_INT[@text='12345']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalTokenTextField.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMethod() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalTokenTextMethod.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenTextCheck.class);
-        moduleConfig.addProperty("format", "forbiddenText");
-        moduleConfig.addProperty("tokens", "STRING_LITERAL");
         final String[] expectedViolation = {
-            "5:32: " + getCheckMessage(IllegalTokenTextCheck.class,
+            "16:32: " + getCheckMessage(IllegalTokenTextCheck.class,
                         IllegalTokenTextCheck.MSG_KEY, "forbiddenText"),
         };
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT"
                     + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenTextMethod']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myMethod']]"
@@ -96,20 +83,16 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
                     + "/ASSIGN/EXPR/STRING_LITERAL[@text='forbiddenText']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalTokenTextMethod.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInterface() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalTokenTextInterface.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenTextCheck.class);
-        moduleConfig.addProperty("format", "invalidIdentifier");
-        moduleConfig.addProperty("tokens", "IDENT");
         final String[] expectedViolation = {
-            "4:10: " + getCheckMessage(IllegalTokenTextCheck.class,
+            "15:10: " + getCheckMessage(IllegalTokenTextCheck.class,
                         IllegalTokenTextCheck.MSG_KEY, "invalidIdentifier"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -118,8 +101,10 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
                     + "/OBJBLOCK/METHOD_DEF/IDENT[@text='invalidIdentifier']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalTokenTextInterface.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
