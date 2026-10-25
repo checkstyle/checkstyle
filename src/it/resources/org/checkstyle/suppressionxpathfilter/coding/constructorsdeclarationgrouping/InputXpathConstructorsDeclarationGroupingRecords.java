@@ -18,7 +18,8 @@ public class InputXpathConstructorsDeclarationGroupingRecords {
 
     void foo() {}
 
-    // violation below 'Constructors should be grouped together. The last grouped constructor is declared at line '15'.'
+    // violation 2 lines below """Constructors should be grouped together.
+    // The last grouped constructor is declared at line '15'."""
     public MyRecord {} // warn
   }
 }

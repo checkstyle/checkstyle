@@ -45,7 +45,7 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
     @Test
     public void testClass() throws Exception {
         final String[] expectedViolation = {
-            "18:5: " + getCheckMessage(CLAZZ,
+            "19:5: " + getCheckMessage(CLAZZ,
                     ConstructorsDeclarationGroupingCheck.MSG_KEY, 13),
         };
 
@@ -74,7 +74,7 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
     @Test
     public void testEnum() throws Exception {
         final String[] expectedViolation = {
-            "20:5: " + getCheckMessage(CLAZZ,
+            "21:5: " + getCheckMessage(CLAZZ,
                     ConstructorsDeclarationGroupingCheck.MSG_KEY, 15),
         };
 
@@ -104,7 +104,7 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
     @Test
     public void testRecords() throws Exception {
         final String[] expectedViolation = {
-            "22:5: " + getCheckMessage(CLAZZ,
+            "23:5: " + getCheckMessage(CLAZZ,
                     ConstructorsDeclarationGroupingCheck.MSG_KEY, 15),
         };
 

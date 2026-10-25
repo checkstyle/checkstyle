@@ -14,6 +14,7 @@ public class InputXpathConstructorsDeclarationGroupingClass {
 
     int x;
 
-    // violation below 'Constructors should be grouped together. The last grouped constructor is declared at line '13'.'
+    // violation 2 lines below """Constructors should be grouped together.
+    // The last grouped constructor is declared at line '13'."""
     InputXpathConstructorsDeclarationGroupingClass(String str) {} // warn
 }

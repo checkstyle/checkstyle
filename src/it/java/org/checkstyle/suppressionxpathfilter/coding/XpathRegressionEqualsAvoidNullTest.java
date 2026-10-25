@@ -45,7 +45,7 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
     @Test
     public void testEquals() throws Exception {
         final String[] expectedViolation = {
-            "14:26: " + getCheckMessage(CLAZZ,
+            "15:26: " + getCheckMessage(CLAZZ,
                     EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL),
         };
 
@@ -65,7 +65,7 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
     @Test
     public void testEqualsIgnoreCase() throws Exception {
         final String[] expectedViolation = {
-            "14:36: " + getCheckMessage(CLAZZ,
+            "15:36: " + getCheckMessage(CLAZZ,
                     EqualsAvoidNullCheck.MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
         };
 
@@ -85,7 +85,7 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
     @Test
     public void testField() throws Exception {
         final String[] expectedViolation = {
-            "13:25: " + getCheckMessage(CLAZZ,
+            "14:25: " + getCheckMessage(CLAZZ,
                     EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL),
         };
 

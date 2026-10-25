@@ -16,6 +16,7 @@ public enum InputXpathConstructorsDeclarationGroupingEnum {
 
     int f;
 
-    // violation below 'Constructors should be grouped together. The last grouped constructor is declared at line '15'.'
+    // violation 2 lines below """Constructors should be grouped together.
+    // The last grouped constructor is declared at line '15'."""
     InputXpathConstructorsDeclarationGroupingEnum(int x) {} // warn
 }
