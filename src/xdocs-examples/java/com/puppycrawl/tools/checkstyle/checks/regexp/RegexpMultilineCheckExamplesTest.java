@@ -90,8 +90,11 @@ public class RegexpMultilineCheckExamplesTest extends AbstractExamplesModuleTest
     public void testExample7() throws Exception {
         final String[] expected = {
             "4: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test.*string"),
-            "30: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test.*string"),
-            "39: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test.*string"),
+            "31: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test.*string"),
+            "33: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test.*string"),
+            "35: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test.*string"),
+            "40: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test.*string"),
+            "42: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test.*string"),
         };
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
