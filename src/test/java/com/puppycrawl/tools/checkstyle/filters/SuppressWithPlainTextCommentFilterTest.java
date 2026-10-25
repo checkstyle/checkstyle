@@ -429,6 +429,32 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
             .hasSize(6);
     }
 
+    /**
+     * ON suppressions before the first OFF suppression can not change the result of
+     * the filter, so they must not be cached to keep the lookup of every violation cheap.
+     * Our goal is to kill pitest survival and we need access to the implementation details
+     * so {@link AbstractModuleTestSupport#verifyFilterWithInlineConfigParser} is not used.
+     *
+     * @throws IOException if an error occurs while writing the input file.
+     */
+    @Test
+    public void testOnSuppressionsBeforeFirstOffAreNotCached() throws IOException {
+        final File file = new File(temporaryFolder, "InputOnBeforeOff.java");
+        Files.writeString(file.toPath(), "// CHECKSTYLE:ON\nclass A {\n// CHECKSTYLE:OFF\n"
+                + "// CHECKSTYLE:ON\n}\n");
+        final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
+        final Violation violation = new Violation(2, null, null,
+                null, null, Object.class, null);
+        final AuditEvent event = new AuditEvent("", file.getPath(), violation);
+
+        assertWithMessage("Violation should not be suppressed")
+            .that(filter.accept(event))
+            .isTrue();
+        assertWithMessage("Invalid suppressions size")
+            .that(getSuppressionsAfterExecution(filter))
+            .hasSize(2);
+    }
+
     @Test
     public void testSuppressByCheck() throws Exception {
         final String[] suppressedViolationMessages = {
