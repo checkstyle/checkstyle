@@ -95,7 +95,7 @@ public class CyclomaticComplexityCheck extends AbstractCheck {
     private boolean switchBlockAsSingleDecisionPoint;
 
     /** The current value. */
-    private BigInteger currentValue = INITIAL_VALUE;
+    private BigInteger currentValue;
 
     /** Specify the maximum threshold allowed. */
     private int max = DEFAULT_COMPLEXITY_VALUE;
@@ -181,6 +181,12 @@ public class CyclomaticComplexityCheck extends AbstractCheck {
             TokenTypes.STATIC_INIT,
             TokenTypes.COMPACT_CTOR_DEF,
         };
+    }
+
+    @Override
+    public void beginTree(DetailAST rootAST) {
+        valueStack.clear();
+        currentValue = INITIAL_VALUE;
     }
 
     @Override
