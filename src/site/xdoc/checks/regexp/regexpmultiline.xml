@@ -26,7 +26,7 @@
               <li><a href="#Example4-config" class="toc-sublink">Match a maximum of three test strings</a></li>
               <li><a href="#Example5-config" class="toc-sublink">Match a minimum of two test strings</a></li>
               <li><a href="#Example6-config" class="toc-sublink">Restrict an empty file</a></li>
-              <li><a href="#Example7-config" class="toc-sublink">Match a minimum of two test strings</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">Match test strings regardless of case</a></li>
               <li><a href="#Example8-config" class="toc-sublink">Find calls to print to the console with a custom message</a></li>
               <li><a href="#Example9-config" class="toc-sublink">Match a maximum of three test strings</a></li>
             </ul>
@@ -388,12 +388,13 @@ class Example5 {
         </code></pre></div>
         <hr class="example-separator"/>
         <p id="Example7-config">
-        To configure the check to match a minimum of two test strings:
+        To configure the check to match test strings regardless of case:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpMultiline"&gt;
     &lt;property name="format" value="Test.*string"/&gt;
+    &lt;property name="ignoreCase" value="true"/&gt;
     &lt;property name="fileExtensions" value="java"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -421,16 +422,16 @@ class Example7 {
   void testMethod2() {
     // violation below 'Line matches the illegal pattern'
     System.out.println("Test #1: this is a test string");
-
+    // violation below 'Line matches the illegal pattern'
     System.out.println("TeSt #2: This is a test string");
-
+    // violation below 'Line matches the illegal pattern'
     System.out.println("TEST #3: This is a test string");
     int i = 5;
 
     System.out.println("Value of i: " + i);
     // violation below 'Line matches the illegal pattern'
     System.out.println("Test #4: This is a test string");
-
+    // violation below 'Line matches the illegal pattern'
     System.out.println("TEst #5: This is a test string");
   }
 }
