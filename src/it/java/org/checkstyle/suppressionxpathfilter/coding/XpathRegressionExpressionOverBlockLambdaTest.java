@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.ExpressionOverBlockLambdaCheck;
 
 public class XpathRegressionExpressionOverBlockLambdaTest
@@ -47,14 +45,11 @@ public class XpathRegressionExpressionOverBlockLambdaTest
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathExpressionOverBlockLambdaDefault.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ExpressionOverBlockLambdaCheck.class);
+        final String fileToProcess =
+                getPath("InputXpathExpressionOverBlockLambdaDefault.java");
 
         final String[] expectedViolation = {
-            "4:21: " + getCheckMessage(ExpressionOverBlockLambdaCheck.class,
+            "11:21: " + getCheckMessage(ExpressionOverBlockLambdaCheck.class,
                     ExpressionOverBlockLambdaCheck.MSG_KEY),
         };
 
@@ -64,23 +59,17 @@ public class XpathRegressionExpressionOverBlockLambdaTest
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]/ASSIGN/LAMBDA"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMethodCall() throws Exception {
-        final File fileToProcess = new File(
-                getPath(
-                    "InputXpathExpressionOver"
-                    + "BlockLambdaMethodCall.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(
-                    ExpressionOverBlockLambdaCheck.class);
+        final String fileToProcess =
+                getPath("InputXpathExpressionOverBlockLambdaMethodCall.java");
 
         final String[] expectedViolation = {
-            "7:24: " + getCheckMessage(
+            "14:24: " + getCheckMessage(
                     ExpressionOverBlockLambdaCheck.class,
                     ExpressionOverBlockLambdaCheck.MSG_KEY),
         };
@@ -105,23 +94,17 @@ public class XpathRegressionExpressionOverBlockLambdaTest
                     + "[./IDENT[@text='s']]"
             );
 
-        runVerifications(moduleConfig, fileToProcess,
-                expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testLocalVar() throws Exception {
-        final File fileToProcess = new File(
-                getPath(
-                    "InputXpathExpressionOver"
-                    + "BlockLambdaLocalVar.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(
-                    ExpressionOverBlockLambdaCheck.class);
+        final String fileToProcess =
+                getPath("InputXpathExpressionOverBlockLambdaLocalVar.java");
 
         final String[] expectedViolation = {
-            "8:15: " + getCheckMessage(
+            "15:15: " + getCheckMessage(
                     ExpressionOverBlockLambdaCheck.class,
                     ExpressionOverBlockLambdaCheck.MSG_KEY),
         };
@@ -140,8 +123,8 @@ public class XpathRegressionExpressionOverBlockLambdaTest
                         + "[./IDENT[@text='x']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess,
-                expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries,
+                expectedViolation);
     }
 
 }
