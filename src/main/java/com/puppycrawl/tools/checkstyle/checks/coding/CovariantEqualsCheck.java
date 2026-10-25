@@ -133,6 +133,11 @@ public class CovariantEqualsCheck extends AbstractCheck {
     }
 
     @Override
+    public void beginTree(DetailAST rootAST) {
+        equalsMethods.clear();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         equalsMethods.clear();
 
