@@ -22,14 +22,19 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck.MSG_KEY;
 
+import java.io.File;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -133,6 +138,43 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid exception message")
                 .that(exc.getMessage())
                 .isEqualTo("interface[0x-1]");
+    }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final MutableExceptionCheck check = new MutableExceptionCheck();
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputMutableException.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final Optional<DetailAST> classDef = TestUtil.findTokenInAstByPredicate(root,
+                ast -> {
+                    return ast.getType() == TokenTypes.CLASS_DEF
+                            && "FooException".equals(
+                                    ast.findFirstToken(TokenTypes.IDENT).getText());
+                });
+
+        assertWithMessage("Ast should contain FooException CLASS_DEF")
+                .that(classDef.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        classDef.orElseThrow(),
+                        "checkingStack",
+                        checkingStack -> ((Collection<?>) checkingStack).isEmpty()))
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        classDef.orElseThrow(),
+                        "checking",
+                        checking -> !(boolean) checking))
+                .isTrue();
     }
 
 }
