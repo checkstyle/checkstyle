@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck;
 
 public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
@@ -45,13 +43,10 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-            new File(getPath("InputXpathIllegalTypeOne.java"));
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(IllegalTypeCheck.class);
-        moduleConfig.addProperty("tokens", "METHOD_DEF");
+        final String fileToProcess =
+            getPath("InputXpathIllegalTypeOne.java");
         final String[] expectedViolation = {
-            "4:23: " + getCheckMessage(IllegalTypeCheck.class,
+            "21:23: " + getCheckMessage(IllegalTypeCheck.class,
                                       IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -62,21 +57,17 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
                 + "[./IDENT[@text='HashSet']]/DOT/IDENT[@text='java']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                         expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries,
+                                         expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-            new File(getPath("InputXpathIllegalTypeTwo.java"));
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(IllegalTypeCheck.class);
-
-        moduleConfig.addProperty("illegalClassNames", "Boolean");
+        final String fileToProcess =
+            getPath("InputXpathIllegalTypeTwo.java");
 
         final String[] expectedViolation = {
-            "6:20: " + getCheckMessage(IllegalTypeCheck.class,
+            "23:20: " + getCheckMessage(IllegalTypeCheck.class,
                                       IllegalTypeCheck.MSG_KEY, "Boolean"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -85,21 +76,17 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
                 + "TYPE_PARAMETER[./IDENT[@text='T']]/TYPE_UPPER_BOUNDS/IDENT[@text='Boolean']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                         expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries,
+                                         expectedViolation);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final File fileToProcess =
-            new File(getPath("InputXpathIllegalTypeInnerClass.java"));
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(IllegalTypeCheck.class);
-
-        moduleConfig.addProperty("tokens", "METHOD_DEF");
+        final String fileToProcess =
+            getPath("InputXpathIllegalTypeInnerClass.java");
 
         final String[] expectedViolation = {
-            "5:27: " + getCheckMessage(IllegalTypeCheck.class,
+            "22:27: " + getCheckMessage(IllegalTypeCheck.class,
                                       IllegalTypeCheck.MSG_KEY, "java.util.HashMap"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -111,8 +98,8 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
                 + "[./IDENT[@text='HashMap']]/DOT/IDENT[@text='java']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                         expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries,
+                                         expectedViolation);
     }
 
 }
