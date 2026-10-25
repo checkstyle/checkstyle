@@ -1,3 +1,9 @@
+/*
+UnnecessaryNullCheckWithInstanceOf
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.unnecessarynullcheckwithinstanceof;
 
 public class InputXpathUnnecessaryNullCheckWithInstanceOfAnonymous {
@@ -5,7 +11,8 @@ public class InputXpathUnnecessaryNullCheckWithInstanceOfAnonymous {
         @Override
         public void run() {
             Object obj = "test";
-            if (obj != null && obj instanceof String) { // warn
+            if (obj != null && obj instanceof String) {
+            // violation above 'Unnecessary nullity check with instanceof operator'
                 String s = (String) obj;
             }
         }

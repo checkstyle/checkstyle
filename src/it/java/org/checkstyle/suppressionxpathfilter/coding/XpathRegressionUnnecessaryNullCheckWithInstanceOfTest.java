@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheckWithInstanceOfCheck;
 
 public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest
@@ -45,13 +43,8 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest
 
     @Test
     public void test1() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathUnnecessaryNullCheckWithInstanceOf.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnnecessaryNullCheckWithInstanceOfCheck.class);
-
         final String[] expected = {
-            "5:13: " + getCheckMessage(UnnecessaryNullCheckWithInstanceOfCheck.class,
+            "11:13: " + getCheckMessage(UnnecessaryNullCheckWithInstanceOfCheck.class,
                     UnnecessaryNullCheckWithInstanceOfCheck.MSG_UNNECESSARY_NULLCHECK),
         };
         final List<String> expectedXpathQueries = List.of(
@@ -61,19 +54,15 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest
                 + "/SLIST/LITERAL_IF/EXPR/LAND/NOT_EQUAL/IDENT[@text='obj']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessaryNullCheckWithInstanceOf.java"),
+                expectedXpathQueries, expected);
     }
 
     @Test
     public void test2() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                    "InputXpathUnnecessaryNullCheckWithInstanceOfAnonymous.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnnecessaryNullCheckWithInstanceOfCheck.class);
-
         final String[] expected = {
-            "8:17: " + getCheckMessage(UnnecessaryNullCheckWithInstanceOfCheck.class,
+            "14:17: " + getCheckMessage(UnnecessaryNullCheckWithInstanceOfCheck.class,
                     UnnecessaryNullCheckWithInstanceOfCheck.MSG_UNNECESSARY_NULLCHECK),
         };
         final List<String> expectedXpathQueries = List.of(
@@ -84,19 +73,15 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest
                 + "/SLIST/LITERAL_IF/EXPR/LAND/NOT_EQUAL/IDENT[@text='obj']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessaryNullCheckWithInstanceOfAnonymous.java"),
+                expectedXpathQueries, expected);
     }
 
     @Test
     public void test3() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                    "InputXpathUnnecessaryNullCheckWithInstanceOfInterface.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnnecessaryNullCheckWithInstanceOfCheck.class);
-
         final String[] expected = {
-            "6:16: " + getCheckMessage(UnnecessaryNullCheckWithInstanceOfCheck.class,
+            "12:16: " + getCheckMessage(UnnecessaryNullCheckWithInstanceOfCheck.class,
                     UnnecessaryNullCheckWithInstanceOfCheck.MSG_UNNECESSARY_NULLCHECK),
         };
         final List<String> expectedXpathQueries = List.of(
@@ -106,7 +91,9 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest
                 + "/EXPR/LAND/NOT_EQUAL/IDENT[@text='obj']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessaryNullCheckWithInstanceOfInterface.java"),
+                expectedXpathQueries, expected);
     }
 
 }

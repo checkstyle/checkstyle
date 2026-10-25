@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.design;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.design.SealedShouldHavePermitsListCheck;
 
 public class XpathRegressionSealedShouldHavePermitsListTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionSealedShouldHavePermitsListTest extends AbstractXpat
 
     @Test
     public void testInner() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathSealedShouldHavePermitsListInner.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(SealedShouldHavePermitsListCheck.class);
-
         final String[] expectedViolation = {
-            "5:4: " + getCheckMessage(SealedShouldHavePermitsListCheck.class,
+            "11:4: " + getCheckMessage(SealedShouldHavePermitsListCheck.class,
                 SealedShouldHavePermitsListCheck.MSG_KEY),
         };
 
@@ -68,21 +60,15 @@ public class XpathRegressionSealedShouldHavePermitsListTest extends AbstractXpat
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='A']]/MODIFIERS/LITERAL_SEALED"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSealedShouldHavePermitsListInner.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testTopLevel() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathSealedShouldHavePermitsListTopLevel.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(SealedShouldHavePermitsListCheck.class);
-
         final String[] expectedViolation = {
-            "4:1: " + getCheckMessage(SealedShouldHavePermitsListCheck.class,
+            "10:1: " + getCheckMessage(SealedShouldHavePermitsListCheck.class,
                 SealedShouldHavePermitsListCheck.MSG_KEY),
         };
 
@@ -96,21 +82,15 @@ public class XpathRegressionSealedShouldHavePermitsListTest extends AbstractXpat
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSealedShouldHavePermitsListTopLevel.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testInterface() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathSealedShouldHavePermitsListInterface.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(SealedShouldHavePermitsListCheck.class);
-
         final String[] expectedViolation = {
-            "4:1: " + getCheckMessage(SealedShouldHavePermitsListCheck.class,
+            "10:1: " + getCheckMessage(SealedShouldHavePermitsListCheck.class,
                 SealedShouldHavePermitsListCheck.MSG_KEY),
         };
 
@@ -125,8 +105,9 @@ public class XpathRegressionSealedShouldHavePermitsListTest extends AbstractXpat
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSealedShouldHavePermitsListInterface.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
