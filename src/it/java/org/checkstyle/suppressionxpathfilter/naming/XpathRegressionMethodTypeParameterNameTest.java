@@ -21,14 +21,12 @@ package org.checkstyle.suppressionxpathfilter.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.MethodTypeParameterNameCheck.MSG_INVALID_PATTERN;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MethodTypeParameterNameCheck;
 
 public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTestSupport {
@@ -47,14 +45,8 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
 
     @Test
     public void test1() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMethodTypeParameterNameDefault.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodTypeParameterNameCheck.class);
-
         final String[] expectedViolation = {
-            "4:11: " + getCheckMessage(MethodTypeParameterNameCheck.class,
+            "11:11: " + getCheckMessage(MethodTypeParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "TT", "^[A-Z]$"),
         };
 
@@ -69,20 +61,16 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
                   + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='TT']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMethodTypeParameterNameDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void test2() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMethodTypeParameterNameInner.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodTypeParameterNameCheck.class);
-        moduleConfig.addProperty("format", "^foo$");
-
         final String[] expectedViolation = {
-            "6:10: " + getCheckMessage(MethodTypeParameterNameCheck.class,
+            "13:10: " + getCheckMessage(MethodTypeParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "fo_", "^foo$"),
         };
 
@@ -99,20 +87,16 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
                   + "/TYPE_PARAMETER/IDENT[@text='fo_']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMethodTypeParameterNameInner.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void test3() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMethodTypeParameterNameLowercase.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodTypeParameterNameCheck.class);
-        moduleConfig.addProperty("format", "^[a-z]$");
-
         final String[] expectedViolation = {
-            "7:6: " + getCheckMessage(MethodTypeParameterNameCheck.class,
+            "14:6: " + getCheckMessage(MethodTypeParameterNameCheck.class,
                         MSG_INVALID_PATTERN, "a_a", "^[a-z]$"),
         };
 
@@ -127,7 +111,10 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
                   + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='a_a']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMethodTypeParameterNameLowercase.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
