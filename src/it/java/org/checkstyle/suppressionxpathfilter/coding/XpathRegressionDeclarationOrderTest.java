@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck;
 
 public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
 
     @Test
     public void testNonStatic() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathDeclarationOrderNonStatic.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(DeclarationOrderCheck.class);
-
         final String[] expectedViolation = {
-            "5:5: " + getCheckMessage(DeclarationOrderCheck.class,
+            "14:5: " + getCheckMessage(DeclarationOrderCheck.class,
                 DeclarationOrderCheck.MSG_ACCESS),
         };
 
@@ -68,20 +60,15 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='name']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathDeclarationOrderNonStatic.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testStatic() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathDeclarationOrderStatic.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(DeclarationOrderCheck.class);
-
         final String[] expectedViolation = {
-            "5:5: " + getCheckMessage(DeclarationOrderCheck.class,
+            "14:5: " + getCheckMessage(DeclarationOrderCheck.class,
                 DeclarationOrderCheck.MSG_STATIC),
         };
 
@@ -97,20 +84,15 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='MAX']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathDeclarationOrderStatic.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathDeclarationOrderInnerClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(DeclarationOrderCheck.class);
-
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(DeclarationOrderCheck.class,
+            "15:9: " + getCheckMessage(DeclarationOrderCheck.class,
                 DeclarationOrderCheck.MSG_ACCESS),
         };
 
@@ -129,8 +111,9 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathDeclarationOrderInnerClass.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
