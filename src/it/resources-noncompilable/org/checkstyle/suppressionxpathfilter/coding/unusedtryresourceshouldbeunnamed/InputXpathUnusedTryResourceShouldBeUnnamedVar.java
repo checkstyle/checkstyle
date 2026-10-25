@@ -1,8 +1,15 @@
-package org.checkstyle.suppressionxpathfilter.coding.unusedtryresourceshouldbeunnamed;
+/*
+UnusedTryResourceShouldBeUnnamed
+
+
+*/
+
 // non-compiled with javac: Compilable with Java25
+package org.checkstyle.suppressionxpathfilter.coding.unusedtryresourceshouldbeunnamed;
+
 public class InputXpathUnusedTryResourceShouldBeUnnamedVar {
     void test() {
-        try (var a = lock()) { } // warn
+        try (var a = lock()) { } // violation 'Unused try resource .* should be unnamed\.'
         catch (Exception e) {}
 
         try (var _ = lock()) {}
@@ -12,4 +19,3 @@ public class InputXpathUnusedTryResourceShouldBeUnnamedVar {
         return () -> {};
     }
 }
-

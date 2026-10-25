@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnusedTryResourceShouldBeUnnamedCheck;
 
 public class XpathRegressionUnusedTryResourceShouldBeUnnamedTest
@@ -48,15 +46,12 @@ public class XpathRegressionUnusedTryResourceShouldBeUnnamedTest
 
     @Test
     public void testSimple() throws Exception {
-        final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathUnusedTryResourceShouldBeUnnamedSimple.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedTryResourceShouldBeUnnamedCheck.class);
+        final String fileToProcess =
+                getNonCompilablePath(
+                        "InputXpathUnusedTryResourceShouldBeUnnamedSimple.java");
 
         final String[] expectedViolation = {
-            "5:26: " + getCheckMessage(UnusedTryResourceShouldBeUnnamedCheck.class,
+            "12:26: " + getCheckMessage(UnusedTryResourceShouldBeUnnamedCheck.class,
                     UnusedTryResourceShouldBeUnnamedCheck.MSG_UNUSED_TRY_RESOURCE,
                     "a"),
         };
@@ -68,21 +63,17 @@ public class XpathRegressionUnusedTryResourceShouldBeUnnamedTest
                         + "/RESOURCE_SPECIFICATION/RESOURCES/RESOURCE/IDENT[@text='a']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testNested() throws Exception {
-        final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathUnusedTryResourceShouldBeUnnamedNested.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedTryResourceShouldBeUnnamedCheck.class);
+        final String fileToProcess =
+                getNonCompilablePath(
+                        "InputXpathUnusedTryResourceShouldBeUnnamedNested.java");
 
         final String[] expectedViolation = {
-            "7:28: " + getCheckMessage(UnusedTryResourceShouldBeUnnamedCheck.class,
+            "14:28: " + getCheckMessage(UnusedTryResourceShouldBeUnnamedCheck.class,
                     UnusedTryResourceShouldBeUnnamedCheck.MSG_UNUSED_TRY_RESOURCE,
                     "b"),
         };
@@ -94,21 +85,13 @@ public class XpathRegressionUnusedTryResourceShouldBeUnnamedTest
                 + "/SLIST/LITERAL_TRY/RESOURCE_SPECIFICATION/RESOURCES/RESOURCE/IDENT[@text='b']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testAnon() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathUnusedTryResourceShouldBeUnnamedAnon.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedTryResourceShouldBeUnnamedCheck.class);
-
         final String[] expectedViolation = {
-            "8:30: " + getCheckMessage(UnusedTryResourceShouldBeUnnamedCheck.class,
+            "15:30: " + getCheckMessage(UnusedTryResourceShouldBeUnnamedCheck.class,
                     UnusedTryResourceShouldBeUnnamedCheck.MSG_UNUSED_TRY_RESOURCE,
                     "a"),
         };
@@ -122,21 +105,20 @@ public class XpathRegressionUnusedTryResourceShouldBeUnnamedTest
                 + "/RESOURCE_SPECIFICATION/RESOURCES/RESOURCE/IDENT[@text='a']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnusedTryResourceShouldBeUnnamedAnon.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testVar() throws Exception {
-        final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathUnusedTryResourceShouldBeUnnamedVar.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedTryResourceShouldBeUnnamedCheck.class);
+        final String fileToProcess =
+                getNonCompilablePath(
+                        "InputXpathUnusedTryResourceShouldBeUnnamedVar.java");
 
         final String[] expectedViolation = {
-            "5:18: " + getCheckMessage(UnusedTryResourceShouldBeUnnamedCheck.class,
+            "12:18: " + getCheckMessage(UnusedTryResourceShouldBeUnnamedCheck.class,
                     UnusedTryResourceShouldBeUnnamedCheck.MSG_UNUSED_TRY_RESOURCE,
                     "a"),
         };
@@ -148,8 +130,7 @@ public class XpathRegressionUnusedTryResourceShouldBeUnnamedTest
                         + "/RESOURCE_SPECIFICATION/RESOURCES/RESOURCE/IDENT[@text='a']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
 }

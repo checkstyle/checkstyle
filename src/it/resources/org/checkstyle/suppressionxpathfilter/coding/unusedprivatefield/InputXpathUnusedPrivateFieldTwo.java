@@ -1,3 +1,11 @@
+/*
+UnusedPrivateField
+ignoreAnnotationCanonicalNames = (default)java.io.Serial
+ignoredFieldPattern = (default)serialVersionUID
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.unusedprivatefield;
 
 public class InputXpathUnusedPrivateFieldTwo {
@@ -9,7 +17,7 @@ public class InputXpathUnusedPrivateFieldTwo {
     }
 
     static class Inner {
-        private int unused; // warn
+        private int unused; // violation 'Unused private field ''unused''\.'
         private int usedInInner;
 
         void bar() {
