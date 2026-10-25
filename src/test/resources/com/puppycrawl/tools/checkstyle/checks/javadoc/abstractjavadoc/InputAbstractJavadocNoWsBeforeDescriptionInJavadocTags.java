@@ -22,12 +22,12 @@ public class InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags implements S
      */
     private static final long serialVersionUID = 8669426759693842025L;
 
+    // violation 4 lines below 'Javadoc comment at column 29 has parse error.'
+    // Details: token recognition error at: '-' while parsing Fieldname
     /**
      * Parse Error from ANTLR.
      * @serialField fieldName-fieldtype-fielddescription
      */
-    // violation 2 lines above 'Javadoc comment at column 29 has parse error.'
-    // Details: token recognition error at: '-' while parsing Fieldname
     private static ObjectStreamField objectStreamField1;
 
     /**
@@ -36,11 +36,11 @@ public class InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags implements S
      */
     private static ObjectStreamField objectStreamField2;
 
+    // violation 3 lines below 'Javadoc comment at column 30 has parse error.'
+    // Details: token recognition error at: '-' while parsing
     /**
      * @serialField fieldName -fieldtype -fielddescription
      */
-    // violation 2 lines above 'Javadoc comment at column 30 has parse error.'
-    // Details: token recognition error at: '-' while parsing
     private static ObjectStreamField objectStreamField3;
 
     /**
