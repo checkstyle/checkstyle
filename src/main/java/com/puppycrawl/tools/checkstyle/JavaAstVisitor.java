@@ -2243,30 +2243,26 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
      * @return the identifier text with all unicode escapes decoded
      */
     private static String decodeUnicodeEscapes(String text) {
-        String decodedText = text;
-        if (text.indexOf('\\') >= 0) {
-            final StringBuilder builder = new StringBuilder(text.length());
-            int index = 0;
-            while (index < text.length()) {
-                final char current = text.charAt(index);
-                if (current == '\\') {
-                    int hexIndex = index + 1;
-                    while (text.charAt(hexIndex) == 'u') {
-                        hexIndex++;
-                    }
-                    final int codeUnit = Integer.parseInt(
-                            text.substring(hexIndex, hexIndex + HEX_DIGITS_IN_ESCAPE), 16);
-                    builder.append((char) codeUnit);
-                    index = hexIndex + HEX_DIGITS_IN_ESCAPE;
+        final StringBuilder builder = new StringBuilder();
+        int index = 0;
+        while (index < text.length()) {
+            final char current = text.charAt(index);
+            if (current == '\\') {
+                int hexIndex = index + 1;
+                while (text.charAt(hexIndex) == 'u') {
+                    hexIndex++;
                 }
-                else {
-                    builder.append(current);
-                    index++;
-                }
+                final int codeUnit = Integer.parseInt(
+                        text.substring(hexIndex, hexIndex + HEX_DIGITS_IN_ESCAPE), 16);
+                builder.appendCodePoint(codeUnit);
+                index = hexIndex + HEX_DIGITS_IN_ESCAPE;
             }
-            decodedText = builder.toString();
+            else {
+                builder.append(current);
+                index++;
+            }
         }
-        return decodedText;
+        return builder.toString();
     }
 
     /**

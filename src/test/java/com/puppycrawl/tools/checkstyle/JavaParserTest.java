@@ -421,8 +421,8 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         final List<String> identifierTexts = new ArrayList<>();
         collectIdentifierData(root, declaredNames, identifierTexts);
 
-        final String supplementaryLetter = Character.toString(0x10400);
-        final String combiningAccent = Character.toString(0x1D17B);
+        final String supplementaryLetter = Character.toString(0x1_0400);
+        final String combiningAccent = Character.toString(0x1_D17B);
         assertWithMessage("Unexpected names decoded from unicode escapes")
             .that(declaredNames)
             .containsExactly("abc", "bcd", "multipleescapes", supplementaryLetter + "abc",
