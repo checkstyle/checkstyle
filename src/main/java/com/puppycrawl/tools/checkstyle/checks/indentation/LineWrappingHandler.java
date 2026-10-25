@@ -201,8 +201,8 @@ public class LineWrappingHandler {
         boolean leadingAnnotationRun = true;
         while (node != null) {
             if (node.getType() == TokenTypes.ANNOTATION) {
-                final DetailAST atNode = node.getFirstChild();
                 if (!isLeftForLineWrappingCheck(firstNodesOnLines, node, leadingAnnotationRun)) {
+                    final DetailAST atNode = node.getFirstChild();
                     final NavigableMap<Integer, DetailAST> annotationLines =
                             firstNodesOnLines.subMap(
                                     node.getLineNo(),
@@ -243,7 +243,8 @@ public class LineWrappingHandler {
                 left = true;
             }
             else {
-                final DetailAST nextLineNode = firstNodesOnLines.getOrDefault(getNextNodeLine(firstNodesOnLines, node), node);
+                final DetailAST nextLineNode = firstNodesOnLines
+                        .getOrDefault(getNextNodeLine(firstNodesOnLines, node), node);
                 left = nextLineNode.getType() == TokenTypes.AT;
             }
         }
