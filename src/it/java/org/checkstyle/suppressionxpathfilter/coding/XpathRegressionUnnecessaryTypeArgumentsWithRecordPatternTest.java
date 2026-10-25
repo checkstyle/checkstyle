@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryTypeArgumentsWithRecordPatternCheck;
 
 public class XpathRegressionUnnecessaryTypeArgumentsWithRecordPatternTest
@@ -47,15 +45,8 @@ public class XpathRegressionUnnecessaryTypeArgumentsWithRecordPatternTest
 
     @Test
     public void testInstanceOf() throws Exception {
-        final File fileToProcess =
-            new File(getPath(
-                "InputXpathUnnecessaryTypeArgumentsWithRecordPatternInstanceOf.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UnnecessaryTypeArgumentsWithRecordPatternCheck.class);
-
         final String[] expected = {
-            "8:31: " + getCheckMessage(UnnecessaryTypeArgumentsWithRecordPatternCheck.class,
+            "14:31: " + getCheckMessage(UnnecessaryTypeArgumentsWithRecordPatternCheck.class,
                     UnnecessaryTypeArgumentsWithRecordPatternCheck.MSG_KEY),
         };
 
@@ -81,21 +72,15 @@ public class XpathRegressionUnnecessaryTypeArgumentsWithRecordPatternTest
                 + "/TYPE_ARGUMENTS/GENERIC_START"
         );
 
-        runVerifications(moduleConfig, fileToProcess,
-                expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessaryTypeArgumentsWithRecordPatternInstanceOf.java"),
+                expectedXpathQueries, expected);
     }
 
     @Test
     public void testSwitch() throws Exception {
-        final File fileToProcess =
-            new File(getPath(
-                "InputXpathUnnecessaryTypeArgumentsWithRecordPatternSwitch.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UnnecessaryTypeArgumentsWithRecordPatternCheck.class);
-
         final String[] expected = {
-            "9:21: " + getCheckMessage(UnnecessaryTypeArgumentsWithRecordPatternCheck.class,
+            "15:21: " + getCheckMessage(UnnecessaryTypeArgumentsWithRecordPatternCheck.class,
                     UnnecessaryTypeArgumentsWithRecordPatternCheck.MSG_KEY),
         };
 
@@ -119,21 +104,15 @@ public class XpathRegressionUnnecessaryTypeArgumentsWithRecordPatternTest
                 + "/TYPE_ARGUMENTS/GENERIC_START"
         );
 
-        runVerifications(moduleConfig, fileToProcess,
-            expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessaryTypeArgumentsWithRecordPatternSwitch.java"),
+                expectedXpathQueries, expected);
     }
 
     @Test
     public void testSwitchCaseGroup() throws Exception {
-        final File fileToProcess =
-            new File(getPath(
-                "InputXpathUnnecessaryTypeArgumentsWithRecordPatternCaseGroup.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UnnecessaryTypeArgumentsWithRecordPatternCheck.class);
-
         final String[] expected = {
-            "9:21: " + getCheckMessage(
+            "15:21: " + getCheckMessage(
                 UnnecessaryTypeArgumentsWithRecordPatternCheck.class,
                 UnnecessaryTypeArgumentsWithRecordPatternCheck.MSG_KEY),
         };
@@ -160,8 +139,9 @@ public class XpathRegressionUnnecessaryTypeArgumentsWithRecordPatternTest
                 + "/TYPE_ARGUMENTS/GENERIC_START"
         );
 
-        runVerifications(moduleConfig, fileToProcess,
-            expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessaryTypeArgumentsWithRecordPatternCaseGroup.java"),
+                expectedXpathQueries, expected);
     }
 
 }

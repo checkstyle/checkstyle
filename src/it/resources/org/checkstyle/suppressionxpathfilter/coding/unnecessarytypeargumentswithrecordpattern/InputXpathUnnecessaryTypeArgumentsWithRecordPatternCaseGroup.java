@@ -1,3 +1,9 @@
+/*
+UnnecessaryTypeArgumentsWithRecordPattern
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.unnecessarytypeargumentswithrecordpattern;
 
 public class InputXpathUnnecessaryTypeArgumentsWithRecordPatternCaseGroup {
@@ -6,7 +12,7 @@ public class InputXpathUnnecessaryTypeArgumentsWithRecordPatternCaseGroup {
 
     void test(Box<String> box) {
         switch (box) {
-            case Box<String>(var s): //warn
+            case Box<String>(var s): // violation 'Unnecessary type arguments with record pattern.'
                 System.out.println(s);
                 break;
             default:
