@@ -1,3 +1,10 @@
+/*
+ClassTypeParameterName
+format = (^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.naming.classtypeparametername;
 
 public class InputXpathClassTypeParameterNameMethod {
@@ -9,7 +16,8 @@ public class InputXpathClassTypeParameterNameMethod {
     }
 
     public void myTest2() {
-        class MyClass2<ABC> { // warn
+    // violation below 'Name 'ABC' must match pattern '(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)'.'
+        class MyClass2<ABC> {
             public void test() {}
         }
     }

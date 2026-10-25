@@ -1,3 +1,11 @@
+/*
+InterfaceTypeParameterName
+format = (default)^[A-Z]$
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.naming.interfacetypeparametername;
 
-public interface InputXpathInterfaceTypeParameterNameTopLevelPublic<t> {} // warn
+// violation below 'Name 't' must match pattern '^[A-Z]$'.'
+public interface InputXpathInterfaceTypeParameterNameTopLevelPublic<t> {}

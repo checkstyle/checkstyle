@@ -19,15 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck;
 
 public class XpathRegressionClassTypeParameterNameTest extends AbstractXpathTestSupport {
@@ -46,15 +43,11 @@ public class XpathRegressionClassTypeParameterNameTest extends AbstractXpathTest
 
     @Test
     public void testClass() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathClassTypeParameterNameClass.java"));
         final String pattern = "^[A-Z]$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ClassTypeParameterNameCheck.class);
 
         final String[] expectedViolation = {
-            "5:20: " + getCheckMessage(ClassTypeParameterNameCheck.class,
-                        AbstractClassNameCheck.MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "abc", pattern),
+            "12:20: " + getCheckMessage(ClassTypeParameterNameCheck.class,
+                        ClassTypeParameterNameCheck.MSG_INVALID_PATTERN, "abc", pattern),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -68,23 +61,18 @@ public class XpathRegressionClassTypeParameterNameTest extends AbstractXpathTest
                         + "/TYPE_PARAMETER/IDENT[@text='abc']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(getPath("InputXpathClassTypeParameterNameClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInterface() throws Exception {
         final String pattern = "^[A-Z]{2,}$";
-        final File fileToProcess =
-                new File(getPath("InputXpathClassTypeParameterNameInterface.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ClassTypeParameterNameCheck.class);
-        moduleConfig.addProperty("format", pattern);
 
         final String[] expectedViolation = {
-            "9:20: " + getCheckMessage(ClassTypeParameterNameCheck.class,
-                        AbstractClassNameCheck.MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "aBc", pattern),
+            "16:20: " + getCheckMessage(ClassTypeParameterNameCheck.class,
+                        ClassTypeParameterNameCheck.MSG_INVALID_PATTERN, "aBc", pattern),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -97,23 +85,19 @@ public class XpathRegressionClassTypeParameterNameTest extends AbstractXpathTest
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='MyClass2']]"
                         + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='aBc']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+
+        verifyXpathWithInlineConfigParser(getPath("InputXpathClassTypeParameterNameInterface.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMethod() throws Exception {
         final String pattern = "(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)";
-        final File fileToProcess =
-                new File(getPath("InputXpathClassTypeParameterNameMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ClassTypeParameterNameCheck.class);
-        moduleConfig.addProperty("format", pattern);
 
         final String[] expectedViolation = {
-            "12:24: " + getCheckMessage(ClassTypeParameterNameCheck.class,
-                        AbstractClassNameCheck.MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "ABC", pattern),
+            "20:24: " + getCheckMessage(ClassTypeParameterNameCheck.class,
+                        ClassTypeParameterNameCheck.MSG_INVALID_PATTERN, "ABC", pattern),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -128,8 +112,10 @@ public class XpathRegressionClassTypeParameterNameTest extends AbstractXpathTest
                         + "[./IDENT[@text='MyClass2']]/TYPE_PARAMETERS"
                         + "/TYPE_PARAMETER/IDENT[@text='ABC']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+
+        verifyXpathWithInlineConfigParser(getPath("InputXpathClassTypeParameterNameMethod.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
