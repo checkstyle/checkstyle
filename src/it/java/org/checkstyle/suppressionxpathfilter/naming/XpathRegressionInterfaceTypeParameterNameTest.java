@@ -21,14 +21,12 @@ package org.checkstyle.suppressionxpathfilter.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.InterfaceTypeParameterNameCheck.MSG_INVALID_PATTERN;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.InterfaceTypeParameterNameCheck;
 
 public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpathTestSupport {
@@ -47,16 +45,8 @@ public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpath
 
     @Test
     public void testInsideClass() throws Exception {
-        final File fileToCheck =
-                new File(getPath(
-                "InputXpathInterfaceTypeParameterNameInsideClass.java"
-                ));
-
-        final DefaultConfiguration configuration =
-                createModuleConfig(InterfaceTypeParameterNameCheck.class);
-
         final String[] expectedViolations = {
-            "5:29: " + getCheckMessage(InterfaceTypeParameterNameCheck.class,
+            "12:29: " + getCheckMessage(InterfaceTypeParameterNameCheck.class,
                     MSG_INVALID_PATTERN,
                     "t", "^[A-Z]$"),
         };
@@ -76,21 +66,16 @@ public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpath
                 + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='t']"
         );
 
-        runVerifications(configuration, fileToCheck, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInterfaceTypeParameterNameInsideClass.java"),
+                expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
     public void testInsideInnerClass() throws Exception {
-        final File fileToCheck =
-                new File(getPath(
-                "InputXpathInterfaceTypeParameterNameInsideInnerClass.java"
-                ));
-
-        final DefaultConfiguration configuration =
-                createModuleConfig(InterfaceTypeParameterNameCheck.class);
-
         final String[] expectedViolations = {
-            "5:37: " + getCheckMessage(InterfaceTypeParameterNameCheck.class,
+            "12:37: " + getCheckMessage(InterfaceTypeParameterNameCheck.class,
                     MSG_INVALID_PATTERN,
                     "t", "^[A-Z]$"),
         };
@@ -113,21 +98,16 @@ public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpath
                 + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='t']"
         );
 
-        runVerifications(configuration, fileToCheck, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInterfaceTypeParameterNameInsideInnerClass.java"),
+                expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
     public void testTopLevelPublic() throws Exception {
-        final File fileToCheck =
-                new File(getPath(
-                        "InputXpathInterfaceTypeParameterNameTopLevelPublic.java"
-                ));
-
-        final DefaultConfiguration configuration =
-                createModuleConfig(InterfaceTypeParameterNameCheck.class);
-
         final String[] expectedViolations = {
-            "3:69: " + getCheckMessage(InterfaceTypeParameterNameCheck.class,
+            "11:69: " + getCheckMessage(InterfaceTypeParameterNameCheck.class,
                     MSG_INVALID_PATTERN,
                     "t", "^[A-Z]$"),
         };
@@ -142,7 +122,10 @@ public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpath
                 + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='t']"
         );
 
-        runVerifications(configuration, fileToCheck, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInterfaceTypeParameterNameTopLevelPublic.java"),
+                expectedXpathQueries,
+                expectedViolations);
     }
 
 }
