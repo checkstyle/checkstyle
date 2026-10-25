@@ -21,14 +21,12 @@ package org.checkstyle.suppressionxpathfilter.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck.MSG_KEY;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
 
 public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSupport {
@@ -45,15 +43,11 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
 
     @Test
     public void testSimple() throws Exception {
-        final String fileName = "InputXpathIllegalInstantiationSimple.java";
-        final File fileToProcess = new File(getNonCompilablePath(fileName));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalInstantiationCheck.class);
-        moduleConfig.addProperty("classes", "java.lang.Boolean");
+        final String fileToProcess = getNonCompilablePath(
+                "InputXpathIllegalInstantiationSimple.java");
 
         final String[] expectedViolation = {
-            "8:21: " + getCheckMessage(IllegalInstantiationCheck.class, MSG_KEY,
+            "16:21: " + getCheckMessage(IllegalInstantiationCheck.class, MSG_KEY,
                     "java.lang.Boolean"),
         };
 
@@ -68,21 +62,17 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
                 + "[./IDENT[@text='x']]/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='Boolean']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testAnonymous() throws Exception {
-        final String fileName = "InputXpathIllegalInstantiationAnonymous.java";
-        final File fileToProcess = new File(getNonCompilablePath(fileName));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalInstantiationCheck.class);
-        moduleConfig.addProperty("classes", "java.lang.Integer");
+        final String fileToProcess = getNonCompilablePath(
+                "InputXpathIllegalInstantiationAnonymous.java");
 
         final String[] expectedViolation = {
-            "10:25: " + getCheckMessage(IllegalInstantiationCheck.class, MSG_KEY,
+            "18:25: " + getCheckMessage(IllegalInstantiationCheck.class, MSG_KEY,
                     "java.lang.Integer"),
         };
 
@@ -98,21 +88,17 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
                 + "/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='Integer']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInterface() throws Exception {
-        final String fileName = "InputXpathIllegalInstantiationInterface.java";
-        final File fileToProcess = new File(getNonCompilablePath(fileName));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalInstantiationCheck.class);
-        moduleConfig.addProperty("classes", "java.lang.String");
+        final String fileToProcess = getNonCompilablePath(
+                "InputXpathIllegalInstantiationInterface.java");
 
         final String[] expectedViolation = {
-            "10:24: " + getCheckMessage(IllegalInstantiationCheck.class, MSG_KEY,
+            "18:24: " + getCheckMessage(IllegalInstantiationCheck.class, MSG_KEY,
                     "java.lang.String"),
         };
 
@@ -129,8 +115,8 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
                 + "[./IDENT[@text='s']]/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='String']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries,
+                expectedViolation);
     }
 
 }

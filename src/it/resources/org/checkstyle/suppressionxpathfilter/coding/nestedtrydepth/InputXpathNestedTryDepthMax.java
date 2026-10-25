@@ -1,3 +1,10 @@
+/*
+NestedTryDepth
+max = 3
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.nestedtrydepth;
 
 public class InputXpathNestedTryDepthMax {
@@ -6,7 +13,8 @@ public class InputXpathNestedTryDepthMax {
             try {
                 try {
                     try {
-                        try { // warn
+                        // violation below 'Nested try depth is 4 (max allowed is 3).'
+                        try {
 
                         } catch (Exception e) {}
                     } catch (Exception e) {}
