@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck;
 
 public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
@@ -45,15 +43,11 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
 
     @Test
     public void testSimple() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathRequireThisSimple.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RequireThisCheck.class);
-        moduleConfig.addProperty("validateOnlyOverlapping", "false");
+        final String fileToProcess =
+                getPath("InputXpathRequireThisSimple.java");
 
         final String[] expectedViolation = {
-            "7:9: " + getCheckMessage(RequireThisCheck.class,
+            "16:9: " + getCheckMessage(RequireThisCheck.class,
                 RequireThisCheck.MSG_VARIABLE, "age", ""),
         };
 
@@ -64,21 +58,17 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
                 + "/IDENT[@text='age']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testAnonymousClass() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathRequireThisAnonymousClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RequireThisCheck.class);
-        moduleConfig.addProperty("validateOnlyOverlapping", "false");
+        final String fileToProcess =
+                getPath("InputXpathRequireThisAnonymousClass.java");
 
         final String[] expectedViolation = {
-            "9:13: " + getCheckMessage(RequireThisCheck.class,
+            "18:13: " + getCheckMessage(RequireThisCheck.class,
                 RequireThisCheck.MSG_VARIABLE, "age", ""),
         };
 
@@ -90,21 +80,17 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
                 + "[./IDENT[@text='run']]/SLIST/EXPR/ASSIGN/IDENT[@text='age']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMethodInnerClass() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathRequireThisInnerClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RequireThisCheck.class);
-        moduleConfig.addProperty("validateOnlyOverlapping", "false");
+        final String fileToProcess =
+                getPath("InputXpathRequireThisInnerClass.java");
 
         final String[] expectedViolation = {
-            "8:13: " + getCheckMessage(RequireThisCheck.class,
+            "17:13: " + getCheckMessage(RequireThisCheck.class,
                 RequireThisCheck.MSG_VARIABLE, "age", ""),
         };
 
@@ -116,8 +102,8 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
                 + "/IDENT[@text='age']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries,
+                expectedViolation);
     }
 
 }
