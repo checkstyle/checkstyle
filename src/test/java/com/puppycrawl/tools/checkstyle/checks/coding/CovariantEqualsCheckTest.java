@@ -22,9 +22,17 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck.MSG_KEY;
 
+import java.io.File;
+import java.util.Collection;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class CovariantEqualsCheckTest extends AbstractModuleTestSupport {
@@ -111,6 +119,40 @@ public class CovariantEqualsCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath(
                     "compact/InputCovariantEqualsCompactSourceFileNoViolation.java"),
                 expected);
+    }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final CovariantEqualsCheck check = new CovariantEqualsCheck();
+        final DetailAST root = JavaParser.parseFile(
+            new File(getPath("InputCovariantEqualsRecords.java")),
+            JavaParser.Options.WITHOUT_COMMENTS);
+        // MyRecord2 has both a covariant equals method and equals(Object),
+        // so visitToken populates equalsMethods without logging a violation.
+        // Logging would require file contents, which this helper does not set.
+        final Optional<DetailAST> recordDef = TestUtil.findTokenInAstByPredicate(root,
+            ast -> {
+                return ast.getType() == TokenTypes.RECORD_DEF
+                    && "MyRecord2".equals(
+                        ast.findFirstToken(TokenTypes.IDENT).getText());
+            });
+
+        assertWithMessage("Ast should contain RECORD_DEF MyRecord2")
+                .that(recordDef.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        recordDef.orElseThrow(),
+                        "equalsMethods",
+                        equalsMethods -> ((Collection<?>) equalsMethods).isEmpty()))
+                .isTrue();
     }
 
 }
