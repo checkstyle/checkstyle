@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck;
 
 public class XpathRegressionSeparatorWrapTest extends AbstractXpathTestSupport {
@@ -46,13 +44,8 @@ public class XpathRegressionSeparatorWrapTest extends AbstractXpathTestSupport {
 
     @Test
     public void testClass() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathSeparatorWrapClass.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(SeparatorWrapCheck.class);
-
         final String[] expectedViolation = {
-            "10:17: " + getCheckMessage(SeparatorWrapCheck.class,
+            "18:17: " + getCheckMessage(SeparatorWrapCheck.class,
                         SeparatorWrapCheck.MSG_LINE_PREVIOUS, ","),
         };
 
@@ -63,20 +56,16 @@ public class XpathRegressionSeparatorWrapTest extends AbstractXpathTestSupport {
                         + "/PARAMETERS/COMMA"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSeparatorWrapClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInterface() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathSeparatorWrapInterface.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(SeparatorWrapCheck.class);
-        moduleConfig.addProperty("tokens", "ELLIPSIS");
         final String[] expectedViolation = {
-            "9:13: " + getCheckMessage(SeparatorWrapCheck.class,
+            "17:13: " + getCheckMessage(SeparatorWrapCheck.class,
                         SeparatorWrapCheck.MSG_LINE_PREVIOUS, "..."),
         };
 
@@ -87,21 +76,17 @@ public class XpathRegressionSeparatorWrapTest extends AbstractXpathTestSupport {
                         + "/PARAMETERS/PARAMETER_DEF"
                         + "[./IDENT[@text='parameters']]/ELLIPSIS"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSeparatorWrapInterface.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMethod() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathSeparatorWrapMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(SeparatorWrapCheck.class);
-        moduleConfig.addProperty("tokens", "DOT");
-
         final String[] expectedViolation = {
-            "9:13: " + getCheckMessage(SeparatorWrapCheck.class,
+            "17:13: " + getCheckMessage(SeparatorWrapCheck.class,
                     SeparatorWrapCheck.MSG_LINE_PREVIOUS, "."),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -116,8 +101,11 @@ public class XpathRegressionSeparatorWrapTest extends AbstractXpathTestSupport {
                         + "/VARIABLE_DEF[./IDENT[@text='stringLength']]/ASSIGN"
                         + "/EXPR/DOT[./IDENT[@text='stringArray']]"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathSeparatorWrapMethod.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

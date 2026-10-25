@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck;
 
 public class XpathRegressionOperatorWrapTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionOperatorWrapTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOperatorWrapNewLine() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathOperatorWrapNewLine.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(OperatorWrapCheck.class);
-
         final String[] expectedViolation = {
-            "6:19: " + getCheckMessage(OperatorWrapCheck.class,
+            "16:19: " + getCheckMessage(OperatorWrapCheck.class,
                         OperatorWrapCheck.MSG_LINE_NEW, "+"),
         };
 
@@ -66,22 +58,16 @@ public class XpathRegressionOperatorWrapTest extends AbstractXpathTestSupport {
                         + "/MINUS[./NUM_INT[@text='3']]"
                         + "/PLUS[./NUM_INT[@text='1']]"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOperatorWrapNewLine.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testOperatorWrapPreviousLine() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathOperatorWrapPreviousLine.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(OperatorWrapCheck.class);
-        moduleConfig.addProperty("tokens", "ASSIGN");
-        moduleConfig.addProperty("option", "eol");
-
         final String[] expectedViolation = {
-            "5:11: " + getCheckMessage(OperatorWrapCheck.class,
+            "13:11: " + getCheckMessage(OperatorWrapCheck.class,
                         OperatorWrapCheck.MSG_LINE_PREVIOUS, "="),
         };
 
@@ -92,20 +78,16 @@ public class XpathRegressionOperatorWrapTest extends AbstractXpathTestSupport {
                 + "/ASSIGN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOperatorWrapPreviousLine.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testOperatorWrapInnerClass() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathOperatorWrapInnerClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(OperatorWrapCheck.class);
-
         final String[] expectedViolation = {
-            "7:23: " + getCheckMessage(OperatorWrapCheck.class,
+            "17:23: " + getCheckMessage(OperatorWrapCheck.class,
                         OperatorWrapCheck.MSG_LINE_NEW, "+"),
         };
 
@@ -124,8 +106,10 @@ public class XpathRegressionOperatorWrapTest extends AbstractXpathTestSupport {
                 + "/ASSIGN/EXPR/PLUS[./NUM_INT[@text='5']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOperatorWrapInnerClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

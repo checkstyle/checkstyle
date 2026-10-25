@@ -1,3 +1,11 @@
+/*
+SeparatorWrap
+option = (default)eol
+tokens = (default)DOT, COMMA
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.whitespace.separatorwrap;
 
 public class InputXpathSeparatorWrapClass {
@@ -7,6 +15,6 @@ public class InputXpathSeparatorWrapClass {
   int a, b;
 
   void testMethod(int p
-                , int q) { // warn
+                , int q) { // violation "',' should be on the previous line."
   }
 }
