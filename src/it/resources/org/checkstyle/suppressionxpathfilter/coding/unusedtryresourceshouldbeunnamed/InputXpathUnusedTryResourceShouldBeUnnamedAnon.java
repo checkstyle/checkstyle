@@ -1,3 +1,9 @@
+/*
+UnusedTryResourceShouldBeUnnamed
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.unusedtryresourceshouldbeunnamed;
 
 class InputXpathUnusedTryResourceShouldBeUnnamedAnon {
@@ -5,7 +11,8 @@ class InputXpathUnusedTryResourceShouldBeUnnamedAnon {
       Runnable runnable = new Runnable() {
         @Override
         public void run() {
-          try (AutoCloseable a = lock()) { } // warn
+          // violation below 'Unused try resource .* should be unnamed\.'
+          try (AutoCloseable a = lock()) { }
           catch (Exception e) {
             System.out.println(e.getMessage());
           }

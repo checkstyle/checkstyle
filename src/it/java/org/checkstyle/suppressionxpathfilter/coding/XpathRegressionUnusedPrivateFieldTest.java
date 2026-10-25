@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnusedPrivateFieldCheck;
 
 public class XpathRegressionUnusedPrivateFieldTest extends AbstractXpathTestSupport {
@@ -44,14 +42,8 @@ public class XpathRegressionUnusedPrivateFieldTest extends AbstractXpathTestSupp
 
     @Test
     public void testPrivateField() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathUnusedPrivateFieldOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedPrivateFieldCheck.class);
-
         final String[] expectedViolation = {
-            "4:17: " + getCheckMessage(UnusedPrivateFieldCheck.class,
+            "12:17: " + getCheckMessage(UnusedPrivateFieldCheck.class,
                     UnusedPrivateFieldCheck.MSG_PRIVATE_FIELD, "unused"),
         };
 
@@ -61,19 +53,16 @@ public class XpathRegressionUnusedPrivateFieldTest extends AbstractXpathTestSupp
                       + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='unused']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnusedPrivateFieldOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testFullCoverage() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathUnusedPrivateFieldTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedPrivateFieldCheck.class);
-
         final String[] expectedViolation = {
-            "12:21: " + getCheckMessage(UnusedPrivateFieldCheck.class,
+            "20:21: " + getCheckMessage(UnusedPrivateFieldCheck.class,
                     UnusedPrivateFieldCheck.MSG_PRIVATE_FIELD, "unused"),
         };
 
@@ -84,19 +73,16 @@ public class XpathRegressionUnusedPrivateFieldTest extends AbstractXpathTestSupp
                        + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='unused']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnusedPrivateFieldTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInnerUse() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathUnusedPrivateFieldThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedPrivateFieldCheck.class);
-
         final String[] expectedViolation = {
-            "5:17: " + getCheckMessage(UnusedPrivateFieldCheck.class,
+            "13:17: " + getCheckMessage(UnusedPrivateFieldCheck.class,
                     UnusedPrivateFieldCheck.MSG_PRIVATE_FIELD, "unused"),
         };
 
@@ -106,7 +92,10 @@ public class XpathRegressionUnusedPrivateFieldTest extends AbstractXpathTestSupp
                       + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='unused']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnusedPrivateFieldThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
