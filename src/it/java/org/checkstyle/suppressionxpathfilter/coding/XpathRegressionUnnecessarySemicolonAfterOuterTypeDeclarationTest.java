@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheck;
 
 public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
@@ -48,52 +46,50 @@ public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
 
     @Test
     public void testSimple() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathUnnecessarySemicolonAfterOuterTypeDeclarationSimple.java"));
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
-            "5:2: " + getCheckMessage(CLASS,
+            "12:2: " + getCheckMessage(CLASS,
                 UnnecessarySemicolonAfterOuterTypeDeclarationCheck.MSG_SEMI),
         };
 
         final List<String> expectedXpathQueries =
                 Collections.singletonList("/COMPILATION_UNIT/SEMI");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessarySemicolonAfterOuterTypeDeclarationSimple.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInnerTypes() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathUnnecessarySemicolonAfterOuterTypeDeclarationInnerTypes"
-                    + ".java"));
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
-            "21:2: " + getCheckMessage(CLASS,
+            "28:2: " + getCheckMessage(CLASS,
                 UnnecessarySemicolonAfterOuterTypeDeclarationCheck.MSG_SEMI),
         };
 
         final List<String> expectedXpathQueries =
                 Collections.singletonList("/COMPILATION_UNIT/SEMI");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessarySemicolonAfterOuterTypeDeclarationInnerTypes.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testAnnotationType() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathUnnecessarySemicolonAfterOuterTypeDeclarationAnnotation"
-                    + ".java"));
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
-            "5:2: " + getCheckMessage(CLASS,
+            "12:2: " + getCheckMessage(CLASS,
                 UnnecessarySemicolonAfterOuterTypeDeclarationCheck.MSG_SEMI),
         };
 
         final List<String> expectedXpathQueries =
                 Collections.singletonList("/COMPILATION_UNIT/SEMI");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessarySemicolonAfterOuterTypeDeclarationAnnotation.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

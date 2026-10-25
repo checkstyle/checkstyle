@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheck;
 
 public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
@@ -48,12 +46,8 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathUnnecessarySemicolonInTryWithResourcesDefault.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
         final String[] expectedViolation = {
-            "11:76: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
+            "19:76: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
                 UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -62,21 +56,16 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='m']]/SLIST/LITERAL_TRY"
                         + "/RESOURCE_SPECIFICATION/SEMI"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessarySemicolonInTryWithResourcesDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNoBrace() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathUnnecessarySemicolonInTryWithResourcesNoBrace.java"
-        ));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
-        moduleConfig.addProperty("allowWhenNoBraceAfterSemicolon", "false");
-
         final String[] expectedViolation = {
-            "8:44: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
+            "15:44: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
                 UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
         };
 
@@ -86,19 +75,16 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/LITERAL_TRY/RESOURCE_SPECIFICATION/SEMI"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessarySemicolonInTryWithResourcesNoBrace.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathUnnecessarySemicolonInTryWithResourcesInnerClass.java"
-        ));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
         final String[] expectedViolation = {
-            "9:50: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
+            "16:50: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
                 UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
         };
 
@@ -109,7 +95,10 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/LITERAL_TRY/RESOURCE_SPECIFICATION/SEMI"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessarySemicolonInTryWithResourcesInnerClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
