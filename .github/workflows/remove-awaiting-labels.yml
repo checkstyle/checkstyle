@@ -1,0 +1,103 @@
+#####################################################################################
+# GitHub Action to remove 'awaiting response' and 'awaiting changes' labels
+# when activity (comments or pushes) occurs on a pull request.
+#
+# Workflow starts when:
+# 1) pull_request_target - synchronize
+# 2) issue_comment - created
+# 3) pull_request_review_comment - created
+#
+#####################################################################################
+name: "Remove awaiting labels on PR activity"
+
+on:
+  pull_request_target:
+    types: [ synchronize ]
+  issue_comment:
+    types: [ created ]
+  pull_request_review_comment:
+    types: [ created ]
+
+concurrency:
+  group: >-
+    ${{ github.workflow }}-${{ github.event.pull_request.number || github.event.issue.number }}
+  cancel-in-progress: true
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  remove-labels:
+    if: github.repository == 'checkstyle/checkstyle'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Remove awaiting labels on author activity
+        uses: actions/github-script@v9
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const eventName = context.eventName;
+            let prNumber;
+            let prAuthor;
+            let isAuthorActivity = false;
+
+            if (eventName === 'pull_request_target') {
+              const pullRequest = context.payload.pull_request;
+              if (pullRequest.state === 'closed') {
+                return;
+              }
+              prNumber = pullRequest.number;
+              // Any push to the PR branch represents new code activity
+              isAuthorActivity = true;
+            } else if (eventName === 'issue_comment') {
+              const issue = context.payload.issue;
+              // Check that this comment is on a pull request and it is not closed
+              if (!issue.pull_request || issue.state === 'closed') {
+                return;
+              }
+              prNumber = issue.number;
+              prAuthor = issue.user.login;
+              const commentAuthor = context.payload.comment.user.login;
+              isAuthorActivity = commentAuthor === prAuthor;
+            } else if (eventName === 'pull_request_review_comment') {
+              const pullRequest = context.payload.pull_request;
+              if (pullRequest.state === 'closed') {
+                return;
+              }
+              prNumber = pullRequest.number;
+              prAuthor = pullRequest.user.login;
+              const commentAuthor = context.payload.comment.user.login;
+              isAuthorActivity = commentAuthor === prAuthor;
+            }
+
+            if (!isAuthorActivity) {
+              console.log('Activity was not from the PR author. Skipping.');
+              return;
+            }
+
+            const targetLabels = ['awaiting response', 'awaiting changes'];
+
+            const { data: issueData } = await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+            });
+
+            const currentLabels = issueData.labels.map(label => label.name || label);
+
+            for (const label of targetLabels) {
+              if (currentLabels.includes(label)) {
+                try {
+                  await github.rest.issues.removeLabel({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: prNumber,
+                    name: label,
+                  });
+                  console.log(`Successfully removed label "${label}" from PR #${prNumber}`);
+                } catch (error) {
+                  console.warn(`Failed to remove label "${label}":`, error.message);
+                }
+              }
+            }
