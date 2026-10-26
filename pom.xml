@@ -3598,6 +3598,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.DuplicateElseIfConditionCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck*</param>
@@ -3634,6 +3635,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.DuplicateElseIfConditionCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheckTest</param>
