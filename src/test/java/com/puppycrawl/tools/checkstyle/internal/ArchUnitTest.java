@@ -92,7 +92,6 @@ public class ArchUnitTest {
     // until https://github.com/checkstyle/checkstyle/issues/22175
     private static final Set<String> SUPPRESSED_CHECKS_WITHOUT_BEGIN_TREE = Set.of(
         "com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck",
-        "com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck",
         "com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck",
