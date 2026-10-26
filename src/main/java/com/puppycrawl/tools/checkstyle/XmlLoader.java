@@ -114,6 +114,7 @@ public class XmlLoader extends DefaultHandler {
         LoadExternalDtdFeatureProvider.setFeaturesBySystemProperty(factory);
         factory.setValidating(true);
         final XMLReader xmlReader = factory.newSAXParser().getXMLReader();
+        LoadExternalDtdFeatureProvider.setAccessExternalDtdBySystemProperty(xmlReader);
         xmlReader.setContentHandler(handler);
         xmlReader.setEntityResolver(handler);
         xmlReader.setErrorHandler(handler);
@@ -138,6 +139,13 @@ public class XmlLoader extends DefaultHandler {
         /** Feature that enables including external parameter entities in XML files. */
         public static final String EXTERNAL_PARAMETER_ENTITIES =
                 "http://xml.org/sax/features/external-parameter-entities";
+        /** JAXP property that restricts the protocols used to retrieve external DTDs. */
+        public static final String ACCESS_EXTERNAL_DTD =
+                "http://javax.xml.XMLConstants/property/accessExternalDTD";
+        /** Protocols allowed for retrieving external DTDs when external DTD load is disabled. */
+        public static final String ACCESS_EXTERNAL_DTD_RESTRICTED = "file";
+        /** Protocols allowed for retrieving external DTDs when external DTD load is enabled. */
+        public static final String ACCESS_EXTERNAL_DTD_ALL = "all";
 
         /** Stop instances being created. */
         private LoadExternalDtdFeatureProvider() {
@@ -156,12 +164,43 @@ public class XmlLoader extends DefaultHandler {
         public static void setFeaturesBySystemProperty(SAXParserFactory factory)
                 throws SAXException, ParserConfigurationException {
 
-            final boolean enableExternalDtdLoad = Boolean.parseBoolean(
-                System.getProperty(ENABLE_EXTERNAL_DTD_LOAD, "false"));
+            final boolean enableExternalDtdLoad = isExternalDtdLoadEnabled();
 
             factory.setFeature(LOAD_EXTERNAL_DTD, enableExternalDtdLoad);
             factory.setFeature(EXTERNAL_GENERAL_ENTITIES, enableExternalDtdLoad);
             factory.setFeature(EXTERNAL_PARAMETER_ENTITIES, enableExternalDtdLoad);
+        }
+
+        /**
+         * Restricts the protocols a validating parser may use to retrieve the external DTD
+         * referenced by a DOCTYPE declaration. The features set by
+         * {@link #setFeaturesBySystemProperty(SAXParserFactory)} do not apply to that retrieval,
+         * so without this restriction any DOCTYPE system identifier would be fetched, including
+         * over the network. Unless external DTD load is enabled, only local files are allowed.
+         * DTDs resolved by public id through the entity resolver are not affected.
+         *
+         * @param xmlReader reader to be configured
+         * @throws SAXException if the reader does not support the property
+         */
+        public static void setAccessExternalDtdBySystemProperty(XMLReader xmlReader)
+                throws SAXException {
+            final String allowedProtocols;
+            if (isExternalDtdLoadEnabled()) {
+                allowedProtocols = ACCESS_EXTERNAL_DTD_ALL;
+            }
+            else {
+                allowedProtocols = ACCESS_EXTERNAL_DTD_RESTRICTED;
+            }
+            xmlReader.setProperty(ACCESS_EXTERNAL_DTD, allowedProtocols);
+        }
+
+        /**
+         * Checks whether external DTD load is enabled by the system property.
+         *
+         * @return true if external DTD load is enabled
+         */
+        private static boolean isExternalDtdLoadEnabled() {
+            return Boolean.parseBoolean(System.getProperty(ENABLE_EXTERNAL_DTD_LOAD, "false"));
         }
 
     }
