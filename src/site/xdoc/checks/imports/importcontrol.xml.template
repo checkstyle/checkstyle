@@ -34,21 +34,13 @@
       <subsection name="Examples" id="ImportControl_Examples">
 
         <p id="Example1-config">
-          To configure the check using an import control file called
-          "${config.folder}/import-control1.xml", then have the following:
+          The following example demonstrates the default configuration (no properties)
+          where an import control file is not provided:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example1.java"/>
           <param name="type" value="config"/>
-        </macro>
-        <p id="import-control1-raw">
-          Import control configuration:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control1.xml"/>
-          <param name="type" value="raw"/>
         </macro>
         <p id="Example1-code">
           Results:
@@ -60,21 +52,20 @@
         </macro><hr class="example-separator"/>
 
         <p id="Example2-config">
-          To configure the check to only check the "${config.folder}/api" directory
-          using an import control file called "${config.folder}/import-control2.xml",
-          then have the following:
+          To configure the check using an import control file called
+          "${config.folder}/import-control1.xml", then have the following:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="import-control2-raw">
+        <p id="import-control1-raw">
           Import control configuration:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control2.xml"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control1.xml"/>
           <param name="type" value="raw"/>
         </macro>
         <p id="Example2-code">
@@ -87,27 +78,21 @@
         </macro><hr class="example-separator"/>
 
         <p id="Example3-config">
-          To configure the check:
+          To configure the check to only check the "${config.folder}/api" directory
+          using an import control file called "${config.folder}/import-control2.xml",
+          then have the following:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/filters/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="import-control3-raw">
-          In the example below, access to package
-          <code>com.puppycrawl.tools.checkstyle.checks</code> and its subpackages is
-          allowed from anywhere in
-          <code>com.puppycrawl.tools.checkstyle.checks.imports.importcontrol</code> except
-          from the <code>filters</code> subpackage where access to all
-          <code>check</code>'s subpackages is disallowed. Two <code>java.lang.ref</code>
-          classes are allowed by virtue of one regular expression instead of listing
-          them in two separate allow rules (as it is done with the <code>Files</code>
-          and <code>ClassPath</code> classes).
+        <p id="import-control2-raw">
+          Import control configuration:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control3.xml"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control2.xml"/>
           <param name="type" value="raw"/>
         </macro>
         <p id="Example3-code">
@@ -115,7 +100,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/filters/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example3.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
@@ -524,6 +509,39 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/UseCase9.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="UseCase10-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/filters/UseCase10.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control3-raw">
+          In the example below, access to package
+          <code>com.puppycrawl.tools.checkstyle.checks</code> and its subpackages is
+          allowed from anywhere in
+          <code>com.puppycrawl.tools.checkstyle.checks.imports.importcontrol</code> except
+          from the <code>filters</code> subpackage where access to all
+          <code>check</code>'s subpackages is disallowed. Two <code>java.lang.ref</code>
+          classes are allowed by virtue of one regular expression instead of listing
+          them in two separate allow rules (as it is done with the <code>Files</code>
+          and <code>ClassPath</code> classes).
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control3.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="UseCase10-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/filters/UseCase10.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

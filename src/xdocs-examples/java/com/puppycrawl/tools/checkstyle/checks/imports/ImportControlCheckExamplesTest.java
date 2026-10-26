@@ -39,6 +39,15 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
+            "9:1: " + getCheckMessage(ImportControlCheck.MSG_MISSING_FILE),
+        };
+
+        verifyWithInlineXmlConfig(getPath("Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
             "13:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
             "14:1: " + getCheckMessage(
@@ -51,36 +60,38 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                     ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
         };
 
-        verifyWithInlineXmlConfig(getPath("Example1.java"), expected);
-    }
-
-    @Test
-    public void testExample2() throws Exception {
-        final String[] expected = {};
-
         verifyWithInlineXmlConfig(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineXmlConfig(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
         final String[] expected = {
-            "13:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
             "16:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.io.File"),
+                    ImportControlCheck.MSG_DISALLOWED, "java.logging"),
             "17:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.io.FileReader"),
-            "18:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
-            "19:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
+                    ImportControlCheck.MSG_DISALLOWED, "java.sql"),
         };
 
-        final String examplePath = new File("src/" + getResourceLocation()
-                + "/resources/" + getPackageLocation() + "/"
-                + "filters/Example3.java").getCanonicalPath();
+        verifyWithInlineXmlConfig(getNonCompilablePath("Example4.java"), expected);
+    }
 
-        verifyWithInlineXmlConfig(examplePath, expected);
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.sql"),
+            "17:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.xml"),
+        };
+
+        verifyWithInlineXmlConfig(getNonCompilablePath("Example5.java"), expected);
     }
 
     @Test
@@ -257,27 +268,24 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase10() throws Exception {
         final String[] expected = {
+            "13:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
             "16:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.logging"),
+                    ImportControlCheck.MSG_DISALLOWED, "java.io.File"),
             "17:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.sql"),
+                    ImportControlCheck.MSG_DISALLOWED, "java.io.FileReader"),
+            "18:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
+            "19:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
         };
 
-        verifyWithInlineXmlConfig(getNonCompilablePath("Example4.java"), expected);
+        final String examplePath = new File("src/" + getResourceLocation()
+                + "/resources/" + getPackageLocation() + "/"
+                + "filters/UseCase10.java").getCanonicalPath();
+
+        verifyWithInlineXmlConfig(examplePath, expected);
     }
-
-    @Test
-    public void testExample5() throws Exception {
-        final String[] expected = {
-            "16:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.sql"),
-            "17:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.xml"),
-        };
-
-        verifyWithInlineXmlConfig(getNonCompilablePath("Example5.java"), expected);
-    }
-
 }
