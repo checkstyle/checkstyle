@@ -22,10 +22,18 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck.MSG_KEY;
 
+import java.io.File;
+import java.math.BigInteger;
+import java.util.Collection;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class CyclomaticComplexityCheckTest extends AbstractModuleTestSupport {
@@ -243,6 +251,44 @@ public class CyclomaticComplexityCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath(
                         "compact/InputCyclomaticComplexityCompactSwitchAsSinglePoint.java"),
                 expected);
+    }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final CyclomaticComplexityCheck check = new CyclomaticComplexityCheck();
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputCyclomaticComplexitySwitchBlocks.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.METHOD_DEF);
+
+        assertWithMessage("Ast should contain METHOD_DEF")
+                .that(methodDef.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        methodDef.orElseThrow(), "valueStack",
+                        valueStack -> ((Collection<?>) valueStack).isEmpty()))
+                .isTrue();
+
+        final Optional<DetailAST> literalCase = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.LITERAL_CASE);
+
+        assertWithMessage("Ast should contain LITERAL_CASE")
+                .that(literalCase.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        literalCase.orElseThrow(), "currentValue",
+                        BigInteger.ONE::equals))
+                .isTrue();
     }
 
 }
