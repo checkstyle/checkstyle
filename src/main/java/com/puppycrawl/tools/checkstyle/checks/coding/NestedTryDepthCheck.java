@@ -77,6 +77,11 @@ public final class NestedTryDepthCheck extends AbstractCheck {
     }
 
     @Override
+    public void beginTree(DetailAST rootAST) {
+        depth = 0;
+    }
+
+    @Override
     public void visitToken(DetailAST literalTry) {
         if (depth > max) {
             log(literalTry, MSG_KEY, depth, max);

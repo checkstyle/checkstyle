@@ -96,7 +96,6 @@ public class ArchUnitTest {
         "com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck",
-        "com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding."
             + "NoCauseGetMessageInExceptionConstructorCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck",
