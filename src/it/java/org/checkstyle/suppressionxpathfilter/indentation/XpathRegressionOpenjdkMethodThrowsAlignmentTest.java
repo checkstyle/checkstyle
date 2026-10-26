@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.indentation;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.indentation.OpenjdkMethodThrowsAlignmentCheck;
 
 public class XpathRegressionOpenjdkMethodThrowsAlignmentTest
@@ -48,11 +46,8 @@ public class XpathRegressionOpenjdkMethodThrowsAlignmentTest
 
     @Test
     public void testClassMethod() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathOpenjdkMethodThrowsAlignmentClass.java"));
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
-            "5:36: " + getCheckMessage(CLASS,
+            "11:36: " + getCheckMessage(CLASS,
                     OpenjdkMethodThrowsAlignmentCheck.MSG_KEY_NOT_ON_NEW_LINE),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -62,16 +57,15 @@ public class XpathRegressionOpenjdkMethodThrowsAlignmentTest
                         + "/LITERAL_THROWS[./IDENT[@text='Exception']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOpenjdkMethodThrowsAlignmentClass.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testInterfaceMethod() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathOpenjdkMethodThrowsAlignmentInterface.java"));
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
-            "5:29: " + getCheckMessage(CLASS,
+            "11:29: " + getCheckMessage(CLASS,
                     OpenjdkMethodThrowsAlignmentCheck.MSG_KEY_NOT_ON_NEW_LINE),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -81,16 +75,15 @@ public class XpathRegressionOpenjdkMethodThrowsAlignmentTest
                         + "/LITERAL_THROWS[./IDENT[@text='Exception']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOpenjdkMethodThrowsAlignmentInterface.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testEnumMethod() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathOpenjdkMethodThrowsAlignmentEnum.java"));
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
-            "7:36: " + getCheckMessage(CLASS,
+            "13:36: " + getCheckMessage(CLASS,
                     OpenjdkMethodThrowsAlignmentCheck.MSG_KEY_NOT_ON_NEW_LINE),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -100,7 +93,9 @@ public class XpathRegressionOpenjdkMethodThrowsAlignmentTest
                         + "/LITERAL_THROWS[./IDENT[@text='Exception']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOpenjdkMethodThrowsAlignmentEnum.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
