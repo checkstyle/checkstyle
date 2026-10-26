@@ -59,7 +59,9 @@ public class FinalPatternVariableCheck extends AbstractCheck {
         TokenTypes.ASSIGN, TokenTypes.PLUS_ASSIGN, TokenTypes.MINUS_ASSIGN,
         TokenTypes.STAR_ASSIGN, TokenTypes.DIV_ASSIGN, TokenTypes.MOD_ASSIGN,
         TokenTypes.SR_ASSIGN, TokenTypes.BSR_ASSIGN, TokenTypes.SL_ASSIGN,
-        TokenTypes.BAND_ASSIGN, TokenTypes.BXOR_ASSIGN, TokenTypes.BOR_ASSIGN);
+        TokenTypes.BAND_ASSIGN, TokenTypes.BXOR_ASSIGN, TokenTypes.BOR_ASSIGN,
+        TokenTypes.POST_INC, TokenTypes.POST_DEC,
+        TokenTypes.INC, TokenTypes.DEC);
 
     /**
      * Creates a new {@code FinalPatternVariableCheck} instance.
@@ -192,12 +194,12 @@ public class FinalPatternVariableCheck extends AbstractCheck {
                      expressionBranch = shiftToNextTraversedBranch(
                              expressionBranch, branch)) {
 
-                    final DetailAST assignToken =
-                            getMatchedAssignToken(expressionBranch);
-
-                    if (assignToken != null) {
-                        reassignedVariableIdents.add(
-                                assignToken.getFirstChild());
+                    if (ASSIGN_TOKEN_TYPES.contains(expressionBranch.getType())) {
+                        final DetailAST target =
+                                expressionBranch.findFirstToken(TokenTypes.IDENT);
+                        if (target != null) {
+                            reassignedVariableIdents.add(target);
+                        }
                     }
                 }
             }
@@ -266,29 +268,6 @@ public class FinalPatternVariableCheck extends AbstractCheck {
         }
 
         return newAst;
-    }
-
-    /**
-     * Gets the type of ASSIGN tokens that matches with what follows the preceding branch.
-     *
-     * @param preAssignBranch branch preceding ASSIGN token types.
-     * @return type of ASSIGN token.
-     */
-    @Nullable
-    private static DetailAST getMatchedAssignToken(
-            final DetailAST preAssignBranch) {
-        DetailAST matchedAssignToken = null;
-
-        for (int assignType : ASSIGN_TOKEN_TYPES) {
-            final DetailAST assignToken =
-                    preAssignBranch.findFirstToken(assignType);
-            if (assignToken != null) {
-                matchedAssignToken = assignToken;
-                break;
-            }
-        }
-
-        return matchedAssignToken;
     }
 
     /**
