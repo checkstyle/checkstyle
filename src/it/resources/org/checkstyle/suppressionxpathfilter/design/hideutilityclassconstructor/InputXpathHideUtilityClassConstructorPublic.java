@@ -1,6 +1,14 @@
+/*
+HideUtilityClassConstructor
+ignoreAnnotatedBy = (default)
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.design.hideutilityclassconstructor;
 
-public class InputXpathHideUtilityClassConstructorPublic { // warn
+// violation below 'Utility classes should not have a public or default constructor.'
+public class InputXpathHideUtilityClassConstructorPublic {
     public InputXpathHideUtilityClassConstructorPublic() {}
 
     private static int value = 0;
