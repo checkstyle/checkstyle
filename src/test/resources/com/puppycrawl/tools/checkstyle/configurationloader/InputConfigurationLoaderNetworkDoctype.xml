@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE module SYSTEM "http://127.0.0.1:1/configuration_1_3.dtd">
+
+<module name="Checker">
+    <property name="tabWidth" value="4" />
+</module>
