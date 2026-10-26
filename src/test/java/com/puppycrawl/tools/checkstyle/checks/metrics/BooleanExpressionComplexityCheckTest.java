@@ -101,6 +101,56 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_KEY, 4, 3),
+            "22:5: " + getCheckMessage(MSG_KEY, 4, 3),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputBooleanExpressionComplexityCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileEquivalentClass() throws Exception {
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_KEY, 4, 3),
+            "21:9: " + getCheckMessage(MSG_KEY, 4, 3),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexityCompactSourceFileClass.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCustom() throws Exception {
+        final String[] expected = {
+            "18:5: " + getCheckMessage(MSG_KEY, 2, 1),
+            "24:5: " + getCheckMessage(MSG_KEY, 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputBooleanExpressionComplexityCompactSourceFileCustom.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCustomEquivalentClass() throws Exception {
+        final String[] expected = {
+            "17:9: " + getCheckMessage(MSG_KEY, 2, 1),
+            "23:9: " + getCheckMessage(MSG_KEY, 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexityCompactSourceFileCustomClass.java"),
+                expected);
+    }
+
+    @Test
     public void testBooleanExpressionComplexityRecordsAndCompactCtors() throws Exception {
 
         final int max = 3;
