@@ -243,7 +243,7 @@
       <subsection name="Use Cases" id="ImportControl_Use_Cases">
 
         <p id="UseCase1-config">
-          To configure the check:
+          To configure the check to enforce a layering rule using regular expressions:
         </p>
         <macro name="example">
           <param name="path"
@@ -273,7 +273,8 @@
         </macro><hr class="example-separator"/>
 
         <p id="UseCase2-config">
-          To configure the check:
+          To configure the check to allow all imports except specific classes
+          using <code>strategyOnMismatch</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -326,7 +327,8 @@
         </macro><hr class="example-separator"/>
 
         <p id="UseCase3-config">
-          To configure the check:
+          To configure the check to disallow imports in a specific subpackage
+          while allowing them outside:
         </p>
         <macro name="example">
           <param name="path"
@@ -355,7 +357,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="UseCase4-config">
-          To configure the check:
+          To configure the check to isolate a subpackage from parent rules
+          using <code>strategyOnMismatch</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -386,7 +389,7 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="UseCase5-config">
-          To configure the check:
+          To configure the check to disallow imports based on file name patterns:
         </p>
         <macro name="example">
           <param name="path"
@@ -417,7 +420,7 @@
 
         <h4 id="blacklist-example">Example of blacklist mode</h4>
         <p id="UseCase6-config">
-          To configure the check:
+          To configure the check to use a blacklist mode for a subpackage:
         </p>
         <macro name="example">
           <param name="path"
@@ -449,7 +452,7 @@
         </macro><hr class="example-separator"/>
 
         <p id="UseCase7-config">
-          To configure the check:
+          To configure the check to disallow specific classes within an allowed package:
         </p>
         <macro name="example">
           <param name="path"
@@ -477,7 +480,7 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="UseCase8-config">
-          To configure the check:
+          To configure the check to allow all imports except specific classes and a package:
         </p>
         <macro name="example">
           <param name="path"
@@ -502,7 +505,7 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="UseCase9-config">
-          To configure the check:
+          To configure the check to allow all imports of a package except a specific class:
         </p>
         <macro name="example">
           <param name="path"
