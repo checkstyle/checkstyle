@@ -20,8 +20,9 @@ import java.lang.annotation.Target;
   @AnnotationAnnotation
 @AnnotationAnnotation("bar") @interface InputAnnotationLocationAnnotation {
 
+    // violation 2 lines below '.* incorrect .* level 6, .* should be 4.'
     @AnnotationAnnotation(value = "foo")
-      @AnnotationAnnotation // violation '.* incorrect .* level 6, .* should be 4.'
+      @AnnotationAnnotation
     @AnnotationAnnotation("bar") String value(); // violation '.* should be alone on line.'
 
 }
