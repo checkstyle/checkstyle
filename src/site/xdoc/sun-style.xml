@@ -436,7 +436,7 @@
                     5.1 Implementation Comment Formats
                   </a>
                 </td>
-                <td>???</td>
+                <td>↓</td>
                 <td/>
               </tr>
               <tr>
@@ -453,8 +453,22 @@
                     5.1.1 Block Comments
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/misc/commentsindentation.html#CommentsIndentation">
+                    CommentsIndentation
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
+                    config
+                  </a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter5comments/rule511blockcomments">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
@@ -470,8 +484,22 @@
                     5.1.2 Single-Line Comments
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/misc/commentsindentation.html#CommentsIndentation">
+                    CommentsIndentation
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
+                    config
+                  </a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter5comments/rule512singlelinecomments">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
@@ -487,7 +515,13 @@
                     5.1.3 Trailing Comments
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle does not have a check to enforce tab setting
+                  alignment or spacing distance for trailing comments.
+                </td>
                 <td/>
               </tr>
               <tr>
@@ -504,8 +538,22 @@
                     5.1.4 End-Of-Line Comments
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/misc/commentsindentation.html#CommentsIndentation">
+                    CommentsIndentation
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
+                    config
+                  </a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter5comments/rule514endoflinecomments">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
