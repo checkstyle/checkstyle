@@ -150,7 +150,6 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static final Set<String> EXAMPLE_DEFAULT_CONFIG_SUPPRESSED_MODULES = Set.of(
             "checks/descendanttoken",
-            "checks/imports/importcontrol",
             "filters/suppresswithplaintextcommentfilter"
     );
 
