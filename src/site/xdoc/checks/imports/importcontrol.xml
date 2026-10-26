@@ -31,15 +31,15 @@
             <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#ImportControl_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
-              <li><a href="#UseCase1-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#UseCase2-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#UseCase3-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#UseCase4-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#UseCase5-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#UseCase6-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#UseCase7-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#UseCase8-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#UseCase9-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#UseCase1-config" class="toc-sublink">Enforce a layering rule using regular expressions</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Allow all imports except specific classes using <code>strategyOnMismatch</code></a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">Disallow imports in a specific subpackage while allowing them outside</a></li>
+              <li><a href="#UseCase4-config" class="toc-sublink">Isolate a subpackage from parent rules using <code>strategyOnMismatch</code></a></li>
+              <li><a href="#UseCase5-config" class="toc-sublink">Disallow imports based on file name patterns</a></li>
+              <li><a href="#UseCase6-config" class="toc-sublink">Use a blacklist mode for a subpackage</a></li>
+              <li><a href="#UseCase7-config" class="toc-sublink">Disallow specific classes within an allowed package</a></li>
+              <li><a href="#UseCase8-config" class="toc-sublink">Allow all imports except specific classes and a package</a></li>
+              <li><a href="#UseCase9-config" class="toc-sublink">Allow all imports of a package except a specific class</a></li>
             </ul>
           </li>
           <li><a href="#ImportControl_Example_of_Usage">Example of Usage</a></li>
@@ -454,7 +454,7 @@ public class Example5 {}
       <subsection name="Use Cases" id="ImportControl_Use_Cases">
 
         <p id="UseCase1-config">
-          To configure the check:
+          To configure the check to enforce a layering rule using regular expressions:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -508,7 +508,8 @@ public class UseCase1 {}
 </code></pre></div><hr class="example-separator"/>
 
         <p id="UseCase2-config">
-          To configure the check:
+          To configure the check to allow all imports except specific classes
+          using <code>strategyOnMismatch</code>:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -578,7 +579,8 @@ public class UseCase2 {}
 </code></pre></div><hr class="example-separator"/>
 
         <p id="UseCase3-config">
-          To configure the check:
+          To configure the check to disallow imports in a specific subpackage
+          while allowing them outside:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -631,7 +633,8 @@ import sun.misc.Signal;             // violation 'Disallowed import - sun.misc.S
 public class UseCase3 {}
 </code></pre></div><hr class="example-separator"/>
         <p id="UseCase4-config">
-          To configure the check:
+          To configure the check to isolate a subpackage from parent rules
+          using <code>strategyOnMismatch</code>:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -691,7 +694,7 @@ import sun.misc.Signal;             // violation 'Disallowed import - sun.misc.S
 public class UseCase4 {}
 </code></pre></div><hr class="example-separator"/>
         <p id="UseCase5-config">
-          To configure the check:
+          To configure the check to disallow imports based on file name patterns:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -744,7 +747,7 @@ public class UseCase5 {}
 
         <h4 id="blacklist-example">Example of blacklist mode</h4>
         <p id="UseCase6-config">
-          To configure the check:
+          To configure the check to use a blacklist mode for a subpackage:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -801,7 +804,7 @@ public class UseCase6 {}
 </code></pre></div><hr class="example-separator"/>
 
         <p id="UseCase7-config">
-          To configure the check:
+          To configure the check to disallow specific classes within an allowed package:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -854,7 +857,7 @@ import sun.misc.Signal;    // violation 'Disallowed import - sun.misc.Signal'
 public class UseCase7 {}
 </code></pre></div><hr class="example-separator"/>
         <p id="UseCase8-config">
-          To configure the check:
+          To configure the check to allow all imports except specific classes and a package:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -904,7 +907,7 @@ import sun.misc.Signal;   // violation 'Disallowed import - sun.misc.Signal'
 public class UseCase8 {}
 </code></pre></div><hr class="example-separator"/>
         <p id="UseCase9-config">
-          To configure the check:
+          To configure the check to allow all imports of a package except a specific class:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
