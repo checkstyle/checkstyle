@@ -97,4 +97,14 @@ public class FinalPatternVariableCheckTest extends AbstractModuleTestSupport {
             "InputFinalPatternVariableCheck2.java"), expected);
     }
 
+    @Test
+    public void testIncrementDecrementOperators() throws Exception {
+        final String[] expected = {
+            "38:34: " + getCheckMessage(MSG_KEY, "i"),
+        };
+
+        verifyWithInlineConfigParser(getPath(
+            "InputFinalPatternVariableCheckIncrementDecrement.java"), expected);
+    }
+
 }
