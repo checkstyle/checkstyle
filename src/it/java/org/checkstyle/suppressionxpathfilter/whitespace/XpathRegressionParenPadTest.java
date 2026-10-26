@@ -19,15 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck;
 
 public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
@@ -46,14 +43,8 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
 
     @Test
     public void testLeftFollowed() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathParenPadLeftFollowed.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParenPadCheck.class);
-
         final String[] expectedViolation = {
-            "5:12: " + getCheckMessage(ParenPadCheck.class,
+            "17:12: " + getCheckMessage(ParenPadCheck.class,
                     ParenPadCheck.MSG_WS_FOLLOWED, "("),
         };
 
@@ -63,21 +54,16 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_IF/LPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathParenPadLeftFollowed.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testLeftNotFollowed() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathParenPadLeftNotFollowed.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParenPadCheck.class);
-        moduleConfig.addProperty("option", PadOption.SPACE.toString());
-
         final String[] expectedViolation = {
-            "5:12: " + getCheckMessage(ParenPadCheck.class,
+            "17:12: " + getCheckMessage(ParenPadCheck.class,
                     ParenPadCheck.MSG_WS_NOT_FOLLOWED, "("),
         };
 
@@ -87,20 +73,16 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_IF/LPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathParenPadLeftNotFollowed.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testRightPreceded() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathParenPadRightPreceded.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParenPadCheck.class);
-
         final String[] expectedViolation = {
-            "5:19: " + getCheckMessage(ParenPadCheck.class,
+            "17:19: " + getCheckMessage(ParenPadCheck.class,
                     ParenPadCheck.MSG_WS_PRECEDED, ")"),
         };
 
@@ -110,21 +92,16 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_IF/RPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathParenPadRightPreceded.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testRightNotPreceded() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathParenPadRightNotPreceded.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParenPadCheck.class);
-        moduleConfig.addProperty("option", PadOption.SPACE.toString());
-
         final String[] expectedViolation = {
-            "5:19: " + getCheckMessage(ParenPadCheck.class,
+            "17:19: " + getCheckMessage(ParenPadCheck.class,
                     ParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
         };
 
@@ -134,8 +111,10 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_IF/RPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathParenPadRightNotPreceded.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
