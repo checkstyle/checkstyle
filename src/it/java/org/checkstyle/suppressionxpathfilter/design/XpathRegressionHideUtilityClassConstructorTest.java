@@ -19,16 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.design;
 
-import static com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck.MSG_KEY;
-
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck;
 
 public class XpathRegressionHideUtilityClassConstructorTest extends AbstractXpathTestSupport {
@@ -47,14 +42,11 @@ public class XpathRegressionHideUtilityClassConstructorTest extends AbstractXpat
 
     @Test
     public void testDefaultConstructor() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathHideUtilityClassConstructorDefault.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(HideUtilityClassConstructorCheck.class);
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(HideUtilityClassConstructorCheck.class, MSG_KEY),
+            "11:1: " + getCheckMessage(HideUtilityClassConstructorCheck.class,
+                    HideUtilityClassConstructorCheck.MSG_KEY),
         };
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
                     + "InputXpathHideUtilityClassConstructorDefault']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
@@ -63,20 +55,19 @@ public class XpathRegressionHideUtilityClassConstructorTest extends AbstractXpat
                     + "InputXpathHideUtilityClassConstructorDefault']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathHideUtilityClassConstructorDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testPublicConstructor() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathHideUtilityClassConstructorPublic.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(HideUtilityClassConstructorCheck.class);
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(HideUtilityClassConstructorCheck.class, MSG_KEY),
+            "11:1: " + getCheckMessage(HideUtilityClassConstructorCheck.class,
+                    HideUtilityClassConstructorCheck.MSG_KEY),
         };
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
                     + "InputXpathHideUtilityClassConstructorPublic']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
@@ -85,20 +76,19 @@ public class XpathRegressionHideUtilityClassConstructorTest extends AbstractXpat
                     + "InputXpathHideUtilityClassConstructorPublic']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathHideUtilityClassConstructorPublic.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testFinalClass() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathHideUtilityClassConstructorFinal.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(HideUtilityClassConstructorCheck.class);
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(HideUtilityClassConstructorCheck.class, MSG_KEY),
+            "11:1: " + getCheckMessage(HideUtilityClassConstructorCheck.class,
+                    HideUtilityClassConstructorCheck.MSG_KEY),
         };
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
                     + "InputXpathHideUtilityClassConstructorFinal']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
@@ -107,8 +97,10 @@ public class XpathRegressionHideUtilityClassConstructorTest extends AbstractXpat
                     + "InputXpathHideUtilityClassConstructorFinal']]/MODIFIERS/FINAL"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathHideUtilityClassConstructorFinal.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
