@@ -203,6 +203,7 @@
     <!-- Miscellaneous other checks.                   -->
     <!-- See https://checkstyle.org/checks/misc/index.html -->
     <module name="ArrayTypeStyle"/>
+    <module name="CommentsIndentation"/>
     <module name="DescendantToken">
       <!-- At most three variables in the initialization or update clause
        of a for statement. -->
@@ -217,6 +218,7 @@
     <module name="FinalParameters"/>
     <module name="Indentation"/>
     <module name="TodoComment"/>
+    <module name="TrailingComment"/>
     <module name="UpperEll"/>
 
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->

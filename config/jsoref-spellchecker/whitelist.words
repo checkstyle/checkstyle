@@ -396,6 +396,7 @@ emptystatement
 emptytag
 Emtpy
 endline
+endoflinecomments
 enegger
 ent
 enum
@@ -1329,6 +1330,7 @@ simplifybooleanexpression
 simplifybooleanreturn
 sincetag
 singleline
+singlelinecomments
 singlelined
 singlelinejavadoc
 singlespaceseparator
