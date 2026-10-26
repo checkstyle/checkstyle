@@ -22,9 +22,16 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck.MSG_KEY;
 
+import java.io.File;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class NestedTryDepthCheckTest extends AbstractModuleTestSupport {
 
@@ -81,6 +88,30 @@ public class NestedTryDepthCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("compact/InputNestedTryDepthCompactSourceFileCustom.java"),
                 expected);
+    }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final NestedTryDepthCheck check = new NestedTryDepthCheck();
+        final Optional<DetailAST> literalTry = TestUtil.findTokenInAstByPredicate(
+            JavaParser.parseFile(new File(getPath("InputNestedTryDepth.java")),
+                JavaParser.Options.WITHOUT_COMMENTS),
+            ast -> ast.getType() == TokenTypes.LITERAL_TRY);
+
+        assertWithMessage("Ast should contain LITERAL_TRY")
+                .that(literalTry.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        literalTry.orElseThrow(), "depth", depth -> (Integer) depth == 0))
+                .isTrue();
     }
 
     @Test
