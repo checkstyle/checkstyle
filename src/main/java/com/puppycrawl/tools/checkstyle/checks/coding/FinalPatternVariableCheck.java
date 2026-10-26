@@ -59,7 +59,9 @@ public class FinalPatternVariableCheck extends AbstractCheck {
         TokenTypes.ASSIGN, TokenTypes.PLUS_ASSIGN, TokenTypes.MINUS_ASSIGN,
         TokenTypes.STAR_ASSIGN, TokenTypes.DIV_ASSIGN, TokenTypes.MOD_ASSIGN,
         TokenTypes.SR_ASSIGN, TokenTypes.BSR_ASSIGN, TokenTypes.SL_ASSIGN,
-        TokenTypes.BAND_ASSIGN, TokenTypes.BXOR_ASSIGN, TokenTypes.BOR_ASSIGN);
+        TokenTypes.BAND_ASSIGN, TokenTypes.BXOR_ASSIGN, TokenTypes.BOR_ASSIGN,
+        TokenTypes.POST_INC, TokenTypes.POST_DEC,
+        TokenTypes.INC, TokenTypes.DEC);
 
     /**
      * Creates a new {@code FinalPatternVariableCheck} instance.
