@@ -234,7 +234,7 @@
     <forbiddenapis.version>3.11</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>4.3.1</checkerframework.version>
-    <error-prone.version>2.50.0</error-prone.version>
+    <error-prone.version>2.51.0</error-prone.version>
     <error-prone-support.version>0.30.0</error-prone-support.version>
     <error-prone.configuration-args>
       -Xep:AmbiguousJsonCreator:ERROR
