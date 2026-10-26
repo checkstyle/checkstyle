@@ -100,7 +100,6 @@ public class ArchUnitTest {
         "com.puppycrawl.tools.checkstyle.checks.coding."
             + "NoCauseGetMessageInExceptionConstructorCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck",
-        "com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck",
         "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck",
         "com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck",
         "com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck",
