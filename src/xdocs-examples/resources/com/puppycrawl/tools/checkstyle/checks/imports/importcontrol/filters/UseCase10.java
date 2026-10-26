@@ -18,5 +18,5 @@ import java.io.FileReader; // violation 'Disallowed import - java.io.FileReader'
 import java.util.Date;     // violation 'Disallowed import - java.util.Date'
 import java.util.List;     // violation 'Disallowed import - java.util.List'
 
-public class Example3 {}
+public class UseCase10 {}
 // xdoc section - end
