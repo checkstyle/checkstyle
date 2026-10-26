@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.imports;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.imports.UnnecessaryFullyQualifiedTypeCheck;
 
 public class XpathRegressionUnnecessaryFullyQualifiedTypeTest extends AbstractXpathTestSupport {
@@ -46,14 +44,8 @@ public class XpathRegressionUnnecessaryFullyQualifiedTypeTest extends AbstractXp
 
     @Test
     public void testVariableType() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathUnnecessaryFullyQualifiedType.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnnecessaryFullyQualifiedTypeCheck.class);
-
         final String[] expectedViolation = {
-            "4:22: " + getCheckMessage(UnnecessaryFullyQualifiedTypeCheck.class,
+            "10:22: " + getCheckMessage(UnnecessaryFullyQualifiedTypeCheck.class,
                     UnnecessaryFullyQualifiedTypeCheck.MSG_KEY, "java.util.List"),
         };
 
@@ -67,20 +59,15 @@ public class XpathRegressionUnnecessaryFullyQualifiedTypeTest extends AbstractXp
                         + "/DOT[./IDENT[@text='List']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessaryFullyQualifiedType.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testNewExpression() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathUnnecessaryFullyQualifiedTypeNew.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnnecessaryFullyQualifiedTypeCheck.class);
-
         final String[] expectedViolation = {
-            "5:36: " + getCheckMessage(UnnecessaryFullyQualifiedTypeCheck.class,
+            "11:36: " + getCheckMessage(UnnecessaryFullyQualifiedTypeCheck.class,
                     UnnecessaryFullyQualifiedTypeCheck.MSG_KEY, "java.util.ArrayList"),
         };
 
@@ -92,20 +79,15 @@ public class XpathRegressionUnnecessaryFullyQualifiedTypeTest extends AbstractXp
                         + "/DOT[./IDENT[@text='ArrayList']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessaryFullyQualifiedTypeNew.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testImplementsClause() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathUnnecessaryFullyQualifiedTypeImplements.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnnecessaryFullyQualifiedTypeCheck.class);
-
         final String[] expectedViolation = {
-            "4:27: " + getCheckMessage(UnnecessaryFullyQualifiedTypeCheck.class,
+            "10:27: " + getCheckMessage(UnnecessaryFullyQualifiedTypeCheck.class,
                     UnnecessaryFullyQualifiedTypeCheck.MSG_KEY, "java.io.Serializable"),
         };
 
@@ -115,8 +97,9 @@ public class XpathRegressionUnnecessaryFullyQualifiedTypeTest extends AbstractXp
                         + "/IMPLEMENTS_CLAUSE/DOT[./IDENT[@text='Serializable']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessaryFullyQualifiedTypeImplements.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
