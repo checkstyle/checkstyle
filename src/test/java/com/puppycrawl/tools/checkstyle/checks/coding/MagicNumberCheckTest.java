@@ -871,7 +871,36 @@ public class MagicNumberCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMagicNumberCompactSourceFile.java"), expected);
+                getNonCompilablePath("compact/InputMagicNumberCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testMagicNumberCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "18:13: " + getCheckMessage(MSG_KEY, "123"),
+            "22:17: " + getCheckMessage(MSG_KEY, "7"),
+            "23:24: " + getCheckMessage(MSG_KEY, "456"),
+            "30:16: " + getCheckMessage(MSG_KEY, "31"),
+            "31:19: " + getCheckMessage(MSG_KEY, "17"),
+            "34:15: " + getCheckMessage(MSG_KEY, "42"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMagicNumberCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testMagicNumberCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY, "8"),
+            "20:27: " + getCheckMessage(MSG_KEY, "3"),
+            "20:31: " + getCheckMessage(MSG_KEY, "4"),
+            "25:20: " + getCheckMessage(MSG_KEY, "9.5"),
+            "39:25: " + getCheckMessage(MSG_KEY, "10"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMagicNumberCompactSourceFileProperties.java"),
+                expected);
     }
 
 }

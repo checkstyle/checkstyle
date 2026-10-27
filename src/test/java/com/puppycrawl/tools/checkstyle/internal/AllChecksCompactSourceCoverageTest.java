@@ -156,7 +156,6 @@ public class AllChecksCompactSourceCoverageTest {
         "LeftCurlyCheck",
         "LocalFinalVariableNameCheck",
         "LocalVariableNameCheck",
-        "MagicNumberCheck",
         "MatchXpathCheck",
         "MemberNameCheck",
         "MethodCountCheck",
