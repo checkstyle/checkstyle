@@ -10,8 +10,8 @@ public final class InputDeclarationOrderStaticMembers {
     /** Instance variable first. */
     private int instanceVar = 1;
 
+    // violation 2 lines below 'Static variable definition in wrong order.'
     /** Static after instance. */
-    // violation below 'Static variable definition in wrong order.'
     public static final int STATIC_VAR = 2;
 
     /**

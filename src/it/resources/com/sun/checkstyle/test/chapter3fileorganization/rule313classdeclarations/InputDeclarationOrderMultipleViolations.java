@@ -13,8 +13,8 @@ public final class InputDeclarationOrderMultipleViolations {
     /** Private static constant. */
     private static final int PRIVATE_CONST = 2;
 
+    // violation 2 lines below 'Variable access definition in wrong order.'
     /** Public after private. */
-    // violation below 'Variable access definition in wrong order.'
     public static final int PUBLIC_CONST = 3;
 
     /** Instance variable. */
@@ -30,9 +30,10 @@ public final class InputDeclarationOrderMultipleViolations {
                 + staticVar;
     }
 
+    // violation 4 lines below 'Constructor definition in wrong order.'
     /**
      * Constructor.
-     */ // violation below 'Constructor definition in wrong order.'
+     */
     public InputDeclarationOrderMultipleViolations() {
         instanceVar = 0;
     }
