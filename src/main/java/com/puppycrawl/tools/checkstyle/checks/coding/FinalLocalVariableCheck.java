@@ -192,6 +192,13 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         };
     }
 
+    @Override
+    public void beginTree(DetailAST rootAST) {
+        scopeStack.clear();
+        currentScopeAssignedVariables.clear();
+        throwingBranches.clear();
+    }
+
     // -@cs[CyclomaticComplexity] The only optimization which can be done here is moving CASE-block
     // expressions to separate methods, but that will not increase readability.
     @Override
@@ -630,7 +637,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private static DetailAST getParentLoop(DetailAST ast) {
         DetailAST parentLoop = ast;
         while (parentLoop != null
-            && !isLoopAst(parentLoop.getType())) {
+            && !LOOP_TYPES.get(parentLoop.getType())) {
             parentLoop = parentLoop.getParent();
         }
         return parentLoop;
@@ -714,16 +721,6 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         final DetailAST classOrMethodOfAst2 =
             findFirstUpperNamedBlock(ast2);
         return classOrMethodOfAst1 == classOrMethodOfAst2 && ast1.getText().equals(ast2.getText());
-    }
-
-    /**
-     * Checks whether the ast is a loop.
-     *
-     * @param ast the ast to check.
-     * @return true if the ast is a loop.
-     */
-    private static boolean isLoopAst(int ast) {
-        return LOOP_TYPES.get(ast);
     }
 
     /** Assignment state for a conditional branch that cannot complete normally. */

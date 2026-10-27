@@ -19,13 +19,22 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getInternalState;
+
+import java.io.File;
+import java.util.Deque;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -34,6 +43,51 @@ public class FinalLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable";
+    }
+
+    /**
+     * Simulates a traversal stopped before leaveToken so the next tree must discard all state.
+     * Reflection observes private containers because completed audits balance their scopes.
+     *
+     * @throws Exception if parsing fails
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final FinalLocalVariableCheck check = new FinalLocalVariableCheck();
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputFinalLocalVariableThrow.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final DetailAST method = findTokenInAstByPredicate(root,
+                ast -> ast.getType() == TokenTypes.METHOD_DEF).orElseThrow();
+        final DetailAST body = method.findFirstToken(TokenTypes.SLIST);
+        final DetailAST throwingBlock = body.findFirstToken(TokenTypes.LITERAL_IF)
+                .findFirstToken(TokenTypes.SLIST);
+
+        check.beginTree(root);
+        check.visitToken(method);
+        check.visitToken(body);
+        check.visitToken(body.findFirstToken(TokenTypes.VARIABLE_DEF));
+        check.visitToken(throwingBlock);
+
+        final Deque<?> scopes = getInternalState(check, "scopeStack", Deque.class);
+        final Deque<?> assignments = getInternalState(check,
+                "currentScopeAssignedVariables", Deque.class);
+        final Map<?, ?> branches = getInternalState(check, "throwingBranches", Map.class);
+        assertWithMessage("Scope stack must be populated before reset")
+                .that(scopes).isNotEmpty();
+        assertWithMessage("Assigned-variable stack must be populated before reset")
+                .that(assignments).isNotEmpty();
+        assertWithMessage("Throwing-branch map must be populated before reset")
+                .that(branches).isNotEmpty();
+
+        check.beginTree(root);
+
+        assertWithMessage("Scope stack must be cleared on beginTree")
+                .that(scopes).isEmpty();
+        assertWithMessage("Assigned-variable stack must be cleared on beginTree")
+                .that(assignments).isEmpty();
+        assertWithMessage("Throwing-branch map must be cleared on beginTree")
+                .that(branches).isEmpty();
     }
 
     @Test
