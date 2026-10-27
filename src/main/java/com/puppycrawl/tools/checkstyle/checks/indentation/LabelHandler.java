@@ -67,10 +67,13 @@ public class LabelHandler extends AbstractExpressionHandler {
         // need to check children (like 'block' parents do)
         final DetailAST parent = getMainAst().getFirstChild().getNextSibling();
 
-        final IndentLevel expected =
-            new IndentLevel(getIndent(), getBasicOffset());
+        // statements with their own handler (loops, blocks, ...) check themselves
+        if (!getContext().getHandlerFactory().isHandledType(parent.getType())) {
+            final IndentLevel expected =
+                new IndentLevel(getIndent(), getBasicOffset());
 
-        checkExpressionSubtree(parent, expected, true, false);
+            checkExpressionSubtree(parent, expected, true, false);
+        }
     }
 
 }
