@@ -1,3 +1,10 @@
+/*
+ConstructorsDeclarationGrouping
+orderByIncreasingParameterCount = (default)false
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.constructorsdeclarationgrouping;
 
 public class InputXpathConstructorsDeclarationGroupingClass {
@@ -7,5 +14,6 @@ public class InputXpathConstructorsDeclarationGroupingClass {
 
     int x;
 
-    InputXpathConstructorsDeclarationGroupingClass(String str) {} // warn
+    // violation below 'Constructors should be grouped together.'
+    InputXpathConstructorsDeclarationGroupingClass(String str) {}
 }

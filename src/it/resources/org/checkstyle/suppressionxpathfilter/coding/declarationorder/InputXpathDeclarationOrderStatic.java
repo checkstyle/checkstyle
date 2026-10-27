@@ -1,7 +1,16 @@
+/*
+DeclarationOrder
+ignoreConstructors = (default)false
+ignoreModifiers = (default)false
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.declarationorder;
 
 public class InputXpathDeclarationOrderStatic {
     public static void foo1() {}
-    public static final double MAX = 0.60; //warn
+    // violation below 'Static variable definition in wrong order.'
+    public static final double MAX = 0.60;
     public static void foo2() {}
 }
