@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCompactSourceCheck"
+             name="RedundantModifierCompactSource"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;Checks for redundant modifiers on fields and methods declared directly
+ in a compact source file. Ordinary and nested declarations are checked by
+ &lt;code&gt;RedundantModifier&lt;/code&gt;.&lt;/div&gt;</description>
+         <message-keys>
+            <message-key key="redundantModifierCompactSource"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
