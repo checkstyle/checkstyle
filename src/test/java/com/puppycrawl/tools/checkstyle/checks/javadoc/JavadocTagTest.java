@@ -41,6 +41,40 @@ public class JavadocTagTest {
     }
 
     @Test
+    public void testConstructorWithoutFirstArgument() {
+        final JavadocTag javadocTag = new JavadocTag(1, 2, "return");
+
+        assertThat(javadocTag.getLineNo()).isEqualTo(1);
+        assertThat(javadocTag.getColumnNo()).isEqualTo(2);
+        assertThat(javadocTag.getFirstArg()).isNull();
+    }
+
+    @Test
+    public void testIsReturnTag() {
+        assertThat(new JavadocTag(1, 2, "return").isReturnTag()).isTrue();
+        assertThat(new JavadocTag(1, 2, "param").isReturnTag()).isFalse();
+    }
+
+    @Test
+    public void testIsParamTag() {
+        assertThat(new JavadocTag(1, 2, "param").isParamTag()).isTrue();
+        assertThat(new JavadocTag(1, 2, "return").isParamTag()).isFalse();
+    }
+
+    @Test
+    public void testIsThrowsTag() {
+        assertThat(new JavadocTag(1, 2, "throws").isThrowsTag()).isTrue();
+        assertThat(new JavadocTag(1, 2, "exception").isThrowsTag()).isTrue();
+        assertThat(new JavadocTag(1, 2, "return").isThrowsTag()).isFalse();
+    }
+
+    @Test
+    public void testIsInheritDocTag() {
+        assertThat(new JavadocTag(1, 2, "inheritDoc").isInheritDocTag()).isTrue();
+        assertThat(new JavadocTag(1, 2, "return").isInheritDocTag()).isFalse();
+    }
+
+    @Test
     public void testJavadocTagReferenceImports() {
         assertThat(new JavadocTag(0, 0, "see", null).canReferenceImports()).isTrue();
         assertThat(new JavadocTag(0, 0, "link", null).canReferenceImports()).isTrue();
