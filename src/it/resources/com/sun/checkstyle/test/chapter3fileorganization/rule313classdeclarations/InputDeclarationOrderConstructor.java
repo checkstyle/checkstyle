@@ -22,9 +22,10 @@ public final class InputDeclarationOrderConstructor {
         return instanceVar;
     }
 
+    // violation 4 lines below 'Constructor definition in wrong order.'
     /**
      * Constructor after method.
-     */ // violation below 'Constructor definition in wrong order.'
+     */
     public InputDeclarationOrderConstructor() {
         instanceVar = 0;
     }
