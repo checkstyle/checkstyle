@@ -6898,6 +6898,60 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/RedundantModifierCompactSourceCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter modifiers of RedundantModifierCompactSourceCheck.checkModifiers.</message>
+    <lineContent>checkModifiers(modifiers, FIELD_MODIFIERS, false);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/RedundantModifierCompactSourceCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter modifiers of RedundantModifierCompactSourceCheck.checkModifiers.</message>
+    <lineContent>checkModifiers(modifiers, METHOD_MODIFIERS,</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/RedundantModifierCompactSourceCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter modifiers of RedundantModifierCompactSourceCheck.isRequiredModifierKept.</message>
+    <lineContent>isRequiredModifierKept(ast, modifiers));</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/RedundantModifierCompactSourceCheck.java</fileName>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: root</message>
+    <lineContent>public RedundantModifierCompactSourceCheck() {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/RedundantModifierCompactSourceCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>if (ast.getParent() == root) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/RedundantModifierCompactSourceCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>if (ast.getParent() == root) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/modules/ModuleDirectiveOrderCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference directiveBlock</message>
