@@ -389,6 +389,8 @@
             files="src/site/xdoc/checks/coding/unusedprivatefield.xml.template"/>
   <suppress id="propertiesMacroMustExist"
             files="src/site/xdoc/checks/coding/unnecessarypermitsclause.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+            files="src/site/xdoc/checks/modifier/redundantmodifiercompactsource.xml.template"/>
 
   <!-- Index templates don't need since macro by design -->
   <suppress id="sinceMacroMustExist"
