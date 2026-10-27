@@ -41,6 +41,49 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "27:1: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "28:1: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "29:6: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "32:1: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "33:9: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "38:5: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "50:5: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "53:14: " + getCheckMessage(MSG_KEY, "HashMap"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputIllegalTypeCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileAbstractNames() throws Exception {
+        final String[] expected = {
+            "25:1: " + getCheckMessage(MSG_KEY, "BaseForbidden"),
+            "28:1: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "30:1: " + getCheckMessage(MSG_KEY, "BaseForbidden"),
+            "31:9: " + getCheckMessage(MSG_KEY, "BaseForbidden"),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputIllegalTypeCompactSourceFileAbstractNames.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileMemberModifiers() throws Exception {
+        final String[] expected = {
+            "24:8: " + getCheckMessage(MSG_KEY, "ArrayList"),
+            "26:8: " + getCheckMessage(MSG_KEY, "java.util.ArrayList"),
+            "30:8: " + getCheckMessage(MSG_KEY, "ArrayList"),
+            "31:9: " + getCheckMessage(MSG_KEY, "ArrayList"),
+            "43:8: " + getCheckMessage(MSG_KEY, "ArrayList"),
+            "44:9: " + getCheckMessage(MSG_KEY, "ArrayList"),
+            "49:22: " + getCheckMessage(MSG_KEY, "ArrayList"),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputIllegalTypeCompactSourceFileMemberModifiers.java"), expected);
+    }
+
+    @Test
     public void testValidateAbstractClassNamesSetToTrue() throws Exception {
         final String[] expected = {
             "27:38: " + getCheckMessage(MSG_KEY, "AbstractClass"),

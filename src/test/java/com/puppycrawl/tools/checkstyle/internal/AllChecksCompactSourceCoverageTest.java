@@ -128,7 +128,6 @@ public class AllChecksCompactSourceCoverageTest {
         "IllegalThrowsCheck",
         "IllegalTokenCheck",
         "IllegalTokenTextCheck",
-        "IllegalTypeCheck",
         "ImportControlCheck",
         "ImportOrderCheck",
         "IndentationCheck",
