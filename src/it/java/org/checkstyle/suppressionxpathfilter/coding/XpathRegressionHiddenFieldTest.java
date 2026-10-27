@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 
 public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
 
     @Test
     public void testLambdaExpInMethodCall() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathHiddenFieldLambdaExpInMethodCall.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(HiddenFieldCheck.class);
-
         final String[] expectedViolation = {
-            "10:34: " + getCheckMessage(HiddenFieldCheck.class,
+            "24:34: " + getCheckMessage(HiddenFieldCheck.class,
                 HiddenFieldCheck.MSG_KEY, "value"),
         };
 
@@ -63,20 +55,15 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
                 + "/PARAMETER_DEF/IDENT[@text='value']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathHiddenFieldLambdaExpInMethodCall.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testMethodParam() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathHiddenFieldMethodParam.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(HiddenFieldCheck.class);
-
         final String[] expectedViolation = {
-            "8:45: " + getCheckMessage(HiddenFieldCheck.class,
+            "22:45: " + getCheckMessage(HiddenFieldCheck.class,
                 HiddenFieldCheck.MSG_KEY, "other"),
         };
 
@@ -87,20 +74,15 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
                 + "/IDENT[@text='other']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathHiddenFieldMethodParam.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testLocalVariable() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathHiddenFieldLocalVariable.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(HiddenFieldCheck.class);
-
         final String[] expectedViolation = {
-            "7:13: " + getCheckMessage(HiddenFieldCheck.class,
+            "21:13: " + getCheckMessage(HiddenFieldCheck.class,
                 HiddenFieldCheck.MSG_KEY, "count"),
         };
 
@@ -111,8 +93,9 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
                 + "/VARIABLE_DEF/IDENT[@text='count']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathHiddenFieldLocalVariable.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
