@@ -16,15 +16,14 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- This Check does not perform full type resolution. It determines whether a
- permitted type is local to the file by comparing simple names against every
- type declaration (class, interface, enum, or record) found
- anywhere in the compilation unit, including nested and sibling top-level
- types. As a result, a permitted type whose simple name coincidentally
- matches an unrelated local type declaration could, in theory, be
- misidentified as local. In practice this situation cannot occur in code
- that compiles, since the Java compiler would not be able to resolve such an
- ambiguous reference in the &lt;code&gt;permits&lt;/code&gt; clause.
+ This Check does not perform full type resolution. A permitted type is
+ treated as local to the file only when the name in the &lt;code&gt;permits&lt;/code&gt;
+ clause can actually refer to a type declared in the same compilation unit:
+ an unqualified name must denote a type declared in the compilation unit, a
+ member type of the sealed type, or a member type of one of its enclosing
+ types, and a qualified name must match the nesting path of a type declared
+ in the compilation unit. An unrelated type that merely shares a simple name
+ with the permitted type is therefore not mistaken for it.
  &lt;/p&gt;</description>
          <message-keys>
             <message-key key="unnecessary.permits.clause"/>
