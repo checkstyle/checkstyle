@@ -177,4 +177,27 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testMultipleStringLiteralsCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "12:16: " + getCheckMessage(MSG_KEY, "\"hello\"", 2),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputMultipleStringLiteralsCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testMultipleStringLiteralsCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "12:16: " + getCheckMessage(MSG_KEY, "\"thrice\"", 3),
+            "28:15: " + getCheckMessage(MSG_KEY, "\"anno\"", 3),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputMultipleStringLiteralsCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
