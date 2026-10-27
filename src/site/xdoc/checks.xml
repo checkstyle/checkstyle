@@ -1970,6 +1970,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/modifier/redundantmodifiercompactsource.html#RedundantModifierCompactSource">
+                RedundantModifierCompactSource
+              </a>
+            </td>
+            <td>
+              Checks for redundant modifiers on fields and methods declared directly in a compact
+              source file.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/redundantthis.html#RedundantThis">
                 RedundantThis
               </a>
