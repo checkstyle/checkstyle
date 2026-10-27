@@ -22,9 +22,12 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryPermitsClauseCheck.MSG_KEY;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -87,6 +90,58 @@ public class UnnecessaryPermitsClauseCheckTest extends AbstractModuleTestSupport
             getPath("InputUnnecessaryPermitsClauseSubClassesInAnotherFile2.java"),
             getPath("InputUnnecessaryPermitsClauseSubClassesInAnotherFile.java"),
             expected);
+    }
+
+    @Test
+    public void testSimpleNameCollision() throws Exception {
+        final String[] expected = {
+            "23:30: " + getCheckMessage(MSG_KEY),
+            "31:35: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryPermitsClauseSimpleNameCollision.java"),
+                getPath("InputUnnecessaryPermitsClauseSimpleNameCollisionCompanion.java"),
+                expected);
+    }
+
+    @Test
+    public void testPermitsScopeResolution() throws Exception {
+        final String[] expected = {
+            "14:40: " + getCheckMessage(MSG_KEY),
+            "23:37: " + getCheckMessage(MSG_KEY),
+            "32:33: " + getCheckMessage(MSG_KEY),
+            "52:30: " + getCheckMessage(MSG_KEY),
+            "77:29: " + getCheckMessage(MSG_KEY),
+            "88:35: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryPermitsClauseScopeResolution.java"),
+                getPath("InputUnnecessaryPermitsClauseScopeResolutionCompanion.java"),
+                expected);
+    }
+
+    @Test
+    public void testStateLeakAcrossFiles() throws Exception {
+        final List<List<String>> expected = List.of(
+                List.of(),
+                List.of("22:35: " + getCheckMessage(MSG_KEY)));
+
+        verifyWithInlineConfigParser(
+                List.of(getPath("InputUnnecessaryPermitsClauseStateLeakFirst.java"),
+                        getPath("InputUnnecessaryPermitsClauseStateLeakSecond.java")),
+                expected);
+    }
+
+    @Test
+    public void testEmptyFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(UnnecessaryPermitsClauseCheck.class);
+
+        verify(checkConfig,
+                getNonCompilablePath("InputUnnecessaryPermitsClauseEmptyFile.java"), expected);
     }
 
     @Test
