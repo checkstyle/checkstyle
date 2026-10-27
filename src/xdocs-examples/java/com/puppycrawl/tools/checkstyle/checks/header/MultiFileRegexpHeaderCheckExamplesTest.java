@@ -20,10 +20,14 @@
 package com.puppycrawl.tools.checkstyle.checks.header;
 
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.SetSystemProperty;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+@SetSystemProperty(key = "config.folder",
+    value = "src/xdocs-examples/resources/"
+        + "com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader")
 public class MultiFileRegexpHeaderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
     @Override
@@ -51,7 +55,6 @@ public class MultiFileRegexpHeaderCheckExamplesTest extends AbstractExamplesModu
                     "// Checkstyle - Java code style checker."
                    + " Copyright (C) 20XX-20XX the authors.", path),
         };
-        System.setProperty("config.folder", "src/xdocs-examples/resources/" + getPackageLocation());
         verifyWithExternalXmlConfig(getPath("Example2.xml"),
                                     getPath("Example2.java"),
                                      expected);
@@ -69,7 +72,6 @@ public class MultiFileRegexpHeaderCheckExamplesTest extends AbstractExamplesModu
                        "// Checkstyle - Java code style checker."
                    + " Copyright (C) 20XX-20XX the authors.", path),
         };
-        System.setProperty("config.folder", "src/xdocs-examples/resources/" + getPackageLocation());
         verifyWithExternalXmlConfig(getPath("Example3.xml"),
                                     getPath("Example3.java"),
                                      expected);
@@ -78,7 +80,6 @@ public class MultiFileRegexpHeaderCheckExamplesTest extends AbstractExamplesModu
     @Test
     public void testExample4() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        System.setProperty("config.folder", "src/xdocs-examples/resources/" + getPackageLocation());
         verifyWithExternalXmlConfig(getPath("Example4.xml"),
                                     getPath("Example4.java"),
                                      expected);

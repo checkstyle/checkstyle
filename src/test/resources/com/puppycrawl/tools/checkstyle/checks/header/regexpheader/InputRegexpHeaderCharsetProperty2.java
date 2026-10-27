@@ -1,0 +1,12 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// Test case file for checkstyle.
+// some.class.тест.passed
+///////////////////////////////////////////////////////////////////////////////////////////////
+// violation 2 lines above 'Line does not match expected header line'
+package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
+
+/**
+ * @author Kevin Patel
+ */
+public class InputRegexpHeaderCharsetProperty2 {
+}

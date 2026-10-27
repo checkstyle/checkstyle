@@ -1,3 +1,9 @@
+/*
+NoFinalizer
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.nofinalizer;
 
 public class InputXpathNoFinalizerMain {
@@ -5,7 +11,7 @@ public class InputXpathNoFinalizerMain {
         // some code here
     }
 
-    protected void finalize() throws Throwable { // warn
+    protected void finalize() throws Throwable { // violation 'Avoid using finalizer method.'
 
     }
 }

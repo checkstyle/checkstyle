@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck;
 
 public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSup
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathUnusedLocalVariableOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedLocalVariableCheck.class);
-
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
+            "14:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
                     UnusedLocalVariableCheck.MSG_UNUSED_NAMED_LOCAL_VARIABLE, "a"),
         };
 
@@ -74,21 +66,16 @@ public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSup
                         + "./IDENT[@text='a']]/TYPE/LITERAL_INT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnusedLocalVariableOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathUnusedLocalVariableTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedLocalVariableCheck.class);
-        moduleConfig.addProperty("allowUnnamedVariables", "false");
-
         final String[] expectedViolation = {
-            "10:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
+            "18:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
                     UnusedLocalVariableCheck.MSG_UNUSED_LOCAL_VARIABLE, "b"),
         };
 
@@ -109,21 +96,16 @@ public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSup
                         + "./IDENT[@text='b']]/TYPE/LITERAL_INT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
-
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnusedLocalVariableTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathUnusedLocalVariableThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UnusedLocalVariableCheck.class);
-
         final String[] expectedViolation = {
-            "8:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
+            "16:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
                    UnusedLocalVariableCheck.MSG_UNUSED_NAMED_LOCAL_VARIABLE, "c"),
         };
 
@@ -146,9 +128,10 @@ public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSup
                         + "VARIABLE_DEF[./IDENT[@text='c']]/TYPE/LITERAL_INT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
-
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnusedLocalVariableThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

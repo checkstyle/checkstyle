@@ -187,6 +187,8 @@ classannotations
 classdataabstractioncoupling
 classdeclarations
 classfanoutcomplexity
+classheader
+classheaderwrapopenjdk
 classloader
 classmemberimpliedmodifier
 classname
@@ -421,6 +423,7 @@ explicitinitialization
 expr
 expressionoverblocklambda
 Externalizable
+failureaccess
 fallsthrough
 fallthrough
 fallthru
@@ -472,6 +475,7 @@ finalclass
 finalizer
 finallocalvariable
 finalparameters
+finalpatternvariable
 findbugs
 Findentation
 findstr
@@ -517,6 +521,7 @@ Gdrox
 generalform
 genericwhitespace
 Getenv
+getmessage
 gg
 gh
 Ghj
@@ -967,6 +972,7 @@ noarch
 noarraytrailingcomma
 noblank
 nobr
+nocausegetmessageinexceptionconstructor
 noclone
 nocode
 nocodeinfile
@@ -1045,6 +1051,7 @@ OOQ
 opencollective
 openjdk
 openjdkannotationlocation
+openjdkmethodparameteralignment
 openjdkmethodthrowsalignment
 openrewrite
 operatorwrap
@@ -1212,7 +1219,8 @@ requireemptylinebeforeblocktaggroup
 requirethis
 Rescanning
 resourceleak
-Rethrown
+rethrowing
+rethrown
 returncount
 returnsreceiver
 returntag

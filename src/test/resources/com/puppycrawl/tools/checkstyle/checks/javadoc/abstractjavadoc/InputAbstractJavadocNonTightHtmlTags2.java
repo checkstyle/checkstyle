@@ -20,20 +20,20 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  */
 
 public class InputAbstractJavadocNonTightHtmlTags2 {
+    // violation below 'Unclosed HTML tag found: p'
     /** <p> <p> paraception </p>  */
-    // violation above 'Unclosed HTML tag found: p'
     private int field1;
 
-    /**<li> paraTags should be opened</p> list isn't nested in parse tree </li>*/
-    // violation above 'Javadoc comment at column 68 has parse error.'
+    // violation 2 lines below 'Javadoc comment at column 68 has parse error.'
     // Details: no viable alternative at input '</' while parsing HTML_ELEMENT
+    /**<li> paraTags should be opened</p> list isn't nested in parse tree </li>*/
     private int field2;
 
+    // violation 3 lines below 'Unclosed HTML tag found: p'
     /**
      * <p> this paragraph is closed and would be nested in javadoc tree </p>
      * <li> list has an <p> unclosed para, but still the list would get nested </li>
      */
-    // violation 2 lines above 'Unclosed HTML tag found: p'
     private int field3;
 
     /**
@@ -42,12 +42,12 @@ public class InputAbstractJavadocNonTightHtmlTags2 {
      */
     private int field4;
 
+    // violation 4 lines below 'Unclosed HTML tag found: li'
     /**
      * <p> <a href="www.something.com">something</a> paragraph with `htmlTag` </p>
      * <p> <a href="www.something.com"/> Nested paragraph with `singletonTag` </p>
      * <li> Outer tag <li> Inner tag nested </li> not nested
      */
-    // violation 2 lines above 'Unclosed HTML tag found: li'
     private int field5;
 
     /**
@@ -60,14 +60,14 @@ public class InputAbstractJavadocNonTightHtmlTags2 {
     /***/
     int getField2() {return field2;} //method with empty javadoc
 
+    // 2 violations 6 lines below:
+    //                            'Unclosed HTML tag found: p'
+    //                            'tag PARAM_BLOCK_TAG'
     /**
      * <p>This is a setter method.
      * And paraTag shall be nested in parse tree </p>
      * @param field2 <p> setter
      */
-    // 2 violations 2 lines above:
-    //                            'Unclosed HTML tag found: p'
-    //                            'tag PARAM_BLOCK_TAG'
     void setField2(int field2) {this.field2 = field2;}
 
     // violation 6 lines below 'Unclosed HTML tag found: tr'

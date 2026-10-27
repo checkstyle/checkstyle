@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.blocks;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.GoogleRightCurlyCheck;
 
 public class XpathRegressionGoogleRightCurlyTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionGoogleRightCurlyTest extends AbstractXpathTestSuppor
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathGoogleRightCurlyOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(GoogleRightCurlyCheck.class);
-
         final String[] expected = {
-            "4:32: " + getCheckMessage(
+            "10:32: " + getCheckMessage(
                 GoogleRightCurlyCheck.class,
                 GoogleRightCurlyCheck.MSG_KEY_CONCISE_BLOCK),
         };
@@ -63,20 +55,16 @@ public class XpathRegressionGoogleRightCurlyTest extends AbstractXpathTestSuppor
                 + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/RCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expected,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathGoogleRightCurlyOne.java"),
+                expectedXpathQueries,
+                expected);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathGoogleRightCurlyTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(GoogleRightCurlyCheck.class);
-
         final String[] expected = {
-            "8:24: " + getCheckMessage(
+            "14:24: " + getCheckMessage(
                     GoogleRightCurlyCheck.class,
                     GoogleRightCurlyCheck.MSG_KEY_LINE_ALONE, "}", 24),
         };
@@ -88,20 +76,16 @@ public class XpathRegressionGoogleRightCurlyTest extends AbstractXpathTestSuppor
                         + "/LITERAL_IF/SLIST/RCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expected,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathGoogleRightCurlyTwo.java"),
+                expectedXpathQueries,
+                expected);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathGoogleRightCurlyThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(GoogleRightCurlyCheck.class);
-
         final String[] expected = {
-            "7:28: " + getCheckMessage(
+            "13:28: " + getCheckMessage(
                     GoogleRightCurlyCheck.class,
                     GoogleRightCurlyCheck.MSG_KEY_LINE_BREAK_BEFORE, "}", 28),
         };
@@ -113,8 +97,10 @@ public class XpathRegressionGoogleRightCurlyTest extends AbstractXpathTestSuppor
                         + "/LITERAL_IF/SLIST/RCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expected,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathGoogleRightCurlyThree.java"),
+                expectedXpathQueries,
+                expected);
     }
 
 }

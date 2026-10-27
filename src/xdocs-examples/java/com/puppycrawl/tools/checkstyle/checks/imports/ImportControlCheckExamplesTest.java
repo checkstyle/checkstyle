@@ -22,9 +22,13 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import java.io.File;
 
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.SetSystemProperty;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
+@SetSystemProperty(key = "config.folder",
+    value = "src/xdocs-examples/resources/"
+        + "com/puppycrawl/tools/checkstyle/checks/imports/importcontrol")
 public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
     @Override
@@ -34,6 +38,15 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
 
     @Test
     public void testExample1() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(ImportControlCheck.MSG_MISSING_FILE),
+        };
+
+        verifyWithInlineXmlConfig(getPath("Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
         final String[] expected = {
             "13:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
@@ -47,42 +60,38 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                     ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
-        verifyWithInlineXmlConfig(getPath("Example1.java"), expected);
-    }
-
-    @Test
-    public void testExample2() throws Exception {
-        final String[] expected = {};
-
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineXmlConfig(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
         final String[] expected = {
-            "13:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
             "16:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.io.File"),
+                    ImportControlCheck.MSG_DISALLOWED, "java.logging"),
             "17:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.io.FileReader"),
-            "18:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
-            "19:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
+                    ImportControlCheck.MSG_DISALLOWED, "java.sql"),
         };
 
-        final String examplePath = new File("src/" + getResourceLocation()
-                + "/resources/" + getPackageLocation() + "/"
-                + "filters/Example3.java").getCanonicalPath();
+        verifyWithInlineXmlConfig(getNonCompilablePath("Example4.java"), expected);
+    }
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
-        verifyWithInlineXmlConfig(examplePath, expected);
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.sql"),
+            "17:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.xml"),
+        };
+
+        verifyWithInlineXmlConfig(getNonCompilablePath("Example5.java"), expected);
     }
 
     @Test
@@ -99,8 +108,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 + "/resources/" + getPackageLocation() + "/"
                 + "newdomain/dao/UseCase1.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
@@ -113,8 +120,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 ImportControlCheck.MSG_DISALLOWED, "java.io.File"),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(getPath("UseCase2.java"), expected);
     }
 
@@ -140,8 +145,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 + "/resources/" + getPackageLocation() + "/"
                 + "someImports/UseCase3.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
@@ -166,8 +169,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 + "/resources/" + getPackageLocation() + "/"
                 + "someImports/UseCase4.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
@@ -182,8 +183,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 + "/resources/" + getPackageLocation() + "/"
                 + "gui/UseCase5.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
@@ -205,8 +204,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 + "/resources/" + getPackageLocation() + "/"
                 + "filters/UseCase6.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
@@ -233,8 +230,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 + "/resources/" + getPackageLocation() + "/"
                 + "someImports/UseCase7.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
@@ -253,8 +248,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
             + "/resources/" + getPackageLocation() + "/"
             + "someImports/UseCase8.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
@@ -271,37 +264,29 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                     ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
         verifyWithInlineXmlConfig(getPath("UseCase9.java"), expected);
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase10() throws Exception {
         final String[] expected = {
+            "13:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
             "16:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.logging"),
+                    ImportControlCheck.MSG_DISALLOWED, "java.io.File"),
             "17:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.sql"),
+                    ImportControlCheck.MSG_DISALLOWED, "java.io.FileReader"),
+            "18:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
+            "19:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
-        verifyWithInlineXmlConfig(getNonCompilablePath("Example4.java"), expected);
-    }
+        final String examplePath = new File("src/" + getResourceLocation()
+                + "/resources/" + getPackageLocation() + "/"
+                + "filters/UseCase10.java").getCanonicalPath();
 
-    @Test
-    public void testExample5() throws Exception {
-        final String[] expected = {
-            "16:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.sql"),
-            "17:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.xml"),
-        };
-
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
-        verifyWithInlineXmlConfig(getNonCompilablePath("Example5.java"), expected);
+        verifyWithInlineXmlConfig(examplePath, expected);
     }
 
 }

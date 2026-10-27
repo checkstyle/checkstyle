@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck;
 
 public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
@@ -45,15 +43,10 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMethodNameDefault.java"));
-
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodNameCheck.class);
 
         final String[] expectedViolation = {
-            "6:16: " + getCheckMessage(MethodNameCheck.class,
+            "19:16: " + getCheckMessage(MethodNameCheck.class,
                         MethodNameCheck.MSG_INVALID_PATTERN, "SecondMethod", pattern),
         };
 
@@ -63,22 +56,18 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
                         + "='InputXpathMethodNameDefault']]"
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='SecondMethod']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMethodNameDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMethodNameInner.java"));
-
         final String pattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodNameCheck.class);
-        moduleConfig.addProperty("format", "^[a-z](_?[a-zA-Z0-9]+)*$");
 
         final String[] expectedViolation = {
-            "7:21: " + getCheckMessage(MethodNameCheck.class,
+            "20:21: " + getCheckMessage(MethodNameCheck.class,
                         MethodNameCheck.MSG_INVALID_PATTERN, "MyMethod2", pattern),
         };
 
@@ -89,24 +78,18 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='MyMethod2']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMethodNameInner.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testCustomProperties() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMethodNameCustomProperties.java"));
-
         final String pattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodNameCheck.class);
-        moduleConfig.addProperty("format", "^[a-z](_?[a-zA-Z0-9]+)*$");
-        moduleConfig.addProperty("applyToPublic", "false");
-        moduleConfig.addProperty("applyToProtected", "false");
 
         final String[] expectedViolation = {
-            "7:19: " + getCheckMessage(MethodNameCheck.class,
+            "20:19: " + getCheckMessage(MethodNameCheck.class,
                         MethodNameCheck.MSG_INVALID_PATTERN,
                         "ThirdMethod", pattern),
         };
@@ -116,8 +99,10 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
                         + "/INTERFACE_DEF[./IDENT[@text='Check']]"
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='ThirdMethod']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMethodNameCustomProperties.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

@@ -1,10 +1,18 @@
+/*
+DesignForExtension
+ignoredAnnotations = Override
+requiredJavadocPhrase = (default).*
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.design.designforextension;
 
 public class InputXpathDesignForExtensionProtected
         extends ParentClass
         implements ExampleInterface {
 
-    protected int getValue() {  // warn
+    protected int getValue() {  // violation 'looks like designed for extension'
         return 1;
     }
 

@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck;
 
 public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
 
     @Test
     public void testClassNameTop() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathAbstractClassNameTop.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AbstractClassNameCheck.class);
-
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(AbstractClassNameCheck.class,
+            "13:1: " + getCheckMessage(AbstractClassNameCheck.class,
                 AbstractClassNameCheck.MSG_ILLEGAL_ABSTRACT_CLASS_NAME,
                     "InputXpathAbstractClassNameTop", "^Abstract.+$"),
         };
@@ -68,20 +60,15 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(getPath("InputXpathAbstractClassNameTop.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testClassNameInner() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathAbstractClassNameInner.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AbstractClassNameCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(AbstractClassNameCheck.class,
+            "14:5: " + getCheckMessage(AbstractClassNameCheck.class,
                 AbstractClassNameCheck.MSG_ILLEGAL_ABSTRACT_CLASS_NAME,
                     "MyClass", "^Abstract.+$"),
         };
@@ -98,20 +85,15 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='MyClass']]/MODIFIERS/ABSTRACT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(getPath("InputXpathAbstractClassNameInner.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testClassNameNoModifier() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathAbstractClassNameNoModifier.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AbstractClassNameCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(AbstractClassNameCheck.class,
+            "14:5: " + getCheckMessage(AbstractClassNameCheck.class,
                 AbstractClassNameCheck.MSG_NO_ABSTRACT_CLASS_MODIFIER,
                     "AbstractMyClass"),
         };
@@ -128,8 +110,9 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='AbstractMyClass']]/LITERAL_CLASS"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(getPath("InputXpathAbstractClassNameNoModifier.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

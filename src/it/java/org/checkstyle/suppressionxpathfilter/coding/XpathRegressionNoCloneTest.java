@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck;
 
 public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
 
     @Test
     public void testMethod() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathNoCloneMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoCloneCheck.class);
-
         final String[] expectedViolation = {
-            "5:5: " + getCheckMessage(NoCloneCheck.class, NoCloneCheck.MSG_KEY),
+            "11:5: " + getCheckMessage(NoCloneCheck.class, NoCloneCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -67,20 +59,16 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
                     + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoCloneMethod.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathNoCloneInnerClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoCloneCheck.class);
-
         final String[] expectedViolation = {
-            "6:5: " + getCheckMessage(NoCloneCheck.class, NoCloneCheck.MSG_KEY),
+            "12:5: " + getCheckMessage(NoCloneCheck.class, NoCloneCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -98,20 +86,16 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
                         + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoCloneInnerClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInEnum() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathNoCloneInEnum.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoCloneCheck.class);
-
         final String[] expectedViolation = {
-            "8:9: " + getCheckMessage(NoCloneCheck.class, NoCloneCheck.MSG_KEY),
+            "14:9: " + getCheckMessage(NoCloneCheck.class, NoCloneCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -129,8 +113,10 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
                     + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoCloneInEnum.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

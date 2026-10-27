@@ -19,13 +19,10 @@
 
 package org.checkstyle.suppressionxpathfilter;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.NumericalPrefixesInfixesSuffixesCharacterCaseCheck;
 
 public class XpathRegressionNumericalPrefixesInfixesSuffixesCharacterCaseTest
@@ -39,20 +36,21 @@ public class XpathRegressionNumericalPrefixesInfixesSuffixesCharacterCaseTest
         return checkName;
     }
 
+    @Override
+    public String getPackageLocation() {
+        return "org/checkstyle/suppressionxpathfilter"
+            + "/numericalprefixesinfixessuffixescharactercase";
+    }
+
     @Test
     public void testIntLiteralPrefix() throws Exception {
-        final File fileProcess =
-            new File(getPath("InputXpathNumericalPrefixesInfixesSuffixesCharacterCaseOne.java"));
-        final DefaultConfiguration config =
-            createModuleConfig(NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class);
-
-        final String[] expected = {
-            "4:13: " + getCheckMessage(
+        final String[] expectedViolation = {
+            "11:13: " + getCheckMessage(
                 NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class,
                 NumericalPrefixesInfixesSuffixesCharacterCaseCheck.MSG_PREFIX),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathNumericalPrefixesInfixesSuffixesCharacterCaseOne']]"
                 + "/OBJBLOCK/VARIABLE_DEF"
@@ -66,23 +64,21 @@ public class XpathRegressionNumericalPrefixesInfixesSuffixesCharacterCaseTest
                 + "/NUM_INT[@text='0X1A']"
         );
 
-        runVerifications(config, fileProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathNumericalPrefixesInfixesSuffixesCharacterCaseOne.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testLongLiteralPrefix() throws Exception {
-        final File fileProcess =
-            new File(getPath("InputXpathNumericalPrefixesInfixesSuffixesCharacterCaseTwo.java"));
-        final DefaultConfiguration config =
-            createModuleConfig(NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class);
-
-        final String[] expected = {
-            "4:14: " + getCheckMessage(
-                    NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class,
-                    NumericalPrefixesInfixesSuffixesCharacterCaseCheck.MSG_PREFIX),
+        final String[] expectedViolation = {
+            "11:14: " + getCheckMessage(
+                NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class,
+                NumericalPrefixesInfixesSuffixesCharacterCaseCheck.MSG_PREFIX),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathNumericalPrefixesInfixesSuffixesCharacterCaseTwo']]"
                 + "/OBJBLOCK/VARIABLE_DEF"
@@ -96,23 +92,21 @@ public class XpathRegressionNumericalPrefixesInfixesSuffixesCharacterCaseTest
                 + "/NUM_LONG[@text='0X10L']"
         );
 
-        runVerifications(config, fileProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathNumericalPrefixesInfixesSuffixesCharacterCaseTwo.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testFloatLiteralInfixAndSuffix() throws Exception {
-        final File fileProcess =
-            new File(getPath("InputXpathNumericalPrefixesInfixesSuffixesCharacterCaseThree.java"));
-        final DefaultConfiguration config =
-            createModuleConfig(NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class);
-
-        final String[] expected = {
-            "4:15: " + getCheckMessage(
-                    NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class,
-                    NumericalPrefixesInfixesSuffixesCharacterCaseCheck.MSG_INFIX),
+        final String[] expectedViolation = {
+            "11:15: " + getCheckMessage(
+                NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class,
+                NumericalPrefixesInfixesSuffixesCharacterCaseCheck.MSG_INFIX),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathNumericalPrefixesInfixesSuffixesCharacterCaseThree']]"
                 + "/OBJBLOCK/VARIABLE_DEF"
@@ -126,23 +120,21 @@ public class XpathRegressionNumericalPrefixesInfixesSuffixesCharacterCaseTest
                 + "/NUM_FLOAT[@text='1.2E3F']"
         );
 
-        runVerifications(config, fileProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathNumericalPrefixesInfixesSuffixesCharacterCaseThree.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testDoubleLiteralSuffix() throws Exception {
-        final File fileProcess =
-            new File(getPath("InputXpathNumericalPrefixesInfixesSuffixesCharacterCaseFour.java"));
-        final DefaultConfiguration config =
-            createModuleConfig(NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class);
-
-        final String[] expected = {
-            "4:16: " + getCheckMessage(
-                    NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class,
-                    NumericalPrefixesInfixesSuffixesCharacterCaseCheck.MSG_SUFFIX),
+        final String[] expectedViolation = {
+            "11:16: " + getCheckMessage(
+                NumericalPrefixesInfixesSuffixesCharacterCaseCheck.class,
+                NumericalPrefixesInfixesSuffixesCharacterCaseCheck.MSG_SUFFIX),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathNumericalPrefixesInfixesSuffixesCharacterCaseFour']]"
                 + "/OBJBLOCK/VARIABLE_DEF"
@@ -156,7 +148,10 @@ public class XpathRegressionNumericalPrefixesInfixesSuffixesCharacterCaseTest
                 + "/NUM_DOUBLE[@text='10D']"
         );
 
-        runVerifications(config, fileProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathNumericalPrefixesInfixesSuffixesCharacterCaseFour.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
 }

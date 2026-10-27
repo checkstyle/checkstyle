@@ -1,3 +1,11 @@
+/*
+SeparatorWrap
+option = (default)eol
+tokens = ELLIPSIS
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.whitespace.separatorwrap;
 
 interface InputXpathSeparatorWrapInterface {
@@ -6,5 +14,5 @@ interface InputXpathSeparatorWrapInterface {
             parameters);
 
     public void testMethod2(String
-            ...parameters); // warn
+            ...parameters); // violation "'...' should be on the previous line."
 }

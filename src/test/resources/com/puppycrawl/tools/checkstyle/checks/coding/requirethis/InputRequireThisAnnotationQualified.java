@@ -16,8 +16,8 @@ public class InputRequireThisAnnotationQualified {
 
     final String CONTAINER = "c";
 
+    // violation below 'Reference to instance variable 'CONTAINER' needs "this.".'
     @MyAnnotation(CONTAINER)
-    // violation above 'Reference to instance variable 'CONTAINER' needs "this.".'
     void method() {}
 
     @java.lang.Deprecated

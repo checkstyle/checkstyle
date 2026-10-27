@@ -13,8 +13,8 @@ public class InputOverrideAlwaysUsedForRecordInClass {
   /** Some javadoc. */
   public record InnerRecord(String value) {
 
+    // violation 2 lines below 'method must include @java.lang.Override annotation.'
     /** Some javadoc. */
-    // violation below 'method must include @java.lang.Override annotation.'
     public String value() {
       return value.trim();
     }

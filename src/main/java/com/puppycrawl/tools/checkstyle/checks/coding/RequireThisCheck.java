@@ -1043,7 +1043,7 @@ public class RequireThisCheck extends AbstractCheck {
         boolean result = false;
         AbstractFrame frame = current.peek();
         while (frame != declaringFrame) {
-            if (frame instanceof AnonymousClassFrame anonymousFrame
+            if (frame instanceof final AnonymousClassFrame anonymousFrame
                     && isDeclaredInSuperTypes(ident, anonymousFrame.getLiteralNew())) {
                 result = true;
                 break;
@@ -1070,7 +1070,7 @@ public class RequireThisCheck extends AbstractCheck {
             final String typeName = pending.pop();
             if (visited.add(typeName)) {
                 for (AbstractFrame candidate : frames.values()) {
-                    if (candidate instanceof ClassFrame classFrame
+                    if (candidate instanceof final ClassFrame classFrame
                             && typeName.equals(candidate.getFrameName())) {
                         if (declaresName(classFrame, ident)) {
                             result = true;

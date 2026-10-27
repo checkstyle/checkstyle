@@ -19,19 +19,23 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 public class InputMissingJavadocMethodJavadocInMethod {
     public void foo1() { } // violation 'Missing a Javadoc comment.'
 
-    @Deprecated // violation 'Missing a Javadoc comment.'
+    // violation below 'Missing a Javadoc comment.'
+    @Deprecated
     public void foo2() { }
 
-    @Deprecated // violation 'Missing a Javadoc comment.'
+    // violation below 'Missing a Javadoc comment.'
+    @Deprecated
     /** */
     public void foo3() { }
 
     public void foo4() { /** */ } // violation 'Missing a Javadoc comment.'
 
-    @Deprecated // violation 'Missing a Javadoc comment.'
+    // violation below 'Missing a Javadoc comment.'
+    @Deprecated
     public void foo5() { /** */ }
 
-    @Deprecated // violation 'Missing a Javadoc comment.'
+    // violation below 'Missing a Javadoc comment.'
+    @Deprecated
     /** */
     public void foo6() { /** */ }
 

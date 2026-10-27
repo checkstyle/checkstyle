@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import java.io.File;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.GoogleMethodNameCheck;
 
 public class XpathRegressionGoogleMethodNameTest extends AbstractXpathTestSupport {
@@ -44,13 +42,8 @@ public class XpathRegressionGoogleMethodNameTest extends AbstractXpathTestSuppor
 
     @Test
     public void testRegularMethodName() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathGoogleMethodName.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "5:10: " + getCheckMessage(CLASS, GoogleMethodNameCheck.MSG_KEY_FORMAT_REGULAR,
+            "11:10: " + getCheckMessage(CLASS, GoogleMethodNameCheck.MSG_KEY_FORMAT_REGULAR,
                     "Foo"),
         };
 
@@ -60,18 +53,15 @@ public class XpathRegressionGoogleMethodNameTest extends AbstractXpathTestSuppor
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='Foo']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathGoogleMethodName.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testInsideInterface() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathGoogleMethodNameInterface.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "8:10: " + getCheckMessage(CLASS, GoogleMethodNameCheck.MSG_KEY_UNDERSCORE_TEST,
+            "14:10: " + getCheckMessage(CLASS, GoogleMethodNameCheck.MSG_KEY_UNDERSCORE_TEST,
                     "test_1"),
         };
 
@@ -81,18 +71,15 @@ public class XpathRegressionGoogleMethodNameTest extends AbstractXpathTestSuppor
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='test_1']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathGoogleMethodNameInterface.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testInsideRecord() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathGoogleMethodNameRecord.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "5:10: " + getCheckMessage(CLASS, GoogleMethodNameCheck.MSG_KEY_FORMAT_REGULAR,
+            "11:10: " + getCheckMessage(CLASS, GoogleMethodNameCheck.MSG_KEY_FORMAT_REGULAR,
                     "f"),
         };
 
@@ -102,7 +89,9 @@ public class XpathRegressionGoogleMethodNameTest extends AbstractXpathTestSuppor
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='f']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathGoogleMethodNameRecord.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }

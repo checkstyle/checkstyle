@@ -1,3 +1,10 @@
+/*
+SimplifyBooleanReturn
+tokens = (default)LITERAL_IF
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.simplifybooleanreturn;
 
 public class InputXpathSimplifyBooleanReturnAnonymousInnerClass {
@@ -9,7 +16,7 @@ public class InputXpathSimplifyBooleanReturnAnonymousInnerClass {
         return new Checker() {
             @Override
             public boolean check(int value) {
-                if (value > 0) { // warn
+                if (value > 0) { // violation 'Conditional logic can be removed.'
                     return true;
                 }
                 else {

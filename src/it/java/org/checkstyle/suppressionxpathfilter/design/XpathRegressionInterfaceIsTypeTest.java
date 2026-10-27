@@ -19,14 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.design;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheck;
 
 public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport {
@@ -45,18 +42,12 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
 
     @Test
     public void testAllowMarker() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathInterfaceIsTypeAllowMarker.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(InterfaceIsTypeCheck.class);
-
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(InterfaceIsTypeCheck.class,
+            "11:1: " + getCheckMessage(InterfaceIsTypeCheck.class,
                     InterfaceIsTypeCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
                     + "@text='InputXpathInterfaceIsTypeAllowMarker']]",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
@@ -66,26 +57,20 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInterfaceIsTypeAllowMarker.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testAllowMarkerFalse() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathInterfaceIsType.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(InterfaceIsTypeCheck.class);
-
-        moduleConfig.addProperty("allowMarkerInterfaces", "false");
-
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(InterfaceIsTypeCheck.class,
+            "11:1: " + getCheckMessage(InterfaceIsTypeCheck.class,
                     InterfaceIsTypeCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
                     + "@text='InputXpathInterfaceIsType']]",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
@@ -95,24 +80,20 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInterfaceIsType.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNested() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathInterfaceIsTypeNested.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(InterfaceIsTypeCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(InterfaceIsTypeCheck.class,
+            "12:5: " + getCheckMessage(InterfaceIsTypeCheck.class,
                     InterfaceIsTypeCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='InputXpathInterfaceIsTypeNested']]"
                     + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Foo']]",
@@ -125,8 +106,10 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInterfaceIsTypeNested.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

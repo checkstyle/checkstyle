@@ -278,6 +278,8 @@
   <suppress id="propertiesMacroMustExist"
           files="src/site/xdoc/checks/coding/expressionoverblocklambda.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src/site/xdoc/checks/coding/finalpatternvariable.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
           files="src/site/xdoc/checks/coding/innerassignment.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/coding/missingctor.xml.template"/>
@@ -289,6 +291,8 @@
          files="src/site/xdoc/checks/coding/multiplevariabledeclarations.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/coding/noarraytrailingcomma.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src/site/xdoc/checks/coding/nocausegetmessageinexceptionconstructor.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/coding/noclone.xml.template"/>
   <suppress id="propertiesMacroMustExist"
@@ -334,6 +338,8 @@
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/misc/openjdkmethodthrowsalignment.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src/site/xdoc/checks/misc/classheaderwrapopenjdk.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]imports[\\/]unnecessaryfullyqualifiedtype.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/javadoc/javadocendcommentdelimiter.xml.template"/>
@@ -353,6 +359,8 @@
          files="src/site/xdoc/checks/whitespace/genericwhitespace.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/whitespace/nowhitespacebeforecasedefaultcolon.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src/site/xdoc/checks/whitespace/openjdkmethodparameteralignment.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/filters/suppresswarningsfilter.xml.template"/>
   <suppress id="propertiesMacroMustExist"

@@ -19,12 +19,12 @@ public class InputAbstractJavadocNonTightHtmlTagsTwo {
     /** <p> <p> paraception </p> */ // violation 'Unclosed HTML tag found: p'
     private int field4;
 
+    // violation 4 lines below 'Unclosed HTML tag found: li'
     /**
      * <p> <a href="www.something.com">something</a> paragraph with `htmlTag` </p>
      * <p> <a href="www.something.com"/> Nested paragraph with `singletonTag` </p>
      * <li> Outer tag <li> Inner tag nested </li> not nested
      */
-    // violation 2 lines above 'Unclosed HTML tag found: li'
     private int field5;
 
     /**

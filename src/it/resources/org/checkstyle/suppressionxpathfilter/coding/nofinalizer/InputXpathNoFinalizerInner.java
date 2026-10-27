@@ -1,3 +1,9 @@
+/*
+NoFinalizer
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.nofinalizer;
 
 public class InputXpathNoFinalizerInner {
@@ -7,7 +13,7 @@ public class InputXpathNoFinalizerInner {
 
     class InnerClass {
 
-        @Override // warn
+        @Override // violation 'Avoid using finalizer method.'
         @Deprecated
         protected void finalize() throws Throwable {
 

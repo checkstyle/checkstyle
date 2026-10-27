@@ -18,7 +18,7 @@ class Example2 {
   Example2(String testField) { // ok, because PARAMETER_DEF not configured
   }
   void method(String param) {
-    String field = param; // violation ''field' hides a field'
+    String field = param; // violation ''field' hides a field.'
   }
   void setTestField(String testField) { // ok, because PARAMETER_DEF not configured
     this.field = field;
@@ -28,6 +28,14 @@ class Example2 {
   }
   abstract class Inner {
     abstract int method(String field); // ok, because PARAMETER_DEF not configured
+  }
+  static class Builder {
+    private String name;
+
+    Builder setName(String name) { // ok, because PARAMETER_DEF not configured
+      this.name = name;
+      return this;
+    }
   }
 }
 // xdoc section - end

@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck;
 
 public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport {
@@ -45,13 +43,8 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
 
     @Test
     public void testEquals() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathEqualsAvoidNull.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "6:26: " + getCheckMessage(CLAZZ,
+            "13:26: " + getCheckMessage(CLAZZ,
                     EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL),
         };
 
@@ -63,18 +56,16 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
                         + "[@text='InputXpathEqualsAvoidNull']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/EXPR/METHOD_CALL");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEqualsAvoidNull.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEqualsIgnoreCase() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathEqualsAvoidNullIgnoreCase.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "6:36: " + getCheckMessage(CLAZZ,
+            "13:36: " + getCheckMessage(CLAZZ,
                     EqualsAvoidNullCheck.MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
         };
 
@@ -86,18 +77,16 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
                         + "[@text='InputXpathEqualsAvoidNullIgnoreCase']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/EXPR/METHOD_CALL");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEqualsAvoidNullIgnoreCase.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testField() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathEqualsAvoidNullField.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "5:25: " + getCheckMessage(CLAZZ,
+            "12:25: " + getCheckMessage(CLAZZ,
                     EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL),
         };
 
@@ -109,7 +98,10 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
                         + "[@text='InputXpathEqualsAvoidNullField']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='b']]/ASSIGN/EXPR/METHOD_CALL");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathEqualsAvoidNullField.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

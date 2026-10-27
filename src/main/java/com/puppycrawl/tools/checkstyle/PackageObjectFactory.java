@@ -520,6 +520,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.FallThroughCheck");
         NAME_TO_FULL_MODULE_NAME.put("FinalLocalVariableCheck",
                 BASE_PACKAGE + ".checks.coding.FinalLocalVariableCheck");
+        NAME_TO_FULL_MODULE_NAME.put("FinalPatternVariableCheck",
+                BASE_PACKAGE + ".checks.coding.FinalPatternVariableCheck");
         NAME_TO_FULL_MODULE_NAME.put("HiddenFieldCheck",
                 BASE_PACKAGE + ".checks.coding.HiddenFieldCheck");
         NAME_TO_FULL_MODULE_NAME.put("IllegalCatchCheck",
@@ -630,6 +632,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.UnusedTryResourceShouldBeUnnamedCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnnecessaryTypeArgumentsWithRecordPatternCheck",
                 BASE_PACKAGE + ".checks.coding.UnnecessaryTypeArgumentsWithRecordPatternCheck");
+        NAME_TO_FULL_MODULE_NAME.put("NoCauseGetMessageInExceptionConstructorCheck",
+                BASE_PACKAGE + ".checks.coding.NoCauseGetMessageInExceptionConstructorCheck");
         NAME_TO_FULL_MODULE_NAME.put("ExceptionThrowShouldUseContextCheck",
                 BASE_PACKAGE + ".checks.coding.ExceptionThrowShouldUseContextCheck");
     }
@@ -704,6 +708,8 @@ public class PackageObjectFactory implements ModuleFactory {
      * Fill short-to-full module names map with Checks from indentation package.
      */
     private static void fillChecksFromIndentationPackage() {
+        NAME_TO_FULL_MODULE_NAME.put("ClassHeaderWrapOpenjdkCheck",
+                BASE_PACKAGE + ".checks.indentation.ClassHeaderWrapOpenjdkCheck");
         NAME_TO_FULL_MODULE_NAME.put("CommentsIndentationCheck",
                 BASE_PACKAGE + ".checks.indentation.CommentsIndentationCheck");
         NAME_TO_FULL_MODULE_NAME.put("IndentationCheck",
@@ -952,6 +958,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.whitespace.NoWhitespaceBeforeCheck");
         NAME_TO_FULL_MODULE_NAME.put("NoWhitespaceBeforeCaseDefaultColonCheck",
                 BASE_PACKAGE + ".checks.whitespace.NoWhitespaceBeforeCaseDefaultColonCheck");
+        NAME_TO_FULL_MODULE_NAME.put("OpenjdkMethodParameterAlignmentCheck",
+                BASE_PACKAGE + ".checks.whitespace.OpenjdkMethodParameterAlignmentCheck");
         NAME_TO_FULL_MODULE_NAME.put("OperatorWrapCheck",
                 BASE_PACKAGE + ".checks.whitespace.OperatorWrapCheck");
         NAME_TO_FULL_MODULE_NAME.put("ParenPadCheck",

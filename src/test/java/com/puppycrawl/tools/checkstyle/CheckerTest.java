@@ -528,8 +528,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 }, "Exception is expected");
         assertWithMessage("Error message is not expected")
             .that(exc.getMessage())
-            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker"
-                    + " - cannot initialize module " + checkConfig.getName());
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker");
+        assertWithMessage("Error message is not expected")
+            .that(exc.getCause().getMessage())
+            .isEqualTo("cannot initialize module " + checkConfig.getName());
     }
 
     @Test

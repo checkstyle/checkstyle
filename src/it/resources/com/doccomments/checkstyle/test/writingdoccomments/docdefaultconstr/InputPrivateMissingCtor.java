@@ -36,12 +36,12 @@ class ExampleDefaultCtor1 {
 
 }
 
+// violation 6 lines below 'Class should define an explicit constructor.
+//      If this class was already released with an implicit constructor,
+//      preserve its generated access modifier for compatibility.'
 /**
  * Input without an explicit constructor.
  */
-// violation 3 lines below 'Class should define an explicit constructor.
-//      If this class was already released with an implicit constructor,
-//      preserve its generated access modifier for compatibility.'
 class InvalidExample1 {
 
     /**

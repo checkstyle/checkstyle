@@ -1,7 +1,16 @@
+/*
+ThrowsCount
+ignorePrivateMethods = (default)true
+max = 2
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.design.throwscount;
 
 interface InputXpathThrowsCountCustomMax {
-    public void myFunction() throws IllegalStateException, // warn, max allowed is 2
+    // violation below 'Throws count is 3 (max allowed is 2).'
+    public void myFunction() throws IllegalStateException,
             ArrayIndexOutOfBoundsException,
             NullPointerException;
 }

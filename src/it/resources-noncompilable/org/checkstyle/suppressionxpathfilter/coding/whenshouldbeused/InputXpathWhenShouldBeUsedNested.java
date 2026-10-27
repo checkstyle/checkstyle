@@ -1,3 +1,9 @@
+/*
+WhenShouldBeUsed
+
+
+*/
+
 // non-compiled with javac: Compilable with Java25
 package org.checkstyle.suppressionxpathfilter.coding.whenshouldbeused;
 
@@ -7,7 +13,7 @@ public class InputXpathWhenShouldBeUsedNested {
         int x = switch (o) {
             case String s -> {
                 switch (o2) {
-                    case Integer _ -> { // warn
+                    case Integer _ -> { // violation ''when' expression should be used*.'
                        if (y == 0) {
                            System.out.println(0);
                        }

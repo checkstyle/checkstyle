@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck;
 
 public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
@@ -45,15 +43,10 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
 
     @Test
     public void testDefaultPattern() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathParameterNameDefaultPattern.java"));
-
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParameterNameCheck.class);
 
         final String[] expectedViolation = {
-            "5:22: " + getCheckMessage(ParameterNameCheck.class,
+            "14:22: " + getCheckMessage(ParameterNameCheck.class,
                         ParameterNameCheck.MSG_INVALID_PATTERN, "v_1", pattern),
         };
 
@@ -64,22 +57,18 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method1']]"
                         + "/PARAMETERS/PARAMETER_DEF/IDENT[@text='v_1']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathParameterNameDefaultPattern.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testDifferentPattern() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathParameterNameDifferentPattern.java"));
-
         final String pattern = "^[a-z][_a-zA-Z0-9]+$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParameterNameCheck.class);
-        moduleConfig.addProperty("format", "^[a-z][_a-zA-Z0-9]+$");
 
         final String[] expectedViolation = {
-            "5:22: " + getCheckMessage(ParameterNameCheck.class,
+            "14:22: " + getCheckMessage(ParameterNameCheck.class,
                         ParameterNameCheck.MSG_INVALID_PATTERN, "V2", pattern),
         };
 
@@ -90,22 +79,18 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method2']]"
                         + "/PARAMETERS/PARAMETER_DEF/IDENT[@text='V2']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathParameterNameDifferentPattern.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testIgnoreOverridden() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathParameterNameIgnoreOverridden.java"));
-
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParameterNameCheck.class);
-        moduleConfig.addProperty("ignoreOverridden", "true");
 
         final String[] expectedViolation = {
-            "5:22: " + getCheckMessage(ParameterNameCheck.class,
+            "14:22: " + getCheckMessage(ParameterNameCheck.class,
                         ParameterNameCheck.MSG_INVALID_PATTERN, "V2", pattern),
         };
 
@@ -116,23 +101,18 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method2']]"
                         + "/PARAMETERS/PARAMETER_DEF/IDENT[@text='V2']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathParameterNameIgnoreOverridden.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testAccessModifiers() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathParameterNameAccessModifier.java"));
-
         final String pattern = "^[a-z][a-z0-9][a-zA-Z0-9]*$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParameterNameCheck.class);
-        moduleConfig.addProperty("format", "^[a-z][a-z0-9][a-zA-Z0-9]*$");
-        moduleConfig.addProperty("accessModifiers", "public");
 
         final String[] expectedViolation = {
-            "8:29: " + getCheckMessage(ParameterNameCheck.class,
+            "18:29: " + getCheckMessage(ParameterNameCheck.class,
                         ParameterNameCheck.MSG_INVALID_PATTERN, "b", pattern),
         };
 
@@ -143,8 +123,10 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method2']]"
                         + "/PARAMETERS/PARAMETER_DEF/IDENT[@text='b']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathParameterNameAccessModifier.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

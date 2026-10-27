@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck;
 
 public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
 
     @Test
     public void testNoWhitespaceBefore() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathNoWhitespaceBefore.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoWhitespaceBeforeCheck.class);
-
         final String[] expectedViolation = {
-            "4:13: " + getCheckMessage(NoWhitespaceBeforeCheck.class,
+            "12:13: " + getCheckMessage(NoWhitespaceBeforeCheck.class,
                     NoWhitespaceBeforeCheck.MSG_KEY, ";"),
         };
 
@@ -62,21 +54,16 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
                 + "/VARIABLE_DEF[./IDENT[@text='bad']]/SEMI"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNoWhitespaceBefore.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTokens() throws Exception {
-        final File fileToProcess =
-            new File(getPath("InputXpathNoWhitespaceBeforeTokens.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(NoWhitespaceBeforeCheck.class);
-        moduleConfig.addProperty("tokens", "DOT");
-
         final String[] expectedViolation = {
-            "4:17: " + getCheckMessage(NoWhitespaceBeforeCheck.class,
+            "12:17: " + getCheckMessage(NoWhitespaceBeforeCheck.class,
                 NoWhitespaceBeforeCheck.MSG_KEY, "."),
         };
 
@@ -88,21 +75,16 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
                 + "/DOT[./IDENT[@text='java']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-            expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathNoWhitespaceBeforeTokens.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testAllowLineBreaks() throws Exception {
-        final File fileToProcess =
-            new File(getPath("InputXpathNoWhitespaceBeforeLineBreaks.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(NoWhitespaceBeforeCheck.class);
-        moduleConfig.addProperty("allowLineBreaks", "false");
-
         final String[] expectedViolation = {
-            "6:13: " + getCheckMessage(NoWhitespaceBeforeCheck.class,
+            "14:13: " + getCheckMessage(NoWhitespaceBeforeCheck.class,
                 NoWhitespaceBeforeCheck.MSG_KEY, ","),
         };
 
@@ -114,8 +96,10 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
                 + "/ASSIGN/ARRAY_INIT/COMMA"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-            expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathNoWhitespaceBeforeLineBreaks.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
 }

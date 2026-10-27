@@ -7,10 +7,10 @@ treatTryResourcesAsStatement = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 
+// violation 4 lines below 'Only one statement per line allowed.'
 /**
  * Two import statements on the same line are illegal.
  */
-// violation below 'Only one statement per line allowed.'
 import java.io.EOFException; import java.io.BufferedReader;
 
 public class InputOneStatementPerLineSingleLineSmallTalkStyle {

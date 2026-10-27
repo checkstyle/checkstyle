@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.design;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck;
 
 public class XpathRegressionDesignForExtensionTest extends AbstractXpathTestSupport {
@@ -45,15 +43,8 @@ public class XpathRegressionDesignForExtensionTest extends AbstractXpathTestSupp
 
     @Test
     public void test() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathDesignForExtensionClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(DesignForExtensionCheck.class);
-        moduleConfig.addProperty("ignoredAnnotations", "Override");
-
         final String[] expected = {
-            "7:5: " + getCheckMessage(DesignForExtensionCheck.class,
+            "15:5: " + getCheckMessage(DesignForExtensionCheck.class,
                     DesignForExtensionCheck.MSG_KEY,
                     "InputXpathDesignForExtensionClass",
                     "calculateValue"),
@@ -71,23 +62,16 @@ public class XpathRegressionDesignForExtensionTest extends AbstractXpathTestSupp
                + "/METHOD_DEF[./IDENT[@text='calculateValue']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        // Run the verifications
-        runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
-
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathDesignForExtensionClass.java"),
+                expectedXpathQueries,
+                expected);
     }
 
     @Test
     public void test2() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathDesignForExtensionWithEnum.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(DesignForExtensionCheck.class);
-        moduleConfig.addProperty("ignoredAnnotations", "Override");
-        moduleConfig.addProperty("requiredJavadocPhrase", "This[\\s\\S]*implementation");
-
         final String[] expected = {
-            "23:5: " + getCheckMessage(DesignForExtensionCheck.class,
+            "31:5: " + getCheckMessage(DesignForExtensionCheck.class,
                     DesignForExtensionCheck.MSG_KEY,
                     "InputXpathDesignForExtensionWithEnum",
                     "processData"),
@@ -105,22 +89,16 @@ public class XpathRegressionDesignForExtensionTest extends AbstractXpathTestSupp
                + "/METHOD_DEF[./IDENT[@text='processData']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        // Run the verifications
-        runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
-
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathDesignForExtensionWithEnum.java"),
+                expectedXpathQueries,
+                expected);
     }
 
     @Test
     public void testProtected() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathDesignForExtensionProtected.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(DesignForExtensionCheck.class);
-        moduleConfig.addProperty("ignoredAnnotations", "Override");
-
         final String[] expected = {
-            "7:5: " + getCheckMessage(DesignForExtensionCheck.class,
+            "15:5: " + getCheckMessage(DesignForExtensionCheck.class,
                     DesignForExtensionCheck.MSG_KEY,
                     "InputXpathDesignForExtensionProtected",
                     "getValue"),
@@ -138,7 +116,10 @@ public class XpathRegressionDesignForExtensionTest extends AbstractXpathTestSupp
                + "/METHOD_DEF[./IDENT[@text='getValue']]/MODIFIERS/LITERAL_PROTECTED"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathDesignForExtensionProtected.java"),
+                expectedXpathQueries,
+                expected);
     }
 
 }

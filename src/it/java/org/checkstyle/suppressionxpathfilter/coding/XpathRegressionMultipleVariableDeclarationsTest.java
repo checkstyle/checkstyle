@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
 
 public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
 
     @Test
     public void testCommaSeparator() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathMultipleVariableDeclarationsCommaSeparator.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MultipleVariableDeclarationsCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(MultipleVariableDeclarationsCheck.class,
+            "10:5: " + getCheckMessage(MultipleVariableDeclarationsCheck.class,
                 MultipleVariableDeclarationsCheck.MSG_MULTIPLE_COMMA),
         };
 
@@ -83,20 +75,16 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
                 + "/VARIABLE_DEF[./IDENT[@text='j']]/TYPE/LITERAL_INT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMultipleVariableDeclarationsCommaSeparator.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMultipleVariableDeclarations() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathMultipleVariableDeclarations.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MultipleVariableDeclarationsCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(MultipleVariableDeclarationsCheck.class,
+            "10:5: " + getCheckMessage(MultipleVariableDeclarationsCheck.class,
                 MultipleVariableDeclarationsCheck.MSG_MULTIPLE),
         };
 
@@ -115,20 +103,16 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
                 + "/VARIABLE_DEF[./IDENT[@text='i1']]/TYPE/LITERAL_INT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMultipleVariableDeclarations.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMultipleVariableDeclarationsInMethod() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathMultipleVariableDeclarationsInMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MultipleVariableDeclarationsCheck.class);
-
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(MultipleVariableDeclarationsCheck.class,
+            "11:9: " + getCheckMessage(MultipleVariableDeclarationsCheck.class,
                 MultipleVariableDeclarationsCheck.MSG_MULTIPLE_COMMA),
         };
 
@@ -167,8 +151,10 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='b']]/TYPE/LITERAL_INT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMultipleVariableDeclarationsInMethod.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

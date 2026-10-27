@@ -19,14 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.annotation;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.annotation.OpenjdkAnnotationLocationCheck;
 
 public class XpathRegressionOpenjdkAnnotationLocationTest extends AbstractXpathTestSupport {
@@ -45,14 +42,8 @@ public class XpathRegressionOpenjdkAnnotationLocationTest extends AbstractXpathT
 
     @Test
     public void testClass() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathOpenjdkAnnotationLocation1.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(OpenjdkAnnotationLocationCheck.class);
-
         final String[] expectedViolation = {
-            "6:25: " + getCheckMessage(OpenjdkAnnotationLocationCheck.class,
+            "15:25: " + getCheckMessage(OpenjdkAnnotationLocationCheck.class,
                     OpenjdkAnnotationLocationCheck.MSG_KEY_ANNOTATION_ON_TARGET_LINE,
                     "InputXpathOpenjdkAnnotationLocation1"),
         };
@@ -62,20 +53,16 @@ public class XpathRegressionOpenjdkAnnotationLocationTest extends AbstractXpathT
                      + "[@text='InputXpathOpenjdkAnnotationLocation1']]/LITERAL_CLASS"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOpenjdkAnnotationLocation1.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEnum() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathOpenjdkAnnotationLocation2.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(OpenjdkAnnotationLocationCheck.class);
-
         final String[] expectedViolation = {
-            "6:24: " + getCheckMessage(OpenjdkAnnotationLocationCheck.class,
+            "15:24: " + getCheckMessage(OpenjdkAnnotationLocationCheck.class,
                     OpenjdkAnnotationLocationCheck.MSG_KEY_ANNOTATION_ON_TARGET_LINE,
                     "InputXpathOpenjdkAnnotationLocation2"),
         };
@@ -85,36 +72,31 @@ public class XpathRegressionOpenjdkAnnotationLocationTest extends AbstractXpathT
                         + "[@text='InputXpathOpenjdkAnnotationLocation2']]/ENUM"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
-
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOpenjdkAnnotationLocation2.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMethod() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathOpenjdkAnnotationLocation3.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(OpenjdkAnnotationLocationCheck.class);
-        moduleConfig.addProperty("tokens", "METHOD_DEF");
-
         final String[] expectedViolation = {
-            "7:30: " + getCheckMessage(OpenjdkAnnotationLocationCheck.class,
+            "14:30: " + getCheckMessage(OpenjdkAnnotationLocationCheck.class,
                     OpenjdkAnnotationLocationCheck.MSG_KEY_ANNOTATION_ON_TARGET_LINE,
                     "foo1"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathOpenjdkAnnotationLocation3']"
                         + "]/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]/TYPE",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathOpenjdkAnnotationLocation3']"
                         + "]/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]/TYPE/LITERAL_VOID"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
-
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOpenjdkAnnotationLocation3.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

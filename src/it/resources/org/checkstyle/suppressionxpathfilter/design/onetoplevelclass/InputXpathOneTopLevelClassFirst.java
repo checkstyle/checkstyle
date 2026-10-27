@@ -1,9 +1,16 @@
+/*
+OneTopLevelClass
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.design.onetoplevelclass;
 
 public class InputXpathOneTopLevelClassFirst {
     // methods
 }
 
-class ViolatingSecondClass { // warn
+// violation below 'Top-level class ViolatingSecondClass has to reside in its own source file.'
+class ViolatingSecondClass {
     // methods
 }

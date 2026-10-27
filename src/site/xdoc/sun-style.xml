@@ -1016,12 +1016,56 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img src="images/ok_blue.png" alt=""/>
+                    <img src="images/ok_green.png" alt=""/>
                   </span>
                   <a href="checks/whitespace/methodparampad.html#MethodParamPad">
                     MethodParamPad
                   </a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodParamPad">
+                    config
+                  </a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/nowhitespaceafter.html#NoWhitespaceAfter">
+                    NoWhitespaceAfter
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceAfter">
+                    config
+                  </a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/nowhitespacebefore.html#NoWhitespaceBefore">
+                    NoWhitespaceBefore
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
+                    config
+                  </a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/whitespaceafter.html#WhitespaceAfter">
+                    WhitespaceAfter
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAfter">
+                    config
+                  </a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/whitespacearound.html#WhitespaceAround">
+                    WhitespaceAround
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAround">
                     config
                   </a>)
                 </td>

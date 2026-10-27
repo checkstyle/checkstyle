@@ -59,6 +59,16 @@ public class RedundantThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSwitchLastStatement() throws Exception {
+        final String[] expected = {
+            "16:24: " + getCheckMessage(MSG_KEY_FIELD, "value"),
+            "36:24: " + getCheckMessage(MSG_KEY_FIELD, "value"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRedundantThisSwitchLastStatement.java"), expected);
+    }
+
+    @Test
     public void testBasic() throws Exception {
         final String[] expected = {
             "12:13: " + getCheckMessage(MSG_KEY_FIELD, "a"),

@@ -19,14 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.annotation;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck;
 
 public class XpathRegressionPackageAnnotationTest extends AbstractXpathTestSupport {
@@ -45,65 +42,50 @@ public class XpathRegressionPackageAnnotationTest extends AbstractXpathTestSuppo
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathPackageAnnotationOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(PackageAnnotationCheck.class);
-
         final String[] expectedViolation = {
-            "4:1: " + getCheckMessage(PackageAnnotationCheck.class,
+            "10:1: " + getCheckMessage(PackageAnnotationCheck.class,
                 PackageAnnotationCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries =
-                Arrays.asList("/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF");
+                List.of("/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getNonCompilablePath("InputXpathPackageAnnotationOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathPackageAnnotationTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(PackageAnnotationCheck.class);
-
         final String[] expectedViolation = {
-            "4:1: " + getCheckMessage(PackageAnnotationCheck.class,
+            "10:1: " + getCheckMessage(PackageAnnotationCheck.class,
                 PackageAnnotationCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries =
-                Arrays.asList("/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF");
+                List.of("/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getNonCompilablePath("InputXpathPackageAnnotationTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathPackageAnnotationThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(PackageAnnotationCheck.class);
-
         final String[] expectedViolation = {
-            "5:1: " + getCheckMessage(PackageAnnotationCheck.class,
+            "11:1: " + getCheckMessage(PackageAnnotationCheck.class,
                 PackageAnnotationCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries =
-                Arrays.asList("/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF");
+                List.of("/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getNonCompilablePath("InputXpathPackageAnnotationThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

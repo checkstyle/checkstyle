@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck;
 
 public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
@@ -46,12 +44,8 @@ public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
 
     @Test
     public void testLabel() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalTokenLabel.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
         final String[] expectedViolation = {
-            "5:10: " + getCheckMessage(IllegalTokenCheck.class,
+            "12:10: " + getCheckMessage(IllegalTokenCheck.class,
                         IllegalTokenCheck.MSG_KEY, "outer:"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -61,21 +55,15 @@ public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
                     + "/SLIST/LABELED_STAT[./IDENT[@text='outer']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalTokenLabel.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testNative() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalTokenNative.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-
-        moduleConfig.addProperty("tokens", "LITERAL_NATIVE");
-
         final String[] expectedViolation = {
-            "4:10: " + getCheckMessage(IllegalTokenCheck.class,
+            "11:10: " + getCheckMessage(IllegalTokenCheck.class,
                         IllegalTokenCheck.MSG_KEY, "native"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -85,21 +73,15 @@ public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
                         + "/MODIFIERS/LITERAL_NATIVE"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalTokenNative.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testPostIncrement() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalTokenPostIncrement.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-
-        moduleConfig.addProperty("tokens", "POST_INC");
-
         final String[] expectedViolation = {
-            "8:10: " + getCheckMessage(IllegalTokenCheck.class,
+            "15:10: " + getCheckMessage(IllegalTokenCheck.class,
                         IllegalTokenCheck.MSG_KEY, "++"),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -113,8 +95,9 @@ public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
                         + "/SLIST/EXPR/POST_INC[./IDENT[@text='i']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalTokenPostIncrement.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }

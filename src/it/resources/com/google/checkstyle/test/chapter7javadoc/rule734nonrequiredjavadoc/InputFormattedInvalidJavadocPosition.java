@@ -1,6 +1,6 @@
 package // violation 'package statement should not be line-wrapped.'
+    // violation below 'Javadoc comment is placed in the wrong location.'
     /** Odd javadoc */
-    // violation above 'Javadoc comment is placed in the wrong location.'
     com.google.checkstyle.test.chapter7javadoc.rule734nonrequiredjavadoc;
 
 // violation below 'Javadoc comment is placed in the wrong location.'
@@ -11,8 +11,8 @@ import javax.swing.JFrame;
 /** Odd javadoc */
 /** Valid javadoc. */
 class InputFormattedInvalidJavadocPosition {
+  // violation below 'Javadoc comment is placed in the wrong location.'
   /** Odd javadoc */
-  // violation above 'Javadoc comment is placed in the wrong location.'
 }
 
 /** Valid javadoc. */
@@ -20,8 +20,8 @@ class InputFormattedInvalidJavadocPosition {
 class ExtraInputInvalidJavadocPosition2 {
   // violation above '.* ExtraInputInvalidJavadocPosition2 has to reside in its own source file.'
 
+  // violation below 'Javadoc comment is placed in the wrong location.'
   /** Odd javadoc */
-  // violation above 'Javadoc comment is placed in the wrong location.'
   static {
     /* ignore */
   }
@@ -107,9 +107,9 @@ class ExtraInputInvalidJavadocPosition2 {
     int variable;
   }
 
+  // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   @Deprecated
   /** Odd javadoc */
-  // violation above 'Javadoc comment is placed in the wrong location.'
   class InputInvalidJavadocPosition3 {}
 
   /** Valid javadoc. */
@@ -130,6 +130,6 @@ class ExtraInputInvalidJavadocPosition2 {
   {}
   // violation above """'class def lcurly' has incorrect indentation level 2,
   // expected level should be 4."""
+  // violation below 'Javadoc comment is placed in the wrong location.'
   /** Odd javadoc */
-  // violation above 'Javadoc comment is placed in the wrong location.'
 }

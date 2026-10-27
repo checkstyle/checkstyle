@@ -1,10 +1,14 @@
+/*
+RecordComponentNumber
+max = 1
+accessModifiers = (default)public, protected, package, private
+
+
+*/
 
 package org.checkstyle.suppressionxpathfilter.sizes.recordcomponentnumber;
 
-/* Config:
- *
- * max = 1
- */
 public class InputXpathRecordComponentNumberCustomMax {
-    public record MyRecord(int x, int y) { } // warn
+    // violation below 'Number of record components is 2 (max allowed is 1).'
+    public record MyRecord(int x, int y) { }
 }

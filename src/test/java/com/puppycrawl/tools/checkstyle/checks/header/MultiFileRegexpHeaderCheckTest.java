@@ -197,19 +197,13 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testInlineRegexpHeaderConsecutiveNewlinesThroughConfigFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", getUriString("InputRegexpHeaderNewLines.header"));
-
-        final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
-        checkInstance.configure(checkConfig);
-
         final String[] expected = {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$",
                     getUriString("InputRegexpHeaderNewLines.header")),
         };
-        verify(checkConfig,
-                getPath("InputRegexpHeaderConsecutiveNewLines.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderNewlinesThroughConfigFileConfig.java"),
+                getPath("InputRegexpHeaderNewlinesThroughConfigFile.java"), expected);
     }
 
     @Test
@@ -454,30 +448,13 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testHeaderMoreLinesThanFile() throws Exception {
-        final File testFile = new File(temporaryFolder, "shortFile.java");
-        Files.write(testFile.toPath(), List.of(
-            "// Different content",
-            "// Not matching header"));
-
-        final File headerFile = new File(temporaryFolder, "longHeader.header");
-        Files.write(headerFile.toPath(), List.of(
-            "// First line",
-            "// Second line",
-            "// Third line",
-            "// Fourth line",
-            "// Fifth line"));
-
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", headerFile.getPath());
-
-        final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
-        checkInstance.configure(checkConfig);
-
+        final String headerPath = getPath("InputRegexpHeaderMoreLinesThanFile.header");
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_HEADER_MISSING, headerFile.getPath(), headerFile.getPath()),
+            "1: " + getCheckMessage(MSG_HEADER_MISSING, headerPath, headerPath),
         };
-        verify(checkConfig, testFile.getPath(), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderMoreLinesThanFileConfig.java"),
+                getPath("InputRegexpHeaderMoreLinesThanFile.txt"), expected);
     }
 
     @Test
@@ -593,29 +570,13 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileFailsWhenShorterThanHeader() throws Exception {
-        final File headerFile = new File(temporaryFolder, "longerHeader.header");
-        Files.write(headerFile.toPath(), List.of(
-            "// Line 1",
-            "// Line 2",
-            "// Line 3"
-        ));
-
-        final File testFile = new File(temporaryFolder, "shorterFile.java");
-        Files.write(testFile.toPath(), List.of(
-            "// Line 1"
-        ));
-
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", headerFile.getPath());
-
-        final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
-        checkInstance.configure(checkConfig);
-
+        final String headerPath = getPath("InputRegexpHeaderFileShorterThanHeader.header");
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_HEADER_MISSING, headerFile.getPath(), headerFile.getPath()),
+            "1: " + getCheckMessage(MSG_HEADER_MISSING, headerPath, headerPath),
         };
-        verify(checkConfig, testFile.getPath(), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderFileShorterThanHeaderConfig.java"),
+                getPath("InputRegexpHeaderFileShorterThanHeader.txt"), expected);
     }
 
     @Test

@@ -34,6 +34,44 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "14:16: " + getCheckMessage(MSG_KEY, "number"),
+            "17:16: " + getCheckMessage(MSG_KEY, "text"),
+            "23:12: " + getCheckMessage(MSG_KEY, "numbers"),
+            "26:14: " + getCheckMessage(MSG_KEY, "values"),
+            "42:12: " + getCheckMessage(MSG_KEY, "text"),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputFinalParametersCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileIgnorePrimitiveTypes() throws Exception {
+        final String[] expected = {
+            "18:12: " + getCheckMessage(MSG_KEY, "numbers"),
+            "24:16: " + getCheckMessage(MSG_KEY, "text"),
+            "43:10: " + getCheckMessage(MSG_KEY, "value"),
+            "51:12: " + getCheckMessage(MSG_KEY, "text"),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputFinalParametersCompactSourceFilePrimitive.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCheckUnnamedParameters() throws Exception {
+        final String[] expected = {
+            "18:12: " + getCheckMessage(MSG_KEY, "_"),
+            "23:12: " + getCheckMessage(MSG_KEY, "exception"),
+            "33:10: " + getCheckMessage(MSG_KEY, "_"),
+            "35:10: " + getCheckMessage(MSG_KEY, "value"),
+            "42:26: " + getCheckMessage(MSG_KEY, "text"),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputFinalParametersCompactSourceFileUnnamed.java"), expected);
+    }
+
+    @Test
     public void testDefaultTokens() throws Exception {
         final String[] expected = {
             "28:26: " + getCheckMessage(MSG_KEY, "s"),

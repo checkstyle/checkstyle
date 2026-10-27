@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheck;
 
 public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
@@ -48,11 +46,8 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationDefault.java"));
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
-            "4:20: " + getCheckMessage(CLASS,
+            "13:20: " + getCheckMessage(CLASS,
                 UnnecessarySemicolonAfterTypeMemberDeclarationCheck.MSG_SEMI),
         };
 
@@ -63,19 +58,16 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
                 + "/OBJBLOCK/SEMI"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTokens() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationTokens"
-                + ".java"));
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
-        moduleConfig.addProperty("tokens", "METHOD_DEF");
-
         final String[] expectedViolation = {
-            "4:21: " + getCheckMessage(CLASS,
+            "11:21: " + getCheckMessage(CLASS,
                 UnnecessarySemicolonAfterTypeMemberDeclarationCheck.MSG_SEMI),
         };
 
@@ -86,16 +78,16 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
                 + "/OBJBLOCK/SEMI[1]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationTokens.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEnum() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationEnum.java"));
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
-            "5:21: " + getCheckMessage(CLASS,
+            "14:21: " + getCheckMessage(CLASS,
                 UnnecessarySemicolonAfterTypeMemberDeclarationCheck.MSG_SEMI),
         };
 
@@ -106,7 +98,10 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
                 + "/OBJBLOCK/SEMI[2]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationEnum.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

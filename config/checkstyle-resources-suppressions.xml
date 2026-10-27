@@ -258,6 +258,9 @@
   <!-- intentional tabs for testing SummaryJavadocCheck with tab-formatted javadoc -->
   <suppress checks="FileTabCharacter"
     files="/InputSummaryJavadocForbiddenFragmentsTabFormatted\.java"/>
+  <!-- intentional tabs, the check expands them to the configured tab width -->
+  <suppress checks="FileTabCharacter"
+    files="/InputOpenjdkMethodParameterAlignmentTabs.*\.java"/>
 
   <!-- This file must not have a package statement, for testing purposes -->
   <suppress checks="PackageDeclarationCheck"
@@ -295,11 +298,7 @@
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodTags1Three\.java"/>
   <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/genericwhitespace/InputGenericWhitespaceDefault\.java"/>
-  <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/InputRequireThisTryWithResourcesOnlyOverlappingFalse\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesOperatorsAndCasts\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/InputRegexpSinglelineJavaSemantic7\.java"/>
   <suppress checks="FileLength"

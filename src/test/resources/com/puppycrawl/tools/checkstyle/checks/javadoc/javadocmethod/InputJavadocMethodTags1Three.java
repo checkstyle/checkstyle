@@ -68,12 +68,12 @@ public class InputJavadocMethodTags1Three {
     {
     }
 
+    // violation 3 lines below 'Un.* @param .* 'aParam'.'
     /**
      * Bug 841942, "ArrayIndexOutOfBounds in Javadoc handling".
      * @param aParam there is no such param in the method.
      * The problem should be reported with correct line number.
      */
-    // violation 3 lines above 'Un.* @param .* 'aParam'.'
     void method25()
     {
     }

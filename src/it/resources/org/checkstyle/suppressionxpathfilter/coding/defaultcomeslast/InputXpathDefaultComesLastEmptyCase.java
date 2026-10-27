@@ -1,3 +1,10 @@
+/*
+DefaultComesLast
+skipIfLastAndSharedWithCase = true
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.defaultcomeslast;
 
 public class InputXpathDefaultComesLastEmptyCase {
@@ -12,7 +19,7 @@ public class InputXpathDefaultComesLastEmptyCase {
 
         switch (i) {
             case 1:
-            default: //warn
+            default: // violation 'Default should be last label in the case group.'
             case 2:
                 break;
             case 3:

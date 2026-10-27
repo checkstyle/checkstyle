@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.design;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck;
 
 public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
@@ -45,12 +43,8 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathThrowsCountDefault.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ThrowsCountCheck.class);
         final String[] expectedViolation = {
-            "4:30: " + getCheckMessage(ThrowsCountCheck.class,
+            "13:30: " + getCheckMessage(ThrowsCountCheck.class,
                         ThrowsCountCheck.MSG_KEY, 5, 4),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -61,21 +55,16 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
 
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathThrowsCountDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testCustomMax() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathThrowsCountCustomMax.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ThrowsCountCheck.class);
-
-        moduleConfig.addProperty("max", "2");
-
         final String[] expectedViolation = {
-            "4:30: " + getCheckMessage(ThrowsCountCheck.class,
+            "13:30: " + getCheckMessage(ThrowsCountCheck.class,
                         ThrowsCountCheck.MSG_KEY, 3, 2),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -86,21 +75,16 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
 
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathThrowsCountCustomMax.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testPrivateMethods() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathThrowsCountPrivateMethods.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ThrowsCountCheck.class);
-
-        moduleConfig.addProperty("ignorePrivateMethods", "false");
-
         final String[] expectedViolation = {
-            "9:40: " + getCheckMessage(ThrowsCountCheck.class,
+            "18:40: " + getCheckMessage(ThrowsCountCheck.class,
                         ThrowsCountCheck.MSG_KEY, 5, 4),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -114,8 +98,10 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
 
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathThrowsCountPrivateMethods.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

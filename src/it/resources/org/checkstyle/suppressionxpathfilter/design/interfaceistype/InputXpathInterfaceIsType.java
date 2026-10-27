@@ -1,5 +1,13 @@
+/*
+InterfaceIsType
+allowMarkerInterfaces = false
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.design.interfaceistype;
 
-public interface InputXpathInterfaceIsType { // warn
+// violation below 'interfaces should describe a type and hence have methods.'
+public interface InputXpathInterfaceIsType {
 
 }

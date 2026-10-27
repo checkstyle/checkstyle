@@ -88,25 +88,6 @@ public class XdocsExampleFileTest {
         "checks/imports/importcontrol/"
     );
 
-    /**
-     * Modules with confirmed or as-yet-unreviewed duplicate-behavior examples,
-     * temporarily suppressed until each is reviewed and either fixed (the examples
-     * are made behaviorally distinct) or confirmed intentional and documented.
-     *
-     * <p>Remove an entry here once its examples are fixed or the duplication is
-     * confirmed acceptable and reflected in xdocs commentary. Do not add new
-     * entries without reviewing the flagged examples first - see
-     * <a href="https://github.com/checkstyle/checkstyle/issues/21072">...</a>
-     */
-    private static final Set<String> SUPPRESSED_UNIQUENESS_CHECK_MODULES = Set.of(
-        "checks/coding/hiddenfield/",
-        "checks/javadoc/javadoctype/",
-        "checks/javadoc/missingjavadoctype/",
-        "checks/outertypefilename/",
-        "checks/regexp/regexpmultiline/",
-        "checks/regexp/regexpsingleline/"
-    );
-
     @Test
     public void testAllCheckPropertiesAreUsedInXdocsExamples() throws Exception {
         final Map<String, Set<String>> usedPropertiesByCheck =
@@ -396,18 +377,16 @@ public class XdocsExampleFileTest {
 
             if (!unsupportedFormat) {
                 final String moduleName = exampleDir.getFileName().toString();
-                final boolean suppressed = SUPPRESSED_UNIQUENESS_CHECK_MODULES.stream()
-                        .anyMatch(normalizedDirPath::endsWith);
                 final Map<String, List<String>> signatureToExamples = collectSignatures(
-                        exampleDir, suppressed, failures);
+                        exampleDir, failures);
 
-                reportDuplicates(moduleName, suppressed, signatureToExamples, failures);
+                reportDuplicates(moduleName, signatureToExamples, failures);
             }
         }
     }
 
     private static Map<String, List<String>> collectSignatures(Path exampleDir,
-                boolean suppressed, List<String> failures)
+                List<String> failures)
                         throws IOException {
         final Map<String, List<String>> signatureToExamples = new HashMap<>();
 
@@ -422,7 +401,7 @@ public class XdocsExampleFileTest {
 
             if (examples.size() >= 2) {
                 for (Path exampleFile : examples) {
-                    final String signature = buildSignature(exampleFile, suppressed, failures);
+                    final String signature = buildSignature(exampleFile, failures);
                     if (signature != null) {
                         signatureToExamples
                                 .computeIfAbsent(signature, key -> new ArrayList<>())
@@ -435,17 +414,15 @@ public class XdocsExampleFileTest {
         return signatureToExamples;
     }
 
-    private static void reportDuplicates(String moduleName, boolean suppressed,
+    private static void reportDuplicates(String moduleName,
              Map<String, List<String>> signatureToExamples, List<String> failures) {
-        if (!suppressed) {
-            signatureToExamples.forEach((signature, examples) -> {
-                if (examples.size() > 1) {
-                    failures.add(String.format(Locale.ROOT,
-                            "Module '%s': examples %s produce identical violations (%s).",
-                            moduleName, examples, signature));
-                }
-            });
-        }
+        signatureToExamples.forEach((signature, examples) -> {
+            if (examples.size() > 1) {
+                failures.add(String.format(Locale.ROOT,
+                        "Module '%s': examples %s produce identical violations (%s).",
+                        moduleName, examples, signature));
+            }
+        });
     }
 
     /**
@@ -469,15 +446,9 @@ public class XdocsExampleFileTest {
      * <p>Returns null if any violation message in the file is unspecified, if
      * the file has zero violations within the visible section, or if the markers
      * themselves cannot be found, since none of those are a reliable duplicate
-     * signal - see InlineConfigParser.SUPPRESSED_VALIDATE_MESSAGE_FILES / SUPPRESSED_CHECKS.
-     *
-     * @param suppressed whether this module is in SUPPRESSED_UNIQUENESS_CHECK_MODULES;
-     *     when true, parse failures are silently skipped instead of recorded, so
-     *     unrelated pre-existing parsing issues don't block review of the
-     *     duplicate-violation finding itself.
+     * signal - see InlineConfigParser.SUPPRESSED_VALIDATE_MESSAGE_FILES.
      */
-    private static String buildSignature(Path exampleFile, boolean suppressed,
-             List<String> failures) {
+    private static String buildSignature(Path exampleFile, List<String> failures) {
         String signature;
         try {
             final TestInputConfiguration parsed =
@@ -519,9 +490,7 @@ public class XdocsExampleFileTest {
         }
         // -@cs[IllegalCatch] InlineConfigParser.parse declares "throws Exception";
         catch (Exception exception) {
-            if (!suppressed) {
-                failures.add("Failed to parse " + exampleFile + ": " + exception.getMessage());
-            }
+            failures.add("Failed to parse " + exampleFile + ": " + exception.getMessage());
             signature = null;
         }
         return signature;

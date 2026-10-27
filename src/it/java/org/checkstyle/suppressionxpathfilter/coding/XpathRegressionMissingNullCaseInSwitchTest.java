@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.MissingNullCaseInSwitchCheck;
 
 public class XpathRegressionMissingNullCaseInSwitchTest
@@ -45,14 +43,12 @@ public class XpathRegressionMissingNullCaseInSwitchTest
 
     @Test
     public void testSimple() throws Exception {
-        final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathMissingNullCaseInSwitchSimple.java"));
+        final String fileToProcess =
+                getNonCompilablePath(
+                        "InputXpathMissingNullCaseInSwitchSimple.java");
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingNullCaseInSwitchCheck.class);
         final String[] expectedViolation = {
-            "8:9: " + getCheckMessage(MissingNullCaseInSwitchCheck.class,
+            "15:9: " + getCheckMessage(MissingNullCaseInSwitchCheck.class,
                     MissingNullCaseInSwitchCheck.MSG_KEY),
         };
 
@@ -61,18 +57,16 @@ public class XpathRegressionMissingNullCaseInSwitchTest
                         + "[@text='InputXpathMissingNullCaseInSwitchSimple']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testNestedExpression() throws Exception {
-        final File fileToProcess =
-                new File(getNonCompilablePath("InputXpathMissingNullCaseInSwitchNested.java"));
+        final String fileToProcess =
+                getNonCompilablePath("InputXpathMissingNullCaseInSwitchNested.java");
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingNullCaseInSwitchCheck.class);
         final String[] expectedViolation = {
-            "11:25: " + getCheckMessage(MissingNullCaseInSwitchCheck.class,
+            "18:25: " + getCheckMessage(MissingNullCaseInSwitchCheck.class,
                     MissingNullCaseInSwitchCheck.MSG_KEY),
         };
 
@@ -89,18 +83,16 @@ public class XpathRegressionMissingNullCaseInSwitchTest
                         + "/SWITCH_RULE/SLIST/VARIABLE_DEF"
                         + "[./IDENT[@text='y']]/ASSIGN/EXPR/LITERAL_SWITCH"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testStaticBlock() throws Exception {
-        final File fileToProcess =
-            new File(getNonCompilablePath("InputXpathMissingNullCaseInSwitchStaticBlock.java"));
+        final String fileToProcess =
+            getNonCompilablePath("InputXpathMissingNullCaseInSwitchStaticBlock.java");
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingNullCaseInSwitchCheck.class);
         final String[] expectedViolation = {
-            "7:9: " + getCheckMessage(MissingNullCaseInSwitchCheck.class,
+            "14:9: " + getCheckMessage(MissingNullCaseInSwitchCheck.class,
                     MissingNullCaseInSwitchCheck.MSG_KEY),
         };
 
@@ -110,7 +102,7 @@ public class XpathRegressionMissingNullCaseInSwitchTest
                 + "/OBJBLOCK/STATIC_INIT/SLIST/LITERAL_SWITCH"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
 }
