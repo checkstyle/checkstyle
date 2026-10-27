@@ -65,6 +65,8 @@
   <suppress id="noCheckstyleInInputs"
             files="/checks/coding/unnecessarypermitsclause/InputUnnecessaryPermitsClauseSubClassesInAnotherFile.java"/>
   <suppress id="noCheckstyleInInputs"
+            files="/checks/coding/unnecessarypermitsclause/InputUnnecessaryPermitsClauseStateLeakFirst.java"/>
+  <suppress id="noCheckstyleInInputs"
           files="/packageobjectfactory/bar/FooCheck.java"/>
   <suppress id="noCheckstyleInInputs"
           files="/packageobjectfactory/foo/FooCheck.java"/>
