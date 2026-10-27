@@ -235,7 +235,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMethodCountCompactSourceFile.java"), expected);
+                getNonCompilablePath("compact/InputMethodCountCompactSourceFile.java"), expected);
     }
 
     @Test
@@ -248,7 +248,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMethodCountCompactSourceFileModifiers.java"), expected);
+                getNonCompilablePath("compact/InputMethodCountCompactSourceFileModifiers.java"), expected);
     }
 
     @Test
@@ -259,7 +259,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMethodCountCompactSourceFileWithType.java"), expected);
+                getNonCompilablePath("compact/InputMethodCountCompactSourceFileWithType.java"), expected);
     }
 
     @Test
@@ -271,7 +271,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
-                        "InputMethodCountCompactSourceFileInnerClasses.java"), expected);
+                        "compact/InputMethodCountCompactSourceFileInnerClasses.java"), expected);
     }
 
     @Test
@@ -279,7 +279,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMethodCountCompactSourceFileValid.java"), expected);
+                getNonCompilablePath("compact/InputMethodCountCompactSourceFileValid.java"), expected);
     }
 
     @Test
@@ -290,7 +290,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
-                        "InputMethodCountCompactSourceFileFieldInitializer.java"), expected);
+                        "compact/InputMethodCountCompactSourceFileFieldInitializer.java"), expected);
     }
 
     @Test
@@ -300,7 +300,16 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMethodCountCompactSourceFileStatic.java"), expected);
+                getNonCompilablePath("compact/InputMethodCountCompactSourceFileStatic.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMethodCountCompactSourceFileDefault.java"),
+                expected);
     }
 
     @Test
