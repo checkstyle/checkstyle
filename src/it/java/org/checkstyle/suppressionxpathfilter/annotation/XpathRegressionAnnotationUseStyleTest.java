@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.annotation;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
 
 public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupport {
@@ -46,14 +44,8 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAnnotationUseStyleOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationUseStyleCheck.class);
-
         final String[] expectedViolation = {
-            "4:1: " + getCheckMessage(AnnotationUseStyleCheck.class,
+            "14:1: " + getCheckMessage(AnnotationUseStyleCheck.class,
                     AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                     "COMPACT_NO_ARRAY"),
         };
@@ -67,24 +59,16 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='SuppressWarnings']]/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotationUseStyleOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAnnotationUseStyleTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationUseStyleCheck.class);
-
-        moduleConfig.addProperty("closingParens", "ALWAYS");
-        moduleConfig.addProperty("elementStyle", "ignore");
-        moduleConfig.addProperty("trailingArrayComma", "ignore");
-
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(AnnotationUseStyleCheck.class,
+            "13:1: " + getCheckMessage(AnnotationUseStyleCheck.class,
                     AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_PARENS_MISSING),
         };
 
@@ -102,22 +86,16 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='Deprecated']]/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotationUseStyleTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAnnotationUseStyleThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationUseStyleCheck.class);
-
-        moduleConfig.addProperty("trailingArrayComma", "ignore");
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(AnnotationUseStyleCheck.class,
+            "14:5: " + getCheckMessage(AnnotationUseStyleCheck.class,
                     AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                     "COMPACT_NO_ARRAY"),
         };
@@ -139,24 +117,16 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
                         + "/ANNOTATION[./IDENT[@text='SuppressWarnings']]/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotationUseStyleThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testFour() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAnnotationUseStyleFour.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationUseStyleCheck.class);
-
-        moduleConfig.addProperty("closingParens", "ignore");
-        moduleConfig.addProperty("elementStyle", "ignore");
-        moduleConfig.addProperty("trailingArrayComma", "ALWAYS");
-
         final String[] expectedViolation = {
-            "3:20: " + getCheckMessage(AnnotationUseStyleCheck.class,
+            "13:20: " + getCheckMessage(AnnotationUseStyleCheck.class,
                     AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
         };
 
@@ -167,24 +137,16 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
                         + "/ANNOTATION_ARRAY_INIT/RCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotationUseStyleFour.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testFive() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAnnotationUseStyleFive.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationUseStyleCheck.class);
-
-        moduleConfig.addProperty("closingParens", "ignore");
-        moduleConfig.addProperty("elementStyle", "COMPACT");
-        moduleConfig.addProperty("trailingArrayComma", "ignore");
-
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(AnnotationUseStyleCheck.class,
+            "13:1: " + getCheckMessage(AnnotationUseStyleCheck.class,
                     AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                     "COMPACT"),
         };
@@ -203,24 +165,16 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='SuppressWarnings']]/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotationUseStyleFive.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testSix() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAnnotationUseStyleSix.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationUseStyleCheck.class);
-
-        moduleConfig.addProperty("closingParens", "ignore");
-        moduleConfig.addProperty("elementStyle", "EXPANDED");
-        moduleConfig.addProperty("trailingArrayComma", "ignore");
-
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(AnnotationUseStyleCheck.class,
+            "13:1: " + getCheckMessage(AnnotationUseStyleCheck.class,
                     AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                     "EXPANDED"),
         };
@@ -239,20 +193,16 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='SuppressWarnings']]/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotationUseStyleSix.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testSeven() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAnnotationUseStyleSeven.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationUseStyleCheck.class);
-
         final String[] expectedViolation = {
-            "4:1: " + getCheckMessage(AnnotationUseStyleCheck.class,
+            "14:1: " + getCheckMessage(AnnotationUseStyleCheck.class,
                     AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                     "COMPACT_NO_ARRAY"),
         };
@@ -266,24 +216,16 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='SuppressWarnings']]/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotationUseStyleSeven.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEight() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAnnotationUseStyleEight.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotationUseStyleCheck.class);
-
-        moduleConfig.addProperty("closingParens", "ignore");
-        moduleConfig.addProperty("elementStyle", "ignore");
-        moduleConfig.addProperty("trailingArrayComma", "NEVER");
-
         final String[] expectedViolation = {
-            "3:31: " + getCheckMessage(AnnotationUseStyleCheck.class,
+            "13:31: " + getCheckMessage(AnnotationUseStyleCheck.class,
                     AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
         };
 
@@ -294,8 +236,10 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
                         + "/ANNOTATION_ARRAY_INIT/COMMA"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotationUseStyleEight.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

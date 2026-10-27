@@ -1,3 +1,10 @@
+/*
+ConstructorsDeclarationGrouping
+orderByIncreasingParameterCount = (default)false
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.constructorsdeclarationgrouping;
 
 public enum InputXpathConstructorsDeclarationGroupingEnum {
@@ -9,5 +16,6 @@ public enum InputXpathConstructorsDeclarationGroupingEnum {
 
     int f;
 
-    InputXpathConstructorsDeclarationGroupingEnum(int x) {} // warn
+    // violation below 'Constructors should be grouped together.'
+    InputXpathConstructorsDeclarationGroupingEnum(int x) {}
 }
