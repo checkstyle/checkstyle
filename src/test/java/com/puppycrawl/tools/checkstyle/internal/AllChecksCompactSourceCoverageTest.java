@@ -147,7 +147,6 @@ public class AllChecksCompactSourceCoverageTest {
         "LocalVariableNameCheck",
         "MatchXpathCheck",
         "MemberNameCheck",
-        "MethodCountCheck",
         "MethodNameCheck",
         "MethodParamPadCheck",
         "MethodTypeParameterNameCheck",
