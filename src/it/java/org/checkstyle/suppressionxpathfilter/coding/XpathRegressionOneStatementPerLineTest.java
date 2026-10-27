@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck;
 
 public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSupport {
@@ -46,14 +44,8 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
 
     @Test
     public void testClassFields() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathOneStatementPerLineClassFields.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(OneStatementPerLineCheck.class);
-
         final String[] expectedViolation = {
-            "4:12: " + getCheckMessage(OneStatementPerLineCheck.class,
+            "12:12: " + getCheckMessage(OneStatementPerLineCheck.class,
                 OneStatementPerLineCheck.MSG_KEY),
         };
 
@@ -72,20 +64,16 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
                 + "/VARIABLE_DEF[./IDENT[@text='j']]/TYPE/LITERAL_INT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOneStatementPerLineClassFields.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testForLoopBlock() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathOneStatementPerLineForLoopBlock.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(OneStatementPerLineCheck.class);
-
         final String[] expectedViolation = {
-            "9:33: " + getCheckMessage(OneStatementPerLineCheck.class,
+            "17:33: " + getCheckMessage(OneStatementPerLineCheck.class,
                 OneStatementPerLineCheck.MSG_KEY),
         };
 
@@ -96,20 +84,16 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
                 + "/EXPR/POST_INC/IDENT[@text='var2']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOneStatementPerLineForLoopBlock.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMethodBody() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathOneStatementPerLineMethodBody.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(OneStatementPerLineCheck.class);
-
         final String[] expectedViolation = {
-            "5:20: " + getCheckMessage(OneStatementPerLineCheck.class,
+            "13:20: " + getCheckMessage(OneStatementPerLineCheck.class,
                 OneStatementPerLineCheck.MSG_KEY),
         };
 
@@ -132,8 +116,10 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
                 + "/VARIABLE_DEF[./IDENT[@text='b']]/TYPE/LITERAL_INT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathOneStatementPerLineMethodBody.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
