@@ -54,7 +54,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example1.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
         <p id="Example2-raw">
           To configure the check to use header file <code>"java.header"</code> and
           ignore lines <code>2</code>, <code>3</code>, and <code> 4</code> and only process Java
@@ -78,7 +78,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example2.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
         <p id="Example3-raw">
           Without the need for an external header file:
         </p>
@@ -92,7 +92,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example3.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
         <p id="Example4-raw">
           In case target file is less in size than header file:
         </p>
