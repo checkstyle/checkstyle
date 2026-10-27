@@ -480,4 +480,26 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
                 getPath("InputFallThroughFiniteLoop.java"), expected);
     }
 
+    @Test
+    public void testFallThroughCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputFallThroughCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThroughCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "20:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "20:9: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputFallThroughCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
