@@ -90,6 +90,34 @@ public class UnnecessaryPermitsClauseCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
+    public void testSimpleNameCollision() throws Exception {
+        final String[] expected = {
+            "23:30: " + getCheckMessage(MSG_KEY),
+            "31:35: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryPermitsClauseSimpleNameCollision.java"),
+                getPath("InputUnnecessaryPermitsClauseSimpleNameCollisionCompanion.java"),
+                expected);
+    }
+
+    @Test
+    public void testPermitsScopeResolution() throws Exception {
+        final String[] expected = {
+            "14:40: " + getCheckMessage(MSG_KEY),
+            "23:37: " + getCheckMessage(MSG_KEY),
+            "32:33: " + getCheckMessage(MSG_KEY),
+            "52:30: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryPermitsClauseScopeResolution.java"),
+                getPath("InputUnnecessaryPermitsClauseScopeResolutionCompanion.java"),
+                expected);
+    }
+
+    @Test
     public void testCompactSourceFile() throws Exception {
         final String[] expected = {
             "8:33: " + getCheckMessage(MSG_KEY),
