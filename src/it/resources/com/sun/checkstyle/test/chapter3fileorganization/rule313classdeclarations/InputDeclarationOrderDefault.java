@@ -13,8 +13,8 @@ public final class InputDeclarationOrderDefault {
     /** Private constant. */
     private static final int BAR = 2;
 
+    // violation 2 lines below 'Variable access definition in wrong order.'
     /** Public before private. */
-    // violation below 'Variable access definition in wrong order.'
     public static final int BAZ = 3;
 
     /** Instance variable. */

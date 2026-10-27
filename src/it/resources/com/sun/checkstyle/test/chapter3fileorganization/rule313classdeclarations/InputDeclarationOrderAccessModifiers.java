@@ -10,15 +10,15 @@ public final class InputDeclarationOrderAccessModifiers {
     /** Package-private constant. */
     static final int PACKAGE_VAR = 1;
 
+    // violation 2 lines below 'Variable access definition in wrong order.'
     /** Public after package. */
-    // violation below 'Variable access definition in wrong order.'
     public static final int PUBLIC_VAR = 2;
 
     /** Private constant. */
     private static final int PRIVATE_VAR = 3;
 
+    // violation 2 lines below 'Variable access definition in wrong order.'
     /** Protected after private. */
-    // violation below 'Variable access definition in wrong order.'
     protected static final int PROTECTED_VAR = 4;
 
     /**
