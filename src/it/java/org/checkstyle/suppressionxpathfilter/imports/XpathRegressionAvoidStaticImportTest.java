@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.imports;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck;
 
 public class XpathRegressionAvoidStaticImportTest
@@ -47,14 +45,8 @@ public class XpathRegressionAvoidStaticImportTest
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathAvoidStaticImportOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "3:42: " + getCheckMessage(CLASS,
+            "10:42: " + getCheckMessage(CLASS,
                 AvoidStaticImportCheck.MSG_KEY, "javax.swing.WindowConstants.*"),
         };
 
@@ -62,19 +54,15 @@ public class XpathRegressionAvoidStaticImportTest
                 "/COMPILATION_UNIT/STATIC_IMPORT/DOT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidStaticImportOne.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathAvoidStaticImportTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "3:27: " + getCheckMessage(CLASS,
+            "10:27: " + getCheckMessage(CLASS,
                 AvoidStaticImportCheck.MSG_KEY, "java.io.File.createTempFile"),
         };
 
@@ -82,19 +70,15 @@ public class XpathRegressionAvoidStaticImportTest
                 "/COMPILATION_UNIT/STATIC_IMPORT/DOT[./IDENT[@text='createTempFile']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidStaticImportTwo.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathAvoidStaticImportThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "3:29: " + getCheckMessage(CLASS,
+            "10:29: " + getCheckMessage(CLASS,
                 AvoidStaticImportCheck.MSG_KEY, "java.lang.Math.abs"),
         };
 
@@ -102,7 +86,9 @@ public class XpathRegressionAvoidStaticImportTest
                 "/COMPILATION_UNIT/STATIC_IMPORT/DOT[./IDENT[@text='abs']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAvoidStaticImportThree.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
