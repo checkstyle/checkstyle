@@ -1,3 +1,10 @@
+/*
+ModifiedControlVariable
+skipEnhancedForLoopVariable = true
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.modifiedcontrolvariable;
 
 public class InputXpathModifiedControlVariableNestedSkipEnhancedForLoop {
@@ -7,7 +14,7 @@ public class InputXpathModifiedControlVariableNestedSkipEnhancedForLoop {
             for(String s : strings){
                 s += "a";
             }
-            i += 1; // warn
+            i += 1; // violation 'Control variable 'i' is modified.'
         }
     }
 }

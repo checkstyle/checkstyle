@@ -1,3 +1,10 @@
+/*
+ModifiedControlVariable
+skipEnhancedForLoopVariable = (default)false
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.modifiedcontrolvariable;
 
 public class InputXpathModifiedControlVariableNestedWithForeach {
@@ -5,7 +12,7 @@ public class InputXpathModifiedControlVariableNestedWithForeach {
         String[] strings = {"first","second"};
         for (int i = 0; i < 10; i++) {
             for(String s : strings){
-                s += "a"; // warn
+                s += "a"; // violation 'Control variable 's' is modified.'
             }
         }
     }

@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,14 +26,15 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck;
 
 public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTestSupport {
 
+    private final String checkName = UnnecessaryParenthesesCheck.class.getSimpleName();
+
     @Override
     protected String getCheckName() {
-        return UnnecessaryParenthesesCheck.class.getSimpleName();
+        return checkName;
     }
 
     @Override
@@ -44,15 +44,11 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
 
     @Test
     public void testClassFields() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathUnnecessaryParenthesesClassFields.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UnnecessaryParenthesesCheck.class);
+        final String fileToProcess =
+            getPath("InputXpathUnnecessaryParenthesesClassFields.java");
 
         final String[] expectedViolation = {
-            "4:13: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
+            "18:13: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
                 UnnecessaryParenthesesCheck.MSG_ASSIGN),
         };
 
@@ -68,20 +64,36 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
                 + "/ASSIGN/EXPR/LPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
+    }
+
+    @Test
+    public void testLambdas() throws Exception {
+        final String fileToProcess =
+            getPath("InputXpathUnnecessaryParenthesesLambdas.java");
+
+        final String[] expectedViolation = {
+            "22:35: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
+                UnnecessaryParenthesesCheck.MSG_LAMBDA),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathUnnecessaryParenthesesLambdas']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='predicate']]"
+                + "/ASSIGN/LAMBDA"
+        );
+
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testConditionals() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathUnnecessaryParenthesesConditionals.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UnnecessaryParenthesesCheck.class);
+        final String fileToProcess =
+            getPath("InputXpathUnnecessaryParenthesesConditionals.java");
 
         final String[] expectedViolation = {
-            "5:13: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
+            "19:13: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
                 UnnecessaryParenthesesCheck.MSG_EXPR),
         };
 
@@ -97,44 +109,16 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
                 + "/SLIST/LITERAL_IF/EXPR/LPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
-    }
-
-    @Test
-    public void testLambdas() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathUnnecessaryParenthesesLambdas.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UnnecessaryParenthesesCheck.class);
-
-        final String[] expectedViolation = {
-            "7:35: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
-                UnnecessaryParenthesesCheck.MSG_LAMBDA),
-        };
-
-        final List<String> expectedXpathQueries = Collections.singletonList(
-            "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathUnnecessaryParenthesesLambdas']]"
-                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='predicate']]"
-                + "/ASSIGN/LAMBDA"
-        );
-
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testLocalVariables() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathUnnecessaryParenthesesLocalVariables.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UnnecessaryParenthesesCheck.class);
+        final String fileToProcess =
+            getPath("InputXpathUnnecessaryParenthesesLocalVariables.java");
 
         final String[] expectedViolation = {
-            "5:18: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
+            "19:18: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
                 UnnecessaryParenthesesCheck.MSG_IDENT, "a"),
         };
 
@@ -146,20 +130,16 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
                 + "/ASSIGN/EXPR/PLUS/IDENT[@text='a']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testStringLiteral() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathUnnecessaryParenthesesStringLiteral.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UnnecessaryParenthesesCheck.class);
+        final String fileToProcess =
+            getPath("InputXpathUnnecessaryParenthesesStringLiteral.java");
 
         final String[] expectedViolation = {
-            "5:23: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
+            "20:23: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
                 UnnecessaryParenthesesCheck.MSG_STRING, "\"Checkstyle\""),
         };
 
@@ -171,20 +151,16 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
                 + "/ASSIGN/EXPR/PLUS/STRING_LITERAL[@text='Checkstyle']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testMethodDef() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathUnnecessaryParenthesesMethodDef.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UnnecessaryParenthesesCheck.class);
+        final String fileToProcess =
+            getPath("InputXpathUnnecessaryParenthesesMethodDef.java");
 
         final String[] expectedViolation = {
-            "5:18: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
+            "19:18: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
                 UnnecessaryParenthesesCheck.MSG_LITERAL, "10"),
         };
 
@@ -196,20 +172,16 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
                 + "/ASSIGN/EXPR/PLUS/NUM_INT[@text='10']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testReturnExpr() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathUnnecessaryParenthesesReturnExpr.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UnnecessaryParenthesesCheck.class);
+        final String fileToProcess =
+            getPath("InputXpathUnnecessaryParenthesesReturnExpr.java");
 
         final String[] expectedViolation = {
-            "5:16: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
+            "19:16: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
                 UnnecessaryParenthesesCheck.MSG_RETURN),
         };
 
@@ -225,20 +197,16 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
                 + "/SLIST/LITERAL_RETURN/EXPR/LPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testExprWithMethodParam() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathUnnecessaryParenthesesExprWithMethodParam.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(UnnecessaryParenthesesCheck.class);
+        final String fileToProcess =
+            getPath("InputXpathUnnecessaryParenthesesExprWithMethodParam.java");
 
         final String[] expectedViolation = {
-            "5:17: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
+            "19:17: " + getCheckMessage(UnnecessaryParenthesesCheck.class,
                 UnnecessaryParenthesesCheck.MSG_ASSIGN),
         };
 
@@ -256,7 +224,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
                 + "/ASSIGN/EXPR/LPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(fileToProcess, expectedXpathQueries, expectedViolation);
     }
 
 }
