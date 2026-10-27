@@ -1,3 +1,10 @@
+/*
+ConstructorsDeclarationGrouping
+orderByIncreasingParameterCount = (default)false
+
+
+*/
+
 // Java14
 
 package org.checkstyle.suppressionxpathfilter.coding.constructorsdeclarationgrouping;
@@ -11,6 +18,7 @@ public class InputXpathConstructorsDeclarationGroupingRecords {
 
     void foo() {}
 
-    public MyRecord {} // warn
+    // violation below 'Constructors should be grouped together.'
+    public MyRecord {}
   }
 }
