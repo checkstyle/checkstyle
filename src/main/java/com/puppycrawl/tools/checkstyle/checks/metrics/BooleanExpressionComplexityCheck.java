@@ -128,6 +128,12 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
     }
 
     @Override
+    public void beginTree(DetailAST rootAST) {
+        contextStack.clear();
+        context = new Context(false);
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF,
