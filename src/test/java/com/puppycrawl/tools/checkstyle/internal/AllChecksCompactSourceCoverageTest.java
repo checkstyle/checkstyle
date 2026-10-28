@@ -106,7 +106,6 @@ public class AllChecksCompactSourceCoverageTest {
         "EmptyForInitializerPadCheck",
         "EmptyForIteratorPadCheck",
         "EmptyLineSeparatorCheck",
-        "EqualsAvoidNullCheck",
         "ExplicitInitializationCheck",
         "GenericWhitespaceCheck",
         "GoogleNonConstantFieldNameCheck",
