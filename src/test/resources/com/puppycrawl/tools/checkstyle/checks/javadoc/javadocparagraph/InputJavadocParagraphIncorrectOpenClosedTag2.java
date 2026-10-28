@@ -8,42 +8,43 @@ violateExecutionOnNonTightHtml = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
+// violation 4 lines below '<p> tag should be placed immediately before the first word'
 /**
  * Some summary.
  *
  * <p>  Some Javadoc. </p>
  */
-// violation 2 lines above '<p> tag should be placed immediately before the first word'
 public class InputJavadocParagraphIncorrectOpenClosedTag2 {
 
+    // violation 3 lines below '<p> tag should be preceded with an empty line.'
     /**
     * some javadoc.
     * <p></p>
     */
-    // violation 2 lines above '<p> tag should be preceded with an empty line.'
     int a;
 
-    // 2 violations 4 lines below:
+    // 2 violations 5 lines below:
     //  '<p> tag should be placed immediately before the first word'
     //  '<p> tag should be preceded with an empty line.'
+    // violation 3 lines below '<p> tag should be preceded with an empty line.'
     /**
     * Some Javadoc.<P>
     * Some Javadoc.<P></P>
     */
-    // violation 2 lines above '<p> tag should be preceded with an empty line.'
     int b;
 
-    // violation below 'Redundant <p> tag.'
+    // violation 3 lines below 'Redundant <p> tag.'
+    // violation 3 lines below 'Empty line should be followed by <p> tag on the next line.'
+    // violation 4 lines below 'Empty line should be followed by <p> tag on the next line.'
     /**<p>some javadoc.</p>
     *
     * Some <p>Javadoc.</p>
     *
     * Some <p>Javadoc.</p>
     */
-    // violation 5 lines above 'Empty line should be followed by <p> tag on the next line.'
-    // violation 4 lines above 'Empty line should be followed by <p> tag on the next line.'
     int c;
 
+    // violation 4 lines below '<p> tag should be placed immediately before the first word'
     /**
     * Some Summary.
     *
@@ -51,7 +52,6 @@ public class InputJavadocParagraphIncorrectOpenClosedTag2 {
     *   Some Javadoc.
     * </p>
     */
-    // violation 4 lines above '<p> tag should be placed immediately before the first word'
     int d;
 
     // 2 violations 6 lines below:
@@ -70,6 +70,7 @@ public class InputJavadocParagraphIncorrectOpenClosedTag2 {
     */
     int e;
 
+    // violation 6 lines below '<p> tag should not precede HTML block-tag '<h1>''
     /**
     * Some Summary.
     *
@@ -77,10 +78,12 @@ public class InputJavadocParagraphIncorrectOpenClosedTag2 {
     *
     * <p><h1>testing....</h1></p>
     */
-    // violation 2 lines above '<p> tag should not precede HTML block-tag '<h1>''
     int f;
 
-    // violation 4 lines below '<p> tag should be placed immediately before the first word'
+    // violation 7 lines below '<p> tag should be placed immediately before the first word'
+    // 2 violations 10 lines below:
+    //  '<p> tag should be placed immediately before the first word'
+    //  '<p> tag should not precede HTML block-tag '<h1>''
     /**
     * Some Summary.
     *
@@ -92,8 +95,5 @@ public class InputJavadocParagraphIncorrectOpenClosedTag2 {
     *     <h1>testing....</h1>
     * </p>
     */
-    // 2 violations 4 lines above:
-    //  '<p> tag should be placed immediately before the first word'
-    //  '<p> tag should not precede HTML block-tag '<h1>''
     int g;
 }
