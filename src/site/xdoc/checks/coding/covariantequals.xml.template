@@ -39,7 +39,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example1.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
         <p id="Example2-code">
           The same class without violations:
         </p>
