@@ -109,7 +109,6 @@ public class AllChecksCompactSourceCoverageTest {
         "EmptyForInitializerPadCheck",
         "EmptyForIteratorPadCheck",
         "EmptyLineSeparatorCheck",
-        "EqualsAvoidNullCheck",
         "ExplicitInitializationCheck",
         "FinalClassCheck",
         "GenericWhitespaceCheck",
