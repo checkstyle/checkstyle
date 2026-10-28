@@ -98,7 +98,6 @@ public class AllChecksCompactSourceCoverageTest {
         "ConstructorsDeclarationGroupingCheck",
         "CustomImportOrderCheck",
         "DesignForExtensionCheck",
-        "ExplicitInitializationCheck",
         "GoogleNonConstantFieldNameCheck",
         "IllegalBlockTagCheck",
         "IllegalIdentifierNameCheck",
