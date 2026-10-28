@@ -151,4 +151,30 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testDefaultComesLastCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "14:9: " + getCheckMessage(MSG_KEY),
+            "26:9: " + getCheckMessage(MSG_KEY),
+            "37:9: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputDefaultComesLastCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testDefaultComesLastCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "25:9: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "36:9: " + getCheckMessage(MSG_KEY),
+            "48:9: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputDefaultComesLastCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
