@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.annotation;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck;
 
 public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
     @Test
     public void testClass() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathMissingOverrideClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingOverrideCheck.class);
-
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(MissingOverrideCheck.class,
+            "15:5: " + getCheckMessage(MissingOverrideCheck.class,
                 MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
@@ -69,21 +61,17 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMissingOverrideClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
 
     }
 
     @Test
     public void testInterface() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathMissingOverrideInterface.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingOverrideCheck.class);
-
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(MissingOverrideCheck.class,
+            "15:5: " + getCheckMessage(MissingOverrideCheck.class,
                 MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
@@ -103,21 +91,17 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMissingOverrideInterface.java"),
+                expectedXpathQueries,
+                expectedViolation);
 
     }
 
     @Test
     public void testAnonymous() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathMissingOverrideAnonymous.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingOverrideCheck.class);
-
         final String[] expectedViolation = {
-            "8:9: " + getCheckMessage(MissingOverrideCheck.class,
+            "16:9: " + getCheckMessage(MissingOverrideCheck.class,
                 MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
@@ -140,21 +124,17 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMissingOverrideAnonymous.java"),
+                expectedXpathQueries,
+                expectedViolation);
 
     }
 
     @Test
     public void testInheritDocInvalidPrivateMethod() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathMissingOverrideInheritDocInvalidPrivateMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingOverrideCheck.class);
-
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(MissingOverrideCheck.class,
+            "15:5: " + getCheckMessage(MissingOverrideCheck.class,
                 MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
         };
 
@@ -171,21 +151,17 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMissingOverrideInheritDocInvalidPrivateMethod.java"),
+                expectedXpathQueries,
+                expectedViolation);
 
     }
 
     @Test
     public void testInheritDocInvalidPublicMethod() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathMissingOverrideInheritDocInvalidPublicMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingOverrideCheck.class);
-
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(MissingOverrideCheck.class,
+            "15:5: " + getCheckMessage(MissingOverrideCheck.class,
                 MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
         };
 
@@ -202,75 +178,67 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMissingOverrideInheritDocInvalidPublicMethod.java"),
+                expectedXpathQueries,
+                expectedViolation);
 
     }
 
     @Test
     public void testJavaFiveCompatibilityOne() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathMissingOverrideClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingOverrideCheck.class);
-        moduleConfig.addProperty("javaFiveCompatibility", "true");
-
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(MissingOverrideCheck.class,
+            "15:5: " + getCheckMessage(MissingOverrideCheck.class,
                     MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
+                        + "[./IDENT[@text='InputXpathMissingOverrideClassJavaFive']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
+                        + "[./IDENT[@text='InputXpathMissingOverrideClassJavaFive']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
+                        + "[./IDENT[@text='InputXpathMissingOverrideClassJavaFive']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS/LITERAL_PUBLIC"
 
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMissingOverrideClassJavaFive.java"),
+                expectedXpathQueries,
+                expectedViolation);
 
     }
 
     @Test
     public void testJavaFiveCompatibilityTwo() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathMissingOverrideInterface.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingOverrideCheck.class);
-        moduleConfig.addProperty("javaFiveCompatibility", "true");
-
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(MissingOverrideCheck.class,
+            "15:5: " + getCheckMessage(MissingOverrideCheck.class,
                     MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInterface']]"
+                        + "[@text='InputXpathMissingOverrideInterfaceJavaFive']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInterface']]"
+                        + "[@text='InputXpathMissingOverrideInterfaceJavaFive']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInterface']]"
+                        + "[@text='InputXpathMissingOverrideInterfaceJavaFive']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInterface']]"
+                        + "[@text='InputXpathMissingOverrideInterfaceJavaFive']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/LITERAL_BOOLEAN"
 
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMissingOverrideInterfaceJavaFive.java"),
+                expectedXpathQueries,
+                expectedViolation);
 
     }
 
