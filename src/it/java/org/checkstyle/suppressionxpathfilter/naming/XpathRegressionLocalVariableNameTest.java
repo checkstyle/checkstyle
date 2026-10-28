@@ -21,14 +21,12 @@ package org.checkstyle.suppressionxpathfilter.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck.MSG_INVALID_PATTERN;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck;
 
 public class XpathRegressionLocalVariableNameTest extends AbstractXpathTestSupport {
@@ -45,14 +43,9 @@ public class XpathRegressionLocalVariableNameTest extends AbstractXpathTestSuppo
 
     @Test
     public void testMethod() throws Exception {
-        final File fileToProcess = new File(getPath("InputXpathLocalVariableNameMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(LocalVariableNameCheck.class);
-
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
         final String[] expectedViolations = {
-            "5:9: " + getCheckMessage(LocalVariableNameCheck.class, MSG_INVALID_PATTERN,
+            "13:9: " + getCheckMessage(LocalVariableNameCheck.class, MSG_INVALID_PATTERN,
                 "VAR", pattern),
         };
 
@@ -63,19 +56,17 @@ public class XpathRegressionLocalVariableNameTest extends AbstractXpathTestSuppo
               + "/SLIST/VARIABLE_DEF/IDENT[@text='VAR']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(getPath("InputXpathLocalVariableNameMethod.java"),
+                expectedXpathQueries,
+                expectedViolations);
 
     }
 
     @Test
     public void testIteration() throws Exception {
-        final File fileToProcess = new File(getPath("InputXpathLocalVariableNameIteration.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(LocalVariableNameCheck.class);
-
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
         final String[] expectedViolations = {
-            "7:14: " + getCheckMessage(LocalVariableNameCheck.class, MSG_INVALID_PATTERN,
+            "15:14: " + getCheckMessage(LocalVariableNameCheck.class, MSG_INVALID_PATTERN,
                 "var_1", pattern),
         };
 
@@ -86,19 +77,17 @@ public class XpathRegressionLocalVariableNameTest extends AbstractXpathTestSuppo
               + "SLIST/LITERAL_FOR/FOR_INIT/VARIABLE_DEF/IDENT[@text='var_1']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(getPath("InputXpathLocalVariableNameIteration.java"),
+                expectedXpathQueries,
+                expectedViolations);
 
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final File fileToProcess = new File(getPath("InputXpathLocalVariableNameInnerClass.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(LocalVariableNameCheck.class);
-
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
         final String[] expectedViolations = {
-            "6:11: " + getCheckMessage(LocalVariableNameCheck.class, MSG_INVALID_PATTERN,
+            "14:11: " + getCheckMessage(LocalVariableNameCheck.class, MSG_INVALID_PATTERN,
                 "VAR", pattern),
         };
 
@@ -109,7 +98,9 @@ public class XpathRegressionLocalVariableNameTest extends AbstractXpathTestSuppo
               + "METHOD_DEF[./IDENT[@text='myMethod']]/SLIST/VARIABLE_DEF/IDENT[@text='VAR']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(getPath("InputXpathLocalVariableNameInnerClass.java"),
+                expectedXpathQueries,
+                expectedViolations);
 
     }
 
