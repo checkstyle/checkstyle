@@ -96,14 +96,10 @@ public class ArchUnitTest {
         "com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck",
-        "com.puppycrawl.tools.checkstyle.checks.coding."
-            + "NoCauseGetMessageInExceptionConstructorCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck",
         "com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck",
         "com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck",
-        "com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck",
-        "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck",
-        "com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck"
+        "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"
     );
 
     /**
@@ -195,8 +191,8 @@ public class ArchUnitTest {
                 .importPackages("com.puppycrawl.tools.checkstyle.checks");
 
         final SuppressionArchCondition beSuppressedClass =
-                new SuppressionArchCondition(
-                        SUPPRESSED_CHECKS_WITHOUT_BEGIN_TREE, "be suppressed");
+                new SuppressionArchCondition(overrideBeginTree(),
+                        SUPPRESSED_CHECKS_WITHOUT_BEGIN_TREE);
 
         final ArchRule fileStatefulChecksShouldOverrideBeginTree = classes()
             .that()
@@ -205,8 +201,7 @@ public class ArchUnitTest {
             .areAnnotatedWith(FileStatefulCheck.class)
             .and()
             .doNotHaveModifier(JavaModifier.ABSTRACT)
-            .should(overrideBeginTree())
-            .orShould(beSuppressedClass);
+            .should(beSuppressedClass);
 
         fileStatefulChecksShouldOverrideBeginTree.check(importedClasses);
 
@@ -257,29 +252,35 @@ public class ArchUnitTest {
     }
 
     /**
-     * ArchCondition checking if a type is present in the suppression list.
+     * ArchCondition that ignores violations of another condition for types in the
+     * suppression list. A suppression is used only if its type violates the condition.
      */
     private static final class SuppressionArchCondition extends ArchCondition<JavaClass> {
 
+        private final ArchCondition<JavaClass> condition;
         private final Set<String> suppressions;
         private final Set<String> usedSuppressions;
 
-        private SuppressionArchCondition(Set<String> suppressions, String description) {
-            super(description);
+        private SuppressionArchCondition(ArchCondition<JavaClass> condition,
+                                         Set<String> suppressions) {
+            super(condition.getDescription() + " or be suppressed");
+            this.condition = condition;
             this.suppressions = suppressions;
             usedSuppressions = new HashSet<>();
         }
 
         @Override
         public void check(JavaClass item, ConditionEvents events) {
-            final String fullName = item.getFullName();
-            if (suppressions.contains(fullName)) {
-                usedSuppressions.add(fullName);
-            }
-            else {
-                final String message = String.format(
-                    Locale.ROOT, "should %s or resolved.", getDescription());
-                events.add(SimpleConditionEvent.violated(item, message));
+            final ConditionEvents conditionEvents = ConditionEvents.Factory.create();
+            condition.check(item, conditionEvents);
+            if (conditionEvents.containViolation()) {
+                final String fullName = item.getFullName();
+                if (suppressions.contains(fullName)) {
+                    usedSuppressions.add(fullName);
+                }
+                else {
+                    conditionEvents.getViolating().forEach(events::add);
+                }
             }
         }
 
