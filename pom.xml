@@ -4975,6 +4975,8 @@
               <excludedMethods>
                 <!-- cause of https://github.com/checkstyle/checkstyle/issues/3605 -->
                 <param>setFeaturesBySystemProperty</param>
+                <param>setAccessExternalDtdBySystemProperty</param>
+                <param>isExternalDtdLoadEnabled</param>
               </excludedMethods>
               <features>
                 <feature>+funmodifiablecollection</feature>
