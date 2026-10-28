@@ -286,4 +286,32 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testEqualsAvoidNullCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "13:16: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "14:26: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "20:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "25:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "26:27: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputEqualsAvoidNullCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testEqualsAvoidNullCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "13:16: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "20:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputEqualsAvoidNullCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
