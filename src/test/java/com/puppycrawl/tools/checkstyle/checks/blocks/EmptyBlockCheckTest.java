@@ -265,4 +265,29 @@ public class EmptyBlockCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testEmptyBlockCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "14:15: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "16:15: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "20:18: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputEmptyBlockCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testEmptyBlockCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "14:15: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "20:18: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "while"),
+            "22:9: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "try"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputEmptyBlockCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
