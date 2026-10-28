@@ -20,7 +20,7 @@
             <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#DescendantToken_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
-              <li><a href="#Example1-config" class="toc-sublink">A switch statement with no default case</a></li>
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration does nothing</a></li>
               <li><a href="#Example2-config" class="toc-sublink">A switch with too many cases</a></li>
               <li><a href="#Example3-config" class="toc-sublink">A switch that is nested in another switch</a></li>
               <li><a href="#Example4-config" class="toc-sublink">A condition in <code>for</code> which performs no check</a></li>
@@ -44,6 +44,7 @@
               <li><a href="#UseCase6-config" class="toc-sublink">A class or interface with too many fields</a></li>
               <li><a href="#UseCase7-config" class="toc-sublink">A <code>String</code> literal equality check</a></li>
               <li><a href="#UseCase8-config" class="toc-sublink">An assert statement that may have side effects</a></li>
+              <li><a href="#UseCase9-config" class="toc-sublink">A switch statement with no default case</a></li>
             </ul>
           </li>
           <li><a href="#DescendantToken_Example_of_Usage">Example of Usage</a></li>
@@ -150,18 +151,12 @@
 
       <subsection name="Examples" id="DescendantToken_Examples">
         <p id="Example1-config">
-          To configure the check to produce a violation on a switch statement
-          with no default case:
+          Default configuration does nothing:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="DescendantToken"&gt;
-      &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
-      &lt;property name="maximumDepth" value="2"/&gt;
-      &lt;property name="limitedTokens" value="LITERAL_DEFAULT"/&gt;
-      &lt;property name="minimumNumber" value="1"/&gt;
-    &lt;/module&gt;
+    &lt;module name="DescendantToken"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -176,7 +171,7 @@ class Example1 {
   int testMethod(int x, String str)
           throws ArithmeticException, IllegalArgumentException {
 
-    switch (x) { // violation 'Count of 0 for 'LITERAL_SWITCH' descendant'
+    switch (x) {
       case 1:
         break;
       case 2:
@@ -1223,6 +1218,66 @@ class UseCase8 {
       return 0;
     }
     assert a++ == 0; // violation 'Count of 1 for 'LITERAL_ASSERT' descendant'
+    ;
+    return 2;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase9-config">
+          To configure the check to produce a violation on a switch statement
+          with no default case:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DescendantToken"&gt;
+      &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+      &lt;property name="maximumDepth" value="2"/&gt;
+      &lt;property name="limitedTokens" value="LITERAL_DEFAULT"/&gt;
+      &lt;property name="minimumNumber" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase9-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase9 {
+  private int field1;
+  private int field2;
+
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) { // violation 'Count of 0 for 'LITERAL_SWITCH' descendant'
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
+    }
+    finally {
+      try { }
+      catch (Exception ex) { }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
     ;
     return 2;
   }
