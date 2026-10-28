@@ -20,10 +20,8 @@ class InputAnnotationLocationIncorrect3One
     // violation below '.* should be alone on line.'
     @MyAnn_23 @MyAnnotation_13(value = "")
     public int a;
-
     // violation below '.* should be alone on line.'
     @MyAnnotation_13(value = "") public int b;
-
     // violation 2 lines below '.* incorrect .* level 8, .* should be 4.'
     @MyAnn_23
         @MyAnnotation_13
@@ -36,7 +34,6 @@ class InputAnnotationLocationIncorrect3One
         @MyAnnotation_13
 (value = "")
     public InputAnnotationLocationIncorrect3One() {}
-
     @MyAnnotation_13("foo") @MyAnn_23 void foo1() {}
     // 2 violations above:
     // 'Annotation 'MyAnnotation_13' should be alone on line.'
@@ -45,7 +42,6 @@ class InputAnnotationLocationIncorrect3One
     @MyAnnotation_13(value = "")
        @MyAnn_23
     void foo2() {}
-
     // violation 4 lines below '.* incorrect .* level 8, .* should be 4.'
     // violation 4 lines below '.* incorrect .* level 6, .* should be 4.'
     // violation 4 lines below '.* incorrect .* level 10, .* should be 4.'
@@ -59,19 +55,15 @@ class InputAnnotationLocationIncorrect3One
         @MyAnn_23 @MyAnnotation_13
 (value = "")
         public int a;
-
         // violation below '.* should be alone on line.'
         @MyAnnotation_13(value = "") public int b;
-
         // violation 2 lines below '.* incorrect .* level 12, .* should be 8.'
         @MyAnn_23
             @MyAnnotation_13
 (value = "")
         public int c;
-
         @MyAnnotation_13(value = "")
         public int d;
-
         // violation 2 lines below '.* should be alone on line.'
         @MyAnn_23
         @MyAnnotation_13(value = "") public InnerClass3()
@@ -82,7 +74,6 @@ class InputAnnotationLocationIncorrect3One
         @MyAnnotation_13(value = "")
             @MyAnn_23
         void foo1() {}
-
         // violation 2 lines below '.*'MyAnn_23' have incorrect indentation level 12,.*should be 8.'
         @MyAnnotation_13(value = "")
             @MyAnn_23
@@ -96,26 +87,20 @@ class InputAnnotationLocationIncorrect3One
     {
         // violation below 'Annotation 'MyAnnotation_13' should be alone on line.'
         @MyAnn_23 @MyAnnotation_13(value = "") public int a;
-
         // violation below '.* should be alone on line.'
         @MyAnnotation_13(value = "") public int b;
-
         @MyAnn_23
         @MyAnnotation_13(value = "")
         public int c;
-
         @MyAnnotation_13(value = "")
         public int d;
-
         // violation 2 lines below '.* incorrect .* level 11, .* should be 8.'
         @MyAnnotation_13(value = "")
            @MyAnn_23 void foo1() {}
-
         // violation 2 lines below '.* incorrect .* level 10, .* should be 8.'
         @MyAnnotation_13(value = "")
           @MyAnn_23
         void foo2() {}
-
         // violation below '.* should be alone on line.'
         @MyAnnotation_13(value = "") void foo42() {}
     };
@@ -127,9 +112,7 @@ class InputAnnotationLocationIncorrect3One
         String value();}
 
 @interface MyAnn_23 {}
-
 @interface MyAnnotation_33 {}
-
 @interface MyAnnotation_43 {}
 
 @interface MyAnn3 {
