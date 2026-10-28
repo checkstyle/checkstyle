@@ -104,7 +104,6 @@ public class AllChecksCompactSourceCoverageTest {
         "DefaultComesLastCheck",
         "DescendantTokenCheck",
         "DesignForExtensionCheck",
-        "EmptyBlockCheck",
         "EmptyCatchBlockCheck",
         "EmptyForInitializerPadCheck",
         "EmptyForIteratorPadCheck",
