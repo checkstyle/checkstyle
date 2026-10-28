@@ -135,6 +135,7 @@ public class RedundantThisCheck extends AbstractCheck {
             TokenTypes.CTOR_DEF,
             TokenTypes.LITERAL_CATCH,
             TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_SWITCH,
             TokenTypes.LITERAL_THIS,
             TokenTypes.PATTERN_VARIABLE_DEF,
             TokenTypes.SLIST,
@@ -168,7 +169,12 @@ public class RedundantThisCheck extends AbstractCheck {
                     addParametersToScope(resourcesNode.orElseThrow());
                 }
             }
-            case TokenTypes.SLIST -> scopeStack.push(new HashSet<>());
+            case TokenTypes.LITERAL_SWITCH -> scopeStack.push(new HashSet<>());
+            case TokenTypes.SLIST -> {
+                if (!isCaseGroupBody(ast)) {
+                    scopeStack.push(new HashSet<>());
+                }
+            }
             case TokenTypes.VARIABLE_DEF, TokenTypes.PATTERN_VARIABLE_DEF -> {
                 final Set<String> currentScope = scopeStack.peek();
                 if (currentScope != null) {
@@ -189,9 +195,23 @@ public class RedundantThisCheck extends AbstractCheck {
         if (TokenUtil.isOfType(ast,
                 TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF,
                 TokenTypes.LITERAL_CATCH, TokenTypes.LITERAL_TRY,
-                TokenTypes.SLIST)) {
+                TokenTypes.LITERAL_SWITCH)
+                || ast.getType() == TokenTypes.SLIST && !isCaseGroupBody(ast)) {
             scopeStack.pop();
         }
+    }
+
+    /**
+     * Checks whether the given {@code SLIST} is the statement list of an old-style
+     * switch case group. Such a list does not open its own scope: a local variable
+     * declared in one case group stays in scope until the end of the whole switch
+     * block (JLS 6.3), which is tracked as a scope of its own.
+     *
+     * @param slist the {@code SLIST} token
+     * @return {@code true} if the block is the body of a case group
+     */
+    private static boolean isCaseGroupBody(DetailAST slist) {
+        return slist.getParent().getType() == TokenTypes.CASE_GROUP;
     }
 
     @Override
