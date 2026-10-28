@@ -9,28 +9,28 @@ violateExecutionOnNonTightHtml = (default)false
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
 public class InputJavadocParagraphIncorrect6 {
+    // violation 4 lines below '<p> tag should be placed immediately before the first word'
     /**
     * Some Summary.
     *
     * <p><!-- comment is required --> extra space in paragraph after comment is violation
     */
-    // violation 2 lines above '<p> tag should be placed immediately before the first word'
     int a;
 
+    // violation 4 lines below '<p> tag should be placed immediately before the first word'
     /**
     * Some Summary.
     *
     * <p> <!-- comment is required -->extra space in paragraph before comment is violation
     */
-    // violation 2 lines above '<p> tag should be placed immediately before the first word'
     int b;
 
+    // violation 4 lines below '<p> tag should be placed immediately before the first word'
     /**
     * Some Summary.
     *
     * <p> <!-- comment is required --> both cases combined, this is also violation
     */
-    // violation 2 lines above '<p> tag should be placed immediately before the first word'
     int c;
 
     /**
