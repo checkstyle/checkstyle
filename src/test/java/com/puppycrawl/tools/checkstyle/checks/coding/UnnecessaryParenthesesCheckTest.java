@@ -28,9 +28,18 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthes
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_RETURN;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_STRING;
 
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -42,6 +51,47 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses";
+    }
+
+    /**
+     * Simulates an interrupted traversal by visiting tokens without leaving them.
+     * Reflection verifies that a new file clears both private state fields.
+     *
+     * @throws Exception if an error occurs
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final UnnecessaryParenthesesCheck check = new UnnecessaryParenthesesCheck();
+        check.configure(createModuleConfig(UnnecessaryParenthesesCheck.class));
+        final FileText text = new FileText(new File(
+                getPath("InputUnnecessaryParenthesesIdentifier.java")),
+                StandardCharsets.UTF_8.name());
+        final DetailAST root = JavaParser.parseFileText(text, JavaParser.Options.WITHOUT_COMMENTS);
+        final DetailAST assignment = TestUtil.findTokenInAstByPredicate(root, ast -> {
+            return ast.getType() == TokenTypes.ASSIGN;
+        }).orElseThrow();
+        final DetailAST identifier = TestUtil.findTokenInAstByPredicate(root, ast -> {
+            return ast.getType() == TokenTypes.IDENT && "square".equals(ast.getText())
+                    && ast.getParent().getType() == TokenTypes.EXPR;
+        }).orElseThrow();
+
+        check.setFileContents(new FileContents(text));
+        check.visitToken(assignment);
+        check.visitToken(identifier);
+        assertWithMessage("Assignment depth should be nonzero before reset")
+                .that(TestUtil.getInternalState(check, "assignDepth", Integer.class))
+                .isEqualTo(1);
+        assertWithMessage("Parent to skip should be set before reset")
+                .that(TestUtil.getInternalState(check, "parentToSkip", DetailAST.class))
+                .isSameInstanceAs(identifier.getParent());
+
+        check.beginTree(root);
+        assertWithMessage("Assignment depth is not cleared on beginTree")
+                .that(TestUtil.getInternalState(check, "assignDepth", Integer.class))
+                .isEqualTo(0);
+        assertWithMessage("Parent to skip is not cleared on beginTree")
+                .that(TestUtil.getInternalState(check, "parentToSkip", DetailAST.class))
+                .isNull();
     }
 
     @Test
