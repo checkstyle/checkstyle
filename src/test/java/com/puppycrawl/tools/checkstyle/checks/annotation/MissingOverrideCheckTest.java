@@ -234,7 +234,33 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingOverrideCompactSourceFile.java"), expected);
+                getNonCompilablePath("compact/InputMissingOverrideCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "34:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputMissingOverrideCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputMissingOverrideCompactSourceFileProperties.java"),
+                expected);
     }
 
     @Test
