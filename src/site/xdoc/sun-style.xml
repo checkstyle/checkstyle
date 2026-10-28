@@ -860,6 +860,17 @@
                   <br />
                   <br />
                   <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/blocks/rightcurly.html#RightCurly">
+                    RightCurly
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
+                    config
+                  </a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
                   </span>
                   <a href="checks/misc/descendanttoken.html#DescendantToken">
