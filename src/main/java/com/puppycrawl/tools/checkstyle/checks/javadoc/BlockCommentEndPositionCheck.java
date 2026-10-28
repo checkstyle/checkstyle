@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -78,6 +79,14 @@ public class BlockCommentEndPositionCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_BLOCK_COMMENT_END = "block.comment.end";
+
+    /**
+     * Pattern matching a line where the block comment end delimiter is alone,
+     * allowing optional leading whitespace, and optional trailing comments
+     * (block comments and/or a line comment) with whitespace.
+     */
+    private static final Pattern ALONE_PATTERN =
+            Pattern.compile("^\\s*\\*/(?:\\s+|/\\*.*?\\*/)*(?://.*)?$");
 
     /**
      * Specify the strategy policy for the block comment end position.
@@ -143,8 +152,8 @@ public class BlockCommentEndPositionCheck extends AbstractCheck {
      * @return true if block comment end is alone
      */
     private boolean isAlone(DetailAST ast) {
-        final String lineText = getLine(ast.getLineNo() - 1).trim();
-        return lineText.startsWith("*/");
+        final String lineText = getLine(ast.getLineNo() - 1);
+        return ALONE_PATTERN.matcher(lineText).matches();
     }
 
 }
