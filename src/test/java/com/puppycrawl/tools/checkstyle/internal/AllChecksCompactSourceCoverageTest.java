@@ -95,7 +95,6 @@ public class AllChecksCompactSourceCoverageTest {
         "AtclauseOrderCheck",
         "AvoidEscapedUnicodeCharactersCheck",
         "AvoidStarImportCheck",
-        "BooleanExpressionComplexityCheck",
         "CatchParameterNameCheck",
         "ClassDataAbstractionCouplingCheck",
         "ClassTypeParameterNameCheck",
