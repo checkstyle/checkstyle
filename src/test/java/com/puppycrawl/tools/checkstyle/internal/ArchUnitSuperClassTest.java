@@ -55,7 +55,6 @@ public class ArchUnitSuperClassTest {
         "com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck",
         "com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck",
         "com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck",
-        "com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck",
         "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck",
         "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck",
         "com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck",
@@ -109,13 +108,13 @@ public class ArchUnitSuperClassTest {
             });
 
         final SuppressionArchCondition<JavaClass> beSuppressedClass =
-                new SuppressionArchCondition<>(SUPPRESSED_CLASSES, "be suppressed");
+                new SuppressionArchCondition<>(beDirectSubclassOf(AbstractCheck.class)
+                        .or(beDirectSubclassOf(AbstractFileSetCheck.class))
+                        .or(beDirectSubclassOf(AbstractJavadocCheck.class)),
+                        SUPPRESSED_CLASSES);
 
         final ArchRule checksShouldHaveAllowedAbstractClassAsSuper = classes()
-            .should(beDirectSubclassOf(AbstractCheck.class)
-                        .or(beDirectSubclassOf(AbstractFileSetCheck.class))
-                        .or(beDirectSubclassOf(AbstractJavadocCheck.class)))
-            .orShould(beSuppressedClass);
+            .should(beSuppressedClass);
 
         checksShouldHaveAllowedAbstractClassAsSuper.check(checksPackage);
 
@@ -155,30 +154,35 @@ public class ArchUnitSuperClassTest {
     }
 
     /**
-     * ArchCondition checking if a type or a member is present in the suppression list.
+     * ArchCondition that ignores violations of another condition for types or members in the
+     * suppression list. A suppression is used only if its item violates the condition.
      */
     private static final class SuppressionArchCondition<T extends HasName.AndFullName>
         extends ArchCondition<T> {
 
+        private final ArchCondition<T> condition;
         private final Set<String> suppressions;
         private final Set<String> usedSuppressions;
 
-        private SuppressionArchCondition(Set<String> suppressions, String description) {
-            super(description);
+        private SuppressionArchCondition(ArchCondition<T> condition, Set<String> suppressions) {
+            super(condition.getDescription() + " or be suppressed");
+            this.condition = condition;
             this.suppressions = suppressions;
             usedSuppressions = new HashSet<>();
         }
 
         @Override
-        public void check(HasName.AndFullName item, ConditionEvents events) {
-            final String fullName = item.getFullName();
-            if (suppressions.contains(fullName)) {
-                usedSuppressions.add(fullName);
-            }
-            else {
-                final String message = String.format(
-                    Locale.ROOT, "should %s or resolved.", getDescription());
-                events.add(SimpleConditionEvent.violated(item, message));
+        public void check(T item, ConditionEvents events) {
+            final ConditionEvents conditionEvents = ConditionEvents.Factory.create();
+            condition.check(item, conditionEvents);
+            if (conditionEvents.containViolation()) {
+                final String fullName = item.getFullName();
+                if (suppressions.contains(fullName)) {
+                    usedSuppressions.add(fullName);
+                }
+                else {
+                    conditionEvents.getViolating().forEach(events::add);
+                }
             }
         }
 
