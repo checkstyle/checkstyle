@@ -657,7 +657,7 @@ public class MainTest {
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo(addEndOfLine(auditStartMessage.getMessage(),
-                    "[ERROR] " + expectedPath + ":3:14: "
+                    "[ERROR] " + expectedPath + ":4:14: "
                         + invalidPatternMessageMain.getViolation() + " [TypeName]",
                     auditFinishMessage.getMessage()));
         assertWithMessage("Unexpected system error log")
