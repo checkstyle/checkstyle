@@ -207,7 +207,6 @@ public class AllChecksCompactSourceCoverageTest {
         "TrailingCommentCheck",
         "TypeNameCheck",
         "TypecastParenPadCheck",
-        "UncommentedMainCheck",
         "UnnecessaryNullCheckWithInstanceOfCheck",
         "UnnecessaryParenthesesCheck",
         "UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
