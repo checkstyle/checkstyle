@@ -169,4 +169,28 @@ public class HideUtilityClassConstructorCheckTest
         );
     }
 
+    @Test
+    public void testHideUtilityClassConstructorCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_KEY),
+            "13:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputHideUtilityClassConstructorCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testHideUtilityClassConstructorCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "21:1: " + getCheckMessage(MSG_KEY),
+            "26:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputHideUtilityClassConstructorCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
