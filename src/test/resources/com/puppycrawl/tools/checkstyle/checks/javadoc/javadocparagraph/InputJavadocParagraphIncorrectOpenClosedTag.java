@@ -8,38 +8,38 @@ violateExecutionOnNonTightHtml = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
+// violation 4 lines below '<p> tag should be placed immediately before the first word'
 /**
  * Some summary.
  *
  * <p>  Some Javadoc. </p>
  */
-// violation 2 lines above '<p> tag should be placed immediately before the first word'
 public class InputJavadocParagraphIncorrectOpenClosedTag {
 
+    // violation 3 lines below '<p> tag should be preceded with an empty line.'
     /**
     * some javadoc.
     * <p></p>
     */
-    // violation 2 lines above '<p> tag should be preceded with an empty line.'
     int a;
 
-    // violation 2 lines below '<p> tag should be preceded with an empty line.'
+    // violation 3 lines below '<p> tag should be preceded with an empty line.'
+    // violation 3 lines below '<p> tag should be preceded with an empty line.'
     /**
     * Some Javadoc.<P>
     * Some Javadoc.<P></P>
     */
-    // violation 2 lines above '<p> tag should be preceded with an empty line.'
     int b;
 
-    // violation below 'Redundant <p> tag.'
+    // violation 3 lines below 'Redundant <p> tag.'
+    // violation 3 lines below 'Empty line should be followed by <p> tag on the next line.'
+    // violation 4 lines below 'Empty line should be followed by <p> tag on the next line.'
     /**<p>some javadoc.</p>
     *
     * Some <p>Javadoc.</p>
     *
     * Some <p>Javadoc.</p>
     */
-    // violation 5 lines above 'Empty line should be followed by <p> tag on the next line.'
-    // violation 4 lines above 'Empty line should be followed by <p> tag on the next line.'
     int c;
 
     /**
@@ -65,6 +65,7 @@ public class InputJavadocParagraphIncorrectOpenClosedTag {
     */
     int e;
 
+    // violation 6 lines below '<p> tag should not precede HTML block-tag '<h1>''
     /**
     * Some Summary.
     *
@@ -72,9 +73,9 @@ public class InputJavadocParagraphIncorrectOpenClosedTag {
     *
     * <p><h1>testing....</h1></p>
     */
-    // violation 2 lines above '<p> tag should not precede HTML block-tag '<h1>''
     int f;
 
+    // violation 8 lines below '<p> tag should not precede HTML block-tag '<h1>''
     /**
     * Some Summary.
     *
@@ -86,6 +87,5 @@ public class InputJavadocParagraphIncorrectOpenClosedTag {
     *     <h1>testing....</h1>
     * </p>
     */
-    // violation 4 lines above '<p> tag should not precede HTML block-tag '<h1>''
     int g;
 }
