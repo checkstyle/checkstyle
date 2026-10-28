@@ -38,18 +38,18 @@ public class InputIndentationInvalidArrayInitIndent1 {                 //indent:
     private void myFunc3()                                             //indent:4 exp:4
     {                                                                  //indent:4 exp:4
         char[] sHexChars2 = {                                          //indent:8 exp:8
-          '0', '1', '2', '3', '4', '5', '6', '7',                      //indent:10 exp:12,32,71 warn
-              '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };                //indent:14 exp:12,32,71 warn
+          '0', '1', '2', '3', '4', '5', '6', '7',                      //indent:10 exp:12 warn
+              '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };                //indent:14 exp:12 warn
 
         char[] sHexChars3 = {                                          //indent:8 exp:8
-          '0', '1', '2', '3', '4', '5', '6', '7',                      //indent:10 exp:12,32,71 warn
-              '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'                   //indent:14 exp:12,32,71 warn
+          '0', '1', '2', '3', '4', '5', '6', '7',                      //indent:10 exp:12 warn
+              '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'                   //indent:14 exp:12 warn
       };                                                               //indent:6 exp:8,12 warn
 
         char[] sHexChars4 =                                            //indent:8 exp:8
       {                                                                //indent:6 exp:8,12 warn
-              '0', '1', '2', '3', '4', '5', '6', '7',                  //indent:14 exp:10,12,71 warn
-          '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'                       //indent:10 exp:10
+              '0', '1', '2', '3', '4', '5', '6', '7',                  //indent:14 exp:12 warn
+          '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'                       //indent:10 exp:12 warn
       };                                                               //indent:6 exp:8,12 warn
 
     }                                                                  //indent:4 exp:4
@@ -62,14 +62,14 @@ public class InputIndentationInvalidArrayInitIndent1 {                 //indent:
         }                                                              //indent:8 exp:8
         @SomeInterface1.SomeAnnotation1(values =                       //indent:8 exp:8
             {                                                          //indent:12 exp:12
-              "hello",                                                 //indent:14 exp:12,16,71 warn
+              "hello",                                                 //indent:14 exp:12,16 warn
             "checkstyle"                                               //indent:12 exp:12
             },                                                         //indent:12 exp:12
             description = { "hello",                                   //indent:12 exp:12
               "checkstyle"                                             //indent:14 exp:16,28,30 warn
         },                                                             //indent:8 exp:12,16 warn
             description2 = {                                           //indent:12 exp:12
-            "hello", "chekstyle"                                       //indent:12 exp:16,31,71 warn
+            "hello", "chekstyle"                                       //indent:12 exp:16 warn
             }                                                          //indent:12 exp:12
         )                                                              //indent:8 exp:8
       void worked();                                                   //indent:6 exp:6
