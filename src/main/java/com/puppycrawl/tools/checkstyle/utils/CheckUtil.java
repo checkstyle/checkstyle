@@ -723,14 +723,17 @@ public final class CheckUtil {
      * @return true if loop is terminated.
      */
     private static boolean checkLoop(final DetailAST ast, Set<String> labels) {
-        final DetailAST loopBody;
+        DetailAST loopBody;
         if (ast.getType() == TokenTypes.LITERAL_DO) {
             final DetailAST lparen = ast.findFirstToken(TokenTypes.DO_WHILE);
             loopBody = lparen.getPreviousSibling();
+            while (TokenUtil.isCommentType(loopBody.getType())) {
+                loopBody = loopBody.getPreviousSibling();
+            }
         }
         else {
-            final DetailAST rparen = ast.findFirstToken(TokenTypes.RPAREN);
-            loopBody = rparen.getNextSibling();
+            final DetailAST rparen = NullUtil.notNull(ast.findFirstToken(TokenTypes.RPAREN));
+            loopBody = getNextNonCommentAst(rparen);
         }
 
         return checkInfiniteLoop(ast) && !isTerminated(loopBody, true, false, labels)
@@ -755,14 +758,8 @@ public final class CheckUtil {
                 useBreak, useContinue, labels);
 
         if (!isTerminated) {
-            DetailAST firstChild = ast.getFirstChild();
-
-            if (firstChild.getType() == TokenTypes.RESOURCE_SPECIFICATION) {
-                firstChild = firstChild.getNextSibling();
-            }
-
-            isTerminated = isTerminated(firstChild,
-                    useBreak, useContinue, labels);
+            final DetailAST tryBody = NullUtil.notNull(ast.findFirstToken(TokenTypes.SLIST));
+            isTerminated = isTerminated(tryBody, useBreak, useContinue, labels);
 
             DetailAST catchStmt = ast.findFirstToken(TokenTypes.LITERAL_CATCH);
             while (catchStmt != null
@@ -771,7 +768,7 @@ public final class CheckUtil {
                 final DetailAST catchBody =
                         catchStmt.findFirstToken(TokenTypes.SLIST);
                 isTerminated = isTerminated(catchBody, useBreak, useContinue, labels);
-                catchStmt = catchStmt.getNextSibling();
+                catchStmt = getNextNonCommentAst(catchStmt);
             }
         }
         return isTerminated;
@@ -795,7 +792,7 @@ public final class CheckUtil {
                 caseGroup.findFirstToken(TokenTypes.SLIST);
             isTerminated = caseBody != null
                     && isTerminated(caseBody, false, useContinue, labels);
-            caseGroup = caseGroup.getNextSibling();
+            caseGroup = getNextNonCommentAst(caseGroup);
         }
         return isTerminated;
     }
