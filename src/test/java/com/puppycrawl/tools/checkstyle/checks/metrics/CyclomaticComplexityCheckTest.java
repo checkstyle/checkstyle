@@ -22,10 +22,17 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck.MSG_KEY;
 
+import java.io.File;
+import java.math.BigInteger;
+import java.util.Collection;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class CyclomaticComplexityCheckTest extends AbstractModuleTestSupport {
@@ -33,6 +40,30 @@ public class CyclomaticComplexityCheckTest extends AbstractModuleTestSupport {
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/cyclomaticcomplexity";
+    }
+
+    @Test
+    public void testClearState() throws Exception {
+        final CyclomaticComplexityCheck check = new CyclomaticComplexityCheck();
+        assertWithMessage("Initial current value should be one")
+            .that(TestUtil.getInternalState(check, "currentValue", BigInteger.class))
+            .isEqualTo(BigInteger.ONE);
+        final DetailAST root = JavaParser.parseFile(
+            new File(getPath("InputCyclomaticComplexity1.java")),
+            JavaParser.Options.WITHOUT_COMMENTS);
+        final DetailAST methodDef = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.METHOD_DEF).orElseThrow();
+        final DetailAST literalWhile = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.LITERAL_WHILE).orElseThrow();
+
+        assertWithMessage("Value stack is not cleared on beginTree")
+            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                methodDef, "valueStack", valueStack -> ((Collection<?>) valueStack).isEmpty()))
+            .isTrue();
+        assertWithMessage("Current value is not reset on beginTree")
+            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                literalWhile, "currentValue", BigInteger.ONE::equals))
+            .isTrue();
     }
 
     @Test
