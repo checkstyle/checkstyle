@@ -64,7 +64,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example2.customProperties"/>
           <param name="type" value="raw"/>
-        </macro><hr class="example-separator"/>
+        </macro>
         <p id="Example3-raw">
           Example: in foo.properties file
         </p>
