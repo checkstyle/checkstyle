@@ -1,3 +1,9 @@
+/*
+InnerTypeLast
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.design.innertypelast;
 
 public class InputXpathInnerTypeLastTwo {
@@ -8,7 +14,9 @@ public class InputXpathInnerTypeLastTwo {
 
     class Inner {
         class InnerInInner {}
-        public void innerMethod() {}  // warn
+        // violation 2 lines below """Init blocks, constructors, fields and methods
+        //     should be before inner types."""
+        public void innerMethod() {}
 
     };
 
