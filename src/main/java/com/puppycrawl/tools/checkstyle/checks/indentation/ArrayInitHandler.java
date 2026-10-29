@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class ArrayInitHandler extends BlockParentHandler {
 
     /**
-     * Constant to define that the required character does not exist at any position.
+     * Indicates that no array element starts on the opening brace's line.
      */
     private static final int NOT_EXIST = -1;
 
@@ -109,41 +109,14 @@ public class ArrayInitHandler extends BlockParentHandler {
             new IndentLevel(getIndent(), getContext().getArrayInitIndent(),
                     getContext().getLineWrappingIndentation());
 
-        final int firstLine = getFirstLine(getListChild());
         final int lcurlyPos = expandedTabsColumnNo(getLeftCurly());
-        final int firstChildPos =
-            getNextFirstNonBlankOnLineAfter(firstLine, lcurlyPos);
+        final int firstChildPos = getArrayFirstElementIndent();
 
         if (firstChildPos != NOT_EXIST) {
             expectedIndent = IndentLevel.addAcceptable(expectedIndent, firstChildPos, lcurlyPos
                     + getLineWrappingIndentation());
         }
         return expectedIndent;
-    }
-
-    /**
-     * Returns column number of first non-blank char after
-     * specified column on specified line or {@code NOT_EXIST} if such char doesn't exist.
-     *
-     * @param lineNo   number of line on which we search
-     * @param columnNo number of column after which we search
-     *
-     * @return column number of first non-blank char after
-     *         specified column on specified line or {@code NOT_EXIST} if such char doesn't exist.
-     */
-    private int getNextFirstNonBlankOnLineAfter(int lineNo, int columnNo) {
-        int realColumnNo = columnNo + 1;
-        final int[] line = getContext().getLine(lineNo - 1).codePoints().toArray();
-        final int lineLength = line.length;
-        while (realColumnNo < lineLength
-               && Character.isWhitespace(line[realColumnNo])) {
-            realColumnNo++;
-        }
-
-        if (realColumnNo == lineLength) {
-            realColumnNo = NOT_EXIST;
-        }
-        return realColumnNo;
     }
 
     /**

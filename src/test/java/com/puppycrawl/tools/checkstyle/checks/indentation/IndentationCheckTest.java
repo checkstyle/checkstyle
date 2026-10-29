@@ -38,6 +38,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -405,12 +407,12 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("throwsIndent", "4");
         final String[] expected = {
-            "41:1: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                    "annotation array initialization", 0, "4, 25, 72"),
-            "42:1: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                    "annotation array initialization", 0, "4, 25, 72"),
-            "51:7: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                    "annotation array initialization", 6, "8, 29, 72"),
+            "41:1: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "annotation array initialization", 0, 4),
+            "42:1: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "annotation array initialization", 0, 4),
+            "51:7: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "annotation array initialization", 6, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationDifficultAnnotations.java"), expected);
     }
@@ -721,17 +723,16 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "15:1: " + getCheckMessage(MSG_ERROR, "com", 0, "4"),
             "19:1: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization", 0,
                 "4, 6, 34, 36"),
-            "24:14: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
-                    13, "4, 6, 36, 70"),
+            "24:14: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 13, "4, 6"),
             "25:3: " + getCheckMessage(MSG_ERROR_MULTI,
                     "annotation array initialization rcurly", 2, "0, 4"),
-            "36:7: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization", 6,
-                "8, 10, 33, 70"),
+            "36:7: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 6, "8, 10"),
             "37:3: " + getCheckMessage(MSG_ERROR_MULTI,
                     "annotation array initialization rcurly", 2, "4, 8"),
-
             "53:6: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                    "annotation array initialization", 5, "6, 8, 10, 70"),
+                    "annotation array initialization", 5, "6, 8, 10"),
             "55:6: " + getCheckMessage(MSG_ERROR_MULTI,
                     "annotation array initialization rcurly", 5, "2, 6"),
         };
@@ -752,17 +753,16 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "8");
         checkConfig.addProperty("throwsIndent", "4");
         final String[] expected = {
-
-            "19:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "annotation array initialization", 4, "0, 33, 63"),
-            "32:9: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "annotation array initialization", 8, "4, 29, 63"),
+            "19:5: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "annotation array initialization", 4, 0),
+            "32:9: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "annotation array initialization", 8, 4),
             "34:3: " + getCheckMessage(MSG_ERROR,
                 "annotation array initialization rcurly", 2, 4),
             "49:7: " + getCheckMessage(MSG_ERROR,
                 "annotation array initialization lcurly", 6, 2),
             "51:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "annotation array initialization", 4, "2, 6, 63"),
+                    "annotation array initialization", 4, "2, 6"),
         };
         final String fileName = getPath("InputIndentationAnnArrInit2.java");
         verifyWarns(checkConfig, fileName, expected);
@@ -781,10 +781,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "8");
         checkConfig.addProperty("throwsIndent", "4");
         final String[] expected = {
-            "18:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                    "annotation array initialization", 4, "0, 41, 70"),
-            "31:9: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                    "annotation array initialization", 8, "4, 29, 70"),
+            "18:5: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "annotation array initialization", 4, 0),
+            "31:9: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "annotation array initialization", 8, 4),
             "33:3: " + getCheckMessage(MSG_ERROR,
                     "annotation array initialization rcurly", 2, 4),
             "43:7: " + getCheckMessage(MSG_ERROR,
@@ -792,13 +792,13 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "48:7: " + getCheckMessage(MSG_ERROR,
                     "annotation array initialization lcurly", 6, "2"),
             "49:11: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                    "annotation array initialization", 10, "2, 6, 70"),
+                    "annotation array initialization", 10, "2, 6"),
             "50:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                    "annotation array initialization", 12, "2, 6, 70"),
+                    "annotation array initialization", 12, "2, 6"),
             "51:21: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                    "annotation array initialization", 20, "2, 6, 70"),
+                    "annotation array initialization", 20, "2, 6"),
             "53:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                    "annotation array initialization", 4, "2, 6, 70"),
+                    "annotation array initialization", 4, "2, 6"),
         };
         final String fileName = getPath("InputIndentationAnnArrInitWithEmoji.java");
         verifyWarns(checkConfig, fileName, expected);
@@ -821,8 +821,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("throwsIndent", "4");
         final String fileName = getPath("InputIndentationOddLineWrappingAndArrayInit.java");
         final String[] expected = {
-            "26:17: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
-                    16, "11, 17, 54, 64"),
+            "26:17: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 16, "11, 17"),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -856,8 +856,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String fileName = getPath("InputIndentationZeroArrayInit.java");
 
         final String[] expected = {
-            "23:12: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
-                    11, "8, 12, 37, 66"),
+            "23:12: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 11, "8, 12"),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -911,18 +911,18 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
 
         final String[] expected = {
-            "38:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "annotation array initialization", 4, "8, 26, 68"),
-            "47:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "annotation array initialization", 4, "8, 26, 68"),
-            "49:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "annotation array initialization", 4, "12, 30, 72"),
+            "38:5: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "annotation array initialization", 4, 8),
+            "47:5: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "annotation array initialization", 4, 8),
+            "49:5: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "annotation array initialization", 4, 12),
             "79:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "annotation array initialization", 4, "8, 12, 68"),
+                    "annotation array initialization", 4, "8, 12"),
             "81:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "annotation array initialization", 4, "12, 16, 72"),
+                    "annotation array initialization", 4, "12, 16"),
             "89:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "annotation array initialization", 4, "8, 12, 68"),
+                    "annotation array initialization", 4, "8, 12"),
         };
         verifyWarns(checkConfig, getPath("InputIndentationAnnArrInitTextBlock.java"), expected);
     }
@@ -1691,18 +1691,17 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             getPath("InputIndentationInvalidArrayInitIndent2D.java");
         final String[] expected = {
             "19:5: " + getCheckMessage(MSG_ERROR_MULTI,
-                "array initialization lcurly", 4, "6, 8, 20, 56, 60"),
+                    "array initialization lcurly", 4, "6, 8, 12"),
             "24:10: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "array initialization", 9, "8, 10, 12, 22, 24, 56, 58, 60"),
+                    "array initialization", 9, "8, 10, 12"),
             "27:7: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "array initialization", 6, "8, 10, 12, 22, 24, 56, 58, 60"),
+                    "array initialization", 6, "8, 10, 12"),
             "29:5: " + getCheckMessage(MSG_ERROR_MULTI,
-                "array initialization lcurly", 4, "6, 8, 20, 56, 60"),
+                    "array initialization lcurly", 4, "6, 8, 12"),
             "30:7: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "array initialization", 6, "8, 10, 12, 22, 24, 56, 58, 60"),
+                    "array initialization", 6, "8, 10, 12"),
             "31:5: " + getCheckMessage(MSG_ERROR_MULTI,
-                "array initialization rcurly", 4, "6, 8, 20, 56, 60"),
-
+                    "array initialization rcurly", 4, "6, 8, 12"),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -1723,6 +1722,56 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String fileName = getPath("InputIndentationValidArrayInitIndentTwo.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @ParameterizedTest
+    @ValueSource(booleans = {false, true})
+    public final void testArrayInitComments(boolean strict) throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("forceStrictCondition", Boolean.toString(strict));
+        final String[] expected = {
+            "8:12: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 11, 12),
+            "11:12: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 11, 12),
+            "14:12: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 11, 12),
+            "17:27: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 26, 12),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationArrayInitComments.java"), expected);
+    }
+
+    @ParameterizedTest
+    @ValueSource(booleans = {false, true})
+    public final void testAnnotationArrayInitComments(boolean strict) throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("forceStrictCondition", Boolean.toString(strict));
+        final String[] expected = {
+            "6:4: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization", 3, 4),
+            "10:8: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization", 7, 8),
+            "14:8: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization", 7, 8),
+        };
+        verifyWarns(checkConfig,
+                getPath("InputIndentationAnnotationArrayInitComments.java"), expected);
+    }
+
+    @Test
+    public void testArrayInitElementAlignment() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        verifyWarns(checkConfig, getPath("InputIndentationArrayInitElementAlignment.java"));
+    }
+
+    @Test
+    public void testArrayInitCommentsWithTabs() throws Exception {
+        for (int width : new int[] {4, 8}) {
+            final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+            checkConfig.addProperty("tabWidth", Integer.toString(width));
+            checkConfig.addProperty("basicOffset", Integer.toString(width));
+            checkConfig.addProperty("arrayInitIndent", Integer.toString(width));
+            checkConfig.addProperty("lineWrappingIndentation", Integer.toString(width));
+            verify(checkConfig, getPath("InputIndentationArrayInitCommentsWithTabs.java"),
+                    CommonUtil.EMPTY_STRING_ARRAY);
+        }
     }
 
     @Test
@@ -1751,14 +1800,12 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("throwsIndent", "4");
         final String fileName = getPath("InputIndentationArrayInitIndentWithEmoji.java");
         final String[] expected = {
-            "20:6: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization",
-               5, "4, 6, 54, 56"),
-            "25:9: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization",
-               8, "4, 6, 37, 56"),
-            "26:11: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization",
-               10, "4, 6, 37, 56"),
-            "31:11: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization lcurly",
-               10, "4, 6, 21, 56, 60"),
+            "20:6: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "array initialization", 5, "4, 6"),
+            "25:9: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "array initialization", 8, "4, 6"),
+            "26:11: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "array initialization", 10, "4, 6"),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -1823,15 +1870,15 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "23:7: " + getCheckMessage(MSG_ERROR, "member def type", 6, 4),
             "25:3: " + getCheckMessage(MSG_ERROR, "member def type", 2, 4),
             "29:7: " + getCheckMessage(MSG_ERROR, "member def type", 6, 4),
-            "30:9: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 8,
-                "10, 36, 71"),
+            "30:9: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 8, 10),
             "31:5: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 4, "6, 10"),
-            "34:10: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 9,
-                "8, 33, 71"),
-            "35:8: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 7,
-                "8, 33, 71"),
-            "36:10: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 9,
-                "8, 33, 71"),
+            "34:10: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 9, 8),
+            "35:8: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 7, 8),
+            "36:10: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 9, 8),
             "41:3: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization lcurly", 2, "4, 8"),
             "45:7: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "4, 8"),
             "49:3: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization lcurly", 2, "4, 8"),
@@ -1839,15 +1886,15 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                 "8, 31, 33"),
             "54:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization",
                 4, "8, 31, 33"),
-            "59:7: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization",
-                6, "8, 33, 71"),
+            "59:7: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 6, 8),
             "64:3: " + getCheckMessage(MSG_ERROR, "member def type", 2, 4),
             "66:7: " + getCheckMessage(MSG_ERROR, "member def type", 6, 4),
             "67:3: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 2, "6, 10"),
-            "70:7: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization",
-                6, "8, 38, 71"),
-            "77:11: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization",
-                10, "12, 26, 71"),
+            "70:7: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 6, 8),
+            "77:11: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 10, 12),
         };
 
         verifyWarns(checkConfig, fileName, expected);
@@ -1869,30 +1916,31 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String fileName = getPath("InputIndentationInvalidArrayInitIndent1.java");
         final String[] expected = {
             "30:9: " + getCheckMessage(MSG_ERROR, "1", 8, 12),
-            "41:11: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 10,
-                "12, 32, 71"),
-            "42:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 14,
-                "12, 32, 71"),
-            "45:11: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 10,
-                "12, 32, 71"),
-            "46:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 14,
-                "12, 32, 71"),
+            "41:11: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 10, 12),
+            "42:15: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 14, 12),
+            "45:11: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 10, 12),
+            "46:15: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 14, 12),
             "47:7: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "8, 12"),
             "50:7: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization lcurly", 6, "8, 12"),
-            "51:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 14,
-                "10, 12, 71"),
+            "51:15: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 14, 12),
+            "52:11: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 10, 12),
             "53:7: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "8, 12"),
-            // following are tests for annotation array initialization
             "61:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 12, "16, 46, 48"),
-            "65:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
-                14, "12, 16, 71"),
+            "65:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 14, "12, 16"),
             "69:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 14, "16, 28, 30"),
             "70:9: " + getCheckMessage(MSG_ERROR_MULTI, "annotation array initialization rcurly",
                 8, "12, 16"),
-            "72:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
-                12, "16, 31, 71"),
+            "72:13: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "annotation array initialization", 12, 16),
         };
 
         verifyWarns(checkConfig, fileName, expected);
@@ -1917,15 +1965,15 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "23:7: " + getCheckMessage(MSG_ERROR, "member def type", 6, 4),
             "25:3: " + getCheckMessage(MSG_ERROR, "member def type", 2, 4),
             "29:7: " + getCheckMessage(MSG_ERROR, "member def type", 6, 4),
-            "30:9: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 8,
-                "10, 36, 71"),
+            "30:9: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 8, 10),
             "31:5: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 4, "6, 10"),
-            "34:10: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 9,
-                "8, 33, 71"),
-            "35:8: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 7,
-                "8, 33, 71"),
-            "36:10: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 9,
-                "8, 33, 71"),
+            "34:10: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 9, 8),
+            "35:8: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 7, 8),
+            "36:10: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 9, 8),
             "41:3: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization lcurly", 2, "4, 8"),
             "45:7: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "4, 8"),
             "49:3: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization lcurly", 2, "4, 8"),
@@ -1933,15 +1981,15 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                 "8, 31, 33"),
             "54:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization",
                 4, "8, 31, 33"),
-            "59:7: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization",
-                6, "8, 33, 71"),
+            "59:7: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 6, 8),
             "64:3: " + getCheckMessage(MSG_ERROR, "member def type", 2, 4),
             "66:7: " + getCheckMessage(MSG_ERROR, "member def type", 6, 4),
             "67:3: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 2, "6, 10"),
-            "70:7: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization",
-                6, "8, 38, 71"),
-            "77:11: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization",
-                10, "12, 26, 71"),
+            "70:7: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 6, 8),
+            "77:11: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 10, 12),
         };
 
         verifyWarns(checkConfig, fileName, expected);
@@ -1963,30 +2011,31 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String fileName = getPath("InputIndentationInvalidArrayInitIndent1.java");
         final String[] expected = {
             "30:9: " + getCheckMessage(MSG_ERROR, "1", 8, 12),
-            "41:11: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 10,
-                "12, 32, 71"),
-            "42:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 14,
-                "12, 32, 71"),
-            "45:11: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 10,
-                "12, 32, 71"),
-            "46:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 14,
-                "12, 32, 71"),
+            "41:11: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 10, 12),
+            "42:15: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 14, 12),
+            "45:11: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 10, 12),
+            "46:15: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 14, 12),
             "47:7: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "8, 12"),
             "50:7: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization lcurly", 6, "8, 12"),
-            "51:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 14,
-                "10, 12, 71"),
+            "51:15: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 14, 12),
+            "52:11: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 10, 12),
             "53:7: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "8, 12"),
-            // following are tests for annotation array initialization
             "61:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 12, "16, 46, 48"),
-            "65:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
-                14, "12, 16, 71"),
+            "65:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 14, "12, 16"),
             "69:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 14, "16, 28, 30"),
             "70:9: " + getCheckMessage(MSG_ERROR_MULTI, "annotation array initialization rcurly",
                 8, "12, 16"),
-            "72:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
-                12, "16, 31, 71"),
+            "72:13: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "annotation array initialization", 12, 16),
         };
 
         verifyWarns(checkConfig, fileName, expected);
@@ -3620,6 +3669,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "15:1: " + getCheckMessage(MSG_CHILD_ERROR, "new", 0, 8),
             "17:1: " + getCheckMessage(MSG_ERROR, "new lparen", 0, 8),
             "25:1: " + getCheckMessage(MSG_ERROR, "=", 0, 8),
+            "26:19: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 18, 4),
+            "27:19: " + getCheckMessage(MSG_CHILD_ERROR,
+                    "array initialization", 18, 4),
         };
         verifyWarns(checkConfig, getPath("InputIndentationNewHandler.java"), expected);
     }

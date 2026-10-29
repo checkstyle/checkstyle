@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class AnnotationArrayInitHandler extends BlockParentHandler {
 
     /**
-     * Constant to define that the required character does not exist at any position.
+     * Indicates that no array element starts on the opening brace's line.
      */
     private static final int NOT_EXIST = -1;
 
@@ -97,10 +97,8 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
             new IndentLevel(getIndent(), getArrayInitIndentation(), getLineWrappingIndentation());
 
         final DetailAST leftCurly = getLeftCurly();
-        final int firstLine = getFirstLine(getListChild());
         final int lcurlyPos = expandedTabsColumnNo(leftCurly);
-        final int firstChildPos =
-            getNextFirstNonBlankOnLineAfter(firstLine, lcurlyPos);
+        final int firstChildPos = getArrayFirstElementIndent();
 
         // the code is written with old style where curlies are given their own line,
         // the code block should be aligned to lcurly pos + lineWrappingIndent
@@ -115,31 +113,6 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
         }
 
         return expectedIndent;
-    }
-
-    /**
-     * Returns column number of first non-blank char after
-     * specified column on specified line or -1 if such char doesn't exist.
-     *
-     * @param lineNo   number of line on which we search
-     * @param columnNo number of column after which we search
-     *
-     * @return column number of first non-blank char after
-     *         specified column on specified line or -1 if such char doesn't exist.
-     */
-    private int getNextFirstNonBlankOnLineAfter(int lineNo, int columnNo) {
-        int realColumnNo = columnNo + 1;
-        final String line = getContext().getLine(lineNo - 1);
-        final int lineLength = line.length();
-        while (realColumnNo < lineLength
-            && Character.isWhitespace(line.charAt(realColumnNo))) {
-            realColumnNo++;
-        }
-
-        if (realColumnNo == lineLength) {
-            realColumnNo = -1;
-        }
-        return realColumnNo;
     }
 
     /**
