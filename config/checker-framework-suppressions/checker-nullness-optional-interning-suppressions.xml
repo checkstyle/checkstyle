@@ -6401,17 +6401,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTag.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter firstArg of JavadocTag constructor.</message>
-    <lineContent>this(line, column, tag, null);</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.MODIFIERS)</message>
