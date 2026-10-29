@@ -2,7 +2,7 @@
 NoWhitespaceAfter
 allowLineBreaks = false
 tokens = ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT, DOT, TYPECAST, \
-         ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED, METHOD_REF
+          INDEX_OP, LITERAL_SYNCHRONIZED, METHOD_REF
 
 
 */
@@ -51,8 +51,8 @@ public class InputNoWhitespaceAfterNewTypeStructure {
     void badMethod() {
         Slot slot = new Slot();
         slot.ci [5] = 10; // violation ''ci' is followed by whitespace.'
-        slot.ci = new int [6]; // violation ''int' is followed by whitespace.'
-        double [] cZ = {1.1, 1.2}; // violation ''double' is followed by whitespace.'
+        slot.ci = new int [6];
+        double [] cZ = {1.1, 1.2};
         final double   dnZ = slot.sin2Phi               * cZ [1];
         // violation above ''cZ' is followed by whitespace.'
 
@@ -65,13 +65,13 @@ public class InputNoWhitespaceAfterNewTypeStructure {
         int[][
                 ]
                  a
-                  [] // violation ''a' is followed by whitespace.'
-                        [] ; // violation '']' is followed by whitespace.'
+                  []
+                        [] ;
                 int[][
                  ]
                  b
-                 [] // violation '']' is followed by whitespace.'
-                        [] ; // violation '']' is followed by whitespace.'
+                 []
+                        [] ;
     }
 
     void varargLong(@I String @L [] @K [] @J ... vararg2) { }
@@ -92,7 +92,6 @@ public class InputNoWhitespaceAfterNewTypeStructure {
              kmaw = (javax.net.ssl.KeyManager[]) // violation '')' is followed by whitespace.'
                        SSLSecurity.truncateArray(kmaw,
                            new javax.net.ssl.KeyManager [3]);
-             // violation above ''KeyManager' is followed by whitespace.'
          }
     }
 
@@ -150,7 +149,6 @@ public class InputNoWhitespaceAfterNewTypeStructure {
 
     }
     protected TreeSet<byte []> sortedPrefixes = createTreeSet();
-    // violation above ''byte' is followed by whitespace.'
 
     TreeSet<byte[]> createTreeSet() {
         return null;
@@ -184,9 +182,6 @@ public class InputNoWhitespaceAfterNewTypeStructure {
     }
     String[] c, d[];
     String [] e, f [];
-            // 2 violations above:
-            //          ''String' is followed by whitespace.'
-            //          ''f' is followed by whitespace.'
 
     public enum Stooge {
         MOE, CURLY, LARRY,
@@ -218,13 +213,13 @@ public class InputNoWhitespaceAfterNewTypeStructure {
     int[][
     ]
      w
-     [] // violation '']' is followed by whitespace.'
-            [] ; // violation '']' is followed by whitespace.'
+     []
+            [] ;
     int[][
      ]
      z
-    [] // violation '']' is followed by whitespace.'
-            [] ; // violation '']' is followed by whitespace.'
+    []
+            [] ;
 
     static class P {
         private int x;

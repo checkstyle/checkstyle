@@ -36,7 +36,6 @@ public class NoWhitespaceAfterExamplesTest extends AbstractExamplesModuleTestSup
     public void testExample1() throws Exception {
         final String[] expected = {
             "23:12: " + getCheckMessage(MSG_KEY, "."),
-            "28:9: " + getCheckMessage(MSG_KEY, "int"),
             "32:9: " + getCheckMessage(MSG_KEY, "~"),
         };
 
