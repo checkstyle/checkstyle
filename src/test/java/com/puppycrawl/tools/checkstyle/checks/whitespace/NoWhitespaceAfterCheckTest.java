@@ -394,6 +394,40 @@ public class NoWhitespaceAfterCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNoWhitespaceAfterCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "13:26: " + getCheckMessage(MSG_KEY, "."),
+            "14:23: " + getCheckMessage(MSG_KEY, "!"),
+            "15:20: " + getCheckMessage(MSG_KEY, "-"),
+            "16:19: " + getCheckMessage(MSG_KEY, "~"),
+            "17:23: " + getCheckMessage(MSG_KEY, "--"),
+            "18:27: " + getCheckMessage(MSG_KEY, "numbers"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputNoWhitespaceAfterCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testNoWhitespaceAfterCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "13:26: " + getCheckMessage(MSG_KEY, "."),
+            "14:23: " + getCheckMessage(MSG_KEY, "!"),
+            "15:20: " + getCheckMessage(MSG_KEY, "-"),
+            "16:19: " + getCheckMessage(MSG_KEY, "~"),
+            "17:23: " + getCheckMessage(MSG_KEY, "--"),
+            "18:27: " + getCheckMessage(MSG_KEY, "numbers"),
+            "19:26: " + getCheckMessage(MSG_KEY, "."),
+            "22:27: " + getCheckMessage(MSG_KEY, "-"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputNoWhitespaceAfterCompactSourceFileProperties.java"),
+                expected);
+    }
+
+    @Test
     public void testNoWhitespaceAfterUnnamedPattern() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
