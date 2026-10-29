@@ -21,14 +21,12 @@ package org.checkstyle.suppressionxpathfilter.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck.MSG_KEY;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck;
 
 public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
@@ -47,17 +45,10 @@ public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
-
-        final File fileToProcess =
-                new File(getPath("InputXpathPackageNameOne.java"));
-
         final String pattern = "[A-Z]+";
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(PackageNameCheck.class);
-        moduleConfig.addProperty("format", pattern);
-
         final String[] expectedViolation = {
-            "1:9: " + getCheckMessage(PackageNameCheck.class, MSG_KEY,
+            "11:9: " + getCheckMessage(PackageNameCheck.class, MSG_KEY,
                     "org.checkstyle.suppressionxpathfilter.naming.packagename",
                     pattern),
         };
@@ -70,22 +61,18 @@ public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
                         + "/DOT/IDENT[@text='org']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
-
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathPackageNameOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-
-        final File fileToProcess =
-                new File(getNonCompilablePath("InputXpathPackageNameThree.java"));
-
         final String pattern = "^[a-z]+(\\.[a-z][a-z0-9]*)*$";
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(PackageNameCheck.class);
-        moduleConfig.addProperty("format", pattern);
         final String[] expectedViolations = {
-            "1:9: " + getCheckMessage(PackageNameCheck.class, MSG_KEY,
+            "11:9: " + getCheckMessage(PackageNameCheck.class, MSG_KEY,
                     "org.checkstyle.suppressionxpathfilter.PACKAGENAME",
                     pattern),
         };
@@ -97,23 +84,18 @@ public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
                         + "/DOT/IDENT[@text='org']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getNonCompilablePath("InputXpathPackageNameThree.java"),
+                expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
     public void testTwo() throws Exception {
-
-        final File fileToProcess =
-                new File(getPath("InputXpathPackageNameTwo.java"));
-
         final String pattern = "[A-Z]+";
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(PackageNameCheck.class);
-        moduleConfig.addProperty("format", pattern);
-
         final String[] expectedViolation = {
-            "2:9: " + getCheckMessage(PackageNameCheck.class, MSG_KEY,
+            "12:9: " + getCheckMessage(PackageNameCheck.class, MSG_KEY,
                     "org.checkstyle.suppressionxpathfilter.naming.packagename",
                     pattern),
         };
@@ -126,8 +108,10 @@ public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
                         + "/DOT/IDENT[@text='org']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathPackageNameTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
