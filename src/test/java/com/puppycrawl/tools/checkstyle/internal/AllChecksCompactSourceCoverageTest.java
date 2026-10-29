@@ -116,7 +116,6 @@ public class AllChecksCompactSourceCoverageTest {
         "GoogleNonConstantFieldNameCheck",
         "HideUtilityClassConstructorCheck",
         "IllegalBlockTagCheck",
-        "IllegalCatchCheck",
         "IllegalIdentifierNameCheck",
         "IllegalImportCheck",
         "IllegalInstantiationCheck",
