@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.modifier;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.modifier.ClassMemberImpliedModifierCheck;
 
 public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
 
     @Test
     public void testInterface() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathClassMemberImpliedModifierInterface.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ClassMemberImpliedModifierCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(ClassMemberImpliedModifierCheck.class,
+            "14:5: " + getCheckMessage(ClassMemberImpliedModifierCheck.class,
                 ClassMemberImpliedModifierCheck.MSG_KEY, "static", 0),
         };
 
@@ -68,20 +60,16 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
                         + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Foo']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathClassMemberImpliedModifierInterface.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEnum() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathClassMemberImpliedModifierEnum.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ClassMemberImpliedModifierCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(ClassMemberImpliedModifierCheck.class,
+            "14:5: " + getCheckMessage(ClassMemberImpliedModifierCheck.class,
                 ClassMemberImpliedModifierCheck.MSG_KEY, "static", "null"),
         };
 
@@ -97,20 +85,16 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
                     + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Count']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathClassMemberImpliedModifierEnum.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testRecord() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathClassMemberImpliedModifierRecord.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ClassMemberImpliedModifierCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(ClassMemberImpliedModifierCheck.class,
+            "14:5: " + getCheckMessage(ClassMemberImpliedModifierCheck.class,
                 ClassMemberImpliedModifierCheck.MSG_KEY, "static"),
         };
 
@@ -127,8 +111,10 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
                     + "/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathClassMemberImpliedModifierRecord.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
