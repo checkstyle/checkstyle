@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 
 public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
@@ -45,15 +43,10 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathTypeNameDefault.java"));
-
         final String pattern = "^[A-Z][a-zA-Z0-9]*$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(TypeNameCheck.class);
 
         final String[] expectedViolation = {
-            "5:19: " + getCheckMessage(TypeNameCheck.class,
+            "18:19: " + getCheckMessage(TypeNameCheck.class,
                         TypeNameCheck.MSG_INVALID_PATTERN, "SecondName_", pattern),
         };
 
@@ -63,23 +56,18 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
                         + "='InputXpathTypeNameDefault']]"
                         + "/OBJBLOCK/CLASS_DEF/IDENT[@text='SecondName_']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTypeNameDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInterfaceDef() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathTypeNameInterfaceDef.java"));
-
         final String pattern = "^I_[a-zA-Z0-9]*$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(TypeNameCheck.class);
-        moduleConfig.addProperty("format", "^I_[a-zA-Z0-9]*$");
-        moduleConfig.addProperty("tokens", "INTERFACE_DEF");
 
         final String[] expectedViolation = {
-            "6:15: " + getCheckMessage(TypeNameCheck.class,
+            "19:15: " + getCheckMessage(TypeNameCheck.class,
                         TypeNameCheck.MSG_INVALID_PATTERN, "SecondName", pattern),
         };
 
@@ -89,23 +77,18 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
                         + "='InputXpathTypeNameInterfaceDef']]"
                         + "/OBJBLOCK/INTERFACE_DEF/IDENT[@text='SecondName']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTypeNameInterfaceDef.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testClassDef() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathTypeNameAccessModifiers.java"));
-
         final String pattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(TypeNameCheck.class);
-        moduleConfig.addProperty("format", pattern);
-        moduleConfig.addProperty("applyToPublic", "false");
 
         final String[] expectedViolation = {
-            "7:21: " + getCheckMessage(TypeNameCheck.class,
+            "20:21: " + getCheckMessage(TypeNameCheck.class,
                         TypeNameCheck.MSG_INVALID_PATTERN, "ThirdName", pattern),
         };
 
@@ -116,8 +99,10 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='SecondName']]"
                         + "/OBJBLOCK/CLASS_DEF/IDENT[@text='ThirdName']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathTypeNameAccessModifiers.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
