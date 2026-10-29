@@ -142,9 +142,5 @@
             files="/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/InputMissingDeprecatedClass\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/design/designforextension/InputDesignForExtensionOverridableMethods\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/javadoc/nonemptyatclausedescription/InputNonEmptyAtclauseDescriptionOne\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/javadoc/nonemptyatclausedescription/InputNonEmptyAtclauseDescriptionTwo\.java"/>
 
 </suppressions>

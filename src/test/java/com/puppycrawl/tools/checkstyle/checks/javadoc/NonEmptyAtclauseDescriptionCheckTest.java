@@ -62,23 +62,23 @@ public class NonEmptyAtclauseDescriptionCheckTest
     public void testCheckOne() throws Exception {
         final String[] expected = {
             // this is a case with description that is sequences of spaces
-            "37: " + getCheckMessage(MSG_KEY),
-            // this is a case with description that is sequences of spaces
-            "38: " + getCheckMessage(MSG_KEY),
-            // this is a case with description that is sequences of spaces
             "39: " + getCheckMessage(MSG_KEY),
             // this is a case with description that is sequences of spaces
-            "50: " + getCheckMessage(MSG_KEY),
+            "40: " + getCheckMessage(MSG_KEY),
             // this is a case with description that is sequences of spaces
-            "51: " + getCheckMessage(MSG_KEY),
+            "41: " + getCheckMessage(MSG_KEY),
             // this is a case with description that is sequences of spaces
-            "52: " + getCheckMessage(MSG_KEY),
-            "92: " + getCheckMessage(MSG_KEY),
-            "93: " + getCheckMessage(MSG_KEY),
-            "94: " + getCheckMessage(MSG_KEY),
-            "95: " + getCheckMessage(MSG_KEY),
-            "96: " + getCheckMessage(MSG_KEY),
+            "53: " + getCheckMessage(MSG_KEY),
+            // this is a case with description that is sequences of spaces
+            "54: " + getCheckMessage(MSG_KEY),
+            // this is a case with description that is sequences of spaces
+            "55: " + getCheckMessage(MSG_KEY),
             "97: " + getCheckMessage(MSG_KEY),
+            "98: " + getCheckMessage(MSG_KEY),
+            "99: " + getCheckMessage(MSG_KEY),
+            "100: " + getCheckMessage(MSG_KEY),
+            "101: " + getCheckMessage(MSG_KEY),
+            "102: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(getPath("InputNonEmptyAtclauseDescriptionOne.java"), expected);
     }
@@ -95,15 +95,15 @@ public class NonEmptyAtclauseDescriptionCheckTest
     @Test
     public void testCheckTwo() throws Exception {
         final String[] expected = {
-            "16: " + getCheckMessage(MSG_KEY),
-            "17: " + getCheckMessage(MSG_KEY),
-            "18: " + getCheckMessage(MSG_KEY),
-            "19: " + getCheckMessage(MSG_KEY),
-            "20: " + getCheckMessage(MSG_KEY),
-            "51: " + getCheckMessage(MSG_KEY),
-            "60: " + getCheckMessage(MSG_KEY),
-            "75: " + getCheckMessage(MSG_KEY),
-            "77: " + getCheckMessage(MSG_KEY),
+            "21: " + getCheckMessage(MSG_KEY),
+            "22: " + getCheckMessage(MSG_KEY),
+            "23: " + getCheckMessage(MSG_KEY),
+            "24: " + getCheckMessage(MSG_KEY),
+            "25: " + getCheckMessage(MSG_KEY),
+            "53: " + getCheckMessage(MSG_KEY),
+            "63: " + getCheckMessage(MSG_KEY),
+            "80: " + getCheckMessage(MSG_KEY),
+            "82: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(getPath("InputNonEmptyAtclauseDescriptionTwo.java"), expected);
     }
