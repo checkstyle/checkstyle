@@ -186,7 +186,6 @@ public class AllChecksCompactSourceCoverageTest {
         "RecordComponentNameCheck",
         "RecordComponentNumberCheck",
         "RecordTypeParameterNameCheck",
-        "RedundantImportCheck",
         "RedundantModifierCheck",
         "RegexpCheck",
         "RegexpSinglelineJavaCheck",
