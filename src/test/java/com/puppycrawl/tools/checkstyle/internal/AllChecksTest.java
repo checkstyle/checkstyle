@@ -148,7 +148,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         // we have no need to block specific token text
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText",
                 Stream.of("NUM_DOUBLE", "NUM_FLOAT", "NUM_INT", "NUM_LONG", "IDENT",
-                    "COMMENT_CONTENT", "STRING_LITERAL", "CHAR_LITERAL", "TEXT_BLOCK_CONTENT")
+                    "COMMENT_CONTENT", "CHAR_LITERAL", "TEXT_BLOCK_CONTENT")
                     .collect(Collectors.toUnmodifiableSet()));
         // only CLASS_DEF: require @since on public *Check types (see checkstyle-checks.xml)
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WriteTag",
@@ -194,10 +194,6 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // these are covered by GenericWhitespaceCheck
                 "WILDCARD_TYPE", "GENERIC_END", "GENERIC_START")
             .collect(Collectors.toUnmodifiableSet()));
-        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("RightCurlyAloneOrEmpty", Stream.of(
-                // these are covered by RightCurly check
-                "LITERAL_DO", "INTERFACE_DEF")
-            .collect(Collectors.toUnmodifiableSet()));
 
         // google
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AbbreviationAsWordInName", Stream.of(
@@ -230,17 +226,6 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // google doesn't require or prevent braces on these
                 "LAMBDA", "LITERAL_DEFAULT", "LITERAL_CASE")
             .collect(Collectors.toUnmodifiableSet()));
-        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("EmptyBlock", Stream.of(
-                // google doesn't specifically mention empty braces at the start of a case/default
-                "LITERAL_DEFAULT", "LITERAL_CASE",
-                // can be empty for special cases via '6.2 Caught exceptions: not ignored'
-                "LITERAL_CATCH",
-                // specifically allowed via '5.2.4 Constant names'
-                "ARRAY_INIT",
-                // state of the configuration when test was made until
-                // https://github.com/checkstyle/checkstyle/issues/4121
-                "INSTANCE_INIT", "LITERAL_DO", "LITERAL_FOR", "LITERAL_SYNCHRONIZED",
-                "LITERAL_WHILE", "STATIC_INIT").collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("EmptyLineSeparator", Stream.of(
                 // module import declarations are not part of the Google style config token set
                 "MODULE_IMPORT", "ENUM_CONSTANT_DEF").collect(Collectors.toUnmodifiableSet()));
@@ -280,10 +265,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "COLON").collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceBefore", Stream.of(
                 // google uses GenericWhitespace for this behavior
-                "GENERIC_START", "GENERIC_END",
-                // whitespace is necessary between a type annotation and ellipsis
-                // according '4.6.2 Horizontal whitespace point 9'
-                "ELLIPSIS").collect(Collectors.toUnmodifiableSet()));
+                "GENERIC_START", "GENERIC_END").collect(Collectors.toUnmodifiableSet()));
         INTERNAL_MODULES = Definitions.INTERNAL_MODULES.stream()
                 .map(moduleName -> {
                     final List<String> packageTokens = Splitter
@@ -457,13 +439,6 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
                 configCheckTokens.put(checkName, configTokens);
 
-                // add all overridden tokens
-                final Set<String> overrideTokens = tokensToIgnore.get(checkName);
-
-                if (overrideTokens != null) {
-                    configTokens.addAll(overrideTokens);
-                }
-
                 configTokens.addAll(CheckUtil.getTokenNameSet(check.getRequiredTokens()));
                 checkTokens.put(checkName,
                         CheckUtil.getTokenNameSet(check.getAcceptableTokens()));
@@ -483,8 +458,18 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 }
             }
         }
+        assertWithMessage("Token exclusions should only reference checks used in %s config",
+                configName)
+                .that(configChecks.stream().map(Configuration::getName).collect(Collectors.toSet()))
+                .containsAtLeastElementsIn(tokensToIgnore.keySet());
         for (Entry<String, Set<String>> entry : checkTokens.entrySet()) {
             final Set<String> actual = configCheckTokens.get(entry.getKey());
+            final Set<String> ignored = tokensToIgnore.getOrDefault(entry.getKey(), Set.of());
+            assertWithMessage("Token exclusions for %s in %s config should not include used tokens",
+                    entry.getKey(), configName)
+                    .that(actual)
+                    .containsNoneIn(ignored);
+            actual.addAll(ignored);
             assertWithMessage(
                 "'%s' should have all acceptable tokens "
                     + "from check in %s config "
