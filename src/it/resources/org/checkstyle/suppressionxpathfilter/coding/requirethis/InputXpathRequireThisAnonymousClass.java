@@ -1,3 +1,12 @@
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = (default)true
+validateOnlyOverlapping = false
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.coding.requirethis;
 
 public class InputXpathRequireThisAnonymousClass {
@@ -6,7 +15,7 @@ public class InputXpathRequireThisAnonymousClass {
 
         @Override
         public void run() {
-            age = 24; //warn
+            age = 24; // violation 'Reference to instance variable 'age' needs "this.".'
         }
     };
 }
