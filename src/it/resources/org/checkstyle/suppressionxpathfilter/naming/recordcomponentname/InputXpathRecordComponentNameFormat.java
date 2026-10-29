@@ -1,10 +1,14 @@
+/*
+RecordComponentName
+format = ^_[a-z][a-zA-Z0-9]*$
+
+
+*/
 
 package org.checkstyle.suppressionxpathfilter.naming.recordcomponentname;
 
-/* Config:
- * format = ^[a-z][a-zA-Z0-9]*$
- */
 public class InputXpathRecordComponentNameFormat {
     public record MyRecord(int _underscoreValue,
-                           int otherValue) { } // warn
+        // violation below "Name 'otherValue' must match pattern '^_[a-z][a-zA-Z0-9]*$'."
+        int otherValue) { }
 }
