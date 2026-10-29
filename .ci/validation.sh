@@ -350,6 +350,19 @@ no-error-pmd)
   removeFolderWithProtectedFiles pmd
   ;;
 
+no-error-configurate)
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
+  echo "CS_version: ${CS_POM_VERSION}"
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
+  checkout_from "https://github.com/SpongePowered/Configurate.git"
+  cd .ci-temp/Configurate
+  ./gradlew -PcheckstyleVersion="${CS_POM_VERSION}" checkstyleMain checkstyleTest
+  cd ..
+  removeFolderWithProtectedFiles Configurate
+  ;;
+
 no-error-hazelcast)
   CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }

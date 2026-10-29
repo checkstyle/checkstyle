@@ -289,6 +289,10 @@ workflows:
           image-name: *cs_img
           command: ./.ci/no-exception-test.sh no-exception-samples-ant
       - validate-with-maven-script:
+          name: no-error-configurate
+          image-name: cimg/openjdk:21.0.6
+          command: ./.ci/validation.sh no-error-configurate
+      - validate-with-maven-script:
           name: no-error-hazelcast
           image-name: *cs_img
           command: ./.ci/validation.sh no-error-hazelcast
