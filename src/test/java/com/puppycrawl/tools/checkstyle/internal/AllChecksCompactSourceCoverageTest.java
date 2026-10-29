@@ -102,7 +102,6 @@ public class AllChecksCompactSourceCoverageTest {
         "ConstructorsDeclarationGroupingCheck",
         "CustomImportOrderCheck",
         "DefaultComesLastCheck",
-        "DescendantTokenCheck",
         "DesignForExtensionCheck",
         "EmptyBlockCheck",
         "EmptyCatchBlockCheck",
