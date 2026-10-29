@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <div>
- * Checks nested (internal) classes/interfaces are declared at the bottom of the
+ * Checks nested (internal) classes/interfaces/enums/annotations are declared at the bottom of the
  * primary (top-level) class after all init and static init blocks,
  * method, constructor and field declarations.
  * </div>
@@ -77,6 +77,8 @@ public class InnerTypeLastCheck extends AbstractCheck {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
         };
     }
 
