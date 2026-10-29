@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.RecordComponentNameCheck;
 
 public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathRecordComponentNameDefault.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RecordComponentNameCheck.class);
-
         final String[] expectedViolation = {
-            "6:56: " + getCheckMessage(RecordComponentNameCheck.class,
+            "11:56: " + getCheckMessage(RecordComponentNameCheck.class,
                 RecordComponentNameCheck.MSG_INVALID_PATTERN,
                     "_value", "^[a-z][a-zA-Z0-9]*$"),
         };
@@ -62,21 +54,16 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
                 + "/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='_value']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathRecordComponentNameDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testFormat() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathRecordComponentNameFormat.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RecordComponentNameCheck.class);
-        moduleConfig.addProperty("format", "^_[a-z][a-zA-Z0-9]*$");
-
         final String[] expectedViolation = {
-            "9:32: " + getCheckMessage(RecordComponentNameCheck.class,
+            "13:13: " + getCheckMessage(RecordComponentNameCheck.class,
                 RecordComponentNameCheck.MSG_INVALID_PATTERN,
                     "otherValue", "^_[a-z][a-zA-Z0-9]*$"),
         };
@@ -88,20 +75,16 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
                 + "/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='otherValue']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathRecordComponentNameFormat.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNested() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathRecordComponentNameNested.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RecordComponentNameCheck.class);
-
         final String[] expectedViolation = {
-            "8:36: " + getCheckMessage(RecordComponentNameCheck.class,
+            "13:36: " + getCheckMessage(RecordComponentNameCheck.class,
                 RecordComponentNameCheck.MSG_INVALID_PATTERN,
                     "_value", "^[a-z][a-zA-Z0-9]*$"),
         };
@@ -114,8 +97,10 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
                 + "/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='_value']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathRecordComponentNameNested.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
