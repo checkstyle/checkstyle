@@ -112,7 +112,6 @@ public class AllChecksCompactSourceCoverageTest {
         "EqualsAvoidNullCheck",
         "ExplicitInitializationCheck",
         "FinalClassCheck",
-        "GenericWhitespaceCheck",
         "GoogleNonConstantFieldNameCheck",
         "HideUtilityClassConstructorCheck",
         "IllegalBlockTagCheck",
