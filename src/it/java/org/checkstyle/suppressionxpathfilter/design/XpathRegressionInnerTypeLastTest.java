@@ -21,14 +21,12 @@ package org.checkstyle.suppressionxpathfilter.design;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck.MSG_KEY;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck;
 
 public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
@@ -47,13 +45,8 @@ public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathInnerTypeLastOne.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(InnerTypeLastCheck.class);
-
         final String[] expectedViolations = {
-            "8:5: " + getCheckMessage(InnerTypeLastCheck.class, MSG_KEY),
+            "15:5: " + getCheckMessage(InnerTypeLastCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -73,20 +66,16 @@ public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInnerTypeLastOne.java"),
+                expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
     public void testTwo() throws Exception {
-
-        final File fileToProcess =
-                new File(getPath("InputXpathInnerTypeLastTwo.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(InnerTypeLastCheck.class);
-
         final String[] expectedViolations = {
-            "11:9: " + getCheckMessage(InnerTypeLastCheck.class, MSG_KEY),
+            "18:9: " + getCheckMessage(InnerTypeLastCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -106,21 +95,16 @@ public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
                         + "[@text='innerMethod']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations,
-                expectedXpathQueries);
-
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInnerTypeLastTwo.java"),
+                expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
     public void testThree() throws Exception {
-
-        final File fileToProcess = new File(
-                getPath("InputXpathInnerTypeLastThree.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(InnerTypeLastCheck.class);
-
         final String[] expectedViolations = {
-            "10:5: " + getCheckMessage(InnerTypeLastCheck.class, MSG_KEY),
+            "17:5: " + getCheckMessage(InnerTypeLastCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -140,9 +124,10 @@ public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolations,
-                expectedXpathQueries);
-
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInnerTypeLastThree.java"),
+                expectedXpathQueries,
+                expectedViolations);
     }
 
 }
