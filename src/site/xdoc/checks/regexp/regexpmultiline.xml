@@ -29,6 +29,7 @@
               <li><a href="#Example7-config" class="toc-sublink">Match test strings regardless of case</a></li>
               <li><a href="#Example8-config" class="toc-sublink">Find calls to print to the console with a custom message</a></li>
               <li><a href="#Example9-config" class="toc-sublink">Match a maximum of three test strings</a></li>
+              <li><a href="#Example10-config" class="toc-sublink">Report a violation at the position of a specific capturing group instead of the start of the whole match, use <code>reportGroup</code>. Here group 2 is <code>out</code>, so a call split across lines is reported on the line where <code>out</code> appears</a></li>
             </ul>
           </li>
           <li><a href="#RegexpMultiline_Example_of_Usage">Example of Usage</a></li>
@@ -106,6 +107,13 @@
               <td><a href="../../property-types.html#int">int</a></td>
               <td><code>0</code></td>
               <td>5.0</td>
+            </tr>
+            <tr>
+              <td><a id="reportGroup"/><a href="#reportGroup">reportGroup</a></td>
+              <td>Specify which capturing group to use for violation reporting.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>13.3.0</td>
             </tr>
           </table>
         </div>
@@ -533,6 +541,95 @@ class Example9 {
   }
 }
 </code></pre></div>
+
+          <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example9 {
+  void testMethod1() {
+
+    System.out.print("Example");
+
+    System.err.println("Example");
+    System
+            .out.print("Example");
+    System
+            .err.println("Example");
+    System.
+            out.print("Example");
+    System.
+            err.println("Example");
+  }
+
+  void testMethod2() {
+
+    System.out.println("Test #1: this is a test string");
+
+    System.out.println("TeSt #2: This is a test string");
+
+    System.out.println("TEST #3: This is a test string");
+    int i = 5;
+
+    System.out.println("Value of i: " + i);
+    // violation below 'Line matches the illegal pattern'
+    System.out.println("Test #4: This is a test string");
+
+    System.out.println("TEst #5: This is a test string");
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+          <p id="Example10-config">
+            To configure the check to report a violation at the position of a specific
+            capturing group instead of the start of the whole match, use
+            <code>reportGroup</code>. Here group 2 is <code>out</code>, so a call split
+            across lines is reported on the line where <code>out</code> appears:
+          </p>
+          <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpMultiline"&gt;
+    &lt;property name="format" value="(System\s*\.\s*)(out)\s*\.\s*print\("/&gt;
+    &lt;property name="matchAcrossLines" value="true"/&gt;
+    &lt;property name="reportGroup" value="2"/&gt;
+    &lt;property name="message" value="Avoid using System.out for printing."/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+          <p id="Example10-code">
+            Example:
+          </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example10 {
+  void testMethod1() {
+    // violation below 'Avoid using System.out for printing.'
+    System.out.print("Example");
+
+    System.err.println("Example");
+    System
+    .out.print("Example"); // violation 'Avoid using System.out for printing.'
+    System
+    .err.println("Example");
+    System.
+    out.print("Example"); // violation 'Avoid using System.out for printing.'
+    System.
+    err.println("Example");
+  }
+
+  void testMethod2() {
+
+    System.out.println("Test #1: this is a test string");
+
+    System.out.println("TeSt #2: This is a test string");
+
+    System.out.println("TEST #3: This is a test string");
+    int i = 5;
+
+    System.out.println("Value of i: " + i);
+
+    System.out.println("Test #4: This is a test string");
+
+    System.out.println("TEst #5: This is a test string");
+  }
+}
+</code></pre></div>
+
       </subsection>
 
       <subsection name="Example of Usage" id="RegexpMultiline_Example_of_Usage">
