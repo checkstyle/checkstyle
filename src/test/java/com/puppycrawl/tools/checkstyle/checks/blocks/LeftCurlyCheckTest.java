@@ -763,4 +763,28 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
                 getPath("InputLeftCurlyAnonymousClassEol.java"), expected);
     }
 
+    @Test
+    public void testLeftCurlyCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "18:15: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 15),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputLeftCurlyCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testLeftCurlyCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "16:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 32),
+            "21:15: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 15),
+            "32:13: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 13),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputLeftCurlyCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
