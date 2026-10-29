@@ -65,6 +65,11 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     private static final Pattern SPACE_PATTERN = Pattern.compile(" ");
 
     /**
+     * Compiled pattern for all system newlines.
+     */
+    private static final Pattern ALL_NEW_LINES = Pattern.compile("\\R");
+
+    /**
      * Construct the check with default values.
      */
     public UniquePropertiesCheck() {
@@ -102,7 +107,9 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
             final String keyName = duplication.getKey();
             final int lineNumber = getLineNumber(fileText, keyName);
             // Number of occurrences is number of duplications + 1
-            log(lineNumber, MSG_KEY, keyName, duplication.getValue() + 1);
+            log(lineNumber, MSG_KEY,
+                    ALL_NEW_LINES.matcher(keyName).replaceAll("\\\\n"),
+                    duplication.getValue() + 1);
         }
     }
 
