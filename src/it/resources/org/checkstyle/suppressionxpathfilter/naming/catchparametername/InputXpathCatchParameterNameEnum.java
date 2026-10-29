@@ -1,3 +1,10 @@
+/*
+CatchParameterName
+format = ^[A-Z][a-z]+$
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.naming.catchparametername;
 
 public enum InputXpathCatchParameterNameEnum {
@@ -7,7 +14,8 @@ public enum InputXpathCatchParameterNameEnum {
             switch (op) {
                 case "x":
                     try {
-                    } catch (Exception eX) { // warn
+                    // violation below 'Name 'eX' must match pattern '^[A-Z][a-z]+$'.'
+                    } catch (Exception eX) {
                     }
                     break;
             }
