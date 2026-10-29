@@ -181,7 +181,6 @@ public class AllChecksCompactSourceCoverageTest {
         "RequireEmptyLineBeforeBlockTagGroupCheck",
         "RequireThisCheck",
         "SealedShouldHavePermitsListCheck",
-        "SeparatorWrapCheck",
         "SingleLineJavadocCheck",
         "SingleSpaceSeparatorCheck",
         "StaticVariableNameCheck",

@@ -149,4 +149,27 @@ public class SeparatorWrapCheckTest extends AbstractModuleTestSupport {
                 getPath("InputSeparatorWrapForTestTrailingWhitespace.java"), expected);
     }
 
+    @Test
+    public void testSeparatorWrapCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "."),
+            "15:13: " + getCheckMessage(MSG_LINE_PREVIOUS, ","),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputSeparatorWrapCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testSeparatorWrapCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "12:25: " + getCheckMessage(MSG_LINE_NEW, "."),
+            "14:15: " + getCheckMessage(MSG_LINE_NEW, ","),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputSeparatorWrapCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
