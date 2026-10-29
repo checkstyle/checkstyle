@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 
 public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
@@ -45,15 +43,10 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMemberNameDefault.java"));
-
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MemberNameCheck.class);
 
         final String[] expectedViolation = {
-            "5:17: " + getCheckMessage(MemberNameCheck.class,
+            "16:17: " + getCheckMessage(MemberNameCheck.class,
                         MemberNameCheck.MSG_INVALID_PATTERN, "NUM2", pattern),
         };
 
@@ -63,24 +56,18 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
                         + "='InputXpathMemberNameDefault']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM2']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMemberNameDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testIgnoreProtected() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMemberNameIgnoreProtected.java"));
-
         final String pattern = "^m[A-Z][a-zA-Z0-9]*$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MemberNameCheck.class);
-        moduleConfig.addProperty("format", "^m[A-Z][a-zA-Z0-9]*$");
-        moduleConfig.addProperty("applyToProtected", "false");
-        moduleConfig.addProperty("applyToPackage", "false");
 
         final String[] expectedViolation = {
-            "6:20: " + getCheckMessage(MemberNameCheck.class,
+            "17:20: " + getCheckMessage(MemberNameCheck.class,
                         MemberNameCheck.MSG_INVALID_PATTERN, "NUM1", pattern),
         };
 
@@ -91,21 +78,18 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM1']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMemberNameIgnoreProtected.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMemberNameEnum() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMemberNameEnum.java"));
-
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MemberNameCheck.class);
 
         final String[] expectedViolation = {
-            "5:16: " + getCheckMessage(MemberNameCheck.class,
+            "16:16: " + getCheckMessage(MemberNameCheck.class,
                         MemberNameCheck.MSG_INVALID_PATTERN, "NUM3", pattern),
         };
 
@@ -114,8 +98,10 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
                         + "/ENUM_DEF[./IDENT[@text='InputXpathMemberNameEnum']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM3']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMemberNameEnum.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
