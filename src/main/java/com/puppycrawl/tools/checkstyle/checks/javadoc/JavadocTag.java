@@ -39,17 +39,6 @@ public class JavadocTag {
      * @param line the line number of the tag
      * @param column the column number of the tag
      * @param tag the tag string
-     */
-    public JavadocTag(int line, int column, String tag) {
-        this(line, column, tag, null);
-    }
-
-    /**
-     * Constructs the object.
-     *
-     * @param line the line number of the tag
-     * @param column the column number of the tag
-     * @param tag the tag string
      * @param firstArg the tag argument
      */
     public JavadocTag(int line, int column, String tag, String firstArg) {
@@ -92,43 +81,6 @@ public class JavadocTag {
                 + "' lineNo=" + lineNo
                 + ", columnNo=" + columnNo
                 + ", firstArg='" + firstArg + "']";
-    }
-
-    /**
-     * Checks that the tag is an 'return' tag.
-     *
-     * @return whether the tag is an 'return' tag
-     */
-    public boolean isReturnTag() {
-        return tagInfo == JavadocTagInfo.RETURN;
-    }
-
-    /**
-     * Checks that the tag is an 'param' tag.
-     *
-     * @return whether the tag is an 'param' tag
-     */
-    public boolean isParamTag() {
-        return tagInfo == JavadocTagInfo.PARAM;
-    }
-
-    /**
-     * Checks that the tag is an 'throws' or 'exception' tag.
-     *
-     * @return whether the tag is an 'throws' or 'exception' tag
-     */
-    public boolean isThrowsTag() {
-        return tagInfo == JavadocTagInfo.THROWS
-            || tagInfo == JavadocTagInfo.EXCEPTION;
-    }
-
-    /**
-     * Checks that the tag is a 'inheritDoc' tag.
-     *
-     * @return whether the tag is a 'inheritDoc' tag
-     */
-    public boolean isInheritDocTag() {
-        return tagInfo == JavadocTagInfo.INHERIT_DOC;
     }
 
     /**
