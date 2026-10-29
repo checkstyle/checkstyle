@@ -97,8 +97,7 @@ public class ArchUnitTest {
         "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck",
         "com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck",
         "com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck",
-        "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck",
-        "com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck"
+        "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"
     );
 
     /**
