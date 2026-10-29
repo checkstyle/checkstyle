@@ -22,9 +22,15 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck.MSG_KEY;
 
+import java.io.File;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
@@ -97,6 +103,21 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputNestedForDepthCheckDefaultMaxLevel.java"),
                expected);
+    }
+
+    @Test
+    public void testClearState() throws Exception {
+        final NestedForDepthCheck check = new NestedForDepthCheck();
+        final DetailAST ast = TestUtil.findTokenInAstByPredicate(
+            JavaParser.parseFile(
+                new File(getPath("InputNestedForDepthCheckDefaultMaxLevel.java")),
+                JavaParser.Options.WITHOUT_COMMENTS),
+            node -> node.getType() == TokenTypes.LITERAL_FOR).orElseThrow();
+
+        assertWithMessage("State is not cleared on beginTree")
+            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(
+                check, ast, "depth", depth -> (int) depth == 0))
+            .isTrue();
     }
 
 }
