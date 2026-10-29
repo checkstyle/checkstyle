@@ -245,4 +245,28 @@ public class OperatorWrapCheckTest extends AbstractModuleTestSupport {
                 getPath("InputOperatorWrapLambdaNl.java"), expected);
     }
 
+    @Test
+    public void testOperatorWrapCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "14:21: " + getCheckMessage(MSG_LINE_NEW, "+"),
+            "16:25: " + getCheckMessage(MSG_LINE_NEW, "&&"),
+            "18:23: " + getCheckMessage(MSG_LINE_NEW, "?"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputOperatorWrapCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testOperatorWrapCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "15:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "+"),
+            "17:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&&"),
+            "19:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "?"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputOperatorWrapCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }

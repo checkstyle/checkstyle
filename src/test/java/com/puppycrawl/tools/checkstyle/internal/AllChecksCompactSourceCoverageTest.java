@@ -173,7 +173,6 @@ public class AllChecksCompactSourceCoverageTest {
         "NonEmptyAtclauseDescriptionCheck",
         "NumericalPrefixesInfixesSuffixesCharacterCaseCheck",
         "OneTopLevelClassCheck",
-        "OperatorWrapCheck",
         "OverloadMethodsDeclarationOrderCheck",
         "PackageAnnotationCheck",
         "PackageDeclarationCheck",
