@@ -27,7 +27,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -77,7 +77,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @since 3.0
  */
-@FileStatefulCheck
+@StatelessCheck
 public class ModifierOrderCheck extends AbstractCheck {
 
     /**
@@ -99,21 +99,16 @@ public class ModifierOrderCheck extends AbstractCheck {
      * The order of modifiers as suggested in sections 8.1.1,
      * 8.3.1 and 8.4.3 of the JLS.
      */
-    private static final String[] JLS_ORDER = {
+    private static final List<String> JLS_ORDER = List.of(
         "public", "protected", "private", "abstract", "default", "static",
         "sealed", "non-sealed", "final", "transient", "volatile",
-        "synchronized", "native", "strictfp",
-    };
+        "synchronized", "native", "strictfp"
+    );
 
     /**
      * To specify the order of modifiers.
      */
-    private String[] modifiersOrder = JLS_ORDER;
-
-    /**
-     * Indicates if the order of modifiers is custom.
-     */
-    private boolean isCustomOrder;
+    private List<String> modifiersOrder = JLS_ORDER;
 
     /**
      * Creates a new {@code ModifierOrderCheck} instance.
@@ -129,11 +124,10 @@ public class ModifierOrderCheck extends AbstractCheck {
      * @since 14.2.0
      */
     public void setModifiersOrder(String... modifierOrder) {
-        if (!Arrays.equals(modifierOrder, JLS_ORDER)) {
+        if (!JLS_ORDER.equals(Arrays.asList(modifierOrder))) {
             final Set<String> uniqueOrder = new LinkedHashSet<>(Arrays.asList(modifierOrder));
-            Collections.addAll(uniqueOrder, JLS_ORDER);
-            modifiersOrder = uniqueOrder.toArray(new String[0]);
-            isCustomOrder = true;
+            uniqueOrder.addAll(JLS_ORDER);
+            modifiersOrder = Collections.unmodifiableList(new ArrayList<>(uniqueOrder));
         }
     }
 
@@ -172,11 +166,13 @@ public class ModifierOrderCheck extends AbstractCheck {
                                 .getText());
                 }
                 else {
-                    if (isCustomOrder) {
-                        log(error, MSG_MODIFIER_CUSTOM_ORDER, error.getText());
+                    // Identity distinguishes an explicitly configured order, even when its
+                    // completed contents match the default order.
+                    if (modifiersOrder == JLS_ORDER) {
+                        log(error, MSG_MODIFIER_ORDER, error.getText());
                     }
                     else {
-                        log(error, MSG_MODIFIER_ORDER, error.getText());
+                        log(error, MSG_MODIFIER_CUSTOM_ORDER, error.getText());
                     }
                 }
             }
@@ -211,12 +207,13 @@ public class ModifierOrderCheck extends AbstractCheck {
                     break;
                 }
 
-                while (index < modifiersOrder.length
-                       && !modifiersOrder[index].equals(modifier.getText())) {
+                final Iterator<String> orderIterator = modifiersOrder.listIterator(index);
+                while (orderIterator.hasNext()
+                       && !orderIterator.next().equals(modifier.getText())) {
                     index++;
                 }
 
-                if (index == modifiersOrder.length) {
+                if (index == modifiersOrder.size()) {
                     // Current modifier is out of modifiers order
                     offendingModifier = modifier;
                 }
