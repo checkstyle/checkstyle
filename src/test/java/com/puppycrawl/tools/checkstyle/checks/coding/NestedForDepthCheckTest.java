@@ -22,9 +22,16 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck.MSG_KEY;
 
+import java.io.File;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
@@ -122,6 +129,30 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("compact/InputNestedForDepthCompactSourceFileCustom.java"),
                 expected);
+    }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final NestedForDepthCheck check = new NestedForDepthCheck();
+        final Optional<DetailAST> literalFor = TestUtil.findTokenInAstByPredicate(
+            JavaParser.parseFile(new File(getPath("InputNestedForDepthCheckDefaultMaxLevel.java")),
+                JavaParser.Options.WITHOUT_COMMENTS),
+            ast -> ast.getType() == TokenTypes.LITERAL_FOR);
+
+        assertWithMessage("Ast should contain LITERAL_FOR")
+                .that(literalFor.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        literalFor.orElseThrow(), "depth", depth -> (Integer) depth == 0))
+                .isTrue();
     }
 
 }
