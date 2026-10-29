@@ -1,6 +1,16 @@
+/*
+ClassMemberImpliedModifier
+violateImpliedStaticOnNestedEnum = (default)true
+violateImpliedStaticOnNestedInterface = (default)true
+violateImpliedStaticOnNestedRecord = (default)true
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.modifier.classmemberimpliedmodifier;
 
 public class InputXpathClassMemberImpliedModifierRecord {
-    public record Point(int x, int y) { // warn
+    // violation below "Implied modifier 'static' should be explicit."
+    public record Point(int x, int y) {
     }
 }

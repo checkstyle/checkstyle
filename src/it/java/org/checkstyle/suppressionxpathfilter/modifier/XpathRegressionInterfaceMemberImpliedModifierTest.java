@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.modifier;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck;
 
 public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractXpathTestSupport {
@@ -43,15 +41,8 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
 
     @Test
     public void testField() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathInterfaceMemberImpliedModifierField.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(InterfaceMemberImpliedModifierCheck.class,
+            "18:5: " + getCheckMessage(InterfaceMemberImpliedModifierCheck.class,
                 InterfaceMemberImpliedModifierCheck.MSG_KEY, "final"),
         };
 
@@ -71,20 +62,17 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
                 + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathInterfaceMemberImpliedModifierField.java"),
+            expectedXpathQueries,
+            expectedViolation
+        );
     }
 
     @Test
     public void testMethod() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathInterfaceMemberImpliedModifierMethod.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(InterfaceMemberImpliedModifierCheck.class,
+            "18:5: " + getCheckMessage(InterfaceMemberImpliedModifierCheck.class,
                 InterfaceMemberImpliedModifierCheck.MSG_KEY, "public"),
         };
 
@@ -104,20 +92,17 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
                 + "/MODIFIERS/ABSTRACT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathInterfaceMemberImpliedModifierMethod.java"),
+            expectedXpathQueries,
+            expectedViolation
+        );
     }
 
     @Test
     public void testInner() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathInterfaceMemberImpliedModifierInner.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(InterfaceMemberImpliedModifierCheck.class,
+            "18:5: " + getCheckMessage(InterfaceMemberImpliedModifierCheck.class,
                 InterfaceMemberImpliedModifierCheck.MSG_KEY, "static"),
         };
 
@@ -137,7 +122,11 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
                 + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathInterfaceMemberImpliedModifierInner.java"),
+            expectedXpathQueries,
+            expectedViolation
+        );
     }
 
 }
