@@ -118,6 +118,11 @@ public class DescendantTokenCheck extends AbstractCheck {
     }
 
     @Override
+    public void beginTree(DetailAST rootAST) {
+        Arrays.fill(counts, 0);
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         // reset counts
         Arrays.fill(counts, 0);
