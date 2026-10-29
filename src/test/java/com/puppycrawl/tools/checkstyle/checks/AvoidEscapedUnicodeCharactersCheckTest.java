@@ -620,4 +620,35 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
                 || Arrays.binarySearch(OTHER_CONTROL_CHARACTER_INDICES, character) >= 0;
     }
 
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "13:22: " + getCheckMessage(MSG_KEY),
+            "15:22: " + getCheckMessage(MSG_KEY),
+            "18:20: " + getCheckMessage(MSG_KEY),
+            "20:21: " + getCheckMessage(MSG_KEY),
+            "22:22: " + getCheckMessage(MSG_KEY),
+            "24:23: " + getCheckMessage(MSG_KEY),
+            "29:20: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/"
+                        + "InputAvoidEscapedUnicodeCharactersCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "23:21: " + getCheckMessage(MSG_KEY),
+            "27:30: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/"
+                        + "InputAvoidEscapedUnicodeCharactersCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
