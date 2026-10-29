@@ -23,12 +23,18 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
+import java.io.File;
+import java.util.Deque;
+
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupport {
@@ -146,6 +152,50 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputBooleanExpressionComplexityWhenExpression.java"),
                 expected);
+    }
+
+    /**
+     * We cannot use verify with an Input file to test this state reset because a complete
+     * traversal restores the previous context and empties contextStack through leaveToken.
+     * We visit a method and an operator without leaving, then call beginTree to test the reset.
+     *
+     * @throws Exception when parsing the input file fails
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final BooleanExpressionComplexityCheck check = new BooleanExpressionComplexityCheck();
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputBooleanExpressionComplexity.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final DetailAST method = TestUtil.findTokenInAstByPredicate(root, ast -> {
+            return ast.getType() == TokenTypes.METHOD_DEF;
+        }).orElseThrow();
+        final DetailAST operator = TestUtil.findTokenInAstByPredicate(method, ast -> {
+            return ast.getType() == TokenTypes.LAND;
+        }).orElseThrow();
+
+        check.visitToken(method);
+        check.visitToken(operator);
+        final Object context = TestUtil.getInternalState(check, "context", Object.class);
+        assertWithMessage("Context should be checking before beginTree")
+                .that(TestUtil.getInternalState(context, "checking", Boolean.class))
+                .isTrue();
+        assertWithMessage("Context should count the visited operator")
+                .that(TestUtil.getInternalState(context, "count", Integer.class))
+                .isEqualTo(1);
+
+        check.beginTree(root);
+
+        assertWithMessage("Context stack is not cleared on beginTree")
+                .that(TestUtil.getInternalState(check, "contextStack", Deque.class))
+                .isEmpty();
+        final Object resetContext = TestUtil.getInternalState(check, "context", Object.class);
+        assertWithMessage("Context checking flag is not reset on beginTree")
+                .that(TestUtil.getInternalState(resetContext, "checking", Boolean.class))
+                .isFalse();
+        assertWithMessage("Context count is not reset on beginTree")
+                .that(TestUtil.getInternalState(resetContext, "count", Integer.class))
+                .isEqualTo(0);
     }
 
 }
