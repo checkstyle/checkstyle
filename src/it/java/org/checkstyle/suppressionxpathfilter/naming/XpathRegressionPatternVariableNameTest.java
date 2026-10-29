@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.PatternVariableNameCheck;
 
 public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSupport {
@@ -45,16 +43,10 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathPatternVariableNameOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(PatternVariableNameCheck.class);
         final String defaultPattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expectedViolation = {
-            "6:33: " + getCheckMessage(PatternVariableNameCheck.class,
+            "13:33: " + getCheckMessage(PatternVariableNameCheck.class,
                     PatternVariableNameCheck.MSG_INVALID_PATTERN,
                     "STRING1", defaultPattern),
         };
@@ -67,24 +59,18 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
                 + "IDENT[@text='STRING1']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathPatternVariableNameOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathPatternVariableNameTwo.java"));
-
         final String nonDefaultPattern = "^_[a-zA-Z0-9]*$";
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(PatternVariableNameCheck.class);
-        moduleConfig.addProperty("format", nonDefaultPattern);
-
         final String[] expectedViolation = {
-            "6:34: " + getCheckMessage(PatternVariableNameCheck.class,
+            "13:34: " + getCheckMessage(PatternVariableNameCheck.class,
                     PatternVariableNameCheck.MSG_INVALID_PATTERN, "s", nonDefaultPattern),
         };
 
@@ -96,24 +82,18 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
                 + "PATTERN_VARIABLE_DEF/IDENT[@text='s']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathPatternVariableNameTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathPatternVariableNameThree.java"));
-
         final String nonDefaultPattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(PatternVariableNameCheck.class);
-        moduleConfig.addProperty("format", nonDefaultPattern);
-
         final String[] expectedViolation = {
-            "6:34: " + getCheckMessage(PatternVariableNameCheck.class,
+            "13:34: " + getCheckMessage(PatternVariableNameCheck.class,
                 PatternVariableNameCheck.MSG_INVALID_PATTERN, "STR", nonDefaultPattern),
         };
 
@@ -125,24 +105,18 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
                     + "PATTERN_VARIABLE_DEF/IDENT[@text='STR']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathPatternVariableNameThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testFour() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathPatternVariableNameFour.java"));
-
         final String nonDefaultPattern = "^[a-z][_a-zA-Z0-9]{2,}$";
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(PatternVariableNameCheck.class);
-        moduleConfig.addProperty("format", nonDefaultPattern);
-
         final String[] expectedViolation = {
-            "6:34: " + getCheckMessage(PatternVariableNameCheck.class,
+            "13:34: " + getCheckMessage(PatternVariableNameCheck.class,
                 PatternVariableNameCheck.MSG_INVALID_PATTERN, "st", nonDefaultPattern),
         };
 
@@ -154,8 +128,10 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
                     + "PATTERN_VARIABLE_DEF/IDENT[@text='st']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathPatternVariableNameFour.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
