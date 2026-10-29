@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.LambdaParameterNameCheck;
 
 public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSupport {
@@ -46,15 +44,10 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathLambdaParameterNameDefault.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(LambdaParameterNameCheck.class);
         final String defaultPattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expectedViolation = {
-            "7:44: " + getCheckMessage(LambdaParameterNameCheck.class,
+            "15:44: " + getCheckMessage(LambdaParameterNameCheck.class,
                     LambdaParameterNameCheck.MSG_INVALID_PATTERN, "S", defaultPattern),
         };
 
@@ -65,23 +58,18 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
                        + "./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/IDENT[@text='S']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathLambdaParameterNameDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNonDefaultPattern() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathLambdaParameterNameNonDefaultPattern.java"));
-
         final String nonDefaultPattern = "^_[a-zA-Z0-9]*$";
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(LambdaParameterNameCheck.class);
-        moduleConfig.addProperty("format", nonDefaultPattern);
-
         final String[] expectedViolation = {
-            "7:45: " + getCheckMessage(LambdaParameterNameCheck.class,
+            "15:45: " + getCheckMessage(LambdaParameterNameCheck.class,
                     LambdaParameterNameCheck.MSG_INVALID_PATTERN, "s", nonDefaultPattern),
         };
 
@@ -116,21 +104,18 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
                         + "/PARAMETER_DEF/IDENT[@text='s']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathLambdaParameterNameNonDefaultPattern.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testField() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathLambdaParameterNameField.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(LambdaParameterNameCheck.class);
         final String defaultPattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expectedViolation = {
-            "6:40: " + getCheckMessage(LambdaParameterNameCheck.class,
+            "14:40: " + getCheckMessage(LambdaParameterNameCheck.class,
                     LambdaParameterNameCheck.MSG_INVALID_PATTERN, "S", defaultPattern),
         };
 
@@ -141,19 +126,17 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
                        + "/ASSIGN/LAMBDA/IDENT[@text='S']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathLambdaParameterNameField.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testSwitchRule() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathLambdaParameterNameSwitchRule.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(LambdaParameterNameCheck.class);
         final String defaultPattern = "^([a-z][a-zA-Z0-9]*|_)$";
         final String[] expectedViolation = {
-            "8:23: " + getCheckMessage(LambdaParameterNameCheck.class,
+            "16:23: " + getCheckMessage(LambdaParameterNameCheck.class,
                     LambdaParameterNameCheck.MSG_INVALID_PATTERN, "Word", defaultPattern),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -163,8 +146,10 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
                         + "/EXPR/LITERAL_SWITCH/SWITCH_RULE/LAMBDA/IDENT[@text='Word']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathLambdaParameterNameSwitchRule.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

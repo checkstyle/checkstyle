@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck;
 
 public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupport {
@@ -45,15 +43,10 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
 
     @Test
     public void testStaticVariableName() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathStaticVariableName.java"));
-
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(StaticVariableNameCheck.class);
 
         final String[] expectedViolation = {
-            "6:24: " + getCheckMessage(StaticVariableNameCheck.class,
+            "17:24: " + getCheckMessage(StaticVariableNameCheck.class,
                         StaticVariableNameCheck.MSG_INVALID_PATTERN, "NUM2", pattern),
         };
 
@@ -64,22 +57,18 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM2']"
 
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathStaticVariableName.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInnerClassField() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathStaticVariableNameInnerClassField.java"));
-
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(StaticVariableNameCheck.class);
 
         final String[] expectedViolation = {
-            "14:24: " + getCheckMessage(StaticVariableNameCheck.class,
+            "24:24: " + getCheckMessage(StaticVariableNameCheck.class,
                         StaticVariableNameCheck.MSG_INVALID_PATTERN, "NUM3", pattern),
         };
 
@@ -91,22 +80,18 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
                         + "/SLIST/CLASS_DEF[./IDENT[@text='MyLocalClass']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM3']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathStaticVariableNameInnerClassField.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNoAccessModifier() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathStaticVariableNameNoAccessModifier.java"));
-
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(StaticVariableNameCheck.class);
 
         final String[] expectedViolation = {
-            "5:16: " + getCheckMessage(StaticVariableNameCheck.class,
+            "15:16: " + getCheckMessage(StaticVariableNameCheck.class,
                         StaticVariableNameCheck.MSG_INVALID_PATTERN, "NUM3", pattern),
         };
 
@@ -116,8 +101,10 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
                         + "='InputXpathStaticVariableNameNoAccessModifier']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM3']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathStaticVariableNameNoAccessModifier.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

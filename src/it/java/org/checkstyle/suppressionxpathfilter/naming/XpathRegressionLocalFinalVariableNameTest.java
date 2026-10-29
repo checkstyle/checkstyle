@@ -21,14 +21,12 @@ package org.checkstyle.suppressionxpathfilter.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck.MSG_INVALID_PATTERN;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck;
 
 public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTestSupport {
@@ -47,16 +45,8 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
 
     @Test
     public void testResource() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathLocalFinalVariableNameResource.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(LocalFinalVariableNameCheck.class);
-        moduleConfig.addProperty("format", "^[A-Z][A-Z0-9]*$");
-        moduleConfig.addProperty("tokens", "PARAMETER_DEF,RESOURCE");
-
         final String[] expectedViolation = {
-            "7:21: " + getCheckMessage(LocalFinalVariableNameCheck.class,
+            "16:21: " + getCheckMessage(LocalFinalVariableNameCheck.class,
                     MSG_INVALID_PATTERN, "scanner", "^[A-Z][A-Z0-9]*$"),
         };
 
@@ -67,20 +57,16 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
                         + "/RESOURCE_SPECIFICATION/RESOURCES/RESOURCE/IDENT[@text='scanner']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathLocalFinalVariableNameResource.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testVariable() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathLocalFinalVariableNameVar.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(LocalFinalVariableNameCheck.class);
-        moduleConfig.addProperty("format", "^[A-Z][a-z0-9]*$");
-
         final String[] expectedViolation = {
-            "5:19: " + getCheckMessage(LocalFinalVariableNameCheck.class,
+            "13:19: " + getCheckMessage(LocalFinalVariableNameCheck.class,
                     MSG_INVALID_PATTERN, "VAR1", "^[A-Z][a-z0-9]*$"),
         };
 
@@ -91,20 +77,16 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
                         + "/IDENT[@text='VAR1']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathLocalFinalVariableNameVar.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathLocalFinalVariableNameInner.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(LocalFinalVariableNameCheck.class);
-        moduleConfig.addProperty("format", "^[A-Z][a-z0-9]*$");
-
         final String[] expectedViolation = {
-            "8:23: " + getCheckMessage(LocalFinalVariableNameCheck.class,
+            "16:23: " + getCheckMessage(LocalFinalVariableNameCheck.class,
                         MSG_INVALID_PATTERN, "VAR1", "^[A-Z][a-z0-9]*$"),
         };
 
@@ -116,7 +98,10 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
                         + "/IDENT[@text='VAR1']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathLocalFinalVariableNameInner.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
