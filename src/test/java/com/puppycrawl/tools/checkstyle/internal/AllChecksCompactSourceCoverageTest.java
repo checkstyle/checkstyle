@@ -202,8 +202,7 @@ public class AllChecksCompactSourceCoverageTest {
         "UseEnhancedSwitchCheck",
         "VariableDeclarationUsageDistanceCheck",
         "WhenShouldBeUsedCheck",
-        "WhitespaceAfterCheck",
-        "WhitespaceAroundCheck"
+        "WhitespaceAfterCheck"
     );
 
     @Test
