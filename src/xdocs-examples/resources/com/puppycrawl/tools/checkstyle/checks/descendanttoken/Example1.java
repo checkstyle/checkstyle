@@ -1,12 +1,7 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="DescendantToken">
-      <property name="tokens" value="LITERAL_SWITCH"/>
-      <property name="maximumDepth" value="2"/>
-      <property name="limitedTokens" value="LITERAL_DEFAULT"/>
-      <property name="minimumNumber" value="1"/>
-    </module>
+    <module name="DescendantToken"/>
   </module>
 </module>
 */
@@ -20,7 +15,7 @@ class Example1 {
   int testMethod(int x, String str)
           throws ArithmeticException, IllegalArgumentException {
 
-    switch (x) { // violation 'Count of 0 for 'LITERAL_SWITCH' descendant'
+    switch (x) {
       case 1:
         break;
       case 2:

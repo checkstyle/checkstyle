@@ -37,7 +37,6 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "23:5: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "LITERAL_SWITCH", "LITERAL_DEFAULT"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -196,6 +195,15 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
         };
 
         verifyWithInlineConfigParser(getPath("Example10.java"), expected);
+    }
+
+    @Test
+    public void testUseCase9() throws Exception {
+        final String[] expected = {
+            "23:5: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "LITERAL_SWITCH", "LITERAL_DEFAULT"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase9.java"), expected);
     }
 
 }

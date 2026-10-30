@@ -33,8 +33,7 @@
 
       <subsection name="Examples" id="DescendantToken_Examples">
         <p id="Example1-config">
-          To configure the check to produce a violation on a switch statement
-          with no default case:
+          Default configuration does nothing:
         </p>
         <macro name="example">
           <param name="path"
@@ -355,6 +354,24 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase8.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="UseCase9-config">
+          To configure the check to produce a violation on a switch statement
+          with no default case:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase9.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase9-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase9.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
