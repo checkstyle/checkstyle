@@ -34,6 +34,37 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "13:7: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "14:7: " + getCheckMessage(MSG_KEY, "Exception"),
+            "15:7: " + getCheckMessage(MSG_KEY, "Error"),
+            "16:7: " + getCheckMessage(MSG_KEY, "Throwable"),
+            "22:7: " + getCheckMessage(MSG_KEY, "java.lang.RuntimeException"),
+            "24:7: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
+            "26:7: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
+            "28:7: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputIllegalCatchCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCustom() throws Exception {
+        final String[] expected = {
+            "18:7: " + getCheckMessage(MSG_KEY, "IOException"),
+            "18:7: " + getCheckMessage(MSG_KEY, "IllegalStateException"),
+            "28:7: " + getCheckMessage(MSG_KEY, "java.io.IOException"),
+            "36:7: " + getCheckMessage(MSG_KEY, "IllegalStateException"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputIllegalCatchCompactSourceFileCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testIllegalCatchCheckDefaultTokens() throws Exception {
 
         final String[] expected = {
