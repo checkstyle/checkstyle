@@ -144,7 +144,15 @@ public class BlockCommentEndPositionCheck extends AbstractCheck {
      */
     private boolean isAlone(DetailAST ast) {
         final String lineText = getLine(ast.getLineNo() - 1).trim();
-        return lineText.startsWith("*/");
+        final boolean result;
+        if (lineText.startsWith("*/")) {
+            final String afterEnd = lineText.substring(2).trim();
+            result = afterEnd.isEmpty() || afterEnd.startsWith("//");
+        }
+        else {
+            result = false;
+        }
+        return result;
     }
 
 }
