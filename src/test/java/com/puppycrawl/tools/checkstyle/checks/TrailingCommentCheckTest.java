@@ -121,6 +121,31 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "12:16: " + getCheckMessage(MSG_KEY),
+            "15:17: " + getCheckMessage(MSG_KEY),
+            "18:20: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputTrailingCommentCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "12:16: " + getCheckMessage(MSG_KEY),
+            "15:25: " + getCheckMessage(MSG_KEY),
+            "19:3: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputTrailingCommentCompactSourceFileProperties.java"),
+                expected);
+    }
+
+    @Test
     public void testWithEmoji() throws Exception {
         final String[] expected = {
             "13:24: " + getCheckMessage(MSG_KEY),
