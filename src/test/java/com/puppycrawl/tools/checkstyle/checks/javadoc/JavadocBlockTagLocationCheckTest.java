@@ -100,4 +100,35 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
                 getPath("InputJavadocBlockTagLocationCustomTags.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "21: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "author"),
+            "22: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "since"),
+            "23: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "param"),
+            "25: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "throws"),
+            "26: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "see"),
+            "27: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "return"),
+            "27: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "throws"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputJavadocBlockTagLocationCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCustomTags() throws Exception {
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "apiNote"),
+            "19: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implNote"),
+            "19: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implSpec"),
+            "21: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "apiNote"),
+            "22: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implNote"),
+            "23: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implSpec"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputJavadocBlockTagLocationCompactCustomTags.java"),
+                expected);
+    }
+
 }
