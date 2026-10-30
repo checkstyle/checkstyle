@@ -8,6 +8,11 @@
  Detects empty statements (standalone &lt;code&gt;";"&lt;/code&gt; semicolon).
  Empty statements often introduce bugs that are hard to spot
  &lt;/div&gt;</description>
+         <properties>
+            <property default-value="false" name="allowEmptyLoopBody" type="boolean">
+               <description>Allow loops with empty bodies.</description>
+            </property>
+         </properties>
          <message-keys>
             <message-key key="empty.statement"/>
          </message-keys>
