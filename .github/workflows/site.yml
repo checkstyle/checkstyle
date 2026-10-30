@@ -129,7 +129,9 @@ jobs:
       - name: Setup local maven cache
         uses: actions/cache/restore@v6
         with:
-          path: ~/.m2/repository
+          path: |
+            ~/.m2/repository
+            ~/.m2/wrapper
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - name: Set up JDK
