@@ -96,7 +96,6 @@ public class ArchUnitTest {
         "com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck",
         "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck",
         "com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck",
-        "com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck",
         "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"
     );
 
