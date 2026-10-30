@@ -458,12 +458,6 @@
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/InputRightCurlyTestWithAnnotations\.java"/>
   <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/InputDesignForExtensionIgnoredAnnotations\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/InputDesignForExtension\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/InputDesignForExtensionOverridableMethods\.java"/>
-  <suppress checks="FileLength"
     files="/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/InputClassFanOutComplexityRemoveIncorrectAnnotationToken\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/metrics/npathcomplexity/InputNPathComplexityOverflow\.java"/>
