@@ -150,6 +150,32 @@
   <suppress id="JavadocUtilizingTrailingSpace"
     files="src[\\/]test[\\/]resources[\\/].*[\\/]Input.*\.java"/>
 
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputJavadocMethodTabColumns\.java$"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputFileTabCharacterExtensionsCase\.java$"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputFileTabCharacterExtensionsCompound\.java\.txt$"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputFileTabCharacterExtensionsCompoundMismatch\.txt$"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputFileTabCharacterExtensionsDefault\.java$"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputFileTabCharacterExtensionsDot\.java$"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputFileTabCharacterExtensionsEmpty\.java$"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputFileTabCharacterExtensionsJava\.java$"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputFileTabCharacterExtensionsMultiple\.java$"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputFileTabCharacterExtensionsNonMatching\.java$"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputWhitespaceAfterTabColumnsWithFilter\.java$"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputWhitespaceAfterTabWidthEight\.java$"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputWhitespaceAfterTabWidthFour\.java$"/>
   <!-- intentional problem for testing -->
   <suppress checks="FileTabCharacter"
     files="/InputJavadocWithCrAsNewline\.javadoc"/>
