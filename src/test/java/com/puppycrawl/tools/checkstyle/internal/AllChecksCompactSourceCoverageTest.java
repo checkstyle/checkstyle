@@ -120,7 +120,6 @@ public class AllChecksCompactSourceCoverageTest {
         "InterfaceTypeParameterNameCheck",
         "InvalidJavadocPositionCheck",
         "JavaNCSSCheck",
-        "JavadocBlockTagLocationCheck",
         "JavadocContentLocationCheck",
         "JavadocLeadingAsteriskAlignCheck",
         "JavadocLinkFirstOccurrenceCheck",
