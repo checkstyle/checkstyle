@@ -350,6 +350,26 @@ no-error-pmd)
   removeFolderWithProtectedFiles pmd
   ;;
 
+no-error-configurate)
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
+  echo "CS_version: ${CS_POM_VERSION}"
+  ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
+  echo "Checkout target sources ..."
+  checkout_from "https://github.com/SpongePowered/Configurate.git"
+  cd .ci-temp/Configurate
+  # Remove third-party custom checks and obsolete scope properties from checkstyle config
+  sed -i.bak '/AnnotationsCloseToType/d' .checkstyle/checkstyle.xml
+  sed -i.bak '/FilteringWriteTag/,/<\/module>/d' .checkstyle/checkstyle.xml
+  sed -i.bak '/<property name="scope" value="public"\/>/d' .checkstyle/checkstyle.xml
+  rm -f .checkstyle/checkstyle.xml.bak
+  find . \( -path '*/src/main/java/*.java' -o -path '*/src/test/java/*.java' \) -print0 | \
+    xargs -0 -n 200 java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
+    -c .checkstyle/checkstyle.xml
+  cd ../
+  removeFolderWithProtectedFiles Configurate
+  ;;
+
 no-error-hazelcast)
   CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
