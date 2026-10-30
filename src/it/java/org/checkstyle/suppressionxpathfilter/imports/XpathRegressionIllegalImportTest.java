@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.imports;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck;
 
 public class XpathRegressionIllegalImportTest extends AbstractXpathTestSupport {
@@ -45,34 +43,23 @@ public class XpathRegressionIllegalImportTest extends AbstractXpathTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalImportDefault.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalImportCheck.class);
-        moduleConfig.addProperty("illegalPkgs", "java.util");
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(IllegalImportCheck.class,
+            "12:1: " + getCheckMessage(IllegalImportCheck.class,
                         IllegalImportCheck.MSG_KEY, "java.util.List"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/IMPORT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalImportDefault.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testStatic() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalImportStatic.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalImportCheck.class);
-
-        moduleConfig.addProperty("illegalPkgs", "java.lang");
-
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(IllegalImportCheck.class,
+            "12:1: " + getCheckMessage(IllegalImportCheck.class,
                         IllegalImportCheck.MSG_KEY, "java.lang.Math.pow"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -80,27 +67,24 @@ public class XpathRegressionIllegalImportTest extends AbstractXpathTestSupport {
 
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalImportStatic.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testClass() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIllegalImportClass.java"));
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalImportCheck.class);
-        moduleConfig.addProperty("illegalClasses", "java.util.List");
         final String[] expectedViolation = {
-            "4:1: " + getCheckMessage(IllegalImportCheck.class,
+            "13:1: " + getCheckMessage(IllegalImportCheck.class,
                         IllegalImportCheck.MSG_KEY, "java.util.List"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='List']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIllegalImportClass.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
