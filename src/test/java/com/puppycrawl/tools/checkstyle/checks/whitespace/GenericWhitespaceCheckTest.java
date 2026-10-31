@@ -347,6 +347,24 @@ public class GenericWhitespaceCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGenericWhitespaceCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "17:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
+            "24:7: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "24:9: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, ">"),
+            "35:10: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "36:9: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "37:17: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "38:16: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, ">"),
+            "39:49: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputGenericWhitespaceCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
     public void testParameterizedRecordPattern() throws Exception {
         final String[] expected = {
             "22:36: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
