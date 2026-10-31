@@ -198,7 +198,6 @@ public class AllChecksCompactSourceCoverageTest {
         "TextBlockGoogleStyleFormattingCheck",
         "TodoCommentCheck",
         "TypeNameCheck",
-        "TypecastParenPadCheck",
         "UnnecessaryNullCheckWithInstanceOfCheck",
         "UnnecessaryParenthesesCheck",
         "UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
