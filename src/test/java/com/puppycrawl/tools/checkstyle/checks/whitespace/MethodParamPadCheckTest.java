@@ -258,4 +258,26 @@ public class MethodParamPadCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputMethodParamPadCheckRecordPattern2.java"), expected);
     }
 
+    @Test
+    public void testMethodParamPadCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "20:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "24:12: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMethodParamPadCompactSourceFileDefault.java"),
+            expected);
+    }
+
+    @Test
+    public void testMethodParamPadCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "13:12: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMethodParamPadCompactSourceFileProperties.java"),
+            expected);
+    }
+
 }
