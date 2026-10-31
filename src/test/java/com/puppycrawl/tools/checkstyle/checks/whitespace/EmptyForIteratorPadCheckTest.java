@@ -127,4 +127,28 @@ public class EmptyForIteratorPadCheckTest extends AbstractModuleTestSupport {
 
     }
 
+    @Test
+    public void testEmptyForIteratorPadCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "14:28: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/"
+                        + "InputEmptyForIteratorPadCompactSourceFileDefault.java"),
+            expected);
+    }
+
+    @Test
+    public void testEmptyForIteratorPadCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "14:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/"
+                        + "InputEmptyForIteratorPadCompactSourceFileProperties.java"),
+            expected);
+    }
+
 }
