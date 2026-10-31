@@ -21,14 +21,12 @@ package org.checkstyle.suppressionxpathfilter.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck.MSG_INVALID_PATTERN;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck;
 
 public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupport {
@@ -49,14 +47,8 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
     public void testSimple() throws Exception {
         final String pattern = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CatchParameterNameCheck.class);
-
-        final File fileToProcess =
-                new File(getPath("InputXpathCatchParameterNameSimple.java"));
-
         final String[] expectedViolation = {
-            "6:28: " + getCheckMessage(CatchParameterNameCheck.class,
+            "14:28: " + getCheckMessage(CatchParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "e1", pattern),
         };
 
@@ -67,21 +59,18 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                 + "/SLIST/LITERAL_TRY/LITERAL_CATCH/PARAMETER_DEF/IDENT[@text='e1']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCatchParameterNameSimple.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNested() throws Exception {
         final String pattern = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CatchParameterNameCheck.class);
-
-        final File fileToProcess =
-                new File(getPath("InputXpathCatchParameterNameNested.java"));
-
         final String[] expectedViolation = {
-            "9:40: " + getCheckMessage(CatchParameterNameCheck.class,
+            "16:40: " + getCheckMessage(CatchParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "i", pattern),
         };
 
@@ -94,22 +83,18 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                 + "/LITERAL_TRY/SLIST/LITERAL_TRY/LITERAL_CATCH/PARAMETER_DEF/IDENT[@text='i']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCatchParameterNameNested.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testStaticInit() throws Exception {
         final String pattern = "^[a-z][a-zA-Z0-9]+$";
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CatchParameterNameCheck.class);
-        moduleConfig.addProperty("format", pattern);
-
-        final File fileToProcess =
-                new File(getPath("InputXpathCatchParameterNameStaticInit.java"));
-
         final String[] expectedViolation = {
-            "7:32: " + getCheckMessage(CatchParameterNameCheck.class,
+            "15:32: " + getCheckMessage(CatchParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "Ex", pattern),
         };
 
@@ -120,22 +105,18 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                 + "/LITERAL_DO/SLIST/LITERAL_TRY/LITERAL_CATCH/PARAMETER_DEF/IDENT[@text='Ex']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCatchParameterNameStaticInit.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testAnonymous() throws Exception {
         final String pattern = "^[a-z][a-zA-Z0-9]+$";
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CatchParameterNameCheck.class);
-        moduleConfig.addProperty("format", pattern);
-
-        final File fileToProcess =
-                new File(getPath("InputXpathCatchParameterNameAnonymous.java"));
-
         final String[] expectedViolation = {
-            "12:40: " + getCheckMessage(CatchParameterNameCheck.class,
+            "20:40: " + getCheckMessage(CatchParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "E1", pattern),
         };
 
@@ -149,22 +130,18 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                 + "/SLIST/LITERAL_TRY/LITERAL_CATCH/PARAMETER_DEF/IDENT[@text='E1']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCatchParameterNameAnonymous.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testLambda() throws Exception {
         final String pattern = "^[A-Z][a-z]+$";
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CatchParameterNameCheck.class);
-        moduleConfig.addProperty("format", pattern);
-
-        final File fileToProcess =
-                new File(getPath("InputXpathCatchParameterNameLambda.java"));
-
         final String[] expectedViolation = {
-            "12:32: " + getCheckMessage(CatchParameterNameCheck.class,
+            "19:32: " + getCheckMessage(CatchParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "e", pattern),
         };
 
@@ -177,22 +154,18 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                 + "/PARAMETER_DEF/IDENT[@text='e']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCatchParameterNameLambda.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEnum() throws Exception {
         final String pattern = "^[A-Z][a-z]+$";
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CatchParameterNameCheck.class);
-        moduleConfig.addProperty("format", pattern);
-
-        final File fileToProcess =
-                new File(getPath("InputXpathCatchParameterNameEnum.java"));
-
         final String[] expectedViolation = {
-            "10:40: " + getCheckMessage(CatchParameterNameCheck.class,
+            "18:40: " + getCheckMessage(CatchParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "eX", pattern),
         };
 
@@ -205,22 +178,18 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                 + "PARAMETER_DEF/IDENT[@text='eX']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCatchParameterNameEnum.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInterface() throws Exception {
         final String pattern = "^[A-Z][a-z]+$";
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CatchParameterNameCheck.class);
-        moduleConfig.addProperty("format", pattern);
-
-        final File fileToProcess =
-                new File(getPath("InputXpathCatchParameterNameInterface.java"));
-
         final String[] expectedViolation = {
-            "7:32: " + getCheckMessage(CatchParameterNameCheck.class,
+            "14:32: " + getCheckMessage(CatchParameterNameCheck.class,
                     MSG_INVALID_PATTERN, "EX", pattern),
         };
 
@@ -232,7 +201,10 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                 + "/SLIST/LITERAL_TRY/LITERAL_CATCH/PARAMETER_DEF/IDENT[@text='EX']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCatchParameterNameInterface.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
