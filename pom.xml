@@ -198,6 +198,7 @@
   </issueManagement>
 
   <properties>
+    <project.build.outputTimestamp>${maven.build.timestamp}</project.build.outputTimestamp>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <surefire.options />
     <projectVersion>${project.version}</projectVersion>
