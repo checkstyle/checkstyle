@@ -139,7 +139,6 @@ public class AllChecksCompactSourceCoverageTest {
         "LambdaBodyLengthCheck",
         "LambdaParameterNameCheck",
         "LocalFinalVariableNameCheck",
-        "LocalVariableNameCheck",
         "MatchXpathCheck",
         "MemberNameCheck",
         "MethodParamPadCheck",
