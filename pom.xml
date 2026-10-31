@@ -198,6 +198,7 @@
   </issueManagement>
 
   <properties>
+    <project.build.outputTimestamp>2026-10-31T00:00:00Z</project.build.outputTimestamp>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <surefire.options />
     <projectVersion>${project.version}</projectVersion>
