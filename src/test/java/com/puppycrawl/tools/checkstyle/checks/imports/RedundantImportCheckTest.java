@@ -100,6 +100,20 @@ public class RedundantImportCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testRedundantImportCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_LANG, "java.lang.*"),
+            "10:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
+            "12:1: " + getCheckMessage(MSG_DUPLICATE, 11, "java.util.List"),
+            "14:1: " + getCheckMessage(MSG_DUPLICATE, 13, "java.util.Arrays.asList"),
+            "16:1: " + getCheckMessage(MSG_DUPLICATE, 15, "java.base"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputRedundantImportCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final RedundantImportCheck testCheckObject =
                 new RedundantImportCheck();
