@@ -397,7 +397,18 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             "13:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "unused"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputUnusedLocalVariableCompactSourceFile.java"),
+                getNonCompilablePath("compact/InputUnusedLocalVariableCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileNonDefaultProperties() throws Exception {
+        final String[] expected = {
+            "13:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "compact/InputUnusedLocalVariableCompactSourceFileNonDefault.java"),
                 expected);
     }
 
