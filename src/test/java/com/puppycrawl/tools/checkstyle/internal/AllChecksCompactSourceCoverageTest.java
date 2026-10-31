@@ -100,7 +100,6 @@ public class AllChecksCompactSourceCoverageTest {
         "ConstantNameCheck",
         "ConstructorsDeclarationGroupingCheck",
         "CustomImportOrderCheck",
-        "DescendantTokenCheck",
         "DesignForExtensionCheck",
         "EmptyCatchBlockCheck",
         "EmptyForInitializerPadCheck",
