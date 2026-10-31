@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocModuleCheck"
+             name="MissingJavadocModule"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks for missing Javadoc comments on module declarations.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ A module's Javadoc describes its purpose and can document the services it uses or provides.
+ This check accepts Javadoc before annotations on a module declaration, and before
+ unannotated module declarations, including open modules. Comments on module directives
+ do not document the module itself.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="module.javadoc.missing"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
