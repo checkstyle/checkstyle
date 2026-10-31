@@ -1197,6 +1197,34 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testMethodDefAfterAnnotation() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String fileName = getPath("InputIndentationAnnotatedMethodDef.java");
+        final String[] expected = {
+            "8:1: " + getCheckMessage(MSG_ERROR, "method def modifier", 0, 4),
+            "12:1: " + getCheckMessage(MSG_ERROR, "method def modifier", 0, 4),
+            "15:1: " + getCheckMessage(MSG_ERROR, "method def modifier", 0, 4),
+            "23:1: " + getCheckMessage(MSG_ERROR, "method def modifier", 0, 4),
+            "26:9: " + getCheckMessage(MSG_ERROR, "method def modifier", 8, 4),
+            "30:9: " + getCheckMessage(MSG_ERROR, "method def modifier", 8, 4),
+            "31:1: " + getCheckMessage(MSG_ERROR, "method def modifier", 0, 4),
+            "35:1: " + getCheckMessage(MSG_ERROR, "ctor def modifier", 0, 4),
+            "45:5: " + getCheckMessage(MSG_ERROR, "method def modifier", 4, 8),
+            "60:1: " + getCheckMessage(MSG_ERROR, "method def modifier", 0, 4),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testAlternativeGoogleStyleSwitchCaseAndEnums()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
@@ -1893,6 +1921,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                 8, "12, 16"),
             "72:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 12, "16, 31, 71"),
+            "75:7: " + getCheckMessage(MSG_ERROR, "method def modifier", 6, 8),
         };
 
         verifyWarns(checkConfig, fileName, expected);
@@ -1987,6 +2016,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                 8, "12, 16"),
             "72:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 12, "16, 31, 71"),
+            "75:7: " + getCheckMessage(MSG_ERROR, "method def modifier", 6, 8),
         };
 
         verifyWarns(checkConfig, fileName, expected);
@@ -2019,6 +2049,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                 8, "12, 16"),
             "45:13: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
                 12, 16),
+            "48:7: " + getCheckMessage(MSG_ERROR, "method def modifier", 6, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -2050,6 +2081,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                 8, "12, 16"),
             "45:13: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
                 12, 16),
+            "48:7: " + getCheckMessage(MSG_ERROR, "method def modifier", 6, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -3890,7 +3922,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("lineWrappingIndentation", "4");
 
         final String[] expected = {
+            "26:5: " + getCheckMessage(MSG_ERROR, "method def modifier", 4, 8),
             "33:1: " + getCheckMessage(MSG_ERROR, ")", 0, 4),
+            "35:5: " + getCheckMessage(MSG_ERROR, "method def modifier", 4, 8),
             "55:11: " + getCheckMessage(MSG_ERROR, "interface def ident", 0, 4),
             "56:1: " + getCheckMessage(MSG_ERROR, "method def modifier", 0, 8),
             "57:1: " + getCheckMessage(MSG_ERROR, "void", 0, 4),
