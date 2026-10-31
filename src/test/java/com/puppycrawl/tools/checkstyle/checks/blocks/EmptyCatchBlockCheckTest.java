@@ -142,4 +142,26 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
                 getPath("InputEmptyCatchBlockCommentRecognitionLF.java"), expected);
     }
 
+    @Test
+    public void testEmptyCatchBlockCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "13:34: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputEmptyCatchBlockCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testEmptyCatchBlockCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "17:34: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "26:34: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputEmptyCatchBlockCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
