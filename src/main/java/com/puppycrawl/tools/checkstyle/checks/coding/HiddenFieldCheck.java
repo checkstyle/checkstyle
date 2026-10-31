@@ -207,12 +207,7 @@ public class HiddenFieldCheck extends AbstractCheck {
         // class body in addition to enum constant class bodies)
         // but not attempted as it seems out of the scope of this
         // check.
-        final DetailAST typeMods = ast.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isStaticInnerType =
-                typeMods != null
-                        && typeMods.findFirstToken(TokenTypes.LITERAL_STATIC) != null
-                        // inner record is implicitly static
-                        || ast.getType() == TokenTypes.RECORD_DEF;
+        final boolean isStaticInnerType = isStaticInnerType(ast);
         final String frameName;
 
         if (type == TokenTypes.CLASS_DEF
@@ -258,6 +253,23 @@ public class HiddenFieldCheck extends AbstractCheck {
         }
         // push container
         frame = newFrame;
+    }
+
+    /**
+     * Checks whether a type definition is static, explicitly or implicitly.
+     *
+     * @param ast the type definition node.
+     * @return true if the type is static.
+     */
+    private static boolean isStaticInnerType(DetailAST ast) {
+        final DetailAST typeMods = ast.findFirstToken(TokenTypes.MODIFIERS);
+        return typeMods != null
+                && typeMods.findFirstToken(TokenTypes.LITERAL_STATIC) != null
+                // inner record and enum are implicitly static
+                || ast.getType() == TokenTypes.RECORD_DEF
+                || ast.getType() == TokenTypes.ENUM_DEF
+                // member type of interface or annotation is implicitly static
+                || ScopeUtil.isInInterfaceOrAnnotationBlock(ast);
     }
 
     /**
