@@ -97,6 +97,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  */
 public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAstImpl> {
 
+    /** Number of hexadecimal digits in a unicode escape. */
+    private static final int HEX_DIGITS_IN_ESCAPE = 4;
+
     /** String representation of the left shift operator. */
     private static final String LEFT_SHIFT = "<<";
 
@@ -2191,6 +2194,9 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
         final DetailAstImpl detailAst = new DetailAstImpl();
         detailAst.initialize(token);
+        if (token.getType() == TokenTypes.IDENT) {
+            detailAst.setText(decodeUnicodeEscapes(token.getText()));
+        }
         if (tokensToLeft != null) {
             detailAst.setHiddenBefore(tokensToLeft);
         }
@@ -2223,6 +2229,40 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstImpl ast = create(startToken);
         ast.setType(tokenType);
         return ast;
+    }
+
+    /**
+     * Decodes unicode escapes in the text of an identifier. The lexer accepts
+     * unicode escapes as part of an identifier, so the token text still holds the
+     * raw escaped form, while the AST should carry the decoded name that the code
+     * is compiled with, in the same way as javac translates the escapes before
+     * compilation. The grammar only accepts well formed escapes in identifiers,
+     * so no validation of the escape sequences is done here.
+     *
+     * @param text the raw token text of an identifier
+     * @return the identifier text with all unicode escapes decoded
+     */
+    private static String decodeUnicodeEscapes(String text) {
+        final StringBuilder builder = new StringBuilder(text.length());
+        int index = 0;
+        while (index < text.length()) {
+            final char current = text.charAt(index);
+            if (current == '\\') {
+                int hexIndex = index + 1;
+                while (text.charAt(hexIndex) == 'u') {
+                    hexIndex++;
+                }
+                final int codeUnit = Integer.parseInt(
+                        text.substring(hexIndex, hexIndex + HEX_DIGITS_IN_ESCAPE), 16);
+                builder.appendCodePoint(codeUnit);
+                index = hexIndex + HEX_DIGITS_IN_ESCAPE;
+            }
+            else {
+                builder.append(current);
+                index++;
+            }
+        }
+        return builder.toString();
     }
 
     /**
