@@ -417,6 +417,36 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIndependentStaticSorting() throws Exception {
+        final String[] expected = {
+            "20:1: " + getCheckMessage(MSG_ORDERING_LEX,
+                    "java.lang.Math.max", "java.lang.Math.min"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputImportOrderIndependentStaticSorting.java"), expected);
+    }
+
+    @Test
+    public void testIndependentStaticSortingBottom() throws Exception {
+        final String[] expected = {
+            "23:1: " + getCheckMessage(MSG_ORDERING_LEX,
+                    "java.lang.Math.max", "java.lang.Math.min"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputImportOrderIndependentStaticSortingBottom.java"), expected);
+    }
+
+    @Test
+    public void testIndependentUnsortedImports() throws Exception {
+        verifyWithInlineConfigParser(getPath("InputImportOrderIndependentUnsorted.java"));
+    }
+
+    @Test
+    public void testUnsortedInflow() throws Exception {
+        verifyWithInlineConfigParser(getPath("InputImportOrderUnsortedInflow.java"));
+    }
+
+    @Test
     public void testStaticGroupsAlphabeticalOrder() throws Exception {
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.antlr.v4.runtime.*"),
