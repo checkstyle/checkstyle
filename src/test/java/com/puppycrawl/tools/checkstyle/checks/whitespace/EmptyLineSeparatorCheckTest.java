@@ -124,7 +124,9 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputEmptyLineSeparatorCompactSourceFile.java"), expected);
+                getNonCompilablePath(
+                        "compact/InputEmptyLineSeparatorCompactSourceFile.java"),
+                expected);
     }
 
     @Test
@@ -136,7 +138,36 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
-                    "InputEmptyLineSeparatorCompactSourceFileMultipleEmptyLines.java"), expected);
+                    "compact/InputEmptyLineSeparatorCompactSourceFileMultipleEmptyLines.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "17:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "27:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputEmptyLineSeparatorCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "19:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "20:22: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "27:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputEmptyLineSeparatorCompactSourceFileProperties.java"),
+                expected);
     }
 
     @Test
