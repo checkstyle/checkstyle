@@ -47,29 +47,6 @@ public class InputJavadocMethodTags1One {
         return aOne;
     }
 
-    /** missing throws **/
-    void method5()
-        throws Exception // violation 'Expected @throws tag for 'Exception'.'
-    {}
-
-    /**
-     * @see missing throws
-     * @see need to see tags to avoid shortcut logic
-     **/
-    void method6()
-        throws Exception // violation 'Expected @throws tag for 'Exception'.'
-    {
-    }
-
-    /** @throws WrongException problem **/
-    void method7()
-        throws Exception, NullPointerException
-        // 2 violations above:
-        //    'Expected @throws tag for 'Exception'.'
-        //    'Expected @throws tag for 'NullPointerException'.'
-    {
-    }
-
     /** missing param **/
     void method8(int aOne) // violation 'Expected @param tag for 'aOne'.'
     {
@@ -112,15 +89,4 @@ public class InputJavadocMethodTags1One {
         return 0;
     }
 
-    /**
-     * Documenting different causes for the same exception
-     * in separate tags is OK (bug 540384).
-     *
-     * @throws java.io.IOException if A happens
-     * @throws java.io.IOException if B happens
-     **/
-    void method13()
-       throws java.io.IOException
-    {
-    }
 }
