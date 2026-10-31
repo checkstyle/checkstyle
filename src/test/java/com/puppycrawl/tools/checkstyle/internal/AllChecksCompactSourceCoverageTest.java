@@ -101,7 +101,6 @@ public class AllChecksCompactSourceCoverageTest {
         "CustomImportOrderCheck",
         "DesignForExtensionCheck",
         "EmptyCatchBlockCheck",
-        "EmptyForIteratorPadCheck",
         "EmptyLineSeparatorCheck",
         "ExplicitInitializationCheck",
         "GenericWhitespaceCheck",
