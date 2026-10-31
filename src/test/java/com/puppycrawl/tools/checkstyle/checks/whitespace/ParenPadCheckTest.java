@@ -633,4 +633,26 @@ public class ParenPadCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testParenPadCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "20:11: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "21:18: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputParenPadCompactSourceFileDefault.java"),
+            expected);
+    }
+
+    @Test
+    public void testParenPadCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "20:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "21:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputParenPadCompactSourceFileProperties.java"),
+            expected);
+    }
+
 }
