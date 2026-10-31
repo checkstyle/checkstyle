@@ -100,7 +100,6 @@ public class AllChecksCompactSourceCoverageTest {
         "DesignForExtensionCheck",
         "EmptyLineSeparatorCheck",
         "ExplicitInitializationCheck",
-        "GenericWhitespaceCheck",
         "GoogleNonConstantFieldNameCheck",
         "IllegalBlockTagCheck",
         "IllegalIdentifierNameCheck",
