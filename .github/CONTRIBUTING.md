@@ -36,7 +36,7 @@ This project and everyone participating in it is governed by the
 - Select an issue to work on from the [Issues Page][issues-page]. We
   have a few issues labeled as [good first issue][goodFirst-Issue] to
   help you get started. Please watch [videos][videos-playlist] on how to
-  setup local environment and send first fix.
+  set up a local environment and send your first fix.
 - Once you get your first PR merged, you can move on to [good second issue][goodSecond-Issue],
   [good third issue][goodThird-Issue], [good fourth issue][goodFourth-Issue],
   and finally [good fifth issue][goodFifth-Issue] before taking up some bug fixes or features.
@@ -55,7 +55,7 @@ This project and everyone participating in it is governed by the
   Existing "I am on it" comments are a good indication that someone is already working on the
   issue, but these comments can be old or outdated; if a comment is a few weeks old with no
   activity, feel free to ask if the issue is still being worked on.
-- **Read the Github docs.** Visit GitHub's
+- **Read the GitHub docs.** Visit GitHub's
   [Pull Request Guide][pull-request-guide] for information on how to
   submit a pull request.
 - **Follow the template.** Please follow the
@@ -77,10 +77,10 @@ request reviews.
 Here are some general guidelines to follow when submitting a pull request:
 
 - **Reply to comments.** If a reviewer asks for changes, reply to each
-  (and every) comment with discussion or follow up questions, or let the reviewer know
+  (and every) comment with discussion or follow-up questions, or let the reviewer know
   that you have addressed their concerns ("done").
 - **Be patient.** Reviewing PRs takes time. If a reviewer hasn't responded in a week or so,
-  feel free to ping them. If you are a reviewer and you need more time to review a PR, please
+  feel free to ping them. If you are a reviewer, and you need more time to review a PR, please
   let the submitter know.
 - **Be kind.** Remember that everyone involved in the project is a human being. Be kind and
   respectful in your comments and reviews.

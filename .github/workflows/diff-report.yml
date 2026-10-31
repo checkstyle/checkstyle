@@ -180,7 +180,7 @@ jobs:
           ./.ci/diff-report.sh download-files
 
       # set main checkstyle repo as an upstream
-      # Diff report will be generated taking upstream's master branch as a base branch
+      # Diff report will be generated taking the master branch of upstream as a base branch
       - name: set upstream
         env:
           USER_LOGIN: ${{ needs.parse_body.outputs.user_login }}

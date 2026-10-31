@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * Documentation Comment Specification for the Standard Doclet</a>, Javadocs are recognized
  * only when placed immediately before module, package, class, interface,
  * constructor, method, or field declarations. Any other position, like in the
- * body of a method, will be ignored by the javadoc tool and is considered invalid by this check.
+ * body of a method, will be ignored by the Javadoc tool and is considered invalid by this check.
  * </div>
  *
  * @since 8.23

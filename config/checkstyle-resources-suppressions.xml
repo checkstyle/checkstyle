@@ -255,7 +255,7 @@
     files="/InputCheckerTabCharacterCustomWidth\.java"/>
   <suppress checks="FileTabCharacter"
     files="src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/textblockgooglestyleformatting/InputTextBlockGoogleStyleFormattingWithTabs\.java"/>
-  <!-- intentional tabs for testing SummaryJavadocCheck with tab-formatted javadoc -->
+  <!-- intentional tabs for testing SummaryJavadocCheck with tab-formatted Javadoc -->
   <suppress checks="FileTabCharacter"
     files="/InputSummaryJavadocForbiddenFragmentsTabFormatted\.java"/>
   <!-- intentional tabs, the check expands them to the configured tab width -->

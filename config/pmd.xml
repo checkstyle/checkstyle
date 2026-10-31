@@ -237,7 +237,7 @@
     <exclude name="CompareObjectsWithEquals"/>
     <!-- This rule does not have any option, unreasonable to use. -->
     <exclude name="ImplicitSwitchFallThrough"/>
-    <!-- We reuse Check instances between java files, we need to clear state of
+    <!-- We reuse Check instances between Java files, we need to clear state of
          class in beginTree() methods. -->
     <exclude name="NullAssignment"/>
     <!-- We cannot change the class loader because it breaks the build.
@@ -427,7 +427,7 @@
       <!-- Main actively uses Checkstyle, logging and command line parsing API.
            Checker collects external resource locations and sets up the configuration.
            CheckstyleAntTask integrates Checkstyle with Ant.
-           TranslationCheck uses a lot of imports for it's logic and custom violations.
+           TranslationCheck uses a lot of imports for its logic and custom violations.
             -->
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='Main'

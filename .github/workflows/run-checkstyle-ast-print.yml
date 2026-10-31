@@ -1,7 +1,7 @@
 #####################################################################################
 # GitHub Action to run checkstyle with:
 #
-#  target java file URL to print its AST
+#  target Java file URL to print its AST
 #
 # Output is printed in console terminal
 #

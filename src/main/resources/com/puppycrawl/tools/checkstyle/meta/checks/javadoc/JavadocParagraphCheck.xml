@@ -15,7 +15,7 @@
  &lt;li&gt;There is one blank line between each of two paragraphs.&lt;/li&gt;
  &lt;li&gt;Each paragraph but the first has &amp;lt;p&amp;gt; immediately
  before the first word, with no space after.&lt;/li&gt;
- &lt;li&gt;The outer most paragraph tags should not precede
+ &lt;li&gt;The outermost paragraph tags should not precede
  &lt;a href="https://www.w3schools.com/html/html_blocks.asp"&gt;HTML block-tag&lt;/a&gt;.
  Nested paragraph tags are allowed to do that. This check only supports following block-tags:
  &amp;lt;address&amp;gt;,&amp;lt;blockquote&amp;gt;,&amp;lt;div&amp;gt;,&amp;lt;dl&amp;gt;,
