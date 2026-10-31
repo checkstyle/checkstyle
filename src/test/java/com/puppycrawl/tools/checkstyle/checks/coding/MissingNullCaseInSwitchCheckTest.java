@@ -117,4 +117,14 @@ public class MissingNullCaseInSwitchCheckTest extends
             expected);
     }
 
+    @Test
+    public void testMissingNullCaseInSwitchCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMissingNullCaseInSwitchCompactSourceFile.java"),
+            expected);
+    }
+
 }
