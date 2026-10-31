@@ -1,3 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>JavaAstVisitor.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.JavaAstVisitor</mutatedClass>
+    <mutatedMethod>decodeUnicodeEscapes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::length</description>
+    <lineContent>final StringBuilder builder = new StringBuilder(text.length());</lineContent>
+  </mutation>
 </suppressedMutations>

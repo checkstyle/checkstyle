@@ -303,4 +303,51 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
                 .isNotNull();
     }
 
+    /**
+     * This test exists to kill surviving mutations from pitest in the token creation method of
+     * {@link JavaAstVisitor} and its unicode escape decoding of identifier text. It lives in this
+     * test class because the pitest java-ast-visitor profile does not run {@code JavaParserTest},
+     * where the same behaviour is asserted for issue #8654.
+     *
+     * @throws Exception if input file does not exist
+     */
+    @Test
+    public void testUnicodeEscapesInIdentifiers() throws Exception {
+        final File file = new File(
+                "src/test/resources/com/puppycrawl/tools/checkstyle/javaparser/"
+                        + "InputJavaParserUnicodeEscapesInIdentifiers.java");
+        final DetailAST root = JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS);
+
+        final List<String> identifierTexts = new ArrayList<>();
+        collectIdentifierTexts(root, identifierTexts);
+
+        final String supplementaryLetter = Character.toString(0x1_0400);
+        final String combiningAccent = Character.toString(0x1_D17B);
+        final List<String> expectedIdentifierTexts = List.of(
+                "com", "puppycrawl", "tools", "checkstyle", "javaparser",
+                "InputJavaParserUnicodeEscapesInIdentifiers", "abc", "bcd", "multipleescapes",
+                supplementaryLetter + "abc", "def" + supplementaryLetter,
+                supplementaryLetter + combiningAccent, "Foo", "foo", "Foo", "method", "param",
+                "localvar", "abc", "param", "method", "Foo");
+        assertWithMessage("Unexpected identifiers decoded from unicode escapes")
+                .that(identifierTexts)
+                .containsExactlyElementsIn(expectedIdentifierTexts)
+                .inOrder();
+    }
+
+    private static void collectIdentifierTexts(DetailAST ast, List<String> identifierTexts) {
+        DetailAST current = ast;
+        while (current != null) {
+            if (current.getType() == TokenTypes.IDENT) {
+                identifierTexts.add(current.getText());
+            }
+            DetailAST child = current.getFirstChild();
+            while (current != null && child == null) {
+                child = current.getNextSibling();
+                current = current.getParent();
+            }
+            current = child;
+        }
+    }
+
 }
