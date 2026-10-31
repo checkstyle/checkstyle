@@ -13,8 +13,6 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-import java.io.IOException;
-
 public class InputJavadocMethodTags1Three {
     /**
      * Bug 579190, "expected return tag when one is there".
@@ -27,45 +25,6 @@ public class InputJavadocMethodTags1Three {
     int method20()
     {
         return 579190;
-    }
-
-    /**
-     * Bug XXXX, "two tags for the same exception"
-     *
-     * @exception java.io.IOException for some reasons
-     * @exception IOException for another reason
-     */
-    void method21()
-       throws IOException
-    {
-    }
-
-    /**
-     * RFE 540383, "Unused throws tag for exception subclass"
-     *
-     * @exception IOException for some reasons
-     * @exception java.io.FileNotFoundException for another reasons
-     */
-    void method22()
-       throws IOException
-    {
-    }
-
-    /**
-     * @exception WrongException exception w/o class info but matched by name
-     */
-    void method23() throws WrongException
-    {
-    }
-
-    /**
-     * Bug 803577, "allowThrowsTagsForSubclasses/allowMissingThrowsTag interfere"
-     *
-     * no exception tag for IOException, but here is a tag for its subclass.
-     * @exception java.io.FileNotFoundException for another reasons
-     */
-    void method24() throws IOException // violation 'Expected @throws tag for 'IOException'.'
-    {
     }
 
     // violation 3 lines below 'Un.* @param .* 'aParam'.'
