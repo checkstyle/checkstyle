@@ -49,6 +49,16 @@
   </subpackage>
 
   <subpackage name="internal">
+    <subpackage name="junit">
+      <file name="LimitedStackThreadInterceptor">
+        <!-- JUnit's invocation interceptor declares a Method in its public API. -->
+        <allow class="java.lang.reflect.Method" />
+      </file>
+      <file name="LimitedStackThreadInterceptorTest">
+        <!-- Supplies annotated method metadata to exercise the JUnit interceptor. -->
+        <allow class="java.lang.reflect.Method" />
+      </file>
+    </subpackage>
     <subpackage name="utils">
       <file name="CheckUtil">
         <!-- Uses reflection to collect violation messages. -->
