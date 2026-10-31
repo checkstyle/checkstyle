@@ -75,6 +75,34 @@ public class TypecastParenPadCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTypecastParenPadCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "12:23: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "13:31: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "14:19: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "14:28: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputTypecastParenPadCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testTypecastParenPadCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "12:25: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "13:33: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "14:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "14:29: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputTypecastParenPadCompactSourceFileProperties.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final TypecastParenPadCheck typecastParenPadCheckObj = new TypecastParenPadCheck();
         final int[] actual = typecastParenPadCheckObj.getAcceptableTokens();
