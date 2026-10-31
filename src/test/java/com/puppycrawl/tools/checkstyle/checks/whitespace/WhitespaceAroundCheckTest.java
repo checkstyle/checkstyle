@@ -735,4 +735,45 @@ public class WhitespaceAroundCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testWhitespaceAroundCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "24:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "24:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "30:16: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "30:17: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "36:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "36:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "42:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
+            "42:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
+            "46:18: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "46:19: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "50:33: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "50:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "54:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "54:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "60:35: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "60:36: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "65:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "65:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputWhitespaceAroundCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testWhitespaceAroundCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "33:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
+            "33:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
+            "49:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ":"),
+            "49:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ":"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputWhitespaceAroundCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
