@@ -48,6 +48,7 @@ projects:
       - '**/test/langtools/tools/javac/processing/model/util/elements/TestGetDocComment_Line.java'
       - '**/test/langtools/tools/javac/diags/examples/FeatureFlexibleConstructors.java'
       - '**/test/langtools/tools/javac/diags/examples/PreviewFeatureUse.java'
+      - '**/test/langtools/tools/javac/diags/examples/IllegalUnicodeEscape.java'
       - '**/test/langtools/tools/javac/patterns/UninitializedThisException.java'
       - '**/test/langtools/tools/javac/SuperInit/LambdaOuterCapture.java'
       - '**/test/langtools/tools/javac/SuperInit/EarlyLocalTest1.java'
