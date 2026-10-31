@@ -84,7 +84,7 @@ public class AllChecksCompactSourceCoverageTest {
      * {@code compact/} folder and removes the entry. This set should shrink to empty and then
      * be removed.
      */
-    // until https://github.com/checkstyle/checkstyle/issues/20590
+    // until https://github.com/checkstyle/checkstyle/issues/22336
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
         "AbbreviationAsWordInNameCheck",
         "AbstractClassNameCheck",
@@ -104,7 +104,6 @@ public class AllChecksCompactSourceCoverageTest {
         "EmptyCatchBlockCheck",
         "EmptyForInitializerPadCheck",
         "EmptyForIteratorPadCheck",
-        "EmptyLineSeparatorCheck",
         "ExplicitInitializationCheck",
         "GenericWhitespaceCheck",
         "GoogleNonConstantFieldNameCheck",
