@@ -143,4 +143,28 @@ public class EmptyForInitializerPadCheckTest extends AbstractModuleTestSupport {
                 getPath("InputEmptyForInitializerPadSetOptionTrim.java"), expected);
     }
 
+    @Test
+    public void testEmptyForInitializerPadCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "14:11: " + getCheckMessage(MSG_PRECEDED, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/"
+                        + "InputEmptyForInitializerPadCompactSourceFileDefault.java"),
+            expected);
+    }
+
+    @Test
+    public void testEmptyForInitializerPadCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "15:10: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/"
+                        + "InputEmptyForInitializerPadCompactSourceFileProperties.java"),
+            expected);
+    }
+
 }
