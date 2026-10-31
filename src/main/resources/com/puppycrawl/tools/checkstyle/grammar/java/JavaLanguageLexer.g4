@@ -409,12 +409,16 @@ SINGLE_LINE_COMMENT:
 
 // Identifiers
 
-IDENT:         Letter LetterOrDigit*;
+IDENT:         (Letter | UnicodeEscape) (LetterOrDigit | UnicodeEscape)*;
 
 // Fragment rules
 
 fragment ExponentPart
     : [eE] [+-]? Digits
+    ;
+
+fragment UnicodeEscape
+    : '\\' 'u'+ HexDigit HexDigit HexDigit HexDigit
     ;
 
 fragment EscapeSequence

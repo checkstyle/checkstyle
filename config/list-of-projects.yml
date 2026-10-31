@@ -15,8 +15,11 @@ projects:
       - '**/resources-noncompilable/**/javadocpropertiesgenerator/**/*'
       # yamllint disable rule:line-length
       - 'src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/javaparser/InputJavaParser.java'
+      # yamllint disable rule:line-length
+      - 'src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/javaparser/InputJavaParserUnicodeEscapesBrokenIdentifier.java'
       - '**/InputAllEscapedUnicodeCharacters.java'
       - '**/resources-noncompilable/**/javaparser/InputJavaParser.java'
+      - '**/resources-noncompilable/**/javaparser/InputJavaParserUnicodeEscapesBrokenIdentifier.java'
       # yamllint disable rule:line-length
       - '**/resources-noncompilable/**/checks/imports/unusedimports/InputUnusedImportsSingleWordPackage.java'
       - '**/resources-noncompilable/**/grammar/java19/*'
@@ -48,6 +51,7 @@ projects:
       - '**/test/langtools/tools/javac/processing/model/util/elements/TestGetDocComment_Line.java'
       - '**/test/langtools/tools/javac/diags/examples/FeatureFlexibleConstructors.java'
       - '**/test/langtools/tools/javac/diags/examples/PreviewFeatureUse.java'
+      - '**/test/langtools/tools/javac/diags/examples/IllegalUnicodeEscape.java'
       - '**/test/langtools/tools/javac/patterns/UninitializedThisException.java'
       - '**/test/langtools/tools/javac/SuperInit/LambdaOuterCapture.java'
       - '**/test/langtools/tools/javac/SuperInit/EarlyLocalTest1.java'
