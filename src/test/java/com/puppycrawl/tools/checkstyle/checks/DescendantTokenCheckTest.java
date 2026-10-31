@@ -328,4 +328,71 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    @Test
+    public void testCompactDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputDescendantTokenCompactDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactCounts() throws Exception {
+        final String[] expected = {
+            "21:7: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "LITERAL_FINALLY", "LITERAL_RETURN"),
+            "54:7: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "LITERAL_FINALLY", "LITERAL_RETURN"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputDescendantTokenCompactCounts.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactDepth() throws Exception {
+        final String[] expected = {
+            "28:7: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_FINALLY", "LITERAL_RETURN"),
+            "55:7: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_FINALLY", "LITERAL_RETURN"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputDescendantTokenCompactDepth.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSum() throws Exception {
+        final String[] expected = {
+            "22:7: " + getCheckMessage(MSG_KEY_SUM_MIN, 0, 1, "LITERAL_FINALLY"),
+            "45:7: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "LITERAL_FINALLY"),
+            "56:7: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "LITERAL_FINALLY"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputDescendantTokenCompactSum.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactMessages() throws Exception {
+        final String[] expected = {
+            "23:7: Too few LITERAL_RETURN in LITERAL_FINALLY: 0 < 1.",
+            "56:7: Too many LITERAL_RETURN in LITERAL_FINALLY: 2 > 1.",
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputDescendantTokenCompactMessages.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactRoot() throws Exception {
+        final String[] expected = {
+            "21:7: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_FINALLY", "LITERAL_FINALLY"),
+            "28:7: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_FINALLY", "LITERAL_FINALLY"),
+            "36:7: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_FINALLY", "LITERAL_FINALLY"),
+            "46:7: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_FINALLY", "LITERAL_FINALLY"),
+            "57:7: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_FINALLY", "LITERAL_FINALLY"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputDescendantTokenCompactRoot.java"),
+                expected);
+    }
+
 }
