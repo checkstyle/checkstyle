@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.metrics;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck;
 
 public class XpathRegressionBooleanExpressionComplexityTest
@@ -44,14 +42,8 @@ public class XpathRegressionBooleanExpressionComplexityTest
 
     @Test
     public void testCatchBlock() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathBooleanExpressionComplexityCatchBlock.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(BooleanExpressionComplexityCheck.class);
-
         final String[] expectedViolationMessages = {
-            "10:23: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
+            "19:23: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
                     BooleanExpressionComplexityCheck.MSG_KEY, 11, 3),
         };
 
@@ -63,20 +55,16 @@ public class XpathRegressionBooleanExpressionComplexityTest
                         + "[./IDENT[@text='d']]/ASSIGN"
         );
 
-        runVerifications(moduleConfig, fileToProcess,
-                expectedViolationMessages, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathBooleanExpressionComplexityCatchBlock.java"),
+                expectedXpathQueries,
+                expectedViolationMessages);
     }
 
     @Test
     public void testClassFields() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathBooleanExpressionComplexityClassFields.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(BooleanExpressionComplexityCheck.class);
-
         final String[] expectedViolationMessages = {
-            "9:19: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
+            "18:19: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
                     BooleanExpressionComplexityCheck.MSG_KEY, 11, 3),
         };
 
@@ -87,20 +75,16 @@ public class XpathRegressionBooleanExpressionComplexityTest
                         + "[./IDENT[@text='d']]/ASSIGN"
         );
 
-        runVerifications(moduleConfig, fileToProcess,
-                expectedViolationMessages, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathBooleanExpressionComplexityClassFields.java"),
+                expectedXpathQueries,
+                expectedViolationMessages);
     }
 
     @Test
     public void testConditionals() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathBooleanExpressionComplexityConditionals.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(BooleanExpressionComplexityCheck.class);
-
         final String[] expectedViolationMessages = {
-            "9:9: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
+            "18:9: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
                     BooleanExpressionComplexityCheck.MSG_KEY, 4, 3),
         };
 
@@ -110,8 +94,10 @@ public class XpathRegressionBooleanExpressionComplexityTest
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodThree']]/SLIST/LITERAL_IF"
         );
 
-        runVerifications(moduleConfig, fileToProcess,
-                expectedViolationMessages, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathBooleanExpressionComplexityConditionals.java"),
+                expectedXpathQueries,
+                expectedViolationMessages);
     }
 
 }

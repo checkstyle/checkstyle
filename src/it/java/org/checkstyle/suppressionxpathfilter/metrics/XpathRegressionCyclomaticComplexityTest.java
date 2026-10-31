@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.metrics;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck;
 
 public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSupport {
@@ -45,16 +43,8 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
 
     @Test
     public void testConditionals() throws Exception {
-
-        final File fileToProcess =
-                new File(getPath("InputXpathCyclomaticComplexityConditionals.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CyclomaticComplexityCheck.class);
-        moduleConfig.addProperty("max", "0");
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(CyclomaticComplexityCheck.class,
+            "15:5: " + getCheckMessage(CyclomaticComplexityCheck.class,
                     CyclomaticComplexityCheck.MSG_KEY, 2, 0),
         };
 
@@ -70,21 +60,16 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PUBLIC"
                 );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCyclomaticComplexityConditionals.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testSwitchBlock() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathCyclomaticComplexitySwitchBlock.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CyclomaticComplexityCheck.class);
-        moduleConfig.addProperty("max", "0");
-
         final String[] expectedViolation = {
-            "6:5: " + getCheckMessage(CyclomaticComplexityCheck.class,
+            "17:5: " + getCheckMessage(CyclomaticComplexityCheck.class,
                     CyclomaticComplexityCheck.MSG_KEY, 5, 0),
         };
 
@@ -100,21 +85,16 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo2']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCyclomaticComplexitySwitchBlock.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInnerClassLoops() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathCyclomaticComplexityInnerClassLoops.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CyclomaticComplexityCheck.class);
-        moduleConfig.addProperty("max", "0");
-
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(CyclomaticComplexityCheck.class,
+            "16:9: " + getCheckMessage(CyclomaticComplexityCheck.class,
                     CyclomaticComplexityCheck.MSG_KEY, 3, 0),
         };
 
@@ -133,8 +113,10 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='loops']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCyclomaticComplexityInnerClassLoops.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
