@@ -16,7 +16,7 @@ tokens = ASSIGN, ARRAY_INIT, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN
          PLUS_ASSIGN, QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR, SR_ASSIGN, STAR, \
          STAR_ASSIGN, LITERAL_ASSERT, TYPE_EXTENSION_AND, WILDCARD_TYPE, GENERIC_START, \
          GENERIC_END, ELLIPSIS
-
+enforceWhitespaceAroundArrayInit = (default)false
 
 */
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
