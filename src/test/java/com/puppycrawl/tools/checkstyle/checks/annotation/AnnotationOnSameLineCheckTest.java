@@ -188,4 +188,16 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testAnnotationOnSameLineCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
+            "23:1: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            "29:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputAnnotationOnSameLineCompactSourceFile.java"),
+            expected);
+    }
+
 }
