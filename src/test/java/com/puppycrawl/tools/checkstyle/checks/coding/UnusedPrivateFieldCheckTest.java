@@ -406,6 +406,42 @@ class UnusedPrivateFieldCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnusedPrivateFieldDeclarationIdents() throws Exception {
+        final String[] expected = {
+            "14:17: " + getCheckMessage(MSG_PRIVATE_FIELD, "x"),
+            "18:17: " + getCheckMessage(MSG_PRIVATE_FIELD, "y"),
+            "22:17: " + getCheckMessage(MSG_PRIVATE_FIELD, "z"),
+            "32:20: " + getCheckMessage(MSG_PRIVATE_FIELD, "s"),
+            "41:17: " + getCheckMessage(MSG_PRIVATE_FIELD, "size"),
+            "46:17: " + getCheckMessage(MSG_PRIVATE_FIELD, "VALUE"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedPrivateFieldDeclarationIdents.java"), expected);
+    }
+
+    @Test
+    public void testUnusedPrivateFieldSwitchLambda() throws Exception {
+        final String[] expected = {
+            "22:17: " + getCheckMessage(MSG_PRIVATE_FIELD, "early"),
+            "24:17: " + getCheckMessage(MSG_PRIVATE_FIELD, "late"),
+            "44:17: " + getCheckMessage(MSG_PRIVATE_FIELD, "text"),
+            "54:17: " + getCheckMessage(MSG_PRIVATE_FIELD, "n"),
+            "66:17: " + getCheckMessage(MSG_PRIVATE_FIELD, "v"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedPrivateFieldSwitchLambda.java"), expected);
+    }
+
+    @Test
+    public void testUnusedPrivateFieldLambdaParamScope() throws Exception {
+        final String[] expected = {
+            "14:17: " + getCheckMessage(MSG_PRIVATE_FIELD, "unused"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedPrivateFieldLambdaParamScope.java"), expected);
+    }
+
+    @Test
     public void testUnusedPrivateFieldForCatchScope() throws Exception {
         final String[] expected = {
             "38:17: " + getCheckMessage(MSG_PRIVATE_FIELD, "unused"),
