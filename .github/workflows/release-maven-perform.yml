@@ -34,7 +34,8 @@ jobs:
       - name: Checkout the latest code
         uses: actions/checkout@v7
         with:
-          persist-credentials: false
+          # this workflow executes only by maintainers on master
+          persist-credentials: true
           fetch-depth: 0
           ref: master
 

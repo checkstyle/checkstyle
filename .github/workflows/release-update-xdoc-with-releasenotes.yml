@@ -36,7 +36,8 @@ jobs:
       - name: Checkout the latest code
         uses: actions/checkout@v7
         with:
-          persist-credentials: false
+          # this workflow executes only by maintainers on master
+          persist-credentials: true
 
       - name: Setup local maven cache
         uses: actions/cache@v6
