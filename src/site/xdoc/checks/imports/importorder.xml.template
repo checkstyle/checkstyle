@@ -185,6 +185,9 @@
           not, default value is <b>false</b>. It is applied to static imports grouped
           with <b>top</b> or <b>bottom</b> options. This option is helping in reconciling
           of this Check and other tools like Eclipse's Organize Imports feature.
+          Static sorting for these options is independent of <b>ordered</b>:
+          setting <b>ordered</b> to <b>false</b> leaves type imports unsorted while
+          <b>sortStaticImportsAlphabetically</b> can still require sorted static imports.
         </p>
         <p id="Example6-config">
           To configure the Check allows static imports grouped to the <b>top</b> being sorted
