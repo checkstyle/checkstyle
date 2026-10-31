@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.metrics;
 
-import java.io.File;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck;
 
 public class XpathRegressionClassFanOutComplexityTest extends AbstractXpathTestSupport {
@@ -44,15 +42,8 @@ public class XpathRegressionClassFanOutComplexityTest extends AbstractXpathTestS
 
     @Test
     public void testInClass() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathClassFanOutComplexityClass.java")
-        );
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ClassFanOutComplexityCheck.class);
-        moduleConfig.addProperty("max", "0");
-
         final String[] expectedViolation = {
-            "6:1: " + getCheckMessage(ClassFanOutComplexityCheck.class,
+            "27:1: " + getCheckMessage(ClassFanOutComplexityCheck.class,
             ClassFanOutComplexityCheck.MSG_KEY, 4, 0),
         };
 
@@ -65,20 +56,16 @@ public class XpathRegressionClassFanOutComplexityTest extends AbstractXpathTestS
             + "[./IDENT[@text='InputXpathClassFanOutComplexityClass']]/MODIFIERS/LITERAL_PUBLIC"
 
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathClassFanOutComplexityClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInInterface() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathClassFanOutComplexityInterface.java")
-        );
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ClassFanOutComplexityCheck.class);
-        moduleConfig.addProperty("max", "0");
-
         final String[] expectedViolation = {
-            "7:1: " + getCheckMessage(ClassFanOutComplexityCheck.class,
+            "27:1: " + getCheckMessage(ClassFanOutComplexityCheck.class,
             ClassFanOutComplexityCheck.MSG_KEY, 1, 0),
         };
 
@@ -90,20 +77,16 @@ public class XpathRegressionClassFanOutComplexityTest extends AbstractXpathTestS
             "/COMPILATION_UNIT/INTERFACE_DEF"
             + "[./IDENT[@text='BadInterface']]/LITERAL_INTERFACE"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathClassFanOutComplexityInterface.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInEnum() throws Exception {
-        final File fileToProcess = new File(
-                getPath("InputXpathClassFanOutComplexityEnum.java")
-        );
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ClassFanOutComplexityCheck.class);
-        moduleConfig.addProperty("max", "0");
-
         final String[] expectedViolation = {
-            "9:1: " + getCheckMessage(ClassFanOutComplexityCheck.class,
+            "29:1: " + getCheckMessage(ClassFanOutComplexityCheck.class,
             ClassFanOutComplexityCheck.MSG_KEY, 1, 0),
         };
 
@@ -115,7 +98,10 @@ public class XpathRegressionClassFanOutComplexityTest extends AbstractXpathTestS
             "/COMPILATION_UNIT/ENUM_DEF"
             + "[./IDENT[@text='MyEnum']]/ENUM"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathClassFanOutComplexityEnum.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

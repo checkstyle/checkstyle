@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.metrics;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck;
 
 public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpathTestSupport {
@@ -45,12 +43,6 @@ public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpa
 
     @Test
     public void testClassDataAbstractCouplingClass() throws Exception {
-        final File classPath =
-                new File(getPath("InputXpathClassDataAbstractionCouplingClass.java"));
-
-        final DefaultConfiguration configuration =
-                createModuleConfig(ClassDataAbstractionCouplingCheck.class);
-
         final String expectedClasses = List.of(
             "AtomicInteger",
             "BigDecimal",
@@ -63,7 +55,7 @@ public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpa
         ).toString();
 
         final String[] expectedViolations = {
-            "14:1: " + getCheckMessage(ClassDataAbstractionCouplingCheck.class,
+            "35:1: " + getCheckMessage(ClassDataAbstractionCouplingCheck.class,
                 ClassDataAbstractionCouplingCheck.MSG_KEY, 8, 7, expectedClasses),
         };
 
@@ -78,18 +70,14 @@ public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpa
             + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(configuration, classPath, expectedViolations,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathClassDataAbstractionCouplingClass.java"),
+                expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
     public void testClassDataAbstractCouplingEnum() throws Exception {
-        final File classPath =
-                new File(getPath("InputXpathClassDataAbstractionCouplingEnum.java"));
-
-        final DefaultConfiguration configuration =
-                createModuleConfig(ClassDataAbstractionCouplingCheck.class);
-
         final String expectedClasses = List.of(
             "BigDecimal",
             "BigInteger",
@@ -102,7 +90,7 @@ public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpa
         ).toString();
 
         final String[] expectedViolations = {
-            "11:1: " + getCheckMessage(ClassDataAbstractionCouplingCheck.class,
+            "32:1: " + getCheckMessage(ClassDataAbstractionCouplingCheck.class,
                 ClassDataAbstractionCouplingCheck.MSG_KEY, 8, 7, expectedClasses),
         };
 
@@ -117,18 +105,14 @@ public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpa
             + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(configuration, classPath, expectedViolations,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathClassDataAbstractionCouplingEnum.java"),
+                expectedXpathQueries,
+                expectedViolations);
     }
 
     @Test
     public void testClassDataAbstractCouplingInterface() throws Exception {
-        final File classPath =
-                new File(getPath("InputXpathClassDataAbstractionCouplingInterface.java"));
-
-        final DefaultConfiguration configuration =
-                createModuleConfig(ClassDataAbstractionCouplingCheck.class);
-
         final String expectedClasses = List.of(
             "BigDecimal",
             "BigInteger",
@@ -141,7 +125,7 @@ public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpa
         ).toString();
 
         final String[] expectedViolations = {
-            "11:1: " + getCheckMessage(ClassDataAbstractionCouplingCheck.class,
+            "32:1: " + getCheckMessage(ClassDataAbstractionCouplingCheck.class,
                 ClassDataAbstractionCouplingCheck.MSG_KEY, 8, 7, expectedClasses),
         };
 
@@ -156,8 +140,10 @@ public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpa
             + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(configuration, classPath, expectedViolations,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathClassDataAbstractionCouplingInterface.java"),
+                expectedXpathQueries,
+                expectedViolations);
     }
 
 }

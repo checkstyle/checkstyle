@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.metrics;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck;
 
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
@@ -47,15 +45,8 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
 
     @Test
     public void testMethod() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathNPathComplexityMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NPathComplexityCheck.class);
-        moduleConfig.addProperty("max", "0");
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(NPathComplexityCheck.class,
+            "11:5: " + getCheckMessage(NPathComplexityCheck.class,
                 NPathComplexityCheck.MSG_KEY, 3, 0),
         };
 
@@ -71,21 +62,16 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
                 + "/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNPathComplexityMethod.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testStaticBlock() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathNPathComplexityStaticBlock.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NPathComplexityCheck.class);
-        moduleConfig.addProperty("max", "0");
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(NPathComplexityCheck.class,
+            "11:5: " + getCheckMessage(NPathComplexityCheck.class,
                 NPathComplexityCheck.MSG_KEY, 3, 0),
         };
 
@@ -95,21 +81,16 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
                 + "/OBJBLOCK/STATIC_INIT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNPathComplexityStaticBlock.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testConstructor() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathNPathComplexityConstructor.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(NPathComplexityCheck.class);
-        moduleConfig.addProperty("max", "0");
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(NPathComplexityCheck.class,
+            "12:5: " + getCheckMessage(NPathComplexityCheck.class,
                 NPathComplexityCheck.MSG_KEY, 2, 0),
         };
 
@@ -127,8 +108,10 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
                 + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNPathComplexityConstructor.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
