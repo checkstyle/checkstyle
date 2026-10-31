@@ -348,6 +348,12 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
+    @Override
+    public void beginTree(DetailAST rootAST) {
+        parentToSkip = null;
+        assignDepth = 0;
+    }
+
     // -@cs[CyclomaticComplexity] All logs should be in visit token.
     @Override
     public void visitToken(DetailAST ast) {
