@@ -86,4 +86,29 @@ public class TodoCommentCheckTest extends AbstractModuleTestSupport {
                 getPath("InputTodoCommentDefault.java"), expected);
     }
 
+    @Test
+    public void testTodoCommentCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "11:3: " + getCheckMessage(MSG_KEY, "TODO:"),
+            "18:7: " + getCheckMessage(MSG_KEY, "TODO:"),
+            "22:7: " + getCheckMessage(MSG_KEY, "TODO:"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputTodoCommentCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testTodoCommentCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "11:3: " + getCheckMessage(MSG_KEY, "FIXME:"),
+            "18:7: " + getCheckMessage(MSG_KEY, "FIXME:"),
+            "22:7: " + getCheckMessage(MSG_KEY, "FIXME:"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputTodoCommentCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
