@@ -542,11 +542,79 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFinalInstanceVariable() throws Exception {
         final String[] expected = {
-            "18:9: " + getCheckMessage(MSG_VARIABLE, "y", ""),
-            "19:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+            "18:13: " + getCheckMessage(MSG_VARIABLE, "y", ""),
+            "19:13: " + getCheckMessage(MSG_VARIABLE, "z", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisFinalInstanceVariable.java"), expected);
+    }
+
+    @Test
+    public void testFinalInstanceVariableViolationLocation() throws Exception {
+        final String[] expected = {
+            "18:13: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+            "19:9: " + getCheckMessage(MSG_VARIABLE, "v", ""),
+            "21:17: " + getCheckMessage(MSG_VARIABLE, "y", ""),
+            "35:9: " + getCheckMessage(MSG_VARIABLE, "w", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisFinalInstanceVariableViolationLocation.java"), expected);
+    }
+
+    @Test
+    public void testFinalInstanceVariableViolationLocation2() throws Exception {
+        final String[] expected = {
+            "28:13: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "29:9: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisFinalInstanceVariableViolationLocation2.java"), expected);
+    }
+
+    @Test
+    public void testFinalInstanceVariableViolationLocation3() throws Exception {
+        final String[] expected = {
+            "25:9: " + getCheckMessage(MSG_VARIABLE, "other", ""),
+            "27:9: " + getCheckMessage(MSG_VARIABLE, "helper", ""),
+            "32:17: " + getCheckMessage(MSG_VARIABLE, "g", ""),
+            "38:9: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "38:13: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "42:9: " + getCheckMessage(MSG_VARIABLE, "other", ""),
+            "42:17: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "46:9: " + getCheckMessage(MSG_METHOD, "consume", ""),
+            "46:17: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "51:13: " + getCheckMessage(MSG_VARIABLE, "d", ""),
+            "51:17: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "57:13: " + getCheckMessage(MSG_VARIABLE, "d", ""),
+            "57:17: " + getCheckMessage(MSG_VARIABLE, "d", ""),
+            "62:9: " + getCheckMessage(MSG_VARIABLE, "e", ""),
+            "63:9: " + getCheckMessage(MSG_VARIABLE, "f", ""),
+            "63:13: " + getCheckMessage(MSG_VARIABLE, "f", ""),
+            "67:9: " + getCheckMessage(MSG_VARIABLE, "h", ""),
+            "71:9: " + getCheckMessage(MSG_VARIABLE, "g", ""),
+            "75:9: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "75:13: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "79:9: " + getCheckMessage(MSG_VARIABLE, "other", ""),
+            "79:17: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "86:9: " + getCheckMessage(MSG_VARIABLE, "e", ""),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputRequireThisFinalInstanceVariableViolationLocation3.java"),
+                expected);
+    }
+
+    @Test
+    public void testFinalInstanceVariableViolationLocation4() throws Exception {
+        final String[] expected = {
+            "17:9: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "18:21: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "27:13: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "29:17: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "47:13: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisFinalInstanceVariableViolationLocation4.java"), expected);
     }
 
     @Test
