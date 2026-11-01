@@ -253,4 +253,30 @@ public class ParameterNameCheckTest extends AbstractModuleTestSupport {
             .isNotEqualTo(System.identityHashCode(input));
     }
 
+    @Test
+    public void testParameterNameCompactSourceFileDefault() throws Exception {
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "12:27: " + getCheckMessage(MSG_INVALID_PATTERN, "Bad", pattern),
+            "16:19: " + getCheckMessage(MSG_INVALID_PATTERN, "BadParam", pattern),
+            "21:26: " + getCheckMessage(MSG_INVALID_PATTERN, "BadParam", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputParameterNameCompactSourceFileDefault.java"),
+            expected);
+    }
+
+    @Test
+    public void testParameterNameCompactSourceFileProperties() throws Exception {
+        final String pattern = "^[a-zA-Z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "26:27: " + getCheckMessage(MSG_INVALID_PATTERN, "Bad_Param", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputParameterNameCompactSourceFileProperties.java"),
+            expected);
+    }
+
 }
