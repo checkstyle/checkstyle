@@ -190,6 +190,17 @@ public class RedundantThisCheckTest extends AbstractModuleTestSupport {
                 getPath("InputRedundantThisSwitchCase.java"), expected);
     }
 
+    @Test
+    public void testSwitchCaseGroupScope() throws Exception {
+        final String[] expected = {
+            "38:9: " + getCheckMessage(MSG_KEY_FIELD, "x"),
+            "49:17: " + getCheckMessage(MSG_KEY_FIELD, "x"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRedundantThisSwitchCaseGroupScope.java"), expected);
+    }
+
     /**
      * Statements stored for one file are nodes of the tree of that file, they never
      * match nodes of another file. So a missing reset keeps all trees in memory but
