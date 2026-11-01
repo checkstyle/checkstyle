@@ -1,0 +1,36 @@
+/*
+ReturnCount
+max = 3
+maxForVoid = (default)1
+format = (default)^equals$
+tokens = (default)CTOR_DEF, METHOD_DEF, LAMBDA, LITERAL_RETURN
+
+
+*/
+
+package org.checkstyle.suppressionxpathfilter.coding.returncount;
+
+public class InputXpathReturnCountNonVoidCustom {
+    public boolean equals(Object obj) {
+        int i = 1;
+        switch (i) {
+        case 1: return true;
+        case 2: return true;
+        case 3: return true;
+        case 4: return true;
+        case 5: return true;
+        case 6: return true;
+        }
+        return false;
+    }
+    boolean testNonVoid() { // violation 'Return count is 4'
+        int i = 1;
+        switch(i) {
+        case 1: return true;
+        case 2: return true;
+        case 3: return true;
+        }
+        return false;
+    }
+
+}
