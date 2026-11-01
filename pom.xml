@@ -2038,6 +2038,7 @@
               <dir>config</dir>
               <excludes>
                 <exclude>archunit-store/**</exclude>
+                <exclude>checker-framework-suppressions/**</exclude>
                 <exclude>codenarc-rules.groovy.txt</exclude>
                 <exclude>google-java-format/**</exclude>
                 <exclude>intellij-idea-inspections.properties</exclude>
@@ -2060,6 +2061,14 @@
                 <exclude>spotless/licence.header</exclude>
                 <exclude>yamllint.yaml</exclude>
               </excludes>
+            </validationSet>
+            <validationSet>
+              <validating>true</validating>
+              <dir>config/checker-framework-suppressions</dir>
+              <includes>
+                <include>**/*.xml</include>
+              </includes>
+              <systemId>config/checker-framework-suppressions.xsd</systemId>
             </validationSet>
             <validationSet>
               <validating>true</validating>
