@@ -991,9 +991,32 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("throwsIndent", "4");
         final String[] expected = {
             "18:10: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 9, "4, 8"),
-            "19:10: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 9, "8, 12"),
+            "19:10: " + getCheckMessage(MSG_ERROR_MULTI, "while", 9, "8, 12"),
         };
         verifyWarns(checkConfig, getPath("InputIndentationInvalidLabelWithWhileLoopIndent.java"),
+            expected);
+    }
+
+    @Test
+    public void testLabeledStatement() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String[] expected = {
+            "19:10: " + getCheckMessage(MSG_ERROR_MULTI, "for", 9, "8, 12"),
+            "26:10: " + getCheckMessage(MSG_ERROR_MULTI, "do..while", 9, "8, 12"),
+            "33:10: " + getCheckMessage(MSG_ERROR_MULTI, "block lcurly", 9, "8, 12"),
+            "40:10: " + getCheckMessage(MSG_ERROR_MULTI, "if", 9, "8, 12"),
+            "47:10: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 9, "8, 12"),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationLabeledStatementIndent.java"),
             expected);
     }
 
