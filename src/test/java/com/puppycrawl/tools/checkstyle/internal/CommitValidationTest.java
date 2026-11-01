@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.regex.Pattern;
@@ -355,16 +356,23 @@ public class CommitValidationTest {
     }
 
     private static String getRulesForCommitMessageFormatting() {
-        return "Proper commit message should adhere to the following rules:\n"
-                + "    1) Must match one of the following patterns:\n"
-                + "        " + ISSUE_COMMIT_MESSAGE_REGEX_PATTERN + "\n"
-                + "        " + PR_COMMIT_MESSAGE_REGEX_PATTERN + "\n"
-                + "        " + OTHER_COMMIT_MESSAGE_REGEX_PATTERN + "\n"
-                + "    2) It contains only one line of text\n"
-                + "    3) Must not end with a period, space, or tab\n"
-                + "    4) Commit message should be less than or equal to 200 characters\n"
-                + "\n"
-                + "The rule broken was: ";
+        final String template =
+            """
+            Proper commit message should adhere to the following rules:
+                1) Must match one of the following patterns:
+                    %s
+                    %s
+                    %s
+                2) It contains only one line of text
+                3) Must not end with a period, space, or tab
+                4) Commit message should be less than or equal to 200 characters
+
+            The rule broken was: \
+            """;
+        return String.format(Locale.ROOT, template,
+                ISSUE_COMMIT_MESSAGE_REGEX_PATTERN,
+                PR_COMMIT_MESSAGE_REGEX_PATTERN,
+                OTHER_COMMIT_MESSAGE_REGEX_PATTERN);
     }
 
     private static String getInvalidCommitMessageFormattingError(String commitId,
