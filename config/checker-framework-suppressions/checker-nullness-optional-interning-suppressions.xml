@@ -3503,8 +3503,15 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryPermitsClauseCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference nameAst</message>
-    <lineContent>localTypeNames.add(nameAst.getText());</lineContent>
+    <message>dereference of possibly-null reference objBlock</message>
+    <lineContent>DetailAST child = objBlock.getFirstChild();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryPermitsClauseCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference typeDef.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>return typeDef.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
