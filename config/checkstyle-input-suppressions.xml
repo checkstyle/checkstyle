@@ -129,12 +129,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="/com/google/checkstyle/test/chapter7javadoc/rule734nonrequiredjavadoc/InputInvalidJavadocPositionRecord\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/InputAnnotationLocationCustomAnnotationsDeclared\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/InputAnnotationLocationIncorrect3One\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/InputAnnotationLocationIncorrectOne\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationonsameline/InputAnnotationOnSameLineCheckTokensOnMethodAndVar\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/InputMissingDeprecatedBadDeprecated\.java"/>
