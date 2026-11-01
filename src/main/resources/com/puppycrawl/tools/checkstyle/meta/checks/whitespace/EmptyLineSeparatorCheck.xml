@@ -51,6 +51,7 @@
          </properties>
          <message-keys>
             <message-key key="empty.line.separator"/>
+            <message-key key="empty.line.separator.extra.semicolon"/>
             <message-key key="empty.line.separator.multiple.lines"/>
             <message-key key="empty.line.separator.multiple.lines.after"/>
             <message-key key="empty.line.separator.multiple.lines.inside"/>

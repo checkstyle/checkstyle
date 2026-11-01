@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_EXTRA_SEMICOLON;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES_AFTER;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES_INSIDE;
@@ -981,6 +982,45 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparator3.java"),
+                expected
+        );
+    }
+
+    @Test
+    public void testExtraSemicolon() throws Exception {
+        final String[] expected = {
+            "17:3: " + getCheckMessage(MSG_EXTRA_SEMICOLON),
+            "22:4: " + getCheckMessage(MSG_EXTRA_SEMICOLON),
+            "25:3: " + getCheckMessage(MSG_EXTRA_SEMICOLON),
+            "28:3: " + getCheckMessage(MSG_EXTRA_SEMICOLON),
+            "31:17: " + getCheckMessage(MSG_EXTRA_SEMICOLON),
+            "36:3: " + getCheckMessage(MSG_EXTRA_SEMICOLON),
+            "43:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorExtraSemicolon.java"),
+                expected
+        );
+    }
+
+    @Test
+    public void testExtraSemicolonAfterImport() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_EXTRA_SEMICOLON),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorExtraSemicolonImport.java"),
+                expected
+        );
+    }
+
+    @Test
+    public void testExtraSemicolonAfterPackage() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_EXTRA_SEMICOLON),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorExtraSemicolonPackage.java"),
                 expected
         );
     }
