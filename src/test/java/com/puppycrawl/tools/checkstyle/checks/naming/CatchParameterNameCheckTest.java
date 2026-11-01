@@ -118,4 +118,34 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputCatchParameterNameUnnamed.java"), expected);
     }
 
+    @Test
+    public void testCatchParameterNameCompactSourceFileDefault() throws Exception {
+        final String defaultFormat = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
+
+        final String[] expected = {
+            "18:24: " + getCheckMessage(MSG_INVALID_PATTERN, "exception1", defaultFormat),
+            "21:35: " + getCheckMessage(MSG_INVALID_PATTERN, "ie", defaultFormat),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/"
+                        + "InputCatchParameterNameCompactSourceFileDefault.java"),
+            expected);
+    }
+
+    @Test
+    public void testCatchParameterNameCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "18:24: " + getCheckMessage(MSG_INVALID_PATTERN, "exception1", "^[a-z]+$"),
+            "21:24: " + getCheckMessage(MSG_INVALID_PATTERN, "myException", "^[a-z]+$"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/"
+                        + "InputCatchParameterNameCompactSourceFileProperties.java"),
+            expected);
+    }
+
 }
