@@ -5046,6 +5046,35 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck.java</fileName>
+    <specifier>assignment</specifier>
+    <message>incompatible types in assignment.</message>
+    <lineContent>previousStatementIndex = null;</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull PreviousStatementIndex
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck.java</fileName>
+    <specifier>assignment</specifier>
+    <message>incompatible types in assignment.</message>
+    <lineContent>emptyLinesBefore = null;</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull int @Initialized @NonNull []
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck.java</fileName>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: rootAst, previousStatementIndex, emptyLinesBefore</message>
+    <lineContent>public CommentsIndentationCheck() {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
     <lineContent>while (nextToken != null &amp;&amp; nextToken != currentStatement &amp;&amp; isComment(nextToken)) {</lineContent>
@@ -5111,6 +5140,13 @@
       type of expression: @Initialized @Nullable DetailAST
       method return type: @Initialized @NonNull DetailAST
     </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck.java</fileName>
+    <specifier>unboxing.of.nullable</specifier>
+    <message>unboxing a possibly-null reference blockIndexes.get(block)</message>
+    <lineContent>return blockIndexes.get(block);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
