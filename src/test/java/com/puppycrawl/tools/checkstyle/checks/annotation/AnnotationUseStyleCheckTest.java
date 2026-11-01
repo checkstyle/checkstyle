@@ -29,7 +29,6 @@ import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseSty
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -91,15 +90,10 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @SuppressForbidden
     @Test
     public void testNonTrimmedInput() throws Exception {
-        final DefaultConfiguration configuration =
-            createModuleConfig(AnnotationUseStyleCheck.class);
-        configuration.addProperty("elementStyle", "ignore");
-        configuration.addProperty("closingParens", " ignore  ");
-        configuration.addProperty("trailingArrayComma", " always");
-        final String filePath = getPath("InputAnnotationUseStyleWithTrailingComma.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(configuration, filePath, expected);
+        verifyWithInlineConfigParser(
+            getPath("InputAnnotationUseStyleWithTrailingComma.java"), expected);
     }
 
     @Test
