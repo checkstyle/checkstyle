@@ -190,8 +190,19 @@
     <properties>
       <!-- We use thread to limit the stack size for a test method. -->
       <property name="violationSuppressXPath"
-               value="//ClassDeclaration[@SimpleName='TestUtil']
-                        //MethodDeclaration[@Name='getResultWithLimitedResources']"/>
+               value="//ClassDeclaration[@SimpleName='LimitedStackThreadInterceptor']
+                     //MethodDeclaration[@Name='interceptTestMethod']
+                 | //ClassDeclaration[@SimpleName='LimitedStackThreadInterceptorTest']"/>
+    </properties>
+  </rule>
+
+  <rule ref="category/java/bestpractices.xml/UnusedPrivateMethod">
+    <properties>
+      <!-- These methods provide annotation metadata accessed through reflection. -->
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='LimitedStackThreadInterceptorTest']
+                         //ClassDeclaration[@SimpleName='ResourceDeclarations']
+                           /ClassBody/MethodDeclaration"/>
     </properties>
   </rule>
 
