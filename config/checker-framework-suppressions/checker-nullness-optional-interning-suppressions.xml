@@ -5717,6 +5717,20 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/LineWrappingHandler.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>&amp;&amp; node != getFirstToken(ast)) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/LineWrappingHandler.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>&amp;&amp; node != getFirstToken(ast)) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/LineWrappingHandler.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
     <lineContent>while (curNode != lastNode) {</lineContent>
   </checkerFrameworkError>
 
