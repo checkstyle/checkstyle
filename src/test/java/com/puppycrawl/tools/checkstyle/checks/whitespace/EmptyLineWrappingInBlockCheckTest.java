@@ -283,6 +283,30 @@ public class EmptyLineWrappingInBlockCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
+    public void testLiteralSwitch() throws Exception {
+        final String[] expected = {
+            "14:24: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_ONE, "{"),
+            "19:9: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_ONE, "}"),
+            "34:31: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_ONE, "{"),
+            "37:9: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_ONE, "}"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineWrappingInBlockLiteralSwitch.java"), expected);
+    }
+
+    @Test
+    public void testSwitchRule() throws Exception {
+        final String[] expected = {
+            "15:23: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_ONE, "{"),
+            "17:13: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_ONE, "}"),
+            "24:24: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_ONE, "{"),
+            "26:13: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_ONE, "}"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineWrappingInBlockSwitchRule.java"), expected);
+    }
+
+    @Test
     public void testArrayInit() throws Exception {
         final String[] expected = {
             "16:44: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_ONE, "{"),
