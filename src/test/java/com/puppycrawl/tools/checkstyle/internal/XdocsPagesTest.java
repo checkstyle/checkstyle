@@ -567,6 +567,54 @@ public class XdocsPagesTest {
     }
 
     @Test
+    public void testSiteXmlModuleNamesAreInSyncWithActualNames() throws Exception {
+        final NodeList nodes = getTagSourcesNode(SITE_PATH, "item");
+        final Set<Class<?>> modules = CheckUtil.getCheckstyleModules();
+
+        final List<String> checkNames = new ArrayList<>();
+        final List<String> filterNames = new ArrayList<>();
+        final List<String> fileFilterNames = new ArrayList<>();
+
+        for (int nodeIndex = 0; nodeIndex < nodes.getLength(); nodeIndex++) {
+            final Node current = nodes.item(nodeIndex);
+            final String itemName = XmlUtil.getNameAttributeOfNode(current);
+
+            if ("Checks".equals(itemName)) {
+                for (Node groupNode : XmlUtil.getChildrenElements(current)) {
+                    checkNames.addAll(getNames(groupNode));
+                }
+            }
+            if ("Filters".equals(itemName)) {
+                filterNames.addAll(getNames(current));
+            }
+            if ("File Filters".equals(itemName)) {
+                fileFilterNames.addAll(getNames(current));
+            }
+        }
+
+        assertWithMessage("Check names must be in sync with actual names at %s", SITE_PATH)
+                .that(checkNames)
+                .containsExactlyElementsIn(getModuleNames(modules, "checks"));
+        assertWithMessage("Filter names must be in sync with actual names at %s", SITE_PATH)
+                .that(filterNames)
+                .containsExactlyElementsIn(getModuleNames(modules, "filters"));
+        assertWithMessage("File Filter names must be in sync with actual names at %s", SITE_PATH)
+                .that(fileFilterNames)
+                .containsExactlyElementsIn(getModuleNames(modules, "filefilters"));
+    }
+
+    private static Set<String> getModuleNames(Set<Class<?>> modules, String subPackage) {
+        final String packagePrefix = "com.puppycrawl.tools.checkstyle." + subPackage;
+        final Set<Class<?>> packageModules = modules.stream()
+                .filter(module -> {
+                    return module.getPackageName().equals(packagePrefix)
+                            || module.getPackageName().startsWith(packagePrefix + ".");
+                })
+                .collect(Collectors.toSet());
+        return CheckUtil.getSimpleNames(packageModules);
+    }
+
+    @Test
     public void testAlphabetOrderAtIndexPages() throws Exception {
         final Path allChecks = Path.of("src/site/xdoc/checks.xml");
         validateOrder(allChecks, "Check");
