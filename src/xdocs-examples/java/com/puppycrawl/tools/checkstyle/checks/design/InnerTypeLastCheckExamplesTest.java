@@ -37,6 +37,9 @@ public class InnerTypeLastCheckExamplesTest extends AbstractExamplesModuleTestSu
         final String[] expected = {
             "15:3: " + getCheckMessage(MSG_KEY),
             "22:3: " + getCheckMessage(MSG_KEY),
+            "28:3: " + getCheckMessage(MSG_KEY),
+            "30:3: " + getCheckMessage(MSG_KEY),
+            "36:3: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
