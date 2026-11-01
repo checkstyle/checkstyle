@@ -109,4 +109,34 @@ public final class InputRightCurlyInvalid {
         return result;
     }
 
+    /**
+     * Dummy method with for loop brace placement.
+     *
+     * @param limit dummy limit.
+     * @return sum.
+     */
+    public int count(final int limit) {
+        int total = 0;
+        for (int i = 0; i < limit; i++) {
+            total += i;
+        }
+        for (int i = 0; i < limit; i++) {
+            total += i; } // violation ''}' at column 25 should have line break before.'
+        return total;
+    }
+
+    /**
+     * Dummy method with while loop brace placement.
+     *
+     * @param flag dummy flag.
+     */
+    public void loop(final boolean flag) {
+        while (flag) {
+            break;
+        }
+        while (flag) {
+            break; } // violation ''}' at column 20 should have line break before.'
+    }
+
 }
+
