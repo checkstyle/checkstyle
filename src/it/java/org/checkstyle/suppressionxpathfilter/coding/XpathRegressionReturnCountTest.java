@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck;
 
 public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
@@ -43,15 +41,8 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
 
     @Test
     public void testVoid() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathReturnCountVoid.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ReturnCountCheck.class);
-
         final String[] expectedViolation = {
-            "16:5: " + getCheckMessage(ReturnCountCheck.class,
+            "26:5: " + getCheckMessage(ReturnCountCheck.class,
                         ReturnCountCheck.MSG_KEY_VOID, 5, 1),
         };
 
@@ -70,54 +61,44 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testVoid']]/TYPE/LITERAL_VOID"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathReturnCountVoid.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testCustomMaxForVoid() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathReturnCountVoid.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ReturnCountCheck.class);
-
-        moduleConfig.addProperty("maxForVoid", "3");
-
         final String[] expectedViolation = {
-            "16:5: " + getCheckMessage(ReturnCountCheck.class,
+            "26:5: " + getCheckMessage(ReturnCountCheck.class,
                         ReturnCountCheck.MSG_KEY_VOID, 5, 3),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathReturnCountVoid']]"
+                + "[./IDENT[@text='InputXpathReturnCountVoidCustom']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testVoid']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathReturnCountVoid']]"
+                + "[./IDENT[@text='InputXpathReturnCountVoidCustom']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testVoid']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathReturnCountVoid']]"
+                + "[./IDENT[@text='InputXpathReturnCountVoidCustom']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testVoid']]/TYPE",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathReturnCountVoid']]"
+                + "[./IDENT[@text='InputXpathReturnCountVoidCustom']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testVoid']]/TYPE/LITERAL_VOID"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathReturnCountVoidCustom.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNonVoid() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathReturnCountNonVoid.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ReturnCountCheck.class);
-
         final String[] expectedViolation = {
-            "16:5: " + getCheckMessage(ReturnCountCheck.class,
+            "26:5: " + getCheckMessage(ReturnCountCheck.class,
                         ReturnCountCheck.MSG_KEY, 4, 2),
         };
 
@@ -136,54 +117,44 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testNonVoid']]/TYPE/LITERAL_BOOLEAN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathReturnCountNonVoid.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testCustomMax() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathReturnCountNonVoid.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ReturnCountCheck.class);
-
-        moduleConfig.addProperty("max", "3");
-
         final String[] expectedViolation = {
-            "16:5: " + getCheckMessage(ReturnCountCheck.class,
+            "26:5: " + getCheckMessage(ReturnCountCheck.class,
                         ReturnCountCheck.MSG_KEY, 4, 3),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathReturnCountNonVoid']]"
+                + "[./IDENT[@text='InputXpathReturnCountNonVoidCustom']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testNonVoid']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathReturnCountNonVoid']]"
+                + "[./IDENT[@text='InputXpathReturnCountNonVoidCustom']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testNonVoid']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathReturnCountNonVoid']]"
+                + "[./IDENT[@text='InputXpathReturnCountNonVoidCustom']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testNonVoid']]/TYPE",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathReturnCountNonVoid']]"
+                + "[./IDENT[@text='InputXpathReturnCountNonVoidCustom']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testNonVoid']]/TYPE/LITERAL_BOOLEAN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathReturnCountNonVoidCustom.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testCtor() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathReturnCountCtor.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ReturnCountCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(ReturnCountCheck.class,
+            "14:5: " + getCheckMessage(ReturnCountCheck.class,
                         ReturnCountCheck.MSG_KEY_VOID, 5, 1),
         };
 
@@ -200,20 +171,16 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
                 + "/OBJBLOCK/CTOR_DEF/IDENT[@text='InputXpathReturnCountCtor']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathReturnCountCtor.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testLambda() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathReturnCountLambda.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ReturnCountCheck.class);
-
         final String[] expectedViolation = {
-            "7:42: " + getCheckMessage(ReturnCountCheck.class,
+            "17:42: " + getCheckMessage(ReturnCountCheck.class,
                         ReturnCountCheck.MSG_KEY, 4, 2),
         };
 
@@ -224,7 +191,10 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
                         + "/VARIABLE_DEF[./IDENT[@text='a']]/ASSIGN/LAMBDA[./IDENT[@text='i']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathReturnCountLambda.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
