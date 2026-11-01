@@ -616,6 +616,11 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.pac
             </a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.line.separator.extra.semicolon%22">
+              empty.line.separator.extra.semicolon
+            </a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.line.separator.multiple.lines%22">
               empty.line.separator.multiple.lines
             </a>
