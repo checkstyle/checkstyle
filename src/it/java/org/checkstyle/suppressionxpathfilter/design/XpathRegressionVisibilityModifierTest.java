@@ -21,14 +21,12 @@ package org.checkstyle.suppressionxpathfilter.design;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck.MSG_KEY;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
 
 public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupport {
@@ -47,14 +45,8 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
 
     @Test
     public void testDefaultModifier() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathVisibilityModifierDefault.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(VisibilityModifierCheck.class);
-
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY, "field"),
+            "28:9: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY, "field"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -63,20 +55,15 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='field']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathVisibilityModifierDefault.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testAnnotation() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathVisibilityModifierAnnotation.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(VisibilityModifierCheck.class);
-        moduleConfig.addProperty("ignoreAnnotationCanonicalNames", "Deprecated");
-
         final String[] expectedViolation = {
-            "5:12: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY,
+            "26:12: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY,
                     "annotatedString"),
         };
 
@@ -86,19 +73,15 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='annotatedString']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathVisibilityModifierAnnotation.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testAnonymousClass() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathVisibilityModifierAnonymous.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(VisibilityModifierCheck.class);
-
         final String[] expectedViolation = {
-            "6:23: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY, "field1"),
+            "28:23: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY, "field1"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -109,19 +92,15 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='field1']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathVisibilityModifierAnonymous.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathVisibilityModifierInner.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(VisibilityModifierCheck.class);
-
         final String[] expectedViolation = {
-            "7:20: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY, "field2"),
+            "29:20: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY, "field2"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -131,7 +110,9 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
                         + "VARIABLE_DEF/IDENT[@text='field2']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathVisibilityModifierInner.java"),
+                expectedXpathQueries, expectedViolation);
     }
 
 }
