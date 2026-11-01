@@ -207,8 +207,6 @@
   <suppress id="xpathTestsUseInlineConfigParser"
             files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionMatchXpathTest\.java"/>
   <suppress id="xpathTestsUseInlineConfigParser"
-            files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionReturnCountTest\.java"/>
-  <suppress id="xpathTestsUseInlineConfigParser"
             files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionUnnecessaryTypeArgumentsWithRecordPatternTest\.java"/>
   <suppress id="xpathTestsUseInlineConfigParser"
             files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]design[\\/]XpathRegressionVisibilityModifierTest\.java"/>
