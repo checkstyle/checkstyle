@@ -66,6 +66,11 @@ jobs:
           echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
           groovy --version
 
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
       - name: Setup local maven cache
         uses: actions/cache@v6
         with:
@@ -73,11 +78,6 @@ jobs:
             ~/.m2/repository
             ~/.m2/wrapper
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
-
-      - name: Checkout
-        uses: actions/checkout@v7
-        with:
-          persist-credentials: false
 
       - name: Generate pitest-${{ matrix.profile }} report
         run: |
