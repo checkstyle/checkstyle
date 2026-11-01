@@ -191,7 +191,7 @@
           <item name="StringLiteralEquality" href="checks/coding/stringliteralequality.html"/>
           <item name="SuperClone" href="checks/coding/superclone.html"/>
           <item name="SuperFinalize" href="checks/coding/superfinalize.html"/>
-          <item name="TextBlockGoogleStyle"
+          <item name="TextBlockGoogleStyleFormatting"
                 href="checks/coding/textblockgooglestyleformatting.html"/>
           <item name="UnnecessaryNullCheckWithInstanceOf"
                 href="checks/coding/unnecessarynullcheckwithinstanceof.html"/>
@@ -247,7 +247,7 @@
           <item name="IllegalBlockTag" href="checks/javadoc/illegalblocktag.html"/>
           <item name="InappropriateJavadocBlockTagsOnField"
                 href="checks/javadoc/inappropriatejavadocblocktagsonfield.html"/>
-          <item name="InappropriateJavadocBlockTagsOnPackageCheck"
+          <item name="InappropriateJavadocBlockTagsOnPackage"
                 href="checks/javadoc/inappropriatejavadocblocktagsonpackage.html"/>
           <item name="InappropriateJavadocBlockTagsOnType"
                 href="checks/javadoc/inappropriatejavadocblocktagsontype.html"/>
@@ -324,7 +324,7 @@
           <item name="NoCodeInFile" href="checks/misc/nocodeinfile.html"/>
           <item name="NumericalPrefixesInfixesSuffixesCharacterCase"
                 href="checks/misc/numericalprefixesinfixessuffixescharactercase.html"/>
-          <item name="OpenjdkMethodThrowsAlignmentCheck"
+          <item name="OpenjdkMethodThrowsAlignment"
                 href="checks/misc/openjdkmethodthrowsalignment.html"/>
           <item name="OrderedProperties" href="checks/misc/orderedproperties.html"/>
           <item name="OuterTypeFilename" href="checks/misc/outertypefilename.html"/>
