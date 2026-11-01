@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <div>
- * Checks if the javadoc has
+ * Checks if the Javadoc has
  * <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
  * leading asterisks</a> on each line.
  * </div>

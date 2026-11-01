@@ -6,7 +6,7 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks that multiple &lt;code&gt;@see&lt;/code&gt; tags are ordered in a predictable way,
- roughly following the order in which their arguments are searched for by javadoc,
+ roughly following the order in which their arguments are searched for by Javadoc,
  from nearest to farthest access, from least-qualified to fully-qualified.
  &lt;/div&gt;
 
@@ -52,7 +52,7 @@
  purposes, so the check only reports violations when it is confident about
  the correct order. References using the &lt;code&gt;Type##fragment&lt;/code&gt; syntax to
  link to a named fragment within a page (rather than to a member) are
- intentionally ignored as well, since such fragments are not javadoc type
+ intentionally ignored as well, since such fragments are not Javadoc type
  or member references and cannot be meaningfully compared to one.&lt;/p&gt;</description>
          <properties>
             <property default-value="false"

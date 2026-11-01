@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <div>
  * Checks the order of
  * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
- * javadoc block-tags or javadoc tags</a>.
+ * Javadoc block-tags or Javadoc tags</a>.
  * </div>
  *
  * <p>

@@ -461,7 +461,7 @@
       <artifactId>slf4j-api</artifactId>
       <version>${slf4j.version}</version>
       <!-- Compile scope only so that "requires org.slf4j" in module-info.java resolves;
-           no Checkstyle code imports slf4j, it is needed at runtime by org.reflections. -->
+           no Checkstyle code imports SLF4J, it is needed at runtime by org.reflections. -->
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -2016,7 +2016,7 @@
               <excludes>
                 <!-- git -->
                 <exclude>.git/**</exclude>
-                <!-- hand crafted indentation  -->
+                <!-- handcrafted indentation  -->
                 <exclude>src/site/xdoc/**</exclude>
                 <!-- Temporary files -->
                 <exclude>target/**</exclude>

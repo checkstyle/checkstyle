@@ -85,7 +85,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *
  * <p>
  * <b>Lines that end with punctuation.</b> A line that matches {@code ignoreTooShortPattern}
- * is not reported as stopping too early, and no words are moved up to it. By default this is
+ * is not reported as stopping too early, and no words are moved up to it. By default, this is
  * every line that ends with a period, a colon or a comma, so a sentence, or a part of it,
  * can end before the limit. Trailing whitespace of the line is ignored when the pattern is
  * applied. The line after such a line is checked on its own. Such lines can still be
@@ -170,7 +170,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *
  * <p>
  * <b>URLs and links.</b> A URL cannot be wrapped, so a line that matches
- * {@code ignorePattern} is not reported as too long. By default this is every line that has
+ * {@code ignorePattern} is not reported as too long. By default, this is every line that has
  * a URL or the {@code href} attribute of a link. A block tag line whose value starts with a
  * link, such as {@code @see <a href="...">}, is therefore not reported, whether the link ends
  * on that line or on a later one. Such lines can still be reported as stopping too early.

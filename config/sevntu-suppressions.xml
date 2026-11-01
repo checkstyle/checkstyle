@@ -22,11 +22,11 @@
              files="IntMatchFilterElement\.java"/>
 
   <!-- JavadocTagInfo.java, InvalidJavadocTag.java, and JavadocTag.java will be deprecated as we
-  completely switch to ANTLR parser for javadoc. The classes are required only for old javadoc
+  completely switch to ANTLR parser for Javadoc. The classes are required only for old Javadoc
   parsers and their usage will be excluded from JavadocUtilTest.java. -->
   <suppress checks="ForbidCertainImports"
              files="JavadocUtilTest\.java"/>
-  <!-- Uses other checks as a basis for it's tests. -->
+  <!-- Uses other checks as a basis for its tests. -->
   <suppress checks="ForbidCertainImports"
              files="ViolationTest\.java"/>
   <suppress checks="ForbidCertainImports"
