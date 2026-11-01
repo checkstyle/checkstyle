@@ -84,6 +84,23 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testLambdaInSwitchRule() throws Exception {
+        final String[] expected = {
+            "20:19: " + getCheckMessage(MSG_KEY, "x"),
+            "28:28: " + getCheckMessage(MSG_KEY, "x"),
+            "35:35: " + getCheckMessage(MSG_KEY, "y"),
+            "43:18: " + getCheckMessage(MSG_KEY, "x"),
+            "52:19: " + getCheckMessage(MSG_KEY, "y"),
+            "76:11: " + getCheckMessage(MSG_KEY, "a"),
+            "84:23: " + getCheckMessage(MSG_KEY, "x"),
+            "95:23: " + getCheckMessage(MSG_KEY, "x"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterAssignmentLambdaInSwitchRule.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final ParameterAssignmentCheck check = new ParameterAssignmentCheck();
         assertWithMessage("Acceptable tokens should not be null")
