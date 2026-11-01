@@ -601,4 +601,32 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             .contains("EQUALS");
     }
 
+    @Test
+    public void testJavadocTypeCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "32:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
+            "41:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<X>"),
+            "43:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
+            "50:4: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
+            "58:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "value"),
+            "66:5: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
+            "84:5: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputJavadocTypeCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testJavadocTypeCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "48:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<X>"),
+            "57:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "unused"),
+            "80:12: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<X>"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputJavadocTypeCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }

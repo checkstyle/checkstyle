@@ -130,7 +130,6 @@ public class AllChecksCompactSourceCoverageTest {
         "JavadocSeeTagOrderCheck",
         "JavadocStyleCheck",
         "JavadocTagContinuationIndentationCheck",
-        "JavadocTypeCheck",
         "JavadocVariableCheck",
         "LambdaBodyLengthCheck",
         "LambdaParameterNameCheck",
