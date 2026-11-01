@@ -44,6 +44,16 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTabColumns() throws Exception {
+        final String[] expected = {
+            "15:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@param"),
+            "21:12: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodTabColumns.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final JavadocMethodCheck javadocMethodCheck = new JavadocMethodCheck();
 

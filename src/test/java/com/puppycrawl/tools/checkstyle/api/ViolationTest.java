@@ -32,6 +32,20 @@ import nl.jqno.equalsverifier.EqualsVerifierReport;
 
 public class ViolationTest {
 
+    @DefaultLocale("en")
+    @Test
+    public void testArgumentsAreCopied() {
+        final Object[] arguments = {"original"};
+        final Violation violation = new Violation(1,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "illegal.catch",
+                arguments, null, Violation.class, null);
+        arguments[0] = "changed";
+
+        assertWithMessage("The violation must retain its original arguments")
+                .that(violation.getViolation())
+                .isEqualTo("Catching 'original' is not allowed.");
+    }
+
     @Test
     public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(Violation.class)

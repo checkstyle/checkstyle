@@ -24,8 +24,6 @@ import java.util.Arrays;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-
 /**
  * Provides common functionality for many FileSetChecks.
  *
@@ -104,7 +102,7 @@ public abstract class AbstractFileSetCheck
         fileContext.fileContents = new FileContents(fileText);
         fileContext.violations.clear();
         // Process only what interested in
-        if (CommonUtil.matchesFileExtension(file, fileExtensions)) {
+        if (ApiUtil.matchesFileExtension(file, fileExtensions)) {
             processFiltered(file, fileText);
         }
         final SortedSet<Violation> result = new TreeSet<>(fileContext.violations);
@@ -235,7 +233,7 @@ public abstract class AbstractFileSetCheck
     public final void log(int lineNo, int colNo, String key,
             Object... args) {
         final FileContext fileContext = context.get();
-        final int col = 1 + CommonUtil.lengthExpandedTabs(
+        final int col = 1 + ApiUtil.lengthExpandedTabs(
                 fileContext.fileContents.getLine(lineNo - 1), colNo, tabWidth);
         fileContext.violations.add(
                 new Violation(lineNo,
