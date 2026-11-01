@@ -88,11 +88,11 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAnnotationOnSameLineCheckTokensOnMethodAndVar() throws Exception {
         final String[] expected = {
-            "22:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation3"),
-            "23:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
-            "24:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
-            "32:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation4"),
-            "32:18: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation3"),
+            "20:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation3"),
+            "21:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
+            "22:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
+            "30:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation4"),
+            "30:18: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation3"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAnnotationOnSameLineCheckTokensOnMethodAndVar.java"), expected);

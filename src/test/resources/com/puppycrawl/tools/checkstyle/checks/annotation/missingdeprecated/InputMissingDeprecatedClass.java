@@ -9,8 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
 import java.lang.annotation.Inherited;
 
-// violation 6 lines below 'Duplicate @deprecated tag.'
-// violation 9 lines below 'Must include.*@java.lang.Deprecated annotation.*@deprecated.*description.'
+// violation 5 lines below 'Duplicate @deprecated tag.'
 /**
  *
  * @author idubinin
@@ -18,7 +17,7 @@ import java.lang.annotation.Inherited;
  *@deprecated
  *stuff
  *stuff
- */
+ */ // violation below 'Must include.*@java.lang.Deprecated annotation.*@deprecated.*description.'
 public class InputMissingDeprecatedClass
 {
 
