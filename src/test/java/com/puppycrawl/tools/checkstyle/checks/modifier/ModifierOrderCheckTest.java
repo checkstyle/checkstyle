@@ -24,10 +24,13 @@ import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_MODIFIER_CUSTOM_ORDER;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_MODIFIER_ORDER;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ModifierOrderCheckTest extends AbstractModuleTestSupport {
@@ -230,6 +233,37 @@ public class ModifierOrderCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputModifierOrderCustomSameAsDefault.java"), expected);
+    }
+
+    /**
+     * Verifies that explicitly customized orders retain custom diagnostics even when
+     * appending missing modifiers produces the default order.
+     *
+     * @throws Exception if verification fails
+     */
+    @Test
+    public void testCustomOrderCompletesToDefault() throws Exception {
+        final String[] expected = {
+            "12:12: " + getCheckMessage(MSG_MODIFIER_CUSTOM_ORDER, "private"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderCustomDefaultPrefix.java"), expected);
+    }
+
+    /**
+     * Verifies the immutable configuration required by StatelessCheck. Normal input-file
+     * verification cannot check mutability because the order is not exposed by a getter.
+     */
+    @Test
+    public void testConfiguredOrderIsImmutable() {
+        final ModifierOrderCheck check = new ModifierOrderCheck();
+        check.setModifiersOrder("static", "public");
+        final List<?> order = TestUtil.getInternalState(check, "modifiersOrder", List.class);
+        TestUtil.getExpectedThrowable(UnsupportedOperationException.class, order::clear,
+                "Configured modifier order must be immutable");
+        assertWithMessage("Configured modifier order must be preserved")
+            .that(order)
+            .isNotEmpty();
     }
 
 }
