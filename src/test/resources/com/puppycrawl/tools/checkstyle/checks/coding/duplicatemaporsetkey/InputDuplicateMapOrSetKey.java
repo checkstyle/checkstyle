@@ -42,4 +42,27 @@ public class InputDuplicateMapOrSetKey {
         Map<String, Integer> map = Map.of("a", 1, "b", 2);
         Set<String> set = Set.of("X", "Y", "Z");
     }
+
+    void testDifferentExpressions() {
+        Set.of(1, "1",
+            // violation below 'Duplicate key or element argument'
+            1);
+        Map.ofEntries(
+            Map.entry("a", 1),
+            Map.entry("b", 2),
+            // violation below 'Duplicate key or element argument'
+            Map.entry("a", 3)
+        );
+    }
+
+    void testUnsupportedCalls() {
+        Map.Entry<String, Integer> entry = null;
+        Map.ofEntries(entry, other());
+        Map.entry("x", 1);
+        other();
+    }
+
+    private static Map.Entry<String, Integer> other() {
+        return null;
+    }
 }

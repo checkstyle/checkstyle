@@ -38,6 +38,8 @@ public class DuplicateMapOrSetKeyCheckTest extends AbstractModuleTestSupport {
             "19:13: " + getCheckMessage(MSG_KEY, 16),
             "28:13: " + getCheckMessage(MSG_KEY, 25),
             "37:23: " + getCheckMessage(MSG_KEY, 34),
+            "49:13: " + getCheckMessage(MSG_KEY, 47),
+            "54:23: " + getCheckMessage(MSG_KEY, 51),
         };
         verifyWithInlineConfigParser(
                 getPath("InputDuplicateMapOrSetKey.java"), expected);

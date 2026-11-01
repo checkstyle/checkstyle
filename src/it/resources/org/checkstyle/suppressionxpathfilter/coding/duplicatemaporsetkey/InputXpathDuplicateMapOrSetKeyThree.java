@@ -10,7 +10,7 @@ public class InputXpathDuplicateMapOrSetKeyThree {
     void baz() {
         Map.ofEntries(
             Map.entry("key", 1),
-            Map.entry("key", 2)
+            Map.entry("key", 2) // violation 'Duplicate key or element argument .*'
         );
     }
 }

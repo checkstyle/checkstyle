@@ -73,7 +73,7 @@ public class XpathRegressionDuplicateMapOrSetKeyTest extends AbstractXpathTestSu
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(DuplicateMapOrSetKeyCheck.class);
         final String[] expectedViolation = {
-            "11:33: " + getCheckMessage(DuplicateMapOrSetKeyCheck.class,
+            "12:13: " + getCheckMessage(DuplicateMapOrSetKeyCheck.class,
                     DuplicateMapOrSetKeyCheck.MSG_KEY, "11"),
         };
         final List<String> expectedXpathQueries = List.of(
