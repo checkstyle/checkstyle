@@ -150,8 +150,102 @@ public class LineWrappingHandler {
         final int currentIndent = firstNodeIndent + indentLevel;
 
         for (DetailAST node : firstNodesOnLines.values()) {
-            checkNodeIndentation(node, firstNodeIndent, currentIndent);
+            checkNodeIndentation(node, firstNodeIndent,
+                    getNodeIndent(node, firstLineNode, indentLevel, currentIndent));
         }
+    }
+
+    /**
+     * Gets the indentation a wrapped line should use. Continuation lines of a chained method
+     * call are based on the line where the chain starts, so when the chain itself starts on
+     * a wrapped line, its continuation lines are indented from that line instead of from
+     * the first line of the whole statement. This only applies when the chain starts at
+     * the indentation of the statement's own continuation lines and the first link of the
+     * chain ends on that line; chains in any other shape, such as calls aligned with a
+     * target that sits deeper or spans several lines, keep the statement based indentation.
+     *
+     * @param node the first node on the wrapped line.
+     * @param firstLineNode the first node of the checked range.
+     * @param indentLevel indentation all wrapped lines should use.
+     * @param currentIndent indentation based on the first line of the checked range.
+     * @return the indentation the given node should use.
+     */
+    private int getNodeIndent(DetailAST node, DetailAST firstLineNode, int indentLevel,
+            int currentIndent) {
+        int result = currentIndent;
+        if (node.getType() == TokenTypes.DOT
+                && node.getParent().getType() == TokenTypes.METHOD_CALL) {
+            final DetailAST chainStart = getChainStart(node);
+            if (chainStart.getLineNo() != firstLineNode.getLineNo()
+                    && expandedTabsColumnNo(chainStart) == getLineStart(chainStart)
+                    && getLineStart(chainStart) == currentIndent
+                    && isFirstChainLinkComplete(node, chainStart)) {
+                result = getLineStart(chainStart) + indentLevel;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether the first link of a chained method call ends on the line the chain
+     * starts on. The first link is the object creation expression when the chain is built
+     * on a {@code new} expression, and otherwise the first method call the chain's target
+     * feeds into. A first link that wraps onto following lines, such as a call whose
+     * arguments are wrapped, means the chain has no single base line to indent from.
+     *
+     * @param dot a dot node of a method call inside a chain.
+     * @param chainStart the first node of the chain's target expression.
+     * @return true if the first link of the chain ends on the chain's first line.
+     */
+    private static boolean isFirstChainLinkComplete(DetailAST dot, DetailAST chainStart) {
+        DetailAST node = dot.getFirstChild();
+        DetailAST firstCall = null;
+        while (node.getType() == TokenTypes.METHOD_CALL
+                || node.getType() == TokenTypes.DOT) {
+            if (node.getType() == TokenTypes.METHOD_CALL) {
+                firstCall = node;
+            }
+            node = node.getFirstChild();
+        }
+        final DetailAST firstLink;
+        if (chainStart.getType() == TokenTypes.LITERAL_NEW || firstCall == null) {
+            firstLink = chainStart;
+        }
+        else {
+            firstLink = firstCall;
+        }
+        return getLastLineNo(firstLink) == chainStart.getLineNo();
+    }
+
+    /**
+     * Gets the line number of the last token of the given expression, which is the line
+     * of its rightmost descendant.
+     *
+     * @param node the expression to inspect.
+     * @return the line number the expression ends on.
+     */
+    private static int getLastLineNo(DetailAST node) {
+        DetailAST last = node;
+        while (last.getChildCount() > 0) {
+            last = last.getLastChild();
+        }
+        return last.getLineNo();
+    }
+
+    /**
+     * Gets the first node of the expression a chained method call is invoked on, walking
+     * down through the nested calls and dots of the chain.
+     *
+     * @param dot a dot node of a method call inside a chain.
+     * @return the first node of the chain's target expression.
+     */
+    private static DetailAST getChainStart(DetailAST dot) {
+        DetailAST node = dot.getFirstChild();
+        while (node.getType() == TokenTypes.METHOD_CALL
+                || node.getType() == TokenTypes.DOT) {
+            node = node.getFirstChild();
+        }
+        return node;
     }
 
     /**
