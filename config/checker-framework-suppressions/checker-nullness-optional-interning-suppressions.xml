@@ -7293,13 +7293,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/EmptyLineSeparatorCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference token.findFirstToken(TokenTypes.TYPE)</message>
-    <lineContent>for (DetailAST typeChild = token.findFirstToken(TokenTypes.TYPE).getLastChild();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/EmptyLineWrappingInBlockCheck.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
