@@ -416,6 +416,99 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInvalidAnnotationIndent() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String[] expected = {
+            "8:6: " + getCheckMessage(MSG_ERROR, "method def modifier", 5, 4),
+            "9:7: " + getCheckMessage(MSG_ERROR, "method def modifier", 6, 4),
+            "10:6: " + getCheckMessage(MSG_ERROR, "method def modifier", 5, 4),
+            "12:14: " + getCheckMessage(MSG_ERROR, "method def modifier", 13, 4),
+            "15:6: " + getCheckMessage(MSG_ERROR, "method def modifier", 5, 4),
+            "21:6: " + getCheckMessage(MSG_ERROR, "member def modifier", 5, 4),
+            "26:14: " + getCheckMessage(MSG_ERROR, "member def modifier", 13, 4),
+            "29:6: " + getCheckMessage(MSG_ERROR, "method def modifier", 5, 4),
+            "34:6: " + getCheckMessage(MSG_ERROR, "member def modifier", 5, 4),
+            "38:6: " + getCheckMessage(MSG_ERROR, "ctor def modifier", 5, 4),
+            "43:6: " + getCheckMessage(MSG_ERROR, "method def modifier", 5, 4),
+            "52:6: " + getCheckMessage(MSG_ERROR, "method def modifier", 5, 4),
+            "57:10: " + getCheckMessage(MSG_ERROR, "method def modifier", 9, 8),
+            "64:10: " + getCheckMessage(MSG_ERROR, "member def modifier", 9, 8),
+            "71:14: " + getCheckMessage(MSG_ERROR, "class def ident", 13, 0),
+            "76:14: " + getCheckMessage(MSG_ERROR, "interface def ident", 13, 0),
+            "81:14: " + getCheckMessage(MSG_ERROR, "record def ident", 13, 0),
+            "86:14: " + getCheckMessage(MSG_ERROR, "enum def ident", 13, 0),
+            "92:6: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 5, 4),
+            "98:6: " + getCheckMessage(MSG_ERROR, "compact ctor def modifier", 5, 4),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationInvalidAnnotationIndent.java"),
+                expected);
+    }
+
+    @Test
+    public void testInvalidAnnotationIndentStrictCondition() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String[] expected = {
+            "8:6: " + getCheckMessage(MSG_ERROR, "method def modifier", 5, 4),
+            "9:7: " + getCheckMessage(MSG_ERROR, "method def modifier", 6, 4),
+            "10:6: " + getCheckMessage(MSG_ERROR, "method def modifier", 5, 4),
+            "12:14: " + getCheckMessage(MSG_ERROR, "method def modifier", 13, 4),
+            "15:6: " + getCheckMessage(MSG_ERROR, "method def modifier", 5, 4),
+            "21:6: " + getCheckMessage(MSG_ERROR, "member def modifier", 5, 4),
+            "26:14: " + getCheckMessage(MSG_ERROR, "member def modifier", 13, 4),
+            "29:6: " + getCheckMessage(MSG_ERROR, "method def modifier", 5, 4),
+            "34:6: " + getCheckMessage(MSG_ERROR, "member def modifier", 5, 4),
+            "38:6: " + getCheckMessage(MSG_ERROR, "ctor def modifier", 5, 4),
+            "43:6: " + getCheckMessage(MSG_ERROR, "method def modifier", 5, 4),
+            "52:6: " + getCheckMessage(MSG_ERROR, "method def modifier", 5, 4),
+            "57:10: " + getCheckMessage(MSG_ERROR, "method def modifier", 9, 8),
+            "64:10: " + getCheckMessage(MSG_ERROR, "member def modifier", 9, 8),
+            "71:14: " + getCheckMessage(MSG_ERROR, "class def ident", 13, 0),
+            "76:14: " + getCheckMessage(MSG_ERROR, "interface def ident", 13, 0),
+            "81:14: " + getCheckMessage(MSG_ERROR, "record def ident", 13, 0),
+            "86:14: " + getCheckMessage(MSG_ERROR, "enum def ident", 13, 0),
+            "92:6: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 5, 4),
+            "98:6: " + getCheckMessage(MSG_ERROR, "compact ctor def modifier", 5, 4),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationInvalidAnnotationIndent.java"),
+                expected);
+    }
+
+    @Test
+    public void testCorrectAnnotationIndent() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getPath("InputIndentationCorrectAnnotationIndent.java"),
+                expected);
+    }
+
+    @Test
     public void testAnnotationClosingParenthesisEndsInSameIndentationAsOpening() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -3448,9 +3541,11 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "38:1: " + getCheckMessage(MSG_ERROR, "@", 0, 4),
             "39:9: " + getCheckMessage(MSG_ERROR, "AnnotationInnerLineWrap", 8, 4),
             "42:8: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 7, 8),
+            "43:8: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 7, 8),
             "60:5: " + getCheckMessage(MSG_ERROR, "AnnotationInnerLineWrap2", 4, 0),
             "61:4: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 3, 4),
             "62:8: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 7, 4),
+            "63:8: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 7, 4),
             "64:5: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 4, 0),
             "75:4: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 4),
             "91:29: " + getCheckMessage(MSG_ERROR_MULTI, "new", 28, "20, 24"),
@@ -3890,7 +3985,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("lineWrappingIndentation", "4");
 
         final String[] expected = {
+            "26:5: " + getCheckMessage(MSG_ERROR, "method def modifier", 4, 8),
             "33:1: " + getCheckMessage(MSG_ERROR, ")", 0, 4),
+            "35:5: " + getCheckMessage(MSG_ERROR, "method def modifier", 4, 8),
             "55:11: " + getCheckMessage(MSG_ERROR, "interface def ident", 0, 4),
             "56:1: " + getCheckMessage(MSG_ERROR, "method def modifier", 0, 8),
             "57:1: " + getCheckMessage(MSG_ERROR, "void", 0, 4),

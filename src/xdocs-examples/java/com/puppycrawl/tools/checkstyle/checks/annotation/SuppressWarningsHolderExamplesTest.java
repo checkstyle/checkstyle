@@ -43,7 +43,7 @@ public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTe
                         NoWhitespaceAfterCheck.MSG_KEY, "int"),
             "28:18: " + getCheckMessage(MemberNameCheck.class,
                         MemberNameCheck.MSG_INVALID_PATTERN, "ARR", pattern1),
-            "34:17: " + getCheckMessage(ParameterNumberCheck.class,
+            "34:15: " + getCheckMessage(ParameterNumberCheck.class,
                         ParameterNumberCheck.MSG_KEY, 7, 8),
 
         };
