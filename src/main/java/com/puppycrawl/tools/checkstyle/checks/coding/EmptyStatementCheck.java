@@ -41,10 +41,25 @@ public class EmptyStatementCheck extends AbstractCheck {
     public static final String MSG_KEY = "empty.statement";
 
     /**
+     * Allow loops with empty bodies.
+     */
+    private boolean allowEmptyLoopBody;
+
+    /**
      * Creates a new {@code EmptyStatementCheck} instance.
      */
     public EmptyStatementCheck() {
         // no code by default
+    }
+
+    /**
+     * Setter to allow loops with empty bodies.
+     *
+     * @param allowEmptyLoopBody Check's option for allowing loops with empty body.
+     * @since 14.4.0
+     */
+    public void setAllowEmptyLoopBody(boolean allowEmptyLoopBody) {
+        this.allowEmptyLoopBody = allowEmptyLoopBody;
     }
 
     @Override
@@ -64,9 +79,27 @@ public class EmptyStatementCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.EMPTY_STAT || isEmptyDeclaration(ast)) {
+        if (ast.getType() == TokenTypes.EMPTY_STAT) {
+            if (!isEmptyLoopBody(ast)) {
+                log(ast, MSG_KEY);
+            }
+        }
+        else if (isEmptyDeclaration(ast)) {
             log(ast, MSG_KEY);
         }
+    }
+
+    /**
+     * Checks whether an empty statement is a loop body that is allowed by configuration.
+     *
+     * @param emptyStat empty statement token
+     * @return {@code true} if empty statement is an allowed empty loop body
+     */
+    private boolean isEmptyLoopBody(DetailAST emptyStat) {
+        final int parentType = emptyStat.getParent().getType();
+        return allowEmptyLoopBody
+            && (parentType == TokenTypes.LITERAL_FOR
+                || parentType == TokenTypes.LITERAL_WHILE);
     }
 
     /**
