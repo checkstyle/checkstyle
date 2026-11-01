@@ -7312,20 +7312,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoWhitespaceAfterCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference endOfParams</message>
-    <lineContent>after = endOfParams.getColumnNo() + 1;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoWhitespaceAfterCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference parent.findFirstToken(TokenTypes.TYPE_ARGUMENTS)</message>
-    <lineContent>typeLastNode = parent.findFirstToken(TokenTypes.TYPE_ARGUMENTS)</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoWhitespaceAfterCheck.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
     <lineContent>return result;</lineContent>
@@ -7351,17 +7337,6 @@
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
     <lineContent>return switch (ast.getType()) {</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable DetailAST
-      method return type: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoWhitespaceAfterCheck.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return typeLastNode;</lineContent>
     <details>
       type of expression: @Initialized @Nullable DetailAST
       method return type: @Initialized @NonNull DetailAST
