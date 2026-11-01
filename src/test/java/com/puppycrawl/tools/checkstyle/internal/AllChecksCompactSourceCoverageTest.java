@@ -171,7 +171,6 @@ public class AllChecksCompactSourceCoverageTest {
         "RequireThisCheck",
         "SealedShouldHavePermitsListCheck",
         "SingleLineJavadocCheck",
-        "SingleSpaceSeparatorCheck",
         "StaticVariableNameCheck",
         "SummaryJavadocCheck",
         "SuppressWarningsCheck",

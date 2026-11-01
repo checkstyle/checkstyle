@@ -35,6 +35,34 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "10:6: " + getCheckMessage(MSG_KEY),
+            "16:18: " + getCheckMessage(MSG_KEY),
+            "17:18: " + getCheckMessage(MSG_KEY),
+            "21:18: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputSingleSpaceSeparatorCompactSourceFileDefault.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "10:6: " + getCheckMessage(MSG_KEY),
+            "13:20: " + getCheckMessage(MSG_KEY),
+            "14:25: " + getCheckMessage(MSG_KEY),
+            "16:18: " + getCheckMessage(MSG_KEY),
+            "17:18: " + getCheckMessage(MSG_KEY),
+            "18:24: " + getCheckMessage(MSG_KEY),
+            "19:21: " + getCheckMessage(MSG_KEY),
+            "21:18: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputSingleSpaceSeparatorCompactSourceFileProperties.java"), expected);
+    }
+
+    @Test
     public void testNoSpaceErrors() throws Exception {
         verifyWithInlineConfigParser(
                 getPath("InputSingleSpaceSeparatorNoErrors.java"),
