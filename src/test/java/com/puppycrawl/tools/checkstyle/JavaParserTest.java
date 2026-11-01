@@ -28,12 +28,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.TokenStream;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck;
+import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
+import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class JavaParserTest extends AbstractModuleTestSupport {
@@ -48,6 +53,29 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         assertWithMessage("Constructor is not private")
                 .that(TestUtil.isUtilsClassHasPrivateConstructor(JavaParser.class))
                 .isTrue();
+    }
+
+    /**
+     * ANTLR never removes entries from the prediction context cache, so it must be
+     * replaced whenever the DFA states are cleared, otherwise it grows without bound
+     * with every new source file that is parsed.
+     *
+     * @throws Exception if input file does not exist
+     */
+    @Test
+    public void testPredictionContextCacheIsClearedWithDfa() throws Exception {
+        JavaParser.parseFile(new File(getPath("InputJavaParserHiddenComments.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final JavaLanguageParser notClearingParser =
+                new JavaLanguageParser(createTokenStream(), Integer.MAX_VALUE);
+        assertWithMessage("Prediction context cache should be filled by parsing")
+                .that(notClearingParser.getInterpreter().getSharedContextCache().size())
+                .isGreaterThan(0);
+
+        final JavaLanguageParser clearingParser = new JavaLanguageParser(createTokenStream(), 0);
+        assertWithMessage("Prediction context cache should be cleared together with DFA")
+                .that(clearingParser.getInterpreter().getSharedContextCache().size())
+                .isEqualTo(0);
     }
 
     @Test
@@ -420,6 +448,10 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavaParserHiddenComments4.java"), expected);
+    }
+
+    private static TokenStream createTokenStream() {
+        return new CommonTokenStream(new JavaLanguageLexer(CharStreams.fromString(""), true));
     }
 
     private static final class CountComments {
