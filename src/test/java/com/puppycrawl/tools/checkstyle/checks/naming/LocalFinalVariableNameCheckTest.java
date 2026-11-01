@@ -205,4 +205,34 @@ public class LocalFinalVariableNameCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testLocalFinalVariableNameCompactSourceFileDefault() throws Exception {
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
+
+        final String[] expected = {
+            "13:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Bad", pattern),
+            "16:20: " + getCheckMessage(MSG_INVALID_PATTERN, "I", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/"
+                        + "InputLocalFinalVariableNameCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testLocalFinalVariableNameCompactSourceFileProperties() throws Exception {
+        final String pattern = "^[a-z]+$";
+
+        final String[] expected = {
+            "13:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Bad", pattern),
+            "14:15: " + getCheckMessage(MSG_INVALID_PATTERN, "foo1", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/"
+                        + "InputLocalFinalVariableNameCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
