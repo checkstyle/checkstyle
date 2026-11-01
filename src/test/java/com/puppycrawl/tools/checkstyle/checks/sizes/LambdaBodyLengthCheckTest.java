@@ -89,4 +89,15 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
                 getPath("InputLambdaBodyLengthMax.java"), expected);
     }
 
+    @Test
+    public void testSwitchRules() throws Exception {
+        final String[] expected = {
+            "15:33: " + getCheckMessage(MSG_KEY, 4, 2),
+            "23:26: " + getCheckMessage(MSG_KEY, 4, 2),
+            "29:26: " + getCheckMessage(MSG_KEY, 3, 2),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLambdaBodyLengthSwitchRules.java"), expected);
+    }
+
 }
