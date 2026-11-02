@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.javadoc;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
 
 public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
 
     @Test
     public void testPrivateClassFields() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathJavadocVariablePrivateClassFields.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocVariableCheck.class);
-
         final String[] expectedViolation = {
-            "5:5: " + getCheckMessage(JavadocVariableCheck.class,
+            "14:5: " + getCheckMessage(JavadocVariableCheck.class,
                 JavadocVariableCheck.MSG_JAVADOC_MISSING, "age"),
         };
 
@@ -68,20 +60,16 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
                 + "/VARIABLE_DEF[./IDENT[@text='age']]/MODIFIERS/LITERAL_PRIVATE"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathJavadocVariablePrivateClassFields.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInnerClassFields() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathJavadocVariableInnerClassFields.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocVariableCheck.class);
-
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(JavadocVariableCheck.class,
+            "15:9: " + getCheckMessage(JavadocVariableCheck.class,
                 JavadocVariableCheck.MSG_JAVADOC_MISSING, "fData"),
         };
 
@@ -101,20 +89,16 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
                 + "/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathJavadocVariableInnerClassFields.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEnum() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathJavadocVariableEnum.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocVariableCheck.class);
-
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(JavadocVariableCheck.class,
+            "16:5: " + getCheckMessage(JavadocVariableCheck.class,
                 JavadocVariableCheck.MSG_JAVADOC_MISSING, "count"),
         };
 
@@ -131,8 +115,10 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
                 + "/LITERAL_PRIVATE"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathJavadocVariableEnum.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
