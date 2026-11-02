@@ -7,58 +7,66 @@ violateExecutionOnNonTightHtml = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
+// violation 5 lines below '.*@java.lang.Deprecated annotation.*@deprecated Javadoc tag.*description.'
 /**
  * @deprecated
  *  stuff
- */ // violation below '.*@java.lang.Deprecated annotation.*@deprecated Javadoc tag.*description.'
+ */
 public class InputMissingDeprecatedBadDeprecated
 {
+    // violation 4 lines below '@java.lang.Deprecated annotation.*@deprecated Javadoc tag.*description.'
     /**
      * @deprecated        stuff
      */
     protected InputMissingDeprecatedBadDeprecated() {
-    // violation above '@java.lang.Deprecated annotation.*@deprecated Javadoc tag.*description.'
     }
 
+    // violation 4 lines below '.*@java.lang.Deprecated annotation.*@deprecated Javadoc.*description.'
     /**
      * @deprecated stuff
-     */ // violation below '.*@java.lang.Deprecated annotation.*@deprecated Javadoc.*description.'
+     */
     public String toString() {
         return "";
     }
 
+    // violation 4 lines below'.*@java.lang.Deprecated annotation.*@deprecated.*description.'
     /**
      * @deprecated stuff
      */
-    enum Rock { // violation '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
+    enum Rock {
 
+        // violation 4 lines below'.*@java.lang.Deprecated annotation.*@deprecated.*description.'
         /**
          * @deprecated stuff
          */
-        Metallica // violation '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
+        Metallica
     }
 }
 
+// violation 4 lines below '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
 /**
  * @deprecated stuff
  */
-interface Foo1 { // violation '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
+interface Foo1 {
 
+    // violation 4 lines below '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
     /**
      * @deprecated stuff
      */
-    interface Bar { // violation '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
+    interface Bar {
 
     }
 }
 
+// violation 4 lines below '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
 /**
  * @deprecated stuff
  */
-@interface Bleh { // violation '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
+@interface Bleh {
 
+    // violation 4 lines below'.*@java.lang.Deprecated annotation.*@deprecated.*description.'
     /**
      * @deprecated stuff
      */
-    int bleh(); // violation '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
+    int bleh();
 }
