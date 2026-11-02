@@ -831,6 +831,7 @@ LNOT
 localctx
 localfinalvariablename
 localhost
+localvar
 localvariablename
 Loggable
 lombok
@@ -920,6 +921,7 @@ multilinecommentleadingasteriskpresence
 Multimap
 multipleannotations
 multipleannotationsnojavadoc
+multipleescapes
 multiplestringliterals
 multipletags
 multiplevariabledeclarations
