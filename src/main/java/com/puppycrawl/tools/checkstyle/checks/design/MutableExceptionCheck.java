@@ -114,6 +114,12 @@ public final class MutableExceptionCheck extends AbstractCheck {
     }
 
     @Override
+    public void beginTree(DetailAST rootAST) {
+        checkingStack.clear();
+        checking = false;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.CLASS_DEF -> visitClassDef(ast);
