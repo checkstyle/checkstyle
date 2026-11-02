@@ -22,11 +22,15 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck.MSG_KEY;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
@@ -423,6 +427,25 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath(
                         "compact/InputOneStatementPerLineCompactSourceFileTryResources.java"),
                 expected);
+    }
+
+    @Test
+    public void testClearState() {
+        final OneStatementPerLineCheck check = new OneStatementPerLineCheck();
+        final DetailAstImpl methodCallAst = new DetailAstImpl();
+        methodCallAst.setType(TokenTypes.METHOD_CALL);
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodCallAst,
+                        "nestingScope",
+                        nestingScope -> ((Collection<?>) nestingScope).isEmpty()))
+                .isTrue();
+        final DetailAstImpl lambdaAst = new DetailAstImpl();
+        lambdaAst.setType(TokenTypes.LAMBDA);
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, lambdaAst,
+                        "isFirstStatementOfLambdaOrAnonymous",
+                        Boolean.FALSE::equals))
+                .isTrue();
     }
 
 }
