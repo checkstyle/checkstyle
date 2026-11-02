@@ -18,19 +18,21 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 class InputAnnotationLocationIncorrectOne
 {
 
-    @MyAnn_21 @MyAnnotation1(value = "") // violation '.* should be alone on line.'
+    // violation below '.* should be alone on line.'
+    @MyAnn_21 @MyAnnotation1(value = "")
     public int a;
-
-    @MyAnnotation1(value = "") public int b; // violation '.* should be alone on line.'
-
+    // violation below '.* should be alone on line.'
+    @MyAnnotation1(value = "") public int b;
+    // violation 2 lines below '.* incorrect .* level 8, .* should be 4.'
     @MyAnn_21
-        @MyAnnotation1 // violation '.* incorrect .* level 8, .* should be 4.'
+        @MyAnnotation1
 (value = "")
     public int c;
     @MyAnnotation1(value = "")
     public int d;
+    // violation 2 lines below '.* incorrect .* level 8, .* should be 4.'
     @MyAnn_21
-        @MyAnnotation1 // violation '.* incorrect .* level 8, .* should be 4.'
+        @MyAnnotation1
 (value = "")
     public InputAnnotationLocationIncorrectOne() {}
     @MyAnnotation1("foo") @MyAnn_21 void foo1() {}
@@ -38,79 +40,79 @@ class InputAnnotationLocationIncorrectOne
     // 'Annotation 'MyAnnotation1' should be alone on line.'
     // 'Annotation 'MyAnn_21' should be alone on line.'
 
+    // violation 2 lines below '.* incorrect .* level 7, .* should be 4.'
     @MyAnnotation1(value = "")
-       @MyAnn_21 // violation '.* incorrect .* level 7, .* should be 4.'
+       @MyAnn_21
     void foo2() {}
-
+    // violation 4 lines below '.* incorrect .* level 8, .* should be 4.'
+    // violation 4 lines below '.* incorrect .* level 6, .* should be 4.'
+    // violation 4 lines below '.* incorrect .* level 10, .* should be 4.'
     @MyAnnotation1(value = "")
-        @MyAnn_21 // violation '.* incorrect .* level 8, .* should be 4.'
-      @MyAnnotation3 // violation '.* incorrect .* level 6, .* should be 4.'
-          @MyAnnotation4 // violation '.* incorrect .* level 10, .* should be 4.'
+        @MyAnn_21
+      @MyAnnotation3
+          @MyAnnotation4
     class InnerClass
     {
-        @MyAnn_21 @MyAnnotation1 // violation 'Annotation 'MyAnnotation1' should be alone on line.'
+        // violation below 'Annotation 'MyAnnotation1' should be alone on line.'
+        @MyAnn_21 @MyAnnotation1
 (value = "")
         public int a;
-
-        @MyAnnotation1(value = "") public int b; // violation '.* should be alone on line.'
-
+        // violation below '.* should be alone on line.'
+        @MyAnnotation1(value = "") public int b;
+        // violation 2 lines below '.* incorrect .* level 12, .* should be 8.'
         @MyAnn_21
-            @MyAnnotation1 // violation '.* incorrect .* level 12, .* should be 8.'
+            @MyAnnotation1
 (value = "")
         public int c;
-
         @MyAnnotation1(value = "")
         public int d;
-
+        // violation 2 lines below '.* should be alone on line.'
         @MyAnn_21
-        @MyAnnotation1(value = "") public InnerClass() // violation '.* should be alone on line.'
+        @MyAnnotation1(value = "") public InnerClass()
         {
             // comment
         }
+        // violation 2 lines below '.* incorrect .* level 12, .* should be 8.'
         @MyAnnotation1(value = "")
-            @MyAnn_21 // violation '.* incorrect .* level 12, .* should be 8.'
+            @MyAnn_21
         void foo1() {}
-
+        // violation 2 lines below '.* incorrect .* level 12, .* should be 8.'
         @MyAnnotation1(value = "")
-            @MyAnn_21 // violation '.* incorrect .* level 12, .* should be 8.'
+            @MyAnn_21
         void foo2() {}
     }
 
+    // violation 2 lines below '.* incorrect .* level 7, .* should be 4.'
     @MyAnnotation1(value = "")
-       @MyAnn_21 // violation '.* incorrect .* level 7, .* should be 4.'
+       @MyAnn_21
     InnerClass anon = new InnerClass()
     {
-        @MyAnn_21 @MyAnnotation1(value = "") public int a; // violation '.*should be alone on line.'
-
-        @MyAnnotation1(value = "") public int b; // violation '.* should be alone on line.'
-
+        // violation below '.*should be alone on line.'
+        @MyAnn_21 @MyAnnotation1(value = "") public int a;
+        // violation below '.* should be alone on line.'
+        @MyAnnotation1(value = "") public int b;
         @MyAnn_21
         @MyAnnotation1(value = "")
         public int c;
-
         @MyAnnotation1(value = "")
         public int d;
-
+        // violation 2 lines below '.* incorrect .* level 11, .* should be 8.'
         @MyAnnotation1(value = "")
-           @MyAnn_21 void foo1() {} // violation '.* incorrect .* level 11, .* should be 8.'
-
+           @MyAnn_21 void foo1() {}
+        // violation 2 lines below '.* incorrect .* level 10, .* should be 8.'
         @MyAnnotation1(value = "")
-          @MyAnn_21 // violation '.* incorrect .* level 10, .* should be 8.'
+          @MyAnn_21
         void foo2() {}
-        @MyAnnotation1(value = "") void foo42() {} // violation '.* should be alone on line.'
+        // violation below '.* should be alone on line.'
+        @MyAnnotation1(value = "") void foo42() {}
     };
-
 }
-
 
 @interface MyAnnotation1 {
 
         String value();}
-
 @interface MyAnn_21 {}
-
 @interface MyAnnotation3 {}
-
 @interface MyAnnotation4 {}
 
 @interface MyAnn {
