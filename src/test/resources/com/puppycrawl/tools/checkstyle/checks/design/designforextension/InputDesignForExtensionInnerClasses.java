@@ -8,61 +8,8 @@ requiredJavadocPhrase = (default).*
 
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
-/**
- * Test case for the "design for inheritance" check.
- * @author Lars Kühne
- **/
-public abstract class InputDesignForExtension
+public abstract class InputDesignForExtensionInnerClasses
 {
-    // some methods that are OK
-
-    public interface InterfaceOK
-    {
-        void implicitlyAbstract();
-    }
-
-    final class ClassOK
-    {
-        protected void finalThroughClassDef()
-        {
-            System.identityHashCode("no way to override");
-        }
-    }
-
-    protected void nonFinalButEmpty()
-    {
-    }
-
-    public void nonFinalButEmpty2()
-    {
-        // comments don't count as content...
-    }
-
-    private void aPrivateMethod()
-    {
-        System.identityHashCode("no way to override");
-    }
-
-    protected abstract void nonFinalButAbstract();
-
-    // this one is bad: neither abstract, final, nor empty
-
-    // violation below ''doh' does not have javadoc that explains how to do that safely'
-    protected void doh()
-    {
-        System.identityHashCode("nonempty and overriding possible");
-    }
-
-    public final void aFinalMethod()
-    {
-    System.identityHashCode("no way to override");
-    }
-
-    public static void aStaticMethod()
-    {
-    System.identityHashCode("no way to override");
-    }
-
     // tries to trigger bug #884035
     // MyComparator is a private class, so there cannot be subclasses
     // and it should not be necessary to declare compare() as final
@@ -121,3 +68,4 @@ public abstract class InputDesignForExtension
         }
     }
 }
+
