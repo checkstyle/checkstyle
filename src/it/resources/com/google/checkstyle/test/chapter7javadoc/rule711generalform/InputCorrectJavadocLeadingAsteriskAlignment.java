@@ -36,12 +36,13 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
    */
   public InputCorrectJavadocLeadingAsteriskAlignment(int a) {}
 
-  // violation 2 lines below "Comment uses box-like repetitive character pattern."
-  // violation below "Summary javadoc is missing."
+  // violation 3 lines below "Comment uses box-like repetitive character pattern."
+  // violation 2 lines below "Summary javadoc is missing."
+  // violation 3 lines below 'Block comment end must be on new line.'
   /*************************************************
    *** @param str testing.....
    **********************************/
-  // False negative for above javadoc, until #18271, #18273.
+  // False negative for above javadoc, until #18271.
 
   public InputCorrectJavadocLeadingAsteriskAlignment(String str) {}
 
@@ -64,17 +65,19 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
    */
   private void foo2() {}
 
-  // violation 3 lines below "Javadoc line should start with leading asterisk."
+  // violation 4 lines below "Javadoc line should start with leading asterisk."
+  // violation 3 lines below 'Block comment end must be on new line.'
   /**
    * Javadoc for foo3.
-   Closing tag should be alone on line. */ // False negative until #18273.
+   Closing tag should be alone on line. */
   private void foo3() {
     // foo2 code goes here
   }
 
+  // violation 3 lines below 'Block comment end must be on new line.'
   /**
    * Javadoc for enum.
-   * */ // False negative until #18273.
+   * */
   private enum CorrectJavadocEnum {
     // violation 2 lines below "Summary javadoc is missing."
     // violation 2 lines below "Javadoc line should start with leading asterisk."
@@ -96,9 +99,9 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
      */
     THREE,
 
-    // False negative until #18273.
     /**
      * Not allowed. Closing javadoc tag should be alone on line. */
+    // violation above 'Block comment end must be on new line.'
     FOUR,
 
     // violation 2 lines below "Summary javadoc is missing."
