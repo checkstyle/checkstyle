@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.internal;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
-import java.util.HashSet;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
@@ -37,7 +36,6 @@ import com.tngtech.archunit.base.DescribedPredicate;
 import com.tngtech.archunit.core.domain.JavaClass;
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.domain.JavaType;
-import com.tngtech.archunit.core.domain.properties.HasName;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.lang.ArchCondition;
@@ -122,9 +120,9 @@ public class ArchUnitSuperClassTest {
         checksShouldHaveAllowedAbstractClassAsSuper.check(checksPackage);
 
         assertWithMessage("Outdated suppressions (can be removed)")
-                .that(beDirectSubclassOfAllowedClassOrSuppressed.suppressions)
-                .containsExactlyElementsIn(
-                        beDirectSubclassOfAllowedClassOrSuppressed.usedSuppressions);
+            .that(beDirectSubclassOfAllowedClassOrSuppressed.getSuppressions())
+            .containsExactlyElementsIn(
+                    beDirectSubclassOfAllowedClassOrSuppressed.getUsedSuppressions());
     }
 
     /**
@@ -151,41 +149,6 @@ public class ArchUnitSuperClassTest {
                             superclass.getFullName(),
                             expectedSuperclass.getName());
                     events.add(SimpleConditionEvent.violated(item, message));
-                }
-            }
-        }
-
-    }
-
-    /**
-     * ArchCondition that ignores violations of another condition for types or members in the
-     * suppression list. A suppression is used only if its item violates the condition.
-     */
-    private static final class ArchConditionWithSuppression<T extends HasName.AndFullName>
-        extends ArchCondition<T> {
-
-        private final ArchCondition<T> condition;
-        private final Set<String> suppressions;
-        private final Set<String> usedSuppressions;
-
-        private ArchConditionWithSuppression(ArchCondition<T> condition, Set<String> suppressions) {
-            super(condition.getDescription() + " or be suppressed");
-            this.condition = condition;
-            this.suppressions = suppressions;
-            usedSuppressions = new HashSet<>();
-        }
-
-        @Override
-        public void check(T item, ConditionEvents events) {
-            final ConditionEvents conditionEvents = ConditionEvents.Factory.create();
-            condition.check(item, conditionEvents);
-            if (conditionEvents.containViolation()) {
-                final String fullName = item.getFullName();
-                if (suppressions.contains(fullName)) {
-                    usedSuppressions.add(fullName);
-                }
-                else {
-                    conditionEvents.getViolating().forEach(events::add);
                 }
             }
         }
