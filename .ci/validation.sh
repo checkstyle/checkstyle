@@ -1213,6 +1213,9 @@ no-error-spring-integration)
   echo "Checkout target sources ..."
   checkout_from https://github.com/spring-projects/spring-integration.git
   cd .ci-temp/spring-integration
+  # AmqpInboundChannelAdapter has enum BatchMode declared before fields/methods
+  sed -i'' 's|</suppressions>|\t<suppress files="AmqpInboundChannelAdapter[.]java" checks="InnerTypeLast"/>\n</suppressions>|' \
+    src/checkstyle/checkstyle-suppressions.xml
   PROP_MAVEN_LOCAL="mavenLocal"
   PROP_CS_VERSION="checkstyleVersion"
   ./gradlew clean check --parallel -x test -P$PROP_MAVEN_LOCAL \
