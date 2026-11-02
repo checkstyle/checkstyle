@@ -218,4 +218,52 @@ public class ConstantNameCheckTest extends AbstractModuleTestSupport {
                 getPath("InputConstantNameProperties.java"), expected);
     }
 
+    @Test
+    public void testConstantNameCompactSourceFileDefault() throws Exception {
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
+        final String[] expected = {
+            "15:18: " + getCheckMessage(MSG_INVALID_PATTERN, "bad", pattern),
+            "17:25: " + getCheckMessage(MSG_INVALID_PATTERN, "public_bad", pattern),
+            "19:28: " + getCheckMessage(MSG_INVALID_PATTERN, "protected_bad", pattern),
+            "21:26: " + getCheckMessage(MSG_INVALID_PATTERN, "private_bad", pattern),
+            "32:22: " + getCheckMessage(MSG_INVALID_PATTERN, "inner_bad", pattern),
+            "37:9: " + getCheckMessage(MSG_INVALID_PATTERN, "interface_bad", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputConstantNameCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testConstantNameCompactSourceFileProperties1() throws Exception {
+        final String pattern = "^k[A-Z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "15:18: " + getCheckMessage(MSG_INVALID_PATTERN, "bad", pattern),
+            "18:26: " + getCheckMessage(MSG_INVALID_PATTERN, "privateBad", pattern),
+            "26:22: " + getCheckMessage(MSG_INVALID_PATTERN, "innerBad", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputConstantNameCompactSourceFileProperties1.java"),
+                expected);
+    }
+
+    @Test
+    public void testConstantNameCompactSourceFileProperties2() throws Exception {
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
+        final String[] expected = {
+            "17:25: " + getCheckMessage(MSG_INVALID_PATTERN, "public_bad", pattern),
+            "19:28: " + getCheckMessage(MSG_INVALID_PATTERN, "protected_bad", pattern),
+            "27:29: " + getCheckMessage(MSG_INVALID_PATTERN, "innerBad", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputConstantNameCompactSourceFileProperties2.java"),
+                expected);
+    }
+
 }
