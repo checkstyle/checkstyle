@@ -161,9 +161,11 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
+        nestingScope.clear();
         lastStatementEnd = 0;
         lastVariableResourceStatementEnd = lastStatementEnd;
         lastStatementInCurrentScope = lastStatementEnd;
+        isFirstStatementOfLambdaOrAnonymous = false;
     }
 
     @Override
