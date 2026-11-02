@@ -24,7 +24,7 @@ public class InputJavadocDosAndDonts {
     public void styleGuideDonts1() {
     }
 
-    // ok, until https://github.com/checkstyle/checkstyle/issues/18570
+    // violation 4 lines below 'Use snippet inline tag instead of 'pre' tag.'
     /**
      * The String below may interfere with the HTML.
      *
