@@ -84,6 +84,21 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "14:11: " + getCheckMessage(MSG_KEY, "value"),
+            "15:11: " + getCheckMessage(MSG_KEY, "value"),
+            "16:10: " + getCheckMessage(MSG_KEY, "value"),
+            "17:5: " + getCheckMessage(MSG_KEY, "value"),
+            "29:18: " + getCheckMessage(MSG_KEY, "argument"),
+            "32:11: " + getCheckMessage(MSG_KEY, "value"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputParameterAssignmentCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final ParameterAssignmentCheck check = new ParameterAssignmentCheck();
         assertWithMessage("Acceptable tokens should not be null")
