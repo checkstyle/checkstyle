@@ -5842,6 +5842,17 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/MethodDefHandler.java</fileName>
     <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of AbstractExpressionHandler.expandedTabsColumnNo.</message>
+    <lineContent>final int firstTokenColumn = expandedTabsColumnNo(firstToken);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/MethodDefHandler.java</fileName>
+    <specifier>argument</specifier>
     <message>incompatible argument for parameter ast of AbstractExpressionHandler.isOnStartOfLine.</message>
     <lineContent>if (isOnStartOfLine(modifier)</lineContent>
     <details>
