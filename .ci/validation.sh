@@ -1213,6 +1213,9 @@ no-error-spring-integration)
   echo "Checkout target sources ..."
   checkout_from https://github.com/spring-projects/spring-integration.git
   cd .ci-temp/spring-integration
+  # Spring Integration has inner types declared before members in main sources
+  sed -i'' 's|<module name="InnerTypeLast"/>|<!-- <module name="InnerTypeLast"/> -->|' \
+    src/checkstyle/checkstyle.xml
   PROP_MAVEN_LOCAL="mavenLocal"
   PROP_CS_VERSION="checkstyleVersion"
   ./gradlew clean check --parallel -x test -P$PROP_MAVEN_LOCAL \
