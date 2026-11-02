@@ -265,5 +265,10 @@
   <suppress id="xpathTestsUseInlineConfigParser"
             files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]naming[\\/]XpathRegressionTypeNameTest\.java"/>
 
+  <!-- Inner enums and annotations were not treated as inner types before Issue #22027,
+       these files declare members after them by design -->
+  <suppress checks="InnerTypeLast"
+            files="(AbstractAutomaticBean|ConfigurationLoader|JavaParser|PackageObjectFactory|AnnotationUseStyleCheck|LineWrappingHandler|SuppressionCommentFilter|MainFrameModel|DescendantIterator|AbstractItModuleTestSupport)\.java"/>
+
 </suppressions>
 

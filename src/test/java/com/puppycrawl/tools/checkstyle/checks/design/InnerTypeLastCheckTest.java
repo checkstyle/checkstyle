@@ -41,6 +41,8 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
         };
         assertWithMessage("Default required tokens are invalid")
             .that(checkObj.getRequiredTokens())
@@ -131,12 +133,27 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInnerTypeLastEnumAnnotation() throws Exception {
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_KEY),
+            "19:5: " + getCheckMessage(MSG_KEY),
+            "30:5: " + getCheckMessage(MSG_KEY),
+            "33:5: " + getCheckMessage(MSG_KEY),
+            "46:9: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputInnerTypeLastEnumAnnotation.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final InnerTypeLastCheck obj = new InnerTypeLastCheck();
         final int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
         };
         assertWithMessage("Default acceptable tokens are invalid")
             .that(obj.getAcceptableTokens())
