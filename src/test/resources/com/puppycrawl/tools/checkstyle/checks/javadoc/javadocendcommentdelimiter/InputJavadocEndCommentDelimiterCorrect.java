@@ -44,4 +44,7 @@ public class InputJavadocEndCommentDelimiterCorrect {
         /** This is not a valid Javadoc position. **/
         int value = 0;
     }
+
+    /***/
+    int emptyJavadocComment;
 }
