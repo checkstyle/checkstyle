@@ -5546,6 +5546,13 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheckTest
                 </param>
+                <!-- TokenUtil#isOfType fixed-arity overloads -->
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.blocks.GoogleRightCurlyCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheckTest
+                </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheckTest
                 </param>
