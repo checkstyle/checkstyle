@@ -75,6 +75,8 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.STATIC_INIT,
             TokenTypes.ASSIGN,
             TokenTypes.PLUS_ASSIGN,
             TokenTypes.MINUS_ASSIGN,
@@ -118,6 +120,9 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
                 visitLambda(ast);
             }
         }
+        else if (TokenUtil.isOfType(type, TokenTypes.INSTANCE_INIT, TokenTypes.STATIC_INIT)) {
+            visitInit();
+        }
         else {
             checkNestedIdent(ast);
         }
@@ -126,7 +131,8 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         final int type = ast.getType();
-        if (TokenUtil.isOfType(type, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF)
+        if (TokenUtil.isOfType(type, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF,
+                    TokenTypes.INSTANCE_INIT, TokenTypes.STATIC_INIT)
                 || type == TokenTypes.LAMBDA
                 && ast.getParent().getType() != TokenTypes.SWITCH_RULE) {
             parameterNames = parameterNamesStack.pop();
@@ -174,6 +180,14 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
             parameterAst = lambdaAst.getFirstChild();
         }
         visitLambdaParameters(parameterAst);
+    }
+
+    /**
+     * Creates empty set of parameters and store old one in stack.
+     */
+    private void visitInit() {
+        parameterNamesStack.push(parameterNames);
+        parameterNames = Set.of();
     }
 
     /**
