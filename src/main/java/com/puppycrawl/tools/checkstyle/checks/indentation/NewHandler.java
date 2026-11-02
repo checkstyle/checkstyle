@@ -74,11 +74,14 @@ public class NewHandler extends AbstractExpressionHandler {
             checkExpressionSubtree(firstChild, getIndent(), false, false);
         }
 
-        final DetailAST expression = mainAst.findFirstToken(TokenTypes.ELIST);
-        if (checkNestedNew(expression) && isOnStartOfLine(expression)) {
-            final IndentLevel indentLevel = new IndentLevel(getIndent(),
-                    getLineWrappingIndent());
-            checkExpressionSubtree(expression, indentLevel, false, false);
+        final DetailAST expressionList = mainAst.findFirstToken(TokenTypes.ELIST);
+        if (expressionList != null) {
+            final DetailAST expression = expressionList.getFirstChild();
+            if (checkNestedNew(expressionList) && isOnStartOfLine(expression)) {
+                final IndentLevel indentLevel = new IndentLevel(getIndent(),
+                        getLineWrappingIndent());
+                checkExpressionSubtree(expressionList, indentLevel, false, false);
+            }
         }
 
         final DetailAST lparen = mainAst.findFirstToken(TokenTypes.LPAREN);
@@ -88,13 +91,13 @@ public class NewHandler extends AbstractExpressionHandler {
     /**
      * Check if nested {@code new} present.
      *
-     * @param expression expression
+     * @param expression non-null expression list
      *
      * @return true if nested new is present.
      */
     public boolean checkNestedNew(DetailAST expression) {
         boolean result = false;
-        if (expression != null && expression.getFirstChild() != null) {
+        if (expression.getFirstChild() != null) {
             final boolean isNestedNewPresent = expression.getFirstChild()
                 .findFirstToken(TokenTypes.LITERAL_NEW) != null;
             if (!isNestedNewPresent) {

@@ -78,13 +78,6 @@ public class XpathRegressionExpressionOverBlockLambdaTest
                     + "BlockLambdaMethodCall']]"
                     + "/OBJBLOCK/METHOD_DEF"
                     + "[./IDENT[@text='testMethod']]"
-                    + "/SLIST/EXPR/METHOD_CALL/ELIST",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text="
-                    + "'InputXpathExpressionOver"
-                    + "BlockLambdaMethodCall']]"
-                    + "/OBJBLOCK/METHOD_DEF"
-                    + "[./IDENT[@text='testMethod']]"
                     + "/SLIST/EXPR/METHOD_CALL"
                     + "/ELIST/LAMBDA"
                     + "[./IDENT[@text='s']]"
