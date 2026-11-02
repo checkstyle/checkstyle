@@ -39,7 +39,8 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
   /*************************************************
    *** @param str testing.....
    **********************************/
-  // False negative for above javadoc, until #18271, #18273.
+  // violation above 'Block comment end must be on new line.'
+  // False negative for above javadoc, until #18271.
 
   public InputCorrectJavadocLeadingAsteriskAlignment(String str) {}
 
@@ -62,15 +63,17 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
 
   /**
    * Javadoc for foo3.
-   Closing tag should be alone on line. */ // False negative until #18273.
+   Closing tag should be alone on line. */
   // violation above "Javadoc line should start with leading asterisk."
+  // violation 2 lines above 'Block comment end must be on new line.'
   private void foo3() {
     // foo2 code goes here
   }
 
   /**
    * Javadoc for enum.
-   * */ // False negative until #18273.
+   * */
+  // violation above 'Block comment end must be on new line.'
   private enum CorrectJavadocEnum {
     // violation 2 lines below "Summary javadoc is missing."
     // violation 2 lines below "Javadoc line should start with leading asterisk."
@@ -92,9 +95,9 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
      */
     THREE,
 
-    // False negative until #18273.
     /**
      * Not allowed. Closing javadoc tag should be alone on line. */
+    // violation above 'Block comment end must be on new line.'
     FOUR,
 
     // violation 2 lines below "Summary javadoc is missing."
