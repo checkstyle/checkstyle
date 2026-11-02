@@ -172,4 +172,41 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
                 .isEqualTo("interface[0x-1]");
     }
 
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final MutableExceptionCheck check = new MutableExceptionCheck();
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputMutableException.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final Optional<DetailAST> classDef = TestUtil.findTokenInAstByPredicate(root,
+                ast -> {
+                    return ast.getType() == TokenTypes.CLASS_DEF
+                            && "FooException".equals(
+                                    ast.findFirstToken(TokenTypes.IDENT).getText());
+                });
+
+        assertWithMessage("Ast should contain FooException CLASS_DEF")
+                .that(classDef.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        classDef.orElseThrow(),
+                        "checkingStack",
+                        checkingStack -> ((Collection<?>) checkingStack).isEmpty()))
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        classDef.orElseThrow(),
+                        "checking",
+                        checking -> !(boolean) checking))
+                .isTrue();
+    }
+
 }
