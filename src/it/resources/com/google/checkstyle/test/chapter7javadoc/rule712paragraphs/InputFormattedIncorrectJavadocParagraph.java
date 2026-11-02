@@ -1,5 +1,6 @@
 package com.google.checkstyle.test.chapter7javadoc.rule712paragraphs;
 
+// violation 6 lines below '<p> tag should be placed immediately before the first word'
 /**
  * Some Javadoc.
  *
@@ -7,7 +8,6 @@ package com.google.checkstyle.test.chapter7javadoc.rule712paragraphs;
  *
  * <p>
  */
-// violation 2 lines above '<p> tag should be placed immediately before the first word'
 class InputFormattedIncorrectJavadocParagraph {
 
   // violation 4 lines below '<p> tag should be placed immediately before the first word'
@@ -35,9 +35,10 @@ class InputFormattedIncorrectJavadocParagraph {
     return false;
   }
 
-  // violation 6 lines below '<p> tag should be placed immediately before the first word'
   // violation 7 lines below '<p> tag should be placed immediately before the first word'
   // violation 8 lines below '<p> tag should be placed immediately before the first word'
+  // violation 9 lines below '<p> tag should be placed immediately before the first word'
+  // violation 12 lines below '<p> tag should be placed immediately before the first word'
   /**
    * Some Javadoc.
    *
@@ -51,7 +52,6 @@ class InputFormattedIncorrectJavadocParagraph {
    *
    * <p>
    */
-  // violation 2 lines above '<p> tag should be placed immediately before the first word'
   class InnerInputCorrectJavaDocParagraphCheck {
 
     // violation 4 lines below '<p> tag should be placed immediately before the first word'
