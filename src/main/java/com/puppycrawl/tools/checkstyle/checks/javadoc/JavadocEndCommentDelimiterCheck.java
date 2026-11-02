@@ -79,7 +79,7 @@ public class JavadocEndCommentDelimiterCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (JavadocUtil.isJavadocComment(ast)) {
-            final String commentContent = JavadocUtil.getBlockCommentContent(ast);
+            final String commentContent = JavadocUtil.getJavadocCommentContent(ast);
 
             if (commentContent.endsWith("*")) {
                 log(ast.getLastChild(), MSG_KEY);
