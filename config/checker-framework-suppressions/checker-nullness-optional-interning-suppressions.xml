@@ -3474,6 +3474,17 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryParenthesesCheck.java</fileName>
+    <specifier>assignment</specifier>
+    <message>incompatible types in assignment.</message>
+    <lineContent>parentToSkip = null;</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryParenthesesCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference parameters.getFirstChild().findFirstToken(TokenTypes.TYPE)</message>
     <lineContent>&amp;&amp; !parameters.getFirstChild().findFirstToken(TokenTypes.TYPE).hasChildren()) {</lineContent>
