@@ -37,6 +37,14 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Setup local maven cache
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.m2/wrapper
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
       - run: .ci/no-exception-test.sh openjdk17-with-checks-nonjavadoc-error
   # this execution should stay on GitHub actions due to time/ memory limits in other CI
   no-exception-openjdk19:
@@ -61,6 +69,14 @@ jobs:
         uses: actions/checkout@v7
         with:
           persist-credentials: false
+
+      - name: Setup local maven cache
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.m2/wrapper
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - run: .ci/no-exception-test.sh openjdk19-with-checks-nonjavadoc-error
   # this execution should stay on GitHub actions due to time/ memory limits in other CI
@@ -87,6 +103,14 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Setup local maven cache
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.m2/wrapper
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
       - run: .ci/no-exception-test.sh openjdk20-with-checks-nonjavadoc-error
   # this execution should stay on GitHub actions due to time/ memory limits in other CI
   no-exception-openjdk25:
@@ -111,5 +135,13 @@ jobs:
         uses: actions/checkout@v7
         with:
           persist-credentials: false
+
+      - name: Setup local maven cache
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.m2/wrapper
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - run: .ci/no-exception-test.sh openjdk25-with-checks-nonjavadoc-error

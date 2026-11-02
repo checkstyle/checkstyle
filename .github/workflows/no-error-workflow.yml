@@ -26,6 +26,14 @@ jobs:
           distribution: temurin
           java-version: 25
 
+      - name: Setup local maven cache
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.m2/wrapper
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
       - name: Run Checkstyle on Apache Kafka
         run: ./.ci/validation.sh no-error-kafka
 
@@ -41,6 +49,14 @@ jobs:
         with:
           distribution: temurin
           java-version: 23
+
+      - name: Setup local maven cache
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.m2/wrapper
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - name: Run Checkstyle on Trino
         run: ./.ci/validation.sh no-error-trino
