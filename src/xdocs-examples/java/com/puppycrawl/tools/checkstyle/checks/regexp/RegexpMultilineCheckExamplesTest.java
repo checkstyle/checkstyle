@@ -125,4 +125,15 @@ public class RegexpMultilineCheckExamplesTest extends AbstractExamplesModuleTest
         verifyWithInlineConfigParser(getPath("Example9.java"), expected);
     }
 
+    @Test
+    public void testExample10() throws Exception {
+        final String[] expected = {
+            "17: Avoid using System.out for printing.",
+            "21: Avoid using System.out for printing.",
+            "25: Avoid using System.out for printing.",
+        };
+
+        verifyWithInlineConfigParser(getPath("Example10.java"), expected);
+    }
+
 }
