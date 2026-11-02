@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.internal;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.tngtech.archunit.base.DescribedPredicate.doNot;
 import static com.tngtech.archunit.base.DescribedPredicate.not;
+import static com.tngtech.archunit.lang.conditions.ArchConditions.beAnnotatedWith;
+import static com.tngtech.archunit.lang.conditions.ArchConditions.beFinal;
+import static com.tngtech.archunit.lang.conditions.ArchConditions.beStatic;
 import static com.tngtech.archunit.lang.conditions.ArchPredicates.are;
 import static com.tngtech.archunit.lang.conditions.ArchPredicates.have;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
@@ -228,25 +231,24 @@ public class ImmutabilityTest {
             .importPackages("com.puppycrawl.tools.checkstyle.utils",
                             "com.puppycrawl.tools.checkstyle.checks.javadoc.utils");
 
-        final SuppressionArchCondition<JavaField> beSuppressedField =
-                new SuppressionArchCondition<>(SUPPRESSED_FIELDS_IN_UTIL_CLASSES, "be suppressed");
+        final ArchCondition<JavaField> beImmutableStaticFinal =
+                BE_IMMUTABLE.and(beFinal()).and(beStatic());
+
+        final ArchConditionWithSuppression<JavaField> beImmutableStaticFinalOrSuppressed =
+                new ArchConditionWithSuppression<>(beImmutableStaticFinal,
+                        SUPPRESSED_FIELDS_IN_UTIL_CLASSES);
 
         final ArchRule fieldsInUtilClassesShouldBeImmutable = fields()
             .that()
             .areDeclaredInClassesThat()
             .haveSimpleNameEndingWith("Util")
-            .should(BE_IMMUTABLE)
-            .andShould()
-            .beFinal()
-            .andShould()
-            .beStatic()
-            .orShould(beSuppressedField);
+            .should(beImmutableStaticFinalOrSuppressed);
 
         fieldsInUtilClassesShouldBeImmutable.check(utilClasses);
 
         assertWithMessage("Outdated suppressions (can be removed)")
-                .that(beSuppressedField.suppressions)
-                .containsExactlyElementsIn(beSuppressedField.usedSuppressions);
+                .that(beImmutableStaticFinalOrSuppressed.suppressions)
+                .containsExactlyElementsIn(beImmutableStaticFinalOrSuppressed.usedSuppressions);
     }
 
     /**
@@ -256,8 +258,10 @@ public class ImmutabilityTest {
     public void testFieldsInStatelessChecksShouldBeImmutable() {
         final DescribedPredicate<JavaField> moduleProperties = new ModulePropertyPredicate();
 
-        final SuppressionArchCondition<JavaField> beSuppressedField =
-                new SuppressionArchCondition<>(SUPPRESSED_FIELDS_IN_MODULES, "be suppressed");
+        final ArchCondition<JavaField> beImmutableFinal = BE_IMMUTABLE.and(beFinal());
+
+        final ArchConditionWithSuppression<JavaField> beImmutableFinalOrSuppressed =
+                new ArchConditionWithSuppression<>(beImmutableFinal, SUPPRESSED_FIELDS_IN_MODULES);
 
         final ArchRule fieldsInStatelessChecksShouldBeImmutable = fields()
             .that()
@@ -266,16 +270,13 @@ public class ImmutabilityTest {
             .areDeclaredInClassesThat()
             .areAnnotatedWith(StatelessCheck.class)
             .and(are(not(moduleProperties)))
-            .should(BE_IMMUTABLE)
-            .andShould()
-            .beFinal()
-            .orShould(beSuppressedField);
+            .should(beImmutableFinalOrSuppressed);
 
         fieldsInStatelessChecksShouldBeImmutable.check(CHECKSTYLE_CHECKS);
 
         assertWithMessage("Outdated suppressions (can be removed)")
-                .that(beSuppressedField.suppressions)
-                .containsExactlyElementsIn(beSuppressedField.usedSuppressions);
+                .that(beImmutableFinalOrSuppressed.suppressions)
+                .containsExactlyElementsIn(beImmutableFinalOrSuppressed.usedSuppressions);
     }
 
     /**
@@ -283,24 +284,21 @@ public class ImmutabilityTest {
      */
     @Test
     public void testClassesWithImmutableFieldsShouldBeStateless() {
-        final SuppressionArchCondition<JavaClass> beSuppressedClass =
-                new SuppressionArchCondition<>(
-                        SUPPRESSED_CLASSES_FOR_STATELESS_CHECK_RULE, "be suppressed"
-                );
+        final ArchConditionWithSuppression<JavaClass> beStatelessOrSuppressed =
+                new ArchConditionWithSuppression<>(beAnnotatedWith(StatelessCheck.class),
+                        SUPPRESSED_CLASSES_FOR_STATELESS_CHECK_RULE);
 
         final ArchRule classesWithImmutableFieldsShouldBeStateless = classes()
             .that(have(IMMUTABLE_FIELDS))
             .and()
             .doNotHaveModifier(JavaModifier.ABSTRACT)
-            .should()
-            .beAnnotatedWith(StatelessCheck.class)
-            .orShould(beSuppressedClass);
+            .should(beStatelessOrSuppressed);
 
         classesWithImmutableFieldsShouldBeStateless.check(CHECKSTYLE_CHECKS);
 
         assertWithMessage("Outdated suppressions (can be removed)")
-                .that(beSuppressedClass.suppressions)
-                .containsExactlyElementsIn(beSuppressedClass.usedSuppressions);
+                .that(beStatelessOrSuppressed.suppressions)
+                .containsExactlyElementsIn(beStatelessOrSuppressed.usedSuppressions);
     }
 
     /**
@@ -309,26 +307,26 @@ public class ImmutabilityTest {
      */
     @Test
     public void testClassesWithMutableFieldsShouldBeStateful() {
-        final SuppressionArchCondition<JavaClass> beSuppressedClass =
-                new SuppressionArchCondition<>(
-                        SUPPRESSED_CLASSES_FOR_STATEFUL_CHECK_RULE, "be suppressed"
-                );
+        // typed local, as the type of a call receiver cannot be inferred from its target
+        final ArchCondition<JavaClass> beFileStateful = beAnnotatedWith(FileStatefulCheck.class);
+        final ArchCondition<JavaClass> beStateful =
+                beFileStateful.or(beAnnotatedWith(GlobalStatefulCheck.class));
+
+        final ArchConditionWithSuppression<JavaClass> beStatefulOrSuppressed =
+                new ArchConditionWithSuppression<>(beStateful,
+                        SUPPRESSED_CLASSES_FOR_STATEFUL_CHECK_RULE);
 
         final ArchRule classesWithMutableFieldsShouldBeStateful = classes()
             .that(doNot(have(IMMUTABLE_FIELDS)))
             .and()
             .doNotHaveModifier(JavaModifier.ABSTRACT)
-            .should()
-            .beAnnotatedWith(FileStatefulCheck.class)
-            .orShould()
-            .beAnnotatedWith(GlobalStatefulCheck.class)
-            .orShould(beSuppressedClass);
+            .should(beStatefulOrSuppressed);
 
         classesWithMutableFieldsShouldBeStateful.check(CHECKSTYLE_CHECKS);
 
         assertWithMessage("Outdated suppressions (can be removed)")
-                .that(beSuppressedClass.suppressions)
-                .containsExactlyElementsIn(beSuppressedClass.usedSuppressions);
+                .that(beStatefulOrSuppressed.suppressions)
+                .containsExactlyElementsIn(beStatefulOrSuppressed.usedSuppressions);
     }
 
     /**
@@ -469,30 +467,35 @@ public class ImmutabilityTest {
     }
 
     /**
-     * ArchCondition checking if a type or a member is present in the suppression list.
+     * ArchCondition that ignores violations of another condition for types or members in the
+     * suppression list. A suppression is used only if its item violates the condition.
      */
-    private static final class SuppressionArchCondition<T extends HasName.AndFullName>
+    private static final class ArchConditionWithSuppression<T extends HasName.AndFullName>
         extends ArchCondition<T> {
 
+        private final ArchCondition<T> condition;
         private final Set<String> suppressions;
         private final Set<String> usedSuppressions;
 
-        private SuppressionArchCondition(Set<String> suppressions, String description) {
-            super(description);
+        private ArchConditionWithSuppression(ArchCondition<T> condition, Set<String> suppressions) {
+            super(condition.getDescription() + " or be suppressed");
+            this.condition = condition;
             this.suppressions = suppressions;
             usedSuppressions = new HashSet<>();
         }
 
         @Override
-        public void check(HasName.AndFullName item, ConditionEvents events) {
-            final String fullName = item.getFullName();
-            if (suppressions.contains(fullName)) {
-                usedSuppressions.add(fullName);
-            }
-            else {
-                final String message = String.format(
-                    Locale.ROOT, "should %s or resolved.", getDescription());
-                events.add(SimpleConditionEvent.violated(item, message));
+        public void check(T item, ConditionEvents events) {
+            final ConditionEvents conditionEvents = ConditionEvents.Factory.create();
+            condition.check(item, conditionEvents);
+            if (conditionEvents.containViolation()) {
+                final String fullName = item.getFullName();
+                if (suppressions.contains(fullName)) {
+                    usedSuppressions.add(fullName);
+                }
+                else {
+                    conditionEvents.getViolating().forEach(events::add);
+                }
             }
         }
 
