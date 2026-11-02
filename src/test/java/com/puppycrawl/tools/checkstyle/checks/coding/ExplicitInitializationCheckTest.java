@@ -97,4 +97,31 @@ public class ExplicitInitializationCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testExplicitInitializationCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "9:5: " + getCheckMessage(MSG_KEY, "number", 0),
+            "10:8: " + getCheckMessage(MSG_KEY, "reference", "null"),
+            "11:9: " + getCheckMessage(MSG_KEY, "flag", "false"),
+            "12:6: " + getCheckMessage(MSG_KEY, "symbol", "\\0"),
+            "13:8: " + getCheckMessage(MSG_KEY, "ratio", 0),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputExplicitInitializationCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testExplicitInitializationCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "9:8: " + getCheckMessage(MSG_KEY, "reference", "null"),
+            "10:8: " + getCheckMessage(MSG_KEY, "text", "null"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputExplicitInitializationCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
