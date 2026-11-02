@@ -1,6 +1,16 @@
+/*
+AnnotationUseStyle
+closingParens = ignore
+elementStyle = ignore
+trailingArrayComma = ALWAYS
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.annotation.annotationusestyle;
 
-@SuppressWarnings({}) //warn
+// violation below 'Annotation array values must contain trailing comma.'
+@SuppressWarnings({})
 public class InputXpathAnnotationUseStyleFour {
 
 }
