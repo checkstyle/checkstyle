@@ -37,7 +37,8 @@ public class InputFormattedCorrectJavadocLeadingAsteriskAlignment {
   /*************************************************
    *** @param str testing.....
    **********************************/
-  // False negative for above javadoc, until #18271, #18273
+  // violation above 'Block comment end must be on new line.'
+  // False negative for above javadoc, until #18271
 
   public InputFormattedCorrectJavadocLeadingAsteriskAlignment(String str) {}
 
