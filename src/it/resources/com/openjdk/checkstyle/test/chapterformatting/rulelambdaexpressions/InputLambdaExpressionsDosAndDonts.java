@@ -43,11 +43,11 @@ public class InputLambdaExpressionsDosAndDonts {
     }
 
     public void styleGuideDonts(List<String> list) {
-
+        // violation below 'preferred over single-line'
         Runnable r = () -> { System.out.println("Hello World"); };
         // violation above ''{' at column 28 should have line break after.'
 
-        // ok, for block
+        // violation below 'preferred over single-line'
         Supplier<String> supp = () -> { return "Hello World"; };
         // violation above ''{' at column 39 should have line break after.'
 
