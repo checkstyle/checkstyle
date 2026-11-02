@@ -123,4 +123,21 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
             .isTrue();
     }
 
+    @Test
+    public void testInitializers() throws Exception {
+        final String[] expected = {
+            "64:14: " + getCheckMessage(MSG_KEY, "port"),
+            "73:14: " + getCheckMessage(MSG_KEY, "port"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterAssignmentInitializers.java"), expected);
+    }
+
+    @Test
+    public void testInitializersRecord() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputParameterAssignmentInitializersRecord.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
 }
