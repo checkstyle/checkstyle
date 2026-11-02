@@ -9,8 +9,8 @@ package com.google.checkstyle.test.chapter7javadoc.rule734nonrequiredjavadoc;
  * @param options path
  */
 public record InputFormattedInvalidJavadocPositionRecord(String containerPath, String... options) {
+  // violation below 'Javadoc comment is placed in the wrong location.'
   /** Odd javadoc */
-  // violation above 'Javadoc comment is placed in the wrong location.'
 
   /**
    * Creates a mount.
@@ -73,8 +73,8 @@ record MyRecord1(String text) {
   // violation above 'Javadoc comment is placed in the wrong location.'
 }
 
+// violation below 'Javadoc comment is placed in the wrong location.'
 /** Some javadoc. */
-// violation above 'Javadoc comment is placed in the wrong location.'
 /**
  * Some javadoc.
  *
@@ -82,8 +82,8 @@ record MyRecord1(String text) {
  */
 record Mapping1(String from) { // violation 'Top-level class Mapping1 has to reside in its own'
 
+  // violation below 'Javadoc comment is placed in the wrong location.'
   /** Some javadoc. */
-  // violation above 'Javadoc comment is placed in the wrong location.'
   /**
    * The constructor for Mapping.
    *
