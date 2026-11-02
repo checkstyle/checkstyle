@@ -27,7 +27,6 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpecte
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -115,10 +114,6 @@ public class EmptyForInitializerPadCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testInvalidOption() {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(EmptyForInitializerPadCheck.class);
-        checkConfig.addProperty("option", "invalid_option");
-
         final CheckstyleException exc = getExpectedThrowable(CheckstyleException.class, () -> {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
