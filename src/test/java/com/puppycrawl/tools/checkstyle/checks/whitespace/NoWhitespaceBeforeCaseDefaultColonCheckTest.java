@@ -100,4 +100,18 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
                 expected);
     }
 
+    @Test
+    public void testNoWhitespaceBeforeCaseDefaultColonCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "14:16: " + getCheckMessage(MSG_KEY, ":"),
+            "23:17: " + getCheckMessage(MSG_KEY, ":"),
+            "33:20: " + getCheckMessage(MSG_KEY, ":"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/"
+                        + "InputNoWhitespaceBeforeCaseDefaultColonCompactSourceFile.java"),
+                expected);
+    }
+
 }
