@@ -84,6 +84,22 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInitializers() throws Exception {
+        final String[] expected = {
+            "24:14: " + getCheckMessage(MSG_KEY, "port"),
+            "36:22: " + getCheckMessage(MSG_KEY, "port"),
+            "39:14: " + getCheckMessage(MSG_KEY, "port"),
+            "43:14: " + getCheckMessage(MSG_KEY, "port"),
+            "53:23: " + getCheckMessage(MSG_KEY, "p"),
+            "57:14: " + getCheckMessage(MSG_KEY, "port"),
+            "75:23: " + getCheckMessage(MSG_KEY, "p"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterAssignmentInitializers.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final ParameterAssignmentCheck check = new ParameterAssignmentCheck();
         assertWithMessage("Acceptable tokens should not be null")
