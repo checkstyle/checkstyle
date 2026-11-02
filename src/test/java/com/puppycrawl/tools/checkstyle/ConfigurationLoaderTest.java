@@ -480,6 +480,17 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testNetworkDtdIsNotLoadedByDefault() throws Exception {
+        final CheckstyleException exc = getExpectedThrowable(CheckstyleException.class, () -> {
+            loadConfiguration("InputConfigurationLoaderNetworkDoctype.xml");
+        }, "DTD must not be retrieved over the network by default");
+        assertWithMessage("Invalid exception message: %s", exc.getMessage())
+            .that(exc.getMessage())
+            .contains("'http' access is not allowed due to restriction set by the "
+                + "accessExternalDTD property");
+    }
+
+    @Test
     @SetSystemProperty(key = XmlLoader.LoadExternalDtdFeatureProvider.ENABLE_EXTERNAL_DTD_LOAD,
         value = "true")
     public void testExternalEntity() throws Exception {

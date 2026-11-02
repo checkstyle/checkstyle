@@ -68,8 +68,17 @@
         </li>
       </ul>
       <p>
+        In addition, the JAXP property <code>javax.xml.XMLConstants.ACCESS_EXTERNAL_DTD</code>
+        is set to <code>file</code>, so the DTD referenced by a <code>DOCTYPE</code>
+        declaration can only be read from the local file system and is never retrieved over
+        the network (e.g. <code>http</code>, <code>https</code> or <code>ftp</code>).
+        Configurations that reference a Checkstyle DTD by its <code>PUBLIC</code> identifier
+        are not affected, as that DTD is loaded from the Checkstyle jar.
+      </p>
+      <p>
         Setting <code>checkstyle.enableExternalDtdLoad</code> to <code>true</code>
-        enables all three features simultaneously. This is required when using the
+        enables all three features simultaneously and allows retrieving the DTD over any
+        protocol. This is required when using the
         XML <code>ENTITY</code> include pattern shown in the examples below.
         Only enable this property when the XML files being parsed are fully trusted.
       </p>
