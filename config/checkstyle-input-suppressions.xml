@@ -89,11 +89,7 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/19803 -->
   <suppress id="violationBetweenJavadocAndMethod"
-            files="/checks/indentation/commentsindentation/InputCommentsIndentationCommentIsAtTheEndOfBlockFour\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="/checks/javadoc/javadocparagraph/InputJavadocParagraphIncorrect4\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="/it/resources/com/google/checkstyle/test/chapter4formatting/rule4861blockcommentstyle/InputCommentsIndentationSurroundingCode\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/InputFormattedIncorrectJavadocParagraph\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
