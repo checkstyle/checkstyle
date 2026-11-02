@@ -24,7 +24,6 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -184,9 +183,9 @@ public class ArchUnitTest {
                 .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
                 .importPackages("com.puppycrawl.tools.checkstyle.checks");
 
-        final ArchConditionWithSuppression overrideBeginTreeOrBeSuppressed =
-                new ArchConditionWithSuppression(overrideBeginTree(),
-                        SUPPRESSED_CHECKS_WITHOUT_BEGIN_TREE);
+        final ArchConditionWithSuppression<JavaClass> overrideBeginTreeOrBeSuppressed =
+            new ArchConditionWithSuppression<>(overrideBeginTree(),
+                    SUPPRESSED_CHECKS_WITHOUT_BEGIN_TREE);
 
         final ArchRule fileStatefulChecksShouldOverrideBeginTree = classes()
             .that()
@@ -200,8 +199,8 @@ public class ArchUnitTest {
         fileStatefulChecksShouldOverrideBeginTree.check(importedClasses);
 
         assertWithMessage("Outdated suppressions (can be removed)")
-                .that(overrideBeginTreeOrBeSuppressed.suppressions)
-                .containsExactlyElementsIn(overrideBeginTreeOrBeSuppressed.usedSuppressions);
+                .that(overrideBeginTreeOrBeSuppressed.getSuppressions())
+                .containsExactlyElementsIn(overrideBeginTreeOrBeSuppressed.getUsedSuppressions());
     }
 
     /**
@@ -240,41 +239,6 @@ public class ArchUnitTest {
                     "<%s> does not override beginTree method",
                     item.getFullName());
                 events.add(SimpleConditionEvent.violated(item, message));
-            }
-        }
-
-    }
-
-    /**
-     * ArchCondition that ignores violations of another condition for types in the
-     * suppression list. A suppression is used only if its type violates the condition.
-     */
-    private static final class ArchConditionWithSuppression extends ArchCondition<JavaClass> {
-
-        private final ArchCondition<JavaClass> condition;
-        private final Set<String> suppressions;
-        private final Set<String> usedSuppressions;
-
-        private ArchConditionWithSuppression(ArchCondition<JavaClass> condition,
-                                             Set<String> suppressions) {
-            super(condition.getDescription() + " or be suppressed");
-            this.condition = condition;
-            this.suppressions = suppressions;
-            usedSuppressions = new HashSet<>();
-        }
-
-        @Override
-        public void check(JavaClass item, ConditionEvents events) {
-            final ConditionEvents conditionEvents = ConditionEvents.Factory.create();
-            condition.check(item, conditionEvents);
-            if (conditionEvents.containViolation()) {
-                final String fullName = item.getFullName();
-                if (suppressions.contains(fullName)) {
-                    usedSuppressions.add(fullName);
-                }
-                else {
-                    conditionEvents.getViolating().forEach(events::add);
-                }
             }
         }
 
