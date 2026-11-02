@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck;
 
 public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestSupport {
@@ -45,18 +43,12 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathIllegalIdentifierNameOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(IllegalIdentifierNameCheck.class);
-
         final String format = "^(?!var$|\\S*\\$)\\S+$";
 
         final String[] expectedViolation = {
-            "10:20: " + getCheckMessage(IllegalIdentifierNameCheck.class,
+            "15:20: " + getCheckMessage(IllegalIdentifierNameCheck.class,
                 IllegalIdentifierNameCheck.MSG_INVALID_PATTERN, "var", format),
-            };
+        };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/RECORD_DEF"
@@ -64,24 +56,20 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
                 + "]]/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='var']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-            expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathIllegalIdentifierNameOne.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathIllegalIdentifierNameTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(IllegalIdentifierNameCheck.class);
-
         final String format = "^(?!var$|\\S*\\$)\\S+$";
 
         final String[] expectedViolation = {
-            "9:17: " + getCheckMessage(IllegalIdentifierNameCheck.class,
+            "14:17: " + getCheckMessage(IllegalIdentifierNameCheck.class,
                 IllegalIdentifierNameCheck.MSG_INVALID_PATTERN, "te$t", format),
-            };
+        };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
@@ -90,22 +78,18 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
                 + "/IDENT[@text='te$t']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-            expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathIllegalIdentifierNameTwo.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final File fileToProcess = new File(getPath(
-            "InputXpathIllegalIdentifierNameInnerClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(IllegalIdentifierNameCheck.class);
-
         final String format = "^(?!var$|\\S*\\$)\\S+$";
 
         final String[] expectedViolation = {
-            "10:23: " + getCheckMessage(IllegalIdentifierNameCheck.class,
+            "15:23: " + getCheckMessage(IllegalIdentifierNameCheck.class,
                 IllegalIdentifierNameCheck.MSG_INVALID_PATTERN, "var", format),
         };
 
@@ -117,8 +101,10 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
                 + "/IDENT[@text='var']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-            expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+            getPath("InputXpathIllegalIdentifierNameInnerClass.java"),
+            expectedXpathQueries,
+            expectedViolation);
     }
 
 }
