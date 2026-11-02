@@ -30,7 +30,6 @@ import static com.tngtech.archunit.lang.conditions.ArchPredicates.have;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.fields;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -54,7 +53,6 @@ import com.tngtech.archunit.core.domain.JavaField;
 import com.tngtech.archunit.core.domain.JavaModifier;
 import com.tngtech.archunit.core.domain.JavaParameterizedType;
 import com.tngtech.archunit.core.domain.JavaType;
-import com.tngtech.archunit.core.domain.properties.HasName;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.lang.ArchCondition;
@@ -247,8 +245,9 @@ public class ImmutabilityTest {
         fieldsInUtilClassesShouldBeImmutable.check(utilClasses);
 
         assertWithMessage("Outdated suppressions (can be removed)")
-                .that(beImmutableStaticFinalOrSuppressed.suppressions)
-                .containsExactlyElementsIn(beImmutableStaticFinalOrSuppressed.usedSuppressions);
+                .that(beImmutableStaticFinalOrSuppressed.getSuppressions())
+                .containsExactlyElementsIn(
+                        beImmutableStaticFinalOrSuppressed.getUsedSuppressions());
     }
 
     /**
@@ -275,8 +274,8 @@ public class ImmutabilityTest {
         fieldsInStatelessChecksShouldBeImmutable.check(CHECKSTYLE_CHECKS);
 
         assertWithMessage("Outdated suppressions (can be removed)")
-                .that(beImmutableFinalOrSuppressed.suppressions)
-                .containsExactlyElementsIn(beImmutableFinalOrSuppressed.usedSuppressions);
+            .that(beImmutableFinalOrSuppressed.getSuppressions())
+            .containsExactlyElementsIn(beImmutableFinalOrSuppressed.getUsedSuppressions());
     }
 
     /**
@@ -297,8 +296,8 @@ public class ImmutabilityTest {
         classesWithImmutableFieldsShouldBeStateless.check(CHECKSTYLE_CHECKS);
 
         assertWithMessage("Outdated suppressions (can be removed)")
-                .that(beStatelessOrSuppressed.suppressions)
-                .containsExactlyElementsIn(beStatelessOrSuppressed.usedSuppressions);
+            .that(beStatelessOrSuppressed.getSuppressions())
+            .containsExactlyElementsIn(beStatelessOrSuppressed.getUsedSuppressions());
     }
 
     /**
@@ -325,8 +324,8 @@ public class ImmutabilityTest {
         classesWithMutableFieldsShouldBeStateful.check(CHECKSTYLE_CHECKS);
 
         assertWithMessage("Outdated suppressions (can be removed)")
-                .that(beStatefulOrSuppressed.suppressions)
-                .containsExactlyElementsIn(beStatefulOrSuppressed.usedSuppressions);
+            .that(beStatefulOrSuppressed.getSuppressions())
+            .containsExactlyElementsIn(beStatefulOrSuppressed.getUsedSuppressions());
     }
 
     /**
@@ -462,41 +461,6 @@ public class ImmutabilityTest {
                             || ImmutableFieldArchCondition.isEnumConstantOrEmptyArray(javaField)
                             || ImmutableFieldArchCondition.isParameterizedTypeImmutable(javaField));
                 });
-        }
-
-    }
-
-    /**
-     * ArchCondition that ignores violations of another condition for types or members in the
-     * suppression list. A suppression is used only if its item violates the condition.
-     */
-    private static final class ArchConditionWithSuppression<T extends HasName.AndFullName>
-        extends ArchCondition<T> {
-
-        private final ArchCondition<T> condition;
-        private final Set<String> suppressions;
-        private final Set<String> usedSuppressions;
-
-        private ArchConditionWithSuppression(ArchCondition<T> condition, Set<String> suppressions) {
-            super(condition.getDescription() + " or be suppressed");
-            this.condition = condition;
-            this.suppressions = suppressions;
-            usedSuppressions = new HashSet<>();
-        }
-
-        @Override
-        public void check(T item, ConditionEvents events) {
-            final ConditionEvents conditionEvents = ConditionEvents.Factory.create();
-            condition.check(item, conditionEvents);
-            if (conditionEvents.containViolation()) {
-                final String fullName = item.getFullName();
-                if (suppressions.contains(fullName)) {
-                    usedSuppressions.add(fullName);
-                }
-                else {
-                    conditionEvents.getViolating().forEach(events::add);
-                }
-            }
         }
 
     }
