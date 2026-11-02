@@ -45,13 +45,21 @@ public class DesignForExtensionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIt() throws Exception {
+    public void testMethods() throws Exception {
         final String[] expected = {
-            "51:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtension", "doh"),
-            "106:9: " + getCheckMessage(MSG_KEY, "anotherNonFinalClass", "someMethod"),
+            "51:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionMethods", "doh"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputDesignForExtension.java"), expected);
+                getPath("InputDesignForExtensionMethods.java"), expected);
+    }
+
+    @Test
+    public void testInnerClasses() throws Exception {
+        final String[] expected = {
+            "53:9: " + getCheckMessage(MSG_KEY, "anotherNonFinalClass", "someMethod"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputDesignForExtensionInnerClasses.java"), expected);
     }
 
     @Test
@@ -64,7 +72,7 @@ public class DesignForExtensionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOverridableMethods() throws Exception {
+    public void testOverridableMethodsComments() throws Exception {
         final String[] expected = {
             "15:9: " + getCheckMessage(MSG_KEY, "A", "foo1"),
             "40:9: " + getCheckMessage(MSG_KEY, "A", "foo8"),
@@ -74,38 +82,71 @@ public class DesignForExtensionCheckTest extends AbstractModuleTestSupport {
             "68:9: " + getCheckMessage(MSG_KEY, "A", "foo12"),
             "76:9: " + getCheckMessage(MSG_KEY, "A", "foo13"),
             "84:9: " + getCheckMessage(MSG_KEY, "A", "foo14"),
-            "107:9: " + getCheckMessage(MSG_KEY, "A", "foo22"),
-            "114:9: " + getCheckMessage(MSG_KEY, "A", "foo23"),
-            "124:9: " + getCheckMessage(MSG_KEY, "A", "foo25"),
-            "130:9: " + getCheckMessage(MSG_KEY, "A", "foo26"),
-            "138:9: " + getCheckMessage(MSG_KEY, "A", "foo27"),
-            "151:9: " + getCheckMessage(MSG_KEY, "A", "foo29"),
-            "174:9: " + getCheckMessage(MSG_KEY, "A", "foo31"),
-            "186:9: " + getCheckMessage(MSG_KEY, "A", "foo33"),
-            "193:9: " + getCheckMessage(MSG_KEY, "A", "foo34"),
-            "216:9: " + getCheckMessage(MSG_KEY, "A", "foo39"),
-            "224:9: " + getCheckMessage(MSG_KEY, "A", "foo41"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputDesignForExtensionOverridableMethods.java"), expected);
+                getPath("InputDesignForExtensionOverridableMethodsComments.java"), expected);
     }
 
     @Test
-    public void testIgnoredAnnotationsOption() throws Exception {
+    public void testOverridableMethodsAnnotationsAndComments() throws Exception {
         final String[] expected = {
-            "40:5: "
-                + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo1"),
-            "151:5: "
-                + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo21"),
-            "157:5: "
-                + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "setAge"),
-            "173:5: "
-                + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo24"),
-            "181:5: "
-                + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "dontUse4"),
+            "16:9: " + getCheckMessage(MSG_KEY, "A", "foo22"),
+            "23:9: " + getCheckMessage(MSG_KEY, "A", "foo23"),
+            "33:9: " + getCheckMessage(MSG_KEY, "A", "foo25"),
+            "39:9: " + getCheckMessage(MSG_KEY, "A", "foo26"),
+            "47:9: " + getCheckMessage(MSG_KEY, "A", "foo27"),
+            "60:9: " + getCheckMessage(MSG_KEY, "A", "foo29"),
+            "83:9: " + getCheckMessage(MSG_KEY, "A", "foo31"),
+            "95:9: " + getCheckMessage(MSG_KEY, "A", "foo33"),
+            "102:9: " + getCheckMessage(MSG_KEY, "A", "foo34"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputDesignForExtensionIgnoredAnnotations.java"), expected);
+                getPath("InputDesignForExtensionOverridableMethodsAnnotationsAndComments.java"),
+                expected);
+    }
+
+    @Test
+    public void testOverridableMethodsPackagePrivateAndClasses() throws Exception {
+        final String[] expected = {
+            "31:9: " + getCheckMessage(MSG_KEY, "A", "foo39"),
+            "39:9: " + getCheckMessage(MSG_KEY, "A", "foo41"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputDesignForExtensionOverridableMethodsPackagePrivateAndClasses.java"),
+                expected);
+    }
+
+    @Test
+    public void testIgnoredAnnotationsOptionOverrideAndDeprecated() throws Exception {
+        final String[] expected = {
+            "40:5: "
+                + getCheckMessage(MSG_KEY,
+                    "InputDesignForExtensionIgnoredAnnotationsOverrideAndDeprecated", "foo1"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputDesignForExtensionIgnoredAnnotationsOverrideAndDeprecated.java"),
+                expected);
+    }
+
+    @Test
+    public void testIgnoredAnnotationsOptionCustomAndMultiple() throws Exception {
+        final String[] expected = {
+            "61:5: "
+                + getCheckMessage(MSG_KEY,
+                    "InputDesignForExtensionIgnoredAnnotationsCustomAndMultiple", "foo21"),
+            "67:5: "
+                + getCheckMessage(MSG_KEY,
+                    "InputDesignForExtensionIgnoredAnnotationsCustomAndMultiple", "setAge"),
+            "83:5: "
+                + getCheckMessage(MSG_KEY,
+                    "InputDesignForExtensionIgnoredAnnotationsCustomAndMultiple", "foo24"),
+            "91:5: "
+                + getCheckMessage(MSG_KEY,
+                    "InputDesignForExtensionIgnoredAnnotationsCustomAndMultiple", "dontUse4"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputDesignForExtensionIgnoredAnnotationsCustomAndMultiple.java"),
+                expected);
     }
 
     @Test
