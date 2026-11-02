@@ -289,4 +289,16 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
+    @Test
+    @SetSystemProperty(key = "ic.docs.package", value = "importcontrol")
+    @SetSystemProperty(key = "ic.docs.allowed", value = "java.io")
+    public void testUseCase11() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.ArrayList"),
+        };
+
+        verifyWithInlineXmlConfig(getPath("UseCase11.java"), expected);
+    }
+
 }
