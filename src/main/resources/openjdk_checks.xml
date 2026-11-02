@@ -311,6 +311,18 @@
     <module name="SummaryJavadoc"/>
     <module name="JavadocContentLocation"/>
     <module name="PreferLiteralJavadocInlineTag"/>
+    <module name="PreferCodeOrSnippetJavadocInlineTag"/>
+    <!-- Prefer {@link} over <a href> that references a method, constructor, type or package -->
+    <module name="JavadocRegexp">
+      <property name="format"
+                value="(?x) &lt;[aA]\s[^&gt;]*?(?i:href)\s*=\s*[&quot;']
+                  (?:(?:\.\./|[\w$]+/)*(?:[A-Z][\w$.]*|package-summary)\.html
+                       (?:\#[\w$]+\([^&quot;'()]*\))?
+                  |\#[\w$]+\([^&quot;'()]*\))
+                  [&quot;']"/>
+      <message key="javadoc.regexp.match"
+               value="Prefer link javadoc inline tag over HTML anchor that references code."/>
+    </module>
 
     <module name="MissingOverride"/>
     <module name="MissingOverrideOnRecordAccessor"/>
