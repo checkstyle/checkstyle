@@ -81,9 +81,7 @@ public class BlockCommentEndPositionCheck extends AbstractCheck {
     public static final String MSG_BLOCK_COMMENT_END = "block.comment.end";
 
     /**
-     * Pattern matching a line where the block comment end delimiter is alone,
-     * allowing optional leading whitespace, and optional trailing comments
-     * (block comments and/or a line comment) with whitespace.
+     * Pattern for a block comment end on its own line with optional trailing comments.
      */
     private static final Pattern ALONE_PATTERN =
             Pattern.compile("^\\s*\\*/(?:\\s+|/\\*.*?\\*/)*(?://.*)?$");
