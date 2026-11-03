@@ -21,14 +21,12 @@ package org.checkstyle.suppressionxpathfilter.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnFieldCheck.MSG_KEY;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnFieldCheck;
 
 public class XpathRegressionInappropriateJavadocBlockTagsOnFieldTest
@@ -50,14 +48,8 @@ public class XpathRegressionInappropriateJavadocBlockTagsOnFieldTest
 
     @Test
     public void testInappropriateClassFieldTag() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathInappropriateJavadocBlockTagsOnFieldClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(InappropriateJavadocBlockTagsOnFieldCheck.class);
-
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(InappropriateJavadocBlockTagsOnFieldCheck.class,
+            "14:5: " + getCheckMessage(InappropriateJavadocBlockTagsOnFieldCheck.class,
                 MSG_KEY, "return", "field"),
         };
 
@@ -76,21 +68,16 @@ public class XpathRegressionInappropriateJavadocBlockTagsOnFieldTest
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='field']]"
                         + "/MODIFIERS/LITERAL_PUBLIC");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInappropriateJavadocBlockTagsOnFieldClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInappropriateInterfaceFieldTag() throws Exception {
-        final File fileToProcess =
-                new File(getPath(
-                        "InputXpathInappropriateJavadocBlockTagsOnFieldInterface.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(InappropriateJavadocBlockTagsOnFieldCheck.class);
-
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(InappropriateJavadocBlockTagsOnFieldCheck.class,
+            "14:5: " + getCheckMessage(InappropriateJavadocBlockTagsOnFieldCheck.class,
                 MSG_KEY, "return", "FIELD"),
         };
 
@@ -112,20 +99,16 @@ public class XpathRegressionInappropriateJavadocBlockTagsOnFieldTest
                         + "'InputXpathInappropriateJavadocBlockTagsOnFieldInterface']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='FIELD']]/TYPE/LITERAL_INT");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInappropriateJavadocBlockTagsOnFieldInterface.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInappropriateEnumFieldTag() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathInappropriateJavadocBlockTagsOnFieldEnum.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(InappropriateJavadocBlockTagsOnFieldCheck.class);
-
         final String[] expectedViolation = {
-            "9:5: " + getCheckMessage(InappropriateJavadocBlockTagsOnFieldCheck.class,
+            "16:5: " + getCheckMessage(InappropriateJavadocBlockTagsOnFieldCheck.class,
                 MSG_KEY, "return", "field"),
         };
 
@@ -144,8 +127,10 @@ public class XpathRegressionInappropriateJavadocBlockTagsOnFieldTest
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='field']]"
                         + "/MODIFIERS/LITERAL_PRIVATE");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInappropriateJavadocBlockTagsOnFieldEnum.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
