@@ -145,6 +145,9 @@
     <exclude name="ShortVariable"/>
     <!-- huge amount of false positives from 6.18.0 -->
     <exclude name="UnnecessaryFullyQualifiedName"/>
+    <!-- Requires all locals to be declared uninitialized at the start of the block, which
+         conflicts with our code style. -->
+    <exclude name="LocalVariableDeclarationShouldBeAtStartOfBlock"/>
   </rule>
   <rule ref="category/java/codestyle.xml/ClassNamingConventions">
     <properties>
