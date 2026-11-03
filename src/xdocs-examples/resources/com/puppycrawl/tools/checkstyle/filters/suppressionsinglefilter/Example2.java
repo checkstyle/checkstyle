@@ -27,7 +27,7 @@ public class Example2 {
   }
 
   public void printExample() {
-    int [] x; // filtered violation ''int' is followed by whitespace'
+    int [] x;
     System.out.println(
             "example"
     );

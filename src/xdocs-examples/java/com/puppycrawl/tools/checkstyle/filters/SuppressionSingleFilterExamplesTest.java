@@ -44,8 +44,6 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
             "19:17: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "100"),
             "21:12: " + getCheckMessage(NoWhitespaceAfterCheck.class,
                     NoWhitespaceAfterCheck.MSG_KEY, "."),
-            "25:9: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
@@ -59,8 +57,6 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
             "24:17: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "100"),
             "26:12: " + getCheckMessage(NoWhitespaceAfterCheck.class,
                     NoWhitespaceAfterCheck.MSG_KEY, "."),
-            "30:9: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
         };
         final String[] expectedWithFilter = {};
 
@@ -73,13 +69,8 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
         final String[] expectedWithoutFilter = {
             "22:12: " + getCheckMessage(NoWhitespaceAfterCheck.class,
                     NoWhitespaceAfterCheck.MSG_KEY, "."),
-            "26:9: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
         };
-        final String[] expectedWithFilter = {
-            "26:9: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
-        };
+        final String[] expectedWithFilter = {};
 
         verifyFilterWithInlineConfigParser(getPath("Example3.java"),
                 expectedWithoutFilter, expectedWithFilter);

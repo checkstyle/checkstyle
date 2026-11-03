@@ -25,7 +25,7 @@ class Example1 {
 
   public void arrayDec() {
     int[] arr;
-    int [] array; // violation ''int' is followed by whitespace'
+    int [] array;
   }
 
   public void bitwiseNot(int a) {

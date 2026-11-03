@@ -38,22 +38,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <p>
  * The check processes
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
- * ARRAY_DECLARATOR</a> and
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
- * INDEX_OP</a> tokens specially from other tokens. Actually it is checked that
- * there is no whitespace before these tokens, not after them. Space after the
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATIONS">
- * ANNOTATIONS</a> before
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
- * ARRAY_DECLARATOR</a> and
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
- * INDEX_OP</a> will be ignored.
- * </p>
- *
- * <p>
- * If the annotation is between the type and the array, like {@code char @NotNull [] param},
- * the check will skip validation for spaces.
+ * INDEX_OP</a> token specially from other tokens. Actually it is checked that
+ * there is no whitespace before this token, not after it.
  * </p>
  *
  * <p>
@@ -96,8 +83,6 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
             TokenTypes.BNOT,
             TokenTypes.LNOT,
             TokenTypes.DOT,
-            TokenTypes.ARRAY_DECLARATOR,
-            TokenTypes.INDEX_OP,
         };
     }
 
@@ -114,7 +99,6 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
             TokenTypes.LNOT,
             TokenTypes.DOT,
             TokenTypes.TYPECAST,
-            TokenTypes.ARRAY_DECLARATOR,
             TokenTypes.INDEX_OP,
             TokenTypes.DO_WHILE,
             TokenTypes.LITERAL_IF,
@@ -165,26 +149,23 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     private static DetailAST getWhitespaceFollowedNode(DetailAST ast) {
         return switch (ast.getType()) {
             case TokenTypes.TYPECAST -> ast.findFirstToken(TokenTypes.RPAREN);
-            case TokenTypes.ARRAY_DECLARATOR -> getArrayDeclaratorPreviousElement(ast);
             case TokenTypes.INDEX_OP -> getIndexOpPreviousElement(ast);
             default -> ast;
         };
     }
 
     /**
-     * Returns whether whitespace after a visited node should be checked. For example, whitespace
-     * is not allowed between a type and an array declarator (returns true), except when there is
-     * an annotation in between the type and array declarator (returns false).
+     * Returns whether whitespace after a visited node should be checked. A
+     * {@link TokenTypes#LITERAL_SYNCHRONIZED LITERAL_SYNCHRONIZED} token that is not part of
+     * a synchronized statement (a synchronized method modifier) is skipped.
      *
      * @param ast the visited node
      * @return true if whitespace after ast should be checked
      */
     private static boolean shouldCheckWhitespaceAfter(DetailAST ast) {
-        final DetailAST previousSibling = ast.getPreviousSibling();
         final boolean isSynchronizedMethod = ast.getType() == TokenTypes.LITERAL_SYNCHRONIZED
                         && ast.getFirstChild() == null;
-        return !isSynchronizedMethod
-                && (previousSibling == null || previousSibling.getType() != TokenTypes.ANNOTATIONS);
+        return !isSynchronizedMethod;
     }
 
     /**
@@ -194,19 +175,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * @return position after token.
      */
     private static int getPositionAfter(DetailAST ast) {
-        final int after;
-        // If target of possible redundant whitespace is in method definition.
-        if (ast.getType() == TokenTypes.IDENT
-                && ast.getNextSibling() != null
-                && ast.getNextSibling().getType() == TokenTypes.LPAREN) {
-            final DetailAST methodDef = ast.getParent();
-            final DetailAST endOfParams = methodDef.findFirstToken(TokenTypes.RPAREN);
-            after = endOfParams.getColumnNo() + 1;
-        }
-        else {
-            after = ast.getColumnNo() + ast.getText().length();
-        }
-        return after;
+        return ast.getColumnNo() + ast.getText().length();
     }
 
     /**
@@ -235,90 +204,8 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     }
 
     /**
-     * Returns proper argument for getPositionAfter method, it is a token after
-     * {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}, in can be {@link TokenTypes#RBRACK
-     * RBRACK}, {@link TokenTypes#IDENT IDENT} or an array type definition (literal).
-     *
-     * @param ast
-     *        , {@code TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR} node.
-     * @return previous node by text order.
-     * @throws IllegalStateException if an unexpected token type is encountered.
-     */
-    private static DetailAST getArrayDeclaratorPreviousElement(DetailAST ast) {
-        final DetailAST previousElement;
-
-        if (ast.getPreviousSibling() != null
-                && ast.getPreviousSibling().getType() == TokenTypes.ARRAY_DECLARATOR) {
-            // Covers higher dimension array declarations and initializations
-            previousElement = getPreviousElementOfMultiDimArray(ast);
-        }
-        else {
-            // First array index, is preceded with identifier or type
-            final DetailAST parent = ast.getParent();
-
-            previousElement = switch (parent.getType()) {
-                // Generics
-                case TokenTypes.TYPE_UPPER_BOUNDS, TokenTypes.TYPE_LOWER_BOUNDS ->
-                    ast.getPreviousSibling();
-
-                case TokenTypes.LITERAL_NEW, TokenTypes.TYPE_ARGUMENT, TokenTypes.DOT ->
-                    getTypeLastNode(ast);
-
-                // Mundane array declaration, can be either Java style or C style
-                case TokenTypes.TYPE -> getPreviousNodeWithParentOfTypeAst(ast, parent);
-
-                // Java 8 method reference
-                case TokenTypes.METHOD_REF -> {
-                    final DetailAST ident = getIdentLastToken(ast);
-                    if (ident == null) {
-                        // i.e. int[]::new
-                        yield ast.getParent().getFirstChild();
-                    }
-                    yield ident;
-                }
-
-                default -> throw new IllegalStateException("unexpected ast syntax " + parent);
-            };
-        }
-
-        return previousElement;
-    }
-
-    /**
-     * Gets the previous element of a second or higher dimension of an
-     * array declaration or initialization.
-     *
-     * @param leftBracket the token to get previous element of
-     * @return the previous element
-     */
-    private static DetailAST getPreviousElementOfMultiDimArray(DetailAST leftBracket) {
-        final DetailAST previousRightBracket = leftBracket.getPreviousSibling().getLastChild();
-
-        DetailAST ident = null;
-        // This will get us past the type ident, to the actual identifier
-        DetailAST parent = leftBracket.getParent().getParent();
-        while (ident == null) {
-            ident = parent.findFirstToken(TokenTypes.IDENT);
-            parent = parent.getParent();
-        }
-
-        final DetailAST previousElement;
-        if (ident.getColumnNo() > previousRightBracket.getColumnNo()
-                && ident.getColumnNo() < leftBracket.getColumnNo()) {
-            // C style and Java style ' int[] arr []' in same construct
-            previousElement = ident;
-        }
-        else {
-            // 'int[][] arr' or 'int arr[][]'
-            previousElement = previousRightBracket;
-        }
-        return previousElement;
-    }
-
-    /**
      * Gets previous node for {@link TokenTypes#INDEX_OP INDEX_OP} token
-     * for usage in getPositionAfter method, it is a simplified copy of
-     * getArrayDeclaratorPreviousElement method.
+     * for usage in getPositionAfter method.
      *
      * @param ast
      *        , {@code TokenTypes#INDEX_OP INDEX_OP} node.
@@ -353,74 +240,6 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
             }
         }
         return result;
-    }
-
-    /**
-     * Searches parameter node for a type node.
-     * Returns it or its last node if it has an extended structure.
-     *
-     * @param ast
-     *        , subject node.
-     * @return type node.
-     */
-    private static DetailAST getTypeLastNode(DetailAST ast) {
-        final DetailAST typeLastNode;
-        final DetailAST parent = ast.getParent();
-        final boolean isPrecededByTypeArgs =
-                parent.findFirstToken(TokenTypes.TYPE_ARGUMENTS) != null;
-
-        if (isPrecededByTypeArgs) {
-            typeLastNode = parent.findFirstToken(TokenTypes.TYPE_ARGUMENTS)
-                    .findFirstToken(TokenTypes.GENERIC_END);
-        }
-        else {
-            final Optional<DetailAST> objectArrayType = Optional.ofNullable(getIdentLastToken(ast));
-            typeLastNode = objectArrayType.orElseGet(parent::getFirstChild);
-        }
-
-        return typeLastNode;
-    }
-
-    /**
-     * Finds previous node by text order for an array declarator,
-     * which parent type is {@link TokenTypes#TYPE TYPE}.
-     *
-     * @param ast
-     *        , array declarator node.
-     * @param parent
-     *        , its parent node.
-     * @return previous node by text order.
-     */
-    private static DetailAST getPreviousNodeWithParentOfTypeAst(DetailAST ast, DetailAST parent) {
-        final DetailAST previousElement;
-        final DetailAST ident = getIdentLastToken(parent.getParent());
-        final DetailAST lastTypeNode = getTypeLastNode(ast);
-        // sometimes there are ident-less sentences
-        // i.e. "(Object[]) null", but in casual case should be
-        // checked whether ident or lastTypeNode has preceding position
-        // determining if it is java style or C style
-
-        if (ident == null || ident.getLineNo() > ast.getLineNo()) {
-            previousElement = lastTypeNode;
-        }
-        else if (ident.getLineNo() < ast.getLineNo()) {
-            previousElement = ident;
-        }
-        // ident and lastTypeNode lay on one line
-        else {
-            final int instanceOfSize = 13;
-            // +2 because ast has `[]` after the ident
-            if (ident.getColumnNo() >= ast.getColumnNo() + 2
-                // +13 because ident (at most 1 character) is followed by
-                // ' instanceof ' (12 characters)
-                || lastTypeNode.getColumnNo() >= ident.getColumnNo() + instanceOfSize) {
-                previousElement = lastTypeNode;
-            }
-            else {
-                previousElement = ident;
-            }
-        }
-        return previousElement;
     }
 
     /**
