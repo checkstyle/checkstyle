@@ -310,6 +310,7 @@
 
     <module name="SummaryJavadoc"/>
     <module name="JavadocContentLocation"/>
+    <module name="OpenjdkJavadocParagraph"/>
     <module name="PreferLiteralJavadocInlineTag"/>
 
     <module name="MissingOverride"/>
