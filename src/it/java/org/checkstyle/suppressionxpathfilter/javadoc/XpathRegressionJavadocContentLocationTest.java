@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.javadoc;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck;
 
 public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathJavadocContentLocationOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocContentLocationCheck.class);
-
         final String[] expectedViolation = {
-            "5:5: " + getCheckMessage(JavadocContentLocationCheck.class,
+            "13:5: " + getCheckMessage(JavadocContentLocationCheck.class,
                     JavadocContentLocationCheck.MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
 
@@ -60,25 +52,19 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
             "/COMPILATION_UNIT/INTERFACE_DEF"
                 + "[./IDENT[@text='InputXpathJavadocContentLocationOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/BLOCK_COMMENT_BEGIN"
-                + "[./COMMENT_CONTENT[@text='* Text. // warn\\n     ']]"
+                + "[./COMMENT_CONTENT[@text='* Text.\\n     ']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathJavadocContentLocationOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathJavadocContentLocationTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocContentLocationCheck.class);
-
-        moduleConfig.addProperty("location", "first_line");
-
         final String[] expectedViolation = {
-            "5:16: " + getCheckMessage(JavadocContentLocationCheck.class,
+            "13:5: " + getCheckMessage(JavadocContentLocationCheck.class,
                     JavadocContentLocationCheck.MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
 
@@ -89,20 +75,16 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
                     + "[./COMMENT_CONTENT[@text='*\\n     * Text.\\n     ']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathJavadocContentLocationTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testField() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathJavadocContentLocationField.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocContentLocationCheck.class);
-
         final String[] expectedViolation = {
-            "5:5: " + getCheckMessage(JavadocContentLocationCheck.class,
+            "13:5: " + getCheckMessage(JavadocContentLocationCheck.class,
                     JavadocContentLocationCheck.MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
 
@@ -110,12 +92,13 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='InputXpathJavadocContentLocationField']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='field']]/TYPE"
-                + "/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT[@text='* Text."
-                + " // warn\\n     ']]"
+                + "/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT[@text='* Text.\\n     ']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathJavadocContentLocationField.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
