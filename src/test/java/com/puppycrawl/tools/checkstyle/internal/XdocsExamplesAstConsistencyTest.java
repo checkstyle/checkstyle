@@ -347,9 +347,13 @@ public class XdocsExamplesAstConsistencyTest {
                 }
 
                 if (!hasDefaultConfig) {
-                    violations.add("Directory: " + relativePath
-                            + "\nNo example uses the default configuration "
-                            + "(module element with zero configured properties).");
+                    final String template =
+                        """
+                        Directory: %s
+                        No example uses the default configuration \
+                        (module element with zero configured properties).\
+                        """;
+                    violations.add(String.format(Locale.ROOT, template, relativePath));
                 }
             }
         }
@@ -533,9 +537,14 @@ public class XdocsExamplesAstConsistencyTest {
 
                     if (!uncoveredProperties.isEmpty()) {
                         final String relativePath = getRelativePath(dir);
-                        result = "Directory: " + relativePath
-                                + "\nDocumented properties: " + documentedProperties
-                                + "\nProperties with no covering example: " + uncoveredProperties;
+                        final String template =
+                            """
+                            Directory: %s
+                            Documented properties: %s
+                            Properties with no covering example: %s\
+                            """;
+                        result = String.format(Locale.ROOT, template,
+                                relativePath, documentedProperties, uncoveredProperties);
                     }
                 }
             }
@@ -804,11 +813,16 @@ public class XdocsExamplesAstConsistencyTest {
                 final int expected = propertyCount + 1;
 
                 if (largestAstGroupSize != expected) {
-                    result = "Directory: " + relativePath
-                            + "\nProperties: " + propertyCount
-                            + "\nExpected AST-matching examples: " + expected
-                            + "\nActual largest AST-matching group: " + largestAstGroupSize
-                            + " (of " + parseableExamples.size() + " total example files)";
+                    final String template =
+                        """
+                        Directory: %s
+                        Properties: %d
+                        Expected AST-matching examples: %d
+                        Actual largest AST-matching group: %d (of %d total example files)\
+                        """;
+                    result = String.format(Locale.ROOT, template,
+                            relativePath, propertyCount, expected, largestAstGroupSize,
+                            parseableExamples.size());
                 }
             }
         }
@@ -889,17 +903,26 @@ public class XdocsExamplesAstConsistencyTest {
             if (uncoveredProperties.isEmpty()) {
                 final int expected = propertyCount + 1;
                 if (examples.size() < expected) {
-                    result = "Directory: " + relativePath
-                            + "\nProperties: " + propertyCount
-                            + "\nExpected examples (at least, including a baseline): " + expected
-                            + "\nActual example count: " + examples.size();
+                    final String template =
+                        """
+                        Directory: %s
+                        Properties: %d
+                        Expected examples (at least, including a baseline): %d
+                        Actual example count: %d\
+                        """;
+                    result = String.format(Locale.ROOT, template,
+                            relativePath, propertyCount, expected, examples.size());
                 }
             }
             else {
-                result = "Directory: " + relativePath
-                        + "\nProperties: " + propertyCount
-                        + "\nProperties with no covering example (pseudo-path format): "
-                        + uncoveredProperties;
+                final String template =
+                    """
+                    Directory: %s
+                    Properties: %d
+                    Properties with no covering example (pseudo-path format): %s\
+                    """;
+                result = String.format(Locale.ROOT, template,
+                        relativePath, propertyCount, uncoveredProperties);
             }
         }
 
@@ -1943,10 +1966,15 @@ public class XdocsExamplesAstConsistencyTest {
                              String mismatchFileName, String reason) {
         @Override
         public String toString() {
-            return "Directory: " + relativePath + "\n"
-                    + "Reference: " + referenceFileName + "\n"
-                    + "Mismatch:  " + mismatchFileName + "\n"
-                    + "Reason:    " + reason;
+            final String template =
+                """
+                Directory: %s
+                Reference: %s
+                Mismatch:  %s
+                Reason:    %s\
+                """;
+            return String.format(Locale.ROOT, template,
+                    relativePath, referenceFileName, mismatchFileName, reason);
         }
 
         /**
