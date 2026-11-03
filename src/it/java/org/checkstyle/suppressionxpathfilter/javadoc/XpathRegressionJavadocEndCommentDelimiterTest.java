@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.javadoc;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocEndCommentDelimiterCheck;
 
 public class XpathRegressionJavadocEndCommentDelimiterTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionJavadocEndCommentDelimiterTest extends AbstractXpath
 
     @Test
     public void testClassJavadocEndCommentDelimiter() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathJavadocEndCommentDelimiterClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocEndCommentDelimiterCheck.class);
-
         final String[] expectedViolation = {
-            "5:3: " + getCheckMessage(JavadocEndCommentDelimiterCheck.class,
+            "12:3: " + getCheckMessage(JavadocEndCommentDelimiterCheck.class,
                     JavadocEndCommentDelimiterCheck.MSG_KEY),
         };
 
@@ -63,20 +55,16 @@ public class XpathRegressionJavadocEndCommentDelimiterTest extends AbstractXpath
                     + "[@text='*\\n * Text.\\n *']]/BLOCK_COMMENT_END"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathJavadocEndCommentDelimiterClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMethodJavadocEndCommentDelimiter() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathJavadocEndCommentDelimiterMultiline.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocEndCommentDelimiterCheck.class);
-
         final String[] expectedViolation = {
-            "7:7: " + getCheckMessage(JavadocEndCommentDelimiterCheck.class,
+            "14:7: " + getCheckMessage(JavadocEndCommentDelimiterCheck.class,
                     JavadocEndCommentDelimiterCheck.MSG_KEY),
         };
 
@@ -88,20 +76,16 @@ public class XpathRegressionJavadocEndCommentDelimiterTest extends AbstractXpath
                     + "[@text='*\\n     * Text.\\n     *']]/BLOCK_COMMENT_END"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathJavadocEndCommentDelimiterMultiline.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testFieldJavadocEndCommentDelimiter() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathJavadocEndCommentDelimiterField.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocEndCommentDelimiterCheck.class);
-
         final String[] expectedViolation = {
-            "5:15: " + getCheckMessage(JavadocEndCommentDelimiterCheck.class,
+            "11:15: " + getCheckMessage(JavadocEndCommentDelimiterCheck.class,
                     JavadocEndCommentDelimiterCheck.MSG_KEY),
         };
 
@@ -113,8 +97,10 @@ public class XpathRegressionJavadocEndCommentDelimiterTest extends AbstractXpath
                     + "/BLOCK_COMMENT_END"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathJavadocEndCommentDelimiterField.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
