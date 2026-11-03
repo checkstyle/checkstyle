@@ -1183,19 +1183,22 @@
                   config</a>)
                   <br />
                   <span class="wrapper inline">
-                    <img src="images/ban_red.png" alt="" />
+                    <img src="images/ok_green.png" alt="" />
                   </span>
-                  Inline tag rule can not be covered until:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/20980">
-                    #20980
-                  </a>
-                  <br />
                   <span class="wrapper inline">
                     <img src="images/ban_red.png" alt="" />
                   </span>
                   Paragraph tag rule can not be covered until:
                   <a href="https://github.com/checkstyle/checkstyle/issues/20628">
                     #20628
+                  </a>
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Inline tag rule can not be covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20980">
+                    #20980
                   </a>
                 </td>
                 <td>
