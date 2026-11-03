@@ -1,3 +1,10 @@
+/*
+InappropriateJavadocBlockTagsOnField
+violateExecutionOnNonTightHtml = (default)false
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.javadoc.inappropriatejavadocblocktagsonfield;
 
 public enum InputXpathInappropriateJavadocBlockTagsOnFieldEnum {
@@ -6,5 +13,5 @@ public enum InputXpathInappropriateJavadocBlockTagsOnFieldEnum {
     /**
      * @return value
      */
-    private int field; // warn
+    private int field; // violation 'Invalid '@return' tag for 'field'.'
 }
