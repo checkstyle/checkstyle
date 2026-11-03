@@ -97,4 +97,16 @@ public class BlockCommentEndPositionCheckTest extends AbstractModuleTestSupport 
                 getPath("InputBlockCommentEndPositionTrim.java"), expected);
     }
 
+    @Test
+    public void testCodeAfterEnd() throws Exception {
+        final String[] expected = {
+            "15:6: " + getCheckMessage(MSG_BLOCK_COMMENT_END),
+            "20:6: " + getCheckMessage(MSG_BLOCK_COMMENT_END),
+            "43:6: " + getCheckMessage(MSG_BLOCK_COMMENT_END),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputBlockCommentEndPositionCodeAfterEnd.java"), expected);
+    }
+
 }
