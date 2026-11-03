@@ -140,7 +140,6 @@ public class AllChecksCompactSourceCoverageTest {
         "MutableExceptionCheck",
         "NoCodeInFileCheck",
         "NoLineWrapCheck",
-        "NoWhitespaceBeforeCaseDefaultColonCheck",
         "NoWhitespaceBeforeCheck",
         "NonEmptyAtclauseDescriptionCheck",
         "NumericalPrefixesInfixesSuffixesCharacterCaseCheck",
