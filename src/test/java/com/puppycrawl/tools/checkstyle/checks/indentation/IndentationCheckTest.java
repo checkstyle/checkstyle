@@ -4159,19 +4159,11 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSwitchExpressionAsInvocationTarget() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
-        checkConfig.addProperty("tabWidth", "4");
-        checkConfig.addProperty("basicOffset", "4");
-        checkConfig.addProperty("braceAdjustment", "0");
-        checkConfig.addProperty("caseIndent", "4");
-        checkConfig.addProperty("lineWrappingIndentation", "4");
-        checkConfig.addProperty("forceStrictCondition", "false");
-
         final String[] expected = {
-            "50:25: " + getCheckMessage(MSG_CHILD_ERROR, "lambda", 24, 16),
-            "52:25: " + getCheckMessage(MSG_CHILD_ERROR, "lambda", 24, 16),
+            "54:25: " + getCheckMessage(MSG_CHILD_ERROR, "lambda", 24, 16),
+            "57:25: " + getCheckMessage(MSG_CHILD_ERROR, "lambda", 24, 16),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
             getPath("InputIndentationSwitchExpressionAsInvocationTarget.java"),
             expected);
     }
