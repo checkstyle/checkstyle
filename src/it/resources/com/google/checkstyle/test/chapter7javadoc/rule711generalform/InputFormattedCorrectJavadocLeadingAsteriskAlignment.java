@@ -10,16 +10,16 @@ public class InputFormattedCorrectJavadocLeadingAsteriskAlignment {
   /** Javadoc for instance variable. */
   private int int1;
 
+  // violation below "Summary javadoc is missing."
   /** */
-  // violation above "Summary javadoc is missing."
   private int int2;
 
   // violation below "Summary javadoc is missing."
   /***/
   private String str;
 
+  // violation below "Summary javadoc is missing."
   /** */
-  // violation above "Summary javadoc is missing."
   private String str1;
 
   /** No leading asterisk present. */
@@ -41,12 +41,12 @@ public class InputFormattedCorrectJavadocLeadingAsteriskAlignment {
 
   public InputFormattedCorrectJavadocLeadingAsteriskAlignment(String str) {}
 
+  // violation below "Summary javadoc is missing."
   /** * */
-  // violation above "Summary javadoc is missing."
   private String str2;
 
+  // violation below "Summary javadoc is missing."
   /****/
-  // violation above "Summary javadoc is missing."
   private String str3;
 
   /** This method does nothing. */

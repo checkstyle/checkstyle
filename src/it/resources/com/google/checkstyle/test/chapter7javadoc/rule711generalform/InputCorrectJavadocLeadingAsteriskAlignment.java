@@ -11,14 +11,16 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
   /** Javadoc for instance variable. */
   private int int1;
 
-  /** */ // violation "Summary javadoc is missing."
+  // violation below "Summary javadoc is missing."
+  /** */
   private int int2;
 
   // violation below "Summary javadoc is missing."
   /***/
   private String str;
 
-  /** */ // violation "Summary javadoc is missing."
+  // violation below "Summary javadoc is missing."
+  /** */
   private String str1;
 
   // violation 2 lines below "Javadoc line should start with leading asterisk."
@@ -43,10 +45,12 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
 
   public InputCorrectJavadocLeadingAsteriskAlignment(String str) {}
 
-  /** * */ // violation "Summary javadoc is missing."
+  // violation below "Summary javadoc is missing."
+  /** * */
   private String str2;
 
-  /****/ // violation "Summary javadoc is missing."
+  // violation below "Summary javadoc is missing."
+  /****/
   private String str3;
 
   /**
@@ -60,10 +64,10 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
    */
   private void foo2() {}
 
+  // violation 3 lines below "Javadoc line should start with leading asterisk."
   /**
    * Javadoc for foo3.
    Closing tag should be alone on line. */ // False negative until #18273.
-  // violation above "Javadoc line should start with leading asterisk."
   private void foo3() {
     // foo2 code goes here
   }
