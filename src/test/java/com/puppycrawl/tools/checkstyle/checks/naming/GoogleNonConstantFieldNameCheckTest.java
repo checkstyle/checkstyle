@@ -156,4 +156,19 @@ public class GoogleNonConstantFieldNameCheckTest extends AbstractModuleTestSuppo
                 getPath("InputGoogleNonConstantFieldNameMixedModifiers.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "23:5: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "Bad_Field_Name"),
+            "26:5: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "f"),
+            "29:5: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "foo_bar"),
+            "34:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "inner_bad_field"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/"
+                        + "InputGoogleNonConstantFieldNameCompactSourceFileDefault.java"),
+                expected);
+    }
+
 }
