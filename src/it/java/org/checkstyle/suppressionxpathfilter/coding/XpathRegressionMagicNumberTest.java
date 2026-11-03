@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
 
 public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
@@ -43,14 +41,8 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
 
     @Test
     public void testVariable() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMagicNumberVariable.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MagicNumberCheck.class);
-
         final String[] expectedViolation = {
-            "5:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "5"),
+            "21:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "5"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -64,20 +56,16 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
                     + "/ASSIGN/EXPR/NUM_INT[@text='5']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-            expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMagicNumberVariable.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMethodDef() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMagicNumberMethodDef.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MagicNumberCheck.class);
-
         final String[] expectedViolation = {
-            "5:17: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "20"),
+            "21:17: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "20"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -92,20 +80,16 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='x']]/ASSIGN/EXPR/NU"
                         + "M_INT[@text='20']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMagicNumberMethodDef.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testAnotherVariable() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMagicNumberAnotherVariable.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MagicNumberCheck.class);
-
         final String[] expectedViolation = {
-            "13:21: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "20"),
+            "29:21: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "20"),
         };
 
         final List<String> expectedXpathQueries = List.of(
@@ -116,8 +100,10 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
                         + "/LITERAL_ELSE/SLIST/EXPR/ASSIGN"
                         + "[./IDENT[@text='a']]/NUM_INT[@text='20']"
         );
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMagicNumberAnotherVariable.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
