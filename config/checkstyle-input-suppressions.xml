@@ -101,10 +101,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/InputIncorrectRequireEmptyLineBeforeBlockTagGroup\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulevariabledeclarations/onevariableperline/InputOneVariablePerDeclaration\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/InputAnnotationLocationCustomAnnotationsDeclared\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/InputAnnotationLocationIncorrect3One\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/InputAnnotationLocationIncorrectOne\.java"/>
