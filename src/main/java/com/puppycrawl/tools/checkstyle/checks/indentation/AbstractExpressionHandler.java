@@ -518,7 +518,9 @@ public abstract class AbstractExpressionHandler {
             final boolean isRecordPatternDelimiter =
                 TokenUtil.isOfType(tree.getType(), TokenTypes.LPAREN, TokenTypes.RPAREN)
                     && tree.getParent().getType() == TokenTypes.RECORD_PATTERN_DEF;
-            if (!isRecordPatternDelimiter) {
+            final boolean isNonEmptyExpressionList =
+                tree.getType() == TokenTypes.ELIST && tree.hasChildren();
+            if (!isRecordPatternDelimiter && !isNonEmptyExpressionList) {
                 final int lineNum = tree.getLineNo();
                 final Integer colNum = astSet.getStartColumn(lineNum);
 

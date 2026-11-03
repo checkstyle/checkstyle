@@ -40,6 +40,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testExpressionListPosition() throws Exception {
+        verifyAst(getPath("ExpectedAstRegressionExpressionListPosition.txt"),
+                getPath("InputAstRegressionExpressionListPosition.java"));
+    }
+
+    @Test
     public void testClassAstTree1() throws Exception {
         verifyAst(getPath("ExpectedRegressionJavaClass1Ast.txt"),
                 getPath("InputRegressionJavaClass1.java"));
