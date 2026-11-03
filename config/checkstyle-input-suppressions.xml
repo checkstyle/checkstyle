@@ -107,8 +107,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="/it/resources/com/google/checkstyle/test/chapter4formatting/rule4861blockcommentstyle/InputCommentsIndentationSurroundingCode\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
-            files="/it/resources/com/google/checkstyle/test/chapter7javadoc/rule711generalform/InputIncorrectJavadocLeadingAsteriskAlignment\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/InputFormattedIncorrectJavadocParagraph\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/InputIncorrectJavadocParagraph\.java"/>
@@ -116,10 +114,6 @@
             files="/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/InputIncorrectRequireEmptyLineBeforeBlockTagGroup\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulevariabledeclarations/onevariableperline/InputOneVariablePerDeclaration\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="/com/google/checkstyle/test/chapter7javadoc/rule711generalform/InputCorrectJavadocLeadingAsteriskAlignment\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="/com/google/checkstyle/test/chapter7javadoc/rule711generalform/InputFormattedCorrectJavadocLeadingAsteriskAlignment\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/InputAnnotationLocationCustomAnnotationsDeclared\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
