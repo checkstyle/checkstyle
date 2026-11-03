@@ -145,15 +145,28 @@ public final class Main {
         finally {
             // return exit code base on validation of Checker
             if (errorCounter > 0) {
-                final LocalizedMessage errorCounterViolation = new LocalizedMessage(
-                        Definitions.CHECKSTYLE_BUNDLE, Main.class,
-                        ERROR_COUNTER, String.valueOf(errorCounter));
-                // print error count statistic to error output stream,
-                // output stream might be used by validation report content
-                System.err.println(errorCounterViolation.getMessage());
+                printErrorCounter(errorCounter, cliOptions.format);
             }
         }
         Runtime.getRuntime().exit(Math.min(exitStatus, MAX_EXIT_CODE));
+    }
+
+    /**
+     * Prints the error count unless CLI audit reporting is disabled.
+     *
+     * @param errorCounter number of errors
+     * @param format selected output format
+     * @noinspection UseOfSystemOutOrSystemErr
+     * @noinspectionreason UseOfSystemOutOrSystemErr - the CLI summary uses the error stream
+     */
+    private static void printErrorCounter(int errorCounter, OutputFormat format) {
+        if (format != OutputFormat.NONE) {
+            final LocalizedMessage errorCounterViolation = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, Main.class,
+                    ERROR_COUNTER, String.valueOf(errorCounter));
+            // The report stream may be used for machine-readable audit output.
+            System.err.println(errorCounterViolation.getMessage());
+        }
     }
 
     /**
@@ -398,7 +411,10 @@ public final class Main {
 
         try {
             final AuditListener listener;
-            if (options.generateXpathSuppressionsFile) {
+            if (options.format == OutputFormat.NONE) {
+                listener = null;
+            }
+            else if (options.generateXpathSuppressionsFile) {
                 // create filter to print generated xpath suppressions file
                 final Configuration treeWalkerConfig = getTreeWalkerConfig(config);
                 if (treeWalkerConfig != null) {
@@ -424,7 +440,9 @@ public final class Main {
 
             rootModule.setModuleClassLoader(moduleClassLoader);
             rootModule.configure(config);
-            rootModule.addListener(listener);
+            if (listener != null) {
+                rootModule.addListener(listener);
+            }
 
             // run RootModule
             errorCounter = rootModule.process(filesToProcess);
@@ -568,7 +586,9 @@ public final class Main {
         /** SARIF output format. */
         SARIF,
         /** Plain output format. */
-        PLAIN;
+        PLAIN,
+        /** No CLI-created audit listener. */
+        NONE;
 
         /**
          * Returns a new AuditListener for this OutputFormat.
@@ -753,8 +773,9 @@ public final class Main {
          */
         @Option(names = "-f",
                 description = "Specifies the output format. Valid values: "
-                + "${COMPLETION-CANDIDATES} for XMLLogger, SarifLogger, "
-                + "and DefaultLogger respectively. Defaults to ${DEFAULT-VALUE}.")
+                + "${COMPLETION-CANDIDATES}. The none format disables the CLI audit listener "
+                + "and error-count summary, but not configured listeners or failure diagnostics. "
+                + "Defaults to ${DEFAULT-VALUE}.")
         private OutputFormat format = DEFAULT_OUTPUT_FORMAT;
 
         /** Option that controls whether to print the AST of the file. */
@@ -912,6 +933,11 @@ public final class Main {
          */
         private List<String> validateOptionalCliParametersIfConfigDefined() {
             final List<String> result = new ArrayList<>();
+            if (format == OutputFormat.NONE
+                    && (outputPath != null || generateXpathSuppressionsFile
+                        || generateCheckAndFileSuppressionsFile)) {
+                result.add("Format 'none' cannot be used with '-o', '-g', or '-G'.");
+            }
             if (propertiesFile != null && !propertiesFile.exists()) {
                 result.add(String.format(Locale.ROOT,
                         "Could not find file '%s'.", propertiesFile));
