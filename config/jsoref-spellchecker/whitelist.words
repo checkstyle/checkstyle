@@ -1634,6 +1634,7 @@ xar
 xargs
 XDadd
 XDcompile
+XDignore
 xdeadbeef
 xdoc
 Xdoclint
