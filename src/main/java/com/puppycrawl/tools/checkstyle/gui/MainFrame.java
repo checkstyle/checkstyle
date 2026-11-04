@@ -58,7 +58,7 @@ public final class MainFrame extends JFrame {
 
     /** A unique serial version identifier. */
     @Serial
-    private static final long serialVersionUID = 7970053543351871890L;
+    private static final long serialVersionUID = 1L;
 
     /** The icon to show in the OS task panel. */
     private static final String ICON = "icon.png";
@@ -217,7 +217,7 @@ public final class MainFrame extends JFrame {
 
         /** A unique serial version identifier. */
         @Serial
-        private static final long serialVersionUID = 1762396148873280589L;
+        private static final long serialVersionUID = 1L;
 
         /**
          * Creates a new {@code FileSelectionAction} instance.
@@ -248,7 +248,7 @@ public final class MainFrame extends JFrame {
 
         /** A unique serial version identifier. */
         @Serial
-        private static final long serialVersionUID = -890320994114628011L;
+        private static final long serialVersionUID = 1L;
 
         /**
          * Creates a new {@code ReloadAction} instance.
@@ -271,7 +271,7 @@ public final class MainFrame extends JFrame {
 
         /** A unique serial version identifier. */
         @Serial
-        private static final long serialVersionUID = -890320994114628011L;
+        private static final long serialVersionUID = 1L;
 
         /**
          * Creates a new {@code ExpandCollapseAction} instance.
@@ -294,7 +294,7 @@ public final class MainFrame extends JFrame {
 
         /** A unique serial version identifier. */
         @Serial
-        private static final long serialVersionUID = -890320994114628011L;
+        private static final long serialVersionUID = 1L;
 
         /**
          * Creates a new {@code FindNodeByXpathAction} instance.
