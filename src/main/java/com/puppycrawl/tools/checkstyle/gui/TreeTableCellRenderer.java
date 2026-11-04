@@ -36,11 +36,9 @@ import javax.swing.tree.TreeModel;
  */
 class TreeTableCellRenderer extends JTree implements TableCellRenderer {
 
-    /**
-     * Serial ID.
-     */
+    /** A unique serial version identifier. */
     @Serial
-    private static final long serialVersionUID = 4324031590789321581L;
+    private static final long serialVersionUID = 4317527286502554347L;
 
     /** The text color for selected cells. */
     private static final String COLOR_KEY_TABLE_SELECTION_FOREGROUND = "Table.selectionForeground";

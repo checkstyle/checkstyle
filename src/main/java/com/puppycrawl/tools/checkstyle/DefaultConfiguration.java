@@ -37,7 +37,7 @@ public final class DefaultConfiguration implements Configuration {
 
     /** A unique serial version identifier. */
     @Serial
-    private static final long serialVersionUID = 1157875385356127169L;
+    private static final long serialVersionUID = 9086924942941574881L;
 
     /** Constant for optimization. */
     private static final Configuration[] EMPTY_CONFIGURATION_ARRAY = new Configuration[0];

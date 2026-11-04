@@ -66,7 +66,7 @@ public final class TreeTable extends JTable {
 
     /** A unique serial version identifier. */
     @Serial
-    private static final long serialVersionUID = -8493693409423365387L;
+    private static final long serialVersionUID = 1L;
     /** The newline character. */
     private static final String NEWLINE = "\n";
     /** A subclass of JTree. */
@@ -118,7 +118,7 @@ public final class TreeTable extends JTable {
 
         final Action expand = new AbstractAction() {
             @Serial
-            private static final long serialVersionUID = -5859674518660156121L;
+            private static final long serialVersionUID = 1L;
 
             @Override
             public void actionPerformed(ActionEvent event) {
