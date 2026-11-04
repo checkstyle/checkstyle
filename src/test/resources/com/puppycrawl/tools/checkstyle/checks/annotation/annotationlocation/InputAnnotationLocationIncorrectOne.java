@@ -38,8 +38,9 @@ class InputAnnotationLocationIncorrectOne
     // 'Annotation 'MyAnnotation1' should be alone on line.'
     // 'Annotation 'MyAnn_21' should be alone on line.'
 
+    // violation 2 lines below '.* incorrect .* level 7, .* should be 4.'
     @MyAnnotation1(value = "")
-       @MyAnn_21 // violation '.* incorrect .* level 7, .* should be 4.'
+       @MyAnn_21
     void foo2() {}
 
     @MyAnnotation1(value = "")
@@ -67,17 +68,20 @@ class InputAnnotationLocationIncorrectOne
         {
             // comment
         }
+        // violation 2 lines below '.* incorrect .* level 12, .* should be 8.'
         @MyAnnotation1(value = "")
-            @MyAnn_21 // violation '.* incorrect .* level 12, .* should be 8.'
+            @MyAnn_21
         void foo1() {}
 
+        // violation 2 lines below '.* incorrect .* level 12, .* should be 8.'
         @MyAnnotation1(value = "")
-            @MyAnn_21 // violation '.* incorrect .* level 12, .* should be 8.'
+            @MyAnn_21
         void foo2() {}
     }
 
+    // violation 2 lines below '.* incorrect .* level 7, .* should be 4.'
     @MyAnnotation1(value = "")
-       @MyAnn_21 // violation '.* incorrect .* level 7, .* should be 4.'
+       @MyAnn_21
     InnerClass anon = new InnerClass()
     {
         @MyAnn_21 @MyAnnotation1(value = "") public int a; // violation '.*should be alone on line.'
@@ -94,18 +98,16 @@ class InputAnnotationLocationIncorrectOne
         @MyAnnotation1(value = "")
            @MyAnn_21 void foo1() {} // violation '.* incorrect .* level 11, .* should be 8.'
 
+        // violation 2 lines below '.* incorrect .* level 10, .* should be 8.'
         @MyAnnotation1(value = "")
-          @MyAnn_21 // violation '.* incorrect .* level 10, .* should be 8.'
+          @MyAnn_21
         void foo2() {}
         @MyAnnotation1(value = "") void foo42() {} // violation '.* should be alone on line.'
     };
 
 }
 
-
-@interface MyAnnotation1 {
-
-        String value();}
+@interface MyAnnotation1 { String value(); }
 
 @interface MyAnn_21 {}
 
@@ -113,6 +115,4 @@ class InputAnnotationLocationIncorrectOne
 
 @interface MyAnnotation4 {}
 
-@interface MyAnn {
-
-    String value();}
+@interface MyAnn { String value(); }
