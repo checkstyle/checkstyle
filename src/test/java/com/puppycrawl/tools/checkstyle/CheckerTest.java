@@ -436,6 +436,18 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCreateCheckerWithRootProperties() {
+        final CheckstyleException exception = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> createChecker(createModuleConfig(TranslationCheck.class),
+                        java.util.Map.of("charset", "UNKNOWN-CHARSET")));
+
+        assertWithMessage("Error message is not expected")
+            .that(exception.getMessage())
+            .isEqualTo("Cannot set property 'charset' to 'UNKNOWN-CHARSET'");
+    }
+
+    @Test
     public void testSetSeverity() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
