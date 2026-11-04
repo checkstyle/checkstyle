@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.modifier;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck;
 
 public class XpathRegressionRedundantModifierTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionRedundantModifierTest extends AbstractXpathTestSuppo
 
     @Test
     public void test1() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathRedundantModifierClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RedundantModifierCheck.class);
-
         final String[] expected = {
-            "7:10: " + getCheckMessage(RedundantModifierCheck.class,
+            "17:10: " + getCheckMessage(RedundantModifierCheck.class,
                     RedundantModifierCheck.MSG_KEY,
                     "final"),
         };
@@ -97,21 +89,17 @@ public class XpathRegressionRedundantModifierTest extends AbstractXpathTestSuppo
                    + "[./IDENT[@text='a']]/MODIFIERS/FINAL"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathRedundantModifierClass.java"),
+                expectedXpathQueries,
+                expected);
 
     }
 
     @Test
     public void test2() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathRedundantModifierInterface.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RedundantModifierCheck.class);
-        moduleConfig.addProperty("tokens", "METHOD_DEF");
-
         final String[] expected = {
-            "5:5: " + getCheckMessage(RedundantModifierCheck.class,
+            "13:5: " + getCheckMessage(RedundantModifierCheck.class,
                     RedundantModifierCheck.MSG_KEY,
                     "public"),
         };
@@ -139,20 +127,16 @@ public class XpathRegressionRedundantModifierTest extends AbstractXpathTestSuppo
                    + "/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathRedundantModifierInterface.java"),
+                expectedXpathQueries,
+                expected);
     }
 
     @Test
     public void test3() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathRedundantModifierWithEnum.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(RedundantModifierCheck.class);
-        moduleConfig.addProperty("jdkVersion", "11");
-
         final String[] expected = {
-            "5:9: " + getCheckMessage(RedundantModifierCheck.class,
+            "15:9: " + getCheckMessage(RedundantModifierCheck.class,
                     RedundantModifierCheck.MSG_KEY,
                     "static"),
         };
@@ -183,7 +167,10 @@ public class XpathRegressionRedundantModifierTest extends AbstractXpathTestSuppo
                    + "/LITERAL_STATIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathRedundantModifierWithEnum.java"),
+                expectedXpathQueries,
+                expected);
 
     }
 
