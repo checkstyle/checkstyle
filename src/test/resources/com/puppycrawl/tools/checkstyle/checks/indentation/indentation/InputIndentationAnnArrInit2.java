@@ -16,7 +16,7 @@ package                                                        //indent:0 exp:0
 com.puppycrawl.tools.checkstyle.checks.indentation.indentation;//indent:0 exp:0
 
 @InputIndentationAnnArrInit2.Foo({                             //indent:0 exp:0
-    @InputIndentationAnnArrInit2.Bar,                          //indent:4 exp:0,33,63 warn
+    @InputIndentationAnnArrInit2.Bar,                          //indent:4 exp:0 warn
 @InputIndentationAnnArrInit2.Bar,                              //indent:0 exp:0
 })                                                             //indent:0 exp:0
 
@@ -29,7 +29,7 @@ class InputIndentationAnnArrInit2 {                            //indent:0 exp:0
 
   @interface Baz {                                             //indent:2 exp:2
     String[] value() default {                                 //indent:4 exp:4
-        "Hello",                                               //indent:8 exp:4,29,63 warn
+        "Hello",                                               //indent:8 exp:4 warn
     "Checkstyle"                                               //indent:4 exp:4
   };                                                           //indent:2 exp:4 warn
   }                                                            //indent:2 exp:2
@@ -48,7 +48,7 @@ interface SomeInterface2 {                                     //indent:0 exp:0
   @SomeAnnotation(values =                                     //indent:2 exp:2
       {                                                        //indent:6 exp:2 warn
   Info.A,                                                      //indent:2 exp:2
-    Info.B                                                     //indent:4 exp:2,6,63 warn
+    Info.B                                                     //indent:4 exp:2,6 warn
   }                                                            //indent:2 exp:2
   )                                                            //indent:2 exp:2
   void works();                                                //indent:2 exp:2

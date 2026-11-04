@@ -20,7 +20,7 @@ public class InputIndentationZeroArrayInit {                      //indent:0 exp
     interface MyInterface {                                       //indent:4 exp:4
         @interface SomeAnnotation { String[] values(); }          //indent:8 exp:8
         @SomeAnnotation(values = {                                //indent:8 exp:8
-           "Hello"                                                //indent:11 exp:8,12,37,66 warn
+           "Hello"                                                //indent:11 exp:8,12 warn
         })                                                        //indent:8 exp:8
         void works();                                             //indent:8 exp:8
     }                                                             //indent:4 exp:4

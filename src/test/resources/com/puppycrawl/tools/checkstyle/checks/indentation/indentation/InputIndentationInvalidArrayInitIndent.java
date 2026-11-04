@@ -27,13 +27,13 @@ public class InputIndentationInvalidArrayInitIndent {                  //indent:
       };                                                               //indent:6 exp:6
 
       int[] array2b = new int[] {                                      //indent:6 exp:4 warn
-        1, 2, 3                                                        //indent:8 exp:10,36,71 warn
+        1, 2, 3                                                        //indent:8 exp:10 warn
     };                                                                 //indent:4 exp:6,10 warn
 
     int[] array3 = new int[] {                                         //indent:4 exp:4
-         1,                                                            //indent:9 exp:8,33,71 warn
-       2,                                                              //indent:7 exp:8,33,71 warn
-         3                                                             //indent:9 exp:8,33,71 warn
+         1,                                                            //indent:9 exp:8 warn
+       2,                                                              //indent:7 exp:8 warn
+         3                                                             //indent:9 exp:8 warn
     };                                                                 //indent:4 exp:4
 
 
@@ -56,7 +56,7 @@ public class InputIndentationInvalidArrayInitIndent {                  //indent:
 
 
     int[] array7 = new int[] {                                         //indent:4 exp:4
-      1, 2,                                                            //indent:6 exp:8,33,71 warn
+      1, 2,                                                            //indent:6 exp:8 warn
         3                                                              //indent:8 exp:8
     };                                                                 //indent:4 exp:4
 
@@ -67,14 +67,14 @@ public class InputIndentationInvalidArrayInitIndent {                  //indent:
   };                                                                   //indent:2 exp:6,10 warn
 
     int[][] array10 = new int[][] {                                    //indent:4 exp:4
-      new int[] { 1, 2, 3},                                            //indent:6 exp:8,38,71 warn
+      new int[] { 1, 2, 3},                                            //indent:6 exp:8 warn
         new int[] { 1, 2, 3},                                          //indent:8 exp:8
     };                                                                 //indent:4 exp:4
 
 
     int[][] array10b                                                   //indent:4 exp:4
         = new int[][] {                                                //indent:8 exp:8
-          new int[] { 1, 2, 3},                                        //indent:10 exp:12,26,71 warn
+          new int[] { 1, 2, 3},                                        //indent:10 exp:12 warn
             new int[] { 1, 2, 3},                                      //indent:12 exp:12
         };                                                             //indent:8 exp:8
 }                                                                      //indent:0 exp:0
