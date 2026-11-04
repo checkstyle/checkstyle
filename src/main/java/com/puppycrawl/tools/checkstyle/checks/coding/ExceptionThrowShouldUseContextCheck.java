@@ -198,7 +198,8 @@ public class ExceptionThrowShouldUseContextCheck extends AbstractCheck {
         final List<DetailAST> scopes = new ArrayList<>();
         DetailAST current = node;
         boolean methodScopeFound = false;
-        while (!methodScopeFound && current.getType() != TokenTypes.OBJBLOCK) {
+        while (!methodScopeFound && current.getType() != TokenTypes.OBJBLOCK
+                && current.getType() != TokenTypes.COMPACT_COMPILATION_UNIT) {
             final int type = current.getType();
             switch (type) {
                 case TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF,
