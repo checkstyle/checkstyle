@@ -394,7 +394,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         final PropertyCacheFile cache = new PropertyCacheFile(config, cacheFile.getPath());
         cache.load();
 
-        final String expectedInitialConfigHash = "D5BB1747FC11B2BB839C80A6C28E3E7684AF9940";
+        final String expectedInitialConfigHash = "1386DB509CDA7B5EFAB6A2A8926F0A850F4020" + "EF";
         final String actualInitialConfigHash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
         assertWithMessage("Invalid config hash")
             .that(actualInitialConfigHash)
@@ -417,7 +417,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             new PropertyCacheFile(config, cacheFile.getPath());
         cacheAfterChangeInConfig.load();
 
-        final String expectedConfigHashAfterChange = "714876AE38C069EC52BF86889F061B3776E526D3";
+        final String expectedConfigHashAfterChange = "97A5805714F3C1E184AAC215A46F22577CBA57B3";
         final String actualConfigHashAfterChange =
             cacheAfterChangeInConfig.get(PropertyCacheFile.CONFIG_HASH_KEY);
         assertWithMessage("Invalid config hash")

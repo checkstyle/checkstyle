@@ -647,7 +647,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .that(cache)
             .hasSize(expectedNumberOfObjectsInCache);
 
-        final String expectedConfigHash = "D581D4A2BD482D4E1EF1F82459356BA2D8A3B" + "FC3";
+        final String expectedConfigHash = "2695A8A00936EDE2CF4424C52B8479E6206D89C6";
         assertWithMessage("Cache has unexpected hash")
             .that(cache.getProperty(PropertyCacheFile.CONFIG_HASH_KEY))
             .isEqualTo(expectedConfigHash);
