@@ -12,10 +12,9 @@ import javax.swing.JCheckBox;
 public class InputWhitespaceAroundArrowCorrect {
   static {
     new JCheckBox()
-        .addActionListener(
-            (final ActionEvent e) -> {
-              test3();
-            });
+        .addActionListener((final ActionEvent e) -> {
+          test3();
+        });
   }
 
   /** Some javadoc. */
@@ -61,14 +60,12 @@ public class InputWhitespaceAroundArrowCorrect {
     List<Integer> ints = new LinkedList<Integer>();
 
     ints.stream()
-        .map(
-            t -> {
-              return t * 2;
-            })
-        .filter(
-            t -> {
-              return false;
-            });
+        .map(t -> {
+          return t * 2;
+        })
+        .filter(t -> {
+          return false;
+        });
     return k * 2;
   }
 
@@ -78,14 +75,13 @@ public class InputWhitespaceAroundArrowCorrect {
 
     List<Boolean> filtered =
         boolList.stream()
-            .filter(
-                statement -> {
-                  if (!statement) {
-                    return true;
-                  } else {
-                    return false;
-                  }
-                })
+            .filter(statement -> {
+              if (!statement) {
+                return true;
+              } else {
+                return false;
+              }
+            })
             .collect(Collectors.toList());
 
     Object result =

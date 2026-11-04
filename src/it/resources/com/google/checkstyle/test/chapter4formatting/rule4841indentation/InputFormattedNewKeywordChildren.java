@@ -29,10 +29,9 @@ public class InputFormattedNewKeywordChildren {
   /** Some data. */
   public Object foo() {
     return Optional.empty()
-        .orElseThrow(
-            () ->
-                new IllegalArgumentException(
-                    "Something wrong 1, something wrong 2, something wrong 3"));
+        .orElseThrow(() ->
+            new IllegalArgumentException(
+                "Something wrong 1, something wrong 2, something wrong 3"));
   }
 
   /** Some data. */
@@ -47,19 +46,17 @@ public class InputFormattedNewKeywordChildren {
   /** Some data. */
   public Object foo4(int data) {
     return Optional.empty()
-        .orElseThrow(
-            () ->
-                new IllegalArgumentException(
-                    "something wrong 1, something wrong 2, something wrong 3"));
+        .orElseThrow(() ->
+            new IllegalArgumentException(
+                "something wrong 1, something wrong 2, something wrong 3"));
   }
 
   /** Some data. */
   public Object foo5(int data) {
     return Optional.empty()
-        .orElseThrow(
-            () ->
-                new IllegalArgumentException(
-                    "something wrong 1, something wrong 2, something wrong 3"));
+        .orElseThrow(() ->
+            new IllegalArgumentException(
+                "something wrong 1, something wrong 2, something wrong 3"));
   }
 
   /** Some data. */

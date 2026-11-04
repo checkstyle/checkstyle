@@ -11,10 +11,9 @@ public class InputNewKeywordChildrenCorrect {
   /** Some data. */
   public Object foo() {
     return Optional.empty()
-        .orElseThrow(
-            () ->
-                new IllegalArgumentException(
-                    "Something wrong 1, something wrong 2, something wrong 3"));
+        .orElseThrow(() ->
+            new IllegalArgumentException(
+                "Something wrong 1, something wrong 2, something wrong 3"));
   }
 
   /** Some data. */

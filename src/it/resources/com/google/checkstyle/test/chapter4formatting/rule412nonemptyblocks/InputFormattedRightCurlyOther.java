@@ -15,7 +15,6 @@ class InputFormattedRightCurlyOther {
           break;
         } else if (x < 0) {
 
-          ;
         } else {
           break;
         }

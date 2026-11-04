@@ -11,33 +11,28 @@ public class InputFormattedOneStatementPerLine2 {
    * may be considered as two empty statements on the same line
    * and rises violation.
    */
-  ;
 
   static {
     List<Integer> ints = new LinkedList<Integer>();
     ints.stream()
-        .map(
-            t -> {
-              return t * 2;
-            })
-        .filter(
-            t -> {
-              return false;
-            });
+        .map(t -> {
+          return t * 2;
+        })
+        .filter(t -> {
+          return false;
+        });
 
     ints.stream()
-        .map(
-            t -> {
-              int m = t * 2;
-              return m;
-            });
+        .map(t -> {
+          int m = t * 2;
+          return m;
+        });
 
     ints.stream()
-        .map(
-            t -> {
-              int m = t * 2;
-              return m;
-            });
+        .map(t -> {
+          int m = t * 2;
+          return m;
+        });
     int i = 3;
 
     ints.stream().map(t -> t * 2);
@@ -47,45 +42,38 @@ public class InputFormattedOneStatementPerLine2 {
     List<Integer> ints2 = new LinkedList<Integer>();
 
     ints.stream()
-        .map(
-            t -> {
-              return ints2.stream()
-                  .map(
-                      w -> {
-                        return w * 2;
-                      });
-            });
+        .map(t -> {
+          return ints2.stream()
+              .map(w -> {
+                return w * 2;
+              });
+        });
 
     ints.stream()
-        .map(
-            t -> {
-              return ints2.stream()
-                  .map(
-                      w -> {
-                        int m = w;
-                        return m;
-                      });
-            });
+        .map(t -> {
+          return ints2.stream()
+              .map(w -> {
+                int m = w;
+                return m;
+              });
+        });
 
     ints.stream()
-        .map(
-            t -> {
-              return ints2.stream()
-                  .map(
-                      w -> {
-                        int m = w * 2;
-                        return m;
-                      });
-            });
+        .map(t -> {
+          return ints2.stream()
+              .map(w -> {
+                int m = w * 2;
+                return m;
+              });
+        });
     ints.stream()
-        .map(
-            t -> {
-              int l = 0;
-              for (int j = 0; j < 10; j++) {
-                l = j + l;
-              }
-              return l;
-            });
+        .map(t -> {
+          int l = 0;
+          for (int j = 0; j < 10; j++) {
+            l = j + l;
+          }
+          return l;
+        });
   }
 
   private static void good() {}

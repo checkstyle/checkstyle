@@ -53,9 +53,7 @@ public class InputFormattedTryCatchIfElse {
     } catch (Exception expected) {
     }
 
-    try (MyResource r = new MyResource()) {
-      ;
-    }
+    try (MyResource r = new MyResource()) {}
 
     try {
       /* foo */
