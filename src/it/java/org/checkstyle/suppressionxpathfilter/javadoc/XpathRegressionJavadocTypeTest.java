@@ -23,14 +23,11 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MS
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_MISSING_TAG_WITH_QUOTES;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_TAG_FORMAT;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck;
 
@@ -50,20 +47,12 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
 
     @Test
     public void testMissingTag() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathJavadocTypeMissingTag.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocTypeCheck.class);
-
-        moduleConfig.addProperty("authorFormat", "\\S");
-
         final String[] expectedViolation = {
-            "6:1: " + getCheckMessage(JavadocTypeCheck.class,
+            "21:1: " + getCheckMessage(JavadocTypeCheck.class,
                 MSG_MISSING_TAG, "@author"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathJavadocTypeMissingTag']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
@@ -73,26 +62,20 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
                         + "[./IDENT[@text='InputXpathJavadocTypeMissingTag']]"
                         + "/MODIFIERS/LITERAL_PUBLIC");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathJavadocTypeMissingTag.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testWrongFormat() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathJavadocTypeWrongFormat.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocTypeCheck.class);
-
-        moduleConfig.addProperty("authorFormat", "foo");
-
         final String[] expectedViolation = {
-            "7:1: " + getCheckMessage(JavadocTypeCheck.class,
+            "22:1: " + getCheckMessage(JavadocTypeCheck.class,
                 MSG_TAG_FORMAT, "@author", "foo"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='InputXpathJavadocTypeWrongFormat']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
@@ -101,24 +84,20 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
                         + "[@text='InputXpathJavadocTypeWrongFormat']]"
                         + "/MODIFIERS/LITERAL_PUBLIC");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathJavadocTypeWrongFormat.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testIncomplete() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathJavadocTypeIncomplete.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocTypeCheck.class);
-
         final String[] expectedViolation = {
-            "8:1: " + getCheckMessage(JavadocTypeCheck.class,
+            "23:1: " + getCheckMessage(JavadocTypeCheck.class,
                 MSG_MISSING_TAG_WITH_QUOTES, JavadocTagInfo.PARAM.getText(), "<C>"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathJavadocTypeIncomplete']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
@@ -128,8 +107,10 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
                         + "[./IDENT[@text='InputXpathJavadocTypeIncomplete']]"
                         + "/MODIFIERS/LITERAL_PUBLIC");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathJavadocTypeIncomplete.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
