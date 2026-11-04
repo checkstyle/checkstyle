@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.metrics;
 
-import java.io.File;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck;
 
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
@@ -45,14 +43,8 @@ public class XpathRegressionJavaNCSSTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathJavaNCSSOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavaNCSSCheck.class);
-
         final String[] expectedViolation = {
-            "5:5: " + getCheckMessage(JavaNCSSCheck.class,
+            "15:5: " + getCheckMessage(JavaNCSSCheck.class,
                     JavaNCSSCheck.MSG_METHOD, 51, 50),
         };
 
@@ -70,21 +62,16 @@ public class XpathRegressionJavaNCSSTest extends AbstractXpathTestSupport {
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathJavaNCSSOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathJavaNCSSTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavaNCSSCheck.class);
-
-        moduleConfig.addProperty("classMaximum", "50");
-
         final String[] expectedViolation = {
-            "3:1: " + getCheckMessage(JavaNCSSCheck.class,
+            "13:1: " + getCheckMessage(JavaNCSSCheck.class,
                     JavaNCSSCheck.MSG_CLASS, 51, 50),
         };
 
@@ -100,21 +87,16 @@ public class XpathRegressionJavaNCSSTest extends AbstractXpathTestSupport {
                 + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathJavaNCSSTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathJavaNCSSThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavaNCSSCheck.class);
-
-        moduleConfig.addProperty("fileMaximum", "50");
-
         final String[] expectedViolation = {
-            "1:1: " + getCheckMessage(JavaNCSSCheck.class,
+            "11:1: " + getCheckMessage(JavaNCSSCheck.class,
                     JavaNCSSCheck.MSG_FILE, 51, 50),
         };
 
@@ -123,7 +105,10 @@ public class XpathRegressionJavaNCSSTest extends AbstractXpathTestSupport {
                 "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathJavaNCSSThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

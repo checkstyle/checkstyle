@@ -1,6 +1,16 @@
+/*
+JavaNCSS
+methodMaximum = (default)50
+classMaximum = 50
+fileMaximum = (default)2000
+recordMaximum = (default)150
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.metrics.javancss;
 
-public class InputXpathJavaNCSSTwo { // warn
+public class InputXpathJavaNCSSTwo { // violation 'NCSS for this class is 51 (max allowed is 50).'
 
     int a1 = 1;
     int a2 = 1;
