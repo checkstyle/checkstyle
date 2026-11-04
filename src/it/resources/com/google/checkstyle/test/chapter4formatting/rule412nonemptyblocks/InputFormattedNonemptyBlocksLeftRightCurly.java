@@ -158,7 +158,6 @@ class InputRightCurlyOther22 {
           break;
         } else if (x < 0) {
 
-          ;
         } else {
           break;
         }

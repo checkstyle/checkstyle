@@ -28,12 +28,11 @@ public class InputSwitchWrappingIndentationCorrect {
 
   String testMethod3(List<Integer> operations) {
     return operations.stream()
-        .map(
-            op ->
-                switch (op) {
-                  case 1 -> "test";
-                  default -> "TEST";
-                })
+        .map(op ->
+            switch (op) {
+              case 1 -> "test";
+              default -> "TEST";
+            })
         .findFirst()
         .orElse("defaultValue");
   }
