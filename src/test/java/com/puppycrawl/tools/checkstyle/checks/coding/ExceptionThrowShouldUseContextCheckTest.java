@@ -182,4 +182,16 @@ public class ExceptionThrowShouldUseContextCheckTest extends AbstractModuleTestS
                 expected);
     }
 
+    @Test
+    public void testCompactSourceFieldLambda() throws Exception {
+        final String[] expected = {
+            "17:9: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputExceptionThrowShouldUseContextCompactSourceFieldLambda.java"),
+                expected);
+    }
+
 }
