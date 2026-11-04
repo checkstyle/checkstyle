@@ -8,24 +8,22 @@ import java.util.function.Predicate;
 public class InputFormattedLambdaChild {
   String testMethod1(List<Integer> operations) {
     return operations.stream()
-        .map(
-            op ->
-                switch (op) {
-                  case 1 -> "test";
-                  default -> "TEST";
-                })
+        .map(op ->
+            switch (op) {
+              case 1 -> "test";
+              default -> "TEST";
+            })
         .findFirst()
         .orElse("defaultValue");
   }
 
   String testMethod2(List<Integer> operations) {
     return operations.stream()
-        .map(
-            op ->
-                switch (op) {
-                  case 1 -> "test";
-                  default -> "TEST";
-                })
+        .map(op ->
+            switch (op) {
+              case 1 -> "test";
+              default -> "TEST";
+            })
         .findFirst()
         .orElse("defaultValue");
   }

@@ -8,12 +8,11 @@ import java.util.function.Predicate;
 public class InputLambdaChildCorrect {
   String testMethod1(List<Integer> operations) {
     return operations.stream()
-        .map(
-            op ->
-                switch (op) {
-                  case 1 -> "test";
-                  default -> "TEST";
-                })
+        .map(op ->
+            switch (op) {
+              case 1 -> "test";
+              default -> "TEST";
+            })
         .findFirst()
         .orElse("defaultValue");
   }

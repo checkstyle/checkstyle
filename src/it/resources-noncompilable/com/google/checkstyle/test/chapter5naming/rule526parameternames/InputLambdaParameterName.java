@@ -10,7 +10,7 @@ public class InputLambdaParameterName {
   Function<String, String> badNamedParameterWithoutParenthesis =
       S -> S.trim().toLowerCase(); // violation 'Lambda parameter name 'S' must match pattern'
 
-  Function<String, String> badNamedParameterWithParenthesis = (sT) -> sT.trim().toLowerCase();
+  Function<String, String> badNamedParameterWithParenthesis = sT -> sT.trim().toLowerCase();
   // violation above 'Lambda parameter name 'sT' must match pattern'
 
   BiFunction<String, String, String> twoBadNamedParameters = (sT1, sT2) -> sT1 + sT2;
@@ -25,7 +25,7 @@ public class InputLambdaParameterName {
       notTrimmedString -> notTrimmedString.trim().length();
 
   Function<String, Integer> goodNamedParameterWithParenthesis =
-      (notTrimmedString) -> notTrimmedString.trim().length();
+      notTrimmedString -> notTrimmedString.trim().length();
 
   BiFunction<String, String, Integer> goodNamedParameters =
       (first, second) -> (first + second).length();
