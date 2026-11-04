@@ -37,8 +37,9 @@ class InputAnnotationLocationIncorrect3One
     // 2 violations above:
     // 'Annotation 'MyAnnotation_13' should be alone on line.'
     // 'Annotation 'MyAnn_23' should be alone on line.'
+    // violation 2 lines below '.* incorrect .* level 7, .* should be 4.'
     @MyAnnotation_13(value = "")
-       @MyAnn_23 // violation '.* incorrect .* level 7, .* should be 4.'
+       @MyAnn_23
     void foo2() {}
 
     @MyAnnotation_13(value = "")
@@ -66,17 +67,20 @@ class InputAnnotationLocationIncorrect3One
         {
             // comment
         }
+        // violation 2 lines below '.* incorrect .* level 12, .* should be 8.'
         @MyAnnotation_13(value = "")
-            @MyAnn_23 // violation '.* incorrect .* level 12, .* should be 8.'
+            @MyAnn_23
         void foo1() {}
 
+        // violation 2 lines below '.*'MyAnn_23' have incorrect indentation level 12,.*should be 8.'
         @MyAnnotation_13(value = "")
-            @MyAnn_23 // violation '.*'MyAnn_23' have incorrect indentation level 12,.*should be 8.'
+            @MyAnn_23
         void foo2() {}
     }
 
+    // violation 2 lines below '.*'MyAnn_23' have incorrect indentation level 7,.*should be 4.'
     @MyAnnotation_13(value = "")
-       @MyAnn_23 // violation '.*'MyAnn_23' have incorrect indentation level 7,.*should be 4.'
+       @MyAnn_23
     InnerClass3 anon = new InnerClass3()
     {
         // violation below 'Annotation 'MyAnnotation_13' should be alone on line.'
@@ -94,8 +98,9 @@ class InputAnnotationLocationIncorrect3One
         @MyAnnotation_13(value = "")
            @MyAnn_23 void foo1() {} // violation '.* incorrect .* level 11, .* should be 8.'
 
+        // violation 2 lines below '.* incorrect .* level 10, .* should be 8.'
         @MyAnnotation_13(value = "")
-          @MyAnn_23 // violation '.* incorrect .* level 10, .* should be 8.'
+          @MyAnn_23
         void foo2() {}
 
         @MyAnnotation_13(value = "") void foo42() {} // violation '.* should be alone on line.'
@@ -103,9 +108,7 @@ class InputAnnotationLocationIncorrect3One
 
 }
 
-@interface MyAnnotation_13 {
-
-        String value();}
+@interface MyAnnotation_13 { String value(); }
 
 @interface MyAnn_23 {}
 
@@ -113,6 +116,4 @@ class InputAnnotationLocationIncorrect3One
 
 @interface MyAnnotation_43 {}
 
-@interface MyAnn3 {
-
-    String value();}
+@interface MyAnn3 { String value(); }
