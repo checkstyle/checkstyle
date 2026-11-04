@@ -110,6 +110,55 @@ public class StaticVariableNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "15:12: " + getCheckMessage(MSG_INVALID_PATTERN, "Bad", pattern),
+            "16:19: " + getCheckMessage(MSG_INVALID_PATTERN, "Public_", pattern),
+            "17:22: " + getCheckMessage(MSG_INVALID_PATTERN, "Protected_", pattern),
+            "18:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Private_", pattern),
+            "27:16: " + getCheckMessage(MSG_INVALID_PATTERN, "InnerBad", pattern),
+            "37:16: " + getCheckMessage(MSG_INVALID_PATTERN, "EnumStatic_", pattern),
+            "41:16: " + getCheckMessage(MSG_INVALID_PATTERN, "RecordStatic_", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputStaticVariableNameCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties1() throws Exception {
+        final String pattern = "^s[A-Z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "15:12: " + getCheckMessage(MSG_INVALID_PATTERN, "bad", pattern),
+            "17:22: " + getCheckMessage(MSG_INVALID_PATTERN, "protectedBad", pattern),
+            "25:16: " + getCheckMessage(MSG_INVALID_PATTERN, "innerBad", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputStaticVariableNameCompactSourceFileProperties1.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties2() throws Exception {
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "16:19: " + getCheckMessage(MSG_INVALID_PATTERN, "Public_", pattern),
+            "17:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Private_", pattern),
+            "25:23: " + getCheckMessage(MSG_INVALID_PATTERN, "InnerPublic", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputStaticVariableNameCompactSourceFileProperties2.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final StaticVariableNameCheck staticVariableNameCheckObj = new StaticVariableNameCheck();
         final int[] actual = staticVariableNameCheckObj.getAcceptableTokens();
