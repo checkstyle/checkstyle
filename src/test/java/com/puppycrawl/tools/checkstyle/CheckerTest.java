@@ -1467,6 +1467,25 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCheckerProcessDestroysFileSetsWhenProcessingFails() throws Exception {
+        final ExceptionThrowingFileSet fileSet = new ExceptionThrowingFileSet();
+        final Checker checker = new Checker();
+        checker.addFileSetCheck(fileSet);
+        final File file = new File(getPath("InputCheckerTabCharacter.java"));
+        final CheckstyleException exception = getExpectedThrowable(CheckstyleException.class,
+                () -> checker.process(Collections.singletonList(file)),
+                "Exception is expected");
+        assertWithMessage("Exception cause differs")
+            .that(exception)
+            .hasCauseThat()
+            .isInstanceOf(IllegalStateException.class);
+        assertWithMessage("FileSetCheck must be destroyed even if processing failed")
+            .that(fileSet.getMethodCalls())
+            .containsExactly("processFiltered", "destroy")
+            .inOrder();
+    }
+
+    @Test
     public void testSetFileSetCheckSetsMessageDispatcher() {
         final DummyFileSet fileSet = new DummyFileSet();
         final Checker checker = new Checker();
@@ -2071,6 +2090,28 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         public MessageDispatcher getInternalMessageDispatcher() {
             return getMessageDispatcher();
+        }
+
+    }
+
+    public static final class ExceptionThrowingFileSet extends AbstractFileSetCheck {
+
+        private final List<String> methodCalls = new ArrayList<>();
+
+        @Override
+        protected void processFiltered(File file, FileText fileText) {
+            methodCalls.add("processFiltered");
+            throw new IllegalStateException("processing failed");
+        }
+
+        @Override
+        public void destroy() {
+            methodCalls.add("destroy");
+            super.destroy();
+        }
+
+        public List<String> getMethodCalls() {
+            return Collections.unmodifiableList(methodCalls);
         }
 
     }

@@ -217,11 +217,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
         // Prepare to start
         final int errorCount;
-        try (AuditCompletion auditCompletion = new AuditCompletion()) {
-            for (final FileSetCheck fsc : fileSetChecks) {
-                fsc.beginProcessing(charset);
-            }
-
+        try (AuditCompletion auditCompletion = new AuditCompletion();
+             FileSetChecksProcessing processing = new FileSetChecksProcessing()) {
             final List<File> targetFiles = files.stream()
                     .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
                     .toList();
@@ -230,9 +227,6 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             // Finish up
             // It may also log!!!
             fileSetChecks.forEach(FileSetCheck::finishProcessing);
-
-            // It may also log!!!
-            fileSetChecks.forEach(FileSetCheck::destroy);
 
             errorCount = counter.getCount();
         }
@@ -674,6 +668,28 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             for (final AuditListener listener : listeners) {
                 listener.auditFinished(event);
             }
+        }
+
+    }
+
+    /**
+     * Begins processing of all file set checks and destroys them when processing ends, even
+     * if it failed, so that thread local state of checks is removed from the current thread.
+     */
+    private final class FileSetChecksProcessing implements AutoCloseable {
+
+        /** Begins processing of all file set checks. */
+        private FileSetChecksProcessing() {
+            for (final FileSetCheck fsc : fileSetChecks) {
+                fsc.beginProcessing(charset);
+            }
+        }
+
+        /** Destroys all file set checks. */
+        @Override
+        public void close() {
+            // It may also log!!!
+            fileSetChecks.forEach(FileSetCheck::destroy);
         }
 
     }
