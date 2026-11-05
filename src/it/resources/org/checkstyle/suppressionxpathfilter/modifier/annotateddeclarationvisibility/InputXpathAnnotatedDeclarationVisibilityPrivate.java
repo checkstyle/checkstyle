@@ -1,9 +1,21 @@
+/*
+AnnotatedDeclarationVisibility
+annotations = (default)com.google.common.annotations.VisibleForTesting
+visibility = (default)protected,package
+tokens = (default)PACKAGE_DEF, IMPORT, CLASS_DEF, \
+         INTERFACE_DEF, ENUM_DEF, RECORD_DEF, \
+         METHOD_DEF, CTOR_DEF, VARIABLE_DEF, ANNOTATION_DEF,
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.modifier.annotateddeclarationvisibility;
 
 public class InputXpathAnnotatedDeclarationVisibilityPrivate {
 
     static class Inner {
-        @com.google.common.annotations.VisibleForTesting // warn
+        // violation below 'Annotated element has disallowed visibility 'private'.'
+        @com.google.common.annotations.VisibleForTesting
         private void violationMethod() {}
     }
 
