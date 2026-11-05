@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.imports;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.imports.AvoidModuleImportCheck;
 
 public class XpathRegressionAvoidModuleImportTest
@@ -47,14 +45,8 @@ public class XpathRegressionAvoidModuleImportTest
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(getNonCompilablePath(
-                "InputXpathAvoidModuleImportOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
-
         final String[] expectedViolation = {
-            "5:1: " + getCheckMessage(CLASS,
+            "13:1: " + getCheckMessage(CLASS,
                 AvoidModuleImportCheck.MSG_KEY, "java.base"),
         };
 
@@ -62,20 +54,16 @@ public class XpathRegressionAvoidModuleImportTest
             "/COMPILATION_UNIT/MODULE_IMPORT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getNonCompilablePath("InputXpathAvoidModuleImportOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess = new File(getNonCompilablePath(
-                "InputXpathAvoidModuleImportTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
-        moduleConfig.addProperty("maxAllowedModuleImports", "1");
-
         final String[] expectedViolation = {
-            "6:1: " + getCheckMessage(CLASS,
+            "14:1: " + getCheckMessage(CLASS,
                 AvoidModuleImportCheck.MSG_COUNT, 1),
         };
 
@@ -83,20 +71,16 @@ public class XpathRegressionAvoidModuleImportTest
             "/COMPILATION_UNIT/MODULE_IMPORT[./DOT/IDENT[@text='java']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getNonCompilablePath("InputXpathAvoidModuleImportTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess = new File(getNonCompilablePath(
-                "InputXpathAvoidModuleImportThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
-        moduleConfig.addProperty("excludes", "java.sql");
-
         final String[] expectedViolation = {
-            "5:1: " + getCheckMessage(CLASS,
+            "13:1: " + getCheckMessage(CLASS,
                 AvoidModuleImportCheck.MSG_KEY, "java.base"),
         };
 
@@ -104,7 +88,10 @@ public class XpathRegressionAvoidModuleImportTest
             "/COMPILATION_UNIT/MODULE_IMPORT[./DOT/IDENT[@text='java']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getNonCompilablePath("InputXpathAvoidModuleImportThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
