@@ -997,8 +997,30 @@
                     8.1 Blank Lines
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/emptylineseparator.html#EmptyLineSeparator">
+                    EmptyLineSeparator
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyLineSeparator">
+                    config
+                  </a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  The exact number of two empty lines cannot be enforced, and
+                  the rules for local variables, comments, and logical sections
+                  inside a method are not covered by any Checkstyle check.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter8whitespace/rule81blanklines">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
