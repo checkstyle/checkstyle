@@ -15,6 +15,10 @@ updates:
       rewrite:
         patterns:
           - "*rewrite*"
+      byte-buddy:
+        patterns:
+          - "net.bytebuddy:byte-buddy"
+          - "net.bytebuddy:byte-buddy-agent"
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
