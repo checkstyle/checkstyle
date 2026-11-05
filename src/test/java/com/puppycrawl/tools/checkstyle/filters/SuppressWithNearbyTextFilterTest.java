@@ -556,6 +556,38 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     /**
+     * Calls the filter with an audit event for a file with suppressions, then with an audit
+     * event for a directory on a suppressed line of that file, and then with an audit event
+     * for a different file without suppressions. Asserts that suppressions from the first file
+     * are not applied to the directory or the subsequent file without suppressions.
+     * We cannot use {@link AbstractModuleTestSupport#verifyFilterWithInlineConfigParser} because
+     * it is impossible to specify a directory with input file configuration.
+     *
+     * @throws IOException if an error occurs while formatting the path to the input file.
+     */
+    @Test
+    public void testFilterWithFileWithoutSuppressionsAfterDirectory() throws IOException {
+        final SuppressWithNearbyTextFilter filter = new SuppressWithNearbyTextFilter();
+        final Violation violation = new Violation(31, 1, "bundle", "key", null,
+                SeverityLevel.ERROR, "moduleId", getClass(), "customMessage");
+        final AuditEvent fileEvent = new AuditEvent(this,
+                getPath("InputSuppressWithNearbyTextFilterDefaultConfig.java"), violation);
+        final AuditEvent directoryEvent = new AuditEvent(this, getPath(""), violation);
+        final AuditEvent fileWithoutSuppressionsEvent = new AuditEvent(this,
+                getPath("InputSuppressWithNearbyTextFilterOneLineText.txt"), violation);
+
+        assertWithMessage("filter should suppress file event")
+                .that(filter.accept(fileEvent))
+                .isFalse();
+        assertWithMessage("filter should accept directory")
+                .that(filter.accept(directoryEvent))
+                .isTrue();
+        assertWithMessage("filter should accept file without suppressions")
+                .that(filter.accept(fileWithoutSuppressionsEvent))
+                .isTrue();
+    }
+
+    /**
      * Calls the filter on two consecutive real input files and asserts that the 'suppressions'
      * internal field is cleared after each run.
      * Our goal is 100% test coverage and we need access to the implementation details
