@@ -232,4 +232,19 @@ public class ModifierOrderCheckTest extends AbstractModuleTestSupport {
                 getPath("InputModifierOrderCustomSameAsDefault.java"), expected);
     }
 
+    /**
+     * Verifies that explicitly customized orders retain custom diagnostics even when
+     * appending missing modifiers produces the default order.
+     *
+     * @throws Exception if verification fails
+     */
+    @Test
+    public void testCustomOrderCompletesToDefault() throws Exception {
+        final String[] expected = {
+            "12:12: " + getCheckMessage(MSG_MODIFIER_CUSTOM_ORDER, "private"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderCustomDefaultPrefix.java"), expected);
+    }
+
 }
