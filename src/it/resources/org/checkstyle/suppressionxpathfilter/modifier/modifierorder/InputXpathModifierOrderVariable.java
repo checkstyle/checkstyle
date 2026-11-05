@@ -9,5 +9,6 @@ modifiersOrder = (default)public, protected, private, abstract, default, static,
 package org.checkstyle.suppressionxpathfilter.modifier.modifierorder;
 
 public class InputXpathModifierOrderVariable {
-    static private boolean var = false; // violation ''private' modifier out of order with the JLS suggestions.'
+    // violation below ''private' modifier out of order with the JLS suggestions.'
+    static private boolean var = false;
 }

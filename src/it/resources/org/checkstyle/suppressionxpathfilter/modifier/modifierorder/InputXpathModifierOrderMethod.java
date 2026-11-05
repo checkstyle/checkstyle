@@ -9,7 +9,8 @@ modifiersOrder = (default)public, protected, private, abstract, default, static,
 package org.checkstyle.suppressionxpathfilter.modifier.modifierorder;
 
 public class InputXpathModifierOrderMethod {
-    private @MethodAnnotation void foo() {} // violation ''@MethodAnnotation' annotation modifier does not precede non-annotation modifiers.'
+    // violation below ''@MethodAnnotation' annotation.*not precede non-annotation modifiers.'
+    private @MethodAnnotation void foo() {}
 }
 
 @interface MethodAnnotation {}
