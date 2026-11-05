@@ -33,6 +33,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -301,6 +303,18 @@ public final class TokenUtil {
     }
 
     /**
+     * Determines if the token type matches the given type without creating a varargs array.
+     *
+     * @param type the token type to check
+     * @param first the acceptable type
+     * @return true if the token type matches
+     * @since 14.5.0
+     */
+    public static boolean isOfType(int type, int first) {
+        return type == first;
+    }
+
+    /**
      * Determines if the token type belongs to the given types.
      *
      * @param type the Token Type to check
@@ -332,6 +346,18 @@ public final class TokenUtil {
     }
 
     /**
+     * Determines if the AST matches the given type without creating a varargs array.
+     *
+     * @param ast the AST node to check, or null
+     * @param first the acceptable type
+     * @return true if the non-null AST matches
+     * @since 14.5.0
+     */
+    public static boolean isOfType(@Nullable DetailAST ast, int first) {
+        return ast != null && isOfType(ast.getType(), first);
+    }
+
+    /**
      * Determines if the AST belongs to the given types.
      *
      * @param ast the AST node to check
@@ -341,6 +367,32 @@ public final class TokenUtil {
      */
     public static boolean isOfType(DetailAST ast, int... types) {
         return ast != null && isOfType(ast.getType(), types);
+    }
+
+    /**
+     * Determines if the token type matches either given type without creating a varargs array.
+     *
+     * @param type the token type to check
+     * @param first the first acceptable type
+     * @param second the second acceptable type
+     * @return true if the token type matches
+     * @since 14.5.0
+     */
+    public static boolean isOfType(int type, int first, int second) {
+        return type == first || type == second;
+    }
+
+    /**
+     * Determines if the AST matches either given type without creating a varargs array.
+     *
+     * @param ast the AST node to check, or null
+     * @param first the first acceptable type
+     * @param second the second acceptable type
+     * @return true if the non-null AST matches
+     * @since 14.5.0
+     */
+    public static boolean isOfType(@Nullable DetailAST ast, int first, int second) {
+        return ast != null && isOfType(ast.getType(), first, second);
     }
 
     /**
