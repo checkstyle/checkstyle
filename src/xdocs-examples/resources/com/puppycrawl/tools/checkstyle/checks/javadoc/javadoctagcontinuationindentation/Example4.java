@@ -1,0 +1,59 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="JavadocTagContinuationIndentation">
+      <property name="forceStrictCondition" value="true"/>
+    </module>
+  </module>
+</module>
+*/
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationindentation;
+
+// xdoc section - start
+  /**
+   * <a> 'a' tag is not closed
+   */
+class Example4 {
+
+  /**
+   * @param input comment with
+   *     indentation spacing for the tag
+   */
+  public void testIndentation4(String input) {}
+   // ok, Indentation is exactly 4
+
+  /**
+   * @param input comment with
+   *   indentation spacing for the tag
+   */
+  public void testIndentation2(String input) {}
+   // violation 3 lines above 'Line continuation have incorrect indentation level'
+
+  /**
+   * <pre>
+   * this content, and not any error:
+   *   "JavadocTagContinuation do not validate lines contained in Pre tag,
+   *   No violation is expected here."</pre>
+   */
+  public void testMethodPre(String input) {}
+
+  /**
+   * Writes the object using a
+   * <a href="{@docRoot}/serialized-form.html#java.time.Ser">dedicated form</a>.
+   * @serialData
+   * <code> // violation 'expected level should be 4'
+   * out.writeByte(1); // violation 'expected level should be 4'
+   * out.writeInt(nanos); // violation 'expected level should be 4'
+   * </code> // violation 'expected level should be 4'
+   */
+  public void testMethodCode(String input) {}
+
+  /**
+   * Test class.
+   *
+   * @param input comment with
+   *          This is the predefined indentation applied by Eclipse formatter.
+   */ // violation above 'expected level should be 4'
+  public void testIndentationEclipse(String input) {}
+}
+// xdoc section - end
