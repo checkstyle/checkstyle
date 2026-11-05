@@ -171,7 +171,6 @@ public class AllChecksCompactSourceCoverageTest {
         "UnusedTryResourceShouldBeUnnamedCheck",
         "UnnecessaryFullyQualifiedTypeCheck",
         "UseEnhancedSwitchCheck",
-        "VariableDeclarationUsageDistanceCheck",
         "WhenShouldBeUsedCheck",
         "WhitespaceAfterCheck"
     );

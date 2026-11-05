@@ -566,11 +566,41 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     @Test
     public void testCompactSourceFile() throws Exception {
         final String[] expected = {
-            "22:5: " + getCheckMessage(MSG_KEY_EXT, "b", 4, 3),
+            "20:5: " + getCheckMessage(MSG_KEY_EXT, "b", 4, 3),
+            "63:5: " + getCheckMessage(MSG_KEY_EXT, "ignoredValue", 4, 3),
         };
 
         verifyWithInlineConfigParser(
-            getNonCompilablePath("InputVariableDeclarationUsageDistanceCompactSourceFile.java"),
+            getNonCompilablePath(
+                "compact/InputVariableDeclarationUsageDistanceCompactSourceFile.java"),
+            expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "25:5: " + getCheckMessage(MSG_KEY, "b", 4, 1),
+            "42:5: " + getCheckMessage(MSG_KEY, "atLimit", 3, 1),
+            "54:5: " + getCheckMessage(MSG_KEY, "notIgnored", 2, 1),
+            "60:5: " + getCheckMessage(MSG_KEY, "finalValue", 4, 1),
+            "76:5: " + getCheckMessage(MSG_KEY, "nested", 4, 1),
+        };
+
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                "compact/InputVariableDeclarationUsageDistanceCompactSourceFileProperties.java"),
+            expected);
+    }
+
+    @Test
+    public void testCompactSourceFileField() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_KEY_EXT, "processed", 4, 3),
+        };
+
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                "compact/InputVariableDeclarationUsageDistanceCompactSourceFileField.java"),
             expected);
     }
 
