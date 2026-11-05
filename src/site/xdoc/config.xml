@@ -962,6 +962,14 @@
 &lt;/module&gt;
       </code></pre></div>
 
+      <p>
+        When using the command line, select <code>-f none</code> to leave audit output
+        entirely to configured listeners. This disables the CLI-created audit listener
+        and its error-count summary, not the listeners in this configuration. Validation
+        and the process exit status are unchanged; argument and configuration failure
+        diagnostics remain visible. See <a href="cmdline.html#f">output formats</a>.
+      </p>
+
     </section>
 
     <section name="Packages">
