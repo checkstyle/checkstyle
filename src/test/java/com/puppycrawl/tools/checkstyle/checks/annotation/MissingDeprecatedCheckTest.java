@@ -67,15 +67,15 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     public void testBadDeprecatedAnnotation() throws Exception {
 
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "19: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "26: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "33: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "38: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "45: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "50: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "58: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "63: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "15: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "20: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "28: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "35: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "40: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "47: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "52: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "60: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "65: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verifyWithInlineConfigParser(
@@ -138,8 +138,8 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     public void testTwoInJavadocWithoutAnnotation() throws Exception {
 
         final String[] expected = {
-            "17: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
-            "21: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "18: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "22: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verifyWithInlineConfigParser(

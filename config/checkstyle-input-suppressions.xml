@@ -98,9 +98,5 @@
             files="/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/InputIncorrectRequireEmptyLineBeforeBlockTagGroup\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationonsameline/InputAnnotationOnSameLineCheckTokensOnMethodAndVar\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/InputMissingDeprecatedBadDeprecated\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/InputMissingDeprecatedClass\.java"/>
 
 </suppressions>
