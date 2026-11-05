@@ -22,15 +22,19 @@ package com.puppycrawl.tools.checkstyle;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.when;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.MessageDigest;
@@ -586,6 +590,43 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
                     .that(externalResourceHashes[0].equals(externalResourceHashes[1]))
                     .isEqualTo(sameException);
         }
+    }
+
+    /**
+     * Reading of an external resource must not share state with other reads, which happen
+     * when several checkers run in parallel in the same JVM (e.g. a parallel Maven build).
+     * The nested read inside {@code read} simulates such a concurrent read deterministically.
+     *
+     * @throws Exception if the method invocation failed
+     */
+    @Test
+    public void testToByteArrayDoesNotShareBufferBetweenReads() throws Exception {
+        final InputStream inner = mock(InputStream.class);
+        when(inner.read(any(byte[].class)))
+                .thenAnswer(invocation -> fillBuffer(invocation.getArgument(0), "inner"))
+                .thenReturn(-1);
+        final InputStream outer = mock(InputStream.class);
+        when(outer.read(any(byte[].class)))
+                .thenAnswer(invocation -> {
+                    final int size = fillBuffer(invocation.getArgument(0), "outer");
+                    TestUtil.invokeStaticMethod(PropertyCacheFile.class, "toByteArray",
+                            byte[].class, inner);
+                    return size;
+                })
+                .thenReturn(-1);
+
+        final byte[] content = TestUtil.invokeStaticMethod(PropertyCacheFile.class,
+                "toByteArray", byte[].class, outer);
+
+        assertWithMessage("Content was overwritten by another read")
+                .that(new String(content, StandardCharsets.UTF_8))
+                .isEqualTo("outer");
+    }
+
+    private static int fillBuffer(byte[] buffer, String text) {
+        final byte[] bytes = text.getBytes(StandardCharsets.UTF_8);
+        System.arraycopy(bytes, 0, buffer, 0, bytes.length);
+        return bytes.length;
     }
 
 }
