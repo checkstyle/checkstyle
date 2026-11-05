@@ -21,14 +21,11 @@ package org.checkstyle.suppressionxpathfilter.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnTypeCheck.MSG_INAPPROPRIATE_TAG;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnTypeCheck;
 
 public class XpathRegressionInappropriateJavadocBlockTagsOnTypeTest
@@ -50,19 +47,13 @@ public class XpathRegressionInappropriateJavadocBlockTagsOnTypeTest
 
     @Test
     public void testInappropriateClassTag() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathInappropriateJavadocBlockTagsOnTypeClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(InappropriateJavadocBlockTagsOnTypeCheck.class);
-
         final String[] expectedViolation = {
-            "6:1: " + getCheckMessage(InappropriateJavadocBlockTagsOnTypeCheck.class,
+            "14:1: " + getCheckMessage(InappropriateJavadocBlockTagsOnTypeCheck.class,
                 MSG_INAPPROPRIATE_TAG, "return",
                 "InputXpathInappropriateJavadocBlockTagsOnTypeClass"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
                         + "InputXpathInappropriateJavadocBlockTagsOnTypeClass']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
@@ -71,25 +62,21 @@ public class XpathRegressionInappropriateJavadocBlockTagsOnTypeTest
                         + "InputXpathInappropriateJavadocBlockTagsOnTypeClass']]"
                         + "/MODIFIERS/LITERAL_PUBLIC");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInappropriateJavadocBlockTagsOnTypeClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInappropriateInterfaceTag() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathInappropriateJavadocBlockTagsOnTypeInterface.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(InappropriateJavadocBlockTagsOnTypeCheck.class);
-
         final String[] expectedViolation = {
-            "6:1: " + getCheckMessage(InappropriateJavadocBlockTagsOnTypeCheck.class,
+            "14:1: " + getCheckMessage(InappropriateJavadocBlockTagsOnTypeCheck.class,
                 MSG_INAPPROPRIATE_TAG, "return",
                 "InputXpathInappropriateJavadocBlockTagsOnTypeInterface"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT[@text='"
                         + "InputXpathInappropriateJavadocBlockTagsOnTypeInterface']]",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT[@text='"
@@ -98,25 +85,21 @@ public class XpathRegressionInappropriateJavadocBlockTagsOnTypeTest
                         + "InputXpathInappropriateJavadocBlockTagsOnTypeInterface']]"
                         + "/MODIFIERS/LITERAL_PUBLIC");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInappropriateJavadocBlockTagsOnTypeInterface.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInappropriateRecordTag() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathInappropriateJavadocBlockTagsOnTypeRecord.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(InappropriateJavadocBlockTagsOnTypeCheck.class);
-
         final String[] expectedViolation = {
-            "6:1: " + getCheckMessage(InappropriateJavadocBlockTagsOnTypeCheck.class,
+            "14:1: " + getCheckMessage(InappropriateJavadocBlockTagsOnTypeCheck.class,
                 MSG_INAPPROPRIATE_TAG, "return",
                 "InputXpathInappropriateJavadocBlockTagsOnTypeRecord"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='"
                         + "InputXpathInappropriateJavadocBlockTagsOnTypeRecord']]",
                 "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='"
@@ -125,8 +108,10 @@ public class XpathRegressionInappropriateJavadocBlockTagsOnTypeTest
                         + "InputXpathInappropriateJavadocBlockTagsOnTypeRecord']]"
                         + "/MODIFIERS/LITERAL_PUBLIC");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInappropriateJavadocBlockTagsOnTypeRecord.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }

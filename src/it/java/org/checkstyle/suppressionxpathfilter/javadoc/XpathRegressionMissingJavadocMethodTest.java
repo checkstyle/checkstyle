@@ -19,14 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.javadoc;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck;
 
 public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSupport {
@@ -43,21 +40,13 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
 
     @Test
     public void testMissingJavadocMethodCtor() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathMissingJavadocMethodCtor.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(MissingJavadocMethodCheck.class);
-        moduleConfig.addProperty("tokens", "CTOR_DEF");
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
+            "17:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
                 MissingJavadocMethodCheck.MSG_JAVADOC_MISSING,
                 "InputXpathMissingJavadocMethodCtor"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                     + "[@text='InputXpathMissingJavadocMethodCtor']]"
                     + "/OBJBLOCK/CTOR_DEF[."
@@ -76,25 +65,20 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMissingJavadocMethodCtor.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMissingJavadocMethod() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathMissingJavadocMethod.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(MissingJavadocMethodCheck.class);
-        moduleConfig.addProperty("tokens", "METHOD_DEF");
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
+            "17:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
                 MissingJavadocMethodCheck.MSG_JAVADOC_MISSING, "foo"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputXpathMissingJavadocMethod']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]",
@@ -110,25 +94,20 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMissingJavadocMethod.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMissingJavadocMethodInInterface() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathMissingJavadocMethodInInterface.java")
-        );
-
-        final DefaultConfiguration moduleConfig =
-            createModuleConfig(MissingJavadocMethodCheck.class);
-        moduleConfig.addProperty("tokens", "METHOD_DEF");
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
+            "17:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
                 MissingJavadocMethodCheck.MSG_JAVADOC_MISSING, "foo"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/INTERFACE_DEF"
                     + "[./IDENT[@text='InputXpathMissingJavadocMethodInInterface']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]",
@@ -144,7 +123,10 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMissingJavadocMethodInInterface.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
