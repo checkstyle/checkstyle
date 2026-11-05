@@ -19,15 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.modifier;
 
-import java.io.File;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck;
 
 public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
@@ -46,17 +42,12 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
 
     @Test
     public void testMethod() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathModifierOrderMethod.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "4:13: " + getCheckMessage(CLAZZ,
+            "12:13: " + getCheckMessage(CLAZZ,
                     ModifierOrderCheck.MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='InputXpathModifierOrderMethod']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS"
@@ -66,42 +57,38 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS"
                         + "/ANNOTATION[./IDENT[@text='MethodAnnotation']]/AT");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathModifierOrderMethod.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testVariable() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathModifierOrderVariable.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "3:12: " + getCheckMessage(CLAZZ,
+            "12:12: " + getCheckMessage(CLAZZ,
                     ModifierOrderCheck.MSG_MODIFIER_ORDER, "private"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='InputXpathModifierOrderVariable']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='var']]/MODIFIERS/LITERAL_PRIVATE");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathModifierOrderVariable.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testAnnotation() throws Exception {
-        final File fileToProcess = new File(
-            getPath("InputXpathModifierOrderAnnotation.java"));
-
-        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
-
         final String[] expectedViolation = {
-            "3:8: " + getCheckMessage(CLAZZ,
+            "11:8: " + getCheckMessage(CLAZZ,
                     ModifierOrderCheck.MSG_ANNOTATION_ORDER, "@InterfaceAnnotation"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/ANNOTATION_DEF[./IDENT"
                         + "[@text='InputXpathModifierOrderAnnotation']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='InterfaceAnnotation']]",
@@ -109,7 +96,10 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
                         + "[@text='InputXpathModifierOrderAnnotation']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='InterfaceAnnotation']]/AT");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathModifierOrderAnnotation.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
