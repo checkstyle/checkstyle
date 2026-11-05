@@ -404,6 +404,23 @@ public class MainTest {
     }
 
     @Test
+    public void testGoogleConfigDetectsOctalEscapes(@SysOut Capturable systemOut) {
+        assertMainReturnCode(0, "-c", "/google_checks.xml",
+            getPath("InputMainGoogleOctalEscapes.java"));
+
+        final String output = systemOut.getCapturedData();
+        assertWithMessage("Octal escape \\11 should be detected")
+            .that(output)
+            .contains("InputMainGoogleOctalEscapes.java:4:26");
+        assertWithMessage("Octal escape \\011 should be detected")
+            .that(output)
+            .contains("InputMainGoogleOctalEscapes.java:5:28");
+        assertWithMessage("IllegalTokenText check should be reported")
+            .that(output)
+            .contains("IllegalTokenText");
+    }
+
+    @Test
     public void testNonExistentConfigFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
         assertMainReturnCode(-1, "-c", "src/main/resources/non_existent_config.xml",
