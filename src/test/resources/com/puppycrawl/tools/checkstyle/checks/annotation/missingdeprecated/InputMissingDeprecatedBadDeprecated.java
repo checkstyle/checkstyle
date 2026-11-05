@@ -7,10 +7,11 @@ violateExecutionOnNonTightHtml = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
+// violation 5 lines below '.*@java.lang.Deprecated.*@deprecated Javadoc tag.*'
 /**
  * @deprecated
  *  stuff
- */ // violation below '.*@java.lang.Deprecated annotation.*@deprecated Javadoc tag.*description.'
+ */
 public class InputMissingDeprecatedBadDeprecated
 {
     /**
@@ -20,9 +21,10 @@ public class InputMissingDeprecatedBadDeprecated
     // violation above '@java.lang.Deprecated annotation.*@deprecated Javadoc tag.*description.'
     }
 
+    // violation 4 lines below '.*@java.lang.Deprecated.*@deprecated Javadoc.*'
     /**
      * @deprecated stuff
-     */ // violation below '.*@java.lang.Deprecated annotation.*@deprecated Javadoc.*description.'
+     */
     public String toString() {
         return "";
     }
