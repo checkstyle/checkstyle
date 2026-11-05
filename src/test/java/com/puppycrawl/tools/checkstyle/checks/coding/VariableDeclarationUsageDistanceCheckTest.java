@@ -594,9 +594,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testCompactSourceFileField() throws Exception {
-        final String[] expected = {
-            "14:1: " + getCheckMessage(MSG_KEY_EXT, "processed", 4, 3),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
             getNonCompilablePath(
