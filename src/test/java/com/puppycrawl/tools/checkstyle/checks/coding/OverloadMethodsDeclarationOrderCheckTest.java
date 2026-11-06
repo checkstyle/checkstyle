@@ -39,10 +39,10 @@ public class OverloadMethodsDeclarationOrderCheckTest
     @Test
     public void testDefaultPart1() throws Exception {
         final String[] expected = {
-            "33:5: " + getCheckMessage(MSG_KEY, 21),
-            "62:9: " + getCheckMessage(MSG_KEY, 50),
-            "67:9: " + getCheckMessage(MSG_KEY, 62),
-            "87:5: " + getCheckMessage(MSG_KEY, 83),
+            "34:5: " + getCheckMessage(MSG_KEY, 22),
+            "63:9: " + getCheckMessage(MSG_KEY, 51),
+            "68:9: " + getCheckMessage(MSG_KEY, 63),
+            "88:5: " + getCheckMessage(MSG_KEY, 84),
         };
         verifyWithInlineConfigParser(
             getPath("InputOverloadMethodsDeclarationOrder1.java"), expected);
@@ -51,10 +51,10 @@ public class OverloadMethodsDeclarationOrderCheckTest
     @Test
     public void testDefaultPart2() throws Exception {
         final String[] expected = {
-            "53:9: " + getCheckMessage(MSG_KEY, 41),
-            "65:9: " + getCheckMessage(MSG_KEY, 58),
-            "77:13: " + getCheckMessage(MSG_KEY, 70),
-            "80:9: " + getCheckMessage(MSG_KEY, 65),
+            "54:9: " + getCheckMessage(MSG_KEY, 42),
+            "66:9: " + getCheckMessage(MSG_KEY, 59),
+            "78:13: " + getCheckMessage(MSG_KEY, 71),
+            "81:9: " + getCheckMessage(MSG_KEY, 66),
         };
         verifyWithInlineConfigParser(
             getPath("InputOverloadMethodsDeclarationOrder2.java"), expected);
@@ -64,10 +64,10 @@ public class OverloadMethodsDeclarationOrderCheckTest
     public void testOverloadMethodsDeclarationOrderRecords() throws Exception {
 
         final String[] expected = {
-            "22:9: " + getCheckMessage(MSG_KEY, 15),
-            "43:9: " + getCheckMessage(MSG_KEY, 36),
-            "59:9: " + getCheckMessage(MSG_KEY, 52),
-            "66:9: " + getCheckMessage(MSG_KEY, 59),
+            "23:9: " + getCheckMessage(MSG_KEY, 16),
+            "44:9: " + getCheckMessage(MSG_KEY, 37),
+            "60:9: " + getCheckMessage(MSG_KEY, 53),
+            "67:9: " + getCheckMessage(MSG_KEY, 60),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOverloadMethodsDeclarationOrderRecords.java"),
@@ -88,11 +88,11 @@ public class OverloadMethodsDeclarationOrderCheckTest
     @Test
     public void testOrderByIncreasingArity() throws Exception {
         final String[] expected = {
-            "21:5: " + getCheckMessage(MSG_ORDER),
-            "24:5: " + getCheckMessage(MSG_ORDER),
-            "32:9: " + getCheckMessage(MSG_ORDER),
-            "35:9: " + getCheckMessage(MSG_ORDER),
-            "48:9: " + getCheckMessage(MSG_ORDER),
+            "22:5: " + getCheckMessage(MSG_ORDER),
+            "25:5: " + getCheckMessage(MSG_ORDER),
+            "33:9: " + getCheckMessage(MSG_ORDER),
+            "36:9: " + getCheckMessage(MSG_ORDER),
+            "49:9: " + getCheckMessage(MSG_ORDER),
         };
         verifyWithInlineConfigParser(
             getPath("InputOverloadMethodsDeclarationOrderArity.java"), expected);
@@ -102,11 +102,11 @@ public class OverloadMethodsDeclarationOrderCheckTest
     public void testMisc() throws Exception {
 
         final String[] expected = {
-            "17:5: " + getCheckMessage(MSG_KEY, 11),
-            "19:5: " + getCheckMessage(MSG_ORDER),
-            "33:9: " + getCheckMessage(MSG_KEY, 26),
-            "33:9: " + getCheckMessage(MSG_ORDER),
-            "36:9: " + getCheckMessage(MSG_ORDER),
+            "18:5: " + getCheckMessage(MSG_KEY, 12),
+            "20:5: " + getCheckMessage(MSG_ORDER),
+            "34:9: " + getCheckMessage(MSG_KEY, 27),
+            "34:9: " + getCheckMessage(MSG_ORDER),
+            "37:9: " + getCheckMessage(MSG_ORDER),
         };
 
         verifyWithInlineConfigParser(
@@ -118,7 +118,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
     @Test
     public void testCompactSourceFileOverloads() throws Exception {
         final String[] expected = {
-            "13:1: " + getCheckMessage(MSG_KEY, 8),
+            "14:1: " + getCheckMessage(MSG_KEY, 9),
         };
         verifyWithInlineConfigParser(
             getNonCompilablePath(
@@ -138,11 +138,91 @@ public class OverloadMethodsDeclarationOrderCheckTest
     @Test
     public void testCompactSourceFileFirstMethodOverload() throws Exception {
         final String[] expected = {
-            "11:1: " + getCheckMessage(MSG_KEY, 8),
+            "12:1: " + getCheckMessage(MSG_KEY, 9),
         };
         verifyWithInlineConfigParser(
             getNonCompilablePath(
                 "InputOverloadMethodsDeclarationOrderCompactSourceFileFirstMethodOverload.java"),
+            expected);
+    }
+
+    @Test
+    public void testModifierGroups() throws Exception {
+        final String[] expected = {
+            "28:5: " + getCheckMessage(MSG_KEY, 15),
+            "43:9: " + getCheckMessage(MSG_KEY, 33),
+            "71:9: " + getCheckMessage(MSG_KEY, 63),
+            "85:9: " + getCheckMessage(MSG_KEY, 78),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrderModifierGroups.java"), expected);
+    }
+
+    @Test
+    public void testModifierGroupsOverlap() throws Exception {
+        final String[] expected = {
+            "28:5: " + getCheckMessage(MSG_KEY, 21),
+            "32:5: " + getCheckMessage(MSG_KEY, 24),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrderModifierGroupsOverlap.java"), expected);
+    }
+
+    @Test
+    public void testModifierGroupsMultiple() throws Exception {
+        final String[] expected = {
+            "25:5: " + getCheckMessage(MSG_KEY, 12),
+            "32:5: " + getCheckMessage(MSG_KEY, 25),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrderModifierGroupsMultiple.java"), expected);
+    }
+
+    @Test
+    public void testModifierGroupsRecord() throws Exception {
+        final String[] expected = {
+            "19:5: " + getCheckMessage(MSG_KEY, 12),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrderModifierGroupsRecord.java"), expected);
+    }
+
+    @Test
+    public void testModifierGroupsSpaces() throws Exception {
+        final String[] expected = {
+            "25:5: " + getCheckMessage(MSG_KEY, 12),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrderModifierGroupsSpaces.java"), expected);
+    }
+
+    @Test
+    public void testModifierGroupsDefault() throws Exception {
+        final String[] expected = {
+            "19:5: " + getCheckMessage(MSG_KEY, 12),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrderModifierGroupsDefault.java"), expected);
+    }
+
+    @Test
+    public void testModifierGroupsNearest() throws Exception {
+        final String[] expected = {
+            "19:5: " + getCheckMessage(MSG_KEY, 12),
+            "26:5: " + getCheckMessage(MSG_KEY, 19),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrderModifierGroupsNearest.java"), expected);
+    }
+
+    @Test
+    public void testModifierGroupsCompactSource() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_KEY, 9),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                "InputOverloadMethodsDeclarationOrderModifierGroupsCompactSource.java"),
             expected);
     }
 
