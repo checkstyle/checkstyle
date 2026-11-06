@@ -480,6 +480,20 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testNetworkDtdIsNotLoadedByDefault() {
+        final CheckstyleException exc = getExpectedThrowable(CheckstyleException.class, () -> {
+            loadConfiguration("InputConfigurationLoaderNetworkDoctype.xml");
+        }, "DTD must not be retrieved over the network by default");
+        // the JDK message is localized, so only check its locale independent parts
+        assertWithMessage("Invalid exception message: %s", exc.getMessage())
+            .that(exc.getMessage())
+            .contains("configuration_1_3.dtd");
+        assertWithMessage("Invalid exception message: %s", exc.getMessage())
+            .that(exc.getMessage())
+            .contains("accessExternalDTD");
+    }
+
+    @Test
     @SetSystemProperty(key = XmlLoader.LoadExternalDtdFeatureProvider.ENABLE_EXTERNAL_DTD_LOAD,
         value = "true")
     public void testExternalEntity() throws Exception {
