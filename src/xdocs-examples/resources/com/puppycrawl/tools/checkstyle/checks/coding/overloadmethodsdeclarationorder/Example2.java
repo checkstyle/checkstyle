@@ -25,7 +25,7 @@ class Example2 {
   void foo() {}
   // violation 2 lines below """All overloaded methods should be placed next
   //  to each other. Previous overloaded method located at line '24'."""
-  void otherSame(String s, int i) {}
+  static void otherSame(String s, int i) {}
 
   public enum ExampleEnum {
     VALUE_ONE,
@@ -38,7 +38,7 @@ class Example2 {
 
     // violation 2 lines below """All overloaded methods should be placed next
     //  to each other. Previous overloaded method located at line '35'."""
-    public void example(String s) {}
+    public static void example(String s) {}
     // violation above 'Overloaded methods should be ordered by increasing parameter count.'
   }
 }
