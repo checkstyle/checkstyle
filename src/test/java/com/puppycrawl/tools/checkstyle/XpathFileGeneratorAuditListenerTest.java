@@ -161,21 +161,20 @@ public class XpathFileGeneratorAuditListenerTest {
         final AuditEvent event = createAuditEvent("InputXpathFileGeneratorAuditListener.java",
                 FIRST_MESSAGE);
 
-        final String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
-                + "<!DOCTYPE suppressions PUBLIC" + EOL
-                + "    \"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2"
-                + "//EN\"" + EOL
-                + "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd\">"
-                + EOL
-                + "<suppressions>" + EOL
-                + "  <suppress-xpath" + EOL
-                + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
-                + "       checks=\"LeftCurlyCheck\""
-                + EOL
-                + "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='InputXpathFileGeneratorAuditListener']]"
-                + "/OBJBLOCK/LCURLY\"/>" + EOL
-                + "</suppressions>" + EOL;
+        final String expected =
+                """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE suppressions PUBLIC
+                    "-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+                    "https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd">
+                <suppressions>
+                  <suppress-xpath
+                       files="InputXpathFileGeneratorAuditListener.java"
+                       checks="LeftCurlyCheck"
+                       query="/COMPILATION_UNIT/CLASS_DEF[./IDENT\
+                [@text='InputXpathFileGeneratorAuditListener']]/OBJBLOCK/LCURLY"/>
+                </suppressions>
+                """.replace("\n", EOL);
 
         verifyOutput(expected, event);
     }
@@ -188,27 +187,27 @@ public class XpathFileGeneratorAuditListenerTest {
         final AuditEvent event2 = createAuditEvent("InputXpathFileGeneratorAuditListener.java",
                 THIRD_MESSAGE);
 
-        final String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
-                + "<!DOCTYPE suppressions PUBLIC" + EOL
-                + "    \"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2"
-                + "//EN\"" + EOL
-                + "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd\">"
-                + EOL
-                + "<suppressions>" + EOL
-                + "  <suppress-xpath" + EOL
-                + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
-                + "       id=\"MyModule\"" + EOL
-                + "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathFileGeneratorAuditListener']]"
-                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='sort']]\"/>" + EOL
-                + "  <suppress-xpath" + EOL
-                + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
-                + "       checks=\"NestedForDepthCheck\"" + EOL
-                + "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathFileGeneratorAuditListener']]"
-                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='sort']]/SLIST/LITERAL_FOR/SLIST"
-                + "/LITERAL_FOR\"/>" + EOL
-                + "</suppressions>" + EOL;
+        final String expected =
+                """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE suppressions PUBLIC
+                    "-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+                    "https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd">
+                <suppressions>
+                  <suppress-xpath
+                       files="InputXpathFileGeneratorAuditListener.java"
+                       id="MyModule"
+                       query="/COMPILATION_UNIT/CLASS_DEF[./IDENT\
+                [@text='InputXpathFileGeneratorAuditListener']]/OBJBLOCK/METHOD_DEF[./IDENT\
+                [@text='sort']]"/>
+                  <suppress-xpath
+                       files="InputXpathFileGeneratorAuditListener.java"
+                       checks="NestedForDepthCheck"
+                       query="/COMPILATION_UNIT/CLASS_DEF[./IDENT\
+                [@text='InputXpathFileGeneratorAuditListener']]/OBJBLOCK/METHOD_DEF[./IDENT\
+                [@text='sort']]/SLIST/LITERAL_FOR/SLIST/LITERAL_FOR"/>
+                </suppressions>
+                """.replace("\n", EOL);
 
         verifyOutput(expected, event1, event2);
     }
@@ -224,20 +223,21 @@ public class XpathFileGeneratorAuditListenerTest {
         final AuditEvent event3 = createAuditEvent("InputXpathFileGeneratorAuditListener.java",
                 FOURTH_MESSAGE);
 
-        final String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
-                + "<!DOCTYPE suppressions PUBLIC" + EOL
-                + "    \"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2"
-                + "//EN\"" + EOL
-                + "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd\">"
-                + EOL
-                + "<suppressions>" + EOL
-                + "  <suppress-xpath" + EOL
-                + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
-                + "       id=\"JavadocModuleId\"" + EOL
-                + "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathFileGeneratorAuditListener']]"
-                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='isValid']]\"/>" + EOL
-                + "</suppressions>" + EOL;
+        final String expected =
+                """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE suppressions PUBLIC
+                    "-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+                    "https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd">
+                <suppressions>
+                  <suppress-xpath
+                       files="InputXpathFileGeneratorAuditListener.java"
+                       id="JavadocModuleId"
+                       query="/COMPILATION_UNIT/CLASS_DEF[./IDENT\
+                [@text='InputXpathFileGeneratorAuditListener']]/OBJBLOCK/VARIABLE_DEF[./IDENT\
+                [@text='isValid']]"/>
+                </suppressions>
+                """.replace("\n", EOL);
 
         verifyOutput(expected, event1, event2, event3);
     }
@@ -247,21 +247,20 @@ public class XpathFileGeneratorAuditListenerTest {
         final AuditEvent event = createAuditEvent("Input&XpathFileGenerator.java",
                 FIRST_MESSAGE);
 
-        final String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
-                + "<!DOCTYPE suppressions PUBLIC" + EOL
-                + "    \"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2"
-                + "//EN\"" + EOL
-                + "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd\">"
-                + EOL
-                + "<suppressions>" + EOL
-                + "  <suppress-xpath" + EOL
-                + "       files=\"Input&amp;XpathFileGenerator.java\"" + EOL
-                + "       checks=\"LeftCurlyCheck\""
-                + EOL
-                + "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='InputXpathFileGeneratorAuditListener']]"
-                + "/OBJBLOCK/LCURLY\"/>" + EOL
-                + "</suppressions>" + EOL;
+        final String expected =
+                """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE suppressions PUBLIC
+                    "-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+                    "https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd">
+                <suppressions>
+                  <suppress-xpath
+                       files="Input&amp;XpathFileGenerator.java"
+                       checks="LeftCurlyCheck"
+                       query="/COMPILATION_UNIT/CLASS_DEF[./IDENT\
+                [@text='InputXpathFileGeneratorAuditListener']]/OBJBLOCK/LCURLY"/>
+                </suppressions>
+                """.replace("\n", EOL);
 
         verifyOutput(expected, event);
     }
