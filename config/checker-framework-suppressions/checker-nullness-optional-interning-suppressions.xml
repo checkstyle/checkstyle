@@ -8551,7 +8551,7 @@
     <message>Could not infer type arguments for Stream.map</message>
     <lineContent>.map(ElementNode::getUnderlyingNode)</lineContent>
     <details>
-      unsatisfiable constraint: @Initialized @PolyNull ElementNode &lt;: @Initialized @NonNull ElementNode
+      unsatisfiable constraint: @Initialized @PolyNull ElementNode -&gt; @Initialized @NonNull ElementNode
       ElementNode::getUnderlyingNode -&gt; inference type: java.util.function.Function&lt;? super com.puppycrawl.tools.checkstyle.xpath.ElementNode,? extends R&gt;
       From: Argument constraint
     </details>
@@ -9237,7 +9237,7 @@
     <message>Could not infer type arguments for Stream.map</message>
     <lineContent>.map(elementType::cast)</lineContent>
     <details>
-      unsatisfiable constraint: S extends @Initialized @Nullable Object &lt;: @Initialized @PolyNull Object
+      unsatisfiable constraint: S extends @Initialized @Nullable Object -&gt; @Initialized @PolyNull Object
       elementType::cast -&gt; inference type: java.util.function.Function&lt;? super S,? extends R&gt;
       From: Argument constraint
     </details>
