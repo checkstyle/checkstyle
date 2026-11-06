@@ -77,6 +77,38 @@ public class RecordComponentNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testRecordComponentNameCompactSourceFileDefault() throws Exception {
+
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "16:25: " + getCheckMessage(MSG_INVALID_PATTERN, "Bad", pattern),
+            "17:13: " + getCheckMessage(MSG_INVALID_PATTERN, "Values", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputRecordComponentNameCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordComponentNameCompactSourceFileProperties() throws Exception {
+
+        final String pattern = "^[A-Z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "16:25: " + getCheckMessage(MSG_INVALID_PATTERN, "lower", pattern),
+            "17:13: " + getCheckMessage(MSG_INVALID_PATTERN, "other", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputRecordComponentNameCompactSourceFileProperties.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final RecordComponentNameCheck typeParameterNameCheckObj =
                 new RecordComponentNameCheck();
