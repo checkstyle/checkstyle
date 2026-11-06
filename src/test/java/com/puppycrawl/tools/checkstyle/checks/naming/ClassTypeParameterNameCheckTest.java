@@ -86,4 +86,30 @@ public class ClassTypeParameterNameCheckTest extends AbstractModuleTestSupport {
             .isEqualTo(expected);
     }
 
+    @Test
+    public void testClassTypeParameterNameCompactSourceFileDefault() throws Exception {
+        final String pattern = "^[A-Z]$";
+        final String[] expected = {
+            "17:11: " + getCheckMessage(MSG_INVALID_PATTERN, "type", pattern),
+            "21:15: " + getCheckMessage(MSG_INVALID_PATTERN, "TT", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputClassTypeParameterNameCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testClassTypeParameterNameCompactSourceFileProperties() throws Exception {
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String[] expected = {
+            "17:17: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
+            "21:18: " + getCheckMessage(MSG_INVALID_PATTERN, "Def", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputClassTypeParameterNameCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
