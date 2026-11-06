@@ -137,7 +137,7 @@
     <message>Could not infer type arguments for Stream.map</message>
     <lineContent>.map(elementType::cast)</lineContent>
     <details>
-      unsatisfiable constraint: S extends @FenumTop Object &lt;: @FenumUnqualified Object
+      unsatisfiable constraint: S extends @FenumTop Object -&gt; @FenumUnqualified Object
       elementType::cast -&gt; inference type: java.util.function.Function&lt;? super S,? extends R&gt;
       From: Argument constraint
     </details>

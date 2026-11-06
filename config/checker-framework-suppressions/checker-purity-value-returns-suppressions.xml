@@ -15,6 +15,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter keyExtractor of Comparator.thenComparing</message>
+    <lineContent>.thenComparing(AbstractCheck::getId,</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>purity.call</specifier>
     <message>call to non-deterministic side-effecting java.lang.Class::getClassLoader not allowed in deterministic side-effect-free method</message>
@@ -71,10 +82,270 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyBlockCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(DetailAST::getFirstChild)</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/LeftCurlyCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.DetailAST::getNextSibling not allowed in side-effect-free method</message>
+    <lineContent>if (annotation.getNextSibling() == null) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/LeftCurlyCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.DetailAST::getNextSibling not allowed in side-effect-free method</message>
+    <lineContent>nextNode = annotation.getNextSibling();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/LeftCurlyCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.DetailAST::getNextSibling not allowed in side-effect-free method</message>
+    <lineContent>nextNode = modifiers.getNextSibling();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/LeftCurlyCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(annotation -&gt; {</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/NeedBracesCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.utils.TokenUtil::areOnSameLine not allowed in side-effect-free method</message>
+    <lineContent>.map(lastToken -&gt; TokenUtil.areOnSameLine(ast, lastToken))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/NeedBracesCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(DetailAST::getLastChild)</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/NeedBracesCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(DetailAST::getNextSibling)</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/NeedBracesCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(lastToken -&gt; TokenUtil.areOnSameLine(ast, lastToken))</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(DetailAST::getFirstChild)</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>Optional.ofNullable(lcurly.map(DetailAST::getNextSibling)</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>final DetailAST rcurly = lcurly.map(DetailAST::getLastChild)</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MissingNullCaseInSwitchCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.DetailAST::findFirstToken not allowed in side-effect-free method</message>
+    <lineContent>.map(exp -&gt; exp.findFirstToken(TokenTypes.LITERAL_NULL))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MissingNullCaseInSwitchCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(exp -&gt; exp.findFirstToken(TokenTypes.LITERAL_NULL))</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NoEnumTrailingCommaCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(DetailAST::getPreviousSibling)</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/PatternVariableAssignmentCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(DetailAST::getNextSibling)</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RedundantThisCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.DetailAST::findFirstToken not allowed in side-effect-free method</message>
+    <lineContent>.map(child -&gt; child.findFirstToken(TokenTypes.RESOURCES));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RedundantThisCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(child -&gt; child.findFirstToken(TokenTypes.RESOURCES));</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryNullCheckWithInstanceOfCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(DetailAST::getFirstChild);</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>purity.call</specifier>
     <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck::calculateTypeDeclarationDistance not allowed in deterministic side-effect-free method</message>
     <lineContent>return calculateTypeDeclarationDistance(outerTypeDeclName, first, second);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/DesignForExtensionCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.DetailAST::findFirstToken not allowed in side-effect-free method</message>
+    <lineContent>&amp;&amp; modifiers.findFirstToken(TokenTypes.ABSTRACT) == null</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/DesignForExtensionCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.DetailAST::findFirstToken not allowed in side-effect-free method</message>
+    <lineContent>&amp;&amp; modifiers.findFirstToken(TokenTypes.FINAL) == null</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/DesignForExtensionCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.DetailAST::findFirstToken not allowed in side-effect-free method</message>
+    <lineContent>&amp;&amp; modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/DesignForExtensionCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.DetailAST::findFirstToken not allowed in side-effect-free method</message>
+    <lineContent>&amp;&amp; modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/DesignForExtensionCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.Scope::isIn not allowed in side-effect-free method</message>
+    <lineContent>return surroundingScope.isIn(Scope.PROTECTED)</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/DesignForExtensionCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.utils.ScopeUtil::isInInterfaceOrAnnotationBlock not allowed in side-effect-free method</message>
+    <lineContent>&amp;&amp; !ScopeUtil.isInInterfaceOrAnnotationBlock(methodDef)</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/DesignForExtensionCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(surroundingScope -&gt; {</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/FinalClassCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter keyExtractor of Comparator.comparingInt</message>
+    <lineContent>final Comparator&lt;ClassDesc&gt; longestMatch = Comparator.comparingInt(countProvider);</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/FinalClassCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter keyExtractor of Comparator.thenComparingInt</message>
+    <lineContent>.min(longestMatch.reversed().thenComparingInt(ClassDesc::getDepth));</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -99,6 +370,82 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/MemberDefHandler.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.DetailAST::findFirstToken not allowed in side-effect-free method</message>
+    <lineContent>.map(expr -&gt; expr.findFirstToken(TokenTypes.LITERAL_NEW))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/MemberDefHandler.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.DetailAST::findFirstToken not allowed in side-effect-free method</message>
+    <lineContent>.map(node -&gt; node.findFirstToken(TokenTypes.ARRAY_INIT));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/MemberDefHandler.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.DetailAST::findFirstToken not allowed in side-effect-free method</message>
+    <lineContent>return Optional.ofNullable(assign.findFirstToken(TokenTypes.EXPR))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/MemberDefHandler.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(assign -&gt; {</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/MemberDefHandler.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(expr -&gt; expr.findFirstToken(TokenTypes.LITERAL_NEW))</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/MemberDefHandler.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(node -&gt; node.findFirstToken(TokenTypes.ARRAY_INIT));</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter filter of Collection.removeIf</message>
+    <lineContent>tags.removeIf(JavadocTag::isParamTag);</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter filter of Collection.removeIf</message>
+    <lineContent>tags.removeIf(JavadocTag::isParamTag);</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
     <specifier>purity.call</specifier>
     <message>call to side-effecting com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl::getColumnNumber not allowed in side-effect-free method</message>
@@ -117,6 +464,135 @@
     <specifier>purity.call</specifier>
     <message>call to side-effecting com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo::getName not allowed in side-effect-free method</message>
     <lineContent>return &quot;JavadocTag[tag=&apos;&quot; + tagInfo.getName()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTypeCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.Scope::isIn not allowed in side-effect-free method</message>
+    <lineContent>&amp;&amp; (excludeScope == null || !surroundingScope.isIn(excludeScope))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTypeCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.Scope::isIn not allowed in side-effect-free method</message>
+    <lineContent>return surroundingScope.isIn(scope)</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTypeCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.utils.AnnotationUtil::containsAnnotation not allowed in side-effect-free method</message>
+    <lineContent>&amp;&amp; !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTypeCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(surroundingScope -&gt; {</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.Scope::isIn not allowed in side-effect-free method</message>
+    <lineContent>&amp;&amp; nodeScope.isIn(scope)</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.Scope::isIn not allowed in side-effect-free method</message>
+    <lineContent>&amp;&amp; surroundingScope.isIn(scope);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(surroundingScope -&gt; {</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocTypeCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.Scope::isIn not allowed in side-effect-free method</message>
+    <lineContent>&amp;&amp; (excludeScope == null || !surroundingScope.isIn(excludeScope))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocTypeCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.Scope::isIn not allowed in side-effect-free method</message>
+    <lineContent>return surroundingScope.isIn(scope)</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocTypeCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.utils.AnnotationUtil::containsAnnotation not allowed in side-effect-free method</message>
+    <lineContent>&amp;&amp; !AnnotationUtil.containsAnnotation(ast, skipAnnotations);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocTypeCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(surroundingScope -&gt; {</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/DetectorOptions.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>pattern = Optional.ofNullable(format).map(this::createPattern).orElse(null);</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/EmptyLineSeparatorCheck.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting com.puppycrawl.tools.checkstyle.api.DetailAST::findFirstToken not allowed in side-effect-free method</message>
+    <lineContent>.map(sibling -&gt; sibling.findFirstToken(TokenTypes.MODIFIERS))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/EmptyLineSeparatorCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(DetailAST::getFirstChild)</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/EmptyLineSeparatorCheck.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(sibling -&gt; sibling.findFirstToken(TokenTypes.MODIFIERS))</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -243,6 +719,17 @@
     <specifier>purity.call</specifier>
     <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.filters.XpathFilterElement::getPatternSafely not allowed in deterministic side-effect-free method</message>
     <lineContent>return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>Optional.ofNullable(checks).map(CommonUtil::createPattern).orElse(null),</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -390,5 +877,96 @@
     <specifier>purity.call</specifier>
     <message>call to non-deterministic side-effecting org.antlr.v4.runtime.CommonToken::getType not allowed in deterministic side-effect-free method</message>
     <lineContent>return getType() == other.getType()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting java.util.regex.Matcher::find not allowed in side-effect-free method</message>
+    <lineContent>&amp;&amp; PLAIN_XML.matcher(file.getName()).find()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>purity.call</specifier>
+    <message>call to side-effecting java.util.regex.Matcher::find not allowed in side-effect-free method</message>
+    <lineContent>&amp;&amp; PLAIN_XML.matcher(name).find()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter filter of File.listFiles</message>
+    <lineContent>final File[] xmlFiles = dir.listFiles(file -&gt; {</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter filter of File.listFiles</message>
+    <lineContent>final File[] xmlFiles = xdocsDir.listFiles(file -&gt; {</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(DetailAST::getFirstChild)</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(DetailAST::getText)</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(DetailAST::getFirstChild)</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(DetailAST::getFirstChild);</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
+    <specifier>purity.functional.argument</specifier>
+    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
+    <lineContent>.map(AttributeNode::getStringValue)</lineContent>
+    <details>
+      found:    (no side effect annotation)
+      required: @SideEffectFree
+    </details>
   </checkerFrameworkError>
 </suppressedErrors>
