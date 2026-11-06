@@ -139,4 +139,35 @@ public class PatternVariableNameCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testPatternVariableNameCompactSourceFileDefault() throws Exception {
+
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
+
+        final String[] expected = {
+            "15:33: " + getCheckMessage(MSG_INVALID_PATTERN, "Bad", pattern),
+            "19:35: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD_NAME", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputPatternVariableNameCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testPatternVariableNameCompactSourceFileProperties() throws Exception {
+
+        final String pattern = "^[A-Z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "15:33: " + getCheckMessage(MSG_INVALID_PATTERN, "lower", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputPatternVariableNameCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
