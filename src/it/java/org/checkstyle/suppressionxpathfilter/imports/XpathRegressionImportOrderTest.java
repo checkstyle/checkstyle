@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.imports;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 
 public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathImportOrderOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ImportOrderCheck.class);
-
         final String[] expectedViolation = {
-            "4:1: " + getCheckMessage(ImportOrderCheck.class,
+            "20:1: " + getCheckMessage(ImportOrderCheck.class,
                     ImportOrderCheck.MSG_ORDERING_STATIC,
                     "java.util.Set"),
         };
@@ -61,20 +53,16 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
                 "/COMPILATION_UNIT/IMPORT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathImportOrderOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathImportOrderTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ImportOrderCheck.class);
-
         final String[] expectedViolation = {
-            "5:1: " + getCheckMessage(ImportOrderCheck.class,
+            "21:1: " + getCheckMessage(ImportOrderCheck.class,
                         ImportOrderCheck.MSG_SEPARATED_IN_GROUP, "java.util.Set"),
         };
 
@@ -82,22 +70,16 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
                 "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='Set']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathImportOrderTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathImportOrderThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ImportOrderCheck.class);
-        moduleConfig.addProperty("groups", "/^java\\./,javax,org");
-        moduleConfig.addProperty("separated", "true");
-
         final String[] expectedViolation = {
-            "4:1: " + getCheckMessage(ImportOrderCheck.class,
+            "20:1: " + getCheckMessage(ImportOrderCheck.class,
                         ImportOrderCheck.MSG_SEPARATION, "org.junit.*"),
         };
 
@@ -105,21 +87,16 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
                 "/COMPILATION_UNIT/IMPORT[./DOT/DOT/IDENT[@text='org']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathImportOrderThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testFour() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathImportOrderFour.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ImportOrderCheck.class);
-        moduleConfig.addProperty("option", "inflow");
-
         final String[] expectedViolation = {
-            "5:1: " + getCheckMessage(ImportOrderCheck.class,
+            "21:1: " + getCheckMessage(ImportOrderCheck.class,
                     ImportOrderCheck.MSG_ORDERING_LEX,
                     "java.lang.Math.PI",
                     "java.util.Set"),
@@ -129,21 +106,16 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
                 "/COMPILATION_UNIT/STATIC_IMPORT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathImportOrderFour.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testFive() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathImportOrderFive.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ImportOrderCheck.class);
-        moduleConfig.addProperty("groups", "/^java\\./,javax,org");
-
         final String[] expectedViolation = {
-            "5:1: " + getCheckMessage(ImportOrderCheck.class,
+            "21:1: " + getCheckMessage(ImportOrderCheck.class,
                     ImportOrderCheck.MSG_ORDERING_GROUP,
                     "java.util.Date"),
         };
@@ -152,8 +124,10 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
                 "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='Date']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathImportOrderFive.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
