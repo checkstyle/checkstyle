@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>14.4.1-SNAPSHOT</version>
+  <version>14.5.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -198,7 +198,7 @@
   </issueManagement>
 
   <properties>
-    <project.build.outputTimestamp>${maven.build.timestamp}</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2026-11-06T05:26:46Z</project.build.outputTimestamp>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <surefire.options />
     <projectVersion>${project.version}</projectVersion>
