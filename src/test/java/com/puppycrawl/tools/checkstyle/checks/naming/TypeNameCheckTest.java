@@ -129,4 +129,42 @@ public class TypeNameCheckTest extends AbstractModuleTestSupport {
                 getPath("InputTypeNameProperties.java"), expected);
     }
 
+    @Test
+    public void testTypeNameCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "21:7: " + getCheckMessage(MSG_INVALID_PATTERN, "badName", DEFAULT_PATTERN),
+            "24:21: " + getCheckMessage(MSG_INVALID_PATTERN, "Bad_Name", DEFAULT_PATTERN),
+            "27:22: " + getCheckMessage(MSG_INVALID_PATTERN, "lowerCase", DEFAULT_PATTERN),
+            "30:11: " + getCheckMessage(MSG_INVALID_PATTERN, "badInterface", DEFAULT_PATTERN),
+            "33:6: " + getCheckMessage(MSG_INVALID_PATTERN, "badEnum", DEFAULT_PATTERN),
+            "37:8: " + getCheckMessage(MSG_INVALID_PATTERN, "badRecord", DEFAULT_PATTERN),
+            "40:12: " + getCheckMessage(MSG_INVALID_PATTERN, "badAnnotation", DEFAULT_PATTERN),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputTypeNameCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testTypeNameCompactSourceFileProperties1() throws Exception {
+        final String[] expected = {
+            "21:7: " + getCheckMessage(MSG_INVALID_PATTERN, "lower", "^[A-Z][A-Z0-9]*$"),
+            "24:22: " + getCheckMessage(MSG_INVALID_PATTERN, "lowercase", "^[A-Z][A-Z0-9]*$"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputTypeNameCompactSourceFileProperties1.java"),
+                expected);
+    }
+
+    @Test
+    public void testTypeNameCompactSourceFileProperties2() throws Exception {
+        final String[] expected = {
+            "24:21: " + getCheckMessage(MSG_INVALID_PATTERN, "badPublic", DEFAULT_PATTERN),
+            "27:24: " + getCheckMessage(MSG_INVALID_PATTERN, "Bad_Protected", DEFAULT_PATTERN),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputTypeNameCompactSourceFileProperties2.java"),
+                expected);
+    }
+
 }
