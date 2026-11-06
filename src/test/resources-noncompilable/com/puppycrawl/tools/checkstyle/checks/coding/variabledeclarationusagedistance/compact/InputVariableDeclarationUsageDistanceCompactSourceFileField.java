@@ -10,8 +10,7 @@
 
 // non-compiled with javac: Compilable with Java25
 
-// until #22458: fields in compact sources should be ignored
-int processed; // violation 'Distance between variable .* is 4, but allowed 3.'
+int processed;
 
 void main() {
     System.out.println("Processing items");

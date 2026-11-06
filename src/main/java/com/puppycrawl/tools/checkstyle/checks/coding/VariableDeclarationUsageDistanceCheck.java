@@ -179,6 +179,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         final DetailAST modifiers = ast.getFirstChild();
 
         if (parentType != TokenTypes.OBJBLOCK
+                && parentType != TokenTypes.COMPACT_COMPILATION_UNIT
                 && (!ignoreFinal || modifiers.findFirstToken(TokenTypes.FINAL) == null)) {
             final DetailAST variable = ast.findFirstToken(TokenTypes.IDENT);
 
