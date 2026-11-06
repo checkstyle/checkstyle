@@ -108,7 +108,6 @@ public class AllChecksCompactSourceCoverageTest {
         "IndentationCheck",
         "InterfaceIsTypeCheck",
         "InterfaceMemberImpliedModifierCheck",
-        "InterfaceTypeParameterNameCheck",
         "InvalidJavadocPositionCheck",
         "JavaNCSSCheck",
         "JavadocContentLocationCheck",
