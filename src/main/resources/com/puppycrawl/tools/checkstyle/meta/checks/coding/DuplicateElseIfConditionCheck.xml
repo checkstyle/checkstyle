@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.DuplicateElseIfConditionCheck"
+             name="DuplicateElseIfCondition"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that a condition is not repeated where it can never matter: an &lt;code&gt;else if&lt;/code&gt;
+ condition identical to an earlier condition in the same &lt;code&gt;if-else-if&lt;/code&gt; chain.
+ Such a branch is unreachable.
+ Conditions are compared by AST structure, so formatting and comments are ignored.
+ &lt;/div&gt;</description>
+         <message-keys>
+            <message-key key="duplicate.else.if.condition"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
