@@ -61,11 +61,75 @@ This project and everyone participating in it is governed by the
 - **Follow the template.** Please follow the
   [CheckStyle Pull Request Template][pr-template] that is provided in the
   pull request description when submitting a pull request.
+- **Write a proper commit message.** Please follow the rules in
+  [Commit Messages](#commit-messages) below. The message is validated in CI,
+  and a pull request is expected to contain a single commit.
 - **Run maven build locally.** `mvn clean verify` should pass on your local before
   submitting a pull request.
 - **Keep the PR small.** If you are working on a large feature, consider breaking it up into
   smaller PRs that can be reviewed and merged independently. This makes it easier for
   reviewers to understand the changes and for maintainers to merge the PR.
+
+### Commit Messages
+
+Every commit message is a single line of text, no longer than 200 characters, and
+it must not end with a period, a space, or a tab. The commit must not have a body
+or trailers (like `Co-Authored-By:`), as the message is validated by
+`CommitValidationTest`. Start the message with one of the prefixes below,
+followed by a space and a brief description of the change. Write the description
+in the imperative form ("Add", "Fix", "Remove", "Update") and keep it specific,
+so a reader understands the change without opening the pull request.
+
+A change that fixes a defect or changes behaviour must reference its issue, so
+the change is picked up by the release notes. Never use `minor:` for a defect.
+
+- `Issue #<number>:` is for a change that resolves the referenced issue. This
+  is the format for bug fixes, new features, and every change of behaviour.
+  Example: [Issue #21861: Migrate JavadocVariable XPath tests to inline
+  configuration][commit-example-issue]
+- `Pull #<number>:` is for a change that is tracked by the pull request itself,
+  when there is no issue for it. The number must be the number of the pull
+  request that contains the commit.
+  Example: [Pull #22293: Report outdated ArchUnit suppressions for items that
+  already follow the rule][commit-example-pull]
+
+Small changes that do not resolve an issue can be contributed with one of the
+following prefixes instead:
+
+- `minor:` is for small changes that do not fit any other prefix, like removing
+  stale suppressions or small updates to contributor facing files.
+  Example: [minor: Update pull request template with validation
+  instructions][commit-example-minor]
+- `config:` is for changes of configuration files, like the project
+  configuration of checks, continuous integration services, or ignore files.
+  Example: [config: Ignore stray jacoco.exec that can land at the repo
+  root][commit-example-config]
+- `infra:` is for changes of the infrastructure that keeps the project running,
+  like workflow files, continuous integration scripts, and release tooling.
+  Example: [infra: select latest Eclipse compiler release by version in
+  eclipse-static-analysis][commit-example-infra]
+- `doc:` is for changes of documentation only, like site pages, guides, and
+  release notes.
+  Example: [doc: Add documentation for
+  checkstyle-openrewrite-recipes][commit-example-doc]
+- `dependency:` is for updates of versions of dependencies and plugins.
+  Example: [dependency: bump jacoco.plugin.version from 0.8.15 to
+  0.8.16][commit-example-dependency]
+- `spelling:` is for fixes of spelling mistakes only, in documentation,
+  comments, or messages.
+  Example: [spelling: suppresion -> suppression][commit-example-spelling]
+- `supplemental:` is for additional changes that supplement the work on an
+  issue but are not the fix for the issue itself, like a cleanup of violations
+  or of test inputs that was noticed while the main change was in review. Put
+  the number of the issue at the end of the message.
+  Example: [supplemental: resolve JavadocUtilizingTrailingSpace violations
+  #21890][commit-example-supplemental]
+
+Starting a commit message with a type is an idea that is shared with other
+projects. The [Conventional Commits][conventional-commits] specification
+describes such a convention and is useful background reading. Checkstyle does
+not use the types of that specification (like `feat:` or `fix:`), only the
+formats listed above are accepted here.
 
 ## Code Review
 
@@ -175,3 +239,23 @@ https://github.com/checkstyle/checkstyle/discussions
 https://groups.google.com/g/checkstyle-devel
 [build-instructions]:
 https://github.com/checkstyle/checkstyle/blob/master/docs/BEGINNING_DEVELOPMENT.md
+[commit-example-issue]:
+https://github.com/checkstyle/checkstyle/commit/0fa8737d14d44f8f139dbb4cfd108e54450c00c2
+[commit-example-pull]:
+https://github.com/checkstyle/checkstyle/commit/5d6b570ba9744c640f5b2c241818bb85fe8f3910
+[commit-example-minor]:
+https://github.com/checkstyle/checkstyle/commit/1db68a3e587291c8c042aeb0c17f2fc5dba7f3a5
+[commit-example-config]:
+https://github.com/checkstyle/checkstyle/commit/a934e12dee4b9063cd4b3e3dd8c1eb98afd67104
+[commit-example-infra]:
+https://github.com/checkstyle/checkstyle/commit/c1fbcb7a1b67faacb81d8514fa3fd06cc52453dd
+[commit-example-doc]:
+https://github.com/checkstyle/checkstyle/commit/e8009ae47faae2152c97e56b44c7d4a5e620b164
+[commit-example-dependency]:
+https://github.com/checkstyle/checkstyle/commit/0b7125bffb444037fbc2e63fff85916784756f01
+[commit-example-spelling]:
+https://github.com/checkstyle/checkstyle/commit/ee37567e7b96f4e385868b77f11d63a213718b35
+[commit-example-supplemental]:
+https://github.com/checkstyle/checkstyle/commit/8c0de8cacdf0d8caf9043a6762a510f4fea7afd1
+[conventional-commits]:
+https://www.conventionalcommits.org/en/v1.0.0/
