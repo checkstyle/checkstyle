@@ -45,10 +45,12 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
     private static final String EOL = System.lineSeparator();
 
     private static final String SUPPRESSION_XML_HEADER =
-                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
-                + "<!DOCTYPE suppressions PUBLIC" + EOL
-                + "    \"-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN\"" + EOL
-                + "    \"https://checkstyle.org/dtds/suppressions_1_2.dtd\">" + EOL;
+            """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE suppressions PUBLIC
+                "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+                "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+            """.replace("\n", EOL);
 
     private static final Violation FIRST_MESSAGE = createViolation(3, 51,
             TokenTypes.LCURLY, null, LeftCurlyCheck.class);
@@ -177,19 +179,17 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
         final AuditEvent event2 = createAuditEvent(
                 "InputChecksAndFilesSuppressionFileGeneratorAuditListener.java", SECOND_MESSAGE);
 
-        final String expected = SUPPRESSION_XML_HEADER
-                + "<suppressions>" + EOL
-                + "  <suppress" + EOL
-                + "      files=\"InputChecksAndFilesSuppressionFileGeneratorAuditListener.java\""
-                + EOL
-                + "      checks=\"LeftCurlyCheck\""
-                + "/>" + EOL
-                + "  <suppress" + EOL
-                + "      files=\"InputChecksAndFilesSuppressionFileGeneratorAuditListener.java\""
-                + EOL
-                + "      id=\"JavadocModuleId\""
-                + "/>" + EOL
-                + "</suppressions>" + EOL;
+        final String expected = SUPPRESSION_XML_HEADER.concat(
+                """
+                <suppressions>
+                  <suppress
+                      files="InputChecksAndFilesSuppressionFileGeneratorAuditListener.java"
+                      checks="LeftCurlyCheck"/>
+                  <suppress
+                      files="InputChecksAndFilesSuppressionFileGeneratorAuditListener.java"
+                      id="JavadocModuleId"/>
+                </suppressions>
+                """.replace("\n", EOL));
 
         verifyOutput(expected, event1, event2);
     }
@@ -203,19 +203,17 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
         final AuditEvent event2 = createAuditEvent(
                 "InputChecksAndFilesSuppressionFileGeneratorAuditListener.java", THIRD_MESSAGE);
 
-        final String expected = SUPPRESSION_XML_HEADER
-                + "<suppressions>" + EOL
-                + "  <suppress" + EOL
-                + "      files=\"InputChecksAndFilesSuppressionFileGeneratorAuditListener.java\""
-                + EOL
-                + "      checks=\"JavadocVariableCheck\""
-                + "/>" + EOL
-                + "  <suppress" + EOL
-                + "      files=\"InputChecksAndFilesSuppressionFileGeneratorAuditListener.java\""
-                + EOL
-                + "      id=\"MyModule\""
-                + "/>" + EOL
-                + "</suppressions>" + EOL;
+        final String expected = SUPPRESSION_XML_HEADER.concat(
+                """
+                <suppressions>
+                  <suppress
+                      files="InputChecksAndFilesSuppressionFileGeneratorAuditListener.java"
+                      checks="JavadocVariableCheck"/>
+                  <suppress
+                      files="InputChecksAndFilesSuppressionFileGeneratorAuditListener.java"
+                      id="MyModule"/>
+                </suppressions>
+                """.replace("\n", EOL));
 
         verifyOutput(expected, event1, event2);
     }
@@ -225,14 +223,14 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
         final AuditEvent event = createAuditEvent(
                 "Input&SuppressionFileGenerator.java", FIRST_MESSAGE);
 
-        final String expected = SUPPRESSION_XML_HEADER
-                + "<suppressions>" + EOL
-                + "  <suppress" + EOL
-                + "      files=\"Input&amp;SuppressionFileGenerator.java\""
-                + EOL
-                + "      checks=\"LeftCurlyCheck\""
-                + "/>" + EOL
-                + "</suppressions>" + EOL;
+        final String expected = SUPPRESSION_XML_HEADER.concat(
+                """
+                <suppressions>
+                  <suppress
+                      files="Input&amp;SuppressionFileGenerator.java"
+                      checks="LeftCurlyCheck"/>
+                </suppressions>
+                """.replace("\n", EOL));
 
         verifyOutput(expected, event);
     }
@@ -241,9 +239,11 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
     public void testFileNameNullCase() {
         final AuditEvent event1 = new AuditEvent(this, "/", FIRST_MESSAGE);
 
-        final String expected = SUPPRESSION_XML_HEADER
-                + "<suppressions>" + EOL
-                + "</suppressions>" + EOL;
+        final String expected = SUPPRESSION_XML_HEADER.concat(
+                """
+                <suppressions>
+                </suppressions>
+                """.replace("\n", EOL));
 
         verifyOutput(expected, event1);
     }
