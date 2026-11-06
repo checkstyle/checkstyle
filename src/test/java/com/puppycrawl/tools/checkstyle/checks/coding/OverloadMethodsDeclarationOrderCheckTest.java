@@ -89,10 +89,10 @@ public class OverloadMethodsDeclarationOrderCheckTest
     public void testOrderByIncreasingArity() throws Exception {
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_ORDER),
-            "24:5: " + getCheckMessage(MSG_ORDER),
             "32:9: " + getCheckMessage(MSG_ORDER),
             "35:9: " + getCheckMessage(MSG_ORDER),
             "48:9: " + getCheckMessage(MSG_ORDER),
+            "57:9: " + getCheckMessage(MSG_ORDER),
         };
         verifyWithInlineConfigParser(
             getPath("InputOverloadMethodsDeclarationOrderArity.java"), expected);
