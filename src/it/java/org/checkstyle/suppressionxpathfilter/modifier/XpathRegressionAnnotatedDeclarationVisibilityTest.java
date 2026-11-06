@@ -19,13 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter.modifier;
 
-import java.io.File;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.modifier.AnnotatedDeclarationVisibilityCheck;
 
 public class XpathRegressionAnnotatedDeclarationVisibilityTest extends AbstractXpathTestSupport {
@@ -44,14 +42,8 @@ public class XpathRegressionAnnotatedDeclarationVisibilityTest extends AbstractX
 
     @Test
     public void testPublicModifier() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathAnnotatedDeclarationVisibilityPublic.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotatedDeclarationVisibilityCheck.class);
-
         final String[] expectedViolation = {
-            "5:5: " + getCheckMessage(AnnotatedDeclarationVisibilityCheck.class,
+            "17:5: " + getCheckMessage(AnnotatedDeclarationVisibilityCheck.class,
                     AnnotatedDeclarationVisibilityCheck.MSG_KEY, "public"),
         };
 
@@ -67,20 +59,16 @@ public class XpathRegressionAnnotatedDeclarationVisibilityTest extends AbstractX
             methodXpath + "/MODIFIERS/ANNOTATION/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotatedDeclarationVisibilityPublic.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testPrivateModifier() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathAnnotatedDeclarationVisibilityPrivate.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotatedDeclarationVisibilityCheck.class);
-
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(AnnotatedDeclarationVisibilityCheck.class,
+            "18:9: " + getCheckMessage(AnnotatedDeclarationVisibilityCheck.class,
                     AnnotatedDeclarationVisibilityCheck.MSG_KEY, "private"),
         };
 
@@ -97,22 +85,16 @@ public class XpathRegressionAnnotatedDeclarationVisibilityTest extends AbstractX
             methodXpath + "/MODIFIERS/ANNOTATION/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotatedDeclarationVisibilityPrivate.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testPackagePrivateModifier() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathAnnotatedDeclarationVisibilityPackagePrivate.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotatedDeclarationVisibilityCheck.class);
-
-        moduleConfig.addProperty("visibility", "public");
-
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(AnnotatedDeclarationVisibilityCheck.class,
+            "18:9: " + getCheckMessage(AnnotatedDeclarationVisibilityCheck.class,
                     AnnotatedDeclarationVisibilityCheck.MSG_KEY, "package-private"),
         };
 
@@ -130,20 +112,16 @@ public class XpathRegressionAnnotatedDeclarationVisibilityTest extends AbstractX
             methodXpath + "/MODIFIERS/ANNOTATION/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotatedDeclarationVisibilityPackagePrivate.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testNestedClassDeclaration() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathAnnotatedDeclarationVisibilityNestedClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotatedDeclarationVisibilityCheck.class);
-
         final String[] expectedViolation = {
-            "5:5: " + getCheckMessage(AnnotatedDeclarationVisibilityCheck.class,
+            "17:5: " + getCheckMessage(AnnotatedDeclarationVisibilityCheck.class,
                     AnnotatedDeclarationVisibilityCheck.MSG_KEY, "public"),
         };
 
@@ -159,22 +137,16 @@ public class XpathRegressionAnnotatedDeclarationVisibilityTest extends AbstractX
             declarationXpath + "/MODIFIERS/ANNOTATION/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotatedDeclarationVisibilityNestedClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testAnonymousClassField() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathAnnotatedDeclarationVisibilityAnonymousField.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnnotatedDeclarationVisibilityCheck.class);
-
-        moduleConfig.addProperty("visibility", "public");
-
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(AnnotatedDeclarationVisibilityCheck.class,
+            "18:9: " + getCheckMessage(AnnotatedDeclarationVisibilityCheck.class,
                     AnnotatedDeclarationVisibilityCheck.MSG_KEY, "package-private"),
         };
 
@@ -192,8 +164,10 @@ public class XpathRegressionAnnotatedDeclarationVisibilityTest extends AbstractX
             declarationXpath + "/MODIFIERS/ANNOTATION/AT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotatedDeclarationVisibilityAnonymousField.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
