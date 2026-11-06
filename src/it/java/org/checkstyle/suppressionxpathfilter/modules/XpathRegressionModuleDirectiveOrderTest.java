@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.modules;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.modules.ModuleDirectiveOrderCheck;
 
 public class XpathRegressionModuleDirectiveOrderTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionModuleDirectiveOrderTest extends AbstractXpathTestSu
 
     @Test
     public void testOrder() throws Exception {
-        final File fileToProcess = new File(getNonCompilablePath(
-                "order/module-info.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ModuleDirectiveOrderCheck.class);
-
         final String[] expectedViolation = {
-            "5:5: " + getCheckMessage(ModuleDirectiveOrderCheck.class,
+            "14:5: " + getCheckMessage(ModuleDirectiveOrderCheck.class,
                     ModuleDirectiveOrderCheck.MSG_ORDER, "requires", "exports"),
         };
 
@@ -60,20 +52,16 @@ public class XpathRegressionModuleDirectiveOrderTest extends AbstractXpathTestSu
             "/COMPILATION_UNIT/MODULE_DEF/DIRECTIVE_BLOCK/REQUIRES"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getNonCompilablePath("order/module-info.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testGrouping() throws Exception {
-        final File fileToProcess = new File(getNonCompilablePath(
-                "grouping/module-info.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ModuleDirectiveOrderCheck.class);
-
         final String[] expectedViolation = {
-            "7:5: " + getCheckMessage(ModuleDirectiveOrderCheck.class,
+            "16:5: " + getCheckMessage(ModuleDirectiveOrderCheck.class,
                     ModuleDirectiveOrderCheck.MSG_GROUPING, "requires"),
         };
 
@@ -81,20 +69,16 @@ public class XpathRegressionModuleDirectiveOrderTest extends AbstractXpathTestSu
             "/COMPILATION_UNIT/MODULE_DEF/DIRECTIVE_BLOCK/REQUIRES[./IDENT[@text='jdk']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getNonCompilablePath("grouping/module-info.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testSeparation() throws Exception {
-        final File fileToProcess = new File(getNonCompilablePath(
-                "separation/module-info.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ModuleDirectiveOrderCheck.class);
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(ModuleDirectiveOrderCheck.class,
+            "13:5: " + getCheckMessage(ModuleDirectiveOrderCheck.class,
                     ModuleDirectiveOrderCheck.MSG_SEPARATION, "exports"),
         };
 
@@ -102,8 +86,10 @@ public class XpathRegressionModuleDirectiveOrderTest extends AbstractXpathTestSu
             "/COMPILATION_UNIT/MODULE_DEF/DIRECTIVE_BLOCK/EXPORTS"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getNonCompilablePath("separation/module-info.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
