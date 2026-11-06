@@ -14,7 +14,7 @@
      ```
      ^Issue #\d+: .*$
      ^Pull #\d+: .*$
-     ^(minor|config|infra|doc|spelling|dependency): .*$
+     ^(minor|config|infra|doc|spelling|dependency|supplemental): .*$
      ```
 
    - MUST contain only one line of text
