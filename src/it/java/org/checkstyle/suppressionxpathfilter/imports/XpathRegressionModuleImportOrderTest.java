@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.imports;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.imports.ModuleImportOrderCheck;
 
 public class XpathRegressionModuleImportOrderTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionModuleImportOrderTest extends AbstractXpathTestSuppo
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getNonCompilablePath("InputXpathModuleImportOrderOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ModuleImportOrderCheck.class);
-
         final String[] expectedViolation = {
-            "6:1: " + getCheckMessage(ModuleImportOrderCheck.class,
+            "15:1: " + getCheckMessage(ModuleImportOrderCheck.class,
                     ModuleImportOrderCheck.MSG_POSITION,
                     "java.desktop"),
         };
@@ -61,20 +53,16 @@ public class XpathRegressionModuleImportOrderTest extends AbstractXpathTestSuppo
                 "/COMPILATION_UNIT/MODULE_IMPORT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getNonCompilablePath("InputXpathModuleImportOrderOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getNonCompilablePath("InputXpathModuleImportOrderTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ModuleImportOrderCheck.class);
-
         final String[] expectedViolation = {
-            "6:1: " + getCheckMessage(ModuleImportOrderCheck.class,
+            "15:1: " + getCheckMessage(ModuleImportOrderCheck.class,
                     ModuleImportOrderCheck.MSG_ORDERING_LEX,
                     "java.sql", "jdk.compiler"),
         };
@@ -83,21 +71,16 @@ public class XpathRegressionModuleImportOrderTest extends AbstractXpathTestSuppo
                 "/COMPILATION_UNIT/MODULE_IMPORT[./DOT/IDENT[@text='java']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getNonCompilablePath("InputXpathModuleImportOrderTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getNonCompilablePath("InputXpathModuleImportOrderThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ModuleImportOrderCheck.class);
-        moduleConfig.addProperty("separated", "true");
-
         final String[] expectedViolation = {
-            "6:1: " + getCheckMessage(ModuleImportOrderCheck.class,
+            "14:1: " + getCheckMessage(ModuleImportOrderCheck.class,
                     ModuleImportOrderCheck.MSG_SEPARATION,
                     "java.util.List"),
         };
@@ -106,8 +89,10 @@ public class XpathRegressionModuleImportOrderTest extends AbstractXpathTestSuppo
                 "/COMPILATION_UNIT/IMPORT"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getNonCompilablePath("InputXpathModuleImportOrderThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
