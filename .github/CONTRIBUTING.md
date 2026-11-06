@@ -61,11 +61,27 @@ This project and everyone participating in it is governed by the
 - **Follow the template.** Please follow the
   [CheckStyle Pull Request Template][pr-template] that is provided in the
   pull request description when submitting a pull request.
+- **Write a proper commit message.** Please follow the rules in
+  [Commit Messages](#commit-messages) below. The message is validated in CI,
+  and a pull request is expected to contain a single commit.
 - **Run maven build locally.** `mvn clean verify` should pass on your local before
   submitting a pull request.
 - **Keep the PR small.** If you are working on a large feature, consider breaking it up into
   smaller PRs that can be reviewed and merged independently. This makes it easier for
   reviewers to understand the changes and for maintainers to merge the PR.
+
+### Commit Messages
+
+Every commit message is a single line of text, no longer than 200 characters, and
+it must not end with a period, a space, or a tab. The commit must not have a body
+or trailers (like `Co-Authored-By:`), as the message is validated by
+`CommitValidationTest`. Start the message with one of the accepted prefixes,
+followed by a space and a brief description of the change. Write the description
+in the imperative form ("Add", "Fix", "Remove", "Update") and keep it specific,
+so a reader understands the change without opening the pull request.
+
+A change that fixes a defect or changes behaviour must reference its issue, so
+the change is picked up by the release notes. Never use `minor:` for a defect.
 
 ## Code Review
 
