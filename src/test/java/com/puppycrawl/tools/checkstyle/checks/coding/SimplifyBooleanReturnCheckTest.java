@@ -38,9 +38,33 @@ public class SimplifyBooleanReturnCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "22:9: " + getCheckMessage(MSG_KEY),
             "35:9: " + getCheckMessage(MSG_KEY),
+            "65:9: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSimplifyBooleanReturn.java"), expected);
+    }
+
+    @Test
+    public void testIfWithoutElse() throws Exception {
+        final String[] expected = {
+            "12:9: " + getCheckMessage(MSG_KEY),
+            "19:9: " + getCheckMessage(MSG_KEY),
+            "26:9: " + getCheckMessage(MSG_KEY),
+            "86:13: " + getCheckMessage(MSG_KEY),
+            "97:17: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputSimplifyBooleanReturnIfWithoutElse.java"), expected);
+    }
+
+    @Test
+    public void testIfWithoutElseYield() throws Exception {
+        final String[] expected = {
+            "14:17: " + getCheckMessage(MSG_KEY),
+            "26:17: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputSimplifyBooleanReturnIfWithoutElseYield.java"), expected);
     }
 
     @Test
