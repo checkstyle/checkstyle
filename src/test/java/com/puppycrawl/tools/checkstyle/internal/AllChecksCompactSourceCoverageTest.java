@@ -147,7 +147,6 @@ public class AllChecksCompactSourceCoverageTest {
         "OneTopLevelClassCheck",
         "OverloadMethodsDeclarationOrderCheck",
         "PackageAnnotationCheck",
-        "PackageDeclarationCheck",
         "PackageNameCheck",
         "ParameterAssignmentCheck",
         "PatternVariableAssignmentCheck",
