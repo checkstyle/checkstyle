@@ -1,6 +1,7 @@
 /*
 EmptyLineWrappingInBlock
-tokens = (default) CLASS_DEF,INTERFACE_DEF,ANNOTATION_DEF,ENUM_DEF,ENUM_CONSTANT_DEF,
+tokens = CLASS_DEF,INTERFACE_DEF,ANNOTATION_DEF,ENUM_DEF,ENUM_CONSTANT_DEF, \
+           RECORD_DEF, COMPACT_CTOR_DEF
 topSeparator = no_empty_line
 bottomSeparator = no_empty_line
 
@@ -24,6 +25,16 @@ enum InputEmptyLineWrappingInBlockInterfaceAnnotationEnumEnum {
 @interface InputEmptyLineWrappingInBlockInterfaceAnnotationEnumAnnot {
 
     String value();
+
+} // violation ''}' can not have empty line before.'
+
+record Point(int x, int y) { // violation ''{' can not have empty line after.'
+
+    Point { // violation ''{' can not have empty line after.'
+
+        int a = 0;
+
+    } // violation ''}' can not have empty line before.'
 
 } // violation ''}' can not have empty line before.'
 
