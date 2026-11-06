@@ -498,6 +498,7 @@
     <details>
       unsatisfiable constraint: @GuardedBy DetailAST &lt;: @GuardSatisfied Object
       From complementary bound: use of T from Stream.iterate(startNode.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling) &lt;: @GuardSatisfied Object
+      use of T from Stream.iterate(startNode.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling) -&gt; @GuardSatisfied Object
       Objects::nonNull -&gt; inference type: java.util.function.Predicate&lt;? super T&gt;
       From: Argument constraint
     </details>
@@ -509,7 +510,7 @@
     <message>Could not infer type arguments for Optional.map</message>
     <lineContent>.map(children::indexOf);</lineContent>
     <details>
-      unsatisfiable constraint: @GuardedBy DetailAST &lt;: @GuardSatisfied Object
+      unsatisfiable constraint: @GuardedBy DetailAST -&gt; @GuardSatisfied Object
       children::indexOf -&gt; inference type: java.util.function.Function&lt;? super com.puppycrawl.tools.checkstyle.api.DetailAST,? extends U&gt;
       From: Argument constraint
     </details>
@@ -538,6 +539,7 @@
     <details>
       unsatisfiable constraint: @GuardedBy DetailAST &lt;: @GuardSatisfied Object
       From complementary bound: use of T from Stream.iterate(nonCommentAst.getPreviousSibling(), Objects::nonNull, DetailAST::getPreviousSibling) &lt;: @GuardSatisfied Object
+      use of T from Stream.iterate(nonCommentAst.getPreviousSibling(), Objects::nonNull, DetailAST::getPreviousSibling) -&gt; @GuardSatisfied Object
       Objects::nonNull -&gt; inference type: java.util.function.Predicate&lt;? super T&gt;
       From: Argument constraint
     </details>
@@ -764,6 +766,7 @@
     <details>
       unsatisfiable constraint: @GuardedBy DetailAST &lt;: @GuardSatisfied Object
       From complementary bound: use of T from Stream.iterate(node.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling) &lt;: @GuardSatisfied Object
+      use of T from Stream.iterate(node.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling) -&gt; @GuardSatisfied Object
       Objects::nonNull -&gt; inference type: java.util.function.Predicate&lt;? super T&gt;
       From: Argument constraint
     </details>
