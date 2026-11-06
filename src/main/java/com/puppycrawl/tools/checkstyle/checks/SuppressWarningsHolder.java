@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -78,6 +79,14 @@ public class SuppressWarningsHolder extends AbstractCheck {
      */
     private static final ThreadLocal<List<Entry>> ENTRIES =
             ThreadLocal.withInitial(ArrayList::new);
+
+    /**
+     * A thread-local holder for the path of the last file parsed.
+     */
+    private static final ThreadLocal<String> ENTRIES_FILE = new ThreadLocal<>();
+
+    /** Name element that refers to a parent directory in a path. */
+    private static final String PARENT_DIRECTORY = "..";
 
     /**
      * Compiled pattern used to match whitespace in text block content.
@@ -196,7 +205,7 @@ public class SuppressWarningsHolder extends AbstractCheck {
      * @return whether the check with the given name is suppressed at the given source location
      */
     public static boolean isSuppressed(AuditEvent event) {
-        final List<Entry> entries = ENTRIES.get();
+        final List<Entry> entries = getEntries(event.getFileName());
         final String sourceName = event.getSourceName();
         final String checkAlias = getAlias(sourceName);
         final int line = event.getLine();
@@ -218,6 +227,51 @@ public class SuppressWarningsHolder extends AbstractCheck {
             }
         }
         return suppressed;
+    }
+
+    /**
+     * Returns the suppression entries that apply to the given file. Entries are
+     * collected from the last file parsed, so they do not apply to other files,
+     * such as files that are audited after it without being parsed.
+     *
+     * @param fileName the name of the file of the audit event.
+     * @return the suppression entries of the given file.
+     */
+    private static List<Entry> getEntries(String fileName) {
+        final List<Entry> entries;
+        if (isEntriesFile(fileName)) {
+            entries = ENTRIES.get();
+        }
+        else {
+            entries = List.of();
+        }
+        return entries;
+    }
+
+    /**
+     * Checks whether the given file name refers to the last file parsed. The file
+     * name of an audit event is either the absolute path of the file or the path
+     * relative to the base directory, which starts with parent directory elements
+     * when the file is outside of the base directory.
+     *
+     * @param fileName the name of the file of the audit event.
+     * @return true if the given file name refers to the last file parsed.
+     */
+    private static boolean isEntriesFile(String fileName) {
+        final String entriesFile = ENTRIES_FILE.get();
+        boolean result = false;
+        if (entriesFile != null) {
+            Path path = Path.of(fileName);
+            int index = 0;
+            while (PARENT_DIRECTORY.equals(path.getName(index).toString())) {
+                index++;
+            }
+            if (index > 0) {
+                path = path.subpath(index, path.getNameCount());
+            }
+            result = Path.of(entriesFile).endsWith(path);
+        }
+        return result;
     }
 
     /**
@@ -270,6 +324,7 @@ public class SuppressWarningsHolder extends AbstractCheck {
     @Override
     public void beginTree(DetailAST rootAST) {
         ENTRIES.get().clear();
+        ENTRIES_FILE.set(getFilePath());
     }
 
     @Override
@@ -504,6 +559,7 @@ public class SuppressWarningsHolder extends AbstractCheck {
     public void destroy() {
         super.destroy();
         ENTRIES.remove();
+        ENTRIES_FILE.remove();
     }
 
     /**
