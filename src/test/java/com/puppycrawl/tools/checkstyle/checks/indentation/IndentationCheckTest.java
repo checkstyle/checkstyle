@@ -221,6 +221,14 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testEmptyArgumentList() throws Exception {
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+        };
+        verifyWithInlineConfigParser(getPath("InputIndentationEmptyArgumentList.java"), expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final IndentationCheck checkObj = new IndentationCheck();
         final int[] requiredTokens = checkObj.getRequiredTokens();

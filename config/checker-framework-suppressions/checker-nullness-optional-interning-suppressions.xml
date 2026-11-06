@@ -5911,17 +5911,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/NewHandler.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter expression of NewHandler.checkNestedNew.</message>
-    <lineContent>if (checkNestedNew(expression) &amp;&amp; isOnStartOfLine(expression)) {</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailAST
-      required: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/NewHandler.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter lparen of AbstractExpressionHandler.checkLeftParen.</message>
     <lineContent>checkLeftParen(lparen);</lineContent>
     <details>
