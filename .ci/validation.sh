@@ -350,6 +350,37 @@ no-error-pmd)
   removeFolderWithProtectedFiles pmd
   ;;
 
+no-error-configurate)
+  CS_POM_VERSION="$(getPomVersion)" \
+    || { echo "Failed to get Checkstyle POM version."; exit 1; }
+  echo "CS_version: ${CS_POM_VERSION}"
+  ./mvnw -e --no-transfer-progress clean install -DskipTests -Pno-validations
+  echo "Checkout target sources ..."
+  # until https://github.com/SpongePowered/Configurate/pull/631
+  checkout_from "https://github.com/muntasir-396/Configurate.git"
+  cd .ci-temp/Configurate
+  git fetch --depth 1 origin update-checkstyle-14:update-checkstyle-14
+  git checkout update-checkstyle-14
+  cat >> customConfig.gradle << 'EOF'
+allprojects {
+    tasks.withType(Checkstyle).configureEach {
+        javaLauncher = javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
+}
+EOF
+  ./gradlew --no-daemon --no-parallel --max-workers=1 \
+    -Dorg.gradle.parallel=false \
+    -Dorg.gradle.workers.max=1 \
+    -Dorg.gradle.daemon=false \
+    -I customConfig.gradle \
+    -Dorg.gradle.jvmargs="-Xmx1g -XX:MaxMetaspaceSize=384m" \
+    -PcheckstyleVersion="${CS_POM_VERSION}" checkstyleMain checkstyleTest
+  cd ../
+  removeFolderWithProtectedFiles Configurate
+  ;;
+
 no-error-hazelcast)
   CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
