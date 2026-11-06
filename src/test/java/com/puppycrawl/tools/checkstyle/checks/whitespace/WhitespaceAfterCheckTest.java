@@ -507,4 +507,29 @@ public class WhitespaceAfterCheckTest extends AbstractModuleTestSupport {
             getPath("InputWhitespaceAfterSingleLineComment.java"), expected);
     }
 
+    @Test
+    public void testWhitespaceAfterCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "18:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "19:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "20:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputWhitespaceAfterCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testWhitespaceAfterCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "15:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "16:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputWhitespaceAfterCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
