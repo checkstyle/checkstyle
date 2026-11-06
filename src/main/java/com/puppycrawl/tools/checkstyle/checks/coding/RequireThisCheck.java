@@ -254,7 +254,8 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
                  TokenTypes.ANNOTATION_DEF, TokenTypes.SLIST, TokenTypes.METHOD_DEF,
                  TokenTypes.CTOR_DEF, TokenTypes.LITERAL_FOR,
-                 TokenTypes.RECORD_DEF -> current.pop();
+                 TokenTypes.RECORD_DEF,
+                 TokenTypes.COMPACT_COMPILATION_UNIT -> current.pop();
             case TokenTypes.LITERAL_TRY -> {
                 if (current.peek().getType() == FrameType.TRY_WITH_RESOURCES_FRAME) {
                     current.pop();
