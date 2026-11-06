@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck;
 
 public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTestSupport {
@@ -45,14 +43,8 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
     @Test
     public void testAnnotation() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAbbreviationAsWordInNameAnnotation.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AbbreviationAsWordInNameCheck.class);
-
         final String[] expectedViolation = {
-            "5:16: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
+            "20:16: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
                 AbbreviationAsWordInNameCheck.MSG_KEY, "ANNOTATION", 4),
         };
 
@@ -62,20 +54,16 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                     + "/OBJBLOCK/ANNOTATION_DEF/IDENT[@text='ANNOTATION']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAbbreviationAsWordInNameAnnotation.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testAnnotationField() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAbbreviationAsWordInNameAnnotationField.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AbbreviationAsWordInNameCheck.class);
-
         final String[] expectedViolation = {
-            "5:12: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
+            "20:12: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
                 AbbreviationAsWordInNameCheck.MSG_KEY, "ANNOTATION_FIELD", 4),
         };
 
@@ -85,20 +73,16 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                     + "/OBJBLOCK/ANNOTATION_FIELD_DEF/IDENT[@text='ANNOTATION_FIELD']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAbbreviationAsWordInNameAnnotationField.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testClass() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAbbreviationAsWordInNameClass.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AbbreviationAsWordInNameCheck.class);
-
         final String[] expectedViolation = {
-            "5:11: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
+            "20:11: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
                 AbbreviationAsWordInNameCheck.MSG_KEY, "CLASS", 4),
         };
 
@@ -108,20 +92,16 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                     + "/OBJBLOCK/CLASS_DEF/IDENT[@text='CLASS']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAbbreviationAsWordInNameClass.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEnum() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAbbreviationAsWordInNameEnum.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AbbreviationAsWordInNameCheck.class);
-
         final String[] expectedViolation = {
-            "5:10: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
+            "20:10: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
                 AbbreviationAsWordInNameCheck.MSG_KEY, "ENUMERATION", 4),
         };
 
@@ -131,20 +111,16 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                     + "/OBJBLOCK/ENUM_DEF/IDENT[@text='ENUMERATION']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAbbreviationAsWordInNameEnum.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testField() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAbbreviationAsWordInNameField.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AbbreviationAsWordInNameCheck.class);
-
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
+            "20:9: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
                 AbbreviationAsWordInNameCheck.MSG_KEY, "FIELD", 4),
         };
 
@@ -154,20 +130,16 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                     + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='FIELD']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAbbreviationAsWordInNameField.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testInterface() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAbbreviationAsWordInNameInterface.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AbbreviationAsWordInNameCheck.class);
-
         final String[] expectedViolation = {
-            "5:15: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
+            "20:15: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
                 AbbreviationAsWordInNameCheck.MSG_KEY, "INTERFACE", 4),
         };
 
@@ -177,20 +149,16 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                     + "/OBJBLOCK/INTERFACE_DEF/IDENT[@text='INTERFACE']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAbbreviationAsWordInNameInterface.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testMethod() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAbbreviationAsWordInNameMethod.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AbbreviationAsWordInNameCheck.class);
-
         final String[] expectedViolation = {
-            "5:10: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
+            "20:10: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
                 AbbreviationAsWordInNameCheck.MSG_KEY, "METHOD", 4),
         };
 
@@ -200,20 +168,16 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                     + "/OBJBLOCK/METHOD_DEF/IDENT[@text='METHOD']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAbbreviationAsWordInNameMethod.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testParameter() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAbbreviationAsWordInNameParameter.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AbbreviationAsWordInNameCheck.class);
-
         final String[] expectedViolation = {
-            "5:21: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
+            "20:21: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
                 AbbreviationAsWordInNameCheck.MSG_KEY, "PARAMETER", 4),
         };
 
@@ -224,20 +188,16 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                     + "/PARAMETERS/PARAMETER_DEF/IDENT[@text='PARAMETER']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAbbreviationAsWordInNameParameter.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testVariable() throws Exception {
-        final File fileToProcess = new File(getPath(
-                "InputXpathAbbreviationAsWordInNameVariable.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(AbbreviationAsWordInNameCheck.class);
-
         final String[] expectedViolation = {
-            "6:13: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
+            "21:13: " + getCheckMessage(AbbreviationAsWordInNameCheck.class,
                 AbbreviationAsWordInNameCheck.MSG_KEY, "VARIABLE", 4),
         };
 
@@ -248,8 +208,10 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                     + "/SLIST/VARIABLE_DEF/IDENT[@text='VARIABLE']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAbbreviationAsWordInNameVariable.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
