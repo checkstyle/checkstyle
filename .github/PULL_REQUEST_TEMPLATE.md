@@ -14,12 +14,16 @@
      ```
      ^Issue #\d+: .*$
      ^Pull #\d+: .*$
-     ^(minor|config|infra|doc|spelling|dependency): .*$
+     ^(minor|config|infra|doc|spelling|dependency|supplemental): .*$
      ```
 
    - MUST contain only one line of text
    - MUST NOT end with a period, space, or tab
    - MUST be less than or equal to 200 characters
+   - Use `Issue #XXXXX:` for a defect fix or a change of behaviour, so it is
+     picked up by the release notes. For the meaning of each prefix and an
+     example of each, see [Submitting your
+     contribution](https://checkstyle.org/contributing.html#Submitting_your_contribution)
 
 To avoid multiple iterations of fixes and CI failures, please read
 [Contribution Guide](https://checkstyle.org/contributing.html).
