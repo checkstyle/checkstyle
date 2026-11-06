@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.coding;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck;
 
@@ -47,15 +45,8 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMatchXpathOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MatchXpathCheck.class);
-        moduleConfig.addProperty("query", "//METHOD_DEF[./IDENT[@text='test']]");
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(MatchXpathCheck.class, MatchXpathCheck.MSG_KEY),
+            "11:5: " + getCheckMessage(MatchXpathCheck.class, MatchXpathCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -67,22 +58,16 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMatchXpathOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMatchXpathTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MatchXpathCheck.class);
-        moduleConfig.addProperty("query", "//LITERAL_THROWS[./IDENT[@text='Throwable' or "
-                + "@text='RuntimeException' or ends-with(@text, 'Error')]]");
-
         final String[] expectedViolation = {
-            "4:25: " + getCheckMessage(MatchXpathCheck.class, MatchXpathCheck.MSG_KEY),
+            "12:25: " + getCheckMessage(MatchXpathCheck.class, MatchXpathCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -92,21 +77,16 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                         + "/LITERAL_THROWS[./IDENT[@text='RuntimeException']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMatchXpathTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEncodedQuoteString() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMatchXpathEncodedQuoteString.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-        moduleConfig.addProperty("tokens", "STRING_LITERAL");
-
         final String[] expectedViolation = {
-            "4:24: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "11:24: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "\"\\\"testOne\\\"\""),
         };
 
@@ -121,21 +101,16 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                     + "/STRING_LITERAL[@text='\\&quot;testOne\\&quot;']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMatchXpathEncodedQuoteString.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEncodedLessString() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMatchXpathEncodedLessString.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-        moduleConfig.addProperty("tokens", "STRING_LITERAL");
-
         final String[] expectedViolation = {
-            "4:23: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "11:23: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "\"<testTwo\""),
         };
 
@@ -150,21 +125,16 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                     + "STRING_LITERAL[@text='&lt;testTwo']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMatchXpathEncodedLessString.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEncodedNewLineString() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMatchXpathEncodedNewLineString.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-        moduleConfig.addProperty("tokens", "STRING_LITERAL");
-
         final String[] expectedViolation = {
-            "4:26: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "11:26: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "\"testFive\\n\""),
         };
 
@@ -179,21 +149,16 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                     + "/STRING_LITERAL[@text='testFive\\n']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMatchXpathEncodedNewLineString.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testGreaterString() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMatchXpathEncodedGreaterString.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-        moduleConfig.addProperty("tokens", "STRING_LITERAL");
-
         final String[] expectedViolation = {
-            "4:26: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "11:26: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "\">testFour\""),
         };
 
@@ -208,21 +173,16 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                     + "/STRING_LITERAL[@text='&gt;testFour']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMatchXpathEncodedGreaterString.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEncodedAmpString() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMatchXpathEncodedAmpString.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-        moduleConfig.addProperty("tokens", "STRING_LITERAL");
-
         final String[] expectedViolation = {
-            "4:28: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "11:28: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "\"&testThree\""),
         };
 
@@ -237,21 +197,16 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                     + "/STRING_LITERAL[@text='&amp;testThree']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMatchXpathEncodedAmpString.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEncodedAposString() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMatchXpathEncodedAposString.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-        moduleConfig.addProperty("tokens", "STRING_LITERAL");
-
         final String[] expectedViolation = {
-            "4:23: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "11:23: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "\"'SingleQuoteOnBothSide'\""),
         };
 
@@ -266,21 +221,16 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                     + "/STRING_LITERAL[@text='&apos;&apos;SingleQuoteOnBothSide&apos;&apos;']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMatchXpathEncodedAposString.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEncodedCarriageString() throws Exception {
-        final File fileToProcess =
-            new File(getPath("InputXpathMatchXpathEncodedCarriageString.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-        moduleConfig.addProperty("tokens", "STRING_LITERAL");
-
         final String[] expectedViolation = {
-            "4:27: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "11:27: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "\"carriageCharAtEnd\\r\""),
         };
 
@@ -295,21 +245,16 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                         + "/EXPR/STRING_LITERAL[@text='carriageCharAtEnd\\r']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMatchXpathEncodedCarriageString.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testEncodedAmpersandChars() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMatchXpathEncodedAmpChar.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-        moduleConfig.addProperty("tokens", "CHAR_LITERAL");
-
         final String[] expectedViolationForAmpersand = {
-            "4:20: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "11:20: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "'&'"),
         };
 
@@ -324,21 +269,16 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                         + "/CHAR_LITERAL[@text='&apos;&apos;&amp;&apos;&apos;']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolationForAmpersand,
-                expectedXpathQueriesForAmpersand);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMatchXpathEncodedAmpChar.java"),
+                expectedXpathQueriesForAmpersand,
+                expectedViolationForAmpersand);
     }
 
     @Test
     public void testEncodedQuoteChar() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMatchXpathEncodedQuoteChar.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-        moduleConfig.addProperty("tokens", "CHAR_LITERAL");
-
         final String[] expectedViolationsForQuote = {
-            "4:21: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "11:21: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "'\\\"'"),
         };
 
@@ -353,21 +293,16 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                         + "CHAR_LITERAL[@text='&apos;&apos;\\&quot;&apos;&apos;']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolationsForQuote,
-                expectedXpathQueriesForQuote);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMatchXpathEncodedQuoteChar.java"),
+                expectedXpathQueriesForQuote,
+                expectedViolationsForQuote);
     }
 
     @Test
     public void testEncodedLessChar() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMatchXpathEncodedLessChar.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-        moduleConfig.addProperty("tokens", "CHAR_LITERAL");
-
         final String[] expectedViolationsForLess = {
-            "4:21: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "11:21: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "'<'"),
         };
 
@@ -382,21 +317,16 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                         + "CHAR_LITERAL[@text='&apos;&apos;&lt;&apos;&apos;']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolationsForLess,
-                expectedXpathQueriesForLess);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMatchXpathEncodedLessChar.java"),
+                expectedXpathQueriesForLess,
+                expectedViolationsForLess);
     }
 
     @Test
     public void testEncodedAposChar() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMatchXpathEncodedAposChar.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-        moduleConfig.addProperty("tokens", "CHAR_LITERAL");
-
         final String[] expectedViolationsForApos = {
-            "4:21: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "11:21: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "'\\''"),
         };
 
@@ -411,21 +341,16 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                         + "CHAR_LITERAL[@text='&apos;&apos;\\&apos;&apos;&apos;&apos;']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolationsForApos,
-                expectedXpathQueriesForApos);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMatchXpathEncodedAposChar.java"),
+                expectedXpathQueriesForApos,
+                expectedViolationsForApos);
     }
 
     @Test
     public void testEncodedGreaterChar() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMatchXpathEncodedGreaterChar.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-        moduleConfig.addProperty("tokens", "CHAR_LITERAL");
-
         final String[] expectedViolationsForGreater = {
-            "4:24: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+            "11:24: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
                     "'>'"),
         };
 
@@ -442,22 +367,16 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                         + "CHAR_LITERAL[@text='&apos;&apos;&gt;&apos;&apos;']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolationsForGreater,
-                expectedXpathQueriesForGreater);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMatchXpathEncodedGreaterChar.java"),
+                expectedXpathQueriesForGreater,
+                expectedViolationsForGreater);
     }
 
     @Test
     public void testFollowing() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathMatchXpathThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(MatchXpathCheck.class);
-        moduleConfig.addProperty("query",
-                "//METHOD_DEF/following::*[1]");
-
         final String[] expectedViolation = {
-            "5:1: " + getCheckMessage(MatchXpathCheck.class, MatchXpathCheck.MSG_KEY),
+            "12:1: " + getCheckMessage(MatchXpathCheck.class, MatchXpathCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -466,8 +385,10 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                         + "/OBJBLOCK/RCURLY"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathMatchXpathThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
