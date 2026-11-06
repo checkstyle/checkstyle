@@ -171,8 +171,7 @@ public class AllChecksCompactSourceCoverageTest {
         "UnusedTryResourceShouldBeUnnamedCheck",
         "UnnecessaryFullyQualifiedTypeCheck",
         "UseEnhancedSwitchCheck",
-        "WhenShouldBeUsedCheck",
-        "WhitespaceAfterCheck"
+        "WhenShouldBeUsedCheck"
     );
 
     @Test
