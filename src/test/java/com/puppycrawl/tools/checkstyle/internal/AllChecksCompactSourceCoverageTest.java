@@ -145,7 +145,6 @@ public class AllChecksCompactSourceCoverageTest {
         "PackageDeclarationCheck",
         "PackageNameCheck",
         "PatternVariableAssignmentCheck",
-        "PatternVariableNameCheck",
         "RecordComponentNameCheck",
         "RecordComponentNumberCheck",
         "RecordTypeParameterNameCheck",
