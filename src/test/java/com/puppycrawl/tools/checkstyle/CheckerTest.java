@@ -455,6 +455,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = createChecker(createModuleConfig(TranslationCheck.class),
                 Map.of("charset", StandardCharsets.UTF_8.name()));
 
+        assertWithMessage("An empty file list should have no violations")
+            .that(checker.process(Collections.emptyList()))
+            .isEqualTo(0);
         checker.destroy();
     }
 
