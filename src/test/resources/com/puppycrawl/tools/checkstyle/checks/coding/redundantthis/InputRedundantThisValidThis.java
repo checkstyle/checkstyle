@@ -37,4 +37,12 @@ public class InputRedundantThisValidThis {
             Inner2(Inner Inner.this) { }
         }
     }
+
+    <T> T get(String name) {
+        return null;
+    }
+
+    public int testExplicitTypeArgs() {
+        return this.<String>get("name").length();
+    }
 }

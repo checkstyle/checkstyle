@@ -212,7 +212,8 @@ public class RedundantThisCheck extends AbstractCheck {
      */
     private void checkUnnecessaryThis(DetailAST literalThis) {
         final DetailAST parent = literalThis.getParent();
-        if (parent.getType() == TokenTypes.DOT) {
+        if (parent.getType() == TokenTypes.DOT
+                && literalThis.getNextSibling().getType() != TokenTypes.TYPE_ARGUMENTS) {
             final DetailAST grandParent = parent.getParent();
             final String name = literalThis.getNextSibling().getText();
             final DetailAST statement = findEnclosingStatement(literalThis);
