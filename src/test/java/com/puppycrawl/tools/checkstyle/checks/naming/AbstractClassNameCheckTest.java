@@ -122,6 +122,67 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAbstractClassNameCompactSourceFileDefault() throws Exception {
+
+        final String pattern = "^Abstract.+$";
+
+        final String[] expected = {
+            "18:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "BadlyNamed", pattern),
+            "21:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractPlain"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputAbstractClassNameCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testAbstractClassNameCompactSourceFileProperties1() throws Exception {
+
+        final String pattern = "^Custom.+$";
+
+        final String[] expected = {
+            "18:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractNamed",
+                pattern),
+            "21:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "CustomNotAbstract"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputAbstractClassNameCompactSourceFileProperties1.java"),
+                expected);
+    }
+
+    @Test
+    public void testAbstractClassNameCompactSourceFileProperties2() throws Exception {
+
+        final String[] expected = {
+            "18:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractPlain"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputAbstractClassNameCompactSourceFileProperties2.java"),
+                expected);
+    }
+
+    @Test
+    public void testAbstractClassNameCompactSourceFileProperties3() throws Exception {
+
+        final String pattern = "^Abstract.+$";
+
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AnyName", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputAbstractClassNameCompactSourceFileProperties3.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final AbstractClassNameCheck classNameCheckObj = new AbstractClassNameCheck();
         final int[] actual = classNameCheckObj.getAcceptableTokens();
