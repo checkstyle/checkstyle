@@ -48,6 +48,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
@@ -439,12 +440,22 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testCreateCheckerWithRootProperties() {
         final CheckstyleException exception = getExpectedThrowable(
                 CheckstyleException.class,
-                () -> createChecker(createModuleConfig(TranslationCheck.class),
-                        java.util.Map.of("charset", "UNKNOWN-CHARSET")));
+                () -> {
+                    createChecker(createModuleConfig(TranslationCheck.class),
+                            Map.of("charset", "UNKNOWN-CHARSET"));
+                });
 
         assertWithMessage("Error message is not expected")
             .that(exception.getMessage())
             .isEqualTo("Cannot set property 'charset' to 'UNKNOWN-CHARSET'");
+    }
+
+    @Test
+    public void testCreateCheckerWithRootPropertiesSuccess() throws Exception {
+        final Checker checker = createChecker(createModuleConfig(TranslationCheck.class),
+                Map.of("charset", StandardCharsets.UTF_8.name()));
+
+        checker.destroy();
     }
 
     @Test

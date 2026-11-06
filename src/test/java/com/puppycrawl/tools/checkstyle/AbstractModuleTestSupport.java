@@ -125,7 +125,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @throws Exception if an exception occurs during checker configuration.
      */
     protected final Checker createChecker(Configuration moduleConfig,
-            Map<String, String> checkerProperties) throws Exception {
+            Map<String, String> checkerProperties)
+        throws Exception {
         final String moduleName = moduleConfig.getName();
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -151,8 +152,17 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         return checker;
     }
 
+    /**
+     * Copies a configuration and overrides the root checker properties.
+     *
+     * @param config configuration to copy.
+     * @param checkerProperties root checker properties to override.
+     * @return copied configuration.
+     * @throws CheckstyleException if a configuration property cannot be copied.
+     */
     private static DefaultConfiguration copyConfiguration(Configuration config,
-            Map<String, String> checkerProperties) throws CheckstyleException {
+            Map<String, String> checkerProperties)
+        throws CheckstyleException {
         final DefaultConfiguration result = new DefaultConfiguration(config.getName());
         for (String propertyName : config.getPropertyNames()) {
             if (!ROOT_MODULE_NAME.equals(config.getName())
