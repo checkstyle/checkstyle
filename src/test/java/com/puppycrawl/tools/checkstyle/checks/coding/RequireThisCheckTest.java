@@ -247,7 +247,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "35:22: " + getCheckMessage(MSG_VARIABLE, "innerField", ""),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRequireThisCompactSourceFile.java"),
+                getNonCompilablePath("compact/InputRequireThisCompactSourceFile.java"),
                 expected);
     }
 
@@ -255,7 +255,30 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     public void testCompactSourceFileDefault() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRequireThisCompactSourceFileDefault.java"),
+                getNonCompilablePath("compact/InputRequireThisCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCheckFields() throws Exception {
+        final String[] expected = {
+            "19:5: " + getCheckMessage(MSG_METHOD, "increment", ""),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputRequireThisCompactSourceFileCheckFields.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCheckMethods() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_VARIABLE, "field", ""),
+            "15:13: " + getCheckMessage(MSG_VARIABLE, "field", ""),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputRequireThisCompactSourceFileCheckMethods.java"),
                 expected);
     }
 
@@ -265,7 +288,8 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "22:9: " + getCheckMessage(MSG_VARIABLE, "innerField", ""),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRequireThisCompactSourceFileNestedReference.java"),
+                getNonCompilablePath(
+                        "compact/InputRequireThisCompactSourceFileNestedReference.java"),
                 expected);
     }
 
@@ -276,7 +300,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "18:12: " + getCheckMessage(MSG_VARIABLE, "java", ""),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRequireThisCompactSourceFileImport.java"),
+                getNonCompilablePath("compact/InputRequireThisCompactSourceFileImport.java"),
                 expected);
     }
 
@@ -287,7 +311,8 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "18:12: " + getCheckMessage(MSG_VARIABLE, "java", ""),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRequireThisCompactSourceFileModuleImport.java"),
+                getNonCompilablePath(
+                        "compact/InputRequireThisCompactSourceFileModuleImport.java"),
                 expected);
     }
 
