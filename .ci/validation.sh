@@ -1121,13 +1121,20 @@ no-error-checkstyle-openrewrite-recipes)
   CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo CS_version: "${CS_POM_VERSION}"
-  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
   cd .ci-temp/checkstyle-openrewrite-recipes
-  ./mvnw -e --no-transfer-progress verify -DskipTests -Drewrite.skip=true \
-    -Dcheckstyle.version="${CS_POM_VERSION}" \
-    -Dcheckstyle.config=../../config/checkstyle-checks.xml
+  readarray -t files < <(find src/main/java src/test/java -name '*.java')
+  java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
+    -c ../../config/checkstyle-checks.xml \
+    -p config/checkstyle.properties \
+    "${files[@]}"
+  readarray -t resource_files < <(find src/test/resources -name 'Input*.java')
+  java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
+    -c config/checkstyle-resources-checks.xml \
+    -p config/checkstyle.properties \
+    "${resource_files[@]}"
   cd ../
   removeFolderWithProtectedFiles checkstyle-openrewrite-recipes
   ;;
