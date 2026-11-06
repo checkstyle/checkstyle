@@ -122,7 +122,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
         };
         verifyWithInlineConfigParser(
             getNonCompilablePath(
-                "InputOverloadMethodsDeclarationOrderCompactSourceFile.java"),
+                "compact/InputOverloadMethodsDeclarationOrderCompactSourceFile.java"),
             expected);
     }
 
@@ -131,7 +131,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
             getNonCompilablePath(
-                "InputOverloadMethodsDeclarationOrderCompactSourceFileValid.java"),
+                "compact/InputOverloadMethodsDeclarationOrderCompactSourceFileValid.java"),
             expected);
     }
 
@@ -142,7 +142,18 @@ public class OverloadMethodsDeclarationOrderCheckTest
         };
         verifyWithInlineConfigParser(
             getNonCompilablePath(
-                "InputOverloadMethodsDeclarationOrderCompactSourceFileFirstMethodOverload.java"),
+                "compact/InputOverloadMethodsDeclarationOrderCompactSourceFileFirstMethodOverload.java"),
+            expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_ORDER),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                "compact/InputOverloadMethodsDeclarationOrderCompactSourceFileProperties.java"),
             expected);
     }
 
