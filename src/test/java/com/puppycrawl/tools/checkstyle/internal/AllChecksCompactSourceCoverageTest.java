@@ -160,7 +160,6 @@ public class AllChecksCompactSourceCoverageTest {
         "SuppressWarningsCheck",
         "SuppressWarningsHolder",
         "TextBlockGoogleStyleFormattingCheck",
-        "TypeNameCheck",
         "UnnecessaryNullCheckWithInstanceOfCheck",
         "UnnecessaryParenthesesCheck",
         "UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
