@@ -19,14 +19,12 @@
 
 package org.checkstyle.suppressionxpathfilter.imports;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 
 public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSupport {
@@ -45,16 +43,8 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathCustomImportOrderOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CustomImportOrderCheck.class);
-        moduleConfig.addProperty("customImportOrderRules", "STATIC###STANDARD_JAVA_PACKAGE");
-        moduleConfig.addProperty("sortImportsInGroupAlphabetically", "true");
-
         final String[] expectedViolation = {
-            "4:1: " + getCheckMessage(CustomImportOrderCheck.class,
+            "16:1: " + getCheckMessage(CustomImportOrderCheck.class,
                         CustomImportOrderCheck.MSG_LEX, "java.lang.Math.PI",
                         "java.util.Arrays.sort"),
         };
@@ -63,21 +53,16 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
                 "/COMPILATION_UNIT/STATIC_IMPORT[./DOT/IDENT[@text='PI']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCustomImportOrderOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathCustomImportOrderTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CustomImportOrderCheck.class);
-        moduleConfig.addProperty("customImportOrderRules", "STATIC###STANDARD_JAVA_PACKAGE");
-
         final String[] expectedViolation = {
-            "5:1: " + getCheckMessage(CustomImportOrderCheck.class,
+            "17:1: " + getCheckMessage(CustomImportOrderCheck.class,
                         CustomImportOrderCheck.MSG_LINE_SEPARATOR, "java.io.File"),
         };
 
@@ -85,21 +70,16 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
                 "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='File']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCustomImportOrderTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathCustomImportOrderThree.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CustomImportOrderCheck.class);
-        moduleConfig.addProperty("customImportOrderRules", "STATIC###STANDARD_JAVA_PACKAGE");
-
         final String[] expectedViolation = {
-            "5:1: " + getCheckMessage(CustomImportOrderCheck.class,
+            "17:1: " + getCheckMessage(CustomImportOrderCheck.class,
                         CustomImportOrderCheck.MSG_SEPARATED_IN_GROUP, "java.lang.Math.PI"),
         };
 
@@ -107,21 +87,16 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
                 "/COMPILATION_UNIT/STATIC_IMPORT[./DOT/IDENT[@text='PI']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCustomImportOrderThree.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testFour() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathCustomImportOrderFour.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CustomImportOrderCheck.class);
-        moduleConfig.addProperty("customImportOrderRules", "STATIC###STANDARD_JAVA_PACKAGE");
-
         final String[] expectedViolation = {
-            "5:1: " + getCheckMessage(CustomImportOrderCheck.class,
+            "17:1: " + getCheckMessage(CustomImportOrderCheck.class,
                         CustomImportOrderCheck.MSG_NONGROUP_IMPORT,
                         "com.puppycrawl.tools.checkstyle.api.DetailAST"),
         };
@@ -130,21 +105,16 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
                 "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='DetailAST']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCustomImportOrderFour.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testFive() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathCustomImportOrderFive.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CustomImportOrderCheck.class);
-        moduleConfig.addProperty("customImportOrderRules", "STATIC###STANDARD_JAVA_PACKAGE");
-
         final String[] expectedViolation = {
-            "7:1: " + getCheckMessage(CustomImportOrderCheck.class,
+            "19:1: " + getCheckMessage(CustomImportOrderCheck.class,
                         CustomImportOrderCheck.MSG_NONGROUP_EXPECTED, "STATIC",
                         "java.lang.Math.PI"),
         };
@@ -153,22 +123,16 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
                 "/COMPILATION_UNIT/STATIC_IMPORT[./DOT/IDENT[@text='PI']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCustomImportOrderFive.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testSix() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathCustomImportOrderSix.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(CustomImportOrderCheck.class);
-        moduleConfig.addProperty("customImportOrderRules",
-            "STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE");
-
         final String[] expectedViolation = {
-            "6:1: " + getCheckMessage(CustomImportOrderCheck.class,
+            "18:1: " + getCheckMessage(CustomImportOrderCheck.class,
                         CustomImportOrderCheck.MSG_ORDER, "THIRD_PARTY_PACKAGE",
                         "STANDARD_JAVA_PACKAGE",
                         "com.puppycrawl.tools.checkstyle.api.DetailAST"),
@@ -178,8 +142,10 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
                 "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='DetailAST']]"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathCustomImportOrderSix.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
