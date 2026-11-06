@@ -168,7 +168,6 @@ public class RedundantThisCheck extends AbstractCheck {
                     addParametersToScope(resourcesNode.orElseThrow());
                 }
             }
-            //case TokenTypes.SLIST -> scopeStack.push(new HashSet<>());
             case TokenTypes.SLIST -> {
                 if (!isCaseGroupBody(ast)) {
                     scopeStack.push(new HashSet<>());
@@ -193,8 +192,8 @@ public class RedundantThisCheck extends AbstractCheck {
     public void leaveToken(DetailAST ast) {
         if (TokenUtil.isOfType(ast,
                 TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF,
-                TokenTypes.LITERAL_CATCH, TokenTypes.LITERAL_TRY
-                )|| ast.getType() == TokenTypes.SLIST && !isCaseGroupBody(ast)) {
+                TokenTypes.LITERAL_CATCH, TokenTypes.LITERAL_TRY)
+                || ast.getType() == TokenTypes.SLIST && !isCaseGroupBody(ast)) {
             scopeStack.pop();
         }
     }
@@ -305,16 +304,18 @@ public class RedundantThisCheck extends AbstractCheck {
         }
         return result;
     }
-    
-    /*
-     * 
-     * Checks whether the given AST is a statement that is part of a switch case group.
-     *  
-     * 
+
+    /**
+     * Checks whether the given AST node represents the body of a switch case group.
+     * Case group bodies do not introduce independent Java scopes.
+     *
+     * @param ast the AST node to check
+     * @return {@code true} if the node belongs directly to a case group
      */
     private static boolean isCaseGroupBody(DetailAST ast) {
         return ast.getParent().getType() == TokenTypes.CASE_GROUP;
     }
+
     /**
      * Checks whether the given variable name is shadowed by any parameter or
      * local variable currently in scope, meaning that {@code this.name} is
@@ -361,7 +362,7 @@ public class RedundantThisCheck extends AbstractCheck {
      * @param literalThis the {@code LITERAL_THIS} token
      * @param statement the enclosing statement, or {@code null} if outside a block
      * @param messageKey the violation message key
-     * @param name the member name following "this"
+     * @param name the member name
      */
     private record RedundantUsage(
             DetailAST literalThis, DetailAST statement, String messageKey, String name) {
