@@ -183,9 +183,7 @@ public class ImmutabilityTest {
     /**
      * List of classes not following {@link #testClassesWithMutableFieldsShouldBeStateful()} rule.
      */
-    private static final Set<String> SUPPRESSED_CLASSES_FOR_STATEFUL_CHECK_RULE = Set.of(
-        "com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck"
-    );
+    private static final Set<String> SUPPRESSED_CLASSES_FOR_STATEFUL_CHECK_RULE = Set.of();
 
     private static final JavaClasses CHECKSTYLE_CHECKS = new ClassFileImporter()
         .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
