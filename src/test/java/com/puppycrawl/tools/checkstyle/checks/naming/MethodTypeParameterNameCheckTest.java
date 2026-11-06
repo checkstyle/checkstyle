@@ -91,4 +91,36 @@ public class MethodTypeParameterNameCheckTest
                 getPath("InputMethodTypeParameterName1.java"), expected);
     }
 
+    @Test
+    public void testMethodTypeParameterNameCompactSourceFileDefault() throws Exception {
+
+        final String pattern = "^[A-Z]$";
+
+        final String[] expected = {
+            "16:2: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
+            "19:2: " + getCheckMessage(MSG_INVALID_PATTERN, "TT", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputMethodTypeParameterNameCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testMethodTypeParameterNameCompactSourceFileProperties() throws Exception {
+
+        final String pattern = "^[A-Z][a-z]+$";
+
+        final String[] expected = {
+            "16:2: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
+            "19:2: " + getCheckMessage(MSG_INVALID_PATTERN, "lower", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputMethodTypeParameterNameCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
