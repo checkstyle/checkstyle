@@ -150,4 +150,30 @@ public class NoWhitespaceBeforeCheckTest extends AbstractModuleTestSupport {
                 getPath("InputNoWhitespaceBeforeWithEmoji.java"), expected);
     }
 
+    @Test
+    public void testNoWhitespaceBeforeCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "13:17: " + getCheckMessage(MSG_KEY, "++"),
+            "15:17: " + getCheckMessage(MSG_KEY, "--"),
+            "16:28: " + getCheckMessage(MSG_KEY, ";"),
+            "18:9: " + getCheckMessage(MSG_KEY, "++"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputNoWhitespaceBeforeCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testNoWhitespaceBeforeCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "13:17: " + getCheckMessage(MSG_KEY, "++"),
+            "14:28: " + getCheckMessage(MSG_KEY, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputNoWhitespaceBeforeCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
