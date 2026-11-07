@@ -57,6 +57,8 @@ public class MethodDefHandler extends BlockParentHandler {
             && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
             logError(modifier, "modifier", expandedTabsColumnNo(modifier));
         }
+        final DetailAST firstNonAnnotation = checkLeadingAnnotations(modifier);
+        checkFirstLineAfterAnnotations(modifier, firstNonAnnotation);
     }
 
     /**
