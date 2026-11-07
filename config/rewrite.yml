@@ -220,7 +220,32 @@ recipeList:
   # managed by org.openrewrite.staticanalysis.CodeCleanup
   # - org.openrewrite.java.OrderImports
 
-  # individual recipes
+  # ###
+  # composite list org.openrewrite.staticanalysis.BufferedWriterCreationRecipes
+  # https://docs.openrewrite.org/recipes/staticanalysis/bufferedwritercreationrecipes
+  # ###
+  - org.openrewrite.staticanalysis.BufferedWriterCreationRecipes
+
+  # ###
+  # composite list org.openrewrite.staticanalysis.ReplaceValidateNotNullWithObjectsRequireNonNull
+  # https://docs.openrewrite.org/recipes/staticanalysis/replacevalidatenotnullwithobjectsrequirenonnull
+  # ###
+  # Kept excluded: Checkstyle does not use org.apache.commons.lang3.Validate
+  # - org.openrewrite.staticanalysis.ReplaceValidateNotNullWithObjectsRequireNonNull
+
+  # ###
+  # composite list org.openrewrite.staticanalysis.SimplifyTernaryRecipes
+  # https://docs.openrewrite.org/recipes/staticanalysis/simplifyternaryrecipes
+  # ###
+  - org.openrewrite.staticanalysis.SimplifyTernaryRecipes
+
+  # ###
+  # composite list org.openrewrite.staticanalysis.URLEqualsHashCodeRecipes
+  # https://docs.openrewrite.org/recipes/staticanalysis/urlequalshashcoderecipes
+  # ###
+  - org.openrewrite.staticanalysis.URLEqualsHashCodeRecipes
+
+  # non-composite recipes
   - org.openrewrite.java.RemoveUnusedImports
   - org.openrewrite.java.format.NormalizeFormat
   - org.openrewrite.java.format.NormalizeLineBreaks
@@ -233,20 +258,10 @@ recipeList:
   - org.openrewrite.java.recipes.JavaRecipeBestPractices
   - org.openrewrite.java.recipes.RecipeTestingBestPractices
   - org.openrewrite.maven.BestPractices
-  - org.openrewrite.staticanalysis.BufferedWriterCreationRecipes
-  - org.openrewrite.staticanalysis.InlineVariable
   - org.openrewrite.staticanalysis.JavaApiBestPractices
   - org.openrewrite.staticanalysis.LowercasePackage
   - org.openrewrite.staticanalysis.MissingOverrideAnnotation
-  - org.openrewrite.staticanalysis.ModifierOrder
-  - org.openrewrite.staticanalysis.NoFinalizer
-  - org.openrewrite.staticanalysis.NoToStringOnStringType
   - org.openrewrite.staticanalysis.RemoveUnusedLocalVariables
   - org.openrewrite.staticanalysis.RemoveUnusedPrivateFields
   - org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods
-  - org.openrewrite.staticanalysis.ReplaceLambdaWithMethodReference
-  - org.openrewrite.staticanalysis.SimplifyTernaryRecipes
-  - org.openrewrite.staticanalysis.URLEqualsHashCodeRecipes
-  - org.openrewrite.staticanalysis.UnnecessaryCloseInTryWithResources
-  - org.openrewrite.staticanalysis.UnnecessaryReturnAsLastStatement
   - org.openrewrite.staticanalysis.UseLambdaForFunctionalInterface
