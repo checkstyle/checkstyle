@@ -801,4 +801,37 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 getPath("InputRequireThisAnnotationOverlappingTrue.java"), expected);
     }
 
+    @Test
+    public void testPatternVariables() throws Exception {
+        final String[] expected = {
+            "23:13: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "27:13: " + getCheckMessage(MSG_VARIABLE, "s", ""),
+            "28:13: " + getCheckMessage(MSG_VARIABLE, "n", ""),
+            "51:13: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "57:46: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "63:13: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "84:13: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "85:13: " + getCheckMessage(MSG_VARIABLE, "s", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisPatternVariables.java"), expected);
+    }
+
+    @Test
+    public void testPatternVariables2() throws Exception {
+        final String[] expected = {
+            "19:22: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "25:43: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "31:32: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "35:23: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "42:13: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "45:13: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "49:30: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "63:13: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+            "69:13: " + getCheckMessage(MSG_VARIABLE, "p", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisPatternVariables2.java"), expected);
+    }
+
 }
