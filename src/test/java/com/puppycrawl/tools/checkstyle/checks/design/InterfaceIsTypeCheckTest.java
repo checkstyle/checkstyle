@@ -56,6 +56,32 @@ public class InterfaceIsTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_KEY),
+            "34:5: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputInterfaceIsTypeCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_KEY),
+            "13:1: " + getCheckMessage(MSG_KEY),
+            "25:5: " + getCheckMessage(MSG_KEY),
+            "28:5: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputInterfaceIsTypeCompactSourceFileProperties.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final InterfaceIsTypeCheck obj = new InterfaceIsTypeCheck();
         final int[] expected = {TokenTypes.INTERFACE_DEF};
