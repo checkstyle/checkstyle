@@ -138,7 +138,6 @@ public class AllChecksCompactSourceCoverageTest {
         "PackageNameCheck",
         "PatternVariableAssignmentCheck",
         "RecordComponentNumberCheck",
-        "RecordTypeParameterNameCheck",
         "RedundantModifierCheck",
         "RegexpCheck",
         "RegexpSinglelineJavaCheck",
