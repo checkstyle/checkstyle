@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
@@ -139,6 +138,8 @@ public class RedundantThisCheck extends AbstractCheck {
             TokenTypes.PATTERN_VARIABLE_DEF,
             TokenTypes.SLIST,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.LAMBDA,
         };
     }
 
@@ -160,15 +161,21 @@ public class RedundantThisCheck extends AbstractCheck {
                 addParametersToScope(ast);
             }
             case TokenTypes.LITERAL_TRY -> {
-                scopeStack.push(new HashSet<>());
-                final Optional<DetailAST> resourcesNode = Optional.of(ast.getFirstChild())
-                    .map(child -> child.findFirstToken(TokenTypes.RESOURCES));
-
-                if (resourcesNode.isPresent()) {
-                    addParametersToScope(resourcesNode.orElseThrow());
+                final DetailAST resourceSpec =
+                    ast.findFirstToken(TokenTypes.RESOURCE_SPECIFICATION);
+                if (resourceSpec != null) {
+                    final DetailAST resources = resourceSpec.findFirstToken(TokenTypes.RESOURCES);
+                    scopeStack.push(new HashSet<>());
+                    addParametersToScope(resources);
                 }
             }
-            case TokenTypes.SLIST -> scopeStack.push(new HashSet<>());
+            case TokenTypes.LAMBDA -> {
+                if (isLambdaExpression(ast)) {
+                    scopeStack.push(new HashSet<>());
+                    addLambdaParametersToScope(ast);
+                }
+            }
+            case TokenTypes.LITERAL_FOR, TokenTypes.SLIST -> scopeStack.push(new HashSet<>());
             case TokenTypes.VARIABLE_DEF, TokenTypes.PATTERN_VARIABLE_DEF -> {
                 final Set<String> currentScope = scopeStack.peek();
                 if (currentScope != null) {
@@ -188,9 +195,15 @@ public class RedundantThisCheck extends AbstractCheck {
     public void leaveToken(DetailAST ast) {
         if (TokenUtil.isOfType(ast,
                 TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF,
-                TokenTypes.LITERAL_CATCH, TokenTypes.LITERAL_TRY,
-                TokenTypes.SLIST)) {
+                TokenTypes.LITERAL_CATCH, TokenTypes.LITERAL_FOR)
+                || isLambdaExpression(ast)) {
             scopeStack.pop();
+        }
+        else if (ast.getType() == TokenTypes.SLIST) {
+            scopeStack.pop();
+            if (hasResources(ast.getParent())) {
+                scopeStack.pop();
+            }
         }
     }
 
@@ -323,9 +336,9 @@ public class RedundantThisCheck extends AbstractCheck {
     /**
      * Adds all parameters found within {@code parametersNode} to the current
      * (top-of-stack) scope. {@code parametersNode} may be either a
-     * {@code PARAMETERS} node (for methods and constructors) or a
-     * {@code LITERAL_CATCH} node (for catch clauses); both carry their
-     * parameter definitions as direct {@code PARAMETER_DEF} children.
+     * {@code PARAMETERS} node (for methods and constructors), a
+     * {@code LITERAL_CATCH} node (for catch clauses), or a
+     * {@code RESOURCES} node (for try-with-resources).
      *
      * @param parametersNode the node whose {@code PARAMETER_DEF} children
      *     should be added to the current scope
@@ -338,6 +351,43 @@ public class RedundantThisCheck extends AbstractCheck {
                 scopeStack.peek().add(ident.getText());
             }
             child = child.getNextSibling();
+        }
+    }
+
+    /**
+     * Checks whether the given node contains a resource specification.
+     *
+     * @param ast the node to check
+     * @return {@code true} if the node has resources
+     */
+    private static boolean hasResources(DetailAST ast) {
+        return ast.findFirstToken(TokenTypes.RESOURCE_SPECIFICATION) != null;
+    }
+
+    /**
+     * Checks whether the given node is a lambda expression, rather than a switch rule.
+     *
+     * @param ast the node to check
+     * @return {@code true} if {@code ast} is a lambda expression
+     */
+    private static boolean isLambdaExpression(DetailAST ast) {
+        return ast.getType() == TokenTypes.LAMBDA
+            && ast.getParent().getType() != TokenTypes.SWITCH_RULE;
+    }
+
+    /**
+     * Adds all parameters found within the given lambda node to the current scope.
+     *
+     * @param lambdaNode the {@code LAMBDA} node
+     */
+    private void addLambdaParametersToScope(DetailAST lambdaNode) {
+        final DetailAST parameters = lambdaNode.findFirstToken(TokenTypes.PARAMETERS);
+        if (parameters == null) {
+            final DetailAST ident = lambdaNode.findFirstToken(TokenTypes.IDENT);
+            scopeStack.peek().add(ident.getText());
+        }
+        else {
+            addParametersToScope(parameters);
         }
     }
 
