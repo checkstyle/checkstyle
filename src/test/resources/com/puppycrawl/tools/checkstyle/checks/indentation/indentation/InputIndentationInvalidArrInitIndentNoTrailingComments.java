@@ -45,6 +45,6 @@ public class InputIndentationInvalidArrInitIndentNoTrailingComments { //indent:0
             "hello", "chekstyle"                                      //indent:12 exp:16 warn
             }                                                         //indent:12 exp:12
         )                                                             //indent:8 exp:8
-      void worked();                                                  //indent:6 exp:6
+      void worked();                                                  //indent:6 exp:8 warn
     }                                                                 //indent:4 exp:4
 }                                                                     //indent:0 exp:0
