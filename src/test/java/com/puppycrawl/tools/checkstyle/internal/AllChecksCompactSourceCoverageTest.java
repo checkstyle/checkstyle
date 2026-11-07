@@ -148,7 +148,6 @@ public class AllChecksCompactSourceCoverageTest {
         "RegexpCheck",
         "RegexpSinglelineJavaCheck",
         "RequireEmptyLineBeforeBlockTagGroupCheck",
-        "RequireThisCheck",
         "SealedShouldHavePermitsListCheck",
         "SingleLineJavadocCheck",
         "SummaryJavadocCheck",
