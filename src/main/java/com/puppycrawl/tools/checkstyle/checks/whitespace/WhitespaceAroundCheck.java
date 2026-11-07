@@ -111,6 +111,8 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     private boolean allowEmptyCatches;
     /** Allow empty switch blocks and block statements. */
     private boolean allowEmptySwitchBlockStatements;
+    /** Enforce whitespace after opening brace and before closing brace of array initializers. */
+    private boolean enforceWhitespaceAroundArrayInit;
     /**
      * Ignore whitespace around colon in
      * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
@@ -333,6 +335,17 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         allowEmptySwitchBlockStatements = allow;
     }
 
+    /**
+     * Setter to enforce whitespace after the opening brace and before the closing brace
+     * of array initializers.
+     *
+     * @param enforce {@code true} to enforce whitespace around array initializers.
+     * @since 14.4.0
+     */
+    public void setEnforceWhitespaceAroundArrayInit(boolean enforce) {
+        enforceWhitespaceAroundArrayInit = enforce;
+    }
+
     @Override
     public void visitToken(DetailAST ast) {
         final int currentType = ast.getType();
@@ -371,7 +384,8 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             case TokenTypes.FOR_EACH_CLAUSE -> ignoreEnhancedForColon;
             case TokenTypes.EXPR -> currentType == TokenTypes.LITERAL_SWITCH;
             case TokenTypes.ARRAY_INIT, TokenTypes.ANNOTATION_ARRAY_INIT ->
-                currentType == TokenTypes.RCURLY;
+                currentType == TokenTypes.RCURLY
+                    && !(enforceWhitespaceAroundArrayInit && !isEmptyArrayInit(ast.getParent()));
             default -> isEmptyBlock(ast, parentType)
                     || allowEmptyTypes && isEmptyType(ast);
         };
@@ -407,12 +421,41 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      *      false otherwise.
      */
     private boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {
+        final boolean arrayInitNeedsCheck = ast.getType() != TokenTypes.ARRAY_INIT
+                || enforceWhitespaceAroundArrayInit && !isEmptyArrayInit(ast);
         return !isEmptyCtorBlockCheckedFromSlist(ast)
                 && !(ast.getType() == TokenTypes.LITERAL_RETURN
                 && ast.getFirstChild().getType() == TokenTypes.SEMI)
-                && ast.getType() != TokenTypes.ARRAY_INIT
+                && arrayInitNeedsCheck
+                && !isArrayInitRcurly(ast)
                 && !isAnonymousInnerClassEnd(ast.getType(), nextChar)
                 && !isPartOfDoubleBraceInitializerForNextToken(ast);
+    }
+
+    /**
+     * Check if array initializer is empty. An empty array initializer has no elements,
+     * so its closing brace is its only child.
+     *
+     * @param ast array initializer node
+     * @return true if array initializer has no elements
+     */
+    private static boolean isEmptyArrayInit(DetailAST ast) {
+        return ast.getFirstChild().getType() == TokenTypes.RCURLY;
+    }
+
+    /**
+     * Check if token is the closing brace of an array initializer. Only the whitespace
+     * before such a brace is of interest, whitespace after it belongs to the tokens
+     * that surround the whole initializer.
+     *
+     * @param ast token to check
+     * @return true if token is the closing brace of an array initializer
+     */
+    private static boolean isArrayInitRcurly(DetailAST ast) {
+        final int parentType = ast.getParent().getType();
+        return ast.getType() == TokenTypes.RCURLY
+                && (parentType == TokenTypes.ARRAY_INIT
+                    || parentType == TokenTypes.ANNOTATION_ARRAY_INIT);
     }
 
     /**

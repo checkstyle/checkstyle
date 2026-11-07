@@ -15,6 +15,7 @@ tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, B
          LITERAL_TRY, LITERAL_WHILE, LOR, LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, \
          NOT_EQUAL, PLUS, PLUS_ASSIGN, QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR, \
          SR_ASSIGN, STAR, STAR_ASSIGN, LITERAL_ASSERT, TYPE_EXTENSION_AND, LITERAL_WHEN
+enforceWhitespaceAroundArrayInit = (default)false
 
 */
 
@@ -112,9 +113,7 @@ class InputWhitespaceAroundOperators
         assert(true); // violation ''assert' is not followed by whitespace'
 
         // missing WS around colon
-        assert true:"Whups";
-        // 2 violations above:
-        //           '':' is not followed by whitespace'
-        //           '':' is not preceded with whitespace'
+        assert true:"Whups"; // violation '':' is not followed by whitespace'
+        // violation above '':' is not preceded with whitespace'
     }
 }
