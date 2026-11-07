@@ -32,12 +32,13 @@ public class InputFormattedCorrectJavadocLeadingAsteriskAlignment {
    */
   public InputFormattedCorrectJavadocLeadingAsteriskAlignment(int a) {}
 
-  // violation 2 lines below "Comment uses box-like repetitive character pattern."
-  // violation below "Summary javadoc is missing."
+  // violation 3 lines below "Comment uses box-like repetitive character pattern."
+  // violation 2 lines below "Summary javadoc is missing."
+  // violation 3 lines below 'Block comment end must be on new line.'
   /*************************************************
    *** @param str testing.....
    **********************************/
-  // False negative for above javadoc, until #18271, #18273
+  // False negative for above javadoc, until #18271
 
   public InputFormattedCorrectJavadocLeadingAsteriskAlignment(String str) {}
 

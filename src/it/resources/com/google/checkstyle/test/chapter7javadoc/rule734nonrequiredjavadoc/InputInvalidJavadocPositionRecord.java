@@ -30,6 +30,7 @@ public record InputInvalidJavadocPositionRecord(String containerPath, String... 
     /**
      * Some javadoc.
      **/
+    // violation above 'Block comment end must be on new line.'
     Example {}
 
     @Override
@@ -42,6 +43,7 @@ public record InputInvalidJavadocPositionRecord(String containerPath, String... 
     /**
      * Some javadoc.
      **/
+    // violation above 'Block comment end must be on new line.'
     @Override
     /** Some javadoc. **/
     public int hashCode() {

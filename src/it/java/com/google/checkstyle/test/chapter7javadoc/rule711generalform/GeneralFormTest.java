@@ -107,4 +107,14 @@ public class GeneralFormTest extends AbstractGoogleModuleTestSupport {
                     getPath("InputFormattedIncorrectJavadocLeadingAsteriskAlignment.java"));
     }
 
+    @Test
+    public void testBlockCommentEndPosition() throws Exception {
+        verifyWithWholeConfig(getPath("InputBlockCommentEndPosition.java"));
+    }
+
+    @Test
+    public void testFormattedBlockCommentEndPosition() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedBlockCommentEndPosition.java"));
+    }
+
 }
