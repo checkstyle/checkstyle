@@ -50,9 +50,14 @@
                               or self::INTERFACE_DEF or self::ENUM_DEF
                               or self::ANNOTATION_DEF or self::RECORD_DEF
                               or self::ANNOTATION_FIELD_DEF
-                              or self::ENUM_CONSTANT_DEF]/MODIFIERS/SINGLE_LINE_COMMENT[
-                       ./COMMENT_CONTENT[contains(@text, 'violation')]
-                       and preceding-sibling::ANNOTATION]"/>
+                              or self::ENUM_CONSTANT_DEF
+                              or self::VARIABLE_DEF
+                              or self::RECORD_COMPONENT_DEF
+                              or self::MODULE_DEF]/(
+                        MODIFIERS/SINGLE_LINE_COMMENT[preceding-sibling::*[1][self::ANNOTATION]]
+                        | TYPE/SINGLE_LINE_COMMENT[not(preceding-sibling::*) and ../preceding-sibling::*[1][self::MODIFIERS]/*[last()][self::ANNOTATION]]
+                        | SINGLE_LINE_COMMENT[preceding-sibling::*[1][self::MODIFIERS or self::ANNOTATIONS]/*[last()][self::ANNOTATION]]
+                    )[./COMMENT_CONTENT[contains(@text, 'violation')]]"/>
       <message key="matchxpath.match"
                value="Violation comment must not be placed between an annotation and its target.
 Place it before the annotation block instead."/>
@@ -65,10 +70,20 @@ Place it before the annotation block instead."/>
                               or self::INTERFACE_DEF or self::ENUM_DEF
                               or self::ANNOTATION_DEF or self::RECORD_DEF
                               or self::ANNOTATION_FIELD_DEF
-                              or self::ENUM_CONSTANT_DEF]/MODIFIERS/SINGLE_LINE_COMMENT[
-                       ./COMMENT_CONTENT[contains(@text, 'violation')]
-                       and preceding-sibling::BLOCK_COMMENT_BEGIN[
-                       ./COMMENT_CONTENT[starts-with(@text, '*')]]]"/>
+                              or self::ENUM_CONSTANT_DEF
+                              or self::VARIABLE_DEF
+                              or self::RECORD_COMPONENT_DEF
+                              or self::MODULE_DEF]/(
+                        MODIFIERS/SINGLE_LINE_COMMENT[preceding-sibling::*[1][self::BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT[starts-with(@text, '*')]]]]
+                        | TYPE/SINGLE_LINE_COMMENT[
+                            preceding-sibling::*[1][self::BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT[starts-with(@text, '*')]]]
+                            or (not(preceding-sibling::*) and ../preceding-sibling::*[1][self::MODIFIERS]/*[last()][self::BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT[starts-with(@text, '*')]]])
+                        ]
+                        | SINGLE_LINE_COMMENT[
+                            preceding-sibling::*[1][self::BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT[starts-with(@text, '*')]]]
+                            or (preceding-sibling::*[1][self::MODIFIERS]/*[last()][self::BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT[starts-with(@text, '*')]]])
+                        ]
+                    )[./COMMENT_CONTENT[contains(@text, 'violation')]]"/>
       <message key="matchxpath.match"
                value="Violation comment must not be placed between a Javadoc block and its target.
 Place it before the Javadoc block instead."/>
