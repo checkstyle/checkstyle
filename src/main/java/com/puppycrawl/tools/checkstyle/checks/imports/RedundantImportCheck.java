@@ -19,7 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
@@ -40,6 +44,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   package, e.g. importing {@code java.lang.String}.</li>
  *   <li>The class non-statically imported is from the same package as the
  *   current package.</li>
+ *   <li>A non-static import is covered by a wildcard import from the same
+ *   package or type.</li>
  * </ul>
  *
  * @since 3.0
@@ -62,8 +68,21 @@ public class RedundantImportCheck extends AbstractCheck {
      */
     public static final String MSG_DUPLICATE = "import.duplicate";
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties" file.
+     */
+    public static final String MSG_WILDCARD = "import.wildcard";
+
+    /** The package that is implicitly imported in every java file. */
+    private static final String JAVA_LANG_PACKAGE = "java.lang";
+
+    /** The suffix of a wildcard import statement. */
+    private static final String WILDCARD_SUFFIX = ".*";
+
     /** Set of the imports. */
     private final Set<FullIdent> imports = new HashSet<>();
+    /** List of the import statements, to validate them against wildcard imports. */
+    private final List<DetailAST> importNodes = new ArrayList<>();
     /** Set of static and module imports. */
     private final Set<FullIdent> staticAndModuleImports = new HashSet<>();
 
@@ -81,6 +100,7 @@ public class RedundantImportCheck extends AbstractCheck {
     public void beginTree(DetailAST aRootAST) {
         pkgName = null;
         imports.clear();
+        importNodes.clear();
         staticAndModuleImports.clear();
     }
 
@@ -113,7 +133,7 @@ public class RedundantImportCheck extends AbstractCheck {
         else if (ast.getType() == TokenTypes.IMPORT) {
             final FullIdent imp = FullIdent.createFullIdentBelow(ast);
             final String importText = imp.getText();
-            if (isFromPackage(importText, "java.lang")) {
+            if (isFromPackage(importText, JAVA_LANG_PACKAGE)) {
                 log(ast, MSG_LANG, importText);
             }
             // imports from unnamed package are not allowed,
@@ -126,6 +146,7 @@ public class RedundantImportCheck extends AbstractCheck {
                 .forEach(full -> log(ast, MSG_DUPLICATE, full.getLineNo(), importText));
 
             imports.add(imp);
+            importNodes.add(ast);
         }
         else {
             // Check for a duplicate static or module import
@@ -144,6 +165,28 @@ public class RedundantImportCheck extends AbstractCheck {
         }
     }
 
+    @Override
+    public void finishTree(DetailAST rootAst) {
+        final Map<String, String> wildcardImports = new HashMap<>();
+        for (DetailAST importNode : importNodes) {
+            final String importText = FullIdent.createFullIdentBelow(importNode).getText();
+            if (importText.endsWith(WILDCARD_SUFFIX)) {
+                wildcardImports.putIfAbsent(getQualifier(importText), importText);
+            }
+        }
+        for (DetailAST importNode : importNodes) {
+            final String importText = FullIdent.createFullIdentBelow(importNode).getText();
+            if (!importText.endsWith(WILDCARD_SUFFIX)
+                    && !isFromPackage(importText, JAVA_LANG_PACKAGE)
+                    && (pkgName == null || !isFromPackage(importText, pkgName))) {
+                final String wildcardImport = wildcardImports.get(getQualifier(importText));
+                if (wildcardImport != null) {
+                    log(importNode, MSG_WILDCARD, importText, wildcardImport);
+                }
+            }
+        }
+    }
+
     /**
      * Determines if an import statement is for types from a specified package.
      *
@@ -155,9 +198,21 @@ public class RedundantImportCheck extends AbstractCheck {
         // imports from unnamed package are not allowed:
         // https://docs.oracle.com/javase/specs/jls/se7/html/jls-7.html#jls-7.5
         // So '.' must be present in member name and we are not checking for it
+        return pkg.equals(getQualifier(importName));
+    }
+
+    /**
+     * Returns the qualifier of an import statement, that is, the import name
+     * without its last segment. For a wildcard import it is the imported
+     * package or type, for a single import it is the package or type the
+     * imported member belongs to.
+     *
+     * @param importName the import name
+     * @return the qualifier of the import statement
+     */
+    private static String getQualifier(String importName) {
         final int index = importName.lastIndexOf('.');
-        final String front = importName.substring(0, index);
-        return pkg.equals(front);
+        return importName.substring(0, index);
     }
 
 }
