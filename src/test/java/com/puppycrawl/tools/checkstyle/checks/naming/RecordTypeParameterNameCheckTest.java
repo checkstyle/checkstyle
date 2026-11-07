@@ -75,6 +75,40 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
     }
 
     @Test
+    public void testRecordTypeParameterNameCompactSourceFileDefault()
+            throws Exception {
+
+        final String pattern = "^[A-Z]$";
+
+        final String[] expected = {
+            "16:20: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
+            "19:22: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputRecordTypeParameterNameCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordTypeParameterNameCompactSourceFileProperties()
+            throws Exception {
+
+        final String pattern = "^foo$";
+
+        final String[] expected = {
+            "16:20: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
+            "19:22: " + getCheckMessage(MSG_INVALID_PATTERN, "other", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputRecordTypeParameterNameCompactSourceFileProperties.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final RecordTypeParameterNameCheck typeParameterNameCheckObj =
                 new RecordTypeParameterNameCheck();
