@@ -154,7 +154,18 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputPackageDeclarationCompactSourceFile.java"),
+                getNonCompilablePath(
+                        "compact/InputPackageDeclarationCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputPackageDeclarationCompactSourceFileProperties.java"),
                 expected);
     }
 
