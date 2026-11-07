@@ -18,11 +18,11 @@ public class InputUnnecessaryParenthesesCheckSwitchExpression {
   MathOp2 tooManyParens(int k) {
     return switch (k) {
       case 1 -> {
-        MathOp2 e = (a, b) -> (a + b); // violation 'parentheses around assignment right-hand side'
+        MathOp2 e = (a, b) -> (a + b); // violation 'parentheses around expression'
         yield e;
       }
       case (2) -> { // violation 'Unnecessary parentheses around literal '2''
-        MathOp2 f = (int a, int b) -> (a + b); // violation 'paren.* around assignment right.*side'
+        MathOp2 f = (int a, int b) -> (a + b); // violation 'parentheses around expression'
         yield f;
       }
       case 3 -> {
@@ -43,10 +43,10 @@ public class InputUnnecessaryParenthesesCheckSwitchExpression {
   MathOp2 tooManyParens2(int k) {
     switch (k) {
       case 1 -> {
-        MathOp2 e = (a, b) -> (a + b); // violation 'parentheses around assignment right-hand side'
+        MathOp2 e = (a, b) -> (a + b); // violation 'parentheses around expression'
       }
       case (2) -> { // violation 'Unnecessary parentheses around literal '2''
-        MathOp2 f = (int a, int b) -> (a + b); // violation 'paren.* around assignment right.*side'
+        MathOp2 f = (int a, int b) -> (a + b); // violation 'parentheses around expression'
       }
       case 3 -> {
         MathOp2 g = (int a, int b) -> {
