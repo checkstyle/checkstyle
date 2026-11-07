@@ -19,23 +19,20 @@
 
 package org.checkstyle.suppressionxpathfilter.imports;
 
-import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
 
 public class XpathRegressionUnusedImportsTest extends AbstractXpathTestSupport {
 
-    private final String checkName = UnusedImportsCheck.class.getSimpleName();
+    private static final Class<UnusedImportsCheck> CLAZZ = UnusedImportsCheck.class;
 
     @Override
     protected String getCheckName() {
-        return checkName;
+        return CLAZZ.getSimpleName();
     }
 
     @Override
@@ -45,66 +42,54 @@ public class XpathRegressionUnusedImportsTest extends AbstractXpathTestSupport {
 
     @Test
     public void testUnusedImports() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathUnusedImports.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedImportsCheck.class);
-
         final String[] expectedViolation = {
-            "3:8: " + getCheckMessage(UnusedImportsCheck.class,
+            "11:8: " + getCheckMessage(CLAZZ,
                     UnusedImportsCheck.MSG_KEY, "java.util.List"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/IMPORT/DOT[./IDENT[@text='List']]/DOT/IDENT[@text='java']");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnusedImports.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testStatic() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathUnusedImportsStatic.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedImportsCheck.class);
-
         final String[] expectedViolation = {
-            "3:15: " + getCheckMessage(UnusedImportsCheck.class,
+            "11:15: " + getCheckMessage(CLAZZ,
                     UnusedImportsCheck.MSG_KEY, "java.util.Map.Entry"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/STATIC_IMPORT/DOT"
                         + "[./IDENT[@text='Entry']]/DOT[./IDENT[@text='Map']]"
                         + "/DOT/IDENT[@text='java']");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnusedImportsStatic.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testImportBreak() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathUnusedImportsBreak.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedImportsCheck.class);
-
         final String[] expectedViolation = {
-            "3:8: " + getCheckMessage(UnusedImportsCheck.class,
+            "11:8: " + getCheckMessage(CLAZZ,
                     UnusedImportsCheck.MSG_KEY, "java.util.List"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/IMPORT/DOT"
                         + "[./IDENT[@text='List']]/DOT/IDENT[@text='java']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathUnusedImportsBreak.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
