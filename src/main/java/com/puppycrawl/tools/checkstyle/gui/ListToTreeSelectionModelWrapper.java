@@ -36,7 +36,7 @@ public final class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionM
 
     /** A unique serial version identifier. */
     @Serial
-    private static final long serialVersionUID = 2267930983939339510L;
+    private static final long serialVersionUID = -2034941258027311976L;
     /** TreeTable to perform updates on. */
     private final TreeTable treeTable;
     /** Set to true when we are updating the ListSelectionModel. */

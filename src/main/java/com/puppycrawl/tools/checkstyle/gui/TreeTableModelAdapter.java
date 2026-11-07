@@ -44,7 +44,7 @@ public class TreeTableModelAdapter extends AbstractTableModel {
 
     /** A unique serial version identifier. */
     @Serial
-    private static final long serialVersionUID = 8269213416115369275L;
+    private static final long serialVersionUID = -3626354589701631528L;
 
     /** JTree component. */
     private final JTree tree;
