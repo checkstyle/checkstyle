@@ -274,4 +274,23 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
                 expected);
     }
 
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceOfParentheses() throws Exception {
+        final String[] expected = {
+            "14:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "18:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "22:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "26:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "30:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "34:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "38:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "42:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "46:38: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "50:40: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryNullCheckWithInstanceOfParentheses.java"),
+                expected);
+    }
+
 }
