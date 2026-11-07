@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </div>
  *
  * <p>
- * Rationale: This check can be used to when the regular expression can be span multiple lines.
+ * Rationale: This check can be used when the regular expression can span multiple lines.
  * </p>
  *
  * @since 5.0

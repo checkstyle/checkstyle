@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <li>There is one blank line between each of two paragraphs.</li>
  * <li>Each paragraph but the first has {@literal <p>} immediately
  * before the first word, with no space after.</li>
- * <li>The outer most paragraph tags should not precede
+ * <li>The outermost paragraph tags should not precede
  * <a href="https://www.w3schools.com/html/html_blocks.asp">HTML block-tag</a>.
  * Nested paragraph tags are allowed to do that. This check only supports following block-tags:
  * {@literal <address>},{@literal <blockquote>},{@literal <div>},{@literal <dl>},

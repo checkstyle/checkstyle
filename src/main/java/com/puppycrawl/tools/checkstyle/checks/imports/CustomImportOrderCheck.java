@@ -101,7 +101,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * Pretty often one import can match more than one group. For example, static import from standard
  * package or regular expressions are configured to allow one import match multiple groups.
- * In this case, group will be assigned according to priorities:
+ * In this case, group will be assigned according to priority:
  * </p>
  * <ol>
  * <li>
@@ -680,7 +680,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
      * @param toLineNo
      *        One-based line number of current import.
      * @return count of empty lines between given parameters, exclusive,
-     *        eg., (fromLineNo, toLineNo).
+     *        e.g., (fromLineNo, toLineNo).
      */
     private int getCountOfEmptyLinesBetween(int fromLineNo, int toLineNo) {
         int result = 0;

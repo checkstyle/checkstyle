@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </div>
  *
  * <p>
- * Attention: Elements that cannot have JavaDoc comments like local variables are not in the
+ * Attention: Elements that cannot have Javadoc comments like local variables are not in the
  * scope of this check even though a token type like {@code VARIABLE_DEF} would match them.
  * </p>
  *

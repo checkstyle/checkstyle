@@ -57,7 +57,7 @@
         <p>
           Methods defined in anonymous classes are not counted towards any totals.
           Counts only go towards the main type declaration parent, and are kept separate
-          from it's children's inner types.
+          from its children's inner types.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code>
 public class ExampleClass {

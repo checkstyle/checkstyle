@@ -322,7 +322,7 @@ git push origin issue-1234 --force
 ```
 
 Note that you MUST force push your changes to your forked repository. This is because you have
-rewritten your commit history and you need to force push to overwrite the commit history on your
+rewritten your commit history, and you need to force push to overwrite the commit history on your
 forked repository.
 
 ## Rebasing on the latest changes in the main repository

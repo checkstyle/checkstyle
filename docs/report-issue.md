@@ -178,7 +178,7 @@ Feel free to propose a name for the new Check, along with
 all its attributes. Example of good new Check proposal is
 [#5899](https://github.com/checkstyle/checkstyle/issues/5899).
 
-If you have open source project, please give a link to the whole java file.
+If you have an open source project, please give a link to the whole Java file.
 
 Example of Check/Module Request that we expect:
 

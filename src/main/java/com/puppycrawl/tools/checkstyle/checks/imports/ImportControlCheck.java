@@ -100,7 +100,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  *
  * <p>
- * The check validates a XML document when it loads the document. To validate against
+ * The check validates an XML document when it loads the document. To validate against
  * the above DTD, include the following document type declaration in your XML document:
  * </p>
  * {@snippet lang="text" :

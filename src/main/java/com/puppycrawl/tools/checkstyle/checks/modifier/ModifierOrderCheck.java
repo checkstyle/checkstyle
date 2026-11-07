@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <div>
  * Validates that the modifiers appear in the correct, standard order.
- * By default the order of modifiers conforms to the suggestions in the
+ * By default, the order of modifiers conforms to the suggestions in the
  * <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-8.html">
  * Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3</a> and
  * <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-9.html#jls-9.4">9.4</a>.

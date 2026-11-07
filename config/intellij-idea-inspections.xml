@@ -14,7 +14,7 @@
   </inspection_tool>
   <inspection_tool class="AbstractClassNeverImplemented" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <!-- we are not limited in resources
+  <!-- we are not limited in resources,
          and we are a library so there are more usages outside of our code -->
   <inspection_tool class="AbstractClassWithOnlyOneDirectInheritor" enabled="false" level="ERROR"
                    enabled_by_default="true"/>
@@ -650,7 +650,7 @@
                    enabled_by_default="false"/>
   <inspection_tool class="AnonymousClassVariableHidesContainingMethodVariable" enabled="true"
                    level="WARNING" enabled_by_default="true"/>
-  <!-- Anonymous Javascript functions are good for self executing and callbacks. -->
+  <!-- Anonymous JavaScript functions are good for self executing and callbacks. -->
   <inspection_tool class="AnonymousFunctionJS" enabled="false" level="WARNING"
                    enabled_by_default="true"/>
   <inspection_tool class="AnonymousHasLambdaAlternative" enabled="true" level="WARNING"
@@ -982,7 +982,7 @@
     <option name="ignoreOverflowingByteCasts" value="false"/>
   </inspection_tool>
   <!-- this is valid but there are many false-positives as we use reflection to load modules
-     after recheck by instanceof and we restricted in by existing api types, but some cases
+     after recheck by instanceof, and we restricted in by existing api types, but some cases
      are valid, inspection lack of properties to make it less demanding -->
   <inspection_tool class="CastToConcreteClass" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
@@ -1076,7 +1076,7 @@
   <inspection_tool class="ClashingTraitMethods" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
   <!-- we use design model to keep all logic for class in one file.
-    So, we have a lot of completely isolated classes and we cannot put them to
+    So, we have a lot of completely isolated classes, and we cannot put them to
     separate package as it will affect users configs -->
   <inspection_tool class="ClassComplexity" enabled="false" level="ERROR"
                    enabled_by_default="false">
@@ -1304,7 +1304,7 @@
                    enabled_by_default="true"/>
   <inspection_tool class="ConstantConditionalExpressionJS" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <!-- We cannot use IF_ELSE as it will force us to make code coverage
+  <!-- We cannot use IF_ELSE as it will force us to make code coverage,
          and we will not find Input to satisfy coverage,
          creation of non-real test case is against our policy of testing. -->
   <inspection_tool class="ConstantConditions" enabled="false" level="WARNING"
@@ -1460,7 +1460,7 @@
   </inspection_tool>
   <inspection_tool class="CssUnknownTarget" enabled="true" level="WARNING"
                    enabled_by_default="true"/>
-  <!-- most found cases are used in xml files that are source for html pages -->
+  <!-- most found cases are used in XML files that are source for HTML pages -->
   <inspection_tool class="CssUnusedSymbol" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
   <inspection_tool class="CucumberExamplesColon" enabled="false" level="WARNING"
@@ -1479,7 +1479,7 @@
                    enabled_by_default="true"/>
   <inspection_tool class="CustomSecurityManager" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <!-- we can not afford this now, api cleanup is in progress and it is hard and takes time for
+  <!-- we can not afford this now, api cleanup is in progress, and it is hard and takes time for
      deprecation process -->
   <inspection_tool class="CyclicClassDependency" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
@@ -1994,9 +1994,12 @@
                    enabled_by_default="false"/>
   <inspection_tool class="GrUnresolvedAccess" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
-  <!-- disabled until #11592 -->
-  <inspection_tool class="GrazieInspection" enabled="false" level="TYPO"
+  <inspection_tool class="GrazieInspection" enabled="true" level="TYPO"
                    enabled_by_default="false" />
+  <!-- style suggestions (British/American spelling, sentence length, wordiness)
+       are a matter of taste, we validate grammar only -->
+  <inspection_tool class="GrazieStyle" enabled="false" level="TYPO"
+                   enabled_by_default="false"/>
   <inspection_tool class="GroovyAccessToStaticFieldLockedOnInstance" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
   <inspection_tool class="GroovyAccessibility" enabled="false" level="ERROR"
@@ -2331,11 +2334,11 @@
   <inspection_tool class="HardcodedActionUrl" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
   <!-- there are too much false positives in RegExps
-         and javadoc start/end symbols in paths from classpath etc. -->
+         and Javadoc start/end symbols in paths from classpath etc. -->
   <inspection_tool class="HardcodedFileSeparators" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
   <!-- there are too much false positives in RegExps
-         and javadoc start/end symbols in paths from classpath etc. -->
+         and Javadoc start/end symbols in paths from classpath etc. -->
   <inspection_tool class="HardcodedLineSeparators" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
   <inspection_tool class="HardwiredNamespacePrefix" enabled="true" level="ERROR"
@@ -2776,7 +2779,7 @@
     <option name="m_minLength" value="8"/>
     <option name="m_maxLength" value="65"/>
   </inspection_tool>
-  <!-- we need to stay on junit -->
+  <!-- we need to stay on JUnit -->
   <inspection_tool class="JUnitTestNG" enabled="false" level="ERROR" enabled_by_default="false"/>
   <!-- on the moment of review we were not a big fans of functional style,
          none of code coverage tools can distinguish that body of lambda is executed.
@@ -2970,7 +2973,7 @@
                    enabled_by_default="true"/>
   <inspection_tool class="LoadLibraryWithNonConstantString" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <!-- finds false positives and we already have our own FinalLocalVariableCheck
+  <!-- finds false positives, and we already have our own FinalLocalVariableCheck
          for this purpose -->
   <inspection_tool class="LocalCanBeFinal" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
@@ -3075,7 +3078,7 @@
   <!-- behavior is different from local execution, no violations on local -->
   <inspection_tool class="MavenModelInspection" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
-  <!-- we use maven plugin for this and github action bot -->
+  <!-- we use maven plugin for this and GitHub Action bot -->
   <inspection_tool class="MavenPackageUpdate" enabled="false" level="WARNING"
                    enabled_by_default="false" />
   <inspection_tool class="MavenRedundantGroupId" enabled="true" level="ERROR"
@@ -3692,7 +3695,7 @@
   </inspection_tool>
   <inspection_tool class="PublicFieldAccessedInSynchronizedContext" enabled="true" level="WARNING"
                    enabled_by_default="true"/>
-  <!-- we are not fanatics of interfaces, we use concept 'the less abstractions the better -->
+  <!-- we are not fanatics of interfaces, we use concept 'the less abstractions the better' -->
   <inspection_tool class="PublicMethodNotExposedInInterface" enabled="false" level="ERROR"
                    enabled_by_default="false">
     <option name="ignorableAnnotations">
@@ -3927,7 +3930,7 @@
          for utils package, but we have not decided yet. -->
   <inspection_tool class="SameParameterValue" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
-  <!-- it is ok as some methods are in role of configuration 'isEditable{ return false;} -->
+  <!-- it is ok as some methods are in role of configuration 'isEditable{ return false;}' -->
   <inspection_tool class="SameReturnValue" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
   <inspection_tool class="SassScssResolvedByNameOnly" enabled="false" level="WEAK WARNING"
@@ -4085,7 +4088,7 @@
   </inspection_tool>
   <inspection_tool class="SortModifiers" enabled="false" level="WEAK WARNING"
                    enabled_by_default="false"/>
-  <!-- even we limit validation comments only, there are still a lot of violations on javadoc
+  <!-- even we limit validation comments only, there are still a lot of violations on Javadoc
      parameters naming , it also violates names of inspections in noinspection tags etc. -->
   <inspection_tool class="SpellCheckingInspection" enabled="false" level="TYPO"
                    enabled_by_default="false">
@@ -4497,7 +4500,7 @@
         <option value="resource"/>
         <!-- suppression for invalid inline tag -->
         <option value="InvalidInlineTag"/>
-        <!-- suppression for unrecognised javadoc tag -->
+        <!-- suppression for unrecognised Javadoc tag -->
         <option value="UnrecognisedJavadocTag"/>
         <!-- suppression for inline me suggester -->
         <option value="InlineMeSuggester"/>
@@ -4889,7 +4892,7 @@
                    enabled_by_default="true"/>
   <inspection_tool class="UnnecessaryConstantArrayCreationExpression" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <!-- javadoc tool raises warning if ctor is implicit; explicit ctor needed -->
+  <!-- Javadoc tool raises warning if ctor is implicit; explicit ctor needed -->
   <inspection_tool class="UnnecessaryConstructor" enabled="false" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="UnnecessaryContinue" enabled="true" level="ERROR"
@@ -5048,7 +5051,7 @@
   <inspection_tool class="UnusedCatchParameter" enabled="true" level="WARNING"
                    enabled_by_default="true">
     <scope name="Tests" level="WARNING" enabled="true">
-      <!-- comments explain why catch swallow is ok , wide used in tests -->
+      <!-- comments explain why catch swallow is ok , widely used in tests -->
       <option name="m_ignoreCatchBlocksWithComments" value="true"/>
       <option name="m_ignoreTestCases" value="false"/>
     </scope>
