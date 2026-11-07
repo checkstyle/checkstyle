@@ -40,6 +40,12 @@ public class InputJavadocEndCommentDelimiterCorrect {
 */
     void closingDelimiterAtColumnZero() {}
 
+    /***/
+    int emptyJavadoc;
+
+    /***/
+    void emptyJavadocMethod() {}
+
     void ignoredInvalidPosition() {
         /** This is not a valid Javadoc position. **/
         int value = 0;
