@@ -66,11 +66,18 @@ public class LabelHandler extends AbstractExpressionHandler {
         checkLabel();
         // need to check children (like 'block' parents do)
         final DetailAST parent = getMainAst().getFirstChild().getNextSibling();
-
         final IndentLevel expected =
             new IndentLevel(getIndent(), getBasicOffset());
 
-        checkExpressionSubtree(parent, expected, true, false);
+        if (parent.getType() == TokenTypes.LABELED_STAT) {
+            // nested label: its own handler is more lenient, so keep the
+            // stricter level here, but only for the nested label itself
+            checkExpressionSubtree(parent.getFirstChild(), expected, true, false);
+        }
+        // statements with their own handler (loops, blocks, ...) check themselves
+        else if (!getContext().getHandlerFactory().isHandledType(parent.getType())) {
+            checkExpressionSubtree(parent, expected, true, false);
+        }
     }
 
 }
