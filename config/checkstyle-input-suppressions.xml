@@ -96,7 +96,5 @@
             files="/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/InputIncorrectJavadocParagraph\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/InputIncorrectRequireEmptyLineBeforeBlockTagGroup\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationonsameline/InputAnnotationOnSameLineCheckTokensOnMethodAndVar\.java"/>
 
 </suppressions>
