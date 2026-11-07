@@ -43,7 +43,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
     @Test
     public void testCatchBlock() throws Exception {
         final String[] expectedViolationMessages = {
-            "19:23: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
+            "20:23: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
                     BooleanExpressionComplexityCheck.MSG_KEY, 11, 3),
         };
 
@@ -64,7 +64,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
     @Test
     public void testClassFields() throws Exception {
         final String[] expectedViolationMessages = {
-            "18:19: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
+            "19:19: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
                     BooleanExpressionComplexityCheck.MSG_KEY, 11, 3),
         };
 
@@ -84,7 +84,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
     @Test
     public void testConditionals() throws Exception {
         final String[] expectedViolationMessages = {
-            "18:9: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
+            "19:9: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
                     BooleanExpressionComplexityCheck.MSG_KEY, 4, 3),
         };
 
