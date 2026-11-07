@@ -41,6 +41,7 @@ public class JavadocVariableCheckExamplesTest extends AbstractExamplesModuleTest
             "20:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "d"),
             "21:15: " + getCheckMessage(MSG_JAVADOC_MISSING, "e"),
             "24:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "CONSTANT"),
+            "32:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "f"),
             "28:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "CONSTANT"),
         };
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -50,6 +51,7 @@ public class JavadocVariableCheckExamplesTest extends AbstractExamplesModuleTest
     public void testExample2() throws Exception {
         final String[] expected = {
             "22:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "d"),
+            "34:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "f"),
             "26:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "CONSTANT"),
         };
 
@@ -63,6 +65,7 @@ public class JavadocVariableCheckExamplesTest extends AbstractExamplesModuleTest
             "15:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "log"),
             "21:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "c"),
             "22:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "d"),
+            "34:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "f"),
             "23:15: " + getCheckMessage(MSG_JAVADOC_MISSING, "e"),
         };
 
@@ -77,10 +80,21 @@ public class JavadocVariableCheckExamplesTest extends AbstractExamplesModuleTest
             "22:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "d"),
             "23:15: " + getCheckMessage(MSG_JAVADOC_MISSING, "e"),
             "26:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "CONSTANT"),
+            "34:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "f"),
             "30:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "CONSTANT"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "23:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "d"),
+            "27:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "CONSTANT"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test

@@ -529,13 +529,13 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
     @Test
     public void testGetAttachedJavadocCommentForVariableDefinitions() throws Exception {
         final String[] expected = {
-            "17:5: " + getCheckMessage(JavadocVariableCheck.class,
+            "18:5: " + getCheckMessage(JavadocVariableCheck.class,
                     MSG_JAVADOC_MISSING, "modifierPath"),
-            "20:5: " + getCheckMessage(JavadocVariableCheck.class,
+            "21:5: " + getCheckMessage(JavadocVariableCheck.class,
                     MSG_JAVADOC_MISSING, "annotationPath"),
-            "24:5: " + getCheckMessage(JavadocVariableCheck.class,
+            "25:5: " + getCheckMessage(JavadocVariableCheck.class,
                     MSG_JAVADOC_MISSING, "noJavadoc"),
-            "32:5: " + getCheckMessage(JavadocVariableCheck.class,
+            "33:5: " + getCheckMessage(JavadocVariableCheck.class,
                     MSG_JAVADOC_MISSING, "initializerCommentOnly"),
         };
         verifyWithInlineConfigParser(
@@ -546,11 +546,11 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
     public void testGetAttachedJavadocCommentForEnumConstantDefinitions()
             throws Exception {
         final String[] expected = {
-            "21:5: " + getCheckMessage(JavadocVariableCheck.class,
+            "22:5: " + getCheckMessage(JavadocVariableCheck.class,
                     MSG_JAVADOC_MISSING, "BODY"),
-            "28:5: " + getCheckMessage(JavadocVariableCheck.class,
+            "29:5: " + getCheckMessage(JavadocVariableCheck.class,
                     MSG_JAVADOC_MISSING, "NO_JAVADOC"),
-            "31:5: " + getCheckMessage(JavadocVariableCheck.class,
+            "32:5: " + getCheckMessage(JavadocVariableCheck.class,
                     MSG_JAVADOC_MISSING, "REAL"),
         };
         verifyWithInlineConfigParser(
