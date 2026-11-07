@@ -462,10 +462,6 @@
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespaceafter/InputNoWhitespaceAfterArrayDeclarations2\.java"/>
   <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/typecastparenpad/InputTypecastParenPadWhitespaceTestSpace\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/typecastparenpad/InputTypecastParenPadWhitespace\.java"/>
-  <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/InputRightCurlyTestAloneOrSingleline\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/InputRightCurlyLeftTestNewLine\.java"/>

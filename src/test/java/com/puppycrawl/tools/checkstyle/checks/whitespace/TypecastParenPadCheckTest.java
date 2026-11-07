@@ -42,8 +42,8 @@ public class TypecastParenPadCheckTest extends AbstractModuleTestSupport {
     public void testDefault()
             throws Exception {
         final String[] expected = {
-            "86:13: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "86:22: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "57:13: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "57:22: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputTypecastParenPadWhitespace.java"), expected);
@@ -53,14 +53,14 @@ public class TypecastParenPadCheckTest extends AbstractModuleTestSupport {
     public void testSpace()
             throws Exception {
         final String[] expected = {
-            "84:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "84:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
-            "88:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "88:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
-            "96:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "96:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
-            "247:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "247:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "55:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "55:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "59:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "59:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "67:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "67:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "93:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "93:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputTypecastParenPadWhitespaceTestSpace.java"), expected);
