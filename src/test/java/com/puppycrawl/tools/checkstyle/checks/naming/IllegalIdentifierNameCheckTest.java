@@ -166,4 +166,35 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputIllegalIdentifierNameRecordPattern.java"), expected);
     }
 
+    @Test
+    public void testIllegalIdentifierNameCompactSourceFileDefault() throws Exception {
+        final String format = "^(?!var$|\\S*\\$)\\S+$";
+
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "16:9: " + getCheckMessage(MSG_INVALID_PATTERN, "te$t", format),
+            "20:5: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputIllegalIdentifierNameCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testIllegalIdentifierNameCompactSourceFileProperties() throws Exception {
+        final String format = "^(?!foo$).+$";
+
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", format),
+            "19:5: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", format),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputIllegalIdentifierNameCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }

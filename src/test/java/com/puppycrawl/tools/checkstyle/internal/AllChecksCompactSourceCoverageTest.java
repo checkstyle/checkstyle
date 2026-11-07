@@ -95,7 +95,6 @@ public class AllChecksCompactSourceCoverageTest {
         "ConstructorsDeclarationGroupingCheck",
         "CustomImportOrderCheck",
         "IllegalBlockTagCheck",
-        "IllegalIdentifierNameCheck",
         "IllegalImportCheck",
         "IllegalInstantiationCheck",
         "IllegalSymbolCheck",
