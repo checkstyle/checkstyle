@@ -182,7 +182,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "LAMBDA", "LITERAL_CASE", "LITERAL_CATCH", "LITERAL_DEFAULT", "LITERAL_DO",
                 "LITERAL_ELSE", "LITERAL_FINALLY", "LITERAL_FOR", "LITERAL_IF", "LITERAL_NEW",
                 "LITERAL_SWITCH", "LITERAL_SYNCHRONIZED", "LITERAL_TRY", "LITERAL_WHILE",
-                "METHOD_DEF", "SLIST", "STATIC_INIT").collect(Collectors.toUnmodifiableSet()));
+                "METHOD_DEF", "SLIST", "STATIC_INIT", "COMPACT_CTOR_DEF",
+                "RECORD_DEF").collect(Collectors.toUnmodifiableSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("FinalParameters", Stream.of(
                 // we prefer these to be effectively final as to not damage readability
                 "FOR_EACH_CLAUSE", "LITERAL_CATCH", "PATTERN_VARIABLE_DEF")
