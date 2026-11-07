@@ -23,7 +23,7 @@ public class InputJavadocMethodProtected {
    * Some javadoc.
    *
    * @param b parameter exist
-   * @param c paramter doesn't exist
+   * @param c parameter doesn't exist
    */
   protected void foo2(int b) {}
 
