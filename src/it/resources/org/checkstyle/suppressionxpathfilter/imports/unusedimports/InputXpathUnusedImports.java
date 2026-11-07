@@ -1,6 +1,14 @@
+/*
+UnusedImports
+processJavadoc = (default)true
+violateExecutionOnNonTightHtml = (default)false
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.imports.unusedimports;
 
-import java.util.List; // warn
+// violation below 'Unused import - java.util.List.'
+import java.util.List;
 
 public class InputXpathUnusedImports {
 
