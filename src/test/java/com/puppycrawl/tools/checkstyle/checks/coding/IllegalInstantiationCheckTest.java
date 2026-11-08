@@ -322,4 +322,27 @@ public class IllegalInstantiationCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
 
+    @Test
+    public void testIllegalInstantiationCompactSourceFileDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputIllegalInstantiationCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testIllegalInstantiationCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "15:16: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
+            "17:22: " + getCheckMessage(MSG_KEY, "java.util.ArrayList"),
+            "19:21: " + getCheckMessage(MSG_KEY, "java.util.ArrayList"),
+            "27:12: " + getCheckMessage(MSG_KEY, "java.util.ArrayList"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputIllegalInstantiationCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
