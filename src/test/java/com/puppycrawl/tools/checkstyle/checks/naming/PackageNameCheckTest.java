@@ -113,6 +113,36 @@ public class PackageNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testPackageNameCompactSourceFileDefault() throws Exception {
+
+        final String pattern = "^[a-z]+(\\.[a-zA-Z_]\\w*)*$";
+
+        final String[] expected = {
+            "10:9: " + getCheckMessage(MSG_KEY, "Com.example", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputPackageNameCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testPackageNameCompactSourceFileProperties() throws Exception {
+
+        final String pattern = "^[A-Z]+$";
+
+        final String[] expected = {
+            "10:9: " + getCheckMessage(MSG_KEY, "com.example", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputPackageNameCompactSourceFileProperties.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final PackageNameCheck packageNameCheckObj = new PackageNameCheck();
         final int[] actual = packageNameCheckObj.getAcceptableTokens();

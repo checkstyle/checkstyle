@@ -134,7 +134,6 @@ public class AllChecksCompactSourceCoverageTest {
         "NumericalPrefixesInfixesSuffixesCharacterCaseCheck",
         "OneTopLevelClassCheck",
         "PackageAnnotationCheck",
-        "PackageNameCheck",
         "PatternVariableAssignmentCheck",
         "RecordComponentNumberCheck",
         "RedundantModifierCheck",
