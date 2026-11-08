@@ -317,7 +317,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLineColumnLog() throws Exception {
         final ViolationCheck check = new ViolationCheck();
-        check.configure(new DefaultConfiguration("check"));
+        final DefaultConfiguration config = new DefaultConfiguration("check");
+        config.addProperty("id", "line-log-check");
+        check.configure(config);
         final File file = new File("fileName");
         final FileText theText = new FileText(file, Collections.singletonList("test123"));
 
@@ -334,6 +336,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         final Iterator<Violation> iterator = internalViolations.iterator();
 
         final Violation firstViolation = iterator.next();
+        assertWithMessage("Line logging must retain the configured module ID")
+                .that(firstViolation.getModuleId())
+                .isEqualTo("line-log-check");
         assertWithMessage("expected line")
                 .that(firstViolation.getLineNo())
                 .isEqualTo(1);
@@ -345,6 +350,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
                 .isEqualTo(SeverityLevel.ERROR);
 
         final Violation secondViolation = iterator.next();
+        assertWithMessage("Column logging must retain the configured module ID")
+                .that(secondViolation.getModuleId())
+                .isEqualTo("line-log-check");
         assertWithMessage("expected line")
                 .that(secondViolation.getLineNo())
                 .isEqualTo(1);
@@ -359,7 +367,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAstLog() throws Exception {
         final ViolationAstCheck check = new ViolationAstCheck();
-        check.configure(new DefaultConfiguration("check"));
+        final DefaultConfiguration config = new DefaultConfiguration("check");
+        config.addProperty("id", "ast-log-check");
+        check.configure(config);
         final File file = new File("fileName");
         final FileText theText = new FileText(file, Collections.singletonList("test123"));
 
@@ -378,6 +388,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
                 .hasSize(1);
 
         final Violation firstViolation = internalViolations.getFirst();
+        assertWithMessage("AST logging must retain the configured module ID")
+                .that(firstViolation.getModuleId())
+                .isEqualTo("ast-log-check");
         assertWithMessage("expected line")
                 .that(firstViolation.getLineNo())
                 .isEqualTo(1);

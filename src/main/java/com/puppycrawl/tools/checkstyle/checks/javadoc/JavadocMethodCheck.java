@@ -153,7 +153,7 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
     private static final String ELEMENT_END = ">";
 
     /** Javadoc tags collected from the current Javadoc tree. */
-    private final List<JavadocTag> javadocTags = new ArrayList<>();
+    private final List<MethodTag> javadocTags = new ArrayList<>();
 
     /**
      * Control whether to allow inline return tags.
@@ -343,7 +343,7 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
                     collectReturn(ast);
                 }
             }
-            case JavadocCommentsTokenTypes.INHERIT_DOC_INLINE_TAG -> collectInheritDoc();
+            case JavadocCommentsTokenTypes.INHERIT_DOC_INLINE_TAG -> collectInheritDoc(ast);
             case JavadocCommentsTokenTypes.PARAM_BLOCK_TAG -> collectParam(ast);
             case JavadocCommentsTokenTypes.THROWS_BLOCK_TAG -> collectThrows(ast, "throws");
             case JavadocCommentsTokenTypes.EXCEPTION_BLOCK_TAG -> collectThrows(ast, "exception");
@@ -358,15 +358,17 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
      */
     private void collectReturn(DetailNode ast) {
         if (JavadocUtil.findFirstToken(ast, JavadocCommentsTokenTypes.DESCRIPTION) != null) {
-            javadocTags.add(new JavadocTag(ast.getLineNumber(), ast.getColumnNumber(), "return"));
+            addJavadocTag(ast, "return");
         }
     }
 
     /**
      * Collects an inheritDoc tag.
+     *
+     * @param ast the inheritDoc tag node
      */
-    private void collectInheritDoc() {
-        javadocTags.add(new JavadocTag(0, 0, "inheritDoc"));
+    private void collectInheritDoc(DetailNode ast) {
+        addJavadocTag(ast, "inheritDoc");
     }
 
     /**
@@ -378,8 +380,7 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
         final DetailNode parameterName = JavadocUtil.findFirstToken(
                 ast, JavadocCommentsTokenTypes.PARAMETER_NAME);
         if (parameterName != null) {
-            javadocTags.add(new JavadocTag(ast.getLineNumber(), ast.getColumnNumber(),
-                    "param", parameterName.getText()));
+            addJavadocTag(ast, "param", parameterName.getText());
         }
     }
 
@@ -393,23 +394,43 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
         final DetailNode identifier = JavadocUtil.findFirstToken(
                 ast, JavadocCommentsTokenTypes.IDENTIFIER);
         if (identifier != null) {
-            javadocTags.add(new JavadocTag(0, 0,
-                    tagName, identifier.getText()));
+            addJavadocTag(ast, tagName, identifier.getText());
         }
+    }
+
+    /**
+     * Adds a Javadoc tag and associates it with its AST node.
+     *
+     * @param ast the AST node of the tag
+     * @param tagName the tag name
+     */
+    private void addJavadocTag(DetailNode ast, String tagName) {
+        addJavadocTag(ast, tagName, "");
+    }
+
+    /**
+     * Adds a Javadoc tag and associates it with its AST node.
+     *
+     * @param ast the AST node of the tag
+     * @param tagName the tag name
+     * @param firstArg the first tag argument
+     */
+    private void addJavadocTag(DetailNode ast, String tagName, String firstArg) {
+        javadocTags.add(new MethodTag(ast, JavadocTagInfo.fromName(tagName), firstArg));
     }
 
     /**
      * Checks collected Javadoc tags against the current AST node.
      */
     private void checkCollectedTags() {
-        final List<JavadocTag> tagsToCheck = new ArrayList<>(javadocTags);
+        final List<MethodTag> tagsToCheck = new ArrayList<>(javadocTags);
         if (!hasShortCircuitTag(currentAst, tagsToCheck)) {
             if (currentAst.getType() == TokenTypes.ANNOTATION_FIELD_DEF) {
-                checkReturnTag(tagsToCheck, currentAst.getLineNo(), true);
+                checkReturnTag(tagsToCheck, currentAst, true);
             }
             else {
                 boolean hasInheritDocTag = false;
-                final Iterator<JavadocTag> iterator = tagsToCheck.iterator();
+                final Iterator<MethodTag> iterator = tagsToCheck.iterator();
                 while (!hasInheritDocTag && iterator.hasNext()) {
                     hasInheritDocTag = iterator.next().isInheritDocTag();
                 }
@@ -425,13 +446,13 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
                         combineExceptionInfo(getThrows(currentAst), getThrowed(currentAst));
                 checkThrowsTags(tagsToCheck, thrown, reportExpectedTags);
                 if (CheckUtil.isNonVoidMethod(currentAst)) {
-                    checkReturnTag(tagsToCheck, currentAst.getLineNo(), reportExpectedTags);
+                    checkReturnTag(tagsToCheck, currentAst, reportExpectedTags);
                 }
             }
         }
         tagsToCheck.stream()
                 .filter(javadocTag -> !javadocTag.isInheritDocTag())
-                .forEach(javadocTag -> log(javadocTag.getLineNo(), MSG_UNUSED_TAG_GENERAL));
+                .forEach(javadocTag -> log(javadocTag.ast(), MSG_UNUSED_TAG_GENERAL));
     }
 
     /**
@@ -497,7 +518,7 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
      * @param tags the list of Javadoc tags associated with the construct
      * @return true if the construct has a short circuit tag.
      */
-    private boolean hasShortCircuitTag(final DetailAST ast, final List<JavadocTag> tags) {
+    private boolean hasShortCircuitTag(final DetailAST ast, final List<MethodTag> tags) {
         boolean result = true;
         // Check if it contains {@inheritDoc} tag
         if (tags.size() == 1
@@ -697,32 +718,32 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
      * @param compactDef the compact constructor AST node
      * @param reportExpectedTags whether to report missing {@code @param} tags
      */
-    private void checkRecordParamTags(final List<JavadocTag> tags,
+    private void checkRecordParamTags(final List<MethodTag> tags,
         final DetailAST compactDef, boolean reportExpectedTags) {
 
         final DetailAST parent = getRecordDef(compactDef);
         final List<DetailAST> params = getRecordComponents(parent);
 
-        for (JavadocTag tag : tags) {
+        for (MethodTag tag : tags) {
             if (!tag.isParamTag()) {
                 continue;
             }
 
             if (isDuplicateParamTag(tags, tag)) {
-                log(tag.getLineNo(), tag.getColumnNo(), MSG_DUPLICATE_TAG,
+                log(tag.ast(), MSG_DUPLICATE_TAG,
                         JavadocTagInfo.PARAM.getText());
             }
             else {
-                final String arg1 = tag.getFirstArg();
+                final String arg1 = tag.firstArg();
                 final boolean found = removeMatchingParam(params, arg1);
 
                 if (!found) {
-                    log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
+                    log(tag.ast(), MSG_UNUSED_TAG,
                             JavadocTagInfo.PARAM.getText(), arg1);
                 }
             }
         }
-        tags.removeIf(JavadocTag::isParamTag);
+        tags.removeIf(MethodTag::isParamTag);
 
         if (!allowMissingParamTags && reportExpectedTags) {
             for (DetailAST param : params) {
@@ -739,24 +760,24 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
      * @param parent the node which takes the parameters
      * @param reportExpectedTags whether we should report if do not find expected tag
      */
-    private void checkParamTags(final List<JavadocTag> tags,
+    private void checkParamTags(final List<MethodTag> tags,
             final DetailAST parent, boolean reportExpectedTags) {
         final List<DetailAST> params = getParameters(parent);
         final List<DetailAST> typeParams = CheckUtil
                 .getTypeParameters(parent);
 
         // Loop over the tags, checking to see they exist in the params.
-        for (JavadocTag tag : tags) {
+        for (MethodTag tag : tags) {
             if (!tag.isParamTag()) {
                 continue;
             }
 
             if (isDuplicateParamTag(tags, tag)) {
-                log(tag.getLineNo(), tag.getColumnNo(), MSG_DUPLICATE_TAG,
+                log(tag.ast(), MSG_DUPLICATE_TAG,
                         JavadocTagInfo.PARAM.getText());
             }
             else {
-                final String arg1 = tag.getFirstArg();
+                final String arg1 = tag.firstArg();
                 boolean found = removeMatchingParam(params, arg1);
 
                 if (arg1.endsWith(ELEMENT_END)) {
@@ -764,14 +785,14 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
                             arg1.substring(1, arg1.length() - 1));
                 }
 
-                // Handle extra JavadocTag
+                // Handle an extra parameter tag.
                 if (!found) {
-                    log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
+                    log(tag.ast(), MSG_UNUSED_TAG,
                             JavadocTagInfo.PARAM.getText(), arg1);
                 }
             }
         }
-        tags.removeIf(JavadocTag::isParamTag);
+        tags.removeIf(MethodTag::isParamTag);
 
         // Now dump out all type parameters/parameters without tags :- unless
         // the user has chosen to suppress these problems
@@ -797,14 +818,15 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
      * @param tag the tag to check
      * @return true if there is an earlier {@code @param} tag with the same argument
      */
-    private static boolean isDuplicateParamTag(List<JavadocTag> tags, JavadocTag tag) {
+    private static boolean isDuplicateParamTag(List<MethodTag> tags, MethodTag tag) {
         final int tagIndex = tags.indexOf(tag);
         boolean result = false;
         for (int tagPosition = 0; tagPosition < tagIndex; tagPosition++) {
-            final JavadocTag currentTag = tags.get(tagPosition);
+            final MethodTag currentTag = tags.get(tagPosition);
             if (currentTag.isParamTag()
-                    && currentTag.getFirstArg().equals(tag.getFirstArg())) {
+                    && currentTag.firstArg().equals(tag.firstArg())) {
                 result = true;
+                break;
             }
         }
         return result;
@@ -861,19 +883,19 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
      * Checks for only one return tag. All return tags will be removed from the supplied list.
      *
      * @param tags the tags to check
-     * @param lineNo the line number of the expected tag
+     * @param ast the AST node of the method or annotation field
      * @param reportExpectedTags whether we should report if do not find expected tag
      */
-    private void checkReturnTag(List<JavadocTag> tags, int lineNo,
+    private void checkReturnTag(List<MethodTag> tags, DetailAST ast,
         boolean reportExpectedTags) {
         // Loop over tags finding return tags. After the first one, report a violation
         boolean found = false;
-        final ListIterator<JavadocTag> it = tags.listIterator();
+        final ListIterator<MethodTag> it = tags.listIterator();
         while (it.hasNext()) {
-            final JavadocTag javadocTag = it.next();
+            final MethodTag javadocTag = it.next();
             if (javadocTag.isReturnTag()) {
                 if (found) {
-                    log(javadocTag.getLineNo(), javadocTag.getColumnNo(),
+                    log(javadocTag.ast(),
                             MSG_DUPLICATE_TAG,
                             JavadocTagInfo.RETURN.getText());
                 }
@@ -885,7 +907,7 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
         // Handle there being no @return tags :- unless
         // the user has chosen to suppress these problems
         if (!found && !allowMissingReturnTag && reportExpectedTags) {
-            log(lineNo, MSG_RETURN_EXPECTED);
+            log(ast, MSG_RETURN_EXPECTED);
         }
     }
 
@@ -896,12 +918,12 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
      * @param throwsList the throws to check
      * @param reportExpectedTags whether we should report if do not find expected tag
      */
-    private void checkThrowsTags(List<JavadocTag> tags,
+    private void checkThrowsTags(List<MethodTag> tags,
             List<ExceptionInfo> throwsList, boolean reportExpectedTags) {
         // Loop over the tags, checking to see they exist in the throws.
-        final ListIterator<JavadocTag> tagIt = tags.listIterator();
+        final ListIterator<MethodTag> tagIt = tags.listIterator();
         while (tagIt.hasNext()) {
-            final JavadocTag tag = tagIt.next();
+            final MethodTag tag = tagIt.next();
 
             if (!tag.isThrowsTag()) {
                 continue;
@@ -909,7 +931,7 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
             tagIt.remove();
 
             // Loop looking for matching throw
-            processThrows(throwsList, tag.getFirstArg());
+            processThrows(throwsList, tag.firstArg());
         }
         // Now dump out all throws without tags :- unless
         // the user has chosen to suppress these problems
@@ -991,6 +1013,53 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
          */
         private Token(FullIdent fullIdent) {
             this(fullIdent.getText());
+        }
+    }
+
+    /**
+     * A collected tag and its original Javadoc AST node.
+     *
+     * @param ast the tag node used for violation locations
+     * @param tagInfo the tag kind
+     * @param firstArg the tag argument, or an empty string for tags without arguments
+     */
+    private record MethodTag(DetailNode ast, JavadocTagInfo tagInfo, String firstArg) {
+
+        /**
+         * Checks whether this is a parameter tag.
+         *
+         * @return whether this is a parameter tag
+         */
+        private boolean isParamTag() {
+            return tagInfo == JavadocTagInfo.PARAM;
+        }
+
+        /**
+         * Checks whether this is a return tag.
+         *
+         * @return whether this is a return tag
+         */
+        private boolean isReturnTag() {
+            return tagInfo == JavadocTagInfo.RETURN;
+        }
+
+        /**
+         * Checks whether this is an inheritDoc tag.
+         *
+         * @return whether this is an inheritDoc tag
+         */
+        private boolean isInheritDocTag() {
+            return tagInfo == JavadocTagInfo.INHERIT_DOC;
+        }
+
+        /**
+         * Checks whether this documents a thrown exception.
+         *
+         * @return whether this is a throws or exception tag
+         */
+        private boolean isThrowsTag() {
+            return tagInfo == JavadocTagInfo.THROWS
+                    || tagInfo == JavadocTagInfo.EXCEPTION;
         }
     }
 
