@@ -89,6 +89,27 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testMutableExceptionCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY, "errorCode"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMutableExceptionCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testMutableExceptionCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY, "errorCode"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputMutableExceptionCompactSourceFileProperties.java"),
+                expected);
+    }
+
+    @Test
     public void testDefault() throws Exception {
 
         final String[] expected = {
