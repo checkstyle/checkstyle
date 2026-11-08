@@ -150,4 +150,26 @@ public class NoLineWrapCheckTest extends AbstractModuleTestSupport {
                 getPath("InputNoLineWrapSkipAnnotationsTrue.java"), expected);
     }
 
+    @Test
+    public void testNoLineWrapCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_KEY, "import"),
+            "13:1: " + getCheckMessage(MSG_KEY, "import"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNoLineWrapCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testNoLineWrapCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
+            "20:1: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNoLineWrapCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
