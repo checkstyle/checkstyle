@@ -188,4 +188,26 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputIllegalImportModuleWithRegex.java"), expected);
     }
 
+    @Test
+    public void testIllegalImportCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_KEY, "sun.misc.Unsafe"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputIllegalImportCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testIllegalImportCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_KEY, "java.logging"),
+            "16:1: " + getCheckMessage(MSG_KEY, "java.io.File"),
+            "18:1: " + getCheckMessage(MSG_KEY, "java.util.Random"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputIllegalImportCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
