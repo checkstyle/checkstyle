@@ -148,8 +148,7 @@ public class AllChecksCompactSourceCoverageTest {
         "UnnecessarySemicolonInTryWithResourcesCheck",
         "UnusedImportsCheck",
         "UnusedTryResourceShouldBeUnnamedCheck",
-        "UnnecessaryFullyQualifiedTypeCheck",
-        "WhenShouldBeUsedCheck"
+        "UnnecessaryFullyQualifiedTypeCheck"
     );
 
     @Test
