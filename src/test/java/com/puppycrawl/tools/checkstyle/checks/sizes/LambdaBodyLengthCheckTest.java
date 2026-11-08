@@ -89,4 +89,25 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
                 getPath("InputLambdaBodyLengthMax.java"), expected);
     }
 
+    @Test
+    public void testLambdaBodyLengthCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "15:31: " + getCheckMessage(MSG_KEY, 12, 10),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputLambdaBodyLengthCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testLambdaBodyLengthCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "16:29: " + getCheckMessage(MSG_KEY, 5, 3),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputLambdaBodyLengthCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
