@@ -701,7 +701,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private static DetailAST findFirstUpperNamedBlock(DetailAST ast) {
         DetailAST astTraverse = ast;
         while (!TokenUtil.isOfType(astTraverse, TokenTypes.METHOD_DEF, TokenTypes.CLASS_DEF,
-                TokenTypes.ENUM_DEF, TokenTypes.CTOR_DEF, TokenTypes.COMPACT_CTOR_DEF)
+                TokenTypes.ENUM_DEF, TokenTypes.RECORD_DEF, TokenTypes.CTOR_DEF,
+                TokenTypes.COMPACT_CTOR_DEF)
                 && !ScopeUtil.isClassFieldDef(astTraverse)) {
             astTraverse = astTraverse.getParent();
         }
