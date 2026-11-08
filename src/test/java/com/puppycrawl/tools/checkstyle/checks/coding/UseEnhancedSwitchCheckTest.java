@@ -94,4 +94,16 @@ public class UseEnhancedSwitchCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testUseEnhancedSwitchCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "13:13: " + getCheckMessage(UseEnhancedSwitchCheck.MSG_KEY),
+            "28:5: " + getCheckMessage(UseEnhancedSwitchCheck.MSG_KEY),
+            "40:12: " + getCheckMessage(UseEnhancedSwitchCheck.MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("compact/InputUseEnhancedSwitchCompactSourceFileDefault.java"),
+            expected);
+    }
+
 }
