@@ -196,4 +196,24 @@ public class IllegalTokenTextCheckTest extends AbstractModuleTestSupport {
                 getPath("InputIllegalTokenTextDefaultFormat.java"), expected);
     }
 
+    @Test
+    public void testIllegalTokenTextCompactSourceFileDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputIllegalTokenTextCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testIllegalTokenTextCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "13:16: " + "Do not use forbidden text",
+            "21:12: " + "Do not use forbidden text",
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputIllegalTokenTextCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
