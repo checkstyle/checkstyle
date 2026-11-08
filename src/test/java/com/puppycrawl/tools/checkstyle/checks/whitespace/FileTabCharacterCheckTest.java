@@ -42,7 +42,7 @@ public class FileTabCharacterCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "22:25: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
+            "13:25: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFileTabCharacterSimple.java"),
@@ -64,14 +64,14 @@ public class FileTabCharacterCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testVerbose() throws Exception {
         final String[] expected = {
-            "22:25: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "148:35: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "151:28: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "159:9: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "160:10: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "161:1: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "162:3: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "163:3: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "13:25: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "15:35: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "18:28: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "26:9: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "27:10: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "28:1: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "29:3: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "30:3: " + getCheckMessage(MSG_CONTAINS_TAB),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFileTabCharacterSimple1.java"),
