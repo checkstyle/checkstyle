@@ -122,8 +122,7 @@ public class AllChecksCompactSourceCoverageTest {
         "SuppressWarningsCheck",
         "SuppressWarningsHolder",
         "TextBlockGoogleStyleFormattingCheck",
-        "UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
-        "UnnecessarySemicolonInTryWithResourcesCheck"
+        "UnnecessarySemicolonAfterTypeMemberDeclarationCheck"
     );
 
     @Test
