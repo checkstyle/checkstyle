@@ -145,4 +145,17 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
                 .isTrue();
     }
 
+    @Test
+    public void testUnusedCatchParameterShouldBeUnnamedCompactSourceFileDefault()
+            throws Exception {
+        final String[] expected = {
+            "18:12: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
+            "46:12: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "error"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                    + "InputUnusedCatchParameterShouldBeUnnamedCompactSourceFileDefault.java"),
+                expected);
+    }
+
 }
