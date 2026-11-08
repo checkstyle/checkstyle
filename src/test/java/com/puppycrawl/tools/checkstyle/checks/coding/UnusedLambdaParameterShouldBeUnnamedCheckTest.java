@@ -147,4 +147,17 @@ public class UnusedLambdaParameterShouldBeUnnamedCheckTest extends AbstractModul
                 .isTrue();
     }
 
+    @Test
+    public void testUnusedLambdaParameterShouldBeUnnamedCompactSourceFileDefault()
+            throws Exception {
+        final String[] expected = {
+            "17:39: " + getCheckMessage(MSG_UNUSED_LAMBDA_PARAMETER, "value"),
+            "24:40: " + getCheckMessage(MSG_UNUSED_LAMBDA_PARAMETER, "offset"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                    + "InputUnusedLambdaParameterShouldBeUnnamedCompactSourceFileDefault.java"),
+                expected);
+    }
+
 }
