@@ -492,4 +492,25 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         }
     }
 
+    @Test
+    public void testUnusedImportsCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "12:8: " + getCheckMessage(MSG_KEY, "java.util.Map"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputUnusedImportsCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnusedImportsCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "12:8: " + getCheckMessage(MSG_KEY, "java.util.Map"),
+            "13:8: " + getCheckMessage(MSG_KEY, "java.util.Set"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputUnusedImportsCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
