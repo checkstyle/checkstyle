@@ -155,7 +155,6 @@ public class AllChecksCompactSourceCoverageTest {
         "UnusedCatchParameterShouldBeUnnamedCheck",
         "UnusedImportsCheck",
         "UnusedLambdaParameterShouldBeUnnamedCheck",
-        "UnusedTryResourceShouldBeUnnamedCheck",
         "UnnecessaryFullyQualifiedTypeCheck",
         "UseEnhancedSwitchCheck",
         "WhenShouldBeUsedCheck"
