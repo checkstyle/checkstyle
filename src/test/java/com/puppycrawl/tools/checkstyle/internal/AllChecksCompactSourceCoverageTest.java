@@ -151,7 +151,6 @@ public class AllChecksCompactSourceCoverageTest {
         "UnnecessaryNullCheckWithInstanceOfCheck",
         "UnnecessaryParenthesesCheck",
         "UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
-        "UnnecessarySemicolonInTryWithResourcesCheck",
         "UnusedCatchParameterShouldBeUnnamedCheck",
         "UnusedImportsCheck",
         "UnusedLambdaParameterShouldBeUnnamedCheck",
