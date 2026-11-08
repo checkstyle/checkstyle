@@ -572,4 +572,51 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                         "InputAbbreviationAsWordInNameCompactSourceFile.java"), expected);
     }
 
+    @Test
+    public void testAbbreviationAsWordInNameCompactSourceFileDefault() throws Exception {
+        final int expectedCapitalCount = 4;
+
+        final String[] expected = {
+            "19:5: " + getWarningMessage("useHTTPSConnection", expectedCapitalCount),
+            "25:9: " + getWarningMessage("localHTTPSConnection", expectedCapitalCount),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputAbbreviationAsWordInNameCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testAbbreviationAsWordInNameCompactSourceFileProperties1() throws Exception {
+        final int expectedCapitalCount = 2;
+
+        final String[] expected = {
+            "21:5: " + getWarningMessage("useXMLParser", expectedCapitalCount),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputAbbreviationAsWordInNameCompactSourceFileProperties1.java"),
+                expected);
+    }
+
+    @Test
+    public void testAbbreviationAsWordInNameCompactSourceFileProperties2() throws Exception {
+        final int expectedCapitalCount = 4;
+
+        final String[] expected = {
+            "19:11: " + getWarningMessage("myHTTPSField", expectedCapitalCount),
+            "22:12: " + getWarningMessage("myHTTPSOther", expectedCapitalCount),
+            "25:18: " + getWarningMessage("myHTTPSThird", expectedCapitalCount),
+            "29:10: " + getWarningMessage("myHTTPSMethod", expectedCapitalCount),
+            "35:17: " + getWarningMessage("myHTTPSMethod", expectedCapitalCount),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputAbbreviationAsWordInNameCompactSourceFileProperties2.java"),
+                expected);
+    }
+
 }
