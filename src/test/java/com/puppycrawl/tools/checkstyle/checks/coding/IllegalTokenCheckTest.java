@@ -116,4 +116,15 @@ public class IllegalTokenCheckTest extends AbstractModuleTestSupport {
                 getPath("InputIllegalTokensCheckSingleLineComment.java"), expected);
     }
 
+    @Test
+    public void testIllegalTokenCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "15:10: " + getCheckMessage(MSG_KEY, "outer:"),
+            "29:9: " + getCheckMessage(MSG_KEY, "loop:"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputIllegalTokenCompactSourceFileDefault.java"),
+                expected);
+    }
+
 }
