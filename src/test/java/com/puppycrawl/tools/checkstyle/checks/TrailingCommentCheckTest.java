@@ -39,7 +39,8 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     public void testGetRequiredTokens() {
         final TrailingCommentCheck checkObj = new TrailingCommentCheck();
         final int[] expected = {TokenTypes.SINGLE_LINE_COMMENT,
-            TokenTypes.BLOCK_COMMENT_BEGIN, };
+            TokenTypes.BLOCK_COMMENT_BEGIN,
+        };
         assertWithMessage("Required tokens array is not empty")
                 .that(checkObj.getRequiredTokens())
                 .isEqualTo(expected);
@@ -49,7 +50,8 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     public void testGetAcceptableTokens() {
         final TrailingCommentCheck checkObj = new TrailingCommentCheck();
         final int[] expected = {TokenTypes.SINGLE_LINE_COMMENT,
-            TokenTypes.BLOCK_COMMENT_BEGIN, };
+            TokenTypes.BLOCK_COMMENT_BEGIN,
+        };
         assertWithMessage("Acceptable tokens array is not empty")
                 .that(checkObj.getAcceptableTokens())
                 .isEqualTo(expected);

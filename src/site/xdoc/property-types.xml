@@ -47,6 +47,7 @@
             <li><a href="#Pattern">Pattern</a></li>
             <li><a href="#Pattern.5B.5D">Pattern[]</a></li>
             <li><a href="#RightCurlyOption">RightCurlyOption</a></li>
+            <li><a href="#RightCurlyOfExpressionOption">RightCurlyOfExpressionOption</a></li>
             <li><a href="#Scope">Scope</a></li>
             <li><a href="#SeparatorOption">SeparatorOption</a></li>
             <li><a href="#SeverityLevel">SeverityLevel</a></li>
@@ -1112,6 +1113,69 @@ if (a &#62; 0) {
     ...
 } else { ... <b>}</b> // OK, single-line multi-block statement
 </code></pre>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </div>
+    </section>
+
+    <section name="RightCurlyOfExpressionOption">
+      <p>
+        This type represents policy on placement of the right curly brace
+          <code>'}'</code> of an expression block.
+        The following table describes the valid options:
+      </p>
+
+      <div class="wrapper">
+        <table summary="RightCurlyOfExpressionOption options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+
+          <tr>
+            <td><code>ON_SAME_LINE</code></td>
+            <td>
+              Represents the policy that the right curly brace must be on the same line
+              as the previous part of the expression.
+              Example:
+              <div class="wrapper">
+                <pre class="prettyprint"><code class="language-java">
+String[] names = new String[] {"One", "Two", };
+                </code></pre>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>ON_NEW_LINE</code></td>
+            <td>
+              Represents the policy that the right curly brace must be on a new line.
+              Example:
+              <div class="wrapper">
+                <pre class="prettyprint"><code class="language-java">
+String[] names = new String[] {"One", "Two",
+};
+                </code></pre>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>ON_NEW_LINE_OR_SINGLELINE</code></td>
+            <td>
+              Represents the policy that the right curly brace must be on a new line,
+              unless the whole expression block is on a single line.
+              Example:
+              <div class="wrapper">
+                <pre class="prettyprint"><code class="language-java">
+String[] names = new String[] {"One", "Two", };
+
+String[] names = new String[] {"One", "Two",
+};
+                </code></pre>
               </div>
             </td>
           </tr>

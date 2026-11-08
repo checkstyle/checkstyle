@@ -185,7 +185,8 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     @Override
     public int[] getRequiredTokens() {
         return new int[] {TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT,
-            TokenTypes.MODULE_IMPORT, };
+            TokenTypes.MODULE_IMPORT,
+        };
     }
 
     @Override
