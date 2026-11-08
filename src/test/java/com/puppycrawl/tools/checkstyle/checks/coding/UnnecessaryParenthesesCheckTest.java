@@ -527,4 +527,21 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
                 getPath("InputUnnecessaryParenthesesCasts3.java"), expected);
     }
 
+    @Test
+    public void testUnnecessaryParenthesesCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "19:15: " + getCheckMessage(MSG_LITERAL, "10"),
+            "20:16: " + getCheckMessage(MSG_STRING, "\"text\""),
+            "21:16: " + getCheckMessage(MSG_ASSIGN),
+            "25:18: " + getCheckMessage(MSG_ASSIGN),
+            "26:12: " + getCheckMessage(MSG_ASSIGN),
+            "27:13: " + getCheckMessage(MSG_IDENT, "result"),
+            "34:17: " + getCheckMessage(MSG_ASSIGN),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputUnnecessaryParenthesesCompactSourceFileDefault.java"),
+                expected);
+    }
+
 }
