@@ -8,12 +8,12 @@ violateExecutionOnNonTightHtml = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
+// violation 4 lines below '<p> tag should not precede HTML block-tag '<h1>''
 /**
  * Some summary.
  *
  * <p><h1>Testing...</h1>
  */
-// violation 2 lines above '<p> tag should not precede HTML block-tag '<h1>''
 public class InputJavadocParagraphIncorrect4 {
     // violation 4 lines below '<p> tag should not precede HTML block-tag '<ul>''
     /**
@@ -42,7 +42,10 @@ public class InputJavadocParagraphIncorrect4 {
      */
     public void fooo() {}
 
-    // violation 4 lines below '<p> tag should be placed immediately before the first word'
+    // violation 7 lines below '<p> tag should be placed immediately before the first word'
+    // 2 violations 8 lines below:
+    // '<p> tag should be placed immediately before the first word'
+    // '<p> tag should not precede HTML block-tag '<ol>''
     /**
      * <h1>Testing....</h1>
      *
@@ -52,9 +55,6 @@ public class InputJavadocParagraphIncorrect4 {
      *
      * <p><b><h1>Nesting....</h1></b>
      */
-    // 2 violations 4 lines above:
-    // '<p> tag should be placed immediately before the first word'
-    // '<p> tag should not precede HTML block-tag '<ol>''
     void foooo() {}
     
     // violation 4 lines below '<p> tag should be preceded with an empty line.'

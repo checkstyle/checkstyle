@@ -87,8 +87,4 @@
   <suppress id="noCheckstyleInInputs"
             files="/it/resources/com/google/checkstyle/test/chapter3filestructure/rule333orderingandspacing/InputFormattedOrderingAndSpacingValid2.java"/>
 
-  <!-- until https://github.com/checkstyle/checkstyle/issues/19803 -->
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="/checks/javadoc/javadocparagraph/InputJavadocParagraphIncorrect4\.java"/>
-
 </suppressions>
