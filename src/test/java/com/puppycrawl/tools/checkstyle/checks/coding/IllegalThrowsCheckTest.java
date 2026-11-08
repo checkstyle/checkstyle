@@ -129,4 +129,30 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
             .isNotNull();
     }
 
+    @Test
+    public void testIllegalThrowsCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "13:20: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "19:30: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputIllegalThrowsCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testIllegalThrowsCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "13:20: " + getCheckMessage(MSG_KEY, "NullPointerException"),
+            "20:33: " + getCheckMessage(MSG_KEY, "NullPointerException"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputIllegalThrowsCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
