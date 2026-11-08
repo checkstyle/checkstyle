@@ -213,4 +213,24 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
             .isEqualTo(expected);
     }
 
+    @Test
+    public void testJavaNcssCompactSourceFileDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputJavaNCSSCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testJavaNcssCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_FILE, 8, 4),
+            "20:1: " + getCheckMessage(MSG_METHOD, 4, 2),
+            "26:1: " + getCheckMessage(MSG_RECORD, 3, 1),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputJavaNCSSCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
