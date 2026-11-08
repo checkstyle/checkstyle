@@ -430,16 +430,6 @@
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/InputEmptyLineSeparator2\.java"/>
   <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/InputParenPadLeftRightAndNoSpace2\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/InputParenPadWhitespace\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/InputParenPadLeftRightAndNoSpace3\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/InputParenPadWhitespace2\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/InputParenPadLeftRightAndNoSpace1\.java"/>
-  <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespacebefore/InputNoWhitespaceBeforeDotAllowLineBreaks\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespacebefore/InputNoWhitespaceBeforeDefault\.java"/>
