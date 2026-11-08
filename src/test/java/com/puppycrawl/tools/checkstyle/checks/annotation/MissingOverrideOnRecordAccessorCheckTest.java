@@ -44,6 +44,17 @@ public class MissingOverrideOnRecordAccessorCheckTest extends AbstractModuleTest
     }
 
     @Test
+    public void testMissingOverrideOnRecordAccessorCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "13:5: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "compact/InputMissingOverrideOnRecordAccessorCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
     public void testRecordAccessorWithoutOverride() throws Exception {
         final String[] expected = {
             "13:5: " + getCheckMessage(MSG_KEY),
