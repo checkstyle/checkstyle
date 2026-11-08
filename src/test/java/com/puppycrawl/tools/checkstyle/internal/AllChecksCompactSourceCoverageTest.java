@@ -133,7 +133,6 @@ public class AllChecksCompactSourceCoverageTest {
         "NonEmptyAtclauseDescriptionCheck",
         "NumericalPrefixesInfixesSuffixesCharacterCaseCheck",
         "OneTopLevelClassCheck",
-        "PackageAnnotationCheck",
         "PackageNameCheck",
         "PatternVariableAssignmentCheck",
         "RecordComponentNumberCheck",
