@@ -57,8 +57,7 @@ public final class XMLLogger
     private static final int SOURCE_BUILDER_CAPACITY = 128;
 
     /** Some known entities to detect. */
-    private static final String[] ENTITIES = {"gt", "amp", "lt", "apos",
-                                              "quot", };
+    private static final String[] ENTITIES = {"gt", "amp", "lt", "apos", "quot", };
 
     /** Close output stream in auditFinished. */
     private final boolean closeStream;
