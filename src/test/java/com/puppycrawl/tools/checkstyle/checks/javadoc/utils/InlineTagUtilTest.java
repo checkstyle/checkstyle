@@ -43,7 +43,8 @@ public class InlineTagUtilTest {
             " * {@link List }, {@link List link text }",
             "   {@link List#add(Object) link text}",
             " * {@link Class link text}",
-            " */"};
+            " */",
+        };
         final List<TagInfo> tags = InlineTagUtil.extractInlineTags(text);
 
         assertWithMessage("Unexpected tags size")
@@ -62,7 +63,8 @@ public class InlineTagUtilTest {
             "/**",
             " * {@link foo",
             " *        bar baz}",
-            " */"};
+            " */",
+        };
 
         final List<TagInfo> tags = InlineTagUtil.extractInlineTags(text);
 
@@ -77,7 +79,8 @@ public class InlineTagUtilTest {
         final String[] text = {
             "/**",
             " * {@code     foo\t\t   bar   baz\t    }",
-            " */"};
+            " */",
+        };
 
         final List<TagInfo> tags = InlineTagUtil.extractInlineTags(text);
 
