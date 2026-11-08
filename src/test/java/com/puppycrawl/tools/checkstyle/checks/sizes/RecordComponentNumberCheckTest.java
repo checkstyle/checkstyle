@@ -187,6 +187,36 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
      * is needed for other style checks.
      */
     @Test
+    public void testRecordComponentNumberCompactSourceFileDefault() throws Exception {
+
+        final int max = 8;
+
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_KEY, 9, max),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputRecordComponentNumberCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordComponentNumberCompactSourceFileProperties() throws Exception {
+
+        final int max = 3;
+
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_KEY, 4, max),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputRecordComponentNumberCompactSourceFileProperties.java"),
+                expected);
+    }
+
+    @Test
     public void testCloneInAccessModifiersProperty() {
         final AccessModifierOption[] input = {
             AccessModifierOption.PACKAGE,
