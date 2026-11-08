@@ -81,44 +81,4 @@ public class InputSuppressWarningsExpandedNonConstant5
         }
     }
 
-    // violation 2 lines below 'The warning 'unchecked' cannot be suppressed at this location'
-    // violation below 'The warning 'unchecked' cannot be suppressed at this location'
-    @SuppressWarnings(value={(false) ? "unchecked" : "", (false) ? "unchecked" : ""})
-    class Cond {
-
-        // violation below 'The warning 'unchecked' cannot be suppressed at this location'
-        @SuppressWarnings(value={(false) ? "" : "unchecked"})
-        public Cond() {
-
-        }
-        // 2 violations 3 lines below:
-        // 'cannot be suppressed at this location'
-        // 'cannot be suppressed at this location'
-        @SuppressWarnings(value={(false) ? (true) ? "   " : "unused" : "unchecked",
-            (false) ? (true) ? "   " : "unused" : "unchecked"})
-        public void aCond1() {
-            // 2 violations 2 lines above:
-            // 'cannot be suppressed at this location'
-            // 'cannot be suppressed at this location'
-        }
-        // 2 violations 3 lines below:
-        // 'cannot be suppressed at this location'
-        // 'cannot be suppressed at this location'
-        @SuppressWarnings(value={(false) ? "unchecked" : (true) ? "   " : "unused"})
-        public void aCond2() {
-
-        }
-
-        // violation below 'The warning 'unchecked' cannot be suppressed at this location'
-        @java.lang.SuppressWarnings(value={(false) ? "unchecked" :
-                // violation below 'The warning 'unused' cannot be suppressed at this location'
-                    ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused",
-                // violation below 'The warning 'unchecked' cannot be suppressed at this location'
-                (false) ? "unchecked" :
-                // violation below 'The warning 'unused' cannot be suppressed at this location'
-                    ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused"})
-        public void seriously() {
-
-        }
-    }
 }
