@@ -90,4 +90,14 @@ public class WhenShouldBeUsedCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testWhenShouldBeUsedCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "17:9: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputWhenShouldBeUsedCompactSourceFileDefault.java"),
+                expected);
+    }
+
 }
