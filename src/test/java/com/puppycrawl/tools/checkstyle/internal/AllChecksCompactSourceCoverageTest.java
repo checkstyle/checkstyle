@@ -112,7 +112,6 @@ public class AllChecksCompactSourceCoverageTest {
         "MissingJavadocMethodCheck",
         "MissingJavadocPackageCheck",
         "MissingJavadocTypeCheck",
-        "MissingOverrideOnRecordAccessorCheck",
         "ModifiedControlVariableCheck",
         "NoCodeInFileCheck",
         "NonEmptyAtclauseDescriptionCheck",
