@@ -156,7 +156,6 @@ public class AllChecksCompactSourceCoverageTest {
         "UnusedLambdaParameterShouldBeUnnamedCheck",
         "UnusedTryResourceShouldBeUnnamedCheck",
         "UnnecessaryFullyQualifiedTypeCheck",
-        "UseEnhancedSwitchCheck",
         "WhenShouldBeUsedCheck"
     );
 
