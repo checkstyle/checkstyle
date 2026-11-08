@@ -212,4 +212,17 @@ public class UnusedTryResourceShouldBeUnnamedCheckTest extends AbstractModuleTes
             expected);
     }
 
+    @Test
+    public void testUnusedTryResourceShouldBeUnnamedCompactSourceFileDefault()
+            throws Exception {
+        final String[] expected = {
+            "18:24: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "unused"),
+            "37:23: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "reader"),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("compact/"
+                + "InputUnusedTryResourceShouldBeUnnamedCompactSourceFileDefault.java"),
+            expected);
+    }
+
 }
