@@ -91,7 +91,6 @@ public class AllChecksCompactSourceCoverageTest {
         "AtclauseOrderCheck",
         "ClassDataAbstractionCouplingCheck",
         "CommentsIndentationCheck",
-        "ConstructorsDeclarationGroupingCheck",
         "CustomImportOrderCheck",
         "IllegalBlockTagCheck",
         "IllegalInstantiationCheck",

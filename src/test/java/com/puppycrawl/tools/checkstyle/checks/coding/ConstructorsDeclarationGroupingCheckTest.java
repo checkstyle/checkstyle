@@ -138,4 +138,28 @@ public class ConstructorsDeclarationGroupingCheckTest extends AbstractModuleTest
                 .isNotNull();
     }
 
+    @Test
+    public void testConstructorsDeclarationGroupingCompactSourceFileDefault()
+            throws Exception {
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_KEY, 14),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                    + "InputConstructorsDeclarationGroupingCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testConstructorsDeclarationGroupingCompactSourceFileProperties()
+            throws Exception {
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_ORDER),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                    + "InputConstructorsDeclarationGroupingCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
