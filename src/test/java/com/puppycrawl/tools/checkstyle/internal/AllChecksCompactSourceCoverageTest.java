@@ -128,7 +128,6 @@ public class AllChecksCompactSourceCoverageTest {
         "MissingOverrideOnRecordAccessorCheck",
         "ModifiedControlVariableCheck",
         "MutableExceptionCheck",
-        "NoCodeInFileCheck",
         "NoLineWrapCheck",
         "NonEmptyAtclauseDescriptionCheck",
         "NumericalPrefixesInfixesSuffixesCharacterCaseCheck",
