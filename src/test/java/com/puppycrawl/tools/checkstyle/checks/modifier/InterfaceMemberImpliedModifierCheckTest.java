@@ -54,6 +54,69 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "34:5: " + getCheckMessage(MSG_KEY, "final"),
+            "34:5: " + getCheckMessage(MSG_KEY, "public"),
+            "34:5: " + getCheckMessage(MSG_KEY, "static"),
+            "42:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "42:5: " + getCheckMessage(MSG_KEY, "public"),
+            "48:5: " + getCheckMessage(MSG_KEY, "public"),
+            "53:5: " + getCheckMessage(MSG_KEY, "public"),
+            "63:5: " + getCheckMessage(MSG_KEY, "public"),
+            "63:5: " + getCheckMessage(MSG_KEY, "static"),
+            "68:5: " + getCheckMessage(MSG_KEY, "public"),
+            "68:5: " + getCheckMessage(MSG_KEY, "static"),
+            "73:5: " + getCheckMessage(MSG_KEY, "public"),
+            "73:5: " + getCheckMessage(MSG_KEY, "static"),
+            "81:9: " + getCheckMessage(MSG_KEY, "final"),
+            "81:9: " + getCheckMessage(MSG_KEY, "public"),
+            "81:9: " + getCheckMessage(MSG_KEY, "static"),
+            "87:9: " + getCheckMessage(MSG_KEY, "abstract"),
+            "87:9: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputInterfaceMemberImpliedModifierCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties1() throws Exception {
+        final String[] expected = {
+            "38:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "38:5: " + getCheckMessage(MSG_KEY, "public"),
+            "44:5: " + getCheckMessage(MSG_KEY, "public"),
+            "49:5: " + getCheckMessage(MSG_KEY, "public"),
+            "59:5: " + getCheckMessage(MSG_KEY, "public"),
+            "59:5: " + getCheckMessage(MSG_KEY, "static"),
+            "64:5: " + getCheckMessage(MSG_KEY, "public"),
+            "64:5: " + getCheckMessage(MSG_KEY, "static"),
+            "69:5: " + getCheckMessage(MSG_KEY, "public"),
+            "69:5: " + getCheckMessage(MSG_KEY, "static"),
+            "79:9: " + getCheckMessage(MSG_KEY, "abstract"),
+            "79:9: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputInterfaceMemberImpliedModifierCompactSourceFileProperties1.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties2() throws Exception {
+        final String[] expected = {
+            "34:5: " + getCheckMessage(MSG_KEY, "final"),
+            "34:5: " + getCheckMessage(MSG_KEY, "public"),
+            "34:5: " + getCheckMessage(MSG_KEY, "static"),
+            "67:9: " + getCheckMessage(MSG_KEY, "final"),
+            "67:9: " + getCheckMessage(MSG_KEY, "public"),
+            "67:9: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputInterfaceMemberImpliedModifierCompactSourceFileProperties2.java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final InterfaceMemberImpliedModifierCheck check = new InterfaceMemberImpliedModifierCheck();
         final int[] actual = check.getRequiredTokens();
