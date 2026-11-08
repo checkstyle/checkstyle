@@ -91,12 +91,12 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIncorrect2() throws Exception {
         final String[] expected = {
-            "14:4: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "h1"),
+            "15:4: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "h1"),
             "22:7: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
             "37:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "table"),
-            "49:8: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "51:8: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "51:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ol"),
+            "52:8: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "54:8: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "54:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ol"),
             "64:63: " + getCheckMessage(MSG_LINE_BEFORE),
             "65:7: " + getCheckMessage(MSG_TAG_AFTER),
         };
