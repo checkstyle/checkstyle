@@ -88,7 +88,6 @@ public class AllChecksCompactSourceCoverageTest {
         "AbbreviationAsWordInNameCheck",
         "AnnotationLocationCheck",
         "AnnotationUseStyleCheck",
-        "AtclauseOrderCheck",
         "ClassDataAbstractionCouplingCheck",
         "CommentsIndentationCheck",
         "CustomImportOrderCheck",
