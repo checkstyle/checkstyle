@@ -146,7 +146,6 @@ public class AllChecksCompactSourceCoverageTest {
         "UnnecessaryParenthesesCheck",
         "UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
         "UnnecessarySemicolonInTryWithResourcesCheck",
-        "UnusedImportsCheck",
         "UnusedTryResourceShouldBeUnnamedCheck",
         "UnnecessaryFullyQualifiedTypeCheck",
         "WhenShouldBeUsedCheck"
