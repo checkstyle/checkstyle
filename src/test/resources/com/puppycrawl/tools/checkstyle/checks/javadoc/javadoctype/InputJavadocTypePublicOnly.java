@@ -31,7 +31,6 @@ public class InputJavadocTypePublicOnly
                         public void run() {};
                     };
             }
-
             void method2()
             {
                 final Runnable r = new Runnable() {
@@ -40,7 +39,6 @@ public class InputJavadocTypePublicOnly
             }
         }
     }
-
     private class InnerClass
     {
         private int mDiff;
@@ -49,13 +47,10 @@ public class InputJavadocTypePublicOnly
         {
         }
     }
-
     private int mSize;
     int mLen;
     protected int mDeer;
     public int aFreddo;
-
-
     private InputJavadocTypePublicOnly(int aA)
     {
     }
@@ -104,13 +99,11 @@ public class InputJavadocTypePublicOnly
     private void method(String aA)
     {
     }
-
     /**
        This inner class has no author tag, which is OK.
      */
     public class InnerWithoutAuthor
     {
-
     }
 
     /** {@inheritDoc} */
