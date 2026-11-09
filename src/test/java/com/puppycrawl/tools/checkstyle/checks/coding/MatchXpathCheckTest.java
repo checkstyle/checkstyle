@@ -231,4 +231,33 @@ public class MatchXpathCheckTest extends AbstractModuleTestSupport {
                 .isEqualTo("Evaluation of Xpath query failed: count(*) div 0");
     }
 
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMatchXpathCompactDefault.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileQuery() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+            "14:1: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+            "18:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+            "23:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+            "31:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMatchXpathCompactQuery.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileRootQuery() throws Exception {
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMatchXpathCompactRoot.java"), expected);
+    }
+
 }
