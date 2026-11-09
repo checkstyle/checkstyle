@@ -104,7 +104,6 @@ public class AllChecksCompactSourceCoverageTest {
         "JavadocLinkWellKnownApiCheck",
         "JavadocMethodCheck",
         "JavadocMissingLeadingAsteriskCheck",
-        "JavadocMissingWhitespaceAfterAsteriskCheck",
         "JavadocParagraphCheck",
         "JavadocSeeTagOrderCheck",
         "JavadocStyleCheck",
