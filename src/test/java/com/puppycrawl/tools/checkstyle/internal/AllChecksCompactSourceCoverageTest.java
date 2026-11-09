@@ -104,7 +104,6 @@ public class AllChecksCompactSourceCoverageTest {
         "OneTopLevelClassCheck",
         "PackageAnnotationCheck",
         "PackageNameCheck",
-        "PatternVariableAssignmentCheck",
         "RedundantModifierCheck",
         "RegexpSinglelineJavaCheck",
         "RequireEmptyLineBeforeBlockTagGroupCheck",
