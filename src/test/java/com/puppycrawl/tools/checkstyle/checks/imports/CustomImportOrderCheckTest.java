@@ -796,8 +796,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     public void testCompactSourceFileProperties() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_LEX, "java.io.File", "java.util.List"),
-            "19:1: " + getCheckMessage(MSG_LEX, "com.sun.net.httpserver.HttpServer",
-                    "org.w3c.dom.Node"),
+            "19:1: " + getCheckMessage(MSG_LEX, "com.sun.source.tree.Tree", "org.w3c.dom.Node"),
             "21:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STD, "java.util.Map"),
         };
         verifyWithInlineConfigParser(
