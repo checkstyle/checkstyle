@@ -153,4 +153,27 @@ public class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupp
         verifyWithInlineConfigParser(filePath, expected);
     }
 
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "18:1: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 0, 1),
+            "33:7: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputJavadocLeadingAsteriskAlignCompactDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileIndentation() throws Exception {
+        final String[] expected = {
+            "18:2: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 1, 2),
+            "32:6: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 1, 2),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavadocLeadingAsteriskAlignCompactIndentation.java"),
+                expected);
+    }
+
 }
