@@ -10,8 +10,8 @@ recordMaximum = 1
 
 // non-compiled with javac: Compilable with Java25
 
-// until #22537: the top-level fields are not counted and classMaximum is not checked
-int a = 1; // violation 'NCSS for this file is 8'
+int a = 1; // violation 'NCSS for this class is 10'
+// violation 1 lines above 'NCSS for this file is 10'
 int b = 2;
 
 void main() {
