@@ -137,7 +137,6 @@ public class AllChecksCompactSourceCoverageTest {
         "SuppressWarningsCheck",
         "SuppressWarningsHolder",
         "TextBlockGoogleStyleFormattingCheck",
-        "UnnecessaryNullCheckWithInstanceOfCheck",
         "UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
         "UnnecessarySemicolonInTryWithResourcesCheck",
         "UnnecessaryFullyQualifiedTypeCheck"
