@@ -94,7 +94,6 @@ enum InputJavadocTypeEnum2
 @interface InputJavadocInterface
 {
 }
-
 /**
  * Testing author and version tag patterns (there are not tags :)
  * SomeText @author Oliver Burn
@@ -103,7 +102,6 @@ enum InputJavadocTypeEnum2
 @interface InputJavadocInterface1 // violation 'missing @author tag'
 {
 }
-
 /**
  * Testing author and version tag patterns.
  * tags are multi line ones
@@ -112,7 +110,6 @@ enum InputJavadocTypeEnum2
 @interface InputJavadocInterface2
 {
 }
-
 //Testing tag on first comment line
 /**
 * @author ABC

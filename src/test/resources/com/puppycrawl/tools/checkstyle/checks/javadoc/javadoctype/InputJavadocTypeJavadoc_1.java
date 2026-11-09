@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 class InputJavadocTypeJavadoc_1 // violation 'tag @author must match pattern 'ABC'.'
 {
 }
-
 /**
  * Testing author and version tag patterns (there are not tags :)
  * SomeText @author Oliver Burn
@@ -31,23 +30,18 @@ class InputJavadocTypeJavadoc_1 // violation 'tag @author must match pattern 'AB
 class InputJavadocTypeJavadoc_11 // violation 'missing @author tag.'
 {
 }
-
 /**
- * Testing author and version tag patterns.
  * tags are multi line ones
  * @author Oliver Burn
  * @version 1.0 */
 class InputJavadocTypeJavadoc_21 // violation 'tag @author must match pattern 'ABC'.'
 {
-
     /**
      * @author
      * @version abc
      */
     class ClassC {}
 }
-
-//Testing tag on first comment line
 /**
 * @author ABC
 * @version 1.1
@@ -55,7 +49,6 @@ class InputJavadocTypeJavadoc_21 // violation 'tag @author must match pattern 'A
 class InputJavadocType_1
 {
 }
-
 /**
  * Testing author and version tag patterns
  ****    @author Oliver Burn
@@ -64,7 +57,6 @@ class InputJavadocType_1
 enum InputJavadocTypeEnum_1 // violation 'tag @author must match pattern 'ABC'.'
 {
 }
-
 /**
  * Testing author and version tag patterns (there are not tags :)
  * SomeText @author Oliver Burn
@@ -73,7 +65,6 @@ enum InputJavadocTypeEnum_1 // violation 'tag @author must match pattern 'ABC'.'
 enum InputJavadocTypeEnum_11 // violation 'missing @author tag.'
 {
 }
-
 /**
  * Testing author and version tag patterns.
  * tags are multi line ones
@@ -82,8 +73,6 @@ enum InputJavadocTypeEnum_11 // violation 'missing @author tag.'
 enum InputJavadocTypeEnum_21 // violation 'tag @author must match pattern 'ABC'.'
 {
 }
-
-//Testing tag on first comment line
 /**
 * @author ABC
 * @version 1.1
@@ -91,7 +80,6 @@ enum InputJavadocTypeEnum_21 // violation 'tag @author must match pattern 'ABC'.
 @interface InputJavadocInterfaceType_1
 {
 }
-
 /**
  * Testing author and version tag patterns
  ****    @author Oliver Burn
@@ -100,7 +88,6 @@ enum InputJavadocTypeEnum_21 // violation 'tag @author must match pattern 'ABC'.
 @interface InputJavadocInterface_1 // violation 'tag @author must match pattern 'ABC'.'
 {
 }
-
 /**
  * Testing author and version tag patterns (there are not tags :)
  * SomeText @author Oliver Burn
@@ -109,7 +96,6 @@ enum InputJavadocTypeEnum_21 // violation 'tag @author must match pattern 'ABC'.
 @interface InputJavadocInterface_11 // violation 'missing @author tag.'
 {
 }
-
 /**
  * Testing author and version tag patterns.
  * tags are multi line ones
@@ -118,8 +104,6 @@ enum InputJavadocTypeEnum_21 // violation 'tag @author must match pattern 'ABC'.
 @interface InputJavadocInterface_21 // violation 'tag @author must match pattern 'ABC'.'
 {
 }
-
-//Testing tag on first comment line
 /**
 * @author ABC
 * @version 1.1
@@ -127,7 +111,6 @@ enum InputJavadocTypeEnum_21 // violation 'tag @author must match pattern 'ABC'.
 @interface InputJavadocInterfaceType_11
 {
 }
-
 /**
  * Testing empty author
  * @author

@@ -172,7 +172,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "31:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
             "67:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "103:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "102:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeJavadoc.java"), expected);
@@ -183,15 +183,15 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "31:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "40:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "64:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "73:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "82:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "100:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "109:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "30:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "37:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "57:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "65:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "73:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "88:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "96:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "104:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
             "118:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "135:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeJavadoc_1.java"), expected);
@@ -241,9 +241,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "76:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
             "85:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
             "94:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "103:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
-            "112:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "121:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "102:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
+            "110:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "118:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeJavadoc_2.java"), expected);
@@ -253,7 +253,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testScopes() throws Exception {
         final String[] expected = {
             "18:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
-            "137:5: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
+            "118:5: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeNoJavadoc.java"),
@@ -281,7 +281,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testExcludeScope() throws Exception {
         final String[] expected = {
-            "137:5: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
+            "118:5: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeNoJavadoc_1.java"),

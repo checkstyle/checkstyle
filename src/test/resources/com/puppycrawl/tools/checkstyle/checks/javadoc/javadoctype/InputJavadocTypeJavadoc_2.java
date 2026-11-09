@@ -94,7 +94,6 @@ enum InputJavadocTypeEnum_22 // violation 'tag @version must match pattern'
 @interface InputJavadocInterface_2 // violation 'tag @version must match pattern'
 {
 }
-
 /**
  * Testing author and version tag patterns (there are not tags :)
  * SomeText @author Oliver Burn
@@ -103,7 +102,6 @@ enum InputJavadocTypeEnum_22 // violation 'tag @version must match pattern'
 @interface InputJavadocInterface_12 // violation 'missing @version tag.'
 {
 }
-
 /**
  * Testing author and version tag patterns.
  * tags are multi line ones
@@ -112,7 +110,6 @@ enum InputJavadocTypeEnum_22 // violation 'tag @version must match pattern'
 @interface InputJavadocInterface_22 // violation 'tag @version must match pattern'
 {
 }
-
 //Testing tag on first comment line
 /**
 * @author ABC

@@ -103,7 +103,6 @@ enum InputJavadocTypeEnum_23
 @interface InputJavadocInterface_13 // violation 'missing @version tag.'
 {
 }
-
 /**
  * Testing author and version tag patterns.
  * tags are multi line ones
@@ -112,8 +111,6 @@ enum InputJavadocTypeEnum_23
 @interface InputJavadocInterface_23
 {
 }
-
-
 /**
 * @author ABC
 * @version 1.1
