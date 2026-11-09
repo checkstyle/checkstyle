@@ -118,4 +118,26 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
                 getPath("InputJavadocContentLocation.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
+            "27:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputJavadocContentLocationCompactDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileFirstLine() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
+            "27:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputJavadocContentLocationCompactFirstLine.java"),
+                expected);
+    }
+
 }
