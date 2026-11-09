@@ -107,7 +107,8 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     public void testCompactSourceFile() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingJavadocMethodCompactSourceFile.java"), expected);
+                getNonCompilablePath("compact/InputMissingJavadocMethodCompactSourceFile.java"),
+                expected);
     }
 
     @Test
@@ -116,7 +117,19 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
             "23:1: " + getCheckMessage(MSG_JAVADOC_MISSING, "main"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingJavadocMethodCompactSourceFilePackageScope.java"),
+                getNonCompilablePath(
+                        "compact/InputMissingJavadocMethodCompactSourceFilePackageScope.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "36:1: " + getCheckMessage(MSG_JAVADOC_MISSING, "longMethod"),
+            "53:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "nestedLongMethod"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMissingJavadocMethodCompactProperties.java"),
                 expected);
     }
 
