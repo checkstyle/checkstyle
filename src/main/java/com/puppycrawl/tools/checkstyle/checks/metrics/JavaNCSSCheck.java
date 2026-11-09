@@ -52,6 +52,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * <p>
+ * A compact source file (JEP 512) declares an implicit class whose members are the top-level fields
+ * and methods. The implicit class is treated as a class: its members are counted and the class
+ * maximum applies to it. Unlike a named class, the implicit class declaration itself does not add
+ * to the count, and the file's imports are counted towards the file only, not towards the implicit
+ * class.
+ * </p>
+ *
+ * <p>
  * Rationale: Too large methods and classes are hard to read and costly to maintain.
  * A large NCSS number often means that a method or class has too many responsibilities
  * and/or functionalities which should be decomposed into smaller units.
@@ -222,6 +230,7 @@ public class JavaNCSSCheck extends AbstractCheck {
             TokenTypes.LITERAL_DEFAULT,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
@@ -242,17 +251,33 @@ public class JavaNCSSCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final int tokenType = ast.getType();
 
-        if (tokenType == TokenTypes.CLASS_DEF
-            || tokenType == TokenTypes.RECORD_DEF
-            || isMethodOrCtorOrInitDefinition(tokenType)) {
-            // add a counter for this class/method
+        if (tokenType == TokenTypes.COMPACT_COMPILATION_UNIT) {
+            // add a counter for the implicit class of a compact source file.
+            // Unlike a named class, the implicit class declaration itself
+            // does not count towards NCSS, so it is not incremented below.
             counters.push(new Counter());
         }
+        else {
+            if (tokenType == TokenTypes.CLASS_DEF
+                || tokenType == TokenTypes.RECORD_DEF
+                || isMethodOrCtorOrInitDefinition(tokenType)) {
+                // add a counter for this class/method
+                counters.push(new Counter());
+            }
 
-        // check if token is countable
-        if (isCountable(ast)) {
-            // increment the stacked counters
-            counters.forEach(Counter::increment);
+            // check if token is countable
+            if (isCountable(ast)) {
+                if (tokenType == TokenTypes.IMPORT || tokenType == TokenTypes.PACKAGE_DEF) {
+                    // imports and the package declaration belong to the file,
+                    // not to a class, so only the file counter is incremented.
+                    // In a regular file this is the only counter on the stack.
+                    counters.getLast().increment();
+                }
+                else {
+                    // increment the stacked counters
+                    counters.forEach(Counter::increment);
+                }
+            }
         }
     }
 
@@ -285,6 +310,15 @@ public class JavaNCSSCheck extends AbstractCheck {
             final int count = counter.getCount();
             if (count > recordMaximum) {
                 log(ast, MSG_RECORD, count, recordMaximum);
+            }
+        }
+        else if (tokenType == TokenTypes.COMPACT_COMPILATION_UNIT) {
+            // pop counter from the stack
+            final Counter counter = counters.pop();
+
+            final int count = counter.getCount();
+            if (count > classMaximum) {
+                log(ast, MSG_CLASS, count, classMaximum);
             }
         }
     }
@@ -378,11 +412,13 @@ public class JavaNCSSCheck extends AbstractCheck {
         boolean countable = false;
 
         // count variable definitions only if they are direct child to a slist or
-        // object block
+        // object block, or to a compact compilation unit, where they are fields
+        // of the implicit class
         final int parentType = ast.getParent().getType();
 
         if (parentType == TokenTypes.SLIST
-            || parentType == TokenTypes.OBJBLOCK) {
+            || parentType == TokenTypes.OBJBLOCK
+            || parentType == TokenTypes.COMPACT_COMPILATION_UNIT) {
             final DetailAST prevSibling = ast.getPreviousSibling();
 
             // is countable if no previous sibling is found or

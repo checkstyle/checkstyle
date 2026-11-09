@@ -9,6 +9,10 @@
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclaration"
             files="src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/InputEmptyLineSeparatorCompactNoPackage.java"/>
+  <!-- intentional problem for testing: a compact source file with a package
+       statement, to cover the JavaNCSS file counter -->
+  <suppress checks="PackageDeclarationCheck"
+    files="javancss/compact/InputJavaNCSSCompactSourceFileIssue22537WithPackage\.java"/>
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
     files="packagedeclaration/InputPackageDeclarationNoPackage\.java"/>
