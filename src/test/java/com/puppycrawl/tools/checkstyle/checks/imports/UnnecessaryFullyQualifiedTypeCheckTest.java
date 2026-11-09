@@ -218,4 +218,19 @@ public class UnnecessaryFullyQualifiedTypeCheckTest extends AbstractModuleTestSu
                 .isNull();
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "11:10: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "13:10: " + getCheckMessage(MSG_KEY, "java.lang.String"),
+            "15:10: " + getCheckMessage(MSG_KEY, "java.util.Set"),
+            "26:14: " + getCheckMessage(MSG_KEY, "java.util.Optional"),
+            "33:23: " + getCheckMessage(MSG_KEY, "java.math.BigDecimal"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputUnnecessaryFullyQualifiedTypeCompactSourceFile.java"),
+                expected);
+    }
+
 }
