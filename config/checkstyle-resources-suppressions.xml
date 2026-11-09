@@ -402,8 +402,6 @@
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/InputVariableDeclarationUsageDistanceScopes\.java"/>
   <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/InputVariableDeclarationUsageDistance\.java"/>
-  <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/InputVariableDeclarationUsageDistanceDefault\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/equalsavoidnull/InputEqualsAvoidNullIgnoreCase\.java"/>
