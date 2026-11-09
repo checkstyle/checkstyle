@@ -148,4 +148,17 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
             "InputPatternVariableAssignmentCheck4.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_KEY, "s"),
+            "28:9: " + getCheckMessage(MSG_KEY, "first"),
+            "38:9: " + getCheckMessage(MSG_KEY, "s"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputPatternVariableAssignmentCompactSourceFile.java"),
+                expected);
+    }
+
 }
