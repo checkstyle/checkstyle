@@ -4924,6 +4924,31 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig, fileName, expected);
     }
 
+    @Test
+    public void testIndentationCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "16:3: " + getCheckMessage(MSG_ERROR, "member def type", 2, 0),
+            "27:3: " + getCheckMessage(MSG_ERROR, "method def modifier", 2, 0),
+            "28:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 4),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputIndentationCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testIndentationCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "21:3: " + getCheckMessage(MSG_ERROR, "if lcurly", 2, 4),
+            "23:3: " + getCheckMessage(MSG_ERROR, "if rcurly", 2, 4),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputIndentationCompactSourceFileProperties.java"),
+                expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
