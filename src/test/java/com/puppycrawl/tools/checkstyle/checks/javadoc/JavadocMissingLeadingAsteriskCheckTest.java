@@ -74,4 +74,18 @@ public class JavadocMissingLeadingAsteriskCheckTest extends AbstractModuleTestSu
                 getPath("InputJavadocMissingLeadingAsteriskIncorrect.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "28: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "34: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "46: " + getCheckMessage(MSG_MISSING_ASTERISK),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavadocMissingLeadingAsteriskCompactSourceFile.java"),
+                expected);
+    }
+
 }
