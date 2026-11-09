@@ -397,7 +397,7 @@ public final class Main {
         final RootModule rootModule = getRootModule(config.getName(), moduleClassLoader);
 
         try {
-            final AuditListener listener;
+            final List<AuditListener> listeners = new ArrayList<>();
             if (options.generateXpathSuppressionsFile) {
                 // create filter to print generated xpath suppressions file
                 final Configuration treeWalkerConfig = getTreeWalkerConfig(config);
@@ -410,21 +410,38 @@ public final class Main {
                     ((DefaultConfiguration) treeWalkerConfig).addChild(moduleConfig);
                 }
 
-                listener = new XpathFileGeneratorAuditListener(getOutputStream(options.outputPath),
-                        getOutputStreamOptions(options.outputPath));
+                final Path outputPath = options.firstOutputPath();
+                listeners.add(new XpathFileGeneratorAuditListener(getOutputStream(outputPath),
+                        getOutputStreamOptions(outputPath)));
             }
             else if (options.generateCheckAndFileSuppressionsFile) {
-                listener = new ChecksAndFilesSuppressionFileGeneratorAuditListener(
-                        getOutputStream(options.outputPath),
-                        getOutputStreamOptions(options.outputPath));
+                final Path outputPath = options.firstOutputPath();
+                listeners.add(new ChecksAndFilesSuppressionFileGeneratorAuditListener(
+                        getOutputStream(outputPath),
+                        getOutputStreamOptions(outputPath)));
             }
             else {
-                listener = createListener(options.format, options.outputPath);
+                final List<OutputFormat> formats = options.formats;
+                final List<Path> outputs = options.outputPaths;
+                final int count = Math.max(formats.size(), outputs.size());
+                if (count == 0) {
+                    listeners.add(createListener(OutputFormat.PLAIN, null));
+                }
+                else {
+                    for (int i = 0; i < count; i++) {
+                        final OutputFormat format =
+                                i < formats.size() ? formats.get(i) : OutputFormat.PLAIN;
+                        final Path outputPath = i < outputs.size() ? outputs.get(i) : null;
+                        listeners.add(createListener(format, outputPath));
+                    }
+                }
             }
 
             rootModule.setModuleClassLoader(moduleClassLoader);
             rootModule.configure(config);
-            rootModule.addListener(listener);
+            for (AuditListener listener : listeners) {
+                rootModule.addListener(listener);
+            }
 
             // run RootModule
             errorCounter = rootModule.process(filesToProcess);
@@ -662,9 +679,6 @@ public final class Main {
         /** Name for the moduleConfig attribute 'tabWidth'. */
         private static final String ATTRIB_TAB_WIDTH_NAME = "tabWidth";
 
-        /** Default output format. */
-        private static final OutputFormat DEFAULT_OUTPUT_FORMAT = OutputFormat.PLAIN;
-
         /** Option name for output format. */
         private static final String OUTPUT_FORMAT_OPTION = "-f";
 
@@ -692,9 +706,12 @@ public final class Main {
                 + ", or a name passed to the ClassLoader.getResource() method.")
         private String configurationFile;
 
-        /** Output file location. */
-        @Option(names = "-o", description = "Sets the output file. Defaults to stdout.")
-        private Path outputPath;
+        /** Output file locations, paired with the {@code -f} options in order. */
+        @Option(names = "-o", paramLabel = "<file>",
+                description = "Sets the output file. Defaults to stdout. "
+                + "Can be given multiple times, each paired with the -f option at the same "
+                + "position to write that format to that file.")
+        private List<Path> outputPaths = new ArrayList<>();
 
         /** Properties file location. */
         @Option(names = "-p", description = "Sets the property files to load.")
@@ -745,17 +762,19 @@ public final class Main {
         private boolean generateCheckAndFileSuppressionsFile;
 
         /**
-         * Output format.
+         * Output formats, paired with the {@code -o} options in order.
          *
          * @noinspection CanBeFinal
          * @noinspectionreason CanBeFinal - we use picocli, and it uses
          *      reflection to manage such fields
          */
-        @Option(names = "-f",
+        @Option(names = "-f", paramLabel = "<format>",
                 description = "Specifies the output format. Valid values: "
                 + "${COMPLETION-CANDIDATES} for XMLLogger, SarifLogger, "
-                + "and DefaultLogger respectively. Defaults to ${DEFAULT-VALUE}.")
-        private OutputFormat format = DEFAULT_OUTPUT_FORMAT;
+                + "and DefaultLogger respectively. Defaults to plain. "
+                + "Can be given multiple times, each paired with the -o option at the same "
+                + "position to write that format to that file.")
+        private List<OutputFormat> formats = new ArrayList<>();
 
         /** Option that controls whether to print the AST of the file. */
         @Option(names = {"-t", "--tree"},
@@ -869,7 +888,7 @@ public final class Main {
             else if (printAst || printAstWithComments || printJavadocTree || printTreeWithJavadoc
                 || xpath != null) {
                 if (suppressionLineColumnNumber != null || configurationFile != null
-                        || propertiesFile != null || outputPath != null
+                        || propertiesFile != null || !outputPaths.isEmpty()
                         || parseResult.hasMatchedOption(OUTPUT_FORMAT_OPTION)) {
                     result.add("Option '-t' cannot be used with other options.");
                 }
@@ -879,7 +898,7 @@ public final class Main {
             }
             else if (hasSuppressionLineColumnNumber) {
                 if (configurationFile != null || propertiesFile != null
-                        || outputPath != null
+                        || !outputPaths.isEmpty()
                         || parseResult.hasMatchedOption(OUTPUT_FORMAT_OPTION)) {
                     result.add("Option '-s' cannot be used with other options.");
                 }
@@ -916,7 +935,21 @@ public final class Main {
                 result.add(String.format(Locale.ROOT,
                         "Could not find file '%s'.", propertiesFile));
             }
+            if (!formats.isEmpty() && !outputPaths.isEmpty()
+                    && formats.size() != outputPaths.size()) {
+                result.add("The number of -f and -o options must be equal.");
+            }
             return result;
+        }
+
+        /**
+         * Returns the first output location, or {@code null} for stdout. Used by the
+         * suppression generation modes that write a single document.
+         *
+         * @return the first output path or {@code null}
+         */
+        /* package */ Path firstOutputPath() {
+            return outputPaths.isEmpty() ? null : outputPaths.get(0);
         }
 
     }
