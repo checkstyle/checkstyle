@@ -113,7 +113,6 @@ public class AllChecksCompactSourceCoverageTest {
         "ModifiedControlVariableCheck",
         "NoCodeInFileCheck",
         "NonEmptyAtclauseDescriptionCheck",
-        "NumericalPrefixesInfixesSuffixesCharacterCaseCheck",
         "OneTopLevelClassCheck",
         "PackageAnnotationCheck",
         "PackageNameCheck",

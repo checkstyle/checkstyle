@@ -85,4 +85,25 @@ public class NumericalPrefixesInfixesSuffixesCharacterCaseCheckTest
         );
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "9:12: " + getCheckMessage(MSG_PREFIX),
+            "12:12: " + getCheckMessage(MSG_PREFIX),
+            "15:14: " + getCheckMessage(MSG_INFIX),
+            "18:18: " + getCheckMessage(MSG_INFIX),
+            "21:14: " + getCheckMessage(MSG_SUFFIX),
+            "24:15: " + getCheckMessage(MSG_SUFFIX),
+            "27:14: " + getCheckMessage(MSG_INFIX),
+            "30:15: " + getCheckMessage(MSG_INFIX),
+            "31:15: " + getCheckMessage(MSG_SUFFIX),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputNumericalPrefixesInfixesSuffixes"
+                                + "CharacterCaseCompactSourceFile.java"),
+                expected
+        );
+    }
+
 }
