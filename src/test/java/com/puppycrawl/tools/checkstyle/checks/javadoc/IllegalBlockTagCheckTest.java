@@ -173,4 +173,26 @@ public class IllegalBlockTagCheckTest extends AbstractModuleTestSupport {
                 getPath("InputIllegalBlockTagTypeComment.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputIllegalBlockTagCompactDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFilePattern() throws Exception {
+        final String[] expected = {
+            "37:4: " + getCheckMessage(MSG_ILLEGAL_PATTERN, "since"),
+            "55:8: " + getCheckMessage(MSG_ILLEGAL_PATTERN, "since"),
+            "65:4: " + getCheckMessage(MSG_ILLEGAL_PATTERN, "since"),
+            "72:8: " + getCheckMessage(MSG_ILLEGAL_PATTERN, "since"),
+            "83:8: " + getCheckMessage(MSG_ILLEGAL_PATTERN, "since"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputIllegalBlockTagCompactPattern.java"),
+                expected);
+    }
+
 }
