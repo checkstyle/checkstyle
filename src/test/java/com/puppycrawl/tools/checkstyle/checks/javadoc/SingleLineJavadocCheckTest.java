@@ -93,4 +93,28 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
                 getPath("InputSingleLineJavadocLexerError.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "22: " + getCheckMessage(MSG_KEY),
+            "35: " + getCheckMessage(MSG_KEY),
+            "40: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputSingleLineJavadocCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileIgnoredTags() throws Exception {
+        final String[] expected = {
+            "12: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputSingleLineJavadocCompactIgnoredTags.java"),
+                expected);
+    }
+
 }
