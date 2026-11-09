@@ -99,7 +99,6 @@ public class AllChecksCompactSourceCoverageTest {
         "IndentationCheck",
         "InvalidJavadocPositionCheck",
         "JavadocContentLocationCheck",
-        "JavadocLeadingAsteriskAlignCheck",
         "JavadocLinkFirstOccurrenceCheck",
         "JavadocLinkWellKnownApiCheck",
         "JavadocMethodCheck",
