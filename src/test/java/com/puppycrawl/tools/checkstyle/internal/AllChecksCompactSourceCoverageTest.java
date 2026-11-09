@@ -89,7 +89,6 @@ public class AllChecksCompactSourceCoverageTest {
         "AnnotationLocationCheck",
         "AnnotationUseStyleCheck",
         "AtclauseOrderCheck",
-        "ClassDataAbstractionCouplingCheck",
         "CommentsIndentationCheck",
         "CustomImportOrderCheck",
         "IllegalBlockTagCheck",
