@@ -92,7 +92,6 @@ public class AllChecksCompactSourceCoverageTest {
         "ClassDataAbstractionCouplingCheck",
         "CommentsIndentationCheck",
         "CustomImportOrderCheck",
-        "IllegalBlockTagCheck",
         "IllegalSymbolCheck",
         "ImportControlCheck",
         "ImportOrderCheck",
