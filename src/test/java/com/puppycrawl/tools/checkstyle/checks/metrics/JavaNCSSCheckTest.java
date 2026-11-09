@@ -126,6 +126,77 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_CLASS, 4, 1),
+            "13:1: " + getCheckMessage(MSG_FILE, 4, 1),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputJavaNCSSCompactSourceFileIssue22537.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileEqualToMax() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavaNCSSCompactSourceFileIssue22537EqualToMax.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileWithImports() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_CLASS, 2, 1),
+            "13:1: " + getCheckMessage(MSG_FILE, 4, 3),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavaNCSSCompactSourceFileIssue22537WithImports.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileNestedTypes() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_CLASS, 10, 3),
+            "13:1: " + getCheckMessage(MSG_FILE, 10, 4),
+            "20:1: " + getCheckMessage(MSG_METHOD, 4, 2),
+            "26:1: " + getCheckMessage(MSG_RECORD, 3, 1),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavaNCSSCompactSourceFileIssue22537NestedTypes.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileNestedClass() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_CLASS, 6, 3),
+            "13:1: " + getCheckMessage(MSG_FILE, 6, 5),
+            "16:1: " + getCheckMessage(MSG_CLASS, 4, 3),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavaNCSSCompactSourceFileIssue22537NestedClass.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileMultiDecl() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_CLASS, 2, 1),
+            "13:1: " + getCheckMessage(MSG_FILE, 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavaNCSSCompactSourceFileIssue22537MultiDecl.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final JavaNCSSCheck javaNcssCheckObj = new JavaNCSSCheck();
         final int[] actual = javaNcssCheckObj.getAcceptableTokens();
@@ -160,6 +231,7 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
             TokenTypes.LITERAL_DEFAULT,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
         assertWithMessage("Acceptable tokens should not be null")
             .that(actual)
@@ -204,6 +276,7 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
             TokenTypes.LITERAL_DEFAULT,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
         assertWithMessage("Required tokens should not be null")
             .that(actual)
@@ -224,7 +297,8 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavaNcssCompactSourceFileProperties() throws Exception {
         final String[] expected = {
-            "14:1: " + getCheckMessage(MSG_FILE, 8, 4),
+            "13:1: " + getCheckMessage(MSG_CLASS, 10, 3),
+            "13:1: " + getCheckMessage(MSG_FILE, 10, 4),
             "20:1: " + getCheckMessage(MSG_METHOD, 4, 2),
             "26:1: " + getCheckMessage(MSG_RECORD, 3, 1),
         };
