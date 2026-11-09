@@ -91,10 +91,20 @@ public class AnnotationOnSameLineCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        DetailAST nodeWithAnnotations = ast;
         if (ast.getType() == TokenTypes.TYPECAST) {
-            nodeWithAnnotations = ast.findFirstToken(TokenTypes.TYPE);
+            TokenUtil.forEachChild(ast, TokenTypes.TYPE, this::checkAnnotations);
         }
+        else {
+            checkAnnotations(ast);
+        }
+    }
+
+    /**
+     * Checks that annotations of the given node are on the same line with its target.
+     *
+     * @param nodeWithAnnotations node that can hold modifiers or annotations.
+     */
+    private void checkAnnotations(DetailAST nodeWithAnnotations) {
         DetailAST modifiersNode = nodeWithAnnotations.findFirstToken(TokenTypes.MODIFIERS);
         if (modifiersNode == null) {
             modifiersNode = nodeWithAnnotations.findFirstToken(TokenTypes.ANNOTATIONS);
