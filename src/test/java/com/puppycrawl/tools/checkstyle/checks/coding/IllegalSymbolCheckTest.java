@@ -534,4 +534,31 @@ public class IllegalSymbolCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "11:3: " + getCheckMessage(MSG_KEY, "✅"),
+            "17:3: " + getCheckMessage(MSG_KEY, "→"),
+            "24:7: " + getCheckMessage(MSG_KEY, "🚀"),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("compact/InputIllegalSymbolCompactDefault.java"),
+            expected);
+    }
+
+    @Test
+    public void testCompactSourceFileSymbolCodes() throws Exception {
+        final String[] expected = {
+            "11:3: " + getCheckMessage(MSG_KEY, "é"),
+            "15:15: " + getCheckMessage(MSG_KEY, "ï"),
+            "18:13: " + getCheckMessage(MSG_KEY, "€"),
+            "21:5: " + getCheckMessage(MSG_KEY, "ö"),
+            "24:19: " + getCheckMessage(MSG_KEY, "→"),
+            "31:46: " + getCheckMessage(MSG_KEY, "ö"),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("compact/InputIllegalSymbolCompactSymbolCodes.java"),
+            expected);
+    }
+
 }
