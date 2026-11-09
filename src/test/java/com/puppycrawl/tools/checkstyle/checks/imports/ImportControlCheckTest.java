@@ -507,6 +507,22 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputImportControlModuleImportWithRegex.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputImportControlCompactDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputImportControlCompactProperties.java"),
+                expected);
+    }
+
     /**
      * Returns String message of original exception that was thrown in
      * ImportControlCheck.setUrl or ImportControlCheck.setFile
