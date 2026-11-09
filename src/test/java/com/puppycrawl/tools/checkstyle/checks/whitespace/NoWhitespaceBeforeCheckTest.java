@@ -36,19 +36,19 @@ public class NoWhitespaceBeforeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "34:15: " + getCheckMessage(MSG_KEY, "++"),
-            "34:22: " + getCheckMessage(MSG_KEY, "--"),
-            "183:19: " + getCheckMessage(MSG_KEY, ";"),
-            "185:24: " + getCheckMessage(MSG_KEY, ";"),
-            "192:19: " + getCheckMessage(MSG_KEY, ";"),
-            "194:28: " + getCheckMessage(MSG_KEY, ";"),
-            "202:27: " + getCheckMessage(MSG_KEY, ";"),
-            "218:16: " + getCheckMessage(MSG_KEY, ";"),
-            "273:1: " + getCheckMessage(MSG_KEY, ";"),
-            "277:16: " + getCheckMessage(MSG_KEY, ";"),
-            "291:1: " + getCheckMessage(MSG_KEY, ";"),
-            "294:62: " + getCheckMessage(MSG_KEY, "..."),
-            "299:16: " + getCheckMessage(MSG_KEY, ":"),
+            "18:15: " + getCheckMessage(MSG_KEY, "++"),
+            "18:22: " + getCheckMessage(MSG_KEY, "--"),
+            "26:19: " + getCheckMessage(MSG_KEY, ";"),
+            "28:24: " + getCheckMessage(MSG_KEY, ";"),
+            "33:19: " + getCheckMessage(MSG_KEY, ";"),
+            "35:28: " + getCheckMessage(MSG_KEY, ";"),
+            "42:27: " + getCheckMessage(MSG_KEY, ";"),
+            "53:16: " + getCheckMessage(MSG_KEY, ";"),
+            "92:1: " + getCheckMessage(MSG_KEY, ";"),
+            "96:16: " + getCheckMessage(MSG_KEY, ";"),
+            "103:1: " + getCheckMessage(MSG_KEY, ";"),
+            "106:62: " + getCheckMessage(MSG_KEY, "..."),
+            "111:16: " + getCheckMessage(MSG_KEY, ":"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceBeforeDefault.java"), expected);
@@ -59,10 +59,10 @@ public class NoWhitespaceBeforeCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "9:13: " + getCheckMessage(MSG_KEY, "."),
             "10:5: " + getCheckMessage(MSG_KEY, "."),
-            "133:18: " + getCheckMessage(MSG_KEY, "."),
-            "139:13: " + getCheckMessage(MSG_KEY, "."),
-            "140:11: " + getCheckMessage(MSG_KEY, "."),
-            "268:1: " + getCheckMessage(MSG_KEY, "."),
+            "15:18: " + getCheckMessage(MSG_KEY, "."),
+            "21:13: " + getCheckMessage(MSG_KEY, "."),
+            "22:11: " + getCheckMessage(MSG_KEY, "."),
+            "54:1: " + getCheckMessage(MSG_KEY, "."),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceBeforeDot.java"), expected);
@@ -72,8 +72,8 @@ public class NoWhitespaceBeforeCheckTest extends AbstractModuleTestSupport {
     public void testDotAllowLineBreaks() throws Exception {
         final String[] expected = {
             "9:13: " + getCheckMessage(MSG_KEY, "."),
-            "133:18: " + getCheckMessage(MSG_KEY, "."),
-            "140:11: " + getCheckMessage(MSG_KEY, "."),
+            "15:18: " + getCheckMessage(MSG_KEY, "."),
+            "22:11: " + getCheckMessage(MSG_KEY, "."),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceBeforeDotAllowLineBreaks.java"), expected);
