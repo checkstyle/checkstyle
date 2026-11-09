@@ -103,4 +103,16 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
                 expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_KEY),
+            "26:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputSealedShouldHavePermitsListCompactSourceFile.java"),
+                expected);
+    }
+
 }
