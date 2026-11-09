@@ -274,4 +274,15 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
                 expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:9: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputUnnecessaryNullCheckWithInstanceOfCompactSourceFile.java"),
+                expected);
+    }
+
 }
