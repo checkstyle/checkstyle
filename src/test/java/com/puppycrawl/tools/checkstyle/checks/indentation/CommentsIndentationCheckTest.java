@@ -437,4 +437,21 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_KEY_SINGLE, 13, 4, 0),
+            "18:5: " + getCheckMessage(MSG_KEY_SINGLE, 19, 4, 0),
+            "24:3: " + getCheckMessage(MSG_KEY_BLOCK, 26, 2, 0),
+            "31:9: " + getCheckMessage(MSG_KEY_SINGLE, 32, 8, 4),
+            "33:3: " + getCheckMessage(MSG_KEY_BLOCK, 35, 2, 4),
+            "40:3: " + getCheckMessage(MSG_KEY_SINGLE, 39, 2, 4),
+            "43:5: " + getCheckMessage(MSG_KEY_SINGLE, 44, 4, 0),
+            "47:1: " + getCheckMessage(MSG_KEY_SINGLE, 48, 0, 4),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("compact/InputCommentsIndentationCompactSourceFile.java"),
+            expected);
+    }
+
 }
