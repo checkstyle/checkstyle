@@ -87,7 +87,6 @@ public class AllChecksCompactSourceCoverageTest {
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
         "AbbreviationAsWordInNameCheck",
         "AnnotationLocationCheck",
-        "AnnotationUseStyleCheck",
         "AtclauseOrderCheck",
         "ClassDataAbstractionCouplingCheck",
         "CommentsIndentationCheck",
