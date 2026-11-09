@@ -350,4 +350,45 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
                 getPath("InputAnnotationUseStyle.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "21:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "26:40: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "45:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "45:17: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputAnnotationUseStyleCompactDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileExpanded() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
+            "18:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
+            "26:48: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "43:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputAnnotationUseStyleCompactExpanded.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCompact() throws Exception {
+        final String[] expected = {
+            "18:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
+            "37:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputAnnotationUseStyleCompactCompact.java"),
+                expected);
+    }
+
 }
