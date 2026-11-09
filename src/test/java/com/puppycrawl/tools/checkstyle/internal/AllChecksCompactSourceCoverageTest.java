@@ -131,7 +131,6 @@ public class AllChecksCompactSourceCoverageTest {
         "RequireEmptyLineBeforeBlockTagGroupCheck",
         "RequireThisCheck",
         "SingleLineJavadocCheck",
-        "SummaryJavadocCheck",
         "SuppressWarningsCheck",
         "SuppressWarningsHolder",
         "TextBlockGoogleStyleFormattingCheck",
