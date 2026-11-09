@@ -64,7 +64,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     "JavadocLeadingAsteriskAlign",
                     "JavadocLinkFirstOccurrence",
                     "JavadocLinkWellKnownApi",
-                    "JavadocMethod",
                     "JavadocMissingLeadingAsterisk",
                     "JavadocMissingWhitespaceAfterAsterisk",
                     "JavadocNoErrorInThrowsTag",
