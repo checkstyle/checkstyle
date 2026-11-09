@@ -93,7 +93,6 @@ public class AllChecksCompactSourceCoverageTest {
         "CommentsIndentationCheck",
         "CustomImportOrderCheck",
         "IllegalBlockTagCheck",
-        "IllegalSymbolCheck",
         "ImportControlCheck",
         "ImportOrderCheck",
         "IndentationCheck",
