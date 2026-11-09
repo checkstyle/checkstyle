@@ -207,4 +207,27 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
                 getPath("InputClassDataAbstractionCoupling5.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "45:1: " + getCheckMessage(MSG_KEY, 8, 7, "[ArrayDeque, BitSet, Hashtable,"
+                + " PriorityQueue, Properties, Random, Stack, Vector]"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputClassDataAbstractionCouplingCompactDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "30:1: " + getCheckMessage(MSG_KEY, 2, 1, "[PriorityQueue, Properties]"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputClassDataAbstractionCouplingCompactProperties.java"),
+                expected);
+    }
+
 }
