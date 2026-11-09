@@ -111,18 +111,85 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     @Test
     public void testDistance() throws Exception {
         final String[] expected = {
-            "83:9: " + getCheckMessage(MSG_KEY, "count", 4, 3),
-            "231:9: " + getCheckMessage(MSG_KEY, "t", 5, 3),
-            "491:9: " + getCheckMessage(MSG_KEY, "myOption", 7, 3),
-            "503:9: " + getCheckMessage(MSG_KEY, "myOption", 6, 3),
-            "516:9: " + getCheckMessage(MSG_KEY, "count", 4, 3),
-            "903:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
-            "913:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
-            "979:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
-            "1066:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
+            "77:9: " + getCheckMessage(MSG_KEY, "count", 4, 3),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistance.java"), expected);
+    }
+
+    @Test
+    public void testDistanceMethods() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceMethods.java"), expected);
+    }
+
+    @Test
+    public void testDistanceBlocks() throws Exception {
+        final String[] expected = {
+            "39:9: " + getCheckMessage(MSG_KEY, "t", 5, 3),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceBlocks.java"), expected);
+    }
+
+    @Test
+    public void testDistanceLogic() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceLogic.java"), expected);
+    }
+
+    @Test
+    public void testDistanceListeners() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceListeners.java"), expected);
+    }
+
+    @Test
+    public void testDistanceIssue32A() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceIssue32A.java"), expected);
+    }
+
+    @Test
+    public void testDistanceIssue32B() throws Exception {
+        final String[] expected = {
+            "24:9: " + getCheckMessage(MSG_KEY, "myOption", 7, 3),
+            "36:9: " + getCheckMessage(MSG_KEY, "myOption", 6, 3),
+            "46:9: " + getCheckMessage(MSG_KEY, "count", 4, 3),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceIssue32B.java"), expected);
+    }
+
+    @Test
+    public void testDistanceLoops() throws Exception {
+        final String[] expected = {
+            "64:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
+            "74:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceLoops.java"), expected);
+    }
+
+    @Test
+    public void testDistanceNested() throws Exception {
+        final String[] expected = {
+            "57:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
+            "90:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceNested.java"), expected);
+    }
+
+    @Test
+    public void testDistanceTryFinally() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceTryFinally.java"), expected);
     }
 
     @Test
