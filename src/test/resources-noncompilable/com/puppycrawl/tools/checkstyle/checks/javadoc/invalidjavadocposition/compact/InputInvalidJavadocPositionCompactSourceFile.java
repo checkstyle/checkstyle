@@ -45,7 +45,8 @@ void method6() {
 }
 
 void main() {
-    /** invalid - inside method body */ // violation 'Javadoc .* placed in the wrong location.'
+    // violation below 'Javadoc .* placed in the wrong location.'
+    /** invalid - inside method body */
     int local = 5;
     System.out.println(local);
 }
