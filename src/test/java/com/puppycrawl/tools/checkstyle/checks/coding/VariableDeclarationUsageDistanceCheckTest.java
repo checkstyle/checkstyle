@@ -111,15 +111,15 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     @Test
     public void testDistance() throws Exception {
         final String[] expected = {
-            "83:9: " + getCheckMessage(MSG_KEY, "count", 4, 3),
-            "231:9: " + getCheckMessage(MSG_KEY, "t", 5, 3),
-            "491:9: " + getCheckMessage(MSG_KEY, "myOption", 7, 3),
-            "503:9: " + getCheckMessage(MSG_KEY, "myOption", 6, 3),
-            "516:9: " + getCheckMessage(MSG_KEY, "count", 4, 3),
-            "903:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
-            "913:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
-            "979:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
-            "1066:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
+            "16:9: " + getCheckMessage(MSG_KEY, "count", 4, 3),
+            "26:9: " + getCheckMessage(MSG_KEY, "t", 5, 3),
+            "35:9: " + getCheckMessage(MSG_KEY, "myOption", 7, 3),
+            "46:9: " + getCheckMessage(MSG_KEY, "myOption", 6, 3),
+            "56:9: " + getCheckMessage(MSG_KEY, "count", 4, 3),
+            "65:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
+            "73:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
+            "82:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
+            "94:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistance.java"), expected);
