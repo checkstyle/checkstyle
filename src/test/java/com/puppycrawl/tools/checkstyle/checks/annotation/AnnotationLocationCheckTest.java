@@ -350,7 +350,32 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "43:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputAnnotationLocationCompactSourceFile.java"),
+                getNonCompilablePath("compact/InputAnnotationLocationCompactSourceFile.java"),
+            expected);
+    }
+
+    @Test
+    public void testAnnotationLocationCompactSourceFileSameline() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Deprecated"),
+            "26:29: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Deprecated"),
+            "31:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Deprecated"),
+            "40:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Deprecated"),
+            "44:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Deprecated"),
+            "45:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Deprecated"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputAnnotationLocationCompactSameline.java"),
+            expected);
+    }
+
+    @Test
+    public void testAnnotationLocationCompactSourceFileMultiple() throws Exception {
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "Deprecated", 4, 0),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputAnnotationLocationCompactMultiple.java"),
             expected);
     }
 
