@@ -97,7 +97,6 @@ public class AllChecksCompactSourceCoverageTest {
         "ImportControlCheck",
         "ImportOrderCheck",
         "IndentationCheck",
-        "InvalidJavadocPositionCheck",
         "JavadocContentLocationCheck",
         "JavadocLeadingAsteriskAlignCheck",
         "JavadocLinkFirstOccurrenceCheck",
