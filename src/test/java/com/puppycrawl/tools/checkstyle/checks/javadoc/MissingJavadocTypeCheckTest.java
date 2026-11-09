@@ -499,4 +499,28 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
                 .isEmpty();
     }
 
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMissingJavadocTypeCompactDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "18:1: " + getCheckMessage(MSG_JAVADOC_MISSING, "Nested"),
+            "19:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "PrivateInner"),
+            "22:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "PackageInner"),
+            "33:1: " + getCheckMessage(MSG_JAVADOC_MISSING, "Point"),
+            "36:1: " + getCheckMessage(MSG_JAVADOC_MISSING, "Color"),
+            "40:1: " + getCheckMessage(MSG_JAVADOC_MISSING, "Shape"),
+            "43:1: " + getCheckMessage(MSG_JAVADOC_MISSING, "Marker"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMissingJavadocTypeCompactProperties.java"),
+                expected);
+    }
+
 }

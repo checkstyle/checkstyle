@@ -115,7 +115,6 @@ public class AllChecksCompactSourceCoverageTest {
         "MissingDeprecatedCheck",
         "MissingJavadocMethodCheck",
         "MissingJavadocPackageCheck",
-        "MissingJavadocTypeCheck",
         "MissingOverrideOnRecordAccessorCheck",
         "ModifiedControlVariableCheck",
         "MutableExceptionCheck",
