@@ -90,7 +90,6 @@ public class AllChecksCompactSourceCoverageTest {
         "JavadocLinkFirstOccurrenceCheck",
         "JavadocStyleCheck",
         "JavadocTagContinuationIndentationCheck",
-        "MissingDeprecatedCheck",
         "MissingJavadocPackageCheck",
         "NonEmptyAtclauseDescriptionCheck",
         "PackageAnnotationCheck",
