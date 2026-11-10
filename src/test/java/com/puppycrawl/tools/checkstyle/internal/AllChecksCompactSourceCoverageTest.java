@@ -105,7 +105,6 @@ public class AllChecksCompactSourceCoverageTest {
         "PackageNameCheck",
         "RedundantModifierCheck",
         "RegexpSinglelineJavaCheck",
-        "RequireEmptyLineBeforeBlockTagGroupCheck",
         "RequireThisCheck",
         "TextBlockGoogleStyleFormattingCheck",
         "UnnecessarySemicolonInTryWithResourcesCheck"
