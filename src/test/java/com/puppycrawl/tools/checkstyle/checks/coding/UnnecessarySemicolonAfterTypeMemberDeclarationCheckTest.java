@@ -38,6 +38,20 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
     }
 
     @Test
+    public void testUnnecessarySemicolonAfterTypeMemberDeclarationCompactSourceFileDefault()
+            throws Exception {
+        final String[] expected = {
+            "15:17: " + getCheckMessage(MSG_SEMI),
+            "17:21: " + getCheckMessage(MSG_SEMI),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                    + "InputUnnecessarySemicolonAfterTypeMemberDeclarationCompactSourceFile"
+                    + "Default.java"),
+                expected);
+    }
+
+    @Test
     public void testDefault() throws Exception {
 
         final String[] expected = {
