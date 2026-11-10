@@ -89,7 +89,6 @@ public class AllChecksCompactSourceCoverageTest {
         "AtclauseOrderCheck",
         "ClassDataAbstractionCouplingCheck",
         "CustomImportOrderCheck",
-        "IllegalSymbolCheck",
         "ImportOrderCheck",
         "InvalidJavadocPositionCheck",
         "JavadocLeadingAsteriskAlignCheck",
