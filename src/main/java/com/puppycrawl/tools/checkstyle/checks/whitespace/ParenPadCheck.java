@@ -193,9 +193,11 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             else if (currentNode.getType() == TokenTypes.RPAREN && !isInTypecast(currentNode)) {
                 processRight(currentNode);
             }
-            else if (currentNode.hasChildren() && !isAcceptableToken(currentNode)) {
+            else if (currentNode.hasChildren() && !isAcceptableToken(currentNode)
+                    && currentNode.getType() != TokenTypes.RECORD_PATTERN_DEF) {
                 // Traverse all subtree tokens which will never be configured
-                // to be launched in visitToken()
+                // to be launched in visitToken(). Subtrees of record patterns are
+                // skipped, as their parens are not checked by this check.
                 currentNode = currentNode.getFirstChild();
                 continue;
             }
@@ -246,7 +248,6 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             TokenTypes.SUPER_CTOR_CALL,
             TokenTypes.LAMBDA,
             TokenTypes.RECORD_DEF,
-            TokenTypes.RECORD_PATTERN_DEF,
         };
     }
 
