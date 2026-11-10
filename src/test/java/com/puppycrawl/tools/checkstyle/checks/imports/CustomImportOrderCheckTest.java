@@ -781,4 +781,27 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.List"),
+            "20:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.io.File"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputCustomImportOrderCompactDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_LEX, "java.io.File", "java.util.List"),
+            "19:1: " + getCheckMessage(MSG_LEX, "com.sun.source.tree.Tree", "org.w3c.dom.Node"),
+            "21:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STD, "java.util.Map"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputCustomImportOrderCompactProperties.java"),
+                expected);
+    }
+
 }
