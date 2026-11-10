@@ -33,6 +33,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  */
 public abstract class AbstractExpressionHandler {
 
+    /** Token for modifier. */
+    private static final String MODIFIER = "modifier";
+
     /**
      * The indentation context providing config values, source lines, and
      * violation reporting without a direct reference to the check.
@@ -177,6 +180,66 @@ public abstract class AbstractExpressionHandler {
      */
     protected final boolean isOnStartOfLine(DetailAST ast) {
         return getLineStart(ast) == expandedTabsColumnNo(ast);
+    }
+
+    /**
+     * Checks the indentation of the annotations which lead the modifiers of a
+     * definition. The first line of the modifiers is not checked here, as it
+     * is checked by the caller through the modifiers node itself. Annotations
+     * which start their own lines are expected at the indentation level of the
+     * definition, the same level the first line of the modifiers is checked
+     * against. Nothing is checked when the handler was given several
+     * acceptable levels, which happens for definitions inside line wrapped
+     * constructs: their lines are governed by the line wrapping logic.
+     *
+     * @param modifiers   the modifiers node of the definition being checked
+     *
+     * @return the first child of the modifiers node which is not a leading
+     *         annotation, or null if all the children are leading annotations
+     */
+    protected final DetailAST checkLeadingAnnotations(DetailAST modifiers) {
+        DetailAST child = modifiers.getFirstChild();
+        while (child != null && child.getType() == TokenTypes.ANNOTATION) {
+            if (child.getLineNo() != modifiers.getLineNo() && isOnStartOfLine(child)
+                    && !getIndent().isMultiLevel()
+                    && !getIndent().isAcceptable(expandedTabsColumnNo(child))) {
+                logError(child, MODIFIER, expandedTabsColumnNo(child));
+            }
+            child = child.getNextSibling();
+        }
+        return child;
+    }
+
+    /**
+     * Checks the indentation of the first line of a definition which follows
+     * its leading annotations on a separate line. Such a line is not visited
+     * by any other check: the modifiers check only covers the first line of
+     * the modifiers, and the line wrapping check treats it as the first line
+     * of the whole definition. The line is expected at the indentation level
+     * of the definition, the same level the annotations are checked against.
+     * Only the line of the first non-annotation modifier is checked here:
+     * a definition which consists of annotations only continues with its
+     * type on that line, and type lines are covered by the line wrapping
+     * logic like any other wrapped part of a definition. Nothing is checked
+     * when the handler was given several acceptable levels, which happens
+     * for definitions inside line wrapped constructs.
+     *
+     * @param modifiers            the modifiers node of the definition being checked
+     * @param firstNonAnnotation   the first child of the modifiers node which is
+     *                             not a leading annotation, as returned by
+     *                             {@link #checkLeadingAnnotations(DetailAST)},
+     *                             can be null if there is no such child
+     */
+    protected final void checkFirstLineAfterAnnotations(DetailAST modifiers,
+            DetailAST firstNonAnnotation) {
+        if (firstNonAnnotation != null
+                && modifiers.getFirstChild().getType() == TokenTypes.ANNOTATION
+                && firstNonAnnotation.getLineNo() != modifiers.getLineNo()
+                && isOnStartOfLine(firstNonAnnotation)
+                && !getIndent().isMultiLevel()
+                && !getIndent().isAcceptable(expandedTabsColumnNo(firstNonAnnotation))) {
+            logError(firstNonAnnotation, MODIFIER, expandedTabsColumnNo(firstNonAnnotation));
+        }
     }
 
     /**
