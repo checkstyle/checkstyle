@@ -79,4 +79,17 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
                 expected);
     }
 
+    @Test
+    public void testRequireEmptyLineBeforeBlockTagGroupCompactSourceFileDefault()
+            throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputRequireEmptyLineBeforeBlockTagGroupCompactSourceFile"
+                                + "Default.java"),
+                expected);
+    }
+
 }
