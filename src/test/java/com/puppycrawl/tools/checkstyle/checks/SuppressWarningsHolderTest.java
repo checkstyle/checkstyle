@@ -603,4 +603,18 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testCompactSourceDefault() throws Exception {
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputSuppressWarningsHolderCompactDefault.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
+    public void testCompactSourceProperties() throws Exception {
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputSuppressWarningsHolderCompactProperties.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
 }

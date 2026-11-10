@@ -120,7 +120,6 @@ public class AllChecksCompactSourceCoverageTest {
         "RequireThisCheck",
         "SummaryJavadocCheck",
         "SuppressWarningsCheck",
-        "SuppressWarningsHolder",
         "TextBlockGoogleStyleFormattingCheck",
         "UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
         "UnnecessarySemicolonInTryWithResourcesCheck"
