@@ -111,7 +111,6 @@ public class AllChecksCompactSourceCoverageTest {
         "NonEmptyAtclauseDescriptionCheck",
         "OneTopLevelClassCheck",
         "PackageAnnotationCheck",
-        "PackageNameCheck",
         "PatternVariableAssignmentCheck",
         "RedundantModifierCheck",
         "RegexpCheck",
