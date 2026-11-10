@@ -443,4 +443,25 @@ public class JavadocVariableCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testJavadocVariableCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "shown"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputJavadocVariableCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testJavadocVariableCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "shown"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavadocVariableCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
