@@ -29,5 +29,9 @@ public class Example3 {
   private enum PrivateEnum {
     CONSTANT
   }
+
+  private static class Hidden {
+    public int f; // violation 'Missing a Javadoc comment for 'f'.'
+  }
 }
 // xdoc section - end
