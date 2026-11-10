@@ -952,4 +952,70 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testCompactDefault() throws Exception {
+        final String[] expected = {
+            "20:1: " + getCheckMessage(MSG_ORDERING_LEX,
+                    "java.io.File", "java.util.List"),
+            "22:1: " + getCheckMessage(MSG_ORDERING_STATIC, "java.util.Map"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputImportOrderCompactDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactGroups() throws Exception {
+        final String[] expected = {
+            "20:1: " + getCheckMessage(MSG_SEPARATION, "javax.swing.JButton"),
+            "25:1: " + getCheckMessage(MSG_ORDERING_LEX,
+                    "java.util.Collections.max", "java.util.Collections.sort"),
+            "28:1: " + getCheckMessage(MSG_ORDERING_GROUP,
+                    "java.util.Collections.emptyList"),
+            "30:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP,
+                    "java.util.Collections.min"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputImportOrderCompactGroups.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactUnordered() throws Exception {
+        final String[] expected = {
+            "23:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.awt.Color"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputImportOrderCompactUnordered.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactCaseInsensitive() throws Exception {
+        final String[] expected = {
+            "22:1: " + getCheckMessage(MSG_ORDERING_LEX,
+                    "java.util.concurrent.Callable", "java.util.Map"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputImportOrderCompactCaseInsensitive.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactContainerOrdering() throws Exception {
+        final String[] expected = {
+            "20:1: " + getCheckMessage(MSG_ORDERING_LEX,
+                    "com.example.HttpHeaders.addHeader",
+                    "com.example.HttpHeaders.Names.DATE"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputImportOrderCompactContainerOrdering.java"),
+                expected);
+    }
+
 }
