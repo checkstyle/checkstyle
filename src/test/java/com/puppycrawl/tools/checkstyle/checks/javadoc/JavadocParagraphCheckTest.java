@@ -271,4 +271,26 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
                 getPath("InputJavadocParagraphBlockTag.java"), expected);
     }
 
+    @Test
+    public void testJavadocParagraphCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "14:4: " + getCheckMessage(MSG_LINE_BEFORE),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputJavadocParagraphCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testJavadocParagraphCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "16:4: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "16:4: " + getCheckMessage(MSG_LINE_BEFORE),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavadocParagraphCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
