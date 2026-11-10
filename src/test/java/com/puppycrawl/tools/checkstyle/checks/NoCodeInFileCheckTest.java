@@ -81,6 +81,16 @@ public class NoCodeInFileCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNoCodeInFileCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_NO_CODE),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNoCodeInFileCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
     public void testFileContainingCode() throws Exception {
         verifyWithInlineConfigParser(
                 getPath("InputNoCodeInFile4.java"),
