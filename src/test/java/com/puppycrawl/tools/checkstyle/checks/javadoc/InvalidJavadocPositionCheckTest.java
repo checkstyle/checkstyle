@@ -144,7 +144,21 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-            getNonCompilablePath("InputInvalidJavadocPositionCompactSourceFile.java"), expected);
+            getNonCompilablePath("compact/InputInvalidJavadocPositionCompactSourceFile.java"),
+            expected);
+    }
+
+    @Test
+    public void testInvalidJavadocPositionCompactSourceFileImports() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_KEY),
+            "18:1: " + getCheckMessage(MSG_KEY),
+            "25:1: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("compact/InputInvalidJavadocPositionCompactImports.java"),
+            expected);
     }
 
     @Test
