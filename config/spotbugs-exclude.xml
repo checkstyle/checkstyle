@@ -201,9 +201,16 @@
   <!-- After https://github.com/checkstyle/checkstyle/issues/11140
        there should be one section per one bug pattern, with list of allowed classes or methods -->
   <Match>
+    <!-- RootModule.destroy() is public API and cannot declare IOException, so a cache
+         persist failure is wrapped in IllegalStateException, see
+         CheckerTest#testDestroyCheckerWithWrongCacheFileNameLength -->
+    <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+    <Method name="destroy"/>
+    <Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CHECKED"/>
+  </Match>
+  <Match>
     <Bug pattern="
       CLI_CONSTANT_LIST_INDEX,
-      EXS_EXCEPTION_SOFTENING_NO_CHECKED,
       EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS,
       FCCD_FIND_CLASS_CIRCULAR_DEPENDENCY,
       IMC_IMMATURE_CLASS_NO_EQUALS,
