@@ -1,5 +1,6 @@
 /*
 OverloadMethodsDeclarationOrder
+modifierGroups = static
 orderByIncreasingParameterCount = true
 
 */
