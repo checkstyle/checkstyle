@@ -98,8 +98,8 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
         };
 
         verifyWithInlineConfigParser(
-            getNonCompilablePath(
-                "InputUnnecessarySemicolonAfterTypeMemberDeclarationCompactSourceFile.java"),
+            getNonCompilablePath("compact/"
+                + "InputUnnecessarySemicolonAfterTypeMemberDeclarationCompactSourceFile.java"),
             expected);
     }
 
