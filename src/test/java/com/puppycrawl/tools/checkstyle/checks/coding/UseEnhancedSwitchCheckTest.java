@@ -84,6 +84,15 @@ public class UseEnhancedSwitchCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNestedSwitchRules() throws Exception {
+        final String[] expected = {
+            "11:9: " + getCheckMessage(UseEnhancedSwitchCheck.MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputUseEnhancedSwitchNestedSwitchRules.java"), expected);
+    }
+
+    @Test
     public void testSwitchExpressionsValidFallThrough() throws Exception {
         final String[] expected = {
             "11:20: " + getCheckMessage(UseEnhancedSwitchCheck.MSG_KEY),
