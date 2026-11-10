@@ -11,7 +11,7 @@
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
 // xdoc section - start
 public class Example5 {
-  // violation below ''int' is followed by whitespace'
+
   public static final int [] array = {}; // SUPPRESS CHECKSTYLE NoWhitespaceAfter
 
   public static final int lowerCaseConstant = 1; // CHECKSTYLE IGNORE THIS LINE

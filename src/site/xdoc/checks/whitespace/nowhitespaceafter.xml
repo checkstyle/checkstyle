@@ -43,22 +43,9 @@
 
         <p>
           The check processes
-          <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
-          ARRAY_DECLARATOR</a> and
           <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
-          INDEX_OP</a> tokens specially from other tokens. Actually it is checked that
-          there is no whitespace before these tokens, not after them. Space after the
-          <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATIONS">
-          ANNOTATIONS</a> before
-          <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
-          ARRAY_DECLARATOR</a> and
-          <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
-          INDEX_OP</a> will be ignored.
-        </p>
-
-        <p>
-          If the annotation is between the type and the array, like <code>char @NotNull [] param</code>,
-          the check will skip validation for spaces.
+          INDEX_OP</a> token specially from other tokens. Actually it is checked that
+          there is no whitespace before this token, not after it.
         </p>
 
         <p>
@@ -111,8 +98,6 @@
                     DOT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
                     TYPECAST</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
-                    ARRAY_DECLARATOR</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
                     INDEX_OP</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DO_WHILE">
@@ -150,10 +135,6 @@
                     LNOT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
                     DOT</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
-                    ARRAY_DECLARATOR</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
-                    INDEX_OP</a>
                   .
               </td>
               <td>3.0</td>
@@ -189,7 +170,7 @@ class Example1 {
 
   public void arrayDec() {
     int[] arr;
-    int [] array; // violation ''int' is followed by whitespace'
+    int [] array;
   }
 
   public void bitwiseNot(int a) {

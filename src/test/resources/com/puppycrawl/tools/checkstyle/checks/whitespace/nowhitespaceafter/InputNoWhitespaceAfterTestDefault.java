@@ -1,8 +1,8 @@
 /*
 NoWhitespaceAfter
 allowLineBreaks = false
-tokens = (default)ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT, \
-         DOT, ARRAY_DECLARATOR, INDEX_OP
+tokens = ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT, \
+         DOT, INDEX_OP
 
 
 */
@@ -300,7 +300,7 @@ class SpecialCasesInForLoop
     @interface Ok{}
 
     static {
-        int[]err = new int [50]; // violation ''int' is followed by whitespace.'
+        int[]err = new int [50];
     }
 
     Object foo() {
@@ -312,5 +312,5 @@ class SpecialCasesInForLoop
         variable;
 
     int someStuff8
-    []; // violation ''someStuff8' is followed by whitespace.'
+    [];
 }

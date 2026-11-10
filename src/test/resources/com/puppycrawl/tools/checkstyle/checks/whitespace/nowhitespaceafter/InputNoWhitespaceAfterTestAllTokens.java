@@ -2,7 +2,7 @@
 NoWhitespaceAfter
 allowLineBreaks = false
 tokens = ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT, DOT, \
-         TYPECAST, ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED, METHOD_REF
+         TYPECAST, INDEX_OP, LITERAL_SYNCHRONIZED, METHOD_REF
 
 
 */
@@ -300,7 +300,7 @@ class SpecialCasesInForLoopTestAllTokens
     @interface Ok{}
 
     static {
-        int[]err = new int [50]; // violation ''int' is followed by whitespace.'
+        int[]err = new int [50];
     }
 
     Object foo() {
@@ -312,5 +312,5 @@ class SpecialCasesInForLoopTestAllTokens
         variable;
 
     int someStuff8
-    []; // violation ''someStuff8' is followed by whitespace.'
+    [];
 }

@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck;
 
 public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTestSupport {
 
@@ -39,8 +38,6 @@ public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTe
         final String[] expected = {
             "20:15: " + getCheckMessage(MemberNameCheck.class,
                         MemberNameCheck.MSG_INVALID_PATTERN, "K", pattern1),
-            "28:15: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                        NoWhitespaceAfterCheck.MSG_KEY, "int"),
             "28:18: " + getCheckMessage(MemberNameCheck.class,
                         MemberNameCheck.MSG_INVALID_PATTERN, "ARR", pattern1),
             "34:17: " + getCheckMessage(ParameterNumberCheck.class,
@@ -57,8 +54,6 @@ public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTe
         final String[] expected = {
             "24:15: " + getCheckMessage(MemberNameCheck.class,
                         MemberNameCheck.MSG_INVALID_PATTERN, "K", pattern1),
-            "32:15: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                        NoWhitespaceAfterCheck.MSG_KEY, "int"),
             "32:18: " + getCheckMessage(MemberNameCheck.class,
                         MemberNameCheck.MSG_INVALID_PATTERN, "ARR", pattern1),
         };

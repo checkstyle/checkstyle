@@ -2,7 +2,7 @@
 NoWhitespaceAfter
 allowLineBreaks = (default)true
 tokens = ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT, DOT, TYPECAST, \
-         ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED, METHOD_REF
+         INDEX_OP, LITERAL_SYNCHRONIZED, METHOD_REF
 
 
 */
@@ -14,16 +14,14 @@ public class InputNoWhitespaceAfterWithEmoji {
     String txt = new String ("sd🤩🎄😂 " );
     public String foo() {
         String []   s =  { "🎄😂",
-            // 2 violations above:
-            //          ''String' is followed by whitespace.'
-            //          ''{' is followed by whitespace.'
+            // violation above ''{' is followed by whitespace.'
                         "🎄😂12wq"
         };
 
         for (int i = 0; i < s.length; i++) {
             char[]c = "🤩🎄".toCharArray();
 
-        /* 👉🏻😆*/ char  []c2= "🤩🎄".toCharArray(); // violation ''char' is followed by whitespace.'
+        /* 👉🏻😆*/ char  []c2= "🤩🎄".toCharArray();
         }
         return "😅🧐 dsad ";
     }
