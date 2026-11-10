@@ -468,4 +468,30 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
                 getPath("InputSummaryJavadocInlineReturn3.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "19:4: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "24:4: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "35:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputSummaryJavadocCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "19:4: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "25:4: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "30:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputSummaryJavadocCompactProperties.java"),
+                expected);
+    }
+
 }
