@@ -57,4 +57,26 @@ public class JavadocLinkWellKnownApiCheckTest extends AbstractModuleTestSupport 
                 getPath("InputJavadocLinkWellKnownApiCustom.java"), expected);
     }
 
+    @Test
+    public void testJavadocLinkWellKnownApiCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_WELL_KNOWN_PACKAGE, "java.lang.String"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavadocLinkWellKnownApiCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testJavadocLinkWellKnownApiCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_WELL_KNOWN_PACKAGE, "java.util.List"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavadocLinkWellKnownApiCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
