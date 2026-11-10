@@ -36,6 +36,33 @@ public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractMod
     }
 
     @Test
+    public void testUnnecessarySemicolonInTryWithResourcesCompactSourceFileDefault()
+            throws Exception {
+        final String[] expected = {
+            "15:43: " + getCheckMessage(MSG_SEMI),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                    + "InputUnnecessarySemicolonInTryWithResourcesCompactSourceFile"
+                    + "Default.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnnecessarySemicolonInTryWithResourcesCompactSourceFileProperties()
+            throws Exception {
+        final String[] expected = {
+            "15:43: " + getCheckMessage(MSG_SEMI),
+            "19:42: " + getCheckMessage(MSG_SEMI),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                    + "InputUnnecessarySemicolonInTryWithResourcesCompactSourceFile"
+                    + "Properties.java"),
+                expected);
+    }
+
+    @Test
     public void testDefault() throws Exception {
 
         final String[] expected = {
