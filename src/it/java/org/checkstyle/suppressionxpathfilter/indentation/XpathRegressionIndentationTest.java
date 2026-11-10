@@ -19,7 +19,6 @@
 
 package org.checkstyle.suppressionxpathfilter.indentation;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
 
 public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
@@ -46,14 +44,8 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIndentationDefault.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IndentationCheck.class);
-
         final String[] expectedViolation = {
-            "4:1: " + getCheckMessage(IndentationCheck.class,
+            "17:1: " + getCheckMessage(IndentationCheck.class,
                     IndentationCheck.MSG_ERROR, "method def modifier", 0, 4),
         };
 
@@ -75,28 +67,16 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='wrongIntend']]/TYPE/LITERAL_VOID"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIndentationDefault.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testBasicOffset() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIndentationBasicOffset.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IndentationCheck.class);
-        moduleConfig.addProperty("arrayInitIndent", "4");
-        moduleConfig.addProperty("basicOffset", "10");
-        moduleConfig.addProperty("braceAdjustment", "0");
-        moduleConfig.addProperty("caseIndent", "4");
-        moduleConfig.addProperty("forceStrictCondition", "false");
-        moduleConfig.addProperty("lineWrappingIndentation", "4");
-        moduleConfig.addProperty("tabWidth", "4");
-        moduleConfig.addProperty("throwsIndent", "4");
-
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(IndentationCheck.class,
+            "18:5: " + getCheckMessage(IndentationCheck.class,
                     IndentationCheck.MSG_ERROR, "method def modifier", 4, 10),
         };
 
@@ -118,28 +98,16 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/LITERAL_VOID"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIndentationBasicOffset.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testCaseIndent() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIndentationSwitchCase.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IndentationCheck.class);
-        moduleConfig.addProperty("arrayInitIndent", "4");
-        moduleConfig.addProperty("basicOffset", "4");
-        moduleConfig.addProperty("braceAdjustment", "0");
-        moduleConfig.addProperty("caseIndent", "4");
-        moduleConfig.addProperty("forceStrictCondition", "false");
-        moduleConfig.addProperty("lineWrappingIndentation", "4");
-        moduleConfig.addProperty("tabWidth", "4");
-        moduleConfig.addProperty("throwsIndent", "4");
-
         final String[] expectedViolation = {
-            "7:9: " + getCheckMessage(IndentationCheck.class,
+            "21:9: " + getCheckMessage(IndentationCheck.class,
                     IndentationCheck.MSG_CHILD_ERROR, "case", 8, 12),
         };
 
@@ -155,28 +123,16 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
                     + "CASE_GROUP/LITERAL_CASE"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIndentationSwitchCase.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testLambdaOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIndentationLambdaOne.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IndentationCheck.class);
-        moduleConfig.addProperty("arrayInitIndent", "4");
-        moduleConfig.addProperty("basicOffset", "4");
-        moduleConfig.addProperty("braceAdjustment", "0");
-        moduleConfig.addProperty("caseIndent", "4");
-        moduleConfig.addProperty("forceStrictCondition", "false");
-        moduleConfig.addProperty("lineWrappingIndentation", "4");
-        moduleConfig.addProperty("tabWidth", "4");
-        moduleConfig.addProperty("throwsIndent", "4");
-
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(IndentationCheck.class,
+            "20:9: " + getCheckMessage(IndentationCheck.class,
                     IndentationCheck.MSG_ERROR, "(", 8, 12),
         };
 
@@ -187,28 +143,16 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
                     + "[./IDENT[@text='getA']]/ASSIGN/LAMBDA/LPAREN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIndentationLambdaOne.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testLambdaTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIndentationLambdaTwo.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IndentationCheck.class);
-        moduleConfig.addProperty("arrayInitIndent", "4");
-        moduleConfig.addProperty("basicOffset", "4");
-        moduleConfig.addProperty("braceAdjustment", "0");
-        moduleConfig.addProperty("caseIndent", "4");
-        moduleConfig.addProperty("forceStrictCondition", "false");
-        moduleConfig.addProperty("lineWrappingIndentation", "4");
-        moduleConfig.addProperty("tabWidth", "4");
-        moduleConfig.addProperty("throwsIndent", "4");
-
         final String[] expectedViolation = {
-            "14:15: " + getCheckMessage(IndentationCheck.class,
+            "28:15: " + getCheckMessage(IndentationCheck.class,
                     IndentationCheck.MSG_CHILD_ERROR_MULTI, "block", 14, "12, 16"),
         };
 
@@ -219,29 +163,16 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
                     + "./IDENT[@text='div']]/ASSIGN/LAMBDA/SLIST/LITERAL_RETURN"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIndentationLambdaTwo.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testIfWithNoCurlies() throws Exception {
-        final File fileToProcess =
-            new File(getPath("InputXpathIndentationIfWithoutCurly.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IndentationCheck.class);
-
-        moduleConfig.addProperty("arrayInitIndent", "4");
-        moduleConfig.addProperty("basicOffset", "4");
-        moduleConfig.addProperty("braceAdjustment", "0");
-        moduleConfig.addProperty("caseIndent", "4");
-        moduleConfig.addProperty("forceStrictCondition", "false");
-        moduleConfig.addProperty("lineWrappingIndentation", "4");
-        moduleConfig.addProperty("tabWidth", "4");
-        moduleConfig.addProperty("throwsIndent", "4");
-
         final String[] expectedViolation = {
-            "8:9: " + getCheckMessage(IndentationCheck.class,
+            "22:9: " + getCheckMessage(IndentationCheck.class,
                 IndentationCheck.MSG_CHILD_ERROR, "if", 8, 12),
         };
 
@@ -252,29 +183,16 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
                     + "METHOD_CALL/IDENT[@text='e']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-            expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIndentationIfWithoutCurly.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
     @Test
     public void testElseWithNoCurlies() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathIndentationElseWithoutCurly.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(IndentationCheck.class);
-
-        moduleConfig.addProperty("arrayInitIndent", "4");
-        moduleConfig.addProperty("basicOffset", "4");
-        moduleConfig.addProperty("braceAdjustment", "0");
-        moduleConfig.addProperty("caseIndent", "4");
-        moduleConfig.addProperty("forceStrictCondition", "false");
-        moduleConfig.addProperty("lineWrappingIndentation", "4");
-        moduleConfig.addProperty("tabWidth", "4");
-        moduleConfig.addProperty("throwsIndent", "4");
-
         final String[] expectedViolation = {
-            "12:9: " + getCheckMessage(IndentationCheck.class,
+            "26:9: " + getCheckMessage(IndentationCheck.class,
                 IndentationCheck.MSG_CHILD_ERROR, "else", 8, 12),
         };
 
@@ -285,8 +203,10 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
                     + "/EXPR/METHOD_CALL/IDENT[@text='exp']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-            expectedXpathQueries);
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathIndentationElseWithoutCurly.java"),
+                expectedXpathQueries,
+                expectedViolation);
     }
 
 }
