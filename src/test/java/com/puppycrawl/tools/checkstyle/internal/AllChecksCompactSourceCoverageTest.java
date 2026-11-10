@@ -105,7 +105,6 @@ public class AllChecksCompactSourceCoverageTest {
         "LambdaParameterNameCheck",
         "MissingDeprecatedCheck",
         "MissingJavadocPackageCheck",
-        "MissingJavadocTypeCheck",
         "ModifiedControlVariableCheck",
         "NoCodeInFileCheck",
         "NonEmptyAtclauseDescriptionCheck",
