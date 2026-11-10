@@ -46,8 +46,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
  * Enforces that every TreeWalker check has compact source file (JEP 512) test coverage.
  * A check is covered when a {@code compact/} input folder exists and its inline configs both
  * run the check once with all properties at their default values and, together, exercise every
- * settable property at a non-default value at least once. Not-yet-covered checks are listed in
- * {@link #SUPPRESSED_CHECKS} and skipped; removing a check from that set arms this test for it.
+ * settable property at a non-default value at least once.
  */
 public class AllChecksCompactSourceCoverageTest {
 
@@ -79,51 +78,18 @@ public class AllChecksCompactSourceCoverageTest {
         "violateExecutionOnNonTightHtml"
     );
 
-    /**
-     * Checks not yet covered by compact source inputs; skipped until a contributor adds their
-     * {@code compact/} folder and removes the entry. This set should shrink to empty and then
-     * be removed.
-     */
-    private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-        "ImportOrderCheck"
-    );
-
     @Test
     public void testAllChecksHaveCompactSourceCoverage() throws Exception {
         final List<String> failures = new ArrayList<>();
 
         for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
-            if (!SUPPRESSED_CHECKS.contains(check.getSimpleName())) {
-                failures.addAll(findCoverageFailures(check));
-            }
+            failures.addAll(findCoverageFailures(check));
         }
 
         if (!failures.isEmpty()) {
             assertWithMessage("The following checks lack compact source input coverage:\n"
                     + String.join("\n", failures)).fail();
         }
-    }
-
-    @Test
-    public void testSuppressedChecksAreNotOutdated() throws Exception {
-        final Set<String> checkNames = CheckUtil.getCheckstyleChecks().stream()
-                .map(Class::getSimpleName)
-                .collect(Collectors.toUnmodifiableSet());
-
-        final Set<String> outdatedSuppressions = SUPPRESSED_CHECKS.stream()
-                .filter(check -> !checkNames.contains(check))
-                .collect(Collectors.toCollection(TreeSet::new));
-
-        for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
-            if (SUPPRESSED_CHECKS.contains(check.getSimpleName())
-                    && findCoverageFailures(check).isEmpty()) {
-                outdatedSuppressions.add(check.getSimpleName());
-            }
-        }
-
-        assertWithMessage("Outdated suppressions (can be removed): %s", outdatedSuppressions)
-                .that(outdatedSuppressions)
-                .isEmpty();
     }
 
     /**
