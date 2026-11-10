@@ -96,4 +96,11 @@ public class NoCodeInFileCheckTest extends AbstractModuleTestSupport {
                 getPath("InputNoCodeInFile5.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceDefault() throws Exception {
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNoCodeInFileCompactDefault.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
 }
