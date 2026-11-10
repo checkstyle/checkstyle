@@ -245,6 +245,18 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSwitchWhenGuard() throws Exception {
+
+        final String[] expected = {
+            "16:40: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "25:40: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "34:40: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEqualsAvoidNullSwitchWhenGuard.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final EqualsAvoidNullCheck check = new EqualsAvoidNullCheck();
         assertWithMessage("Acceptable tokens should not be null")
