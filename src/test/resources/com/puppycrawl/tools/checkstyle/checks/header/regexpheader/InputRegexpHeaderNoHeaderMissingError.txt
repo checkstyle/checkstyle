@@ -1,0 +1,7 @@
+//////////////
+package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
+
+import java.awt.*;
+import java.awt.*; // violation 'Line does not match expected header line'
+import java.awt.*;
+import java.awt.*;
