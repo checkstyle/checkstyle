@@ -14,6 +14,8 @@
             files="/checks/outertypefilename/package-info.java"/>
   <suppress id="presenceOfCompilationComment"
             files="/checks/coding/unusedprivatefield/InputUnusedPrivateFieldQualifiedThisUnresolvable.java"/>
+  <suppress id="presenceOfCompilationComment"
+            files="/checks/coding/unnecessarypermitsclause/InputUnnecessaryPermitsClauseLocalSealed.java"/>
 
 
   <!--  Intentional suppressions for testing -->
@@ -62,6 +64,8 @@
             files="/checks/imports/redundantimport/InputRedundantImportWithChecker.java"/>
   <suppress id="noCheckstyleInInputs"
             files="/checks/coding/unnecessarypermitsclause/InputUnnecessaryPermitsClauseSubClassesInAnotherFile.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="/checks/coding/unnecessarypermitsclause/InputUnnecessaryPermitsClauseStateLeakFirst.java"/>
   <suppress id="noCheckstyleInInputs"
           files="/packageobjectfactory/bar/FooCheck.java"/>
   <suppress id="noCheckstyleInInputs"
