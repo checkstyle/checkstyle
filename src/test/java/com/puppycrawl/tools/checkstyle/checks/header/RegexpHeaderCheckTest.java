@@ -221,14 +221,12 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testInlineRegexpHeaderConsecutiveNewlinesThroughConfigFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFile", getUriString("InputRegexpHeaderNewLines.header"));
         final String[] expected = {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$"),
         };
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputRegexpHeaderConsecutiveNewLines.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderConsecutiveNewlinesThroughConfigFileConfig.java"),
+                getPath("InputRegexpHeaderConsecutiveNewlinesThroughConfigFile.java"), expected);
     }
 
     @Test
