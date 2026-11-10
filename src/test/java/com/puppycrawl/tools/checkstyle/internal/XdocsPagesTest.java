@@ -621,7 +621,8 @@ public class XdocsPagesTest {
 
         final String[] groupNames = {"annotation", "blocks", "design",
             "coding", "header", "imports", "javadoc", "metrics",
-            "misc", "modifier", "naming", "regexp", "sizes", "whitespace"};
+            "misc", "modifier", "naming", "regexp", "sizes", "whitespace",
+        };
         for (String name : groupNames) {
             final Path checks = Path.of("src/site/xdoc/checks/" + name + "/index.xml");
             validateOrder(checks, "Check");

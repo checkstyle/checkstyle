@@ -115,6 +115,7 @@ public class XdocsExamplesAstConsistencyTest {
      * Format: "directory/ExampleN" where the example has unique code.
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
+            "checks/blocks/rightcurlyofexpression/Example2",
             // Note: customImport/ImportOrder changes import group ORDER affecting AST structure
             "checks/imports/customimportorder/Example10",
             "checks/imports/customimportorder/Example11",

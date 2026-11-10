@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOfExpressionCheck"
+             name="RightCurlyOfExpression"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks the placement of right curly braces (&lt;code&gt;'}'&lt;/code&gt;) for expression blocks:
+ array initializers, block-bodied lambda expressions and anonymous classes.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ The right curly brace of an expression block is different from the right curly brace
+ of a code block, because it is always followed by another part of the expression
+ or the statement, for example a semicolon, a closing parenthesis or a method call.
+ For this reason the policies of this check are defined by the position of the right
+ curly brace in relation to the previous part of the expression, and not in relation
+ to the part that follows it. Placement of right curly braces for code blocks
+ is validated by &lt;code&gt;RightCurly&lt;/code&gt; check.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ It is possible to enforce three different policies:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ &lt;code&gt;on_same_line&lt;/code&gt; - The right curly brace must be on the same line as the
+ previous part of the expression:
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
+ String[] names = new String[] {"One", "Two", };
+ Runnable action = () -&amp;gt; { doSomething(); };
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;code&gt;on_new_line&lt;/code&gt; - The right curly brace must be on a new line:
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
+ String[] names = new String[] {"One", "Two",
+ };
+ Runnable action = () -&amp;gt; { doSomething();
+ };
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;code&gt;on_new_line_or_singleline&lt;/code&gt; - The right curly brace must be on a new line,
+ unless the whole expression block is on a single line:
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
+ // Single-line format of block
+ String[] names = new String[] {"One", "Two", };
+
+ // Multi-line format of block
+ String[] names = new String[] {"One", "Two",
+ };
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;
+ For multi-dimensional arrays only the outer right curly brace is validated.
+ For anonymous classes only the right curly brace of the class body is validated,
+ the right curly brace of an instance initializer inside such class is not
+ an expression brace and is not validated.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="on_new_line_or_singleline"
+                      name="option"
+                      type="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOfExpressionOption">
+               <description>Specify the policy on placement of a right curly brace (&lt;code&gt;'}'&lt;/code&gt;) of an expression block.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="line.new"/>
+            <message-key key="line.previous"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
