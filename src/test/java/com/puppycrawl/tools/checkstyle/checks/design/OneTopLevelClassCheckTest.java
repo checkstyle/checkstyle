@@ -207,4 +207,11 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
                 getPath("InputOneTopLevelClassEmpty.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceDefault() throws Exception {
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputOneTopLevelClassCompactDefault.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
 }
