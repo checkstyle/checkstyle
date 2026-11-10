@@ -133,7 +133,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST expectedMethodDefNode2 = expectedMethodDefNode1.getNextSibling();
         final DetailAST[] expected = {expectedClassDefNode, expectedMethodDefNode1,
-            expectedMethodDefNode2};
+            expectedMethodDefNode2,
+        };
         assertWithMessage("Result nodes differ from expected")
                 .that(actual)
                 .isEqualTo(expected);
@@ -188,7 +189,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
         final DetailAST[] expected = {expectedClassDefNode, expectedObjblockNode,
-            expectedMethodDefNode, expectedMethodDefNode2};
+            expectedMethodDefNode, expectedMethodDefNode2,
+        };
         assertWithMessage("Result nodes differ from expected")
                 .that(actual)
                 .isEqualTo(expected);
@@ -303,7 +305,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode,
-            expectedMethodDefNode.getNextSibling()};
+            expectedMethodDefNode.getNextSibling(),
+        };
         assertWithMessage("Result nodes differ from expected")
                 .that(actual)
                 .isEqualTo(expected);
@@ -369,7 +372,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode,
-            expectedMethodDefNode.getNextSibling()};
+            expectedMethodDefNode.getNextSibling(),
+        };
         assertWithMessage("Result nodes differ from expected")
                 .that(actual)
                 .isEqualTo(expected);
@@ -496,7 +500,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode,
-            expectedMethodDefNode.getNextSibling()};
+            expectedMethodDefNode.getNextSibling(),
+        };
         assertWithMessage("Result nodes differ from expected")
                 .that(actual)
                 .isEqualTo(expected);
@@ -984,7 +989,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
         final DetailAST[] expected = {expectedMethodDefNode,
-                expectedMethodDefNode.getNextSibling()};
+                expectedMethodDefNode.getNextSibling(),
+        };
         assertWithMessage("Result nodes differ from expected")
                 .that(actual)
                 .isEqualTo(expected);
@@ -1066,7 +1072,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode,
-            expectedMethodDefNode.getNextSibling()};
+            expectedMethodDefNode.getNextSibling(),
+        };
         assertWithMessage("Result nodes differ from expected")
                 .that(actual)
                 .isEqualTo(expected);
@@ -1104,7 +1111,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final DetailAST expectedVariableDefNode2 = expectedSemiNode1.getNextSibling();
         final DetailAST expectedSemiNode2 = expectedVariableDefNode2.getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode1, expectedSemiNode1,
-            expectedVariableDefNode2, expectedSemiNode2};
+            expectedVariableDefNode2, expectedSemiNode2,
+        };
         assertWithMessage("Result nodes differ from expected")
                 .that(actual)
                 .isEqualTo(expected);

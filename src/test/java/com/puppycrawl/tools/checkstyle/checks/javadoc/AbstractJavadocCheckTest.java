@@ -329,7 +329,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             JavadocCommentsTokenTypes.HTML_COMMENT,
             JavadocCommentsTokenTypes.HTML_ELEMENT,
             JavadocCommentsTokenTypes.RETURN_BLOCK_TAG,
-            JavadocCommentsTokenTypes.NEWLINE};
+            JavadocCommentsTokenTypes.NEWLINE,
+        };
         final AbstractJavadocCheck check = new AbstractJavadocCheck() {
             @Override
             public void visitJavadocToken(DetailNode ast) {
