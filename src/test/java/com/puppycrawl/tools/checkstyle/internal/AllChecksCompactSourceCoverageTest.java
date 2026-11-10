@@ -91,7 +91,6 @@ public class AllChecksCompactSourceCoverageTest {
         "CustomImportOrderCheck",
         "IllegalSymbolCheck",
         "ImportOrderCheck",
-        "InvalidJavadocPositionCheck",
         "JavadocLeadingAsteriskAlignCheck",
         "JavadocLinkFirstOccurrenceCheck",
         "JavadocLinkWellKnownApiCheck",
