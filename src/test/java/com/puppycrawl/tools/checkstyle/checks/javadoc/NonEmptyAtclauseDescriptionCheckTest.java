@@ -131,4 +131,15 @@ public class NonEmptyAtclauseDescriptionCheckTest
                 getPath("InputNonEmptyAtclauseDescriptionThree.java"), expected);
     }
 
+    @Test
+    public void testNonEmptyAtclauseDescriptionCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "16: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputNonEmptyAtclauseDescriptionCompactSourceFileDefault.java"),
+                expected);
+    }
+
 }
