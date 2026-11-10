@@ -111,4 +111,15 @@ public class JavadocSeeTagOrderCheckTest extends AbstractModuleTestSupport {
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
+    @Test
+    public void testJavadocSeeTagOrderCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "16:4: " + getCheckMessage(MSG_KEY, "#greet()", "java.util.List"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavadocSeeTagOrderCompactSourceFileDefault.java"),
+                expected);
+    }
+
 }
