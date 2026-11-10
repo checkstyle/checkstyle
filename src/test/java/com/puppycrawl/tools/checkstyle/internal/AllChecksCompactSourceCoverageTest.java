@@ -118,7 +118,6 @@ public class AllChecksCompactSourceCoverageTest {
         "RequireEmptyLineBeforeBlockTagGroupCheck",
         "RequireThisCheck",
         "SuppressWarningsCheck",
-        "TextBlockGoogleStyleFormattingCheck",
         "UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
         "UnnecessarySemicolonInTryWithResourcesCheck"
     );
