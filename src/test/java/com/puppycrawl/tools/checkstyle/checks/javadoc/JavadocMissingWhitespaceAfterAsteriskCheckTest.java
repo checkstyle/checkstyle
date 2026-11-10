@@ -100,4 +100,18 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
                 getPath("InputJavadocMissingWhitespaceAfterAsteriskInvalid.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "11:4: " + getCheckMessage(MSG_KEY),
+            "26:3: " + getCheckMessage(MSG_KEY),
+            "32:7: " + getCheckMessage(MSG_KEY),
+            "42:7: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavadocMissingWhitespaceAfterAsteriskCompactSourceFile.java"),
+                expected);
+    }
+
 }
