@@ -319,4 +319,22 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testRegexpCompactSourceFileDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputRegexpCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testRegexpCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Found a System.out call."),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputRegexpCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
