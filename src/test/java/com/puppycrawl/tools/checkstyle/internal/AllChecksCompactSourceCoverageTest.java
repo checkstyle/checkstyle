@@ -117,7 +117,6 @@ public class AllChecksCompactSourceCoverageTest {
         "RegexpSinglelineJavaCheck",
         "RequireEmptyLineBeforeBlockTagGroupCheck",
         "RequireThisCheck",
-        "SuppressWarningsCheck",
         "TextBlockGoogleStyleFormattingCheck",
         "UnnecessarySemicolonInTryWithResourcesCheck"
     );
