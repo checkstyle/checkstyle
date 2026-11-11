@@ -91,7 +91,7 @@ public class AllChecksCompactSourceCoverageTest {
         "JavadocStyleCheck",
         "JavadocTagContinuationIndentationCheck",
         "MissingJavadocPackageCheck",
-        "NonEmptyAtclauseDescriptionCheck",
+        "ModifiedControlVariableCheck",
         "PackageAnnotationCheck",
         "RedundantModifierCheck",
         "RegexpSinglelineJavaCheck",
