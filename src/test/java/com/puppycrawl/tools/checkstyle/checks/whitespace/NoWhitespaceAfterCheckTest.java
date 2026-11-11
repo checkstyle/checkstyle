@@ -47,20 +47,36 @@ public class NoWhitespaceAfterCheckTest extends AbstractModuleTestSupport {
             "30:20: " + getCheckMessage(MSG_KEY, "+"),
             "35:13: " + getCheckMessage(MSG_KEY, "++"),
             "35:20: " + getCheckMessage(MSG_KEY, "--"),
-            "118:21: " + getCheckMessage(MSG_KEY, "!"),
-            "119:22: " + getCheckMessage(MSG_KEY, "~"),
-            "136:23: " + getCheckMessage(MSG_KEY, "."),
-            "139:10: " + getCheckMessage(MSG_KEY, "."),
-            "143:11: " + getCheckMessage(MSG_KEY, "."),
-            "271:1: " + getCheckMessage(MSG_KEY, "."),
-            "296:5: " + getCheckMessage(MSG_KEY, "@"),
-            "297:5: " + getCheckMessage(MSG_KEY, "@"),
-            "298:5: " + getCheckMessage(MSG_KEY, "@"),
-            "303:28: " + getCheckMessage(MSG_KEY, "int"),
-            "315:5: " + getCheckMessage(MSG_KEY, "someStuff8"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestDefault.java"), expected);
+    }
+
+    @Test
+    public void testDefault2() throws Exception {
+        final String[] expected = {
+            "18:21: " + getCheckMessage(MSG_KEY, "!"),
+            "19:22: " + getCheckMessage(MSG_KEY, "~"),
+            "36:23: " + getCheckMessage(MSG_KEY, "."),
+            "39:10: " + getCheckMessage(MSG_KEY, "."),
+            "43:11: " + getCheckMessage(MSG_KEY, "."),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterTestDefault2.java"), expected);
+    }
+
+    @Test
+    public void testDefault3() throws Exception {
+        final String[] expected = {
+            "61:1: " + getCheckMessage(MSG_KEY, "."),
+            "86:5: " + getCheckMessage(MSG_KEY, "@"),
+            "87:5: " + getCheckMessage(MSG_KEY, "@"),
+            "88:5: " + getCheckMessage(MSG_KEY, "@"),
+            "93:28: " + getCheckMessage(MSG_KEY, "int"),
+            "105:5: " + getCheckMessage(MSG_KEY, "someStuff8"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterTestDefault3.java"), expected);
     }
 
     @Test
@@ -74,11 +90,26 @@ public class NoWhitespaceAfterCheckTest extends AbstractModuleTestSupport {
     public void testDotAllowLineBreaks() throws Exception {
         final String[] expected = {
             "9:13: " + getCheckMessage(MSG_KEY, "."),
-            "129:23: " + getCheckMessage(MSG_KEY, "."),
-            "136:11: " + getCheckMessage(MSG_KEY, "."),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestAllowLineBreaks.java"), expected);
+    }
+
+    @Test
+    public void testDotAllowLineBreaks2() throws Exception {
+        final String[] expected = {
+            "35:23: " + getCheckMessage(MSG_KEY, "."),
+            "42:11: " + getCheckMessage(MSG_KEY, "."),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterTestAllowLineBreaks2.java"), expected);
+    }
+
+    @Test
+    public void testDotAllowLineBreaks3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterTestAllowLineBreaks3.java"), expected);
     }
 
     @Test
@@ -86,10 +117,25 @@ public class NoWhitespaceAfterCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "87:20: " + getCheckMessage(MSG_KEY, ")"),
             "89:13: " + getCheckMessage(MSG_KEY, ")"),
-            "241:17: " + getCheckMessage(MSG_KEY, ")"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestTypecast.java"), expected);
+    }
+
+    @Test
+    public void testTypecast2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterTestTypecast2.java"), expected);
+    }
+
+    @Test
+    public void testTypecast3() throws Exception {
+        final String[] expected = {
+            "37:17: " + getCheckMessage(MSG_KEY, ")"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterTestTypecast3.java"), expected);
     }
 
     @Test
@@ -138,37 +184,45 @@ public class NoWhitespaceAfterCheckTest extends AbstractModuleTestSupport {
             "51:44: " + getCheckMessage(MSG_KEY, "]"),
             "56:15: " + getCheckMessage(MSG_KEY, "e"),
             "56:19: " + getCheckMessage(MSG_KEY, "]"),
-            "64:31: " + getCheckMessage(MSG_KEY, "Integer"),
-            "66:21: " + getCheckMessage(MSG_KEY, "]"),
-            "72:29: " + getCheckMessage(MSG_KEY, ">"),
-            "72:32: " + getCheckMessage(MSG_KEY, "]"),
-            "72:35: " + getCheckMessage(MSG_KEY, "]"),
-            "80:35: " + getCheckMessage(MSG_KEY, "int"),
-            "82:15: " + getCheckMessage(MSG_KEY, "g"),
-            "83:18: " + getCheckMessage(MSG_KEY, "]"),
-            "84:15: " + getCheckMessage(MSG_KEY, "g"),
-            "84:19: " + getCheckMessage(MSG_KEY, "]"),
-            "84:23: " + getCheckMessage(MSG_KEY, "]"),
-            "94:55: " + getCheckMessage(MSG_KEY, "create"),
-            "94:63: " + getCheckMessage(MSG_KEY, "]"),
-            "102:33: " + getCheckMessage(MSG_KEY, "boolean"),
-            "104:48: " + getCheckMessage(MSG_KEY, "String"),
-            "104:52: " + getCheckMessage(MSG_KEY, "]"),
-            "108:37: " + getCheckMessage(MSG_KEY, "String"),
-            "120:41: " + getCheckMessage(MSG_KEY, "Integer"),
-            "125:15: " + getCheckMessage(MSG_KEY, "char"),
-            "126:53: " + getCheckMessage(MSG_KEY, "A"),
-            "128:70: " + getCheckMessage(MSG_KEY, "Object"),
-            "132:43: " + getCheckMessage(MSG_KEY, ")"),
-            "132:52: " + getCheckMessage(MSG_KEY, "]"),
-            "137:37: " + getCheckMessage(MSG_KEY, "Object"),
-            "140:46: " + getCheckMessage(MSG_KEY, ")"),
-            "143:43: " + getCheckMessage(MSG_KEY, "Object"),
-            "146:45: " + getCheckMessage(MSG_KEY, "]"),
-            "154:33: " + getCheckMessage(MSG_KEY, "Object"),
+            "64:29: " + getCheckMessage(MSG_KEY, ">"),
+            "64:32: " + getCheckMessage(MSG_KEY, "]"),
+            "64:35: " + getCheckMessage(MSG_KEY, "]"),
+            "72:35: " + getCheckMessage(MSG_KEY, "int"),
+            "74:15: " + getCheckMessage(MSG_KEY, "g"),
+            "75:18: " + getCheckMessage(MSG_KEY, "]"),
+            "76:15: " + getCheckMessage(MSG_KEY, "g"),
+            "76:19: " + getCheckMessage(MSG_KEY, "]"),
+            "76:23: " + getCheckMessage(MSG_KEY, "]"),
+            "86:55: " + getCheckMessage(MSG_KEY, "create"),
+            "86:63: " + getCheckMessage(MSG_KEY, "]"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterArrayDeclarations2.java"), expected);
+    }
+
+    @Test
+    public void testArrayDeclarations4() throws Exception {
+        final String[] expected = {
+            "18:31: " + getCheckMessage(MSG_KEY, "Integer"),
+            "20:21: " + getCheckMessage(MSG_KEY, "]"),
+            "26:33: " + getCheckMessage(MSG_KEY, "boolean"),
+            "28:48: " + getCheckMessage(MSG_KEY, "String"),
+            "28:52: " + getCheckMessage(MSG_KEY, "]"),
+            "32:37: " + getCheckMessage(MSG_KEY, "String"),
+            "44:41: " + getCheckMessage(MSG_KEY, "Integer"),
+            "49:15: " + getCheckMessage(MSG_KEY, "char"),
+            "50:53: " + getCheckMessage(MSG_KEY, "A"),
+            "52:70: " + getCheckMessage(MSG_KEY, "Object"),
+            "56:43: " + getCheckMessage(MSG_KEY, ")"),
+            "56:52: " + getCheckMessage(MSG_KEY, "]"),
+            "61:37: " + getCheckMessage(MSG_KEY, "Object"),
+            "64:46: " + getCheckMessage(MSG_KEY, ")"),
+            "67:43: " + getCheckMessage(MSG_KEY, "Object"),
+            "70:45: " + getCheckMessage(MSG_KEY, "]"),
+            "78:33: " + getCheckMessage(MSG_KEY, "Object"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterArrayDeclarations4.java"), expected);
     }
 
     @Test
@@ -252,22 +306,38 @@ public class NoWhitespaceAfterCheckTest extends AbstractModuleTestSupport {
             "94:20: " + getCheckMessage(MSG_KEY, ")"),
             "96:13: " + getCheckMessage(MSG_KEY, ")"),
             "97:13: " + getCheckMessage(MSG_KEY, ")"),
-            "118:21: " + getCheckMessage(MSG_KEY, "!"),
-            "119:22: " + getCheckMessage(MSG_KEY, "~"),
-            "136:23: " + getCheckMessage(MSG_KEY, "."),
-            "139:10: " + getCheckMessage(MSG_KEY, "."),
-            "143:11: " + getCheckMessage(MSG_KEY, "."),
-            "248:17: " + getCheckMessage(MSG_KEY, ")"),
-            "271:1: " + getCheckMessage(MSG_KEY, "."),
-            "296:5: " + getCheckMessage(MSG_KEY, "@"),
-            "297:5: " + getCheckMessage(MSG_KEY, "@"),
-            "298:5: " + getCheckMessage(MSG_KEY, "@"),
-            "303:28: " + getCheckMessage(MSG_KEY, "int"),
-            "307:18: " + getCheckMessage(MSG_KEY, ")"),
-            "315:5: " + getCheckMessage(MSG_KEY, "someStuff8"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestAllTokens.java"), expected);
+    }
+
+    @Test
+    public void testAllTokens2() throws Exception {
+        final String[] expected = {
+            "18:21: " + getCheckMessage(MSG_KEY, "!"),
+            "19:22: " + getCheckMessage(MSG_KEY, "~"),
+            "36:23: " + getCheckMessage(MSG_KEY, "."),
+            "39:10: " + getCheckMessage(MSG_KEY, "."),
+            "43:11: " + getCheckMessage(MSG_KEY, "."),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterTestAllTokens2.java"), expected);
+    }
+
+    @Test
+    public void testAllTokens3() throws Exception {
+        final String[] expected = {
+            "38:17: " + getCheckMessage(MSG_KEY, ")"),
+            "61:1: " + getCheckMessage(MSG_KEY, "."),
+            "86:5: " + getCheckMessage(MSG_KEY, "@"),
+            "87:5: " + getCheckMessage(MSG_KEY, "@"),
+            "88:5: " + getCheckMessage(MSG_KEY, "@"),
+            "93:28: " + getCheckMessage(MSG_KEY, "int"),
+            "97:18: " + getCheckMessage(MSG_KEY, ")"),
+            "105:5: " + getCheckMessage(MSG_KEY, "someStuff8"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterTestAllTokens3.java"), expected);
     }
 
     @Test
@@ -292,21 +362,39 @@ public class NoWhitespaceAfterCheckTest extends AbstractModuleTestSupport {
             "74:25: " + getCheckMessage(MSG_KEY, "]"),
             "92:21: " + getCheckMessage(MSG_KEY, ")"),
             "94:57: " + getCheckMessage(MSG_KEY, "KeyManager"),
-            "128:28: " + getCheckMessage(MSG_KEY, ")"),
-            "129:28: " + getCheckMessage(MSG_KEY, ")"),
-            "133:29: " + getCheckMessage(MSG_KEY, ")"),
-            "152:28: " + getCheckMessage(MSG_KEY, "byte"),
-            "186:12: " + getCheckMessage(MSG_KEY, "String"),
-            "186:20: " + getCheckMessage(MSG_KEY, "f"),
-            "221:6: " + getCheckMessage(MSG_KEY, "]"),
-            "222:13: " + getCheckMessage(MSG_KEY, "]"),
-            "226:5: " + getCheckMessage(MSG_KEY, "]"),
-            "227:13: " + getCheckMessage(MSG_KEY, "]"),
-            "233:15: " + getCheckMessage(MSG_KEY, "synchronized"),
         };
 
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterNewTypeStructure.java"), expected);
+    }
+
+    @Test
+    public void testArrayNewTypeStructure2() throws Exception {
+        final String[] expected = {
+            "52:28: " + getCheckMessage(MSG_KEY, ")"),
+            "53:28: " + getCheckMessage(MSG_KEY, ")"),
+            "57:29: " + getCheckMessage(MSG_KEY, ")"),
+            "76:28: " + getCheckMessage(MSG_KEY, "byte"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterNewTypeStructure2.java"), expected);
+    }
+
+    @Test
+    public void testArrayNewTypeStructure3() throws Exception {
+        final String[] expected = {
+            "24:12: " + getCheckMessage(MSG_KEY, "String"),
+            "24:20: " + getCheckMessage(MSG_KEY, "f"),
+            "59:6: " + getCheckMessage(MSG_KEY, "]"),
+            "60:13: " + getCheckMessage(MSG_KEY, "]"),
+            "64:5: " + getCheckMessage(MSG_KEY, "]"),
+            "65:13: " + getCheckMessage(MSG_KEY, "]"),
+            "71:15: " + getCheckMessage(MSG_KEY, "synchronized"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterNewTypeStructure3.java"), expected);
     }
 
     @Test
