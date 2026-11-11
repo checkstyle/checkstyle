@@ -500,4 +500,17 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
                 getPath("InputTextBlockGoogleStyleFormattingTernary.java"), expected);
     }
 
+    @Test
+    public void testTextBlockGoogleStyleFormattingCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "11:12: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "13:9: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputTextBlockGoogleStyleFormattingCompactSourceFile"
+                                + "Default.java"),
+                expected);
+    }
+
 }
