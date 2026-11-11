@@ -50,8 +50,8 @@ public class InputUnusedCatchParameterShouldBeUnnamed {
             int x = 1/ 0;
         }
         catch (Exception e) {
-            // violation above 'Unused catch parameter 'e' should be unnamed.'
-           e = new Exception();
+
+            e = new Exception();
         }
         try {
             int x = 1/ 0;
@@ -111,6 +111,7 @@ public class InputUnusedCatchParameterShouldBeUnnamed {
             System.out.println("infinity");
         }
     }
+
     void e() { }
 }
 
