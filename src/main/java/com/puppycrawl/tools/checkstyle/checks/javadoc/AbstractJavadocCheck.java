@@ -318,7 +318,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
 
                 if (violateExecutionOnNonTightHtml && result.isNonTight()) {
                     final DetailNode firstNonTightHtmlTag = result.getFirstNonTightHtmlTag();
-                    log(firstNonTightHtmlTag.getLineNumber(),
+                    log(firstNonTightHtmlTag,
                             MSG_KEY_UNCLOSED_HTML_TAG,
                             firstNonTightHtmlTag.getText());
                 }
