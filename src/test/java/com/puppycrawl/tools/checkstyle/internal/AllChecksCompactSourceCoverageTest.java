@@ -102,8 +102,7 @@ public class AllChecksCompactSourceCoverageTest {
         "PackageNameCheck",
         "RegexpSinglelineJavaCheck",
         "RequireThisCheck",
-        "TextBlockGoogleStyleFormattingCheck",
-        "UnnecessarySemicolonInTryWithResourcesCheck"
+        "TextBlockGoogleStyleFormattingCheck"
     );
 
     @Test
