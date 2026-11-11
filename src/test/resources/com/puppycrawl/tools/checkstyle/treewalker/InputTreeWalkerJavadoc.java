@@ -7,6 +7,7 @@ violateExecutionOnNonTightHtml = (default)false
 */
 package com.puppycrawl.tools.checkstyle.treewalker;
 
-/** <p>Javadoc comment. */ // violation 'Redundant <p> tag'
+// violation 1 lines below 'Redundant <p> tag'
+/** <p>Javadoc comment. */
 public class InputTreeWalkerJavadoc {
 }
