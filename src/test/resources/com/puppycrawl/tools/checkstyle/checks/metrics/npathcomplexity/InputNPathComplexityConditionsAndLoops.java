@@ -1,0 +1,106 @@
+/*
+NPathComplexity
+max = 0
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
+// Advise: for lack of ambiguity try to make all factors prime numbers
+public class InputNPathComplexityConditionsAndLoops {
+
+    // violation below 'NPath Complexity is 11 (max allowed is 0).'
+    void testComplexIfElse() {
+        // NP = (if-range=1) + (else-range=9) + (expr=1) = 11
+        if (true && true) { }
+        // NP(else-range) = (if-range=1) + (else-range=6) + (expr=2) = 9
+        else if (true || true || true) { }
+        // NP(else-range) = (if-range=1) + 1 + (expr=4) = 6
+        else if (true && true && true || true || true) { }
+    }
+
+    // violation below 'NPath Complexity is 8 (max allowed is 0).'
+    boolean testComplexReturn() {
+        // NP = (if-range=3) + (else-range=4) + (expr=1) = 8
+        if (true && true) {
+            // NP(if-range) = 3
+            return true && true || (true && true);
+        } else {
+            // NP(else-range) = (expr(1)=0) + (expr(2)=1) + (expr(3)=1) + 2 = 4
+            return true ? true && true : true || true;
+        }
+    }
+
+    // NP = (for-statement[1]=2) * (for-statement[2]=3)
+    //         * (for-statement[3]=4) * (for-statement[4]=5) = 120
+    // violation below 'NPath Complexity is 120 (max allowed is 0).'
+    void testForCyclesComplex() {
+        // NP(for-statement) = (for-range=1) + (expr(1)=0) + (expr(2)=0) + (expr(3)=0) + 1 = 2
+        for (int i = 0; i < 10; i++);
+        // NP(for-statement) = (for-range=1) + (expr(1)=0) + (expr(2)=1) + (expr(3)=0) + 1 = 3
+        for (int i = 0; i < 10 && true; i++);
+        // NP(for-statement) = (for-range=1) + (expr(1)=2) + (expr(2)=0) + (expr(3)=0) + 1 = 4
+        for (int i = true ? 0 : 0; i < 10; i++);
+        // NP(for-statement) = (for-range=1) + (expr(1)=0) + (expr(2)=1+2) + (expr(3)=0) + 1 = 5
+        for (int i = 0; true ? i < 10 : true || true; i++);
+    }
+
+    // NP = (while-statement[1]=2) * (while-statement[2]=3) = 6
+    // violation below 'NPath Complexity is 6 (max allowed is 0).'
+    boolean testWhileCyclesComplex() {
+        int a = 0;
+        // NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
+        while (a != 0) { }
+        // NP(while-statement) = (while-range=1) + (expr=1) + 1 = 3
+        while (a != 0 && a == 0) { return a == 0 || a == 0; }
+        return true;
+    }
+
+    // NP = (do-statement[1]=6) * (do-statement[2]=3) = 21
+    // violation below 'NPath Complexity is 21 (max allowed is 0).'
+    void testDoWhileCyclesComplex() {
+        int a = 0;
+        // NP(do-statement) = (do-range=1) + (expr=1) + 1 = 3
+        do { } while (a < 10 && true);
+        // NP(do-statement) =
+        //         (do-range=3) + ((expr(1)=0) + (expr(2)=0) + (expr(3)=1) + 2) + 1 = 7
+        do {
+            // NP(do-range) = (do-range=1) + (expr=1) + 1 = 3
+            do { } while (a < 10 || true);
+        } while (true ? a > 10 : (a < 10 || true));
+    }
+
+    // NP = (question-statement[1]=5) * (question-statement[2]=7) = 35
+    // violation below 'NPath Complexity is 35 (max allowed is 0).'
+    void testComplexTernaryOperator() {
+        // NP(question-statement) = (expr(1)=0) + (expr(2)=2) + (expr(3)=1+2) + 2 = 7
+        boolean a = true ? (true ? true : true) : (false ? (true || false) : true);
+        // NP(question-statement) = (expr(1)=0) + (expr(2)=2) + (expr(3)=1) + 2 = 5;
+        boolean b = true ? (true ? true : true) : true || true;
+    }
+
+    // NP = (if-expression[1]=5) * (if-expression[2]=5) = 25
+    // violation below 'NPath Complexity is 25 (max allowed is 0).'
+    void testSimpleTernaryBadFormatting() {
+        // NP(if-expression) = (if-range=2) + 1 + (expr=2) = 5
+        if(
+           true ? true : true
+                ) { boolean a = true ? true
+                        : true;
+        }
+        // NP(if-expression) = (if-range=2) + 1 + (expr=2) = 5
+        if(
+                true ? true : true) { boolean b = true ? true : true;
+             }
+    }
+
+    //Calculation for try-catch is wrong now
+    //See issue #3814 https://github.com/checkstyle/checkstyle/issues/3814
+    // violation below 'NPath Complexity is 2 (max allowed is 0).'
+    void testTryCatch() {
+       try {
+       }
+       catch (Exception e) {
+       }
+    }
+}

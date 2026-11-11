@@ -462,14 +462,6 @@
   <suppress checks="FileLength"
     files="/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/InputClassFanOutComplexityRemoveIncorrectAnnotationToken\.java"/>
   <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/metrics/npathcomplexity/InputNPathComplexityOverflow\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/metrics/npathcomplexity/InputNPathComplexity\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/metrics/npathcomplexity/InputNPathComplexityDefault\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/metrics/npathcomplexity/InputNPathComplexityDefault2\.java"/>
-  <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/naming/packagename/InputPackageNameSimple1\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/naming/packagename/InputPackageNameSimple\.java"/>
