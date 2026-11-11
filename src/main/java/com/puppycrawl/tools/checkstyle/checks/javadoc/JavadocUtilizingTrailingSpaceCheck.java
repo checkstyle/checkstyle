@@ -440,7 +440,7 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
         final String text = node.getText();
 
         initCurrentLine(node.getLineNumber());
-        currentLine.updateLength(node.getColumnNumber(), text.length());
+        currentLine.updateLength(node.getColumnNumber(), text);
 
         final String trimmed = text.trim();
         if (!trimmed.isEmpty()) {
@@ -518,7 +518,7 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
 
         final DetailNode end = lastLeaf(node);
         if (end.getLineNumber() == node.getLineNumber()) {
-            currentLine.updateLength(end.getColumnNumber(), end.getText().length());
+            currentLine.updateLength(end.getColumnNumber(), end.getText());
         }
         else {
             currentLine.skippedLinesFollow = true;
@@ -535,7 +535,7 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
     private void updateLengthToEnd(DetailNode node) {
         final DetailNode end = lastLeaf(node);
         if (end.getLineNumber() == node.getLineNumber()) {
-            currentLine.updateLength(end.getColumnNumber(), end.getText().length());
+            currentLine.updateLength(end.getColumnNumber(), end.getText());
         }
     }
 
@@ -676,13 +676,14 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
         }
 
         /**
-         * Updates the line length based on column position and content length.
+         * Updates the line length to the end of the given content. The column of
+         * a node counts code points, so the content is measured in code points too.
          *
-         * @param startColumn   the starting column (0-indexed)
-         * @param contentLength the length of the content
+         * @param startColumn the starting column (0-indexed)
+         * @param content     the content that starts at the column
          */
-        private void updateLength(int startColumn, int contentLength) {
-            length = startColumn + contentLength;
+        private void updateLength(int startColumn, String content) {
+            length = startColumn + content.codePointCount(0, content.length());
         }
 
         /**
@@ -732,7 +733,7 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
          * @return the first word length
          */
         private int firstWordLength() {
-            return firstWord.length();
+            return firstWord.codePointCount(0, firstWord.length());
         }
 
     }
