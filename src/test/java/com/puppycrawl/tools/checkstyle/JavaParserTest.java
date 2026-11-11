@@ -259,7 +259,27 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoFreezeOnDeeplyNestedLambdas() throws Exception {
+    public void testTrailingCommentAfterRcurlyIsMemberSibling() throws Exception {
+        final DetailAST root =
+            JavaParser.parseFile(new File(getPath("InputJavaParserTrailingComment.java")),
+                JavaParser.Options.WITH_COMMENTS);
+
+        final DetailAST comment = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.SINGLE_LINE_COMMENT).orElseThrow();
+
+        assertWithMessage("Comment should be a child of the class body")
+            .that(comment.getParent().getType())
+            .isEqualTo(TokenTypes.OBJBLOCK);
+        assertWithMessage("Comment should follow the preceding method")
+            .that(comment.getPreviousSibling().getType())
+            .isEqualTo(TokenTypes.METHOD_DEF);
+        assertWithMessage("Comment should precede the next method")
+            .that(comment.getNextSibling().getType())
+            .isEqualTo(TokenTypes.METHOD_DEF);
+    }
+
+    @Test
+    public void testNoFreezeOnDeeplyNestedLambdas()throws Exception {
         final File file =
                 new File(getNonCompilablePath("InputJavaParserNoFreezeOnDeeplyNestedLambdas.java"));
         assertWithMessage("File parsing should complete successfully.")
