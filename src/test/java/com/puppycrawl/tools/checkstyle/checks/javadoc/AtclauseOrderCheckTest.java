@@ -346,4 +346,34 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
+                + " @since, @serial, @serialField, @serialData, @deprecated]";
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_KEY, tagOrder),
+            "28: " + getCheckMessage(MSG_KEY, tagOrder),
+            "43: " + getCheckMessage(MSG_KEY, tagOrder),
+            "64: " + getCheckMessage(MSG_KEY, tagOrder),
+            "73: " + getCheckMessage(MSG_KEY, tagOrder),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputAtclauseOrderCompactDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCustom() throws Exception {
+        final String tagOrder = "[@since, @version, @param, @return, @throws, @exception,"
+                + " @deprecated, @see, @serial, @serialField, @serialData, @author]";
+        final String[] expected = {
+            "26: " + getCheckMessage(MSG_KEY, tagOrder),
+            "59: " + getCheckMessage(MSG_KEY, tagOrder),
+            "78: " + getCheckMessage(MSG_KEY, tagOrder),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputAtclauseOrderCompactCustom.java"),
+                expected);
+    }
+
 }
