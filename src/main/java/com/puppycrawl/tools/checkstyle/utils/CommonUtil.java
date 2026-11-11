@@ -196,7 +196,7 @@ public final class CommonUtil {
      * @param inputString
      *            the input String
      * @param toIdx
-     *            index in string (exclusive) where the calculation stops
+     *            code point index in string (exclusive) where the calculation stops
      * @param tabWidth
      *            the distance between tab stop position.
      * @return the length of string.substring(0, toIdx) with tabs expanded.
@@ -205,13 +205,16 @@ public final class CommonUtil {
             int toIdx,
             int tabWidth) {
         int len = 0;
-        for (int idx = 0; idx < toIdx; idx++) {
-            if (inputString.codePointAt(idx) == '\t') {
+        int idx = 0;
+        for (int codePointIdx = 0; codePointIdx < toIdx; codePointIdx++) {
+            final int codePoint = inputString.codePointAt(idx);
+            if (codePoint == '\t') {
                 len = (len / tabWidth + 1) * tabWidth;
             }
             else {
                 len++;
             }
+            idx += Character.charCount(codePoint);
         }
         return len;
     }
