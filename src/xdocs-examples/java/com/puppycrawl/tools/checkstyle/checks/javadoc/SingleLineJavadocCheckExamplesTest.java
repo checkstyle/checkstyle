@@ -65,7 +65,7 @@ public class SingleLineJavadocCheckExamplesTest extends AbstractExamplesModuleTe
     public void testExample4() throws Exception {
         final String[] expected = {
             "14: " + getCheckMessage(MSG_KEY),
-            "32: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "32:7: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
