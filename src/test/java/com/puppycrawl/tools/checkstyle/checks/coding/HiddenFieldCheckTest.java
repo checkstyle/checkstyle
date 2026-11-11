@@ -698,6 +698,20 @@ public class HiddenFieldCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testHiddenFieldLocalClassInStaticContext() throws Exception {
+
+        final String[] expected = {
+            "38:28: " + getCheckMessage(MSG_KEY, "counter"),
+            "41:33: " + getCheckMessage(MSG_KEY, "size"),
+            "58:26: " + getCheckMessage(MSG_KEY, "value"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputHiddenFieldLocalClassInStaticContext.java"),
+                expected);
+    }
+
+    @Test
     public void testHiddenFieldCompactSourceFile() throws Exception {
         final String[] expected = {
             "18:21: " + getCheckMessage(MSG_KEY, "name"),
