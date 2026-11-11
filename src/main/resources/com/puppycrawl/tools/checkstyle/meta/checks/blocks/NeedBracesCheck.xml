@@ -16,6 +16,11 @@
                <description>Allow loops with empty bodies.</description>
             </property>
             <property default-value="false"
+                      name="allowSameLineTrailingSubstatement"
+                      type="boolean">
+               <description>Allow control statements whose trailing substatement is on the same line as the parent construct (e.g. &lt;code&gt;else if&lt;/code&gt; chains, or an &lt;code&gt;if&lt;/code&gt; nested inside a single-line &lt;code&gt;for&lt;/code&gt;). Enabling this property also permits simple single-line statements, so it acts as a superset of   allowSingleLineStatement.</description>
+            </property>
+            <property default-value="false"
                       name="allowSingleLineStatement"
                       type="boolean">
                <description>Allow single-line statements without braces.</description>
