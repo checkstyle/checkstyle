@@ -100,7 +100,6 @@ public class AllChecksCompactSourceCoverageTest {
         "MissingJavadocPackageCheck",
         "ModifiedControlVariableCheck",
         "NonEmptyAtclauseDescriptionCheck",
-        "PackageAnnotationCheck",
         "PackageNameCheck",
         "RegexpSinglelineJavaCheck",
         "RequireThisCheck",
