@@ -77,6 +77,8 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "14:28: " + getCheckMessage(MSG_KEY, "a"),
             "21:16: " + getCheckMessage(MSG_KEY, "result"),
+            "30:19: " + getCheckMessage(MSG_KEY, "x"),
+            "35:28: " + getCheckMessage(MSG_KEY, "x"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterAssignmentWithEnhancedSwitch.java"),
