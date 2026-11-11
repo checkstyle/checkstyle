@@ -272,7 +272,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNonTightHtml() throws Exception {
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
+            "14:5: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
         };
         verifyWithInlineConfigParserTwice(
             getPath("InputWriteTagNonTightHtml.java"), expected);
