@@ -81,6 +81,12 @@ public class ClassHeaderWrapOpenjdkCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnicode() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputClassHeaderWrapOpenjdkUnicode.java"), new String[0]);
+    }
+
+    @Test
     public void testCompact() throws Exception {
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY_UNNECESSARY_WRAP),
