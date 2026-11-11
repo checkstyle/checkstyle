@@ -102,7 +102,6 @@ public class AllChecksCompactSourceCoverageTest {
         "ModifiedControlVariableCheck",
         "NonEmptyAtclauseDescriptionCheck",
         "PackageAnnotationCheck",
-        "PackageNameCheck",
         "RedundantModifierCheck",
         "RegexpSinglelineJavaCheck",
         "RequireThisCheck",
