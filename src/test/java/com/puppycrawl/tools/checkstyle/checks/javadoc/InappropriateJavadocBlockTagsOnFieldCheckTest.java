@@ -147,7 +147,7 @@ public class InappropriateJavadocBlockTagsOnFieldCheckTest extends AbstractModul
     @Test
     public void testNonTightHtml() throws Exception {
         final String[] expected = {
-            "12: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
+            "12:9: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInappropriateJavadocBlockTagsOnFieldTightHtml.java"), expected);

@@ -61,8 +61,8 @@ public class InputAbstractJavadocNonTightHtmlTags2 {
     int getField2() {return field2;} //method with empty javadoc
 
     // 2 violations 6 lines below:
-    //                            'Unclosed HTML tag found: p'
     //                            'tag PARAM_BLOCK_TAG'
+    //                            'Unclosed HTML tag found: p'
     /**
      * <p>This is a setter method.
      * And paraTag shall be nested in parse tree </p>
