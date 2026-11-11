@@ -127,4 +127,26 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
                 getPath("InputLambdaParameterNameSwitchRule.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceDefault() throws Exception {
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_INVALID_PATTERN, "S", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputLambdaParameterNameCompactDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFormat() throws Exception {
+        final String pattern = "^[A-Z][a-zA-Z0-9]*$";
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_INVALID_PATTERN, "s", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputLambdaParameterNameCompactFormat.java"),
+                expected);
+    }
+
 }
