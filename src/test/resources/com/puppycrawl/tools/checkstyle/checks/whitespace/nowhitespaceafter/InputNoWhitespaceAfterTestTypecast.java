@@ -298,7 +298,7 @@ class SpecialCasesInForLoopTestTypecast
 
     Object foo() {
         return ( (Object
-                ) ""); // ^ ok
+                ) ""); // violation above '')' is followed by whitespace.'
     }
 
     public Object[]
