@@ -14,7 +14,7 @@ public class InputJavadocRegexpTextSplitAcrossLines {
 
     // violation below 'Javadoc content matches'
     /**first
-second*/
+    second*/
     void invalidTextSplitAcrossLines() {
     }
 }
