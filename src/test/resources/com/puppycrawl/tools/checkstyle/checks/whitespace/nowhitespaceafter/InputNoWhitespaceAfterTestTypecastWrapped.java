@@ -12,9 +12,11 @@ import java.io.Serializable;
 
 public class InputNoWhitespaceAfterTestTypecastWrapped {
     void method() {
-        Runnable a = (Runnable & Serializable) () -> { }; // violation '')' is followed by whitespace.'
+        // violation below '')' is followed by whitespace.'
+        Runnable a = (Runnable & Serializable) () -> { };
+        // violation below '')' is followed by whitespace.'
         Runnable b = (Runnable
-                & Serializable) () -> { }; // violation above '')' is followed by whitespace.'
+                & Serializable) () -> { };
         Runnable c = (Runnable & Serializable)() -> { };
         Runnable d = (Runnable
                 & Serializable)() -> { };

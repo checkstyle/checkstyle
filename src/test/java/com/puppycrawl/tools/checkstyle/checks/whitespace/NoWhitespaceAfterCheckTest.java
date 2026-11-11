@@ -96,8 +96,8 @@ public class NoWhitespaceAfterCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTypecastWrapped() throws Exception {
         final String[] expected = {
-            "15:22: " + getCheckMessage(MSG_KEY, ")"),
             "16:22: " + getCheckMessage(MSG_KEY, ")"),
+            "18:22: " + getCheckMessage(MSG_KEY, ")"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestTypecastWrapped.java"), expected);
