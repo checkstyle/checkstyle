@@ -105,46 +105,4 @@ class InputEmptyLineSeparator // violation ''CLASS_DEF' should be separated from
     }
     interface IntEnum { // violation ''INTERFACE_DEF' should be separated from previous line.'
     }
-
-    class InnerClass {
-
-        public static final double FOO_PI_INNER = 3.1415;
-
-        private boolean flagInner = true;
-
-        {
-            //empty instance initializer
-        }
-
-        private InnerClass()
-        {
-            //empty
-        }
-    }
-
-
-    class SecondInnerClass {
-
-        private int intVariable;
-    }
-}
-
-class Class2{
-    public int compareTo(InputEmptyLineSeparator aObject)
-    {
-        int number = 0;
-        return 0;
-    }
-
-    Class2 anon = new Class2(){
-        public int compareTo(InputEmptyLineSeparator aObject)
-        {
-            int number = 0;
-            return 0;
-        }
-    };
-}
-
-class Class3 {
-    int field;
 }
