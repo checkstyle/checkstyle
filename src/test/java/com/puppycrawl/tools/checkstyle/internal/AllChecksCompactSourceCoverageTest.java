@@ -99,7 +99,6 @@ public class AllChecksCompactSourceCoverageTest {
         "ModifiedControlVariableCheck",
         "PackageAnnotationCheck",
         "RedundantModifierCheck",
-        "RegexpSinglelineJavaCheck",
         "UnnecessarySemicolonInTryWithResourcesCheck"
     );
 
