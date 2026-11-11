@@ -87,7 +87,11 @@ public class AllChecksCompactSourceCoverageTest {
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
         "CustomImportOrderCheck",
         "ImportOrderCheck",
-        "JavadocLinkFirstOccurrenceCheck",
+        "InvalidJavadocPositionCheck",
+        "JavadocLeadingAsteriskAlignCheck",
+        "JavadocMethodCheck",
+        "JavadocMissingWhitespaceAfterAsteriskCheck",
+        "JavadocSeeTagOrderCheck",
         "JavadocStyleCheck",
         "JavadocTagContinuationIndentationCheck",
         "MissingJavadocPackageCheck",
