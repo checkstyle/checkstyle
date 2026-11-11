@@ -31,6 +31,16 @@
  &lt;code&gt;ignoreStaticFinal&lt;/code&gt; only, regardless of the values of &lt;code&gt;ignoreFinal&lt;/code&gt;
  and &lt;code&gt;ignoreStatic&lt;/code&gt;. So for example if &lt;code&gt;ignoreStatic&lt;/code&gt; is true but
  &lt;code&gt;ignoreStaticFinal&lt;/code&gt; is false, then static final variables will not be ignored.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ &lt;code&gt;allowedAbbreviations&lt;/code&gt; may contain digits, for abbreviations like
+ &lt;code&gt;SLF4J&lt;/code&gt; or &lt;code&gt;UTF8&lt;/code&gt;. Such an abbreviation is recognized as a whole word
+ inside an identifier, so &lt;code&gt;getSLF4JLogger&lt;/code&gt; is not a violation if &lt;code&gt;SLF4J&lt;/code&gt;
+ is specified in &lt;code&gt;allowedAbbreviations&lt;/code&gt;. If several specified abbreviations
+ with digits start at the same position in a name, the longest one is recognized.
+ Abbreviations that are not specified are still reported, even if they are located
+ right before or right after a specified one.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="3" name="allowedAbbreviationLength" type="int">

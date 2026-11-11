@@ -619,4 +619,58 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                 expected);
     }
 
+    @Test
+    public void testDigitsInAllowedAbbreviations() throws Exception {
+        final int expectedCapitalCount = 2;
+
+        final String[] expected = {
+            "27:12: " + getWarningMessage("myHTMLField", expectedCapitalCount),
+            "50:19: " + getWarningMessage("getABCDESLF4JLogger", expectedCapitalCount),
+            "55:19: " + getWarningMessage("getSLF4JDKLogger", expectedCapitalCount),
+            "60:19: " + getWarningMessage("getSLF4jLogger", expectedCapitalCount),
+            "65:19: " + getWarningMessage("getHTMLParser", expectedCapitalCount),
+            "73:18: " + getWarningMessage("UTF8Codec", expectedCapitalCount),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameDigits.java"), expected);
+    }
+
+    @Test
+    public void testDigitsInAllowedAbbreviationsClassNames() throws Exception {
+        final int expectedCapitalCount = 4;
+
+        final String[] expected = {
+            "34:7: " + getWarningMessage("ABCDX12Runner", expectedCapitalCount),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameDigitsClassNames.java"), expected);
+    }
+
+    @Test
+    public void testDigitsInAllowedAbbreviationsOverlapping() throws Exception {
+        final int expectedCapitalCount = 1;
+
+        final String[] expected = {
+            "33:19: " + getWarningMessage("getAB1CXValue", expectedCapitalCount),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameDigitsOverlapping.java"), expected);
+    }
+
+    @Test
+    public void testDigitsInAllowedAbbreviationsTerms() throws Exception {
+        final int expectedCapitalCount = 2;
+
+        final String[] expected = {
+            "29:19: " + getWarningMessage("getPIXEL3BPrice", expectedCapitalCount),
+            "34:19: " + getWarningMessage("getXMLValue", expectedCapitalCount),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameDigitsTerms.java"), expected);
+    }
+
 }
