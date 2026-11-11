@@ -577,7 +577,13 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
          */
         /* package */ void addField(DetailAST field) {
             if (field.findFirstToken(TokenTypes.IDENT) != null) {
-                fieldNameToAst.put(getFieldName(field), field);
+                final String name = getFieldName(field);
+                if (field.getType() == TokenTypes.PATTERN_VARIABLE_DEF) {
+                    fieldNameToAst.putIfAbsent(name, field);
+                }
+                else {
+                    fieldNameToAst.put(name, field);
+                }
             }
         }
 
