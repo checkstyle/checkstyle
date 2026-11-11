@@ -106,8 +106,7 @@ public class AllChecksCompactSourceCoverageTest {
         "RedundantModifierCheck",
         "RegexpSinglelineJavaCheck",
         "RequireThisCheck",
-        "TextBlockGoogleStyleFormattingCheck",
-        "UnnecessarySemicolonInTryWithResourcesCheck"
+        "TextBlockGoogleStyleFormattingCheck"
     );
 
     @Test
