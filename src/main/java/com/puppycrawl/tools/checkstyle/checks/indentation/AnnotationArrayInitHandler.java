@@ -129,15 +129,15 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
      */
     private int getNextFirstNonBlankOnLineAfter(int lineNo, int columnNo) {
         int realColumnNo = columnNo + 1;
-        final String line = getContext().getLine(lineNo - 1);
-        final int lineLength = line.length();
+        final int[] line = getContext().getLine(lineNo - 1).codePoints().toArray();
+        final int lineLength = line.length;
         while (realColumnNo < lineLength
-            && Character.isWhitespace(line.charAt(realColumnNo))) {
+            && Character.isWhitespace(line[realColumnNo])) {
             realColumnNo++;
         }
 
         if (realColumnNo == lineLength) {
-            realColumnNo = -1;
+            realColumnNo = NOT_EXIST;
         }
         return realColumnNo;
     }
