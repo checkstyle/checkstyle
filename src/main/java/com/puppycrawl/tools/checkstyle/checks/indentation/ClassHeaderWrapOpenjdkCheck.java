@@ -211,8 +211,8 @@ public class ClassHeaderWrapOpenjdkCheck extends AbstractCheck {
 
         for (int lineNo = headerStart.getLineNo(); lineNo <= lcurly.getLineNo(); lineNo++) {
             final String line = lines[lineNo - 1];
-            final int fromIndex = findFromIndex(headerStart, lineNo);
-            final int toIndex = findToIndex(lcurly, lineNo, line.length());
+            final int fromIndex = findFromIndex(headerStart, lineNo, line);
+            final int toIndex = findToIndex(lcurly, lineNo, line);
             final String segment = line.substring(fromIndex, toIndex).trim();
 
             if (!segment.isEmpty()) {
@@ -223,7 +223,9 @@ public class ClassHeaderWrapOpenjdkCheck extends AbstractCheck {
             }
         }
 
-        if (headerStart.getColumnNo() + unwrapped.length() <= MAX_COLUMN_LIMIT) {
+        final int headerLength = headerStart.getColumnNo()
+                + unwrapped.codePointCount(0, unwrapped.length());
+        if (headerLength <= MAX_COLUMN_LIMIT) {
             log(headerStart, MSG_KEY_UNNECESSARY_WRAP);
         }
     }
@@ -234,12 +236,13 @@ public class ClassHeaderWrapOpenjdkCheck extends AbstractCheck {
      *
      * @param headerStart the token that starts the header
      * @param lineNo the 1-indexed line number currently being processed
+     * @param line the line currently being processed
      * @return the index at which to start extracting content from this line
      */
-    private static int findFromIndex(DetailAST headerStart, int lineNo) {
+    private static int findFromIndex(DetailAST headerStart, int lineNo, String line) {
         int fromIndex = 0;
         if (lineNo == headerStart.getLineNo()) {
-            fromIndex = headerStart.getColumnNo();
+            fromIndex = line.offsetByCodePoints(0, headerStart.getColumnNo());
         }
         return fromIndex;
     }
@@ -250,13 +253,13 @@ public class ClassHeaderWrapOpenjdkCheck extends AbstractCheck {
      *
      * @param lcurly the opening brace of the type's body
      * @param lineNo the 1-indexed line number currently being processed
-     * @param lineLength the length of the line currently being processed
+     * @param line the line currently being processed
      * @return the index at which to stop extracting content from this line
      */
-    private static int findToIndex(DetailAST lcurly, int lineNo, int lineLength) {
-        int toIndex = lineLength;
+    private static int findToIndex(DetailAST lcurly, int lineNo, String line) {
+        int toIndex = line.length();
         if (lineNo == lcurly.getLineNo()) {
-            toIndex = lcurly.getColumnNo() + 1;
+            toIndex = line.offsetByCodePoints(0, lcurly.getColumnNo() + 1);
         }
         return toIndex;
     }
