@@ -27,7 +27,10 @@ public class InputJavadocTagContinuationIndentationPreTag3 {
     public Object testMethod() {
         return new Object();
     }
-
+    // violation 9 lines above 'Line continuation .* expected level should be 4'
+    // violation 9 lines above 'Line continuation .* expected level should be 4'
+    // violation 9 lines above 'Line continuation .* expected level should be 4'
+    // violation 9 lines above 'Line continuation .* expected level should be 4'
     /**
      * @return sub role of this role, which match `item`.
      *
@@ -40,8 +43,5 @@ public class InputJavadocTagContinuationIndentationPreTag3 {
     public Object testMethod2() {
         return new Object();
     }
-    // violation 9 lines above 'Line continuation .* expected level should be 4'
-    // violation 9 lines above 'Line continuation .* expected level should be 4'
-    // violation 9 lines above 'Line continuation .* expected level should be 4'
-    // violation 9 lines above 'Line continuation .* expected level should be 4'
+    
 }
