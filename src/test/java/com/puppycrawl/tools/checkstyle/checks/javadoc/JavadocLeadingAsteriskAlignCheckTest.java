@@ -42,6 +42,14 @@ public class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
+    public void testUnicode() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        final String filePath = getPath("InputJavadocLeadingAsteriskAlignUnicode.java");
+        verifyWithInlineConfigParser(filePath, expected);
+    }
+
+    @Test
     public void testIncorrectJavadoc() throws Exception {
         final String[] expected = {
             "13:1: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 0, 1),
