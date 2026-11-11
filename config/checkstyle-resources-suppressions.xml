@@ -494,8 +494,6 @@
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/xpath/xpathmapper/InputXpathMapperStringConcat\.java"/>
   <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/main/InputMainComplexityOverflow\.java"/>
-  <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/grammar/java14/InputJava14TextBlocks\.java"/>
   <suppress checks="FileLength"
     files="/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/grammar/java14/InputJava14SwitchExpression\.java"/>
