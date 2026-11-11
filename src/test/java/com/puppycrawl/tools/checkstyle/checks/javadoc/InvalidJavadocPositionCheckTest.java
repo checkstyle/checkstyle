@@ -144,7 +144,8 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-            getNonCompilablePath("InputInvalidJavadocPositionCompactSourceFile.java"), expected);
+            getNonCompilablePath(
+                "compact/InputInvalidJavadocPositionCompactDefault.java"), expected);
     }
 
     @Test

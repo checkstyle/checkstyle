@@ -88,7 +88,6 @@ public class AllChecksCompactSourceCoverageTest {
         "AtclauseOrderCheck",
         "CustomImportOrderCheck",
         "ImportOrderCheck",
-        "InvalidJavadocPositionCheck",
         "JavadocLeadingAsteriskAlignCheck",
         "JavadocLinkFirstOccurrenceCheck",
         "JavadocMethodCheck",
