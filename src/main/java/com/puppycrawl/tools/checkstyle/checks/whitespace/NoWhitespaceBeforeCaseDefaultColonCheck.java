@@ -171,7 +171,8 @@ public class NoWhitespaceBeforeCaseDefaultColonCheck extends AbstractCheck {
         while (lastChild.hasChildren()) {
             lastChild = lastChild.getLastChild();
         }
-        return lastChild.getColumnNo() + lastChild.getText().length();
+        final String text = lastChild.getText();
+        return lastChild.getColumnNo() + text.codePointCount(0, text.length());
     }
 
 }
