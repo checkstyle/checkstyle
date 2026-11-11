@@ -34,53 +34,71 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SuppressWarningsFilterTest extends AbstractModuleTestSupport {
 
-    private static final String[] ALL_MESSAGES = {
-        "50:5: "
+    private static final String[] DEFAULT_MESSAGES = {
+        "46:5: "
             + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING, "I"),
-        "51:5: "
+        "47:5: "
             + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING, "E"),
-        "53:5: "
+        "49:5: "
             + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING, "A"),
-        "56:37: "
+        "52:37: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "I", "^[a-z][a-zA-Z0-9]*$"),
-        "58:17: "
+        "54:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "J", "^[a-z][a-zA-Z0-9]*$"),
-        "59:17: "
+        "55:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "K", "^[a-z][a-zA-Z0-9]*$"),
-        "63:17: "
+        "59:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "L", "^[a-z][a-zA-Z0-9]*$"),
-        "63:32: "
+        "59:32: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "X", "^[a-z][a-zA-Z0-9]*$"),
-        "68:30: "
+        "64:30: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "m", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-        "69:30: "
+        "65:30: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "n", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-        "74:10: "
+        "70:10: "
             + getCheckMessage(ParameterNumberCheck.class, ParameterNumberCheck.MSG_KEY, 7, 8),
-        "78:9: "
+        "74:9: "
             + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
-        "87:9: "
+        "83:9: "
             + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
-        "92:5: "
+        "88:5: "
             + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING, "AnEnum"),
-        "102:5: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
-        "105:5: "
+    };
+
+    private static final String[] UNCOMMENTED_MAIN_MESSAGES = {
+        "29:5: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
+        "32:5: "
             + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING, "TestClass1"),
-        "107:9: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
-        "111:5: "
+        "34:9: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
+        "38:5: "
             + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING, "TestClass2"),
-        "113:9: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
-        "117:5: "
+        "40:9: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
+        "44:5: "
             + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING, "TestClass3"),
-        "119:9: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
-        "124:5: "
+        "46:9: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
+        "51:5: "
+            + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING, "Task"),
+    };
+
+    private static final String[] UNCOMMENTED_MAIN_MESSAGES_WITHOUT_FILTER = {
+        "24:5: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
+        "27:5: "
+            + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING, "TestClass1"),
+        "29:9: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
+        "33:5: "
+            + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING, "TestClass2"),
+        "35:9: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
+        "39:5: "
+            + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING, "TestClass3"),
+        "41:9: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
+        "46:5: "
             + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING, "Task"),
     };
 
@@ -90,34 +108,52 @@ public class SuppressWarningsFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNone() throws Exception {
+    public void testNoneDefault() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressedWithParser(
-            getPath("InputSuppressWarningsFilterWithoutFilter.java"), suppressed);
+            getPath("InputSuppressWarningsFilterWithoutFilterDefault.java"),
+            DEFAULT_MESSAGES, suppressed);
+    }
+
+    @Test
+    public void testNoneUncommentedMain() throws Exception {
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifySuppressedWithParser(
+            getPath("InputSuppressWarningsFilterWithoutFilterUncommentedMain.java"),
+            UNCOMMENTED_MAIN_MESSAGES_WITHOUT_FILTER, suppressed);
     }
 
     @Test
     public void testDefault() throws Exception {
         final String[] suppressed = {
-            "58:17: "
+            "54:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "J", "^[a-z][a-zA-Z0-9]*$"),
-            "63:17: "
+            "59:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "L", "^[a-z][a-zA-Z0-9]*$"),
-            "68:30: "
+            "64:30: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "m", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-            "74:10: "
+            "70:10: "
                 + getCheckMessage(ParameterNumberCheck.class, ParameterNumberCheck.MSG_KEY, 7, 8),
-            "87:9: "
+            "83:9: "
                 + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
-            "102:5: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
-            "107:9: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
-            "113:9: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
-            "119:9: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
         };
-        verifySuppressedWithParser(getPath("InputSuppressWarningsFilter.java"), suppressed);
+        verifySuppressedWithParser(getPath("InputSuppressWarningsFilterDefault.java"),
+            DEFAULT_MESSAGES, suppressed);
+    }
+
+    @Test
+    public void testUncommentedMain() throws Exception {
+        final String[] suppressed = {
+            "29:5: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
+            "34:9: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
+            "40:9: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
+            "46:9: " + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
+        };
+        verifySuppressedWithParser(getPath("InputSuppressWarningsFilterUncommentedMain.java"),
+            UNCOMMENTED_MAIN_MESSAGES, suppressed);
     }
 
     @Test
@@ -142,12 +178,6 @@ public class SuppressWarningsFilterTest extends AbstractModuleTestSupport {
 
         verifySuppressedWithParser(getPath("InputSuppressWarningsFilterById.java"),
                 expectedViolationMessages, suppressedViolationMessages);
-    }
-
-    private void verifySuppressedWithParser(String fileName, String... suppressed)
-            throws Exception {
-        verifyFilterWithInlineConfigParser(fileName, ALL_MESSAGES,
-                                           removeSuppressed(ALL_MESSAGES, suppressed));
     }
 
     private void verifySuppressedWithParser(String fileName, String[] messages,
