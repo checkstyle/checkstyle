@@ -28,6 +28,7 @@ import java.util.Map;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.SetSystemProperty;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
@@ -42,6 +43,28 @@ public class XmlLoaderTest {
         assertWithMessage("Invalid entity resolver")
             .that(parser.getEntityResolver())
             .isEqualTo(dummyLoader);
+    }
+
+    @Test
+    public void testAccessExternalDtdRestrictedToFileByDefault() throws Exception {
+        final DummyLoader dummyLoader = new DummyLoader(new HashMap<>(1));
+        final XMLReader parser = TestUtil.getInternalState(dummyLoader, "parser", XMLReader.class);
+        assertWithMessage("External DTD access must be restricted to local files by default")
+            .that(parser.getProperty(
+                XmlLoader.LoadExternalDtdFeatureProvider.ACCESS_EXTERNAL_DTD))
+            .isEqualTo("file");
+    }
+
+    @Test
+    @SetSystemProperty(key = XmlLoader.LoadExternalDtdFeatureProvider.ENABLE_EXTERNAL_DTD_LOAD,
+        value = "true")
+    public void testAccessExternalDtdUnrestrictedWhenExternalDtdLoadEnabled() throws Exception {
+        final DummyLoader dummyLoader = new DummyLoader(new HashMap<>(1));
+        final XMLReader parser = TestUtil.getInternalState(dummyLoader, "parser", XMLReader.class);
+        assertWithMessage("External DTD access must be unrestricted when enabled")
+            .that(parser.getProperty(
+                XmlLoader.LoadExternalDtdFeatureProvider.ACCESS_EXTERNAL_DTD))
+            .isEqualTo("all");
     }
 
     @Test
