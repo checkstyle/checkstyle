@@ -2,7 +2,7 @@
 JavadocTagContinuationIndentation
 violateExecutionOnNonTightHtml = true
 offset = (default)4
-
+forceStrictCondition = (default)false
 
 */
 
