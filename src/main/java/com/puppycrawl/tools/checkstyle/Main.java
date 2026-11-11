@@ -429,9 +429,20 @@ public final class Main {
                 }
                 else {
                     for (int i = 0; i < count; i++) {
-                        final OutputFormat format =
-                                i < formats.size() ? formats.get(i) : OutputFormat.PLAIN;
-                        final Path outputPath = i < outputs.size() ? outputs.get(i) : null;
+                        final OutputFormat format;
+                        final Path outputPath;
+                        if (i < formats.size()) {
+                            format = formats.get(i);
+                        }
+                        else {
+                            format = OutputFormat.PLAIN;
+                        }
+                        if (i < outputs.size()) {
+                            outputPath = outputs.get(i);
+                        }
+                        else {
+                            outputPath = null;
+                        }
                         listeners.add(createListener(format, outputPath));
                     }
                 }
@@ -710,7 +721,8 @@ public final class Main {
         @Option(names = "-o", paramLabel = "<file>",
                 description = "Sets the output file. Defaults to stdout. "
                 + "Can be given multiple times, each paired with the -f option at the same "
-                + "position to write that format to that file.")
+                + "position to write that format to that file. The number of -f and -o "
+                + "options must be equal when both are given.")
         private List<Path> outputPaths = new ArrayList<>();
 
         /** Properties file location. */
@@ -773,7 +785,8 @@ public final class Main {
                 + "${COMPLETION-CANDIDATES} for XMLLogger, SarifLogger, "
                 + "and DefaultLogger respectively. Defaults to plain. "
                 + "Can be given multiple times, each paired with the -o option at the same "
-                + "position to write that format to that file.")
+                + "position to write that format to that file. The number of -f and -o "
+                + "options must be equal when both are given.")
         private List<OutputFormat> formats = new ArrayList<>();
 
         /** Option that controls whether to print the AST of the file. */
@@ -949,7 +962,14 @@ public final class Main {
          * @return the first output path or {@code null}
          */
         /* package */ Path firstOutputPath() {
-            return outputPaths.isEmpty() ? null : outputPaths.get(0);
+            final Path result;
+            if (outputPaths.isEmpty()) {
+                result = null;
+            }
+            else {
+                result = outputPaths.getFirst();
+            }
+            return result;
         }
 
     }
