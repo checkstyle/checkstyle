@@ -275,6 +275,17 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIgnoreCommentsSupplementaryCharacters() throws Exception {
+        final String[] expected = {
+            "16: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "FIXME"),
+            "17: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "FIXME"),
+            "18: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "FIXME"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpIgnoreCommentsSupplementaryCharacters.java"), expected);
+    }
+
+    @Test
     public void testOnFileStartingWithEmptyLine() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputRegexpStartingWithEmptyLine.java"), expected);
