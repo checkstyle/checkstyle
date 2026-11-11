@@ -80,19 +80,28 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             "29:5: " + getCheckMessage(MSG_KEY, 10, 0),
             "42:5: " + getCheckMessage(MSG_KEY, 3, 0),
             "52:5: " + getCheckMessage(MSG_KEY, 7, 0),
-            "70:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "83:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "95:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "111:13: " + getCheckMessage(MSG_KEY, 2, 0),
-            "121:5: " + getCheckMessage(MSG_KEY, 48, 0),
-            "132:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "134:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "140:17: " + getCheckMessage(MSG_KEY, 3, 0),
-            "156:21: " + getCheckMessage(MSG_KEY, 3, 0),
         };
 
         verifyWithInlineConfigParser(
                 getPath("InputNPathComplexityDefault.java"), expected);
+    }
+
+    @Test
+    public void testCalculationConstructors() throws Exception {
+        final String[] expected = {
+            "13:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "26:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "38:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "54:13: " + getCheckMessage(MSG_KEY, 2, 0),
+            "64:5: " + getCheckMessage(MSG_KEY, 48, 0),
+            "75:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "77:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "83:17: " + getCheckMessage(MSG_KEY, 3, 0),
+            "99:21: " + getCheckMessage(MSG_KEY, 3, 0),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNPathComplexityDefaultConstructors.java"), expected);
     }
 
     @Test
@@ -104,18 +113,27 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             "40:5: " + getCheckMessage(MSG_KEY, 4, 0),
             "56:5: " + getCheckMessage(MSG_KEY, 6, 0),
             "72:5: " + getCheckMessage(MSG_KEY, 15, 0),
-            "97:5: " + getCheckMessage(MSG_KEY, 11, 0),
-            "107:5: " + getCheckMessage(MSG_KEY, 8, 0),
-            "121:5: " + getCheckMessage(MSG_KEY, 120, 0),
-            "134:5: " + getCheckMessage(MSG_KEY, 6, 0),
-            "145:5: " + getCheckMessage(MSG_KEY, 21, 0),
-            "159:5: " + getCheckMessage(MSG_KEY, 35, 0),
-            "168:5: " + getCheckMessage(MSG_KEY, 25, 0),
-            "184:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
         verifyWithInlineConfigParser(
                 getPath("InputNPathComplexity.java"), expected);
+    }
+
+    @Test
+    public void testCalculationConditionsAndLoops() throws Exception {
+        final String[] expected = {
+            "13:5: " + getCheckMessage(MSG_KEY, 11, 0),
+            "23:5: " + getCheckMessage(MSG_KEY, 8, 0),
+            "37:5: " + getCheckMessage(MSG_KEY, 120, 0),
+            "50:5: " + getCheckMessage(MSG_KEY, 6, 0),
+            "61:5: " + getCheckMessage(MSG_KEY, 21, 0),
+            "75:5: " + getCheckMessage(MSG_KEY, 35, 0),
+            "84:5: " + getCheckMessage(MSG_KEY, 25, 0),
+            "100:5: " + getCheckMessage(MSG_KEY, 2, 0),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNPathComplexityConditionsAndLoops.java"), expected);
     }
 
     @Test
@@ -212,6 +230,13 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputNPathComplexityDefault2.java"), expected);
+    }
+
+    @Test
+    public void testDefaultConfigurationConstructors() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNPathComplexityDefault2Constructors.java"), expected);
     }
 
     @Test
