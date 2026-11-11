@@ -481,37 +481,49 @@ java -jar checkstyle-${projectVersion}-all.jar -D&lt;property&gt;=&lt;value&gt; 
     <section name="Download and Run">
       <p>
         It is possible to run Checkstyle directly from the JAR file using
-        the <code>-jar</code> option. Download latest
+        the <code>-jar</code> option. Download the latest
         <a href="https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${projectVersion}/checkstyle-${projectVersion}-all.jar">
-        checkstyle-${projectVersion}-all.jar</a>.
-        An example of run would be:
+        checkstyle-${projectVersion}-all.jar</a>
+        and run, for example:
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-          java -jar checkstyle-${projectVersion}-all.jar -c /sun_checks.xml MyClass.java
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+java -jar checkstyle-${projectVersion}-all.jar -c /sun_checks.xml MyClass.java
 java -jar checkstyle-${projectVersion}-all.jar -c /google_checks.xml MyClass.java
         </code></pre></div>
       </div>
       <p>
-        It is recommended to use configuration files that are embedded in jar files, but latest
-        configuration files are there:
-        <a href=
-          "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/sun_checks.xml">
-            sun_checks.xml</a>
-        <a href=
-          "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml">
-            google_checks.xml</a>
+        These commands do not need a separate configuration file. Checkstyle first looks for
+        the configuration file on disk, and if there is none, it loads the file with that name
+        from inside the JAR. The JAR contains <code>sun_checks.xml</code>,
+        <code>google_checks.xml</code> and <code>openjdk_checks.xml</code>.
       </p>
       <p>
-        To run <a href="writing-checks.html#The_Checkstyle_SDK_Gui">Checkstyle UI viewer</a>
-        for AST tree directly from the JAR file using
-        the <code>-jar</code> option. Download latest
-        <a href="https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${projectVersion}/checkstyle-${projectVersion}-all.jar">
-        checkstyle-${projectVersion}-all.jar</a>.
-        An example of run would be (path to java file is optional):
+        It is recommended to use the configuration files embedded in the JAR. To customize one,
+        extract it from the JAR, edit it, and pass the path of your copy to <code>-c</code>:
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+jar xf checkstyle-${projectVersion}-all.jar google_checks.xml
+java -jar checkstyle-${projectVersion}-all.jar -c ./google_checks.xml MyClass.java
+        </code></pre></div>
+      </div>
+      <p>
+        The latest versions of these configuration files are also available on GitHub:
+        <a href=
+          "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/sun_checks.xml">
+            sun_checks.xml</a> and
+        <a href=
+          "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml">
+            google_checks.xml</a>.
+      </p>
+      <p>
+        To run the <a href="writing-checks.html#The_Checkstyle_SDK_Gui">Checkstyle UI viewer</a>
+        for the AST tree from the same JAR file, use the <code>-cp</code> option.
+        The path to the Java file is optional:
+      </p>
+      <div class="wrap-content">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main MyClass.java
         </code></pre></div>
       </div>
