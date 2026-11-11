@@ -1,9 +1,4 @@
 /*
-SuppressWarningsFilter
-
-com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder
-aliasList = com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum
-
 com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck
 id = ignore
 format = (default)^[a-z][a-zA-Z0-9]*$
@@ -19,10 +14,6 @@ applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true
 applyToPrivate = (default)true
-
-com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck
-id = ignore
-excludedClasses = (default)^$
 
 com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck
 max = (default)7
@@ -43,35 +34,40 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 */
 package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
-/** @author Trevor Robinson */
+
+/**
+ * Test input for using comments to suppress violations.
+ *
+ * @author Trevor Robinson
+ */
 @SuppressWarnings("foo") // coverage: no following AST
-class InputSuppressWarningsFilter {
+class InputSuppressWarningsFilterWithoutFilterDefault {
     // AST coverage
     @SuppressWarnings("foo") interface I { } // violation 'Missing a Javadoc comment'
     @SuppressWarnings("foo") enum E { } // violation 'Missing a Javadoc comment'
-    @SuppressWarnings("foo") InputSuppressWarningsFilter() { }
+    @SuppressWarnings("foo") InputSuppressWarningsFilterWithoutFilterDefault() { }
     @SuppressWarnings("foo") @interface A { } // violation 'Missing a Javadoc comment'
 
     // include a non-checkstyle suppression; suppression on same line
     @SuppressWarnings("unused") int I; // violation ''I' must match .* \Q'^[a-z][a-zA-Z0-9]*$'\E'
     @SuppressWarnings({"membername"})
-    private int J; // filtered violation 'Name 'J' must match pattern \Q'^[a-z][a-zA-Z0-9]*$'\E'
+    private int J; // violation 'Name 'J' must match pattern \Q'^[a-z][a-zA-Z0-9]*$'\E'
     private int K; // violation 'Name 'K' must match pattern \Q'^[a-z][a-zA-Z0-9]*$'\E'
 
     // DO NOT REFORMAT: L and X should be on the same line
     @SuppressWarnings(value="membername")
     private int L; private int X; // violation
-    // filtered violation above
+    // violation above
 
     // test "checkstyle:" prefix
     @SuppressWarnings("checkstyle:ConstantName")
-    private static final int m = 0; // filtered violation
+    private static final int m = 0; // violation
     private static final int n = 0; // violation
 
     // test explicit warning alias
     @SuppressWarnings("paramnum")
     // should NOT fail ParameterNumberCheck
-    void foo(@SuppressWarnings("unused") int a, // filtered violation 'More than 7 param.* (.* 8)'
+    void foo(@SuppressWarnings("unused") int a, // violation 'More than 7 param.* (.* 8)'
         int b, int c, int d, int e, int f, int g, int h) {
         @SuppressWarnings("unused") int z;
         try { }
@@ -84,7 +80,7 @@ class InputSuppressWarningsFilter {
     @java.lang.SuppressWarnings("illegalCatch")
     public void needsToCatchException() {
         try { }
-        catch (Exception ex) { // filtered violation 'Catching 'Exception' is not allowed'
+        catch (Exception ex) { // violation 'Catching 'Exception' is not allowed'
             // should NOT fail IllegalCatchCheck
         }
     }
@@ -97,30 +93,4 @@ class InputSuppressWarningsFilter {
 
     @SuppressWarnings(UNUSED)
     public void annotationUsingStringConstantValue(){ }
-
-    // filtered violation below 'Uncommented main method'
-    @SuppressWarnings("checkstyle:uncommentedmain")
-    public static void main(String[] args) { }
-
-    static class TestClass1 { // violation 'Missing a Javadoc comment'
-        // filtered violation below 'Uncommented main method found'
-        @SuppressWarnings("uncommentedmain")
-        public static void main(String[] args) { }
-    }
-
-    static class TestClass2 { // violation 'Missing a Javadoc comment'
-        // filtered violation below 'Uncommented main method found'
-        @SuppressWarnings("UncommentedMain")
-        public static void main(String[] args) { }
-    }
-
-    static class TestClass3 { // violation 'Missing a Javadoc comment'
-        // filtered violation below 'Uncomm.* main method'
-        @SuppressWarnings("checkstyle:UncommentedMain")
-        public static void main(String[] args) { }
-    }
-
-    // violation below 'Missing a Javadoc comment'
-    @SuppressWarnings("checkstyle:javadoctype")
-    public static abstract class Task { }
 }
