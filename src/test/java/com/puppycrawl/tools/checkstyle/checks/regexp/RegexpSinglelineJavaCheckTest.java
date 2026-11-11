@@ -233,4 +233,24 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
                 getPath("InputRegexpSinglelineJavaZeroWidthMixedCodeMatch.java"), expected);
     }
 
+    @Test
+    public void testRegexpSinglelineJavaCompactSourceFileDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputRegexpSinglelineJavaCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testRegexpSinglelineJavaCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "18: " + "Found a System.out call.",
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputRegexpSinglelineJavaCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
