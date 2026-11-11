@@ -79,13 +79,22 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     public void testMethodsOnly() throws Exception {
         final String[] expected = {
             "25:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
-            "124:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", ""),
-            "130:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "Issue22402."),
-            "143:9: " + getCheckMessage(MSG_METHOD, "foo", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisEnumInnerClassesAndBugs2.java"),
                expected);
+    }
+
+    @Test
+    public void testShadowedNestedFrames() throws Exception {
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", ""),
+            "26:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "Issue22402."),
+            "39:9: " + getCheckMessage(MSG_METHOD, "foo", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisShadowedNestedFrames.java"),
+                expected);
     }
 
     @Test
@@ -95,20 +104,29 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "39:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
             "58:13: " + getCheckMessage(MSG_VARIABLE, "z", ""),
             "65:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
-            "122:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
-            "123:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
-            "131:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue22403."),
-            "152:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
-            "179:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "179:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "179:24: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "189:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "189:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "189:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisEnumInnerClassesAndBugs3.java"),
                expected);
+    }
+
+    @Test
+    public void testShadowedNestedFramesCheckMethodsFalse() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "19:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "27:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue22403."),
+            "48:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
+            "75:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "75:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "75:24: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "85:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "85:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "85:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisShadowedNestedFramesCheckMethodsFalse.java"),
+                expected);
     }
 
     @Test
@@ -493,12 +511,12 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "57:13: " + getCheckMessage(MSG_VARIABLE, "fldCharset", ""),
             "69:45: " + getCheckMessage(MSG_METHOD, "methodToInvoke", ""),
             "77:24: " + getCheckMessage(MSG_METHOD, "methodToInvoke", ""),
-            "103:51: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
-            "107:23: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
-            "107:54: " + getCheckMessage(MSG_VARIABLE, "fldScanner", ""),
-            "113:24: " + getCheckMessage(MSG_VARIABLE, "fldStreamReader", ""),
-            "114:23: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
-            "114:54: " + getCheckMessage(MSG_VARIABLE, "fldScanner", ""),
+            "100:51: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
+            "104:23: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
+            "104:54: " + getCheckMessage(MSG_VARIABLE, "fldScanner", ""),
+            "110:24: " + getCheckMessage(MSG_VARIABLE, "fldStreamReader", ""),
+            "111:23: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
+            "111:54: " + getCheckMessage(MSG_VARIABLE, "fldScanner", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisTryWithResourcesOnlyOverlappingFalse.java"), expected);
