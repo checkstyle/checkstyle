@@ -274,4 +274,30 @@ public class JavadocTagContinuationIndentationCheckTest
             getPath("InputJavadocTagContinuationIndentationPreTag3.java"), expected);
     }
 
+    @Test
+    public void testJavadocTagContinuationIndentationCompactSourceFileDefault()
+            throws Exception {
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_KEY, 4),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavadocTagContinuationIndentationCompactSourceFile"
+                                + "Default.java"),
+                expected);
+    }
+
+    @Test
+    public void testJavadocTagContinuationIndentationCompactSourceFileProperties()
+            throws Exception {
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_KEY, 6),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavadocTagContinuationIndentationCompactSourceFile"
+                                + "Properties.java"),
+                expected);
+    }
+
 }
