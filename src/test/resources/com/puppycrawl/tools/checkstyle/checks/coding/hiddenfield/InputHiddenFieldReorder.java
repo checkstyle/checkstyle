@@ -24,7 +24,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 class InputHiddenFieldReorder
 {
 
-
     public InputHiddenFieldReorder()
     {
         int hidden = 0; // violation ''hidden' hides a field'
@@ -100,54 +99,4 @@ class InputHiddenFieldReorder
         int hidden = 0;//shadows field // violation ''hidden' hides a field'
     }
     private int hidden = 0;
-}
-
-interface NothingHiddenReorder
-{
-    public static int notHidden = 0;
-
-
-    public void noShadow(int notHidden);
-}
-
-enum HiddenEnum1
-{
-    A(129),
-    B(283),
-    C(1212)
-    {
-        public void doSomething()
-        {
-            //Should be flagged as hiding enum constant member
-            int hidden = 0; // violation ''hidden' hides a field'
-        }
-
-        /**
-         * Should not be flagged as violation as we don't check
-         * hidden class level fields
-         */
-        int hidden;
-    };
-
-    /**
-     * ctor parameter hides member
-     */
-    HiddenEnum1(int hidden) // violation ''hidden' hides a field'
-    {
-    }
-
-    public void doSomething()
-    {
-        //Should be flagged as hiding static member
-        int hidden = 0; // violation ''hidden' hides a field'
-    }
-
-    public static void doSomethingStatic()
-    {
-        //Should be flagged as hiding static member
-        int hiddenStatic = 0; // violation ''hiddenStatic' hides a field'
-    }
-
-    int hidden;
-    static int hiddenStatic;
 }
