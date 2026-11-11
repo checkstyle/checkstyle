@@ -501,4 +501,26 @@ public class RedundantModifierCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testRedundantModifierCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputRedundantModifierCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testRedundantModifierCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputRedundantModifierCompactSourceFileProperties.java"),
+                expected);
+    }
+
 }
