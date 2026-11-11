@@ -111,4 +111,14 @@ public class JavadocSeeTagOrderCheckTest extends AbstractModuleTestSupport {
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
+    @Test
+    public void testCompactSourceDefault() throws Exception {
+        final String[] expected = {
+            "24:4: " + getCheckMessage(MSG_KEY, "#field", "String"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputJavadocSeeTagOrderCompactDefault.java"),
+                expected);
+    }
+
 }
