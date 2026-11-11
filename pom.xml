@@ -2090,6 +2090,27 @@
             </validationSet>
             <validationSet>
               <validating>true</validating>
+              <dir>config</dir>
+              <includes>
+                <include>checkstyle-checks.xml</include>
+                <include>checkstyle-examples-checks.xml</include>
+                <include>checkstyle-examples-suppressions.xml</include>
+                <include>checkstyle-input-checks.xml</include>
+                <include>checkstyle-input-suppressions.xml</include>
+                <include>checkstyle-non-main-files-checks.xml</include>
+                <include>checkstyle-non-main-files-suppressions.xml</include>
+                <include>checkstyle-resources-checks.xml</include>
+                <include>checkstyle-resources-suppressions.xml</include>
+                <include>checkstyle-sevntu-checks.xml</include>
+                <include>import-control-test.xml</include>
+                <include>import-control.xml</include>
+                <include>sevntu-suppressions.xml</include>
+                <include>suppressions-xpath.xml</include>
+                <include>suppressions.xml</include>
+              </includes>
+            </validationSet>
+            <validationSet>
+              <validating>true</validating>
               <dir>src/site/resources/files</dir>
             </validationSet>
             <validationSet>
