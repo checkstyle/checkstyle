@@ -469,7 +469,7 @@ public class RedundantModifierCheckTest extends AbstractModuleTestSupport {
             "13:5: " + getCheckMessage(MSG_KEY, "public"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRedundantModifierCompactSourceFile.java"),
+                getNonCompilablePath("compact/InputRedundantModifierCompactSourceFile.java"),
                 expected);
     }
 
@@ -486,7 +486,7 @@ public class RedundantModifierCheckTest extends AbstractModuleTestSupport {
             "47:1: " + getCheckMessage(MSG_KEY, "public"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRedundantModifierPublicCompactSourceFile.java"),
+                getNonCompilablePath("compact/InputRedundantModifierPublicCompactSourceFile.java"),
                 expected);
     }
 
@@ -496,8 +496,19 @@ public class RedundantModifierCheckTest extends AbstractModuleTestSupport {
             "15:1: " + getCheckMessage(MSG_KEY, "public"),
         };
         verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/"
+                        + "InputRedundantModifierPublicCompactSourceFileQualifiedObject.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verifyWithInlineConfigParser(
                 getNonCompilablePath(
-                        "InputRedundantModifierPublicCompactSourceFileQualifiedObject.java"),
+                        "compact/InputRedundantModifierCompactSourceFileProperties.java"),
                 expected);
     }
 

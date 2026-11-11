@@ -103,7 +103,6 @@ public class AllChecksCompactSourceCoverageTest {
         "NonEmptyAtclauseDescriptionCheck",
         "PackageAnnotationCheck",
         "PackageNameCheck",
-        "RedundantModifierCheck",
         "RegexpSinglelineJavaCheck",
         "RequireThisCheck",
         "TextBlockGoogleStyleFormattingCheck",
