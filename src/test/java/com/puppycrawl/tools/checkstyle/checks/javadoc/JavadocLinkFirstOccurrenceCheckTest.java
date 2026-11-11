@@ -102,4 +102,15 @@ public class JavadocLinkFirstOccurrenceCheckTest extends AbstractModuleTestSuppo
         verifyWithInlineConfigParser(pathFile1, pathFile2, expectedFile1, expectedFile2);
     }
 
+    @Test
+    public void testJavadocLinkFirstOccurrenceCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "14:11: " + getCheckMessage(MSG_KEY, "java.util.List"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavadocLinkFirstOccurrenceCompactSourceFileDefault.java"),
+                expected);
+    }
+
 }
