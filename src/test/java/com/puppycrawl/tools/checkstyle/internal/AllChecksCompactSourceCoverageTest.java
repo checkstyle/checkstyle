@@ -92,7 +92,6 @@ public class AllChecksCompactSourceCoverageTest {
         "JavadocLinkFirstOccurrenceCheck",
         "JavadocMethodCheck",
         "JavadocMissingWhitespaceAfterAsteriskCheck",
-        "JavadocSeeTagOrderCheck",
         "JavadocStyleCheck",
         "JavadocTagContinuationIndentationCheck",
         "MissingDeprecatedCheck",
