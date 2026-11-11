@@ -63,6 +63,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * {@code ignoreStaticFinal} is false, then static final variables will not be ignored.
  * </p>
  *
+ * <p>
+ * {@code allowedAbbreviations} may contain digits, for abbreviations like
+ * {@code SLF4J} or {@code UTF8}. Such an abbreviation is recognized as a whole word
+ * inside an identifier, so {@code getSLF4JLogger} is not a violation if {@code SLF4J}
+ * is specified in {@code allowedAbbreviations}. If several specified abbreviations
+ * with digits start at the same position in a name, the longest one is recognized.
+ * Abbreviations that are not specified are still reported, even if they are located
+ * right before or right after a specified one.
+ * </p>
+ *
  * @since 5.8
  */
 @StatelessCheck
@@ -336,39 +346,95 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
         boolean abbrStarted = false;
         String result = null;
 
-        for (int index = 0; index < str.length(); index++) {
-            final char symbol = str.charAt(index);
-
-            if (Character.isUpperCase(symbol)) {
-                if (!abbrStarted) {
-                    abbrStarted = true;
-                    beginIndex = index;
+        int index = 0;
+        while (result == null && index < str.length()) {
+            final String allowedAbbreviation = getMatchedAllowedAbbreviation(str, index);
+            if (allowedAbbreviation != null) {
+                if (abbrStarted) {
+                    abbrStarted = false;
+                    // the matched abbreviation starts a new word, so the preceding
+                    // sequence of capital letters ends here as a whole, same as at '_'
+                    result = getAbbreviationIfIllegal(str, beginIndex, index,
+                            allowedAbbreviationLength + 1);
+                    beginIndex = -1;
                 }
+                index += allowedAbbreviation.length();
             }
-            else if (abbrStarted) {
-                abbrStarted = false;
+            else {
+                final char symbol = str.charAt(index);
 
-                final int endIndex;
-                final int allowedLength;
-                if (symbol == '_') {
-                    endIndex = index;
-                    allowedLength = allowedAbbreviationLength + 1;
+                if (Character.isUpperCase(symbol)) {
+                    if (!abbrStarted) {
+                        abbrStarted = true;
+                        beginIndex = index;
+                    }
                 }
-                else {
-                    endIndex = index - 1;
-                    allowedLength = allowedAbbreviationLength;
+                else if (abbrStarted) {
+                    abbrStarted = false;
+                    result = getAbbreviationAtRunEnd(str, beginIndex, index, symbol);
+                    beginIndex = -1;
                 }
-                result = getAbbreviationIfIllegal(str, beginIndex, endIndex, allowedLength);
-                if (result != null) {
-                    break;
-                }
-                beginIndex = -1;
+                index++;
             }
         }
         // if abbreviation at the end of name (example: scaleX)
         if (abbrStarted) {
             final int endIndex = str.length() - 1;
             result = getAbbreviationIfIllegal(str, beginIndex, endIndex, allowedAbbreviationLength);
+        }
+        return result;
+    }
+
+    /**
+     * Gets the abbreviation that ends before the given index in the name, if it is illegal.
+     * The abbreviation ends at the index itself if the symbol there is '_', because '_'
+     * separates words. Otherwise it ends right before the index, because the last capital
+     * letter starts the next word.
+     *
+     * @param str
+     *        the given String.
+     * @param beginIndex
+     *        the begin index of the sequence of capital letters.
+     * @param index
+     *        the index at which the sequence of capital letters ends.
+     * @param symbol
+     *        the symbol at the end index.
+     * @return the illegal abbreviation or {@code null} if there is none.
+     */
+    private String getAbbreviationAtRunEnd(String str, int beginIndex, int index, char symbol) {
+        final int endIndex;
+        final int allowedLength;
+        if (symbol == '_') {
+            endIndex = index;
+            allowedLength = allowedAbbreviationLength + 1;
+        }
+        else {
+            endIndex = index - 1;
+            allowedLength = allowedAbbreviationLength;
+        }
+        return getAbbreviationIfIllegal(str, beginIndex, endIndex, allowedLength);
+    }
+
+    /**
+     * Gets the longest allowed abbreviation that contains a digit and starts at the given
+     * index in the name. An abbreviation with a digit can never be detected by the scan
+     * for consecutive capital letters, because a digit ends such a sequence, so it is
+     * matched as a whole word instead, for example "SLF4J" in "getSLF4JLogger".
+     *
+     * @param str
+     *        the given String.
+     * @param index
+     *        the index to match the abbreviation at.
+     * @return the matched allowed abbreviation or {@code null} if there is none.
+     */
+    private String getMatchedAllowedAbbreviation(String str, int index) {
+        String result = null;
+        for (String abbreviation : allowedAbbreviations) {
+            if (abbreviation.chars().anyMatch(Character::isDigit)
+                    && str.startsWith(abbreviation, index)
+                    && (result == null || abbreviation.length() > result.length())) {
+                result = abbreviation;
+            }
         }
         return result;
     }
