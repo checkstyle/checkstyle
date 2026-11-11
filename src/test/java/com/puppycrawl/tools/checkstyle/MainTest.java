@@ -82,10 +82,10 @@ public class MainTest {
 
     private static final String USAGE = String.format(Locale.ROOT,
           "Usage: checkstyle [-dEgGhjJtTV] [-b=<xpath>] [-c=<configurationFile>] "
-                  + "[-f=<format>]%n"
-                  + "                  [-o=<outputPath>] [-p=<propertiesFile>] "
-                  + "[-s=<suppressionLineColumnNumber>]%n"
-                  + "                  [-w=<tabWidth>] [-e=<exclude>]... [-x=<excludeRegex>]... "
+                  + "[-p=<propertiesFile>]%n"
+                  + "                  [-s=<suppressionLineColumnNumber>] [-w=<tabWidth>] "
+                  + "[-e=<exclude>]...%n"
+                  + "                  [-f=<format>]... [-o=<file>]... [-x=<excludeRegex>]... "
                   + "<files or folders>...%n"
                   + "Checkstyle verifies that the specified source code files adhere to the"
                   + " specified rules. By default,%n"
@@ -114,7 +114,10 @@ public class MainTest {
                   + "xml, sarif, plain for%n"
                   + "                              XMLLogger, SarifLogger, and "
                   + "DefaultLogger respectively. Defaults to%n"
-                  + "                              plain.%n"
+                  + "                              plain. Can be given multiple times, each paired "
+                  + "with the -o option at%n"
+                  + "                              the same position to write that format to that "
+                  + "file.%n"
                   + "  -g, --generate-xpath-suppression%n"
                   + "                            Generates an output xpath suppression XML to use"
                   + " to suppress all%n"
@@ -152,7 +155,11 @@ public class MainTest {
                   + " only be used on a single%n"
                   + "                              file and cannot be combined"
                   + " with other options.%n"
-                  + "  -o=<outputPath>           Sets the output file. Defaults to stdout.%n"
+                  + "  -o=<file>                 Sets the output file. Defaults to stdout. Can be "
+                  + "given multiple times,%n"
+                  + "                              each paired with the -f option at the same "
+                  + "position to write that%n"
+                  + "                              format to that file.%n"
                   + "  -p=<propertiesFile>       Sets the property files to load.%n"
                   + "  -s=<suppressionLineColumnNumber>%n"
                   + "                            Prints xpath suppressions at the file's line and"
@@ -427,8 +434,8 @@ public class MainTest {
             .isEqualTo("");
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
-            .isEqualTo("Invalid value for option '-f': expected one of [XML, SARIF, PLAIN]"
-                    + " (case-insensitive) but was 'xmlp'" + EOL + SHORT_USAGE);
+            .isEqualTo("Invalid value for option '-f' (<format>): expected one of "
+                    + "[XML, SARIF, PLAIN] (case-insensitive) but was 'xmlp'" + EOL + SHORT_USAGE);
     }
 
     @Test
@@ -476,6 +483,57 @@ public class MainTest {
                 "<file name=\"" + expectedPath + "\">",
                 "</file>",
                 "</checkstyle>"));
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+    }
+
+    @Test
+    public void testMultipleOutputFormatsWriteSeparateFiles(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut)
+                    throws Exception {
+        final Path plainOutput =
+                Files.createTempFile(temporaryFolder.toPath(), "plain", ".output");
+        final Path xmlOutput =
+                Files.createTempFile(temporaryFolder.toPath(), "xml", ".output");
+        assertMainReturnCode(0, "-c", getPath("InputMainConfig-classname.xml"),
+                "-f", "plain", "-o", plainOutput.toString(),
+                "-f", "xml", "-o", xmlOutput.toString(),
+                getPath("InputMain.java"));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+        final String xmlContent = Files.readString(xmlOutput);
+        assertWithMessage("XML output must be written to the second file")
+            .that(xmlContent)
+            .contains("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+        assertWithMessage("XML output must contain the checkstyle root element")
+            .that(xmlContent)
+            .contains("<checkstyle");
+        final String plainContent = Files.readString(plainOutput);
+        assertWithMessage("Plain output must not be XML")
+            .that(plainContent)
+            .doesNotContain("<?xml");
+        assertWithMessage("Plain and XML outputs must differ")
+            .that(plainContent)
+            .isNotEqualTo(xmlContent);
+    }
+
+    @Test
+    public void testMismatchedFormatAndOutputCounts(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut)
+                    throws Exception {
+        final Path output =
+                Files.createTempFile(temporaryFolder.toPath(), "out", ".output");
+        assertMainReturnCode(-1, "-c", getPath("InputMainConfig-classname.xml"),
+                "-f", "plain", "-f", "xml", "-o", output.toString(),
+                getPath("InputMain.java"));
+        assertWithMessage("Expected a count mismatch error")
+            .that(systemOut.getCapturedData())
+            .contains("The number of -f and -o options must be equal.");
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
             .isEqualTo("");

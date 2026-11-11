@@ -511,6 +511,28 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter outputLocation of Main.createListener.</message>
+    <lineContent>listeners.add(createListener(format, outputPath));</lineContent>
+    <details>
+      found   : @Initialized @Nullable Path
+      required: @Initialized @NonNull Path
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter outputLocation of Main.createListener.</message>
+    <lineContent>listeners.add(createListener(OutputFormat.PLAIN, null));</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull Path
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference Checker.class.getPackage()</message>
     <lineContent>Checker.class.getPackage().getName(), moduleClassLoader);</lineContent>
@@ -547,7 +569,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
-    <message>the constructor does not initialize fields: files, configurationFile, outputPath, propertiesFile, suppressionLineColumnNumber, xpath</message>
+    <message>the constructor does not initialize fields: files, configurationFile, propertiesFile, suppressionLineColumnNumber, xpath</message>
     <lineContent>private CliOptions() {</lineContent>
   </checkerFrameworkError>
 
@@ -559,6 +581,17 @@
     <details>
       type of expression: @Initialized @Nullable Configuration
       method return type: @Initialized @NonNull Configuration
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return outputPaths.isEmpty() ? null : outputPaths.get(0);</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable Path
+      method return type: @Initialized @NonNull Path
     </details>
   </checkerFrameworkError>
 
