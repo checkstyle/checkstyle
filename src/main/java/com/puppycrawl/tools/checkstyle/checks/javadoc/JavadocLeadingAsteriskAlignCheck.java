@@ -150,7 +150,7 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
             if (ast.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK) {
                 final int previousColumn = ast.getColumnNumber() - 1;
                 if (Character.isWhitespace(
-                        fileLines[ast.getLineNumber() - 1].charAt(previousColumn))) {
+                        getLineCodePoints(ast.getLineNumber() - 1)[previousColumn])) {
                     expectedColumnNumberTabsExpanded = getColumnNumberTabsExpanded(ast);
                 }
             }
