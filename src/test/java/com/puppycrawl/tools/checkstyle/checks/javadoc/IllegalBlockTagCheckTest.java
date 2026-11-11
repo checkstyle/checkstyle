@@ -157,7 +157,7 @@ public class IllegalBlockTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNonTightHtml() throws Exception {
         final String[] expected = {
-            "16: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
+            "16:5: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalBlockTagNonTightHtml.java"), expected);
