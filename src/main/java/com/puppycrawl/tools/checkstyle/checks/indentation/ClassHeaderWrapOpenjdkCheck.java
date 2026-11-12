@@ -207,13 +207,12 @@ public class ClassHeaderWrapOpenjdkCheck extends AbstractCheck {
      */
     private void checkNecessaryWrap(DetailAST headerStart, DetailAST lcurly) {
         final StringBuilder unwrapped = new StringBuilder(MAX_COLUMN_LIMIT);
-        final String[] lines = getLines();
 
         for (int lineNo = headerStart.getLineNo(); lineNo <= lcurly.getLineNo(); lineNo++) {
-            final String line = lines[lineNo - 1];
+            final int[] codePoints = getLineCodePoints(lineNo - 1);
             final int fromIndex = findFromIndex(headerStart, lineNo);
-            final int toIndex = findToIndex(lcurly, lineNo, line.length());
-            final String segment = line.substring(fromIndex, toIndex).trim();
+            final int toIndex = findToIndex(lcurly, lineNo, codePoints.length);
+            final String segment = new String(codePoints, fromIndex, toIndex - fromIndex).trim();
 
             if (!segment.isEmpty()) {
                 if (!unwrapped.isEmpty()) {
@@ -223,7 +222,8 @@ public class ClassHeaderWrapOpenjdkCheck extends AbstractCheck {
             }
         }
 
-        if (headerStart.getColumnNo() + unwrapped.length() <= MAX_COLUMN_LIMIT) {
+        final int unwrappedLength = unwrapped.codePointCount(0, unwrapped.length());
+        if (headerStart.getColumnNo() + unwrappedLength <= MAX_COLUMN_LIMIT) {
             log(headerStart, MSG_KEY_UNNECESSARY_WRAP);
         }
     }
@@ -250,7 +250,7 @@ public class ClassHeaderWrapOpenjdkCheck extends AbstractCheck {
      *
      * @param lcurly the opening brace of the type's body
      * @param lineNo the 1-indexed line number currently being processed
-     * @param lineLength the length of the line currently being processed
+     * @param lineLength the length of the line currently being processed, in code points
      * @return the index at which to stop extracting content from this line
      */
     private static int findToIndex(DetailAST lcurly, int lineNo, int lineLength) {
