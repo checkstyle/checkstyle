@@ -462,7 +462,7 @@ public class UnusedPrivateFieldCheck extends AbstractCheck {
         final DetailAST typeAst = varOrParamDef.findFirstToken(TokenTypes.TYPE);
         String result = null;
         final DetailAST identChild = typeAst.findFirstToken(TokenTypes.IDENT);
-        if (identChild != null) {
+        if (identChild != null && !"var".equals(identChild.getText())) {
             result = identChild.getText();
         }
         return result;
