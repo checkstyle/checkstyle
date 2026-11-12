@@ -304,15 +304,50 @@ public class FinalLocalVariableCheckTest extends AbstractModuleTestSupport {
     public void testVariableWhichIsAssignedMultipleTimes() throws Exception {
 
         final String[] expected = {
-            "57:13: " + getCheckMessage(MSG_KEY, "i"),
-            "130:16: " + getCheckMessage(MSG_KEY, "path"),
-            "135:20: " + getCheckMessage(MSG_KEY, "relativePath"),
-            "211:17: " + getCheckMessage(MSG_KEY, "kind"),
-            "216:24: " + getCheckMessage(MSG_KEY, "m"),
-            "418:17: " + getCheckMessage(MSG_KEY, "increment"),
+            "52:13: " + getCheckMessage(MSG_KEY, "i"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableAssignedMultipleTimes.java"), expected);
+    }
+
+    @Test
+    public void testVariableWhichIsAssignedMultipleTimes2() throws Exception {
+
+        final String[] expected = {
+            "26:16: " + getCheckMessage(MSG_KEY, "path"),
+            "31:20: " + getCheckMessage(MSG_KEY, "relativePath"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableAssignedMultipleTimes2.java"), expected);
+    }
+
+    @Test
+    public void testVariableWhichIsAssignedMultipleTimes3() throws Exception {
+
+        final String[] expected = {
+            "26:17: " + getCheckMessage(MSG_KEY, "kind"),
+            "31:24: " + getCheckMessage(MSG_KEY, "m"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableAssignedMultipleTimes3.java"), expected);
+    }
+
+    @Test
+    public void testVariableWhichIsAssignedMultipleTimes4() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableAssignedMultipleTimes4.java"), expected);
+    }
+
+    @Test
+    public void testVariableWhichIsAssignedMultipleTimes5() throws Exception {
+
+        final String[] expected = {
+            "35:17: " + getCheckMessage(MSG_KEY, "increment"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableAssignedMultipleTimes5.java"), expected);
     }
 
     @Test
@@ -327,12 +362,181 @@ public class FinalLocalVariableCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFinalLocalVariableFalsePositives() throws Exception {
-        final String[] expected = {
-            "352:16: " + getCheckMessage(MSG_KEY, "c2"),
-            "2195:16: " + getCheckMessage(MSG_KEY, "b"),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableFalsePositives.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives2.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives3.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives4() throws Exception {
+        final String[] expected = {
+            "54:16: " + getCheckMessage(MSG_KEY, "c2"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives4.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives5() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives5.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives6() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives6.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives7() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives7.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives8() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives8.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives9() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives9.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives10() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives10.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives11() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives11.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives12() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives12.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives13() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives13.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives14() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives14.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives15() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives15.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives16() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives16.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives17() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives17.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives18() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives18.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives19() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives19.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives20() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives20.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives21() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives21.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives22() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives22.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives23() throws Exception {
+        final String[] expected = {
+            "77:16: " + getCheckMessage(MSG_KEY, "b"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives23.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives24() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives24.java"), expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives25() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFalsePositives25.java"), expected);
     }
 
     @Test

@@ -419,10 +419,6 @@
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/fallthrough/InputFallThroughDefault\.java"/>
   <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/InputFinalLocalVariableFalsePositives\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/InputFinalLocalVariableAssignedMultipleTimes\.java"/>
-  <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/InputEmptyLineSeparatorWithComments2\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/InputEmptyLineSeparatorWithComments\.java"/>
@@ -460,10 +456,6 @@
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/metrics/npathcomplexity/InputNPathComplexityDefault\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/metrics/npathcomplexity/InputNPathComplexityDefault2\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/naming/packagename/InputPackageNameSimple1\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/naming/packagename/InputPackageNameSimple\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/grammar/InputRegressionJavaClass1\.java"/>
   <suppress checks="FileLength"
