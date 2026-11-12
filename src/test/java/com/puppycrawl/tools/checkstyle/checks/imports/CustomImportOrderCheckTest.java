@@ -781,4 +781,27 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testCustomImportOrderCompactDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputCustomImportOrderCompactDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCustomImportOrderCompactProperties() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_LEX, "java.lang.Math.E",
+                    "java.lang.Math.PI"),
+            "20:1: " + getCheckMessage(MSG_LEX, "java.util.ArrayList",
+                    "java.util.List"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputCustomImportOrderCompactProperties.java"),
+                expected);
+    }
+
 }
