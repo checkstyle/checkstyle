@@ -588,7 +588,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
-    <lineContent>return outputPaths.isEmpty() ? null : outputPaths.get(0);</lineContent>
+    <lineContent>return result;</lineContent>
     <details>
       type of expression: @Initialized @Nullable Path
       method return type: @Initialized @NonNull Path
