@@ -475,6 +475,20 @@ public class WhitespaceAfterCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnicodeAnnotations() throws Exception {
+        final String[] expected = {
+            "15:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "Ascii"),
+            "17:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "\u00c9"),
+            "19:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "\ud835\udc9c"),
+            "21:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "\ud835\udc9c\ud835\udc9c"),
+            "24:52: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "\ud835\udc9c\ud835\udc9c"),
+            "29:38: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "\ud835\udc9c"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputWhitespaceAfterUnicodeAnnotations.java"), expected);
+    }
+
+    @Test
     public void testWhitespaceAfterAnnotationInPackageFile() throws Exception {
         final String[] expected = {
             "9:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
