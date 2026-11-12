@@ -44,6 +44,7 @@ import java.util.stream.Collectors;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
@@ -112,6 +113,75 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
         checker.addListener(getBriefUtLogger());
         return checker;
+    }
+
+    /**
+     * Creates {@link Checker} instance based on the given configuration and properties.
+     * The properties are set on the root module before its children are configured.
+     *
+     * @param moduleConfig configuration for the checker or a child module.
+     * @param checkerProperties properties to set on the root checker.
+     * @return configured checker.
+     * @throws Exception if an exception occurs during checker configuration.
+     */
+    protected final Checker createChecker(Configuration moduleConfig,
+            Map<String, String> checkerProperties)
+                    throws Exception {
+        final String moduleName = moduleConfig.getName();
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+
+        DefaultConfiguration rootConfig;
+        if (ROOT_MODULE_NAME.equals(moduleName)) {
+            rootConfig = copyConfiguration(moduleConfig, checkerProperties);
+        }
+        else {
+            final Class<?> moduleClass = Class.forName(moduleName);
+            if (ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(moduleClass)
+                    || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
+                rootConfig = createTreeWalkerConfig(moduleConfig);
+            }
+            else {
+                rootConfig = createRootConfig(moduleConfig);
+            }
+            rootConfig = copyConfiguration(rootConfig, checkerProperties);
+        }
+        checker.configure(rootConfig);
+
+        checker.addListener(getBriefUtLogger());
+        return checker;
+    }
+
+    /**
+     * Copies a configuration and overrides the root checker properties.
+     *
+     * @param config configuration to copy.
+     * @param checkerProperties root checker properties to override.
+     * @return copied configuration.
+     * @throws CheckstyleException if a configuration property cannot be copied.
+     */
+    private static DefaultConfiguration copyConfiguration(Configuration config,
+            Map<String, String> checkerProperties)
+                    throws CheckstyleException {
+        final DefaultConfiguration result = new DefaultConfiguration(config.getName());
+        for (String propertyName : config.getPropertyNames()) {
+            if (!ROOT_MODULE_NAME.equals(config.getName())
+                    || !checkerProperties.containsKey(propertyName)) {
+                result.addProperty(propertyName, config.getProperty(propertyName));
+            }
+        }
+        if (ROOT_MODULE_NAME.equals(config.getName())) {
+            for (Map.Entry<String, String> property : checkerProperties.entrySet()) {
+                result.addProperty(property.getKey(), property.getValue());
+            }
+        }
+        for (Configuration child : config.getChildren()) {
+            result.addChild(copyConfiguration(child, Collections.emptyMap()));
+        }
+        for (Map.Entry<String, String> message : config.getMessages().entrySet()) {
+            result.addMessage(message.getKey(), message.getValue());
+        }
+        return result;
     }
 
     /**
