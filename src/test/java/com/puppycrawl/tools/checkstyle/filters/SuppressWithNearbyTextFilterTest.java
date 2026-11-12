@@ -29,6 +29,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -83,6 +84,56 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         verifyFilterWithInlineConfigParser(
             getPath("InputSuppressWithNearbyTextFilterDefaultConfig.java"),
             violationMessages, removeSuppressed(violationMessages, suppressedMessages)
+        );
+    }
+
+    @Test
+    public void testMultipleFiles() throws Exception {
+        final int expectedLineLength = 90;
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
+        final String[] firstFileUnfiltered = {
+            "29: " + getLineLengthCheckMessage(expectedLineLength, 94),
+            "31: " + getLineLengthCheckMessage(expectedLineLength, 97),
+            "41: " + getLineLengthCheckMessage(expectedLineLength, 94),
+            "44:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant", pattern),
+            "47:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant1", pattern),
+        };
+        final String[] firstFileSuppressed = {
+            "31: " + getLineLengthCheckMessage(expectedLineLength, 97),
+            "41: " + getLineLengthCheckMessage(expectedLineLength, 94),
+            "47:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant1", pattern),
+        };
+
+        final String[] secondFileUnfiltered = {
+            "29: " + getLineLengthCheckMessage(expectedLineLength, 98),
+            "38: " + getLineLengthCheckMessage(expectedLineLength, 100),
+            "42:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant2", pattern),
+            "45:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant3", pattern),
+        };
+        final String[] secondFileSuppressed = {
+            "42:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant2", pattern),
+        };
+
+        verifyFilterWithInlineConfigParser(
+            Arrays.asList(
+                getPath("InputSuppressWithNearbyTextFilterDefaultConfig.java"),
+                getPath("InputSuppressWithNearbyTextFilterMultipleFiles.java")
+            ),
+            Arrays.asList(
+                Arrays.asList(firstFileUnfiltered),
+                Arrays.asList(secondFileUnfiltered)
+            ),
+            Arrays.asList(
+                Arrays.asList(removeSuppressed(firstFileUnfiltered, firstFileSuppressed)),
+                Arrays.asList(removeSuppressed(secondFileUnfiltered, secondFileSuppressed))
+            )
         );
     }
 
