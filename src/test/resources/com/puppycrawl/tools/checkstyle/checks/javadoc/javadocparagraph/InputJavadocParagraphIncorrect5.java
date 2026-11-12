@@ -23,7 +23,10 @@ public class InputJavadocParagraphIncorrect5 {
      */
     void fooooo() {}
 
-
+    // violation 8 lines above '<p> tag should be placed immediately before the first word'
+    // 2 violations 5 lines above:
+    //  '<p> tag should be placed immediately before the first word'
+    //  '<p> tag should not precede HTML block-tag '<h1>''
     /**
      * <b><p>testtttt.....</b>
      *
@@ -47,10 +50,7 @@ public class InputJavadocParagraphIncorrect5 {
      *
      * <h1></h1>
      */
-    // violation 8 lines above '<p> tag should be placed immediately before the first word'
-    // 2 violations 5 lines above:
-    //  '<p> tag should be placed immediately before the first word'
-    //  '<p> tag should not precede HTML block-tag '<h1>''
+    
     void foooooo() {}
 
     /**

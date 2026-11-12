@@ -50,6 +50,8 @@ public class InputPreferCodeOrSnippetJavadocInlineTagCode {
     }
 
     // violation 2 lines below 'Use snippet inline tag instead of 'code' tag.'
+    // violation 5 lines above 'Use snippet inline tag instead of 'code' tag.'
+
     /**
      * <code>
      *  There is some text.</code>
@@ -59,7 +61,6 @@ public class InputPreferCodeOrSnippetJavadocInlineTagCode {
      * <p>No error for p tag</p>
      */
     public void method3() {
-    // violation 5 lines above 'Use snippet inline tag instead of 'code' tag.'
     }
 
     // violation 2 lines below 'Use code or snippet inline tags instead of 'code' tag.'

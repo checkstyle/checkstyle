@@ -16,11 +16,11 @@ public class InputMissingJavadocTypeNonJavadocOnly {
     // violation below 'Missing a Javadoc comment.'
     public class InnerClass {
     }
-
+    // violation below 'Missing a Javadoc comment.'
     /*
      This is NOT a Javadoc comment
     */
-    // violation below 'Missing a Javadoc comment.'
+    
     public class InnerClass2 {
     }
 
