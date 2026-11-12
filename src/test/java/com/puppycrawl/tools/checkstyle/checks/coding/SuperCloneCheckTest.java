@@ -81,6 +81,13 @@ public class SuperCloneCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testLambdaAndCompactCtor() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputSuperCloneLambdaAndCompactCtor.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final SuperCloneCheck check = new SuperCloneCheck();
         assertWithMessage("Acceptable tokens should not be null")
