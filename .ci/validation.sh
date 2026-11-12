@@ -627,7 +627,7 @@ checkstyle-and-sevntu)
 spotbugs-and-pmd)
   export MAVEN_OPTS="-Xmx4g"
   ./mvnw -e --no-transfer-progress clean pmd:check
-  ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
+  ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check -Djacoco.skip=true
   ;;
 
 site)
@@ -1748,7 +1748,7 @@ pmd)
   ;;
 
 spotbugs)
-  ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
+  ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check -Djacoco.skip=true
   ;;
 
 checkstyle)

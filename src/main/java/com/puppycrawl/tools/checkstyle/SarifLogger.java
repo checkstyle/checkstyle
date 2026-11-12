@@ -252,31 +252,38 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      * @return list of rules
      */
     private List<String> generateRules() {
-        final List<String> result = new ArrayList<>();
-        for (Map.Entry<RuleKey, ModuleDetails> entry : ruleMetadata.entrySet()) {
-            final RuleKey ruleKey = entry.getKey();
-            final ModuleDetails module = entry.getValue();
-            final String shortDescription;
-            final String fullDescription;
-            final String messageStringsFragment;
-            if (module == null) {
-                shortDescription = CommonUtil.baseClassName(ruleKey.sourceName());
-                fullDescription = "No description available";
-                messageStringsFragment = "";
-            }
-            else {
-                shortDescription = module.getName();
-                fullDescription = module.getDescription();
-                messageStringsFragment = String.join(COMMA_LINE_SEPARATOR,
-                        generateMessageStrings(module));
-            }
-            result.add(rule
-                    .replace(RULE_ID_PLACEHOLDER, ruleKey.toRuleId())
-                    .replace("${shortDescription}", shortDescription)
-                    .replace("${fullDescription}", escape(fullDescription))
-                    .replace("${messageStrings}", messageStringsFragment));
+        return ruleMetadata.entrySet().stream()
+                .map(entry -> generateRule(entry.getKey(), entry.getValue()))
+                .toList();
+    }
+
+    /**
+     * Generates a rule for a given rule key and its module metadata.
+     *
+     * @param ruleKey the rule key
+     * @param module the module metadata, or null if not available
+     * @return the generated rule
+     */
+    private String generateRule(RuleKey ruleKey, ModuleDetails module) {
+        final String shortDescription;
+        final String fullDescription;
+        final String messageStringsFragment;
+        if (module == null) {
+            shortDescription = CommonUtil.baseClassName(ruleKey.sourceName());
+            fullDescription = "No description available";
+            messageStringsFragment = "";
         }
-        return result;
+        else {
+            shortDescription = module.getName();
+            fullDescription = module.getDescription();
+            messageStringsFragment = String.join(COMMA_LINE_SEPARATOR,
+                    generateMessageStrings(module));
+        }
+        return rule
+                .replace(RULE_ID_PLACEHOLDER, ruleKey.toRuleId())
+                .replace("${shortDescription}", shortDescription)
+                .replace("${fullDescription}", escape(fullDescription))
+                .replace("${messageStrings}", messageStringsFragment);
     }
 
     /**
