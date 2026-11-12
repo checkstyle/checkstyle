@@ -383,12 +383,48 @@ public class JavadocTypeCheck extends AbstractJavadocCheck {
             final DetailNode descriptionNode = JavadocUtil.findFirstToken(
                     ast, JavadocCommentsTokenTypes.DESCRIPTION);
             if (descriptionNode != null) {
-                description = descriptionNode.getFirstChild().getText().trim();
+                description = getTagDescription(descriptionNode);
             }
             if (!format.matcher(description).find()) {
                 log(currentAst, MSG_TAG_FORMAT, tagName, format.pattern());
             }
         }
+    }
+
+    /**
+     * Extracts the text content from a Javadoc tag description node.
+     *
+     * @param descriptionNode the description node
+     * @return the text content of the tag description
+     */
+    private static String getTagDescription(DetailNode descriptionNode) {
+        final StringBuilder builder = new StringBuilder(128);
+        DetailNode curNode = descriptionNode;
+        while (curNode != null) {
+            if (curNode.getFirstChild() == null && !isLeadingAsterisk(curNode)) {
+                builder.append(curNode.getText());
+            }
+
+            DetailNode toVisit = curNode.getFirstChild();
+            while (curNode != descriptionNode && toVisit == null) {
+                toVisit = curNode.getNextSibling();
+                curNode = curNode.getParent();
+            }
+
+            curNode = toVisit;
+        }
+        return builder.toString().trim();
+    }
+
+    /**
+     * Checks if a node is a leading asterisk node.
+     *
+     * @param node the node to check
+     * @return true if the node is a leading asterisk
+     */
+    private static boolean isLeadingAsterisk(DetailNode node) {
+        return node.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK
+                || node.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISKS;
     }
 
     /**
