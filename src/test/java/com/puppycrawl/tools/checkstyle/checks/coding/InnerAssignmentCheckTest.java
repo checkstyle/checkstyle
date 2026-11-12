@@ -139,4 +139,15 @@ public class InnerAssignmentCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testSwitchRuleNoBraces() throws Exception {
+        final String[] expected = {
+            "45:16: " + getCheckMessage(MSG_KEY),
+            "49:25: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputInnerAssignmentSwitchRuleNoBraces.java"),
+                expected);
+    }
+
 }
