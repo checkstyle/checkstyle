@@ -298,14 +298,12 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEmptyMultiline()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
-        checkConfig.addProperty("multiLines", "");
         final String[] expected = {
             "1: " + getCheckMessage(MSG_HEADER_MISSING),
         };
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputRegexpHeaderSmallHeader.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderEmptyMultilineConfig.java"),
+                getPath("InputRegexpHeaderEmptyMultiline.txt"), expected);
     }
 
     @Test
