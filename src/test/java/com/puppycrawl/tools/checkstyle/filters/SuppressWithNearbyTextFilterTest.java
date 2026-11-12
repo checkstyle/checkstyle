@@ -87,6 +87,56 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
+    public void testMultipleFiles() throws Exception {
+        final int expectedLineLength = 90;
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
+        final List<String> firstFileUnfiltered = List.of(
+            "29: " + getLineLengthCheckMessage(expectedLineLength, 94),
+            "31: " + getLineLengthCheckMessage(expectedLineLength, 97),
+            "41: " + getLineLengthCheckMessage(expectedLineLength, 94),
+            "44:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant", pattern),
+            "47:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant1", pattern)
+        );
+        final List<String> firstFileSuppressed = List.of(
+            "31: " + getLineLengthCheckMessage(expectedLineLength, 97),
+            "41: " + getLineLengthCheckMessage(expectedLineLength, 94),
+            "47:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant1", pattern)
+        );
+
+        final List<String> secondFileUnfiltered = List.of(
+            "29: " + getLineLengthCheckMessage(expectedLineLength, 98),
+            "38: " + getLineLengthCheckMessage(expectedLineLength, 100),
+            "42:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant2", pattern),
+            "45:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant3", pattern)
+        );
+        final List<String> secondFileSuppressed = List.of(
+            "42:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant2", pattern)
+        );
+
+        verifyFilterWithInlineConfigParser(
+            List.of(
+                getPath("InputSuppressWithNearbyTextFilterDefaultConfig.java"),
+                getPath("InputSuppressWithNearbyTextFilterMultipleFiles.java")
+            ),
+            List.of(
+                firstFileUnfiltered,
+                secondFileUnfiltered
+            ),
+            List.of(
+                removeSuppressed(firstFileUnfiltered, firstFileSuppressed),
+                removeSuppressed(secondFileUnfiltered, secondFileSuppressed)
+            )
+        );
+    }
+
+    @Test
     public void testNearbyTextPattern() throws Exception {
         final int expectedLineLength = 90;
 
