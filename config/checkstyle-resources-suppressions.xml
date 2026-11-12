@@ -14,6 +14,11 @@
     files="packagedeclaration/InputPackageDeclarationNoPackage\.java"/>
   <suppress checks="PackageDeclarationCheck"
     files="unusedlocalvariable/InputUnusedLocalVariableNoPackageStatement\.java"/>
+  <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclarationCheck"
+    files="packagename/compact/InputPackageNameCompactSourceFileDefault\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="packagename/compact/InputPackageNameCompactSourceFileProperties\.java"/>
   <suppress checks="PackageDeclarationCheck"
     files="/resources-noncompilable/.*/packagedeclaration/Input.*\.java"/>
 
@@ -439,20 +444,6 @@
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespaceafter/InputNoWhitespaceAfterTestAllTokens\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespaceafter/InputNoWhitespaceAfterArrayDeclarations2\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/InputRightCurlyTestAloneOrSingleline\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/InputRightCurlyLeftTestNewLine\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/InputRightCurlyLeftTestDefault\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/InputRightCurlyLeftTestShouldStartLine2\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/InputRightCurlyLeftTestSame\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/InputRightCurlyLeftTestAlone\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/InputRightCurlyTestWithAnnotations\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/InputDesignForExtensionIgnoredAnnotations\.java"/>
   <suppress checks="FileLength"

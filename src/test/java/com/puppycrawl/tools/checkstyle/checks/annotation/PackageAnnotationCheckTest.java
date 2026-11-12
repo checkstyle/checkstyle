@@ -39,6 +39,16 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
      * This tests a package annotation that is in the package-info.java file.
      */
     @Test
+    public void testPackageAnnotationCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputPackageAnnotationCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
     public void testGoodPackageAnnotation() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;

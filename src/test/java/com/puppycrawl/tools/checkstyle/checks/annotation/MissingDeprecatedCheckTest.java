@@ -199,4 +199,19 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("module-info/expected/module-info.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "15: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "29: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "41: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "50: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "59: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMissingDeprecatedCompactSourceFile.java"),
+                expected);
+    }
+
 }

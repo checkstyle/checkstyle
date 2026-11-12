@@ -47,6 +47,28 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
+    public void testModifiedControlVariableCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "16:10: " + getCheckMessage(MSG_KEY, "i"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "compact/InputModifiedControlVariableCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testModifiedControlVariableCompactSourceFileProperties() throws Exception {
+        final String[] expected = {
+            "20:11: " + getCheckMessage(MSG_KEY, "i"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "compact/InputModifiedControlVariableCompactSourceFileProperties.java"),
+                expected);
+    }
+
+    @Test
     public void testModifiedControlVariable() throws Exception {
         final String[] expected = {
             "21:14: " + getCheckMessage(MSG_KEY, "i"),

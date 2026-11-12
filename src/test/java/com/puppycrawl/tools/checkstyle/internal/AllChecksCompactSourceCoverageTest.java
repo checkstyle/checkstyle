@@ -85,28 +85,21 @@ public class AllChecksCompactSourceCoverageTest {
      * be removed.
      */
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-        "AtclauseOrderCheck",
         "CustomImportOrderCheck",
         "ImportOrderCheck",
         "InvalidJavadocPositionCheck",
         "JavadocLeadingAsteriskAlignCheck",
-        "JavadocLinkFirstOccurrenceCheck",
         "JavadocMethodCheck",
         "JavadocMissingWhitespaceAfterAsteriskCheck",
         "JavadocSeeTagOrderCheck",
-        "JavadocStyleCheck",
         "JavadocTagContinuationIndentationCheck",
+        "JavadocVariableCheck",
         "LambdaParameterNameCheck",
         "MissingDeprecatedCheck",
-        "MissingJavadocPackageCheck",
+        "MissingJavadocTypeCheck",
         "ModifiedControlVariableCheck",
-        "NonEmptyAtclauseDescriptionCheck",
         "PackageAnnotationCheck",
-        "PackageNameCheck",
         "RedundantModifierCheck",
-        "RegexpSinglelineJavaCheck",
-        "RequireThisCheck",
-        "TextBlockGoogleStyleFormattingCheck",
         "UnnecessarySemicolonInTryWithResourcesCheck"
     );
 
@@ -124,6 +117,21 @@ public class AllChecksCompactSourceCoverageTest {
             assertWithMessage("The following checks lack compact source input coverage:\n"
                     + String.join("\n", failures)).fail();
         }
+    }
+
+    @Test
+    public void testSuppressedChecksAreNotOutdated() throws Exception {
+        final Set<String> checkNames = CheckUtil.getCheckstyleChecks().stream()
+                .map(Class::getSimpleName)
+                .collect(Collectors.toUnmodifiableSet());
+
+        final Set<String> outdatedSuppressions = SUPPRESSED_CHECKS.stream()
+                .filter(check -> !checkNames.contains(check))
+                .collect(Collectors.toUnmodifiableSet());
+
+        assertWithMessage("Outdated suppressions (can be removed): %s", outdatedSuppressions)
+                .that(outdatedSuppressions)
+                .isEmpty();
     }
 
     /**

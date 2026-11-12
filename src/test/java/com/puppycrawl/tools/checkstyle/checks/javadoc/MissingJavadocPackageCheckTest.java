@@ -160,4 +160,13 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
                 .isEqualTo(expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputMissingJavadocPackageCompactSourceFile.java"),
+                expected);
+    }
+
 }

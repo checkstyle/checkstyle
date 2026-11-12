@@ -693,4 +693,41 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             .contains("EQUALS");
     }
 
+    @Test
+    public void testCompactSourceFileDefault() throws Exception {
+        final String[] expected = {
+            "37:21: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "value"),
+            "41: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "46:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "other"),
+            "51:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "size"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputJavadocMethodCompactSourceFileDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileAllowMissing() throws Exception {
+        final String[] expected = {
+            "38:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "other"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputJavadocMethodCompactSourceFileAllowMissing.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileThrows() throws Exception {
+        final String[] expected = {
+            "34:19: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Error"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputJavadocMethodCompactSourceFileThrows.java"),
+                expected);
+    }
+
 }
