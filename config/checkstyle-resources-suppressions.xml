@@ -325,8 +325,6 @@
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/InputJavadocTypeJavadoc_3\.java"/>
   <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/InputRequireThisTryWithResourcesOnlyOverlappingFalse\.java"/>
-  <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/InputRegexpSinglelineJavaSemantic7\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/InputRegexpSinglelineJavaSemantic\.java"/>
@@ -377,11 +375,7 @@
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/InputRegexpSinglelineSemantic6\.java"/>
   <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/InputRequireThisEnumInnerClassesAndBugs2\.java"/>
-  <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/InputRequireThisValidateOnlyOverlappingFalse\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/InputRequireThisEnumInnerClassesAndBugs3\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/InputRequireThisValidateOnlyOverlappingTrue\.java"/>
   <suppress checks="FileLength"

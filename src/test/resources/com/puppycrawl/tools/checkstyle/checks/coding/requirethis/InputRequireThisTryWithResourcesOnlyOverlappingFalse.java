@@ -85,12 +85,9 @@ public class InputRequireThisTryWithResourcesOnlyOverlappingFalse implements Aut
     InputRequireThisTryWithResources r4 = new InputRequireThisTryWithResources();
 
     void staticVariables() {
-        try (r1) { }
-        catch (Exception e) { }
-        try (r1.r2) { }
-        catch (Exception e) { }
-        try (r1.r2.r4.r2.r4.r2) { }
-        catch (Exception e) { }
+        try (r1) { } catch (Exception e) { }
+        try (r1.r2) { } catch (Exception e) { }
+        try (r1.r2.r4.r2.r4.r2) { } catch (Exception e) { }
     }
 
     void nestedTryWithResources() {
