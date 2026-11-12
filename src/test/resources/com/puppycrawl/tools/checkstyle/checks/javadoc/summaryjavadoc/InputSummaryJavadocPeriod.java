@@ -33,8 +33,9 @@ public class InputSummaryJavadocPeriod
      * {@summary An especially short bit of Javadoc_}
      */
     void foo7(){}
+    // violation above 'Summary .* missing an ending period.'
     /**
      * {@summary An especially short bit of Javadoc}
-     */ // violation above 'Summary .* missing an ending period.'
+     */ 
     void foo8() {}
 }
