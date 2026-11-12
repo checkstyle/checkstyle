@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
 
@@ -35,7 +36,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEqualsWithDefault() throws Exception {
+    public void testEqualsWithDefaultFlag() throws Exception {
 
         final String[] expected = {
             "44:27: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
@@ -50,101 +51,97 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "82:27: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
             "84:27: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
             "86:27: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
-            "245:21: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "251:24: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "252:21: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "254:24: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "255:27: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "256:32: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "257:29: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "258:32: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "275:32: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "276:35: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "277:40: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "279:40: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "280:45: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "281:32: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "302:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "307:29: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "308:29: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "315:25: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "318:25: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "319:34: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "321:32: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "322:45: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "323:33: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "327:43: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "328:51: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "329:43: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "330:55: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "343:28: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "344:36: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "345:42: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "346:34: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "347:37: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "351:36: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "352:44: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "353:42: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "354:45: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "365:35: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "376:30: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "402:35: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "423:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "424:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "425:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "429:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
         verifyWithInlineConfigParser(
-                getPath("InputEqualsAvoidNull.java"), expected);
+                getPath("InputEqualsAvoidNullFlag.java"), expected);
+    }
+
+    @Test
+    public void testEqualsWithDefaultNoFlag() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEqualsAvoidNullNoFlag.java"), expected);
+    }
+
+    @Test
+    public void testEqualsWithDefaultNoFlagIgnoreCase() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEqualsAvoidNullNoFlagIgnoreCase.java"), expected);
+    }
+
+    @Test
+    public void testEqualsWithDefaultNewTest() throws Exception {
+        final String[] expected = {
+            "16:21: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "22:24: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "23:21: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "25:24: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "26:27: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "27:52: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "28:29: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "29:32: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "46:32: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "47:35: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "48:60: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "50:40: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "51:45: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "52:32: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEqualsAvoidNullNewTest.java"), expected);
+    }
+
+    @Test
+    public void testEqualsWithDefaultNewTestBlocks() throws Exception {
+        final String[] expected = {
+            "17:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "22:29: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "23:29: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "31:25: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "34:25: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "35:34: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "37:32: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "38:45: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "39:33: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "43:43: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "44:51: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "45:43: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "46:55: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "60:28: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "61:62: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "62:42: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "63:34: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "64:37: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "68:36: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "69:70: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "70:42: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "71:45: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "83:35: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "94:30: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEqualsAvoidNullNewTestBlocks.java"), expected);
+    }
+
+    @Test
+    public void testEqualsWithDefaultAnonymousAndConcat() throws Exception {
+        final String[] expected = {
+            "18:35: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "39:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "40:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "41:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "45:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEqualsAvoidNullAnonymousAndConcat.java"), expected);
     }
 
     @Test
     public void testEqualsWithoutEqualsIgnoreCase() throws Exception {
 
         final String[] expected = {
-            "245:21: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "251:24: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "252:21: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "254:24: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "255:27: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "256:33: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "257:29: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "258:32: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "275:32: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "276:35: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "277:41: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "279:40: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "280:45: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "281:32: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "302:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "307:29: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "308:29: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "315:25: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "318:25: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "319:34: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "321:32: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "322:45: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "323:33: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "327:66: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "328:51: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "329:53: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "330:55: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "343:28: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "344:37: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "345:42: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "346:34: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "347:37: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "351:36: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "352:45: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "353:42: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "354:45: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "365:35: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "376:30: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "402:35: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "425:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "423:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "424:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "430:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "80:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEqualsAvoidNullIgnoreCase.java"), expected);
