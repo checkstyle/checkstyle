@@ -1941,6 +1941,46 @@
         </executions>
       </plugin>
 
+      <!-- Makes "mvn checkstyle:check" and "mvn checkstyle:checkstyle" use the project's own
+           rules (config/checkstyle-checks.xml), as the Ant self-check does
+           (config/ant-phase-verify.xml). Declared at plugin level so CLI goals pick it up. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${checkstyle.plugin.version}</version>
+        <configuration>
+          <configLocation>config/checkstyle-checks.xml</configLocation>
+          <!-- File values use ${project.baseUri} (forward slashes) so that Windows paths work. -->
+          <propertyExpansion>
+            checkstyle.cache.file=target/cachefile
+            checkstyle.header.file=${project.baseUri}config/java.header
+            checkstyle.regexp.header.file=${project.baseUri}config/java-regexp.header
+            checkstyle.importcontrol.file=${project.baseUri}config/import-control.xml
+            checkstyle.importcontroltest.file=${project.baseUri}config/import-control-test.xml
+            checkstyle.suppressions.file=${project.baseUri}config/suppressions.xml
+            checkstyle.suppressions-xpath.file=${project.baseUri}config/suppressions-xpath.xml
+            checkstyle.java.version=${java.version}
+          </propertyExpansion>
+          <sourceDirectories>
+            <sourceDirectory>${project.basedir}/src</sourceDirectory>
+          </sourceDirectories>
+          <includeTestSourceDirectory>false</includeTestSourceDirectory>
+          <includeResources>false</includeResources>
+          <includeTestResources>false</includeTestResources>
+          <includes>**/*</includes>
+          <excludes>it/resources/**/*,it/resources-noncompilable/**/*,test/resources/**/*,test/resources-noncompilable/**/*,test/resources-with-javadoc-error/**/*,**/gen/**,xdocs-examples/resources/**/*,xdocs-examples/resources-noncompilable/**/*</excludes>
+          <failOnViolation>true</failOnViolation>
+          <maxAllowedViolations>0</maxAllowedViolations>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>${project.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
       <!-- Ensure the manifest has all the gory details -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
