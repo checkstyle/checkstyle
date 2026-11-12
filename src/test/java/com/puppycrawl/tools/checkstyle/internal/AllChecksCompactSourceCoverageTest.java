@@ -85,7 +85,6 @@ public class AllChecksCompactSourceCoverageTest {
      * be removed.
      */
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-        "CustomImportOrderCheck",
         "ImportOrderCheck"
     );
 
