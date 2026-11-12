@@ -451,8 +451,6 @@
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/InputDesignForExtensionOverridableMethods\.java"/>
   <suppress checks="FileLength"
-    files="/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/InputClassFanOutComplexityRemoveIncorrectAnnotationToken\.java"/>
-  <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/metrics/npathcomplexity/InputNPathComplexityOverflow\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/metrics/npathcomplexity/InputNPathComplexity\.java"/>
