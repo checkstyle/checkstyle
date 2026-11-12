@@ -87,9 +87,31 @@ public class NoWhitespaceAfterCheckTest extends AbstractModuleTestSupport {
             "87:20: " + getCheckMessage(MSG_KEY, ")"),
             "89:13: " + getCheckMessage(MSG_KEY, ")"),
             "241:17: " + getCheckMessage(MSG_KEY, ")"),
+            "300:18: " + getCheckMessage(MSG_KEY, ")"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestTypecast.java"), expected);
+    }
+
+    @Test
+    public void testTypecastWrapped() throws Exception {
+        final String[] expected = {
+            "16:22: " + getCheckMessage(MSG_KEY, ")"),
+            "18:22: " + getCheckMessage(MSG_KEY, ")"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterTestTypecastWrapped.java"), expected);
+    }
+
+    @Test
+    public void testTypecastNoLineBreaks() throws Exception {
+        final String[] expected = {
+            "16:22: " + getCheckMessage(MSG_KEY, ")"),
+            "19:22: " + getCheckMessage(MSG_KEY, ")"),
+            "24:22: " + getCheckMessage(MSG_KEY, ")"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterTestTypecastNoLineBreaks.java"), expected);
     }
 
     @Test
