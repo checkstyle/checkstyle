@@ -693,15 +693,16 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Find the Class, Constructor, Enum, Method, or Field in which it is defined.
+     * Find the Class, Constructor, Enum, Method, Record, or Field in which it is defined.
      *
      * @param ast Variable for which we want to find the scope in which it is defined
-     * @return ast The Class or Constructor or Method in which it is defined.
+     * @return ast The Class or Constructor or Method or Record in which it is defined.
      */
     private static DetailAST findFirstUpperNamedBlock(DetailAST ast) {
         DetailAST astTraverse = ast;
         while (!TokenUtil.isOfType(astTraverse, TokenTypes.METHOD_DEF, TokenTypes.CLASS_DEF,
-                TokenTypes.ENUM_DEF, TokenTypes.CTOR_DEF, TokenTypes.COMPACT_CTOR_DEF)
+                TokenTypes.ENUM_DEF, TokenTypes.CTOR_DEF, TokenTypes.COMPACT_CTOR_DEF,
+                TokenTypes.RECORD_DEF)
                 && !ScopeUtil.isClassFieldDef(astTraverse)) {
             astTraverse = astTraverse.getParent();
         }
