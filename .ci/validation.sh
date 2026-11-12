@@ -472,6 +472,12 @@ no-error-xwiki)
   mvn -e --no-transfer-progress \
     -f xwiki-commons-tools/xwiki-commons-tool-webjar-node-handlers/pom.xml \
     install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress install:install-file \
+    -Dfile=xwiki-commons-tools/xwiki-commons-tool-spoon/pom.xml \
+    -DpomFile=xwiki-commons-tools/xwiki-commons-tool-spoon/pom.xml
+  mvn -e --no-transfer-progress \
+    -f xwiki-commons-tools/xwiki-commons-tool-spoon/xwiki-commons-tool-spoon-checks/pom.xml \
+    install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
   mvn -e --no-transfer-progress -f xwiki-commons-tools/xwiki-commons-tool-xar/pom.xml \
     install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
