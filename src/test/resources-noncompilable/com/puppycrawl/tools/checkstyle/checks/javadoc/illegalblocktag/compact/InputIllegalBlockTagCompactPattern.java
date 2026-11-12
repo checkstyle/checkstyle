@@ -11,8 +11,8 @@ violateExecutionOnNonTightHtml = (default)false
 
 // non-compiled with javac: Compilable with Java25
 
-// 'since' does not match the pattern, ok until
-// https://github.com/checkstyle/checkstyle/issues/22573
+// the config comment above must not hide the Javadoc of the first method
+// violation 4 lines below 'Block tag 'since' is matched illegal pattern'
 /**
  * Some javadoc.
  *

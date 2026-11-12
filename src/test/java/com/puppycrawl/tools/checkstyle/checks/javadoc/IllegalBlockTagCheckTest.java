@@ -184,6 +184,7 @@ public class IllegalBlockTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCompactSourceFilePattern() throws Exception {
         final String[] expected = {
+            "19:4: " + getCheckMessage(MSG_ILLEGAL_PATTERN, "since"),
             "37:4: " + getCheckMessage(MSG_ILLEGAL_PATTERN, "since"),
             "55:8: " + getCheckMessage(MSG_ILLEGAL_PATTERN, "since"),
             "65:4: " + getCheckMessage(MSG_ILLEGAL_PATTERN, "since"),
@@ -193,6 +194,29 @@ public class IllegalBlockTagCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("compact/InputIllegalBlockTagCompactPattern.java"),
                 expected);
+    }
+
+    @Test
+    public void testGenericDefinitions() throws Exception {
+        final String[] expected = {
+            "24:8: " + getCheckMessage(MSG_ILLEGAL_PATTERN, "since"),
+            "33:8: " + getCheckMessage(MSG_ILLEGAL_PATTERN, "since"),
+            "43:8: " + getCheckMessage(MSG_ILLEGAL_PATTERN, "since"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalBlockTagGeneric.java"), expected);
+    }
+
+    @Test
+    public void testBlockCommentNextToJavadoc() throws Exception {
+        final String[] expected = {
+            "25:8: " + getCheckMessage(MSG_ILLEGAL_PATTERN, "since"),
+            "34:8: " + getCheckMessage(MSG_ILLEGAL_PATTERN, "since"),
+            "45:8: " + getCheckMessage(MSG_ILLEGAL_PATTERN, "since"),
+            "65:8: " + getCheckMessage(MSG_ILLEGAL_PATTERN, "since"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalBlockTagBlockComment.java"), expected);
     }
 
 }
