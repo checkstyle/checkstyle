@@ -299,7 +299,7 @@ public class SuppressWarningsHolder extends AbstractCheck {
         // get text range of target
         final int firstLine = targetAST.getLineNo();
         final int firstColumn = targetAST.getColumnNo();
-        final DetailAST nextAST = targetAST.getNextSibling();
+        final DetailAST nextAST = getNextNode(targetAST);
         final int lastLine;
         final int lastColumn;
         if (nextAST == null) {
@@ -385,6 +385,20 @@ public class SuppressWarningsHolder extends AbstractCheck {
             case TokenTypes.LITERAL_DEFAULT -> Optional.empty();
             default -> throw new IllegalArgumentException("Unexpected container AST: " + current);
         };
+    }
+
+    /**
+     * Finds the next AST node after the target AST.
+     *
+     * @param targetAST the AST node
+     * @return the next AST node, or {@code null} if none
+     */
+    private static DetailAST getNextNode(DetailAST targetAST) {
+        DetailAST currentNode = targetAST;
+        while (currentNode.getNextSibling() == null && currentNode.getParent() != null) {
+            currentNode = currentNode.getParent();
+        }
+        return currentNode.getNextSibling();
     }
 
     /**

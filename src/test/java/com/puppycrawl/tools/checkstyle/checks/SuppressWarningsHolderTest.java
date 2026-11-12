@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
@@ -615,6 +616,23 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("compact/InputSuppressWarningsHolderCompactProperties.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
+    public void testLastParameterSuppressionRange() throws Exception {
+        final String[] expected = {
+            "22:29: " + getCheckMessage(HiddenFieldCheck.class,
+                    HiddenFieldCheck.MSG_KEY, "size"),
+            "31:37: " + getCheckMessage(HiddenFieldCheck.class,
+                    HiddenFieldCheck.MSG_KEY, "count"),
+            "36:29: " + getCheckMessage(HiddenFieldCheck.class,
+                    HiddenFieldCheck.MSG_KEY, "size"),
+            "45:35: " + getCheckMessage(HiddenFieldCheck.class,
+                    HiddenFieldCheck.MSG_KEY, "count"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputSuppressWarningsHolder9.java"),
+                expected);
     }
 
 }
