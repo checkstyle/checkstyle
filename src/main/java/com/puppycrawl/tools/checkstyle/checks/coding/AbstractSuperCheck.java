@@ -124,8 +124,10 @@ public abstract class AbstractSuperCheck extends AbstractCheck {
         boolean inOverridingMethod = false;
         DetailAST dotAst = ast;
 
-        while (dotAst.getType() != TokenTypes.CTOR_DEF
-                && dotAst.getType() != TokenTypes.INSTANCE_INIT) {
+        while (dotAst != null
+                && dotAst.getType() != TokenTypes.CTOR_DEF
+                && dotAst.getType() != TokenTypes.INSTANCE_INIT
+                && dotAst.getType() != TokenTypes.COMPACT_CTOR_DEF) {
             if (dotAst.getType() == TokenTypes.METHOD_DEF) {
                 inOverridingMethod = isOverridingMethod(dotAst);
                 break;
