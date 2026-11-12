@@ -993,6 +993,16 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTrailingCommentAfterMethodRcurly() throws Exception {
+        final String[] expected = {
+            "22:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorTrailingComment.java"),
+                expected);
+    }
+
+    @Test
     public void testMultipleLines4() throws Exception {
         final String[] expected = {
             "25:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
