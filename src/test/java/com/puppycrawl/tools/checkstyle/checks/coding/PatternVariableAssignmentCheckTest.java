@@ -149,6 +149,44 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
     }
 
     @Test
+    public void testPatternVariableAssignmentCheck5() throws Exception {
+
+        final String[] expected = {
+            "21:21: " + getCheckMessage(MSG_KEY, "s"),
+            "65:25: " + getCheckMessage(MSG_KEY, "inner"),
+        };
+
+        verifyWithInlineXmlConfig(getNonCompilablePath(
+            "InputPatternVariableAssignmentCheck5.java"), expected);
+    }
+
+    @Test
+    public void testPatternVariableAssignmentCheck6() throws Exception {
+
+        final String[] expected = {
+            "21:21: " + getCheckMessage(MSG_KEY, "s"),
+            "35:21: " + getCheckMessage(MSG_KEY, "s"),
+            "81:17: " + getCheckMessage(MSG_KEY, "s"),
+            "95:17: " + getCheckMessage(MSG_KEY, "s"),
+        };
+
+        verifyWithInlineXmlConfig(getNonCompilablePath(
+            "InputPatternVariableAssignmentCheck6.java"), expected);
+    }
+
+    @Test
+    public void testPatternVariableAssignmentCheck7() throws Exception {
+
+        final String[] expected = {
+            "64:21: " + getCheckMessage(MSG_KEY, "s"),
+            "83:17: " + getCheckMessage(MSG_KEY, "s"),
+        };
+
+        verifyWithInlineXmlConfig(getNonCompilablePath(
+            "InputPatternVariableAssignmentCheck7.java"), expected);
+    }
+
+    @Test
     public void testCompactSourceFile() throws Exception {
         final String[] expected = {
             "18:9: " + getCheckMessage(MSG_KEY, "s"),
