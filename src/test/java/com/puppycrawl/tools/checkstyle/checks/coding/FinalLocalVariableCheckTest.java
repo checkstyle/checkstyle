@@ -173,6 +173,10 @@ public class FinalLocalVariableCheckTest extends AbstractModuleTestSupport {
     public void testRecordsInput() throws Exception {
         final String[] expected = {
             "20:17: " + getCheckMessage(MSG_KEY, "b"),
+            "25:13: " + getCheckMessage(MSG_KEY, "c"),
+            "29:13: " + getCheckMessage(MSG_KEY, "e"),
+            "37:17: " + getCheckMessage(MSG_KEY, "f"),
+            "39:17: " + getCheckMessage(MSG_KEY, "g"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableCheckRecords.java"), expected);
