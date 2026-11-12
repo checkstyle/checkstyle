@@ -398,16 +398,7 @@
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/InputHiddenField6\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/InputHiddenFieldReorder\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/InputVariableDeclarationUsageDistanceFinal\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/InputVariableDeclarationUsageDistanceRegExp\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/InputVariableDeclarationUsageDistanceGeneral\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/InputVariableDeclarationUsageDistanceScopes\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/InputVariableDeclarationUsageDistanceDefault\.java"/>
+
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/equalsavoidnull/InputEqualsAvoidNullIgnoreCase\.java"/>
   <suppress checks="FileLength"

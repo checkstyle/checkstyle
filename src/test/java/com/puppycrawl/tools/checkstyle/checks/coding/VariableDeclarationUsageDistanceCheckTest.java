@@ -23,13 +23,45 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck.MSG_KEY_EXT;
 
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class VariableDeclarationUsageDistanceCheckTest extends
         AbstractModuleTestSupport {
+
+    @Test
+    public void dumpViolations() throws Exception {
+        String[] configs = {"Default", "Final", "General", "RegExp", "Scopes"};
+        String[] parts = {"", "Methods", "Blocks", "Logic", "Listeners", "Issue32A", "Issue32B", "Loops", "Nested", "TryFinally"};
+        StringBuilder sb = new StringBuilder();
+        for (String cfg : configs) {
+            for (String p : parts) {
+                String fname = "InputVariableDeclarationUsageDistance" + cfg + p + ".java";
+                String fpath = getPath(fname);
+                TestInputConfiguration conf = InlineConfigParser.parse(fpath);
+                getStream().flush();
+                getStream().reset();
+                Checker checker = createChecker(conf.createConfiguration());
+                checker.process(Collections.singletonList(new File(fpath)));
+                checker.destroy();
+                String raw = getStream().toString(StandardCharsets.UTF_8);
+                for (String line : raw.split("\\R")) {
+                    if (line.contains(": ") && !line.startsWith("Starting audit...") && !line.startsWith("Audit done.")) {
+                        sb.append("VIOLATION:").append(fname).append(':').append(line).append('\n');
+                    }
+                }
+            }
+        }
+        java.nio.file.Files.writeString(java.nio.file.Path.of("target/violations.txt"), sb.toString());
+    }
 
     @Override
     public String getPackageLocation() {
@@ -39,45 +71,117 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     @Test
     public void testGeneralLogic() throws Exception {
         final String[] expected = {
-            "42:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
-            "50:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
-            "56:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
-            "69:9: " + getCheckMessage(MSG_KEY, "count", 2, 1),
-            "83:9: " + getCheckMessage(MSG_KEY, "count", 4, 1),
-            "108:9: " + getCheckMessage(MSG_KEY, "arg", 2, 1),
-            "156:9: " + getCheckMessage(MSG_KEY, "m", 3, 1),
-            "157:9: " + getCheckMessage(MSG_KEY, "n", 2, 1),
-            "196:9: " + getCheckMessage(MSG_KEY, "result", 2, 1),
-            "231:9: " + getCheckMessage(MSG_KEY, "t", 5, 1),
-            "234:9: " + getCheckMessage(MSG_KEY, "c", 3, 1),
-            "235:9: " + getCheckMessage(MSG_KEY, "d2", 3, 1),
-            "272:9: " + getCheckMessage(MSG_KEY, "sel", 2, 1),
-            "273:9: " + getCheckMessage(MSG_KEY, "model", 2, 1),
-            "299:9: " + getCheckMessage(MSG_KEY, "sw", 2, 1),
-            "312:9: " + getCheckMessage(MSG_KEY, "wh", 2, 1),
-            "355:9: " + getCheckMessage(MSG_KEY, "green", 2, 1),
-            "356:9: " + getCheckMessage(MSG_KEY, "blue", 3, 1),
-            "379:9: " + getCheckMessage(MSG_KEY, "intervalMs", 2, 1),
-            "466:9: " + getCheckMessage(MSG_KEY, "aOpt", 3, 1),
-            "467:9: " + getCheckMessage(MSG_KEY, "bOpt", 2, 1),
-            "483:9: " + getCheckMessage(MSG_KEY, "l1", 3, 1),
-            "483:9: " + getCheckMessage(MSG_KEY, "l2", 2, 1),
-            "494:9: " + getCheckMessage(MSG_KEY, "myOption", 7, 1),
-            "506:9: " + getCheckMessage(MSG_KEY, "myOption", 6, 1),
-            "519:9: " + getCheckMessage(MSG_KEY, "count", 4, 1),
-            "520:9: " + getCheckMessage(MSG_KEY, "files", 2, 1),
-            "555:13: " + getCheckMessage(MSG_KEY, "id", 2, 1),
-            "557:13: " + getCheckMessage(MSG_KEY, "parentId", 3, 1),
-            "906:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
-            "916:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
-            "982:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
-            "993:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
-            "1004:9: " + getCheckMessage(MSG_KEY, "a", 3, 1),
-            "1039:9: " + getCheckMessage(MSG_KEY, "c", 3, 1),
-            "1069:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+            "40:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "48:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
+            "54:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
+            "67:9: " + getCheckMessage(MSG_KEY, "count", 2, 1),
+            "77:9: " + getCheckMessage(MSG_KEY, "count", 4, 1),
+            "102:9: " + getCheckMessage(MSG_KEY, "arg", 2, 1),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceGeneral.java"), expected);
+    }
+
+    @Test
+    public void testGeneralLogicMethods() throws Exception {
+        final String[] expected = {
+            "55:9: " + getCheckMessage(MSG_KEY, "m", 3, 1),
+            "56:9: " + getCheckMessage(MSG_KEY, "n", 2, 1),
+            "97:9: " + getCheckMessage(MSG_KEY, "result", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceGeneralMethods.java"), expected);
+    }
+
+    @Test
+    public void testGeneralLogicBlocks() throws Exception {
+        final String[] expected = {
+            "39:9: " + getCheckMessage(MSG_KEY, "t", 5, 1),
+            "42:9: " + getCheckMessage(MSG_KEY, "c", 3, 1),
+            "43:9: " + getCheckMessage(MSG_KEY, "d2", 3, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceGeneralBlocks.java"), expected);
+    }
+
+    @Test
+    public void testGeneralLogicLogic() throws Exception {
+        final String[] expected = {
+            "41:9: " + getCheckMessage(MSG_KEY, "sel", 2, 1),
+            "42:9: " + getCheckMessage(MSG_KEY, "model", 2, 1),
+            "67:9: " + getCheckMessage(MSG_KEY, "sw", 2, 1),
+            "80:9: " + getCheckMessage(MSG_KEY, "wh", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceGeneralLogic.java"), expected);
+    }
+
+    @Test
+    public void testGeneralLogicListeners() throws Exception {
+        final String[] expected = {
+            "29:9: " + getCheckMessage(MSG_KEY, "green", 2, 1),
+            "30:9: " + getCheckMessage(MSG_KEY, "blue", 3, 1),
+            "54:9: " + getCheckMessage(MSG_KEY, "intervalMs", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceGeneralListeners.java"), expected);
+    }
+
+    @Test
+    public void testGeneralLogicIssue32A() throws Exception {
+        final String[] expected = {
+            "78:9: " + getCheckMessage(MSG_KEY, "aOpt", 3, 1),
+            "79:9: " + getCheckMessage(MSG_KEY, "bOpt", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceGeneralIssue32A.java"), expected);
+    }
+
+    @Test
+    public void testGeneralLogicIssue32B() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY, "l1", 3, 1),
+            "16:9: " + getCheckMessage(MSG_KEY, "l2", 2, 1),
+            "27:9: " + getCheckMessage(MSG_KEY, "myOption", 7, 1),
+            "39:9: " + getCheckMessage(MSG_KEY, "myOption", 6, 1),
+            "49:9: " + getCheckMessage(MSG_KEY, "count", 4, 1),
+            "50:9: " + getCheckMessage(MSG_KEY, "files", 2, 1),
+            "79:13: " + getCheckMessage(MSG_KEY, "id", 2, 1),
+            "81:13: " + getCheckMessage(MSG_KEY, "parentId", 3, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceGeneralIssue32B.java"), expected);
+    }
+
+    @Test
+    public void testGeneralLogicLoops() throws Exception {
+        final String[] expected = {
+            "64:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+            "74:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceGeneralLoops.java"), expected);
+    }
+
+    @Test
+    public void testGeneralLogicNested() throws Exception {
+        final String[] expected = {
+            "57:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+            "69:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "90:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceGeneralNested.java"), expected);
+    }
+
+    @Test
+    public void testGeneralLogicTryFinally() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY, "a", 3, 1),
+            "51:9: " + getCheckMessage(MSG_KEY, "c", 3, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceGeneralTryFinally.java"), expected);
     }
 
     @Test
@@ -195,121 +299,333 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     @Test
     public void testVariableRegExp() throws Exception {
         final String[] expected = {
-            "50:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
-            "56:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
-            "69:9: " + getCheckMessage(MSG_KEY, "count", 2, 1),
-            "83:9: " + getCheckMessage(MSG_KEY, "count", 4, 1),
-            "108:9: " + getCheckMessage(MSG_KEY, "arg", 2, 1),
-            "157:9: " + getCheckMessage(MSG_KEY, "n", 2, 1),
-            "196:9: " + getCheckMessage(MSG_KEY, "result", 2, 1),
-            "235:9: " + getCheckMessage(MSG_KEY, "d2", 3, 1),
-            "272:9: " + getCheckMessage(MSG_KEY, "sel", 2, 1),
-            "273:9: " + getCheckMessage(MSG_KEY, "model", 2, 1),
-            "299:9: " + getCheckMessage(MSG_KEY, "sw", 2, 1),
-            "312:9: " + getCheckMessage(MSG_KEY, "wh", 2, 1),
-            "355:9: " + getCheckMessage(MSG_KEY, "green", 2, 1),
-            "356:9: " + getCheckMessage(MSG_KEY, "blue", 3, 1),
-            "379:9: " + getCheckMessage(MSG_KEY, "intervalMs", 2, 1),
-            "466:9: " + getCheckMessage(MSG_KEY, "aOpt", 3, 1),
-            "467:9: " + getCheckMessage(MSG_KEY, "bOpt", 2, 1),
-            "483:9: " + getCheckMessage(MSG_KEY, "l1", 3, 1),
-            "483:9: " + getCheckMessage(MSG_KEY, "l2", 2, 1),
-            "494:9: " + getCheckMessage(MSG_KEY, "myOption", 7, 1),
-            "506:9: " + getCheckMessage(MSG_KEY, "myOption", 6, 1),
-            "519:9: " + getCheckMessage(MSG_KEY, "count", 4, 1),
-            "520:9: " + getCheckMessage(MSG_KEY, "files", 2, 1),
-            "555:13: " + getCheckMessage(MSG_KEY, "id", 2, 1),
-            "557:13: " + getCheckMessage(MSG_KEY, "parentId", 3, 1),
+            "48:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
+            "54:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
+            "67:9: " + getCheckMessage(MSG_KEY, "count", 2, 1),
+            "77:9: " + getCheckMessage(MSG_KEY, "count", 4, 1),
+            "102:9: " + getCheckMessage(MSG_KEY, "arg", 2, 1),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceRegExp.java"), expected);
     }
 
     @Test
+    public void testVariableRegExpMethods() throws Exception {
+        final String[] expected = {
+            "56:9: " + getCheckMessage(MSG_KEY, "n", 2, 1),
+            "97:9: " + getCheckMessage(MSG_KEY, "result", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceRegExpMethods.java"), expected);
+    }
+
+    @Test
+    public void testVariableRegExpBlocks() throws Exception {
+        final String[] expected = {
+            "43:9: " + getCheckMessage(MSG_KEY, "d2", 3, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceRegExpBlocks.java"), expected);
+    }
+
+    @Test
+    public void testVariableRegExpLogic() throws Exception {
+        final String[] expected = {
+            "41:9: " + getCheckMessage(MSG_KEY, "sel", 2, 1),
+            "42:9: " + getCheckMessage(MSG_KEY, "model", 2, 1),
+            "67:9: " + getCheckMessage(MSG_KEY, "sw", 2, 1),
+            "80:9: " + getCheckMessage(MSG_KEY, "wh", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceRegExpLogic.java"), expected);
+    }
+
+    @Test
+    public void testVariableRegExpListeners() throws Exception {
+        final String[] expected = {
+            "29:9: " + getCheckMessage(MSG_KEY, "green", 2, 1),
+            "30:9: " + getCheckMessage(MSG_KEY, "blue", 3, 1),
+            "54:9: " + getCheckMessage(MSG_KEY, "intervalMs", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceRegExpListeners.java"), expected);
+    }
+
+    @Test
+    public void testVariableRegExpIssue32A() throws Exception {
+        final String[] expected = {
+            "78:9: " + getCheckMessage(MSG_KEY, "aOpt", 3, 1),
+            "79:9: " + getCheckMessage(MSG_KEY, "bOpt", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceRegExpIssue32A.java"), expected);
+    }
+
+    @Test
+    public void testVariableRegExpIssue32B() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY, "l1", 3, 1),
+            "16:9: " + getCheckMessage(MSG_KEY, "l2", 2, 1),
+            "27:9: " + getCheckMessage(MSG_KEY, "myOption", 7, 1),
+            "39:9: " + getCheckMessage(MSG_KEY, "myOption", 6, 1),
+            "49:9: " + getCheckMessage(MSG_KEY, "count", 4, 1),
+            "50:9: " + getCheckMessage(MSG_KEY, "files", 2, 1),
+            "79:13: " + getCheckMessage(MSG_KEY, "id", 2, 1),
+            "81:13: " + getCheckMessage(MSG_KEY, "parentId", 3, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceRegExpIssue32B.java"), expected);
+    }
+
+    @Test
+    public void testVariableRegExpLoops() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceRegExpLoops.java"), expected);
+    }
+
+    @Test
+    public void testVariableRegExpNested() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceRegExpNested.java"), expected);
+    }
+
+    @Test
+    public void testVariableRegExpTryFinally() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceRegExpTryFinally.java"), expected);
+    }
+
+    @Test
     public void testValidateBetweenScopesOption() throws Exception {
         final String[] expected = {
-            "42:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
-            "50:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
-            "56:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
-            "83:9: " + getCheckMessage(MSG_KEY, "count", 4, 1),
-            "108:9: " + getCheckMessage(MSG_KEY, "arg", 2, 1),
-            "231:9: " + getCheckMessage(MSG_KEY, "t", 5, 1),
-            "234:9: " + getCheckMessage(MSG_KEY, "c", 3, 1),
-            "235:9: " + getCheckMessage(MSG_KEY, "d2", 3, 1),
-            "272:9: " + getCheckMessage(MSG_KEY, "sel", 2, 1),
-            "273:9: " + getCheckMessage(MSG_KEY, "model", 2, 1),
-            "312:9: " + getCheckMessage(MSG_KEY, "wh", 2, 1),
-            "355:9: " + getCheckMessage(MSG_KEY, "green", 2, 1),
-            "356:9: " + getCheckMessage(MSG_KEY, "blue", 3, 1),
-            "379:9: " + getCheckMessage(MSG_KEY, "intervalMs", 2, 1),
-            "466:9: " + getCheckMessage(MSG_KEY, "aOpt", 3, 1),
-            "467:9: " + getCheckMessage(MSG_KEY, "bOpt", 2, 1),
-            "483:9: " + getCheckMessage(MSG_KEY, "l1", 3, 1),
-            "483:9: " + getCheckMessage(MSG_KEY, "l2", 2, 1),
-            "494:9: " + getCheckMessage(MSG_KEY, "myOption", 7, 1),
-            "506:9: " + getCheckMessage(MSG_KEY, "myOption", 6, 1),
-            "519:9: " + getCheckMessage(MSG_KEY, "count", 4, 1),
-            "520:9: " + getCheckMessage(MSG_KEY, "files", 2, 1),
-            "555:13: " + getCheckMessage(MSG_KEY, "id", 2, 1),
-            "557:13: " + getCheckMessage(MSG_KEY, "parentId", 4, 1),
-            "858:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
-            "870:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
-            "882:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
-            "894:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
-            "906:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
-            "916:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
-            "927:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
-            "948:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
-            "982:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
-            "993:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
-            "1004:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
-            "1039:9: " + getCheckMessage(MSG_KEY, "c", 4, 1),
-            "1069:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+            "40:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "48:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
+            "54:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
+            "77:9: " + getCheckMessage(MSG_KEY, "count", 4, 1),
+            "102:9: " + getCheckMessage(MSG_KEY, "arg", 2, 1),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceScopes.java"), expected);
     }
 
     @Test
+    public void testValidateBetweenScopesOptionMethods() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceScopesMethods.java"), expected);
+    }
+
+    @Test
+    public void testValidateBetweenScopesOptionBlocks() throws Exception {
+        final String[] expected = {
+            "39:9: " + getCheckMessage(MSG_KEY, "t", 5, 1),
+            "42:9: " + getCheckMessage(MSG_KEY, "c", 3, 1),
+            "43:9: " + getCheckMessage(MSG_KEY, "d2", 3, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceScopesBlocks.java"), expected);
+    }
+
+    @Test
+    public void testValidateBetweenScopesOptionLogic() throws Exception {
+        final String[] expected = {
+            "41:9: " + getCheckMessage(MSG_KEY, "sel", 2, 1),
+            "42:9: " + getCheckMessage(MSG_KEY, "model", 2, 1),
+            "80:9: " + getCheckMessage(MSG_KEY, "wh", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceScopesLogic.java"), expected);
+    }
+
+    @Test
+    public void testValidateBetweenScopesOptionListeners() throws Exception {
+        final String[] expected = {
+            "29:9: " + getCheckMessage(MSG_KEY, "green", 2, 1),
+            "30:9: " + getCheckMessage(MSG_KEY, "blue", 3, 1),
+            "54:9: " + getCheckMessage(MSG_KEY, "intervalMs", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceScopesListeners.java"), expected);
+    }
+
+    @Test
+    public void testValidateBetweenScopesOptionIssue32A() throws Exception {
+        final String[] expected = {
+            "78:9: " + getCheckMessage(MSG_KEY, "aOpt", 3, 1),
+            "79:9: " + getCheckMessage(MSG_KEY, "bOpt", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceScopesIssue32A.java"), expected);
+    }
+
+    @Test
+    public void testValidateBetweenScopesOptionIssue32B() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY, "l1", 3, 1),
+            "16:9: " + getCheckMessage(MSG_KEY, "l2", 2, 1),
+            "27:9: " + getCheckMessage(MSG_KEY, "myOption", 7, 1),
+            "39:9: " + getCheckMessage(MSG_KEY, "myOption", 6, 1),
+            "49:9: " + getCheckMessage(MSG_KEY, "count", 4, 1),
+            "50:9: " + getCheckMessage(MSG_KEY, "files", 2, 1),
+            "79:13: " + getCheckMessage(MSG_KEY, "id", 2, 1),
+            "81:13: " + getCheckMessage(MSG_KEY, "parentId", 4, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceScopesIssue32B.java"), expected);
+    }
+
+    @Test
+    public void testValidateBetweenScopesOptionLoops() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
+            "28:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
+            "40:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
+            "52:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
+            "64:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
+            "74:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
+            "85:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceScopesLoops.java"), expected);
+    }
+
+    @Test
+    public void testValidateBetweenScopesOptionNested() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
+            "57:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+            "69:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "90:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceScopesNested.java"), expected);
+    }
+
+    @Test
+    public void testValidateBetweenScopesOptionTryFinally() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+            "51:9: " + getCheckMessage(MSG_KEY, "c", 4, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceScopesTryFinally.java"), expected);
+    }
+
+    @Test
     public void testIgnoreFinalOption() throws Exception {
         final String[] expected = {
-            "42:9: " + getCheckMessage(MSG_KEY_EXT, "a", 2, 1),
-            "50:9: " + getCheckMessage(MSG_KEY_EXT, "temp", 2, 1),
-            "56:9: " + getCheckMessage(MSG_KEY_EXT, "temp", 2, 1),
-            "69:9: " + getCheckMessage(MSG_KEY_EXT, "count", 2, 1),
-            "83:9: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 1),
-            "108:9: " + getCheckMessage(MSG_KEY_EXT, "arg", 2, 1),
-            "156:9: " + getCheckMessage(MSG_KEY_EXT, "m", 3, 1),
-            "157:9: " + getCheckMessage(MSG_KEY_EXT, "n", 2, 1),
-            "196:9: " + getCheckMessage(MSG_KEY_EXT, "result", 2, 1),
-            "231:9: " + getCheckMessage(MSG_KEY_EXT, "t", 5, 1),
-            "234:9: " + getCheckMessage(MSG_KEY_EXT, "c", 3, 1),
-            "235:9: " + getCheckMessage(MSG_KEY_EXT, "d2", 3, 1),
-            "272:9: " + getCheckMessage(MSG_KEY_EXT, "sel", 2, 1),
-            "273:9: " + getCheckMessage(MSG_KEY_EXT, "model", 2, 1),
-            "299:9: " + getCheckMessage(MSG_KEY_EXT, "sw", 2, 1),
-            "312:9: " + getCheckMessage(MSG_KEY_EXT, "wh", 2, 1),
-            "355:9: " + getCheckMessage(MSG_KEY_EXT, "green", 2, 1),
-            "356:9: " + getCheckMessage(MSG_KEY_EXT, "blue", 3, 1),
-            "466:9: " + getCheckMessage(MSG_KEY_EXT, "aOpt", 3, 1),
-            "467:9: " + getCheckMessage(MSG_KEY_EXT, "bOpt", 2, 1),
-            "483:9: " + getCheckMessage(MSG_KEY_EXT, "l1", 3, 1),
-            "483:9: " + getCheckMessage(MSG_KEY_EXT, "l2", 2, 1),
-            "494:9: " + getCheckMessage(MSG_KEY_EXT, "myOption", 7, 1),
-            "506:9: " + getCheckMessage(MSG_KEY_EXT, "myOption", 6, 1),
-            "519:9: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 1),
-            "520:9: " + getCheckMessage(MSG_KEY_EXT, "files", 2, 1),
-            "555:13: " + getCheckMessage(MSG_KEY_EXT, "id", 2, 1),
-            "557:13: " + getCheckMessage(MSG_KEY_EXT, "parentId", 3, 1),
-            "906:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
-            "916:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
-            "982:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
-            "1004:9: " + getCheckMessage(MSG_KEY_EXT, "a", 3, 1),
-            "1039:9: " + getCheckMessage(MSG_KEY_EXT, "c", 3, 1),
-            "1069:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
+            "40:9: " + getCheckMessage(MSG_KEY_EXT, "a", 2, 1),
+            "48:9: " + getCheckMessage(MSG_KEY_EXT, "temp", 2, 1),
+            "54:9: " + getCheckMessage(MSG_KEY_EXT, "temp", 2, 1),
+            "67:9: " + getCheckMessage(MSG_KEY_EXT, "count", 2, 1),
+            "77:9: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 1),
+            "102:9: " + getCheckMessage(MSG_KEY_EXT, "arg", 2, 1),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceFinal.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreFinalOptionMethods() throws Exception {
+        final String[] expected = {
+            "55:9: " + getCheckMessage(MSG_KEY_EXT, "m", 3, 1),
+            "56:9: " + getCheckMessage(MSG_KEY_EXT, "n", 2, 1),
+            "97:9: " + getCheckMessage(MSG_KEY_EXT, "result", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceFinalMethods.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreFinalOptionBlocks() throws Exception {
+        final String[] expected = {
+            "39:9: " + getCheckMessage(MSG_KEY_EXT, "t", 5, 1),
+            "42:9: " + getCheckMessage(MSG_KEY_EXT, "c", 3, 1),
+            "43:9: " + getCheckMessage(MSG_KEY_EXT, "d2", 3, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceFinalBlocks.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreFinalOptionLogic() throws Exception {
+        final String[] expected = {
+            "41:9: " + getCheckMessage(MSG_KEY_EXT, "sel", 2, 1),
+            "42:9: " + getCheckMessage(MSG_KEY_EXT, "model", 2, 1),
+            "67:9: " + getCheckMessage(MSG_KEY_EXT, "sw", 2, 1),
+            "80:9: " + getCheckMessage(MSG_KEY_EXT, "wh", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceFinalLogic.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreFinalOptionListeners() throws Exception {
+        final String[] expected = {
+            "29:9: " + getCheckMessage(MSG_KEY_EXT, "green", 2, 1),
+            "30:9: " + getCheckMessage(MSG_KEY_EXT, "blue", 3, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceFinalListeners.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreFinalOptionIssue32A() throws Exception {
+        final String[] expected = {
+            "78:9: " + getCheckMessage(MSG_KEY_EXT, "aOpt", 3, 1),
+            "79:9: " + getCheckMessage(MSG_KEY_EXT, "bOpt", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceFinalIssue32A.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreFinalOptionIssue32B() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY_EXT, "l1", 3, 1),
+            "16:9: " + getCheckMessage(MSG_KEY_EXT, "l2", 2, 1),
+            "27:9: " + getCheckMessage(MSG_KEY_EXT, "myOption", 7, 1),
+            "39:9: " + getCheckMessage(MSG_KEY_EXT, "myOption", 6, 1),
+            "49:9: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 1),
+            "50:9: " + getCheckMessage(MSG_KEY_EXT, "files", 2, 1),
+            "79:13: " + getCheckMessage(MSG_KEY_EXT, "id", 2, 1),
+            "81:13: " + getCheckMessage(MSG_KEY_EXT, "parentId", 3, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceFinalIssue32B.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreFinalOptionLoops() throws Exception {
+        final String[] expected = {
+            "64:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
+            "74:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceFinalLoops.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreFinalOptionNested() throws Exception {
+        final String[] expected = {
+            "57:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
+            "90:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceFinalNested.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreFinalOptionTryFinally() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY_EXT, "a", 3, 1),
+            "51:9: " + getCheckMessage(MSG_KEY_EXT, "c", 3, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceFinalTryFinally.java"), expected);
     }
 
     @Test
@@ -330,26 +646,94 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     @Test
     public void testDefaultConfiguration() throws Exception {
         final String[] expected = {
-            "83:9: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 3),
-            "231:9: " + getCheckMessage(MSG_KEY_EXT, "t", 5, 3),
-            "491:9: " + getCheckMessage(MSG_KEY_EXT, "myOption", 7, 3),
-            "503:9: " + getCheckMessage(MSG_KEY_EXT, "myOption", 6, 3),
-            "516:9: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 3),
-            "554:13: " + getCheckMessage(MSG_KEY_EXT, "parentId", 4, 3),
-            "855:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
-            "867:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
-            "879:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
-            "891:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
-            "903:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
-            "913:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
-            "945:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
-            "1036:9: " + getCheckMessage(MSG_KEY_EXT, "c", 4, 3),
-            "979:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
-            "1001:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
-            "1066:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
+            "77:9: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 3),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceDefault.java"), expected);
+    }
+
+    @Test
+    public void testDefaultConfigurationMethods() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceDefaultMethods.java"), expected);
+    }
+
+    @Test
+    public void testDefaultConfigurationBlocks() throws Exception {
+        final String[] expected = {
+            "39:9: " + getCheckMessage(MSG_KEY_EXT, "t", 5, 3),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceDefaultBlocks.java"), expected);
+    }
+
+    @Test
+    public void testDefaultConfigurationLogic() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceDefaultLogic.java"), expected);
+    }
+
+    @Test
+    public void testDefaultConfigurationListeners() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceDefaultListeners.java"), expected);
+    }
+
+    @Test
+    public void testDefaultConfigurationIssue32A() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceDefaultIssue32A.java"), expected);
+    }
+
+    @Test
+    public void testDefaultConfigurationIssue32B() throws Exception {
+        final String[] expected = {
+            "24:9: " + getCheckMessage(MSG_KEY_EXT, "myOption", 7, 3),
+            "36:9: " + getCheckMessage(MSG_KEY_EXT, "myOption", 6, 3),
+            "46:9: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 3),
+            "78:13: " + getCheckMessage(MSG_KEY_EXT, "parentId", 4, 3),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceDefaultIssue32B.java"), expected);
+    }
+
+    @Test
+    public void testDefaultConfigurationLoops() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
+            "28:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
+            "40:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
+            "52:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
+            "64:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
+            "74:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceDefaultLoops.java"), expected);
+    }
+
+    @Test
+    public void testDefaultConfigurationNested() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
+            "57:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
+            "90:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceDefaultNested.java"), expected);
+    }
+
+    @Test
+    public void testDefaultConfigurationTryFinally() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
+            "51:9: " + getCheckMessage(MSG_KEY_EXT, "c", 4, 3),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceDefaultTryFinally.java"), expected);
     }
 
     @Test
