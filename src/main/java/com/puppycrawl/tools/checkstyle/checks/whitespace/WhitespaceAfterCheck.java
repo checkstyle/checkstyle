@@ -183,8 +183,9 @@ public class WhitespaceAfterCheck extends AbstractCheck {
      * @return true if ast token is followed by a whitespace.
      */
     private static boolean isFollowedByWhitespace(DetailAST targetAST, int... line) {
-        final int after =
-            targetAST.getColumnNo() + targetAST.getText().length();
+        final String tokenText = targetAST.getText();
+        final int after = targetAST.getColumnNo()
+            + tokenText.codePointCount(0, tokenText.length());
         boolean followedByWhitespace = true;
 
         if (after < line.length) {
