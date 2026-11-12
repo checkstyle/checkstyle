@@ -234,4 +234,19 @@ public class WhitespaceBeforeEmptyBodyCheckTest extends AbstractModuleTestSuppor
                 getNonCompilablePath(filename), expected);
     }
 
+    @Test
+    public void testSupplementaryCharacters() throws Exception {
+        final String[] expected = {
+            "19:12: " + getCheckMessage(MSG_KEY, "{"),
+            "23:16: " + getCheckMessage(MSG_KEY, "{"),
+            "27:12: " + getCheckMessage(MSG_KEY, "{"),
+            "31:18: " + getCheckMessage(MSG_KEY, "{"),
+            "35:39: " + getCheckMessage(MSG_KEY, "{"),
+            "39:25: " + getCheckMessage(MSG_KEY, "{"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceBeforeEmptyBodySupplementaryCharacters.java"), expected);
+    }
+
 }
