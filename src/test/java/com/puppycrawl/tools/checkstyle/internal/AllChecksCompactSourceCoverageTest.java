@@ -86,21 +86,7 @@ public class AllChecksCompactSourceCoverageTest {
      */
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
         "CustomImportOrderCheck",
-        "ImportOrderCheck",
-        "InvalidJavadocPositionCheck",
-        "JavadocLeadingAsteriskAlignCheck",
-        "JavadocMethodCheck",
-        "JavadocMissingWhitespaceAfterAsteriskCheck",
-        "JavadocSeeTagOrderCheck",
-        "JavadocTagContinuationIndentationCheck",
-        "JavadocVariableCheck",
-        "LambdaParameterNameCheck",
-        "MissingDeprecatedCheck",
-        "MissingJavadocTypeCheck",
-        "ModifiedControlVariableCheck",
-        "PackageAnnotationCheck",
-        "RedundantModifierCheck",
-        "UnnecessarySemicolonInTryWithResourcesCheck"
+        "ImportOrderCheck"
     );
 
     @Test
@@ -127,7 +113,14 @@ public class AllChecksCompactSourceCoverageTest {
 
         final Set<String> outdatedSuppressions = SUPPRESSED_CHECKS.stream()
                 .filter(check -> !checkNames.contains(check))
-                .collect(Collectors.toUnmodifiableSet());
+                .collect(Collectors.toCollection(TreeSet::new));
+
+        for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
+            if (SUPPRESSED_CHECKS.contains(check.getSimpleName())
+                    && findCoverageFailures(check).isEmpty()) {
+                outdatedSuppressions.add(check.getSimpleName());
+            }
+        }
 
         assertWithMessage("Outdated suppressions (can be removed): %s", outdatedSuppressions)
                 .that(outdatedSuppressions)
