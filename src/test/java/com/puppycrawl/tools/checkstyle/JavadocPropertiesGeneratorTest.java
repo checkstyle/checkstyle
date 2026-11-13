@@ -47,14 +47,16 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
     private static final String EOL = System.lineSeparator();
-    private static final String USAGE = String.format(Locale.ROOT,
-            "Usage: java com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator [-hV]%n"
-                    + "       --destfile=<outputFile> <inputFile>%n"
-                    + "      <inputFile>   The input file.%n"
-                    + "      --destfile=<outputFile>%n"
-                    + "                    The output file.%n"
-                    + "  -h, --help        Show this help message and exit.%n"
-                    + "  -V, --version     Print version information and exit.%n");
+    private static final String USAGE =
+            """
+            Usage: java com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator [-hV]
+                   --destfile=<outputFile> <inputFile>
+                  <inputFile>   The input file.
+                  --destfile=<outputFile>
+                                The output file.
+              -h, --help        Show this help message and exit.
+              -V, --version     Print version information and exit.
+            """.replace("\n", EOL);
     private static final File DESTFILE = new File("target/tokentypes.properties");
     private static final String DESTFILE_ABSOLUTE_PATH = DESTFILE.getAbsolutePath();
 
@@ -226,14 +228,16 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testCorrect(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws Exception {
-        final String expectedContent = "EOF1=The end of file token." + EOL
-            + "EOF2=The end of file token." + EOL
-            + "TYPE_EXTENSION_AND='&amp;' symbol when used in a generic upper or lower bounds"
-            + " constrain e.g&#46;"
-            + " <code>Comparable<T extends Serializable & CharSequence></code>!" + EOL
-            + "LCURLY=A left curly brace (<code>{</code>)." + EOL
-            + "DEPRECATED_LITERAL='@deprecated' literal in @deprecated Javadoc tag?" + EOL
-            + "HTML_SELF_CLOSING_BR=A line break tag <br/> in Javadoc comments." + EOL;
+        final String expectedContent =
+            """
+            EOF1=The end of file token.
+            EOF2=The end of file token.
+            TYPE_EXTENSION_AND='&amp;' symbol when used in a generic upper or lower bounds \
+            constrain e.g&#46; <code>Comparable<T extends Serializable & CharSequence></code>!
+            LCURLY=A left curly brace (<code>{</code>).
+            DEPRECATED_LITERAL='@deprecated' literal in @deprecated Javadoc tag?
+            HTML_SELF_CLOSING_BR=A line break tag <br/> in Javadoc comments.
+            """.replace("\n", EOL);
 
         JavadocPropertiesGenerator.main(getPath("InputJavadocPropertiesGeneratorCorrect.java"),
             "--destfile", DESTFILE_ABSOLUTE_PATH);
