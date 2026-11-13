@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_K
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -38,6 +39,8 @@ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck;
@@ -61,7 +64,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     public void cleanUp() {
         // clear cache that may have been set by tests
 
-        new SuppressWarningsHolder().beginTree(null);
+        new SuppressWarningsHolder().destroy();
 
         final Map<String, String> map = TestUtil.getInternalStaticStateMap(
                 SuppressWarningsHolder.class, "CHECK_ALIAS_MAP");
@@ -234,7 +237,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIsSuppressedWithAllArgument() throws Exception {
-        populateHolder("all", 100, 100, 350, 350);
+        populateHolder("fileName", "all", 100, 100, 350, 350);
 
         final Checker source = new Checker();
         final Violation firstViolationForTest =
@@ -260,6 +263,64 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         assertWithMessage("Event is not suppressed")
                 .that(SuppressWarningsHolder.isSuppressed(thirdEventForTest))
                 .isTrue();
+    }
+
+    @Test
+    public void testIsSuppressedWithFileNameRelativeToBasedir() throws Exception {
+        final String parsedFile = Path.of("base", "dir", "File.java").toAbsolutePath().toString();
+        populateHolder(parsedFile, "check", 100, 100, 350, 350);
+
+        final AuditEvent insideBasedir =
+                createAuditEvent(Path.of("dir", "File.java").toString(), "check", 110, 10);
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(insideBasedir))
+                .isTrue();
+
+        final AuditEvent outsideBasedir =
+                createAuditEvent(Path.of("..", "dir", "File.java").toString(), "check", 110, 10);
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(outsideBasedir))
+                .isTrue();
+
+        final AuditEvent otherFile = createAuditEvent(
+                Path.of("..", "dir", "File.properties").toString(), "check", 110, 10);
+        assertWithMessage("Event is suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(otherFile))
+                .isFalse();
+    }
+
+    @Test
+    public void testIsSuppressedInOtherFileWithSameName() throws Exception {
+        final Path parsedFile = Path.of("base", "dir", "File.java").toAbsolutePath();
+        populateHolder(parsedFile.toString(), "check", 100, 100, 350, 350);
+
+        final String otherFile = parsedFile.getRoot().resolve(Path.of("dir", "File.java"))
+                .toString();
+        final AuditEvent event = createAuditEvent(otherFile, "check", 110, 10);
+        assertWithMessage("Event is suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isFalse();
+    }
+
+    @Test
+    public void testIsSuppressedWithoutParsedFile() {
+        final AuditEvent event = createAuditEvent("check", 110, 10);
+
+        assertWithMessage("Event is suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isFalse();
+    }
+
+    @Test
+    public void testSuppressionsDoNotApplyToNextFile() throws Exception {
+        final List<String> expectedFromJavaFile = List.of();
+        final List<String> expectedFromPropertiesFile = List.of(
+            "19: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 91));
+
+        verifyWithInlineConfigParser(
+                getPath("InputSuppressWarningsHolderNextFile.java"),
+                getPath("InputSuppressWarningsHolderNextFile.properties"),
+                expectedFromJavaFile, expectedFromPropertiesFile);
     }
 
     @Test
@@ -393,10 +454,12 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     @Test
     public void testClearState() throws Exception {
         final SuppressWarningsHolder check = new SuppressWarningsHolder();
+        final File inputFile = Path.of(getPath("InputSuppressWarningsHolder.java")).toFile();
+        check.setFileContents(new FileContents(new FileText(inputFile, List.of())));
 
         final Optional<DetailAST> annotationDef = TestUtil.findTokenInAstByPredicate(
                 JavaParser.parseFile(
-                    new File(getPath("InputSuppressWarningsHolder.java")),
+                    inputFile,
                     JavaParser.Options.WITHOUT_COMMENTS),
             ast -> ast.getType() == TokenTypes.ANNOTATION);
 
@@ -414,6 +477,17 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                                                          int firstColumn, int lastLine,
                                                          int lastColumn)
             throws Exception {
+        populateHolder("filename", checkName, firstLine, firstColumn, lastLine, lastColumn);
+    }
+
+    private static void populateHolder(String fileName, String checkName, int firstLine,
+                                       int firstColumn, int lastLine, int lastColumn)
+            throws Exception {
+        final SuppressWarningsHolder holder = new SuppressWarningsHolder();
+        holder.setFileContents(
+                new FileContents(new FileText(Path.of(fileName).toFile(), List.of())));
+        holder.beginTree(null);
+
         final Class<?> entry = Class
                 .forName("com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry");
 
@@ -427,10 +501,15 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     private static AuditEvent createAuditEvent(String moduleId, int line, int column) {
+        return createAuditEvent("filename", moduleId, line, column);
+    }
+
+    private static AuditEvent createAuditEvent(String fileName, String moduleId, int line,
+                                               int column) {
         final Checker source = new Checker();
         final Violation violation = new Violation(line, column, null, null, null,
                 moduleId, MemberNameCheck.class, "violation");
-        return new AuditEvent(source, "filename", violation);
+        return new AuditEvent(source, fileName, violation);
     }
 
     @Test
