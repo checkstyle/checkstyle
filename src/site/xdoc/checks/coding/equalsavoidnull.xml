@@ -44,6 +44,14 @@
           pretty common to see null checks right before equals comparisons
           but following this rule such checks are not required.
         </p>
+
+        <p>
+          The check has no type information, so it reports <code>equals()</code> only when it is
+          called on a variable, parameter or field that is declared as a <code>String</code> in
+          the same file. A call on any other expression, such as the result of a method call
+          in <code>getName().equals("text")</code>, is not reported, even when that method
+          returns a <code>String</code>.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="EqualsAvoidNull_Properties">

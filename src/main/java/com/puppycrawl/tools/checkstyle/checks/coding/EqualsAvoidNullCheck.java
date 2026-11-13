@@ -46,6 +46,14 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * but following this rule such checks are not required.
  * </p>
  *
+ * <p>
+ * The check has no type information, so it reports {@code equals()} only when it is
+ * called on a variable, parameter or field that is declared as a {@code String} in
+ * the same file. A call on any other expression, such as the result of a method call
+ * in {@code getName().equals("text")}, is not reported, even when that method
+ * returns a {@code String}.
+ * </p>
+ *
  * @since 5.0
  */
 @FileStatefulCheck

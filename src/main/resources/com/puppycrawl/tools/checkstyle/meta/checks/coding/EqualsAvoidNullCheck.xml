@@ -15,6 +15,14 @@
  will avoid a potential &lt;code&gt;NullPointerException&lt;/code&gt;. Also, it is
  pretty common to see null checks right before equals comparisons
  but following this rule such checks are not required.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ The check has no type information, so it reports &lt;code&gt;equals()&lt;/code&gt; only when it is
+ called on a variable, parameter or field that is declared as a &lt;code&gt;String&lt;/code&gt; in
+ the same file. A call on any other expression, such as the result of a method call
+ in &lt;code&gt;getName().equals("text")&lt;/code&gt;, is not reported, even when that method
+ returns a &lt;code&gt;String&lt;/code&gt;.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="ignoreEqualsIgnoreCase" type="boolean">
