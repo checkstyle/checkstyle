@@ -74,6 +74,24 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testRegressionJavaClass1Operators() throws Exception {
+        verifyAst(getPath("ExpectedRegressionJavaClass1OperatorsAst.txt"),
+                getPath("InputRegressionJavaClass1Operators.java"));
+    }
+
+    @Test
+    public void testRegressionJavaClass1Literals() throws Exception {
+        verifyAst(getPath("ExpectedRegressionJavaClass1LiteralsAst.txt"),
+                getPath("InputRegressionJavaClass1Literals.java"));
+    }
+
+    @Test
+    public void testRegressionJavaClass1Statements() throws Exception {
+        verifyAst(getPath("ExpectedRegressionJavaClass1StatementsAst.txt"),
+                getPath("InputRegressionJavaClass1Statements.java"));
+    }
+
+    @Test
     public void testRegressionAnnotationLocation() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionAnnotationLocation.txt"),
                 getPath("InputAntlr4AstRegressionAnnotationLocation.java"));
