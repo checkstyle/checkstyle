@@ -2030,6 +2030,7 @@
         </executions>
         <configuration>
           <catalogHandling>strict</catalogHandling>
+          <enableSchemaCaching>true</enableSchemaCaching>
           <!-- We need to exclude some files, so the default configuration is not suitable. -->
           <useDefaultFormatFileSet>false</useDefaultFormatFileSet>
           <formatFileSets>
