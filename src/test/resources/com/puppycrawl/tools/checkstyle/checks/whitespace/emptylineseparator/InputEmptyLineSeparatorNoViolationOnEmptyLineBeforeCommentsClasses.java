@@ -1,0 +1,98 @@
+/*
+EmptyLineSeparator
+allowNoEmptyLineBetweenFields = (default)false
+allowMultipleEmptyLines = (default)true
+allowMultipleEmptyLinesInsideClassMembers = (default)true
+tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, MODULE_IMPORT, CLASS_DEF, \
+         INTERFACE_DEF, ENUM_DEF, ENUM_CONSTANT_DEF, STATIC_INIT, INSTANCE_INIT, \
+         METHOD_DEF, CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
+
+public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeCommentsClasses {
+
+    public static class Class1 { }
+
+
+    public static class Class2 { }
+
+
+
+    public static class Class3 {
+
+
+
+
+
+
+        /* no violation */
+
+
+
+
+    }
+
+
+
+
+
+    public static class Class4 {
+
+
+
+
+        /*
+         * no
+         * violation
+         */
+
+
+    }
+
+    /* no violation */
+    public
+
+    static class Class5 {
+
+
+
+
+    }
+
+    public
+    /* no violation */
+
+
+    static class Class6 { }
+
+    /*
+     * Should not have
+     * violation
+     */
+    public static class Class7 { }
+
+
+
+
+
+
+
+    /*
+     * Should have
+     * violation
+     */
+    public static class Class8 { }
+
+    /**
+     * Should not have
+     * violation
+     */
+    public static class Class9 {
+        {
+
+        }
+    }
+}

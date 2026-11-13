@@ -214,6 +214,14 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testDefaultClasses() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorClasses.java"), expected);
+    }
+
+    @Test
     public void testEmptyLineSeparatorException() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -236,6 +244,14 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparator2.java"), expected);
+    }
+
+    @Test
+    public void testAllowNoEmptyLineBetweenFieldsClasses() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparator2Classes.java"), expected);
     }
 
     @Test
@@ -796,46 +812,122 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
             "76:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "import"),
             "82:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
             "86:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
-            "94:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
-            "99:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "106:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "120:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "134:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
-            "141:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "151:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "167:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "185:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "CLASS_DEF"),
-            "191:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "195:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "201:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "213:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "227:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "242:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "245:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
-            "250:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "267:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "276:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "289:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "294:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "300:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "308:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "317:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "323:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "343:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
-            "351:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "94:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "102:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "111:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorWithComments.java"), expected);
     }
 
     @Test
+    public void testLineSeparationBeforeCommentsFields() throws Exception {
+        final String[] expected = {
+            "18:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+            "23:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "30:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "44:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "58:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "78:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "86:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorWithCommentsFields.java"), expected);
+    }
+
+    @Test
+    public void testLineSeparationBeforeCommentsMethods() throws Exception {
+        final String[] expected = {
+            "18:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "25:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "35:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "51:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorWithCommentsMethods.java"), expected);
+    }
+
+    @Test
+    public void testLineSeparationBeforeCommentsClasses() throws Exception {
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "CLASS_DEF"),
+            "26:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "30:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "36:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "48:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "62:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorWithCommentsClasses.java"), expected);
+    }
+
+    @Test
+    public void testLineSeparationBeforeCommentsInterfaces() throws Exception {
+        final String[] expected = {
+            "21:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "24:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
+            "29:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorWithCommentsInterfaces.java"), expected);
+    }
+
+    @Test
+    public void testLineSeparationBeforeCommentsEnums() throws Exception {
+        final String[] expected = {
+            "18:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "27:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "40:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "45:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorWithCommentsEnums.java"), expected);
+    }
+
+    @Test
     public void testIgnoreEmptyLinesBeforeCommentsWhenItIsAllowed() throws Exception {
         final String[] expected = {
             "12:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
-            "239:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorWithComments2.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreEmptyLinesBeforeCommentsWhenItIsAllowedFields() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorWithComments2Fields.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreEmptyLinesBeforeCommentsWhenItIsAllowedMethods() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorWithComments2Methods.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreEmptyLinesBeforeCommentsWhenItIsAllowedClasses() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorWithComments2Classes.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreEmptyLinesBeforeCommentsWhenItIsAllowedInterfaces() throws Exception {
+        final String[] expected = {
+            "24:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorWithComments2Interfaces.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreEmptyLinesBeforeCommentsWhenItIsAllowedEnums() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorWithComments2Enums.java"), expected);
     }
 
     @Test
@@ -843,6 +935,47 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments.java"),
+                expected);
+    }
+
+    @Test
+    public void testNoViolationsOnEmptyLinesBeforeCommentsFields() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeCommentsFields.java"),
+                expected);
+    }
+
+    @Test
+    public void testNoViolationsOnEmptyLinesBeforeCommentsMethods() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeCommentsMethods.java"),
+                expected);
+    }
+
+    @Test
+    public void testNoViolationsOnEmptyLinesBeforeCommentsClasses() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeCommentsClasses.java"),
+                expected);
+    }
+
+    @Test
+    public void testNoViolationsOnEmptyLinesBeforeCommentsInterfaces() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments"
+                        + "Interfaces.java"),
+                expected);
+    }
+
+    @Test
+    public void testNoViolationsOnEmptyLinesBeforeCommentsEnums() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeCommentsEnums.java"),
                 expected);
     }
 
