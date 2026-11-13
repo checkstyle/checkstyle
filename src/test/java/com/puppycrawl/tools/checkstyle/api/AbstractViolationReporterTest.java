@@ -89,13 +89,13 @@ public class AbstractViolationReporterTest {
 
         emptyCheck.log(1, "msgKey");
 
-        final SortedSet<Violation> messages = emptyCheck.getViolations();
+        final SortedSet<Violation> violations = emptyCheck.getViolations();
 
         assertWithMessage("Amount of messages differs from expected")
-                .that(messages)
+                .that(violations)
                 .hasSize(1);
         assertWithMessage("violation differs from expected")
-                .that(messages.getFirst().getViolation())
+                .that(violations.getFirst().getViolation())
                 .isEqualTo("This is a custom violation.");
     }
 
@@ -106,14 +106,14 @@ public class AbstractViolationReporterTest {
         emptyCheck.configure(config);
 
         emptyCheck.log(1, "msgKey", "TestParam");
-        final SortedSet<Violation> messages = emptyCheck.getViolations();
+        final SortedSet<Violation> violations = emptyCheck.getViolations();
 
         assertWithMessage("Amount of messages differs from expected")
-                .that(messages)
+                .that(violations)
                 .hasSize(1);
 
         assertWithMessage("violation differs from expected")
-                .that(messages.getFirst().getViolation())
+                .that(violations.getFirst().getViolation())
                 .isEqualTo("This is a custom violation with TestParam.");
     }
 

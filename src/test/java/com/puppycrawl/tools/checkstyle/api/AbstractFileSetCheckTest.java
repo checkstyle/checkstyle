@@ -69,26 +69,26 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         check.configure(new DefaultConfiguration("filesetcheck"));
         check.setFileExtensions("tmp");
         final File firstFile = new File("inputAbstractFileSetCheck.tmp");
-        final SortedSet<Violation> firstFileMessages =
+        final SortedSet<Violation> firstFileViolations =
             check.process(firstFile, new FileText(firstFile, Collections.emptyList()));
 
         assertWithMessage("Invalid message")
-                .that(firstFileMessages.getFirst().getViolation())
+                .that(firstFileViolations.getFirst().getViolation())
                 .isEqualTo("File should not be empty.");
 
-        final SortedSet<Violation> internalMessages =
+        final SortedSet<Violation> internalViolations =
                 check.getViolations();
         assertWithMessage("Internal message should be empty, but was not")
-                .that(internalMessages)
+                .that(internalViolations)
                 .isEmpty();
 
         final File secondFile = new File("inputAbstractFileSetCheck.txt");
         final List<String> lines = Arrays.asList("key=value", "ext=tmp");
-        final SortedSet<Violation> secondFileMessages =
+        final SortedSet<Violation> secondFileViolations =
             check.process(secondFile, new FileText(secondFile, lines));
 
         assertWithMessage("Message should be empty, but was not")
-                .that(secondFileMessages)
+                .that(secondFileViolations)
                 .isEmpty();
     }
 
@@ -100,10 +100,10 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
         check.process(firstFile, new FileText(firstFile, Collections.emptyList()));
 
-        final SortedSet<Violation> internalMessages =
+        final SortedSet<Violation> internalViolations =
                 check.getViolations();
         assertWithMessage("Internal message should be empty")
-                .that(internalMessages)
+                .that(internalViolations)
                 .isEmpty();
     }
 

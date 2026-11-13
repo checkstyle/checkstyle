@@ -208,7 +208,7 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
-     * Adds the sorted set of {@link Violation} to the message collector.
+     * Adds the sorted set of {@link Violation} to the violation collector.
      *
      * @param violations the sorted set of {@code Violation}.
      */

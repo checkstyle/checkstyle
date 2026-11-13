@@ -526,7 +526,7 @@ public final class TranslationCheck extends AbstractFileSetCheck {
             args = new String[] {exception.getMessage()};
             key = "general.exception";
         }
-        final Violation message =
+        final Violation violation =
             new Violation(
                 0,
                 Definitions.CHECKSTYLE_BUNDLE,
@@ -534,9 +534,9 @@ public final class TranslationCheck extends AbstractFileSetCheck {
                 args,
                 getId(),
                 getClass(), null);
-        final SortedSet<Violation> messages = new TreeSet<>();
-        messages.add(message);
-        getMessageDispatcher().fireErrors(file.getPath(), messages);
+        final SortedSet<Violation> violations = new TreeSet<>();
+        violations.add(violation);
+        getMessageDispatcher().fireErrors(file.getPath(), violations);
         log.debug("Exception occurred.", exception);
     }
 

@@ -479,10 +479,10 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
      */
     @Test
     public void testThrowsIllegalStateExceptionWhenFileNotFound() {
-        final Violation message = new Violation(1, 1, 1, TokenTypes.CLASS_DEF,
+        final Violation violation = new Violation(1, 1, 1, TokenTypes.CLASS_DEF,
             "messages.properties", "key", null, SeverityLevel.ERROR, null, getClass(), null);
         final String fileName = "nonexisting_file";
-        final AuditEvent auditEvent = new AuditEvent(this, fileName, message);
+        final AuditEvent auditEvent = new AuditEvent(this, fileName, violation);
         final SuppressWithNearbyTextFilter filter = new SuppressWithNearbyTextFilter();
 
         final IllegalStateException exc = getExpectedThrowable(

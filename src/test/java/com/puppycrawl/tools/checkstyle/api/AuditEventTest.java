@@ -56,16 +56,16 @@ public class AuditEventTest {
 
     @Test
     public void testFullConstructor() {
-        final Violation message = new Violation(1, 2, 3, "bundle", "key", null,
+        final Violation violation = new Violation(1, 2, 3, "bundle", "key", null,
                 SeverityLevel.ERROR, "moduleId", getClass(), "customMessage");
-        final AuditEvent event = new AuditEvent(getClass(), "fileName", message);
+        final AuditEvent event = new AuditEvent(getClass(), "fileName", violation);
 
         assertWithMessage("invalid file name")
                 .that(event.getFileName())
                 .isEqualTo("fileName");
         assertWithMessage("invalid violation")
                 .that(event.getViolation())
-                .isEqualTo(message);
+                .isEqualTo(violation);
         assertWithMessage("invalid violation")
                 .that(event.getMessage())
                 .isEqualTo("customMessage");
