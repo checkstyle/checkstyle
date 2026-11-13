@@ -91,6 +91,8 @@ public class MemberDefHandler extends AbstractExpressionHandler {
             && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
             logError(modifier, "modifier", expandedTabsColumnNo(modifier));
         }
+        final DetailAST firstNonAnnotation = checkLeadingAnnotations(modifier);
+        checkFirstLineAfterAnnotations(modifier, firstNonAnnotation);
     }
 
     /**

@@ -34,7 +34,7 @@ public class OneTopLevelClassCheckExamplesTest extends AbstractExamplesModuleTes
     }
 
     @Test
-   public void testExample1() throws Exception {
+    public void testExample1() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY, "ViolationExample1"),
         };
