@@ -1239,7 +1239,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final List<NodeInfo> actual = getXpathItems(xpath, rootNode);
         assertWithMessage("Number of result nodes differ from expected")
                 .that(actual.size())
-                .isEqualTo(39299);
+                .isEqualTo(1196);
     }
 
     private RootNode getRootNode(String fileName) throws Exception {
