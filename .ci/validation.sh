@@ -1236,8 +1236,20 @@ no-error-strata)
   STRATA_CS_POM_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
                      -Dexec.args='${checkstyle.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  # shellcheck disable=2016 # we do not want to expand properties in this command
+  BUILD_CONFIG_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
+                     -Dexec.args='${build-config.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  mvn -e --no-transfer-progress dependency:get \
+    -Dartifact="com.opengamma:build-config:${BUILD_CONFIG_VERSION}"
+  BUILD_CONFIG_JAR=$(find ~/.m2/repository/com/opengamma/build-config -name "*.jar" | head -n 1)
+  jar xf "${BUILD_CONFIG_JAR}" "checkstyle/checkstyle-main-v${STRATA_CS_POM_VERSION}.xml"
+  sed '/<module name="JavadocVariable">/,/<\/module>/d' \
+    "checkstyle/checkstyle-main-v${STRATA_CS_POM_VERSION}.xml" > checkstyle-main.xml
+  rm -rf checkstyle
   mvn -e --no-transfer-progress install -B -Dstrict -DskipTests \
      -Dforbiddenapis.skip=true -Dcheckstyle.version="${CS_POM_VERSION}" \
+     -Dcheckstyle.config.main=checkstyle-main.xml \
      -Dcheckstyle.config.suffix="-v$STRATA_CS_POM_VERSION"
   cd ../
   removeFolderWithProtectedFiles Strata
