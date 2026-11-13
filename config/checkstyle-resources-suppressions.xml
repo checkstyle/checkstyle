@@ -333,8 +333,6 @@
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/InputRequireThisEnumInnerClassesAndBugs\.java"/>
   <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/InputHiddenField8\.java"/>
-  <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/InputVariableDeclarationUsageDistanceFinal\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/InputVariableDeclarationUsageDistanceRegExp\.java"/>
@@ -348,6 +346,8 @@
     files="/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/InputClassFanOutComplexityRemoveIncorrectAnnotationToken\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/grammar/InputRegressionJavaClass1\.java"/>
+  <suppress checks="FileLength"
+    files="/test/resources/com/puppycrawl/tools/checkstyle/grammar/antlr4/InputRegressionJavaClass1\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/xpath/xpathmapper/InputXpathMapperStringConcat\.java"/>
   <suppress checks="FileLength"
