@@ -8,9 +8,9 @@ separatedStaticGroups = (default)false
 caseSensitive = (default)true
 staticGroups = (default)
 sortStaticImportsAlphabetically = (default)false
+useContainerOrdering = (default)false
 useContainerOrderingForStatic = (default)false
 tokens = (default)IMPORT,STATIC_IMPORT
-
 
 */
 // non-compiled with javac: contains specially crafted set of imports that requires classpath

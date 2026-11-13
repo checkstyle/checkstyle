@@ -8,9 +8,9 @@ separatedStaticGroups = true
 caseSensitive = (default)true
 staticGroups = android, com, net, junit, org, java, javax
 sortStaticImportsAlphabetically = true
+useContainerOrdering = (default)false
 useContainerOrderingForStatic = (default)false
 tokens = (default)IMPORT,STATIC_IMPORT
-
 
 */
 

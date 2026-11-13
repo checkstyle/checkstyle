@@ -282,6 +282,61 @@ import static java.lang.Character.UnicodeBlock.BASIC_LATIN => java.lang.Characte
         </macro>
         <hr class="example-separator"/>
         <p>
+          The following example shows the idea of the 'useContainerOrdering'
+          option that is useful for Eclipse IDE users to match ordering validation.
+          This is how the import comparison works for type imports: we first compare
+          the container (package) of the type import. When the result of the comparison
+          is 0 (containers are equal), we compare the fully qualified import names to
+          determine the correct order.
+        </p>
+        <p>
+          For example, these are the container names for the given imports:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.List;                =&gt; java.util
+import java.util.Set;                 =&gt; java.util
+import java.util.concurrent.Callable; =&gt; java.util.concurrent
+</code></pre></div>
+        <p>
+          According to this logic, imports belonging to the same package container should be
+          ordered alphabetically, and imports from subpackages (like <code>java.util.concurrent</code>)
+          will come after imports from the parent package container (<code>java.util</code>).
+        </p>
+        <hr class="example-separator"/>
+        <p id="Example13-config">
+          Example for <code>useContainerOrdering=true</code>
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example13.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example13-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example13.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example14-config">
+          Example for <code>useContainerOrdering=false</code>
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example14.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example14-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example14.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p>
           To configure the check to enforce static import group separation
         </p>
         <p id="Example10-config">
