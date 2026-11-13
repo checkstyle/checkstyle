@@ -40,4 +40,22 @@ public class Java14RecordsTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testJava14Records2()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJava14Records2.java"),
+                expected);
+    }
+
+    @Test
+    public void testJava14Records3()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJava14Records3.java"),
+                expected);
+    }
+
 }
