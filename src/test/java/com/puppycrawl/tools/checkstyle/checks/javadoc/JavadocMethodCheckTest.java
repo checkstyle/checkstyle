@@ -696,10 +696,14 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCompactSourceFileDefault() throws Exception {
         final String[] expected = {
+            "18:17: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "value"),
+            "22: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "27:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "other"),
             "37:21: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "value"),
             "41: " + getCheckMessage(MSG_RETURN_EXPECTED),
             "46:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "other"),
             "51:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "size"),
+            "62:5: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
         };
 
         verifyWithInlineConfigParser(
@@ -710,7 +714,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCompactSourceFileAllowMissing() throws Exception {
         final String[] expected = {
-            "38:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "other"),
+            "37:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "other"),
         };
 
         verifyWithInlineConfigParser(
@@ -722,12 +726,30 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCompactSourceFileThrows() throws Exception {
         final String[] expected = {
+            "19:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Error"),
             "34:19: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Error"),
+            "51:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
         };
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath("compact/InputJavadocMethodCompactSourceFileThrows.java"),
                 expected);
+    }
+
+    @Test
+    public void testPublicScopeUnusedTag() throws Exception {
+        final String[] expected = {
+            "20:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodPublicScopeUnusedTag.java"), expected);
+    }
+
+    @Test
+    public void testPrivateScopePublicClass() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodPrivateScopePublicClass.java"), expected);
     }
 
 }
