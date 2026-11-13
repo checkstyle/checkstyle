@@ -158,6 +158,8 @@
   <suppress checks="FileTabCharacter"
     files="[\\/]InputJavadocMethodTabColumns\.java$"/>
   <suppress checks="FileTabCharacter"
+    files="[\\/]InputSuppressionCommentFilterTabs\.java$"/>
+  <suppress checks="FileTabCharacter"
     files="[\\/]InputFileTabCharacterExtensionsCase\.java$"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputFileTabCharacterExtensionsCompound\.java\.txt$"/>

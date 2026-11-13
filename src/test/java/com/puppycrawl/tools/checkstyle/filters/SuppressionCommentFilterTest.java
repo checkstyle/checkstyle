@@ -203,6 +203,26 @@ public class SuppressionCommentFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTabs() throws Exception {
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String[] messages = {
+            "25:21: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN, "A", pattern),
+            "26:21: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN, "B", pattern),
+            "27:21: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN, "C", pattern),
+            "28:21: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN, "D", pattern),
+            "29:42: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN, "E", pattern),
+            "30:41: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN, "F", pattern),
+            "31:42: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN, "G", pattern),
+            "32:41: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN, "H", pattern),
+        };
+        final String[] expected = {
+            messages[0], messages[2], messages[5], messages[7],
+        };
+        verifyFilterWithInlineConfigParser(getPath("InputSuppressionCommentFilterTabs.java"),
+                messages, expected);
+    }
+
+    @Test
     public void testCheckCpp() throws Exception {
         final String[] suppressed = {
             "45:17: "
