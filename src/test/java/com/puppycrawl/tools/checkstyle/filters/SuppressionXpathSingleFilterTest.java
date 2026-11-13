@@ -373,7 +373,7 @@ public class SuppressionXpathSingleFilterTest
         final SuppressionXpathSingleFilter filter =
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilterComplexQuery",
                         "Test", null, null, xpath);
-        final Violation message =
+        final Violation violation =
                 new Violation(3, 0, TokenTypes.CLASS_DEF, "",
                         "", null, null, "id19",
                         getClass(), null);
@@ -381,7 +381,7 @@ public class SuppressionXpathSingleFilterTest
             new File(getPath("InputSuppressionXpathSingleFilterComplexQuery.java")),
             StandardCharsets.UTF_8.name()));
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents,
-                "InputSuppressionXpathSingleFilterComplexQuery.java", message, null);
+                "InputSuppressionXpathSingleFilterComplexQuery.java", violation, null);
         final IllegalStateException exc = getExpectedThrowable(
                 IllegalStateException.class,
                 () -> {
