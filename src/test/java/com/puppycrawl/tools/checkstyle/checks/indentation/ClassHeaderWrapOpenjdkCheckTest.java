@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ClassHeaderWrapOpenjdkCheckTest extends AbstractModuleTestSupport {
 
@@ -78,6 +79,12 @@ public class ClassHeaderWrapOpenjdkCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassHeaderWrapOpenjdk.java"), expected);
+    }
+
+    @Test
+    public void testUnicode() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputClassHeaderWrapOpenjdkUnicode.java"), CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
