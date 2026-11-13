@@ -86,6 +86,17 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         TokenTypes.ANNOTATION_FIELD_DEF
     );
 
+    /** Possible parent tokens of a switch statement; any other parent makes it an expression. */
+    private static final Set<Integer> SWITCH_STATEMENT_PARENTS = Set.of(
+        TokenTypes.SLIST,
+        TokenTypes.LITERAL_IF,
+        TokenTypes.LITERAL_ELSE,
+        TokenTypes.LITERAL_DO,
+        TokenTypes.LITERAL_WHILE,
+        TokenTypes.LITERAL_FOR,
+        TokenTypes.LABELED_STAT
+    );
+
     /**
      * Stack of statement line-number for nested lambdas and anonymous classes.
      * Used to isolate validation to the current nesting depth.
@@ -171,8 +182,11 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.SEMI ->
-                checkIfSemicolonIsInDifferentLineThanPrevious(ast);
+            case TokenTypes.SEMI -> {
+                if (!isSwitchExpressionRuleValue(ast)) {
+                    checkIfSemicolonIsInDifferentLineThanPrevious(ast);
+                }
+            }
             case TokenTypes.LAMBDA, TokenTypes.OBJBLOCK -> {
                 if (ast.getType() == TokenTypes.LAMBDA
                         || ast.getParent().getType() == TokenTypes.LITERAL_NEW) {
@@ -198,11 +212,13 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.SEMI -> {
-                if (getStatementStart(ast).getType() != TokenTypes.SEMI) {
-                    lastStatementEnd = ast.getLineNo();
+                if (!isSwitchExpressionRuleValue(ast)) {
+                    if (getStatementStart(ast).getType() != TokenTypes.SEMI) {
+                        lastStatementEnd = ast.getLineNo();
+                    }
+                    isFirstStatementOfLambdaOrAnonymous = false;
+                    lastStatementInCurrentScope = lastStatementEnd;
                 }
-                isFirstStatementOfLambdaOrAnonymous = false;
-                lastStatementInCurrentScope = lastStatementEnd;
             }
             case TokenTypes.LAMBDA, TokenTypes.OBJBLOCK -> {
                 if (ast.getType() == TokenTypes.LAMBDA
@@ -237,6 +253,19 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         if (!validStatement) {
             logViolation(statementStart);
         }
+    }
+
+    /**
+     * Checks whether the semicolon ends the value of a switch expression rule, such as
+     * {@code 10;} in {@code case 1 -> 10;}. That value is an expression, not a statement.
+     *
+     * @param semi the SEMI token
+     * @return {@code true} if the semicolon ends a switch expression rule value
+     */
+    private static boolean isSwitchExpressionRuleValue(DetailAST semi) {
+        final DetailAST parent = semi.getParent();
+        return parent.getType() == TokenTypes.SWITCH_RULE
+                && !SWITCH_STATEMENT_PARENTS.contains(parent.getParent().getParent().getType());
     }
 
     /**
