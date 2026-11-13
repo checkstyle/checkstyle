@@ -173,12 +173,16 @@
     <module name="AvoidNestedBlocks"/>
     <module name="EmptyBlock"/>
     <module name="LeftCurly"/>
-    <module name="NeedBraces"/>
+    <module name="NeedBraces">
+      <property name="allowEmptyLoopBody" value="true"/>
+    </module>
     <module name="RightCurly"/>
 
     <!-- Checks for common coding problems               -->
     <!-- See https://checkstyle.org/checks/coding/index.html -->
-    <module name="EmptyStatement"/>
+    <module name="EmptyStatement">
+      <property name="allowEmptyLoopBody" value="true"/>
+    </module>
     <module name="EqualsHashCode"/>
     <module name="FallThrough"/>
     <module name="HiddenField"/>
