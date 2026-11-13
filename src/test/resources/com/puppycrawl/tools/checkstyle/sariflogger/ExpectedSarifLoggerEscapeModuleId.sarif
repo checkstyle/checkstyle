@@ -1,0 +1,99 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "downloadUri": "https://github.com/checkstyle/checkstyle/releases/",
+          "fullName": "Checkstyle",
+          "informationUri": "https://checkstyle.org/",
+          "language": "en",
+          "name": "Checkstyle",
+          "organization": "Checkstyle",
+          "rules": [
+            {
+              "id": "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck#regexp\"id",
+              "messageStrings": {
+                "regexp.exceeded": {
+                  "text": "Line matches the illegal pattern ''{0}''."
+                },
+                "regexp.minimum": {
+                  "text": "File does not contain at least {0} matches for pattern ''{1}''."
+                }
+              },
+              "shortDescription": {
+                "text": "RegexpSingleline"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks that a specified pattern matches a single-line in any file type.\n <\/div>\n\n <p>\n Rationale: This check can be used to prototype checks and to find common bad\n practice such as calling <code>ex.printStacktrace()<\/code>,\n <code>System.out.println()<\/code>, <code>System.exit()<\/code>, etc.\n <\/p>"
+              }
+            },
+            {
+              "id": "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck#my\"id\\with\/slash",
+              "messageStrings": {
+                "block.empty": {
+                  "text": "Empty {0} block."
+                },
+                "block.noStatement": {
+                  "text": "Must have at least one statement."
+                }
+              },
+              "shortDescription": {
+                "text": "EmptyBlock"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks for empty blocks.\n <\/div>\n\n <p>\n This check does not validate sequential blocks. This check does not violate fallthrough.\n <\/p>\n\n <p>\n NOTE: This check processes LITERAL_CASE and LITERAL_DEFAULT separately.\n Verification empty block is done for single nearest <code>case<\/code> or <code>default<\/code>.\n <\/p>"
+              }
+            }
+          ],
+          "semanticVersion": "null",
+          "version": "null"
+        }
+      },
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeModuleId.java"
+                },
+                "region": {
+                  "startLine": 16
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "regexp.exceeded",
+            "text": "Line matches the illegal pattern '\/\/ This code is copyrighted\\.'."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck#regexp\"id"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerEscapeModuleId.java"
+                },
+                "region": {
+                  "startColumn": 19,
+                  "startLine": 19
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "block.noStatement",
+            "text": "Must have at least one statement."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck#my\"id\\with\/slash"
+        }
+      ]
+    }
+  ]
+}

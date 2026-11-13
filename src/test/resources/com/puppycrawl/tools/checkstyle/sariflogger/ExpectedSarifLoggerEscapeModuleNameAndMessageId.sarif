@@ -1,0 +1,57 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "downloadUri": "https://github.com/checkstyle/checkstyle/releases/",
+          "fullName": "Checkstyle",
+          "informationUri": "https://checkstyle.org/",
+          "language": "en",
+          "name": "Checkstyle",
+          "organization": "Checkstyle",
+          "rules": [
+            {
+              "id": "com.puppycrawl.tools.checkstyle.SarifLoggerTest",
+              "messageStrings": {
+
+              },
+              "shortDescription": {
+                "text": "Quoted\"Name"
+              },
+              "fullDescription": {
+                "text": "Test module with escaped name"
+              }
+            }
+          ],
+          "semanticVersion": "null",
+          "version": "null"
+        }
+      },
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:Test.java"
+                },
+                "region": {
+                  "startColumn": 1,
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "quoted\"key\/with\\slash",
+            "text": "found an error"
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.SarifLoggerTest"
+        }
+      ]
+    }
+  ]
+}
