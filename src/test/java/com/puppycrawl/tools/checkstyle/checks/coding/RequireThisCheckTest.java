@@ -55,24 +55,39 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "40:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
             "58:13: " + getCheckMessage(MSG_VARIABLE, "z", ""),
             "65:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
-            "122:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
-            "123:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
-            "124:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", ""),
-            "130:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "Issue2240."),
-            "131:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue2240."),
-            "143:9: " + getCheckMessage(MSG_METHOD, "foo", ""),
-            "151:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
-            "177:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "177:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "177:24: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "187:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "187:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "187:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "219:25: " + getCheckMessage(MSG_VARIABLE, "field", ""),
         };
         verifyWithInlineConfigParser(
-                getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
-               expected);
+                getPath("InputRequireThisEnumInnerClassesAndBugs.java"), expected);
+    }
+
+    @Test
+    public void testShadowedNestedFramesDefault() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "19:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "20:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", ""),
+            "26:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "Issue2240."),
+            "27:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue2240."),
+            "39:9: " + getCheckMessage(MSG_METHOD, "foo", ""),
+            "47:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
+            "73:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "73:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "73:24: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "83:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "83:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "83:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisShadowedNestedFramesDefault.java"), expected);
+    }
+
+    @Test
+    public void testAnonymousInner() throws Exception {
+        final String[] expected = {
+            "39:25: " + getCheckMessage(MSG_VARIABLE, "field", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnonymousInner.java"), expected);
     }
 
     @Test
@@ -369,37 +384,84 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "69:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
             "70:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
             "89:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "128:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "137:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "141:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
-            "177:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
-            "178:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
-            "179:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
-            "181:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "185:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
-            "186:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
-            "187:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
-            "189:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "194:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "198:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "219:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "226:29: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
-            "237:21: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "247:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "262:9: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
-            "271:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "279:18: " + getCheckMessage(MSG_METHOD, "addSuf2F", ""),
-            "284:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "284:18: " + getCheckMessage(MSG_METHOD, "addSuf2F", ""),
-            "313:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "352:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "386:25: " + getCheckMessage(MSG_METHOD, "getAction", ""),
-            "388:20: " + getCheckMessage(MSG_METHOD, "processAction", ""),
-            "396:16: " + getCheckMessage(MSG_METHOD, "processAction", ""),
-            "502:22: " + getCheckMessage(MSG_VARIABLE, "add", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisValidateOnlyOverlappingFalse.java"), expected);
+    }
+
+    @Test
+    public void testValidateOnlyOverlappingFalse2() throws Exception {
+        final String[] expected = {
+            "42:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "51:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "55:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisValidateOnlyOverlappingFalse2.java"), expected);
+    }
+
+    @Test
+    public void testValidateOnlyOverlappingFalse3() throws Exception {
+        final String[] expected = {
+            "33:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
+            "34:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
+            "35:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
+            "37:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "41:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
+            "42:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
+            "43:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
+            "45:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "50:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "54:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "75:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "82:29: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
+            "93:21: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisValidateOnlyOverlappingFalse3.java"), expected);
+    }
+
+    @Test
+    public void testValidateOnlyOverlappingFalse4() throws Exception {
+        final String[] expected = {
+            "29:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "44:9: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
+            "53:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "61:18: " + getCheckMessage(MSG_METHOD, "addSuf2F", ""),
+            "66:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "66:18: " + getCheckMessage(MSG_METHOD, "addSuf2F", ""),
+            "95:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisValidateOnlyOverlappingFalse4.java"), expected);
+    }
+
+    @Test
+    public void testValidateOnlyOverlappingFalse5() throws Exception {
+        final String[] expected = {
+            "47:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "81:25: " + getCheckMessage(MSG_METHOD, "getAction", ""),
+            "83:20: " + getCheckMessage(MSG_METHOD, "processAction", ""),
+            "91:16: " + getCheckMessage(MSG_METHOD, "processAction", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisValidateOnlyOverlappingFalse5.java"), expected);
+    }
+
+    @Test
+    public void testValidateOnlyOverlappingFalse6() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisValidateOnlyOverlappingFalse6.java"), expected);
+    }
+
+    @Test
+    public void testValidateOnlyOverlappingFalse7() throws Exception {
+        final String[] expected = {
+            "40:22: " + getCheckMessage(MSG_VARIABLE, "add", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisValidateOnlyOverlappingFalse7.java"), expected);
     }
 
     @Test
@@ -419,15 +481,6 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "29:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "52:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "89:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "128:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "181:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "189:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "247:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "262:9: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
-            "271:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "284:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "310:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "348:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisValidateOnlyOverlappingTrue.java"), expected);
@@ -438,6 +491,54 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisValidateOnlyOverlappingTrue2.java"), expected);
+    }
+
+    @Test
+    public void testValidateOnlyOverlappingTrue3() throws Exception {
+        final String[] expected = {
+            "38:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisValidateOnlyOverlappingTrue3.java"), expected);
+    }
+
+    @Test
+    public void testValidateOnlyOverlappingTrue4() throws Exception {
+        final String[] expected = {
+            "33:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "41:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisValidateOnlyOverlappingTrue4.java"), expected);
+    }
+
+    @Test
+    public void testValidateOnlyOverlappingTrue5() throws Exception {
+        final String[] expected = {
+            "25:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "40:9: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
+            "49:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "62:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "88:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisValidateOnlyOverlappingTrue5.java"), expected);
+    }
+
+    @Test
+    public void testValidateOnlyOverlappingTrue6() throws Exception {
+        final String[] expected = {
+            "42:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisValidateOnlyOverlappingTrue6.java"), expected);
+    }
+
+    @Test
+    public void testValidateOnlyOverlappingTrue7() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisValidateOnlyOverlappingTrue7.java"), expected);
     }
 
     @Test
