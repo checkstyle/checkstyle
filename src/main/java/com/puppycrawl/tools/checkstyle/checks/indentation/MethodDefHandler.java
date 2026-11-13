@@ -52,7 +52,13 @@ public class MethodDefHandler extends BlockParentHandler {
      * Checks modifiers for method definitions.
      */
     private void checkModifiers() {
-        final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
+        DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
+        if (modifier.getChildCount() == 0) {
+            // An empty MODIFIERS node gets the position of the return type, which is
+            // the last dot for a qualified type such as java.lang.String, so check
+            // the first token of the declaration instead.
+            modifier = getFirstAstNode(modifier.getNextSibling());
+        }
         if (isOnStartOfLine(modifier)
             && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
             logError(modifier, "modifier", expandedTabsColumnNo(modifier));
