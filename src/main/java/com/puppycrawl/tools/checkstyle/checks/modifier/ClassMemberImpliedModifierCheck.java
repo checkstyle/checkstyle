@@ -171,7 +171,7 @@ public class ClassMemberImpliedModifierCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (isInTypeBlock(ast)) {
+        if (!isLocalDeclaration(ast) && isInTypeBlock(ast)) {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             switch (ast.getType()) {
                 case TokenTypes.ENUM_DEF -> {
@@ -198,6 +198,17 @@ public class ClassMemberImpliedModifierCheck extends AbstractCheck {
                 default -> throw new IllegalStateException(ast.toString());
             }
         }
+    }
+
+    /**
+     * Checks if ast declares a local record, enum or interface, inside a block of code.
+     * A local declaration is not a class member and cannot be declared {@code static}.
+     *
+     * @param ast the current ast
+     * @return true if ast is a local declaration
+     */
+    private static boolean isLocalDeclaration(DetailAST ast) {
+        return ast.getParent().getType() == TokenTypes.SLIST;
     }
 
     /**
