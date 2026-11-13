@@ -50,7 +50,19 @@
         </div>
 
         <p>
-          Rationale: Helps reduce coupling on concrete classes.
+          Rationale: Declaring a variable, parameter or return type with an interface such as
+          <code>Set</code> or <code>Map</code>, instead of a class that implements it such as <code>HashSet</code>
+          or <code>TreeMap</code>, keeps the code independent of the implementation. The implementation
+          can then change in one place, where the object is created, without changing the code
+          that uses it. This reduces coupling on concrete classes.
+        </p>
+
+        <p>
+          By default the check reports the common <code>Set</code> and <code>Map</code> implementations of
+          <code>java.util</code>: <code>HashSet</code>, <code>HashMap</code>, <code>LinkedHashSet</code>,
+          <code>LinkedHashMap</code>, <code>TreeSet</code> and <code>TreeMap</code>, because their interfaces
+          cover almost every use of them. Other classes, such as <code>ArrayList</code>, can be
+          reported by setting <b>illegalClassNames</b> (see Notes).
         </p>
 
         <p>
