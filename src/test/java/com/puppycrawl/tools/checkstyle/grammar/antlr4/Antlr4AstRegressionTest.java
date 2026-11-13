@@ -238,6 +238,41 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testCassandraInputWithComments2() throws Exception {
+        verifyAst(getPath("ExpectedAntlr4AstRegressionCassandraInputWithComments2.txt"),
+                getPath("InputAntlr4AstRegressionCassandraInputWithComments2.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
+    public void testCassandraInputWithComments3() throws Exception {
+        verifyAst(getPath("ExpectedAntlr4AstRegressionCassandraInputWithComments3.txt"),
+                getPath("InputAntlr4AstRegressionCassandraInputWithComments3.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
+    public void testCassandraInputWithComments4() throws Exception {
+        verifyAst(getPath("ExpectedAntlr4AstRegressionCassandraInputWithComments4.txt"),
+                getPath("InputAntlr4AstRegressionCassandraInputWithComments4.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
+    public void testCassandraInputWithComments5() throws Exception {
+        verifyAst(getPath("ExpectedAntlr4AstRegressionCassandraInputWithComments5.txt"),
+                getPath("InputAntlr4AstRegressionCassandraInputWithComments5.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
+    public void testCassandraInputWithComments6() throws Exception {
+        verifyAst(getPath("ExpectedAntlr4AstRegressionCassandraInputWithComments6.txt"),
+                getPath("InputAntlr4AstRegressionCassandraInputWithComments6.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
     public void testCommentsOnAnnotationsAndEnums() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionCommentsOnAnnotationsAndEnums.txt"),
                 getPath("InputAntlr4AstRegressionCommentsOnAnnotationsAndEnums.java"),
