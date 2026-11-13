@@ -55,6 +55,13 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  *
  * <p>
+ * Only the code that starts a line is checked: its indentation is validated, and
+ * the rest of the line is not. The check never asks to split a line or to join
+ * lines, so a line with several statements, or a wrapped expression that would
+ * fit on one line, is not reported for that.
+ * </p>
+ *
+ * <p>
  * Example:
  * </p>
  * {@snippet :
