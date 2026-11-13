@@ -443,15 +443,11 @@
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/grammar/antlr4/InputAntlr4AstRegressionCassandraInputWithComments\.java"/>
   <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/grammar/antlr4/InputAntlr4AstRegressionCommentsOnAnnotationsAndEnums\.java"/>
-  <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/grammar/antlr4/InputAntlr4AstRegressionTrickySwitch\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/grammar/antlr4/InputAntlr4AstRegressionKeywordsAndOperators\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/grammar/antlr4/InputRegressionJavaClass1\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/grammar/antlr4/InputAntlr4AstRegressionTrickySwitchWithComments\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/grammar/antlr4/InputAntlr4AstRegressionFallThroughDefault\.java"/>
   <suppress checks="FileLength"
@@ -470,8 +466,6 @@
     files="/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/grammar/java14/InputJava14InstanceofWithPatternMatching\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/grammar/java14/InputJava14Records\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/grammar/antlr4/InputAntlr4AstRegressionUncommon\.java"/>
   <suppress checks="OuterTypeFilename"
     files=".*/sariflogger/InputSarifLogger Space\.java"/>
   <suppress id="resourceFileName"

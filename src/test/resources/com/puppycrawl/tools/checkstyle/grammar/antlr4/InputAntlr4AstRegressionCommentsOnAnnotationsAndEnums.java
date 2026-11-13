@@ -114,30 +114,4 @@ public class InputAntlr4AstRegressionCommentsOnAnnotationsAndEnums
     private Logger getLog() {
         return null;
     }
-
-    enum InputJavadocVariableTagsEnum
-    {
-        CONSTANT_A, // violation
-
-        /**
-         *
-         */
-        CONSTANT_B,
-
-        CONSTANT_C // violation
-        {
-            /**
-             *
-             */
-            public void someMethod()
-            {
-            }
-
-            public void someOtherMethod()
-            {
-
-            }
-        }
-    }
-
 }
