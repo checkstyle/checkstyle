@@ -46,6 +46,24 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testClassAstTree1Operators() throws Exception {
+        verifyAst(getPath("ExpectedRegressionJavaClass1OperatorsAst.txt"),
+                getPath("InputRegressionJavaClass1Operators.java"));
+    }
+
+    @Test
+    public void testClassAstTree1Literals() throws Exception {
+        verifyAst(getPath("ExpectedRegressionJavaClass1LiteralsAst.txt"),
+                getPath("InputRegressionJavaClass1Literals.java"));
+    }
+
+    @Test
+    public void testClassAstTree1Statements() throws Exception {
+        verifyAst(getPath("ExpectedRegressionJavaClass1StatementsAst.txt"),
+                getPath("InputRegressionJavaClass1Statements.java"));
+    }
+
+    @Test
     public void testClassAstTree2() throws Exception {
         verifyAst(getPath("ExpectedRegressionJavaClass2Ast.txt"),
                 getPath("InputRegressionJavaClass2.java"));
