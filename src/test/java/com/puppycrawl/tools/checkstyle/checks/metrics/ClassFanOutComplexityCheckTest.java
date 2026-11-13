@@ -266,6 +266,43 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testClassFanOutComplexityRemoveIncorrectAnnotationTokenTesting() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                  "InputClassFanOutComplexityRemoveIncorrectAnnotationTokenTesting.java"),
+                expected);
+    }
+
+    @Test
+    public void testClassFanOutComplexityRemoveIncorrectAnnotationTokenValues() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                  "InputClassFanOutComplexityRemoveIncorrectAnnotationTokenValues.java"),
+                expected);
+    }
+
+    @Test
+    public void testClassFanOutComplexityRemoveIncorrectAnnotationTokenReturnValue()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                  "InputClassFanOutComplexityRemoveIncorrectAnnotationTokenReturnValue.java"),
+                expected);
+    }
+
+    @Test
+    public void testClassFanOutComplexityRemoveIncorrectAnnotationTokenTypes() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                  "InputClassFanOutComplexityRemoveIncorrectAnnotationTokenTypes.java"),
+                expected);
+    }
+
+    @Test
     public void testClassFanOutComplexityRemoveIncorrectTypeParameter() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
