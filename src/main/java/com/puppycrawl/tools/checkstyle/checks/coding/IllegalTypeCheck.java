@@ -41,7 +41,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </div>
  *
  * <p>
- * Rationale: Helps reduce coupling on concrete classes.
+ * Rationale: Declaring a variable, parameter or return type with an interface such as
+ * {@code Set} or {@code Map}, instead of a class that implements it such as {@code HashSet}
+ * or {@code TreeMap}, keeps the code independent of the implementation. The implementation
+ * can then change in one place, where the object is created, without changing the code
+ * that uses it. This reduces coupling on concrete classes.
+ * </p>
+ *
+ * <p>
+ * By default the check reports the common {@code Set} and {@code Map} implementations of
+ * {@code java.util}: {@code HashSet}, {@code HashMap}, {@code LinkedHashSet},
+ * {@code LinkedHashMap}, {@code TreeSet} and {@code TreeMap}, because their interfaces
+ * cover almost every use of them. Other classes, such as {@code ArrayList}, can be
+ * reported by setting <b>illegalClassNames</b> (see Notes).
  * </p>
  *
  * <p>

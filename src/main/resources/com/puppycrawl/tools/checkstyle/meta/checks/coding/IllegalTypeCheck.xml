@@ -9,7 +9,19 @@
  &lt;/div&gt;
 
  &lt;p&gt;
- Rationale: Helps reduce coupling on concrete classes.
+ Rationale: Declaring a variable, parameter or return type with an interface such as
+ &lt;code&gt;Set&lt;/code&gt; or &lt;code&gt;Map&lt;/code&gt;, instead of a class that implements it such as &lt;code&gt;HashSet&lt;/code&gt;
+ or &lt;code&gt;TreeMap&lt;/code&gt;, keeps the code independent of the implementation. The implementation
+ can then change in one place, where the object is created, without changing the code
+ that uses it. This reduces coupling on concrete classes.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ By default the check reports the common &lt;code&gt;Set&lt;/code&gt; and &lt;code&gt;Map&lt;/code&gt; implementations of
+ &lt;code&gt;java.util&lt;/code&gt;: &lt;code&gt;HashSet&lt;/code&gt;, &lt;code&gt;HashMap&lt;/code&gt;, &lt;code&gt;LinkedHashSet&lt;/code&gt;,
+ &lt;code&gt;LinkedHashMap&lt;/code&gt;, &lt;code&gt;TreeSet&lt;/code&gt; and &lt;code&gt;TreeMap&lt;/code&gt;, because their interfaces
+ cover almost every use of them. Other classes, such as &lt;code&gt;ArrayList&lt;/code&gt;, can be
+ reported by setting &lt;b&gt;illegalClassNames&lt;/b&gt; (see Notes).
  &lt;/p&gt;
 
  &lt;p&gt;
