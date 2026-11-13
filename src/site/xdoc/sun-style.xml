@@ -270,8 +270,15 @@
                     3.1.2 Package and Import Statements
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  Package names should be written in lowercase,
+                  with components separated by periods.
+                </td>
+                <td>
+                  <a href="checks/naming/packagename.html#PackageName">
+                    PackageName
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
