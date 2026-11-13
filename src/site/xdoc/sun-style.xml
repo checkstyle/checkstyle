@@ -270,8 +270,18 @@
                     3.1.2 Package and Import Statements
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                    The first component of a unique package name is always written in
+                    all-lowercase ASCII letters and should be one of the top-level domain
+                    names, currently com, edu, gov, mil, net, org, or one of the English
+                    two-letter codes identifying countries as specified in ISO Standard
+                    3166, 1981.
+                </td>
+                <td>
+                  <a href="checks/naming/packagename.html#PackageName">
+                    PackageName
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
