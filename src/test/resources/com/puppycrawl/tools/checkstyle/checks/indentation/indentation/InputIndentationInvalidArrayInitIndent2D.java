@@ -16,18 +16,18 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent
 public class InputIndentationInvalidArrayInitIndent2D { //indent:0 exp:0
     int[][] a = {                                       //indent:4 exp:4
       {1, 2, 3, 4 ,5 ,6 , 7},                           //indent:6 exp:6
-    {1, 2, 3, 34, 4,}                                   //indent:4 exp:6,8,20,56,60 warn
+    {1, 2, 3, 34, 4,}                                   //indent:4 exp:6,8,12 warn
     };                                                  //indent:4 exp:4
 
     int[][] c = {                                       //indent:4 exp:4
       {                                                 //indent:6 exp:6
-         1, 2, 3 , 34,                                  //indent:9 exp:8,10,12,22,24,56,58,60 warn
+         1, 2, 3 , 34,                                  //indent:9 exp:8,10,12 warn
       },                                                //indent:6 exp:6
       {                                                 //indent:6 exp:6
-      1, 2, 2, 3                                        //indent:6 exp:8,10,12,22,24,56,58,60 warn
+      1, 2, 2, 3                                        //indent:6 exp:8,10,12 warn
       },                                                //indent:6 exp:6
-    {                                                   //indent:4 exp:6,8,20,56,60 warn
-      1, 2, 3 ,4                                        //indent:6 exp:8,10,12,22,24,56,58,60 warn
-    }                                                   //indent:4 exp:6,8,20,56,60 warn
+    {                                                   //indent:4 exp:6,8,12 warn
+      1, 2, 3 ,4                                        //indent:6 exp:8,10,12 warn
+    }                                                   //indent:4 exp:6,8,12 warn
     };                                                  //indent:4 exp:4
 }                                                       //indent:0 exp:0

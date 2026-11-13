@@ -23,8 +23,8 @@ Integer("".indexOf("5"));                                                //inden
 
     int[][] array10b                                                     //indent:4 exp:4
 = new int[][] {                                                          //indent:0 exp:8 warn
-                  new int[] { 1, 2, 3},                                  //indent:18 exp:>=8
-                  new int[] { 1, 2, 3},                                  //indent:18 exp:>=8
+                  new int[] { 1, 2, 3},                                  //indent:18 exp:4 warn
+                  new int[] { 1, 2, 3},                                  //indent:18 exp:4 warn
     };                                                                   //indent:4 exp:4
 
 }                                                                        //indent:0 exp:0
