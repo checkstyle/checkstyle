@@ -219,6 +219,18 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testJava14Records2() throws Exception {
+        verifyAst(getPath("java14/ExpectedJava14Records2.txt"),
+                getPath("java14/InputJava14Records2.java"));
+    }
+
+    @Test
+    public void testJava14Records3() throws Exception {
+        verifyAst(getPath("java14/ExpectedJava14Records3.txt"),
+                getPath("java14/InputJava14Records3.java"));
+    }
+
+    @Test
     public void testJava14RecordsTopLevel() throws Exception {
         verifyAst(getPath("java14/ExpectedJava14RecordsTopLevel.txt"),
                 getPath("java14/InputJava14RecordsTopLevel.java"));
@@ -234,6 +246,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     public void testJava14TextBlocks() throws Exception {
         verifyAst(getPath("java14/ExpectedJava14TextBlocks.txt"),
                 getPath("java14/InputJava14TextBlocks.java"));
+    }
+
+    @Test
+    public void testJava14TextBlocks2() throws Exception {
+        verifyAst(getPath("java14/ExpectedJava14TextBlocks2.txt"),
+                getPath("java14/InputJava14TextBlocks2.java"));
     }
 
     @Test
