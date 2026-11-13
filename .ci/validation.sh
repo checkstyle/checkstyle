@@ -472,6 +472,14 @@ no-error-xwiki)
   mvn -e --no-transfer-progress \
     -f xwiki-commons-tools/xwiki-commons-tool-webjar-node-handlers/pom.xml \
     install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
+  # xwiki-commons-tool-xar-plugin depends on xwiki-commons-tool-spoon-checks:${project.version}
+  # install the spoon parent POM first, so that spoon-checks' descriptor can be read
+  mvn -e --no-transfer-progress -N \
+    -f xwiki-commons-tools/xwiki-commons-tool-spoon/pom.xml \
+    install -Dcheckstyle.version="${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress \
+    -f xwiki-commons-tools/xwiki-commons-tool-spoon/xwiki-commons-tool-spoon-checks/pom.xml \
+    install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
   mvn -e --no-transfer-progress -f xwiki-commons-tools/xwiki-commons-tool-xar/pom.xml \
     install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
