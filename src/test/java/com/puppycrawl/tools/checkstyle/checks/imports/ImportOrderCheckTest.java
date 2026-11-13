@@ -775,6 +775,52 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUseContainerOrderingTrue() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrderEclipseType1.java"), expected);
+    }
+
+    @Test
+    public void testUseContainerOrderingFalse() throws Exception {
+        final String[] expected = {
+            "21:1: " + getCheckMessage(MSG_ORDERING_LEX,
+                "lombok.experimental.FieldDefaults",
+                "lombok.val"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrderEclipseType2.java"), expected);
+    }
+
+    @Test
+    public void testUseContainerOrderingTrueWithViolations() throws Exception {
+        final String[] expected = {
+            "21:1: " + getCheckMessage(MSG_ORDERING_LEX,
+                "lombok.val",
+                "lombok.experimental.FieldDefaults"),
+            "23:1: " + getCheckMessage(MSG_ORDERING_LEX,
+                "lombok.AccessLevel",
+                "lombok.var"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrderEclipseType3.java"), expected);
+    }
+
+    @Test
+    public void testUseContainerOrderingCaseInsensitive() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrderEclipseTypeCaseSensitive.java"), expected);
+    }
+
+    @Test
+    public void testUseContainerOrderingRepetition() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrderEclipseTypeRepetition.java"), expected);
+    }
+
+    @Test
     public void testImportGroupsRedundantSeparatedInternally() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.*"),

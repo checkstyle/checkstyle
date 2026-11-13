@@ -8,9 +8,9 @@ separatedStaticGroups = (default)false
 caseSensitive = (default)true
 staticGroups = (default)
 sortStaticImportsAlphabetically = true
+useContainerOrdering = (default)false
 useContainerOrderingForStatic = true
 tokens = (default)IMPORT,STATIC_IMPORT
-
 
 */
 
