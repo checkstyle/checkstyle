@@ -40,6 +40,9 @@
  Checker as parent module.
  &lt;/p&gt;</description>
          <properties>
+            <property default-value="UTF-8" name="charset" type="java.lang.String">
+               <description>Specify the character encoding used to read source files. The default is inherited from the parent &lt;code&gt;Checker&lt;/code&gt; module.</description>
+            </property>
             <property default-value=".*"
                       name="checkFormat"
                       type="java.util.regex.Pattern">

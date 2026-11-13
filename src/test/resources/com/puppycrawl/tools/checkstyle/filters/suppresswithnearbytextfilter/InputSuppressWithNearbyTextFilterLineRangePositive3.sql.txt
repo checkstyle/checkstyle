@@ -1,5 +1,6 @@
 /*
 SuppressWithNearbyTextFilter
+charset = (default)UTF-8
 nearbyTextPattern = (default)SUPPRESS CHECKSTYLE (\\w+)
 checkPattern = (default).*
 messagePattern = (default)(null)
@@ -19,9 +20,8 @@ minimum = (default)0
 maximum = (default)0
 fileExtensions = (default)""
 
-
 */
-// violation 9 lines above 'Line matches the illegal pattern .*'
+// violation 8 lines above 'Line matches the illegal pattern .*'
 
 -- SUPPRESS CHECKSTYLE LineLengthCheck
 CREATE TABLE LONG_TABLE_NAME // filtered violation 'Line is longer than 92 characters (found 98).'

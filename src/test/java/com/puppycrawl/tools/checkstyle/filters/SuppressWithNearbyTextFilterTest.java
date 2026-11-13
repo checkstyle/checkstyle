@@ -27,6 +27,7 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpecte
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
@@ -37,9 +38,11 @@ import org.junit.jupiter.api.io.TempDir;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
@@ -56,6 +59,33 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter";
+    }
+
+    @Test
+    public void testCharsetInheritedFromChecker() throws Exception {
+        final File input = new File(temporaryFolder, "input.txt");
+        Files.writeString(input.toPath(), "BAD SUPPRESS CHECKSTYLE RegexpSingleline\nBAD\n",
+                StandardCharsets.UTF_16);
+        final File config = new File(temporaryFolder, "config.txt");
+        Files.writeString(config.toPath(),
+                """
+                /*xml
+                <module name="Checker">
+                  <property name="charset" value="UTF-16"/>
+                  <module name="RegexpSingleline">
+                    <property name="format" value="BAD"/>
+                  </module>
+                  <module name="SuppressWithNearbyTextFilter"/>
+                </module>
+                */
+                """, StandardCharsets.UTF_8);
+        final Configuration checkerConfig = InlineConfigParser
+                .parseWithXmlHeader(config.getAbsolutePath()).xmlConfiguration();
+        final String[] expected = {
+            "2: " + getCheckMessage(RegexpSinglelineCheck.class, "regexp.exceeded", "BAD"),
+        };
+
+        verify(createChecker(checkerConfig), input.getAbsolutePath(), expected);
     }
 
     @Test
@@ -91,7 +121,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         final int expectedLineLength = 90;
 
         final String[] violationMessages = {
-            "15: " + getRegexpSinglelineCheckMessage(),
+            "16: " + getRegexpSinglelineCheckMessage(),
             "28: " + getLineLengthCheckMessage(expectedLineLength, 94),
             "33: " + getLineLengthCheckMessage(expectedLineLength, 93),
             "33: " + getRegexpSinglelineCheckMessage(),
@@ -122,7 +152,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         final int expectedLineLength = 80;
 
         final String[] violationMessages = {
-            "15: " + getRegexpSinglelineCheckMessage(),
+            "16: " + getRegexpSinglelineCheckMessage(),
             "28: " + getLineLengthCheckMessage(expectedLineLength, 89),
             "29: " + getRegexpSinglelineCheckMessage(),
             "35: " + getLineLengthCheckMessage(expectedLineLength, 87),
@@ -144,7 +174,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         final int expectedLineLength = 90;
 
         final String[] violationMessages = {
-            "15: " + getRegexpSinglelineCheckMessage(),
+            "16: " + getRegexpSinglelineCheckMessage(),
             "33: " + getRegexpSinglelineCheckMessage(),
             "38: " + getLineLengthCheckMessage(expectedLineLength, 98),
             "42: " + getLineLengthCheckMessage(expectedLineLength, 96),
@@ -166,7 +196,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         final int expectedLineLength = 80;
 
         final String[] violationMessages = {
-            "16: " + getRegexpSinglelineCheckMessage(),
+            "17: " + getRegexpSinglelineCheckMessage(),
             "29: " + getRegexpSinglelineCheckMessage(),
             "34: " + getLineLengthCheckMessage(expectedLineLength, 83),
             "38: " + getLineLengthCheckMessage(expectedLineLength, 84),
@@ -188,7 +218,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         final int expectedLineLength = 92;
 
         final String[] violationMessages = {
-            "15: " + getRegexpSinglelineCheckMessage(),
+            "16: " + getRegexpSinglelineCheckMessage(),
             "27: " + getLineLengthCheckMessage(expectedLineLength, 98),
             "28: " + getLineLengthCheckMessage(expectedLineLength, 98),
             "29: " + getLineLengthCheckMessage(expectedLineLength, 98),
@@ -220,7 +250,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         final int expectedLineLength = 91;
 
         final String[] violationMessages = {
-            "15: " + getRegexpSinglelineCheckMessage(),
+            "16: " + getRegexpSinglelineCheckMessage(),
             "27: " + getLineLengthCheckMessage(expectedLineLength, 96),
             "28: " + getLineLengthCheckMessage(expectedLineLength, 94),
             "29: " + getLineLengthCheckMessage(expectedLineLength, 94),
