@@ -59,7 +59,7 @@ public class InputUnnecessaryNullCheckWithInstanceOfArithmeticDereference {
     }
 
     boolean dereferenceInsideOrAfterInstanceof(Object obj) {
-        // violation below 'Unnecessary nullity check with instanceof.*'
+        // The null check protects the dereference in the OR branch.
         return obj != null && (obj instanceof String || this.isString(obj.getClass()));
     }
 

@@ -75,90 +75,102 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
     }
 
     /**
-     * Checks for an unnecessary null check within a logical AND expression.
+     * Checks for an unnecessary null check within a logical expression.
      *
      * @param instanceOfNode the AST node representing the instanceof expression
      * @return the identifier if the check is redundant, otherwise {@code null}
      */
     private static Optional<DetailAST> findUnnecessaryNullCheck(DetailAST instanceOfNode) {
-        final DetailAST topLevelExpr = findTopLevelLogicalExpression(instanceOfNode);
-
         Optional<DetailAST> result = Optional.empty();
-        if (topLevelExpr.getType() == TokenTypes.LAND) {
-            result = findRedundantNullCheck(topLevelExpr, instanceOfNode)
-                    .map(DetailAST::getFirstChild);
+        final DetailAST ident = instanceOfNode.findFirstToken(TokenTypes.IDENT);
+        if (ident != null) {
+            final DetailAST topLevelExpr = findTopLevelLogicalExpression(instanceOfNode, ident);
+            result = searchForNullCheck(topLevelExpr, ident).map(DetailAST::getFirstChild);
         }
         return result;
     }
 
     /**
-     * Traverses up through LAND and LOR operators to find the top-level logical expression.
+     * Traverses logical operators while every OR branch requires the same non-null value.
      *
      * @param node the starting node
+     * @param ident the identifier from the instanceof expression
      * @return the top-level logical expression node
      */
-    private static DetailAST findTopLevelLogicalExpression(DetailAST node) {
+    private static DetailAST findTopLevelLogicalExpression(DetailAST node, DetailAST ident) {
         DetailAST currentParent = node;
-        while (currentParent.getParent().getType() == TokenTypes.LAND
-                || currentParent.getParent().getType() == TokenTypes.LOR) {
+        while (requiresNonNullValue(currentParent.getParent(), ident)) {
             currentParent = currentParent.getParent();
         }
         return currentParent;
     }
 
     /**
-     * Finds a redundant null check in a logical AND expression combined with an instanceof check.
+     * Checks whether an expression establishes a non-null value before dereferencing it.
      *
-     * @param logicalAndNode the root node of the logical AND expression
-     * @param instanceOfNode the instanceof expression node
-     * @return the AST node representing the redundant null check, or null if not found
+     * @param node the logical expression to inspect
+     * @param instanceOfIdent the identifier from the instanceof expression
+     * @return true if evaluating the expression safely establishes a non-null value
      */
-    private static Optional<DetailAST> findRedundantNullCheck(DetailAST logicalAndNode,
-        DetailAST instanceOfNode) {
-
-        Optional<DetailAST> nullCheckNode = Optional.empty();
-        final DetailAST instanceOfIdent = instanceOfNode.findFirstToken(TokenTypes.IDENT);
-
-        if (instanceOfIdent != null
-                && !containsVariableDereference(logicalAndNode, instanceOfIdent)) {
-
-            nullCheckNode = searchForNullCheck(logicalAndNode, instanceOfNode, instanceOfIdent);
+    private static boolean requiresNonNullValue(DetailAST node, DetailAST instanceOfIdent) {
+        final int type = node.getType();
+        boolean result = false;
+        if (type == TokenTypes.LITERAL_INSTANCEOF) {
+            final DetailAST ident = node.findFirstToken(TokenTypes.IDENT);
+            result = ident != null && instanceOfIdent.getText().equals(ident.getText());
         }
-        return nullCheckNode;
+        else if (type == TokenTypes.LAND) {
+            result = requiresNonNullConjunction(node, instanceOfIdent);
+        }
+        else if (type == TokenTypes.LOR) {
+            result = true;
+            for (DetailAST child = node.getFirstChild(); child != null && result;
+                    child = child.getNextSibling()) {
+                if (child.getType() != TokenTypes.LPAREN
+                        && child.getType() != TokenTypes.RPAREN) {
+                    result = requiresNonNullValue(child, instanceOfIdent);
+                }
+            }
+        }
+        return result;
     }
 
     /**
-     * Searches for a redundant null check in the children of a logical AND node.
+     * Checks that a conjunction establishes a non-null value before any dereference.
      *
-     * @param logicalAndNode the LAND node to search
-     * @param instanceOfNode the instanceof expression node
+     * @param node the conjunction to inspect
+     * @param instanceOfIdent the identifier from the instanceof expression
+     * @return true if an operand safely establishes a non-null value
+     */
+    private static boolean requiresNonNullConjunction(DetailAST node, DetailAST instanceOfIdent) {
+        boolean result = false;
+        for (DetailAST child = node.getFirstChild(); child != null;
+                child = child.getNextSibling()) {
+            result = requiresNonNullValue(child, instanceOfIdent);
+            if (result || containsVariableDereference(child, instanceOfIdent)) {
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Searches for a redundant null check in the children of a logical expression.
+     *
+     * @param logicalNode the logical expression to search
      * @param instanceOfIdent the identifier from the instanceof expression
      * @return the null check node if found, null otherwise
      */
-    private static Optional<DetailAST> searchForNullCheck(DetailAST logicalAndNode,
-        DetailAST instanceOfNode, DetailAST instanceOfIdent) {
+    private static Optional<DetailAST> searchForNullCheck(DetailAST logicalNode,
+        DetailAST instanceOfIdent) {
 
         Optional<DetailAST> nullCheckNode = Optional.empty();
 
-        final Optional<DetailAST> instanceOfSubtree =
-                findDirectChildContaining(logicalAndNode, instanceOfNode);
-
-        final DetailAST instanceOfSubtreeNode =
-                instanceOfSubtree.orElse(null);
-
-        final boolean instanceOfInLor =
-                instanceOfSubtreeNode != null
-                        && instanceOfSubtreeNode.getType() == TokenTypes.LOR;
-
-        DetailAST currentChild = logicalAndNode.getFirstChild();
+        DetailAST currentChild = logicalNode.getFirstChild();
         while (currentChild != null) {
-            if (instanceOfInLor && currentChild.equals(instanceOfSubtreeNode)) {
-                break;
-            }
-
             if (nullCheckNode.isEmpty()) {
                 nullCheckNode = checkChildForNullCheck(
-                        currentChild, instanceOfNode, instanceOfIdent);
+                        currentChild, instanceOfIdent);
             }
 
             currentChild = currentChild.getNextSibling();
@@ -171,12 +183,11 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
      * Checks a child node for a redundant null check.
      *
      * @param currentChild the child node to check
-     * @param instanceOfNode the instanceof expression node
      * @param instanceOfIdent the identifier from the instanceof expression
      * @return the null check node if found, otherwise empty
      */
     private static Optional<DetailAST> checkChildForNullCheck(DetailAST currentChild,
-        DetailAST instanceOfNode, DetailAST instanceOfIdent) {
+        DetailAST instanceOfIdent) {
 
         Optional<DetailAST> result = Optional.empty();
 
@@ -185,61 +196,19 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
             result = Optional.of(currentChild);
         }
         else if (currentChild.getType() == TokenTypes.LAND) {
-            result = findRedundantNullCheck(currentChild, instanceOfNode);
+            result = searchForNullCheck(currentChild, instanceOfIdent);
         }
 
         return result;
     }
 
     /**
-     * Finds the direct child of parent that contains the target node.
-     *
-     * @param parent the parent node
-     * @param target the target node to find
-     * @return the direct child containing target, or null if not found
-     */
-    private static Optional<DetailAST> findDirectChildContaining(DetailAST parent,
-        DetailAST target) {
-
-        DetailAST result = null;
-        DetailAST child = parent.getFirstChild();
-        while (child != null) {
-            if (isAncestorOf(child, target)) {
-                result = child;
-                break;
-            }
-            child = child.getNextSibling();
-        }
-        return Optional.ofNullable(result);
-    }
-
-    /**
-     * Checks if the given node is an ancestor of (or the same as) the target node.
-     *
-     * @param node the potential ancestor node
-     * @param target the target node to check
-     * @return true if node is an ancestor of target, false otherwise
-     */
-    private static boolean isAncestorOf(DetailAST node, DetailAST target) {
-        boolean found = false;
-        DetailAST current = target;
-        while (current != null) {
-            if (current.equals(node)) {
-                found = true;
-                break;
-            }
-            current = current.getParent();
-        }
-        return found;
-    }
-
-    /**
      * Checks if the given AST node contains a field access or method call on the
-     * variable of the instanceof operand, evaluated before that operand.
+     * variable of the instanceof operand.
      *
      * @param node the AST node to check
      * @param instanceOfIdent the identifier from the instanceof expression
-     * @return true if the variable is dereferenced before the instanceof, false otherwise
+     * @return true if the variable is dereferenced in the expression
      */
     private static boolean containsVariableDereference(DetailAST node,
         DetailAST instanceOfIdent) {
@@ -251,26 +220,10 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
             found = node.getType() == TokenTypes.DOT
                     && instanceOfIdent.getText().equals(child.getText())
                     && child.getNextSibling() != null
-                    && isBefore(child, instanceOfIdent)
                 || containsVariableDereference(child, instanceOfIdent);
             child = child.getNextSibling();
         }
         return found;
-    }
-
-    /**
-     * Checks if the first node appears earlier in the source than the second node.
-     *
-     * @param first the node expected to appear first
-     * @param second the node expected to appear second
-     * @return true if first is located before second, false otherwise
-     */
-    private static boolean isBefore(DetailAST first, DetailAST second) {
-        int result = Integer.compare(first.getLineNo(), second.getLineNo());
-        if (result == 0) {
-            result = Integer.compare(first.getColumnNo(), second.getColumnNo());
-        }
-        return result == -1;
     }
 
     /**
