@@ -132,51 +132,52 @@ public class ViolationTest {
 
     @Test
     public void testCompareToWithDifferentModuleId() {
-        final Violation message1 = createSampleViolationWithId("module1");
-        final Violation message2 = createSampleViolationWithId("module2");
-        final Violation messageNull = createSampleViolationWithId(null);
+        final Violation violation1 = createSampleViolationWithId("module1");
+        final Violation violation2 = createSampleViolationWithId("module2");
+        final Violation violationNull = createSampleViolationWithId(null);
 
         assertWithMessage("Invalid comparing result")
-                .that(message1.compareTo(messageNull) > 0)
+                .that(violation1.compareTo(violationNull) > 0)
                 .isTrue();
         assertWithMessage("Invalid comparing result")
-                .that(messageNull.compareTo(message1) < 0)
+                .that(violationNull.compareTo(violation1) < 0)
                 .isTrue();
         assertWithMessage("Invalid comparing result")
-                .that(message1.compareTo(message2) < 0)
+                .that(violation1.compareTo(violation2) < 0)
                 .isTrue();
     }
 
     @Test
     public void testCompareToWithDifferentClass() {
-        final Violation message1 = createSampleViolationWithClass(AnnotationLocationCheck.class);
-        final Violation message2 = createSampleViolationWithClass(AnnotationOnSameLineCheck.class);
-        final Violation messageNull = createSampleViolationWithClass(null);
+        final Violation violation1 = createSampleViolationWithClass(AnnotationLocationCheck.class);
+        final Violation violation2 =
+                createSampleViolationWithClass(AnnotationOnSameLineCheck.class);
+        final Violation violationNull = createSampleViolationWithClass(null);
 
         assertWithMessage("Invalid comparing result")
-                .that(message1.compareTo(messageNull) > 0)
+                .that(violation1.compareTo(violationNull) > 0)
                 .isTrue();
         assertWithMessage("Invalid comparing result")
-                .that(messageNull.compareTo(message1) < 0)
+                .that(violationNull.compareTo(violation1) < 0)
                 .isTrue();
         assertWithMessage("Invalid comparing result")
-                .that(message1.compareTo(message2) < 0)
+                .that(violation1.compareTo(violation2) < 0)
                 .isTrue();
     }
 
     @Test
     public void testCompareToWithDifferentLines() {
-        final Violation message1 = createSampleViolationWithLine(1);
-        final Violation message1a = createSampleViolationWithLine(1);
-        final Violation message2 = createSampleViolationWithLine(2);
+        final Violation violation1 = createSampleViolationWithLine(1);
+        final Violation violation1a = createSampleViolationWithLine(1);
+        final Violation violation2 = createSampleViolationWithLine(2);
 
         assertWithMessage("Invalid comparing result")
-                .that(message1.compareTo(message2) < 0)
+                .that(violation1.compareTo(violation2) < 0)
                 .isTrue();
         assertWithMessage("Invalid comparing result")
-                .that(message2.compareTo(message1) > 0)
+                .that(violation2.compareTo(violation1) > 0)
                 .isTrue();
-        final int actual = message1.compareTo(message1a);
+        final int actual = violation1.compareTo(violation1a);
         assertWithMessage("Invalid comparing result")
             .that(actual)
             .isEqualTo(0);
@@ -184,17 +185,17 @@ public class ViolationTest {
 
     @Test
     public void testCompareToWithDifferentColumns() {
-        final Violation message1 = createSampleViolationWithColumn(1);
-        final Violation message1a = createSampleViolationWithColumn(1);
-        final Violation message2 = createSampleViolationWithColumn(2);
+        final Violation violation1 = createSampleViolationWithColumn(1);
+        final Violation violation1a = createSampleViolationWithColumn(1);
+        final Violation violation2 = createSampleViolationWithColumn(2);
 
         assertWithMessage("Invalid comparing result")
-                .that(message1.compareTo(message2) < 0)
+                .that(violation1.compareTo(violation2) < 0)
                 .isTrue();
         assertWithMessage("Invalid comparing result")
-                .that(message2.compareTo(message1) > 0)
+                .that(violation2.compareTo(violation1) > 0)
                 .isTrue();
-        final int actual = message1.compareTo(message1a);
+        final int actual = violation1.compareTo(violation1a);
         assertWithMessage("Invalid comparing result")
             .that(actual)
             .isEqualTo(0);

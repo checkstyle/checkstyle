@@ -287,8 +287,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                     cacheFile.put(fileName, timestamp);
                 }
                 try (FileAuditCompletion completion = new FileAuditCompletion(fileName)) {
-                    final SortedSet<Violation> fileMessages = processFile(file);
-                    fireErrors(fileName, fileMessages);
+                    final SortedSet<Violation> fileViolations = processFile(file);
+                    fireErrors(fileName, fileViolations);
                 }
             }
             // -@cs[IllegalCatch] There is no other way to deliver filename that was under
@@ -324,16 +324,16 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      *      haltOnException field
      */
     private SortedSet<Violation> processFile(File file) throws CheckstyleException {
-        final SortedSet<Violation> fileMessages = new TreeSet<>();
+        final SortedSet<Violation> fileViolations = new TreeSet<>();
         try {
             final FileText theText = new FileText(file.getAbsoluteFile(), charset);
             for (final FileSetCheck fsc : fileSetChecks) {
-                fileMessages.addAll(fsc.process(file, theText));
+                fileViolations.addAll(fsc.process(file, theText));
             }
         }
         catch (final IOException ioe) {
             log.debug("IOException occurred.", ioe);
-            fileMessages.add(new Violation(1,
+            fileViolations.add(new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
                     new String[] {ioe.getMessage()}, null, getClass(), null));
         }
@@ -350,12 +350,12 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
             exc.printStackTrace(pw);
 
-            fileMessages.add(new Violation(1,
+            fileViolations.add(new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
                     new String[] {sw.getBuffer().toString()},
                     null, getClass(), null));
         }
-        return fileMessages;
+        return fileViolations;
     }
 
     /**
