@@ -175,7 +175,8 @@
           Example of how to configure the check to suppress more than one check.
           Checker is configured to check only SQL files using RegexpSingleline check to detect
           usage of JOIN operations and LineLength check to detect lines exceeding 60
-          characters:
+          characters. The filter explicitly reads suppression comments using US-ASCII;
+          otherwise, it inherits the encoding from Checker:
         </p>
         <macro name="example">
           <param name="path"

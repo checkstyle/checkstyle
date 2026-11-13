@@ -1,11 +1,11 @@
 /*
 SuppressWithPlainTextCommentFilter
+charset = (default)UTF-8
 offCommentFormat = CSOFF
 onCommentFormat = CSON
 checkFormat = \\.IndentationCheck$
 messageFormat = (default)(null)
 idFormat = (default)(null)
-
 
 com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck
 arrayInitIndent = (default)4

@@ -1,11 +1,11 @@
 /*
 SuppressWithPlainTextCommentFilter
+charset = (default)UTF-8
 offCommentFormat = CSOFF (\\w+) \\(\\w+\\)
 onCommentFormat = CSON (\\w+)
 checkFormat = (default).*
 messageFormat = (default)(null)
 idFormat = $1
-
 
 com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck
 id = ignore

@@ -1,5 +1,6 @@
 /*
 SuppressWithPlainTextCommentFilter
+charset = (default)UTF-8
 offCommentFormat = (default)// CHECKSTYLE:OFF
 onCommentFormat = (default)// CHECKSTYLE:ON
 checkFormat = (default).*
@@ -9,7 +10,6 @@ idFormat = (default)(null)
 com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck
 eachLine = true
 fileExtensions = (default)(null)
-
 
 */
 

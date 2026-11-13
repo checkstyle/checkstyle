@@ -1,5 +1,6 @@
 /*
 SuppressWithNearbyTextFilter
+charset = (default)UTF-8
 nearbyTextPattern = -cs: (\\w+)
 checkPattern = (default).*
 messagePattern = (default)(null)
@@ -19,9 +20,8 @@ minimum = (default)0
 maximum = (default)0
 fileExtensions = (default)""
 
-
 */
-// violation 9 lines above 'Line matches the illegal pattern .*'
+// violation 8 lines above 'Line matches the illegal pattern .*'
 
 .div-1 main {
   // violation below 'Line is longer than 90 characters (found 94).'

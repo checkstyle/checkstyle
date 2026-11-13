@@ -1,5 +1,6 @@
 /*
 SuppressWithNearbyTextFilter
+charset = (default)UTF-8
 nearbyTextPattern = (default)SUPPRESS CHECKSTYLE (\\w+)
 checkPattern = (default).*
 messagePattern = (default)(null)
@@ -17,7 +18,6 @@ applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true
 applyToPrivate = (default)true
-
 
 */
 

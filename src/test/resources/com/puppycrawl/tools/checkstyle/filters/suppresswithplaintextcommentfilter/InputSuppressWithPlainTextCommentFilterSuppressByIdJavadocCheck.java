@@ -1,11 +1,11 @@
 /*
 SuppressWithPlainTextCommentFilter
+charset = (default)UTF-8
 offCommentFormat = (default)// CHECKSTYLE:OFF
 onCommentFormat = (default)// CHECKSTYLE:ON
 checkFormat = (default).*
 messageFormat = (default)(null)
 idFormat = foo
-
 
 com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck
 allowedAnnotations = (default)Override

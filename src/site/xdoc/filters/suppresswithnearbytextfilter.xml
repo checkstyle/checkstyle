@@ -26,6 +26,7 @@
               <li><a href="#Example4-config" class="toc-sublink">The filter to suppress audit events only on a check whose id is <code>ignoreMe</code></a></li>
               <li><a href="#Example5-config" class="toc-sublink">The filter to suppress audit events for the current and next line</a></li>
               <li><a href="#Example6-config" class="toc-sublink">The filter to suppress <code>LineLength</code> violations for lines containing a URL</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">To explicitly read suppression text using the US-ASCII character encoding. Without this property, the filter inherits the encoding from Checker</a></li>
               <li><a href="#UseCase1-config" class="toc-sublink">The filter to suppress audit events on any line that contains <code>DO NOT CHECK THIS LINE</code></a></li>
             </ul>
           </li>
@@ -67,6 +68,13 @@
               <th>type</th>
               <th>default value</th>
               <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="charset"/><a href="#charset">charset</a></td>
+              <td>Specify the character encoding used to read source files. The default is inherited from the parent <code>Checker</code> module.</td>
+              <td><a href="../property-types.html#String">String</a></td>
+              <td><code>the charset property of the parent &lt;a href=&quot;https://checkstyle.org/config.html#Checker&quot;&gt;Checker&lt;/a&gt; module</code></td>
+              <td>14.5.0</td>
             </tr>
             <tr>
               <td><a id="checkPattern"/><a href="#checkPattern">checkPattern</a></td>
@@ -349,6 +357,47 @@ public class Example6 {
    * Flag description.
    * Disabled until &lt;a href="www.github.com/owner/repo/issue/9#comment"&gt;
    * // filtered violation above 'Line is longer ...'
+   */
+  public static final boolean SOME_FLAG = false;
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+          To explicitly read suppression text using the US-ASCII character encoding.
+          Without this property, the filter inherits the encoding from Checker:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressWithNearbyTextFilter"&gt;
+    &lt;property name="charset" value="US-ASCII"/&gt;
+  &lt;/module&gt;
+  &lt;module name="LineLength"&gt;
+    &lt;property name="max" value="55"/&gt;
+  &lt;/module&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MagicNumber"&gt;
+      &lt;property name="id" value="magicConstants"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example7 {
+  // filtered violation below ''42' is a magic number'
+  int a = 42;  // SUPPRESS CHECKSTYLE because I want to
+  int b = 43;  // violation "'43' is a magic number."
+
+  String a_really_long_variable_name = "A sentence greater than 70 chars";
+  // violation above 'Line is longer ...'
+  String longText =
+          "This is a very very very very very very very very very very long string";
+  // violation above 'Line is longer ...'
+  /**
+   * Flag description.
+   * Disabled until &lt;a href="www.github.com/owner/repo/issue/9#comment"&gt;
+   * // violation above 'Line is longer ...'
    */
   public static final boolean SOME_FLAG = false;
 }

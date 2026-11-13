@@ -157,7 +157,7 @@ public class SuppressWithPlainTextCommentFilterExamplesTest
     @Test
     public void testExample8() throws Exception {
         final String[] expectedWithoutFilter = {
-            "29: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 60, 66),
+            "30: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 60, 66),
         };
 
         final String[] expectedWithFilter = CommonUtil.EMPTY_STRING_ARRAY;

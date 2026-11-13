@@ -1,5 +1,6 @@
 /*
 SuppressWithNearbyTextFilter
+charset = (default)UTF-8
 nearbyTextPattern = .*
 checkPattern = (default).*
 messagePattern = .*Line.*
@@ -10,7 +11,6 @@ com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
 fileExtensions = (default)(null)
 ignorePattern = (default)^(package|import) .*
 max = 76
-
 
 */
 
