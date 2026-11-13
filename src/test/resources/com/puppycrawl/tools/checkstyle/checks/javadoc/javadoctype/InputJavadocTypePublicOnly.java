@@ -105,14 +105,6 @@ public class InputJavadocTypePublicOnly
     {
     }
 
-    /**
-       This inner class has no author tag, which is OK.
-     */
-    public class InnerWithoutAuthor
-    {
-
-    }
-
     /** {@inheritDoc} */
     public String toString()
     {
