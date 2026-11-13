@@ -352,8 +352,6 @@
     files="/test/resources/com/puppycrawl/tools/checkstyle/xpath/xpathmapper/InputXpathMapperStringConcat\.java"/>
   <suppress checks="FileLength"
     files="/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/grammar/java14/InputJava14SwitchExpression\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/grammar/java14/InputJava14InstanceofWithPatternMatching\.java"/>
   <suppress checks="OuterTypeFilename"
     files=".*/sariflogger/InputSarifLogger Space\.java"/>
   <suppress id="resourceFileName"
