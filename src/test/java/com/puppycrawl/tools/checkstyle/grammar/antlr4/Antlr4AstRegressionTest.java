@@ -291,6 +291,20 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testTrickySwitchWithComments2() throws Exception {
+        verifyAst(getPath("ExpectedAntlr4AstRegressionTrickySwitchWithComments2.txt"),
+                getPath("InputAntlr4AstRegressionTrickySwitchWithComments2.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
+    public void testTrickySwitchWithComments3() throws Exception {
+        verifyAst(getPath("ExpectedAntlr4AstRegressionTrickySwitchWithComments3.txt"),
+                getPath("InputAntlr4AstRegressionTrickySwitchWithComments3.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
     public void testCassandraInputWithComments() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionCassandraInputWithComments.txt"),
                 getPath("InputAntlr4AstRegressionCassandraInputWithComments.java"),
@@ -340,6 +354,13 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testCommentsOnAnnotationsAndEnums2() throws Exception {
+        verifyAst(getPath("ExpectedAntlr4AstRegressionCommentsOnAnnotationsAndEnums2.txt"),
+                getPath("InputAntlr4AstRegressionCommentsOnAnnotationsAndEnums2.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
     public void testUncommon() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionUncommon.txt"),
                 getNonCompilablePath("InputAntlr4AstRegressionUncommon.java"),
@@ -378,6 +399,20 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     public void testUncommon4() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionUncommon4.txt"),
                 getPath("InputAntlr4AstRegressionUncommon4.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
+    public void testUncommon5() throws Exception {
+        verifyAst(getPath("ExpectedAntlr4AstRegressionUncommon5.txt"),
+                getPath("InputAntlr4AstRegressionUncommon5.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
+    public void testUncommon6() throws Exception {
+        verifyAst(getPath("ExpectedAntlr4AstRegressionUncommon6.txt"),
+                getPath("InputAntlr4AstRegressionUncommon6.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
