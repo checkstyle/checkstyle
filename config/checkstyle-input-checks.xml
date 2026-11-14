@@ -50,9 +50,14 @@
                               or self::INTERFACE_DEF or self::ENUM_DEF
                               or self::ANNOTATION_DEF or self::RECORD_DEF
                               or self::ANNOTATION_FIELD_DEF
-                              or self::ENUM_CONSTANT_DEF]/MODIFIERS/SINGLE_LINE_COMMENT[
-                       ./COMMENT_CONTENT[contains(@text, 'violation')]
-                       and preceding-sibling::ANNOTATION]"/>
+                              or self::ENUM_CONSTANT_DEF][MODIFIERS/ANNOTATION]/(
+                         MODIFIERS/SINGLE_LINE_COMMENT[preceding-sibling::ANNOTATION]
+                         | SINGLE_LINE_COMMENT[not(preceding-sibling::IDENT)]
+                         | TYPE_PARAMETERS/SINGLE_LINE_COMMENT[
+                             not(preceding-sibling::GENERIC_START)]
+                         | TYPE/SINGLE_LINE_COMMENT[not(preceding-sibling::*[
+                             not(self::SINGLE_LINE_COMMENT or self::BLOCK_COMMENT_BEGIN)])]
+                       )[./COMMENT_CONTENT[contains(@text, 'violation')]]"/>
       <message key="matchxpath.match"
                value="Violation comment must not be placed between an annotation and its target.
 Place it before the annotation block instead."/>
@@ -65,8 +70,11 @@ Place it before the annotation block instead."/>
                               or self::INTERFACE_DEF or self::ENUM_DEF
                               or self::ANNOTATION_DEF or self::RECORD_DEF
                               or self::ANNOTATION_FIELD_DEF
-                              or self::ENUM_CONSTANT_DEF]/MODIFIERS/SINGLE_LINE_COMMENT[
+                              or self::ENUM_CONSTANT_DEF]/(
+                         MODIFIERS | TYPE | TYPE_PARAMETERS | self::*[not(MODIFIERS/*)]
+                       )/SINGLE_LINE_COMMENT[
                        ./COMMENT_CONTENT[contains(@text, 'violation')]
+                       and not(preceding-sibling::IDENT)
                        and preceding-sibling::BLOCK_COMMENT_BEGIN[
                        ./COMMENT_CONTENT[starts-with(@text, '*')]]]"/>
       <message key="matchxpath.match"
