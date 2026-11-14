@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -912,9 +913,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return true if current single-line comment is trailing comment.
      */
     private boolean isTrailingSingleLineComment(DetailAST singleLineComment) {
-        final String targetSourceLine = getLine(singleLineComment.getLineNo() - 1);
+        final int[] targetSourceLine = getLineCodePoints(singleLineComment.getLineNo() - 1);
         final int commentColumnNo = singleLineComment.getColumnNo();
-        return !CommonUtil.hasWhitespaceBefore(commentColumnNo, targetSourceLine);
+        return !CodePointUtil.hasWhitespaceBefore(commentColumnNo, targetSourceLine);
     }
 
     /**
@@ -931,10 +932,10 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return true if current comment block is trailing comment.
      */
     private boolean isTrailingBlockComment(DetailAST blockComment) {
-        final String commentLine = getLine(blockComment.getLineNo() - 1);
+        final int[] commentLine = getLineCodePoints(blockComment.getLineNo() - 1);
         final int commentColumnNo = blockComment.getColumnNo();
         final DetailAST nextSibling = blockComment.getNextSibling();
-        return !CommonUtil.hasWhitespaceBefore(commentColumnNo, commentLine)
+        return !CodePointUtil.hasWhitespaceBefore(commentColumnNo, commentLine)
             || nextSibling != null && TokenUtil.areOnSameLine(nextSibling, blockComment);
     }
 
