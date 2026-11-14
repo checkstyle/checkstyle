@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.NavigableMap;
+import java.util.Optional;
 import java.util.TreeMap;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -70,6 +71,16 @@ public class LineWrappingHandler {
         TokenTypes.ARRAY_INIT,
         TokenTypes.LITERAL_DEFAULT,
         TokenTypes.LITERAL_CASE,
+    };
+
+    /**
+     * The list of token types of calls, arguments and right parenthesis of which
+     * are allowed to be indented from the line such call starts at, when the call
+     * is nested into another wrapped expression.
+     */
+    private static final int[] NESTED_CALL_TOKENS = {
+        TokenTypes.METHOD_CALL,
+        TokenTypes.LITERAL_NEW,
     };
 
     /**
@@ -147,36 +158,88 @@ public class LineWrappingHandler {
         else {
             firstNodeIndent = startIndent;
         }
-        final int currentIndent = firstNodeIndent + indentLevel;
-
         for (DetailAST node : firstNodesOnLines.values()) {
-            checkNodeIndentation(node, firstNodeIndent, currentIndent);
+            if (checkForNullParameterChild(node) || checkForMethodLparenNewLine(node)
+                    || !shouldProcessTextBlockLiteral(node)) {
+                continue;
+            }
+            checkWrappedLine(node, firstNode, firstNodeIndent, indentLevel);
         }
     }
 
     /**
-     * Checks whether the indentation of the node on the wrapped line is correct.
+     * Checks the indentation of the wrapped line which starts with the given node.
+     * The right parenthesis is expected at the indentation of the line the whole
+     * expression starts at, except for record pattern parentheses. All other nodes
+     * are expected one wrapping level deeper.
      *
-     * @param node the node for which to check.
-     * @param firstNodeIndent indentation first line before wrapped lines used.
-     * @param currentIndent indentation all wrapped lines should use.
+     * @param node node placed at the start of the wrapped line.
+     * @param firstNode first node of the whole expression.
+     * @param firstNodeIndent indentation of the line the expression starts at.
+     * @param indentLevel line wrapping indentation.
      */
-    private void checkNodeIndentation(DetailAST node, int firstNodeIndent, int currentIndent) {
-        if (!checkForNullParameterChild(node) && !checkForMethodLparenNewLine(node)
-                && shouldProcessTextBlockLiteral(node)) {
-            final int currentType = node.getType();
-            if (currentType == TokenTypes.RPAREN) {
-                if (node.getParent().getType() == TokenTypes.RECORD_PATTERN_DEF) {
-                    logWarningMessage(node, currentIndent);
-                }
-                else {
-                    logWarningMessage(node, firstNodeIndent);
-                }
-            }
-            else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
-                logWarningMessage(node, currentIndent);
-            }
+    private void checkWrappedLine(DetailAST node, DetailAST firstNode,
+            int firstNodeIndent, int indentLevel) {
+        final int currentType = node.getType();
+        final int offset;
+        if (currentType == TokenTypes.RPAREN
+                && node.getParent().getType() != TokenTypes.RECORD_PATTERN_DEF) {
+            offset = 0;
         }
+        else {
+            offset = indentLevel;
+        }
+        if (!TokenUtil.isOfType(currentType, IGNORED_LIST)
+                && !isIndentedFromNestedCall(node, firstNode, offset)) {
+            logWarningMessage(node, firstNodeIndent + offset);
+        }
+    }
+
+    /**
+     * Checks whether the given node is indented from the line of the call it is
+     * nested into. Such indentation is acceptable beside the one that is relative
+     * to the first node of the whole expression, as arguments of a nested call may
+     * be indented from the call itself.
+     *
+     * @param node node placed at the start of the wrapped line.
+     * @param firstNode first node of the whole expression.
+     * @param offset offset from the line the nested call starts at.
+     * @return true if the node is indented from the call it is nested into.
+     */
+    private boolean isIndentedFromNestedCall(DetailAST node, DetailAST firstNode, int offset) {
+        return getNestedCall(node, firstNode)
+                .filter(call -> expandedTabsColumnNo(node) == getLineStart(call) + offset)
+                .isPresent();
+    }
+
+    /**
+     * Finds the innermost call which the line of the given node belongs to and
+     * which is nested into the given first node. Only arguments and right
+     * parenthesis of a call are taken into account, as only they are indented
+     * from the line such call starts at.
+     *
+     * @param node node placed at the start of the wrapped line.
+     * @param firstNode first node of the whole expression.
+     * @return the call the line of the node is nested into.
+     */
+    private static Optional<DetailAST> getNestedCall(DetailAST node, DetailAST firstNode) {
+        DetailAST nestedCall = null;
+        DetailAST child = node;
+        DetailAST ancestor = node.getParent();
+        while (ancestor != null && !ancestor.equals(firstNode)) {
+            if (nestedCall == null
+                    && TokenUtil.isOfType(ancestor, NESTED_CALL_TOKENS)
+                    && TokenUtil.isOfType(child, TokenTypes.ELIST, TokenTypes.RPAREN)) {
+                nestedCall = ancestor;
+            }
+            child = ancestor;
+            ancestor = ancestor.getParent();
+        }
+        Optional<DetailAST> result = Optional.empty();
+        if (ancestor != null) {
+            result = Optional.ofNullable(nestedCall);
+        }
+        return result;
     }
 
     /**
