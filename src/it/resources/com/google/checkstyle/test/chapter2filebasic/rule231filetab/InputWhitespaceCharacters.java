@@ -13,7 +13,7 @@ final class InputWhitespaceCharacters {
    * @param badFormat3 bad format
    * @return hack
    * @throws java.lang.Exception abc
-   **/
+   **/ // violation 'Block comment end must be on new line.'
   int test1(int badFormat1, int badFormat2,
   		final int badFormat3) // violation 'Line contains a tab character.'
       throws java.lang.Exception {
