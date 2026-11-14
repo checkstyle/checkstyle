@@ -49,27 +49,46 @@ public class CrAwareLexerSimulator extends LexerATNSimulator {
 
     /**
      * Overrides the 'consume()' method to add support for '\r' (carriage return) line endings.
+     * A line break which is translated from a Unicode escape does not start a new line,
+     * lines are counted in the original text.
      *
      * @param input the Character stream of the file we are parsing
      */
     @Override
     public void consume(CharStream input) {
         final int currentChar = input.LA(1);
-        if (currentChar == '\n') {
+        final int width = columnWidth(input, 0);
+        if (width == 1 && currentChar == '\n') {
             line++;
             charPositionInLine = 0;
         }
-        else if (currentChar == '\r') {
-            final int nextChar = input.LA(2);
-            if (nextChar != '\n') {
+        else if (width == 1 && currentChar == '\r') {
+            final boolean crlf = input.LA(2) == '\n' && columnWidth(input, 1) == 1;
+            if (!crlf) {
                 line++;
                 charPositionInLine = 0;
             }
         }
         else {
-            charPositionInLine++;
+            charPositionInLine += width;
         }
         input.consume();
+    }
+
+    /**
+     * Number of columns the character at the given offset from the current position occupies:
+     * the width of its original spelling when Unicode escapes are translated, otherwise one.
+     *
+     * @param input the Character stream of the file we are parsing
+     * @param offset offset from the current position
+     * @return the number of columns
+     */
+    private static int columnWidth(CharStream input, int offset) {
+        int width = 1;
+        if (input instanceof final UnicodeEscapeDecodingCharStream decoding) {
+            width = decoding.getRawWidth(decoding.index() + offset);
+        }
+        return width;
     }
 
 }
