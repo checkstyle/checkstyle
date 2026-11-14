@@ -19,8 +19,7 @@ public int allowed(int value) {
     return value;
 }
 
-// ok below until https://github.com/checkstyle/checkstyle/issues/20221
-/** @param other not a parameter */
+/** @param other the implicit class is package-private, so it is not checked */
 public void unused() {
 }
 

@@ -15,15 +15,15 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 // non-compiled with javac: Compilable with Java25
 
 /** Missing param tag. */
-void params(int value) { // ok until https://github.com/checkstyle/checkstyle/issues/20221
+void params(int value) { // violation 'Expected @param tag for 'value'.'
 }
 
 /** Missing return tag. */
-int result() { // ok until https://github.com/checkstyle/checkstyle/issues/20221
+int result() { // violation '@return tag should be present and have description.'
     return 0;
 }
 
-// ok below until https://github.com/checkstyle/checkstyle/issues/20221
+// violation below 'Unused @param tag for 'other'.'
 /** @param other not a parameter */
 void unused() {
 }
@@ -59,6 +59,6 @@ class Holder {
  */
 record Point(int x) {
     /** Compact constructor. */
-    Point { // ok until https://github.com/checkstyle/checkstyle/issues/21697
+    Point { // violation 'Expected @param tag for 'x'.'
     }
 }
