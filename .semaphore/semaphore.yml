@@ -27,7 +27,14 @@ blocks:
                     || sleep 15s;
             done
           - source "$HOME/.sdkman/bin/sdkman-init.sh"
-          - sdk install groovy
+          - |
+            for i in 1 2 3 4 5; do
+              if sdk install groovy; then
+                break
+              fi
+              echo "Groovy installation attempt $i failed, retrying in 15 seconds..."
+              sleep 15s
+            done
           - groovy --version
           - export GRADLE_OPTS=-Dorg.gradle.console=plain
       epilogue:

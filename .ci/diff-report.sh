@@ -173,10 +173,22 @@ set-upstream)
 prepare-environment)
   mv .ci-temp/projects.properties ./.ci-temp/contribution/checkstyle-tester/
   mv .ci-temp/*.xml ./.ci-temp/contribution/checkstyle-tester/
-  curl --fail-with-body -s "https://get.sdkman.io" | bash
+  for i in 1 2 3 4 5; do
+    if curl --fail-with-body -s "https://get.sdkman.io" | bash; then
+      break
+    fi
+    echo "SDKMAN installation attempt $i failed, retrying in 15 seconds..."
+    sleep 15s
+  done
   # shellcheck disable=SC1091
   source "$HOME/.sdkman/bin/sdkman-init.sh"
-  sdk install groovy
+  for i in 1 2 3 4 5; do
+    if sdk install groovy; then
+      break
+    fi
+    echo "Groovy installation attempt $i failed, retrying in 15 seconds..."
+    sleep 15s
+  done
   echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
   ;;
 
