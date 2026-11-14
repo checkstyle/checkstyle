@@ -41,8 +41,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * <div>
  * Check that a private field is declared, but never used. Fields with any other
- * visibility (package-private, protected, or public), including those declared in
- * an implicitly declared class (compact source file), are not checked.
+ * visibility (package-private, protected, or public) are not checked. Private fields
+ * declared in an implicitly declared class (compact source file) are checked as well.
  * </div>
  *
  * @since 14.1.0
@@ -157,6 +157,7 @@ public class UnusedPrivateFieldCheck extends AbstractCheck {
         return new int[] {
             TokenTypes.IMPORT,
             TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
             TokenTypes.PARAMETERS,
@@ -199,12 +200,18 @@ public class UnusedPrivateFieldCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.OBJBLOCK -> {
+            case TokenTypes.OBJBLOCK, TokenTypes.COMPACT_COMPILATION_UNIT -> {
                 privateFields.push(new HashMap<>());
                 scopeStackSnapshots.push(new ArrayDeque<>(scopeStack));
                 scopeStack.clear();
                 final DetailAST typeDef = ast.getParent();
-                final DetailAST nameIdent = typeDef.findFirstToken(TokenTypes.IDENT);
+                final DetailAST nameIdent;
+                if (typeDef == null) {
+                    nameIdent = null;
+                }
+                else {
+                    nameIdent = typeDef.findFirstToken(TokenTypes.IDENT);
+                }
                 if (nameIdent == null) {
                     enclosingTypeNames.push("");
                 }
@@ -231,7 +238,7 @@ public class UnusedPrivateFieldCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.OBJBLOCK -> {
+            case TokenTypes.OBJBLOCK, TokenTypes.COMPACT_COMPILATION_UNIT -> {
                 final Map<String, DetailAST> classFields = privateFields.pop();
                 privateFieldsByType.put(enclosingTypeNames.peek(), classFields);
                 for (final Map.Entry<String, DetailAST> entry : classFields.entrySet()) {
@@ -313,7 +320,8 @@ public class UnusedPrivateFieldCheck extends AbstractCheck {
     private void handleVariableDef(DetailAST ast) {
         final DetailAST parent = ast.getParent();
 
-        if (parent.getType() == TokenTypes.OBJBLOCK) {
+        if (parent.getType() == TokenTypes.OBJBLOCK
+                || parent.getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             final boolean isPrivateField = isPrivate(modifiers);
             final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
@@ -324,7 +332,7 @@ public class UnusedPrivateFieldCheck extends AbstractCheck {
                 privateFields.peek().put(ident.getText(), ident);
             }
         }
-        else if (!scopeStack.isEmpty()) {
+        else {
             final String localName =
                     ast.findFirstToken(TokenTypes.IDENT).getText();
             scopeStack.peek().put(localName, resolveDeclaredTypeName(ast));
@@ -343,7 +351,7 @@ public class UnusedPrivateFieldCheck extends AbstractCheck {
         boolean result = isAnnotatedWithIgnoredAnnotation(variableDef);
         if (!result) {
             final DetailAST classDef = variableDef.getParent().getParent();
-            result = isAnnotatedWithIgnoredAnnotation(classDef);
+            result = classDef != null && isAnnotatedWithIgnoredAnnotation(classDef);
         }
         return result;
     }
