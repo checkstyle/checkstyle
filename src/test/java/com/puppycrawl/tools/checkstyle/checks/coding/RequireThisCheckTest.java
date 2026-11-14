@@ -48,6 +48,36 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompoundAssignments() throws Exception {
+        final String[] expected = {
+            "17:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "18:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "19:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "29:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "30:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "31:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "40:9: " + getCheckMessage(MSG_VARIABLE, "enabled", ""),
+            "49:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "50:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "51:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisCompoundAssignments.java"), expected);
+    }
+
+    @Test
+    public void testCompoundAssignmentsAllFields() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "17:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "26:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "27:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisCompoundAssignmentsAllFields.java"), expected);
+    }
+
+    @Test
     public void testIt() throws Exception {
         final String[] expected = {
             "20:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
