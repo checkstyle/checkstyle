@@ -15,6 +15,10 @@ on:
     types: [ opened, synchronize, reopened, closed ]
     branches: '*'
 
+permissions:
+  contents: read
+  issues: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
