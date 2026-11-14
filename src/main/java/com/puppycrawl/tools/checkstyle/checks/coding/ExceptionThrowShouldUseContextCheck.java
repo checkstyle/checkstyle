@@ -297,7 +297,9 @@ public class ExceptionThrowShouldUseContextCheck extends AbstractCheck {
                  param = param.getNextSibling()) {
                 if (param.getType() == TokenTypes.PARAMETER_DEF) {
                     final DetailAST ident = param.findFirstToken(TokenTypes.IDENT);
-                    contextVars.add(ident.getText());
+                    if (ident != null) {
+                        contextVars.add(ident.getText());
+                    }
                 }
             }
         }
