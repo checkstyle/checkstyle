@@ -77,7 +77,8 @@ public class CommentsTest extends AbstractTreeTestSupport {
             "     * @param firstCol number of the first column of the comment.",
             "     * @param lastLine number of the last line of the comment.",
             "     * @param lastCol number of the last column of the comment.",
-            "     */"};
+            "     */",
+        };
         final Comment comment = new Comment(commentText, 5, 49, 66);
 
         assertWithMessage("Invalid comment start line number")
@@ -97,7 +98,8 @@ public class CommentsTest extends AbstractTreeTestSupport {
     @Test
     public void testIntersects() {
         final String[] commentText = {"// compute a single number for start and end",
-            "// to simplify conditional logic"};
+            "// to simplify conditional logic",
+        };
         final Comment comment = new Comment(commentText, 9, 89, 53);
 
         assertWithMessage("Invalid intersection result")

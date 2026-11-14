@@ -248,7 +248,8 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "34:9: " + getCheckMessage(MSG_JAVADOC_MISSING, "run"),
             "47:13: " + getCheckMessage(MSG_JAVADOC_MISSING, "mouseClicked"),
-            "61:13: " + getCheckMessage(MSG_JAVADOC_MISSING, "mouseClicked"), };
+            "61:13: " + getCheckMessage(MSG_JAVADOC_MISSING, "mouseClicked"),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodScopeAnonInner2.java"), expected);
     }

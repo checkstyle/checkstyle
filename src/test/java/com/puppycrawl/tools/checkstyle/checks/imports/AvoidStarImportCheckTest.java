@@ -70,7 +70,8 @@ public class AvoidStarImportCheckTest extends AbstractModuleTestSupport {
         final String[] expected2 = {
             "28:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "29:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
-            "31:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"), };
+            "31:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputAvoidStarImportAllowClass.java"), expected2);
     }
