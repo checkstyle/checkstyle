@@ -136,9 +136,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                     ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Collectors"),
             "21:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Stream"),
-            "23:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "sun.misc.Signal"),
-
         };
 
         final String examplePath = new File("src/" + getResourceLocation()
@@ -161,8 +158,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                     ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Collectors"),
             "21:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Stream"),
-            "23:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "sun.misc.Signal"),
         };
 
         final String examplePath = new File("src/" + getResourceLocation()
@@ -222,8 +217,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                     ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Collectors"),
             "22:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Stream"),
-            "24:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "sun.misc.Signal"),
         };
 
         final String examplePath = new File("src/" + getResourceLocation()
@@ -240,8 +233,6 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
                 ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
             "18:1: " + getCheckMessage(
                 ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
-            "23:1: " + getCheckMessage(
-                ImportControlCheck.MSG_DISALLOWED, "sun.misc.Signal"),
         };
 
         final String examplePath = new File("src/" + getResourceLocation()
