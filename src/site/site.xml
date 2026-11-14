@@ -137,6 +137,8 @@
           <item name="CovariantEquals" href="checks/coding/covariantequals.html"/>
           <item name="DeclarationOrder" href="checks/coding/declarationorder.html"/>
           <item name="DefaultComesLast" href="checks/coding/defaultcomeslast.html"/>
+          <item name="DuplicateConditionIfChain"
+                href="checks/coding/duplicateconditionifchain.html"/>
           <item name="EmptyStatement" href="checks/coding/emptystatement.html"/>
           <item name="EqualsAvoidNull" href="checks/coding/equalsavoidnull.html"/>
           <item name="EqualsHashCode" href="checks/coding/equalshashcode.html"/>
