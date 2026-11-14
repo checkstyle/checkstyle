@@ -75,6 +75,16 @@
           and <code>ignoreStatic</code>. So for example if <code>ignoreStatic</code> is true but
           <code>ignoreStaticFinal</code> is false, then static final variables will not be ignored.
         </p>
+
+        <p>
+          <code>allowedAbbreviations</code> may contain digits, for abbreviations like
+          <code>SLF4J</code> or <code>UTF8</code>. Such an abbreviation is recognized as a whole word
+          inside an identifier, so <code>getSLF4JLogger</code> is not a violation if <code>SLF4J</code>
+          is specified in <code>allowedAbbreviations</code>. If several specified abbreviations
+          with digits start at the same position in a name, the longest one is recognized.
+          Abbreviations that are not specified are still reported, even if they are located
+          right before or right after a specified one.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="AbbreviationAsWordInName_Properties">
