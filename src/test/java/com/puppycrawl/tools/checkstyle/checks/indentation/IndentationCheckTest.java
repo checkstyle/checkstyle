@@ -1623,6 +1623,24 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNestedMethodCallsWithForceStrictCondition() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "42:21: " + getCheckMessage(MSG_ERROR, "\"string\"", 20, 12),
+            "48:9: " + getCheckMessage(MSG_ERROR, "\"string\"", 8, 12),
+            "60:21: " + getCheckMessage(MSG_ERROR, "\"string\"", 20, 12),
+            "68:17: " + getCheckMessage(MSG_ERROR, ")", 16, 8),
+        };
+        verifyWarns(checkConfig,
+            getPath("InputIndentationNestedMethodCallsWithForceStrictCondition.java"), expected);
+    }
+
+    @Test
     public void testValidArrayInitDefaultIndentWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
@@ -4385,6 +4403,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "72:9: " + getCheckMessage(MSG_ERROR, ")", 8, 12),
             "89:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 16),
             "90:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 16),
+            "125:17: " + getCheckMessage(MSG_ERROR, ")", 16, 12),
         };
         verifyWarns(checkConfig, fileName, expected);
     }

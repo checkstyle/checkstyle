@@ -97,4 +97,31 @@ ColoredPoint(_,_,_)                                                         //in
             default -> {}                                                   //indent:12 exp:12
         }                                                                   //indent:8 exp:8
     }                                                                       //indent:4 exp:4
+
+    void testClosingParentheses(Object obj) {                               //indent:4 exp:4
+        if (obj instanceof                                                  //indent:8 exp:8
+            ColoredPoint(_, _, _                                            //indent:12 exp:12
+            )) {}                                                           //indent:12 exp:12
+
+        if (obj instanceof                                                  //indent:8 exp:8
+            ColoredPoint(_, _, _                                            //indent:12 exp:12
+            )                                                               //indent:12 exp:12
+        ) {}                                                                //indent:8 exp:8
+
+        if (obj instanceof ColoredPoint(_, _, _                             //indent:8 exp:8
+            )) {}                                                           //indent:12 exp:12
+
+        if (obj instanceof                                                  //indent:8 exp:8
+            Rectangle(                                                      //indent:12 exp:12
+            ColoredPoint(_, _, _                                            //indent:12 exp:12
+            ),                                                              //indent:12 exp:12
+            ColoredPoint(_, _, _                                            //indent:12 exp:12
+            )                                                               //indent:12 exp:12
+            )                                                               //indent:12 exp:12
+        ) {}                                                                //indent:8 exp:8
+
+        if (obj instanceof                                                  //indent:8 exp:8
+            ColoredPoint(_, _, _                                            //indent:12 exp:12
+                )) {}                                                       //indent:16 exp:12 warn
+    }                                                                       //indent:4 exp:4
 }                                                                           //indent:0 exp:0
