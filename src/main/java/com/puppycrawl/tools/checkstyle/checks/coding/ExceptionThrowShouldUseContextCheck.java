@@ -295,8 +295,9 @@ public class ExceptionThrowShouldUseContextCheck extends AbstractCheck {
             for (DetailAST param = parameters.getFirstChild();
                  param != null;
                  param = param.getNextSibling()) {
-                if (param.getType() == TokenTypes.PARAMETER_DEF) {
-                    final DetailAST ident = param.findFirstToken(TokenTypes.IDENT);
+                final DetailAST ident = param.findFirstToken(TokenTypes.IDENT);
+                // commas and receiver parameter have no identifier
+                if (ident != null) {
                     contextVars.add(ident.getText());
                 }
             }
