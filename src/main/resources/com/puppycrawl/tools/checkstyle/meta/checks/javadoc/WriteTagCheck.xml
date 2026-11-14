@@ -11,7 +11,7 @@
  does not match tagFormat.
  No violation is reported when the tag is present and matches tagFormat (or when tagFormat
  is not configured).
- No violation reported in case there is no javadoc.
+ No violation reported in case there is no Javadoc.
  To forbid tags instead of requiring them, use IllegalBlockTag.
  &lt;/div&gt;</description>
          <properties>

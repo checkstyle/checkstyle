@@ -86,7 +86,7 @@ See `docs/TestingTechniques.md` and `docs/specifying-violations.md` (inline conf
 
 Commit messages are validated (`CommitValidationTest`, `.github/PULL_REQUEST_TEMPLATE.md`):
 
-- One line, ≤ 200 chars, no trailing period/whitespace. No body and no trailers
+- One line, ≤ 200 chars, no trailing period/whitespace. No message body and no trailers
   (e.g. `Co-Authored-By:`) — `CommitValidationTest` rejects multi-line messages.
 - Must match one of:
    - `Issue #<n>: <description>`

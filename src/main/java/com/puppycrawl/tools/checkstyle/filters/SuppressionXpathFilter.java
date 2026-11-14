@@ -57,7 +57,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </ul>
  *
  * <p>
- * Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
+ * Also, the filter does not support suppressions inside Javadoc reported by Javadoc checks:
  * </p>
  * <ul id="JavadocChecks">
  * <li>

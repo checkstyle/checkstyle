@@ -94,7 +94,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>Type declarations nested under interfaces by definition are public and static,
  * so the {@code public} and {@code static} modifiers on nested type declarations are redundant.
- * On the other hand, classes inside of interfaces can be abstract or non abstract.
+ * On the other hand, classes inside of interfaces can be abstract or non-abstract.
  * So, {@code abstract} modifier is allowed.
  * </p>
  *

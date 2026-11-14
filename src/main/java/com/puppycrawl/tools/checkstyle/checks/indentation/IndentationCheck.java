@@ -49,8 +49,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * those specific identifiers start the line. If, for example, a brace is used in the
  * middle of the line, its indentation will not take effect. All indentations have an
  * accumulative/recursive effect when they are triggered. If during a line wrapping, another
- * code block is found and it doesn't end on that same line, then the subsequent lines
- * afterwards, in that new code block, are increased on top of the line wrap and any
+ * code block is found, and it doesn't end on that same line, then the subsequent lines
+ * afterward, in that new code block, are increased on top of the line wrap and any
  * indentations above it.
  * </p>
  *

@@ -65,7 +65,7 @@
 
  &lt;p&gt;Type declarations nested under interfaces by definition are public and static,
  so the &lt;code&gt;public&lt;/code&gt; and &lt;code&gt;static&lt;/code&gt; modifiers on nested type declarations are redundant.
- On the other hand, classes inside of interfaces can be abstract or non abstract.
+ On the other hand, classes inside of interfaces can be abstract or non-abstract.
  So, &lt;code&gt;abstract&lt;/code&gt; modifier is allowed.
  &lt;/p&gt;
 

@@ -5,7 +5,7 @@
              name="JavadocMissingLeadingAsterisk"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks if the javadoc has
+ Checks if the Javadoc has
  &lt;a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks"&gt;
  leading asterisks&lt;/a&gt; on each line.
  &lt;/div&gt;

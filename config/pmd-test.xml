@@ -11,7 +11,7 @@
 
   <rule ref="config/pmd.xml">
     <!-- We do throw Exception, as any exception that in not caught in test should fail
-      a test that is expected behavior and we like it as it follow fail-fast and helps
+      a test that is expected behavior, and we like it as it follows fail-fast and helps
       to avoid extra catch blocks -->
     <exclude name="SignatureDeclareThrowsException"/>
     <!-- We need reflection in the tests to access some internal state. -->
@@ -19,9 +19,9 @@
     <!-- it's madness to move all string values to common variables,
       it will be hard to read test code -->
     <exclude name="AvoidDuplicateLiterals"/>
-    <!-- we do not need javadoc on test code -->
+    <!-- we do not need Javadoc on test code -->
     <exclude name="CommentRequired"/>
-    <!-- we like static imports in UTs as them minimize the code and we know that most of
+    <!-- we like static imports in UTs as they minimize the code, and we know that most of
       such methods are from UT+moks frameworks -->
     <exclude name="TooManyStaticImports"/>
     <!-- we try to keep all testing for class in one place/class/file to ease navigation
@@ -57,7 +57,7 @@
       <property name="classReportLevel" value="1000"/>
       <!-- A big enough value to satisfy the most cases. -->
       <property name="methodReportLevel" value="100"/>
-      <!-- GeneratedJavaTokenTypesTest.testTokenNumbering' is simple but long as it rechecks
+      <!-- 'GeneratedJavaTokenTypesTest.testTokenNumbering' is simple but long as it rechecks
              each token one by one. Same goes for
            GeneratedJavadocTokenTypesTest#testTokenNumbers.
            JavadocTokenTypesTest.TokenValues contains several asserts as it checks each
@@ -200,7 +200,7 @@
       <!-- MainTest#testListFilesDirectoryWithNull intentionally overrides
            File#listFiles() to return null, simulating the real JDK contract
            (File#listFiles() returns null on I/O error). This is required to
-           test Main#listFiles' null-handling branch and must not be changed
+           test the null-handling branch of Main#listFiles and must not be changed
            to an empty array. -->
       <property name="violationSuppressXPath"
                value="//ClassDeclaration[@SimpleName='MainTest']

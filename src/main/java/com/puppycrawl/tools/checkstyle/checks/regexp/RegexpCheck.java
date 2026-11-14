@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <p>
  * It differs from them in that it works in multiline mode. Its regular expression
- * can span multiple lines and it checks this against the whole file at once.
+ * can span multiple lines, and it checks this against the whole file at once.
  * The others work in single-line mode. Their single or multiple regular expressions
  * can only span one line. They check each of these against each line in the file in turn.
  * </p>
@@ -93,14 +93,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <p>
  * <b>Note:</b> To search for parentheses () in a regular expression
- * you must escape them like \(\). This is required by the regexp engine,
+ * you must escape them like \(\). This is required by the regex engine,
  * otherwise it will think they are special instruction characters.
  * </p>
  *
  * <p>
  * <b>Note:</b> To search for things that mean something in XML, like
  * {@literal <} you need to escape them like {@literal &}lt;. This is required so the
- * XML parser does not act on them, but instead passes the correct character to the regexp engine.
+ * XML parser does not act on them, but instead passes the correct character to the regex engine.
  * </p>
  *
  * @since 4.0
