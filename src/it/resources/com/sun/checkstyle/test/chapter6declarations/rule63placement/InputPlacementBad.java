@@ -1,4 +1,5 @@
 package com.sun.checkstyle.test.chapter6declarations.rule63placement;
+
 // violation first line 'Header mismatch.*'
 
 final class InputPlacementBad {
