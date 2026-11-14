@@ -63,6 +63,9 @@ public class JavadocRegexpCheck extends AbstractJavadocCheck {
     @XdocsPropertyType(PropertyType.PATTERN)
     private String format = "^$";
 
+    /** Cached regular expression for the current format and case setting. */
+    private Pattern regexp;
+
     /**
      * Control whether to ignore case when matching.
      */
@@ -93,6 +96,7 @@ public class JavadocRegexpCheck extends AbstractJavadocCheck {
      */
     public void setFormat(String format) {
         this.format = format;
+        regexp = null;
     }
 
     /**
@@ -103,6 +107,7 @@ public class JavadocRegexpCheck extends AbstractJavadocCheck {
      */
     public void setIgnoreCase(boolean ignoreCase) {
         this.ignoreCase = ignoreCase;
+        regexp = null;
     }
 
     /**
@@ -149,7 +154,9 @@ public class JavadocRegexpCheck extends AbstractJavadocCheck {
             content = JavadocUtil.getJavadocCommentContent(getBlockCommentAst());
         }
 
-        final Pattern regexp = createRegexp();
+        if (regexp == null) {
+            regexp = createRegexp();
+        }
         if (regexp.matcher(content).find()) {
             log(rootAst.getLineNumber(), MSG_JAVADOC_REGEXP, regexp.pattern());
         }
