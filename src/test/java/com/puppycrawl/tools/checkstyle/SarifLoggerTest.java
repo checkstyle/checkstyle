@@ -567,6 +567,18 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testEscapeRuleId() throws Exception {
+        final SarifLogger logger = new SarifLogger(outStream, OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath("InputSarifLoggerEscapeRuleId.java"),
+                getPath("ExpectedSarifLoggerEscapeRuleId.sarif"),
+                logger,
+                outStream
+        );
+    }
+
+    @Test
     public void testMultipleMessageStrings() throws Exception {
         final String inputFile = "InputSarifLoggerMultipleMessages.java";
         final String expectedReportFile = "ExpectedSarifLoggerMultipleMessages.sarif";
