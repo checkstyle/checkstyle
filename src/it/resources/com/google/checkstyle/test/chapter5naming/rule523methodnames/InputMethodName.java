@@ -337,17 +337,17 @@ public class InputMethodName {
   // violation 2 lines above """Test method name 'testing_124Foo' has invalid
   // underscore usage, underscore only allowed between letters or between digits"""
 
+  // violation 3 lines below 'testing_124FOO' must contain no more than '1' consecutive capital'
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  // violation below 'testing_124FOO' must contain no more than '1' consecutive capital letters'
   void testing_124FOO() {}
 
   // violation 2 lines above """Test method name 'testing_124FOO' has invalid
   // underscore usage, underscore only allowed between letters or between digits"""
 
+  // violation 3 lines below 'TESTING_124Foo' must contain no more than '1' consecutive capital'
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  // violation below 'TESTING_124Foo' must contain no more than '1' consecutive capital letters'
   void TESTING_124Foo() {}
 
   // violation 2 lines above """Test method name 'TESTING_124Foo' has invalid
@@ -361,9 +361,9 @@ public class InputMethodName {
   // than a character, start lowercase, and not have a single lowercase followed
   // by uppercase, or consecutive uppercase."""
 
+  // violation 3 lines below 'testing_FOO124' must contain no more than '1' consecutive capital'
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  // violation below 'testing_FOO124' must contain no more than '1' consecutive capital letters'
   void testing_FOO124() {}
 
   // violation 2 lines above """Test method name 'testing_FOO124' segment must be more
