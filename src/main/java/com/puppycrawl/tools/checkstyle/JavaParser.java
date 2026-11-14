@@ -26,6 +26,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
 
+import javax.annotation.Nullable;
+
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -152,25 +154,18 @@ public final class JavaParser {
     public static DetailAST appendHiddenCommentNodes(DetailAST root) {
         DetailAST curNode = root;
         DetailAST lastNode = root;
+        DetailAST lastRcurly = null;
 
         while (curNode != null) {
             lastNode = curNode;
 
             final List<Token> hiddenBefore = ((DetailAstImpl) curNode).getHiddenBefore();
             if (hiddenBefore != null) {
-                DetailAST currentSibling = curNode;
+                appendCommentsBefore(curNode, hiddenBefore, lastRcurly);
+            }
 
-                final ListIterator<Token> reverseCommentsIterator =
-                        hiddenBefore.listIterator(hiddenBefore.size());
-
-                while (reverseCommentsIterator.hasPrevious()) {
-                    final DetailAST newCommentNode =
-                            createCommentAstFromToken((CommonToken)
-                                    reverseCommentsIterator.previous());
-                    ((DetailAstImpl) currentSibling).addPreviousSibling(newCommentNode);
-
-                    currentSibling = newCommentNode;
-                }
+            if (curNode.getType() == TokenTypes.RCURLY) {
+                lastRcurly = curNode;
             }
 
             DetailAST toVisit = curNode.getFirstChild();
@@ -195,6 +190,104 @@ public final class JavaParser {
             }
         }
         return root;
+    }
+
+    /**
+     * Appends the hidden comment tokens found before the node as comment nodes.
+     * A comment that trails a closing brace on the same line and belongs to a class member
+     * is placed before the whole member instead of inside the member's first child.
+     *
+     * @param curNode the node the comment tokens are hidden before
+     * @param hiddenBefore the hidden comment tokens before the node
+     * @param lastRcurly last closing brace node visited, may be null
+     */
+    private static void appendCommentsBefore(DetailAST curNode, List<Token> hiddenBefore,
+                                             @Nullable DetailAST lastRcurly) {
+        DetailAST currentSibling = curNode;
+        final DetailAST leftmostAncestor = getLeftmostAncestor(curNode);
+
+        final ListIterator<Token> reverseCommentsIterator =
+                hiddenBefore.listIterator(hiddenBefore.size());
+
+        while (reverseCommentsIterator.hasPrevious()) {
+            final Token token = reverseCommentsIterator.previous();
+            final DetailAST newCommentNode =
+                    createCommentAstFromToken((CommonToken) token);
+            if (!reverseCommentsIterator.hasPrevious()
+                    && isClassMember(leftmostAncestor)
+                    && isTrailingCommentAfterRcurly(lastRcurly, token)) {
+                ((DetailAstImpl) leftmostAncestor).addPreviousSibling(newCommentNode);
+            }
+            else {
+                ((DetailAstImpl) currentSibling).addPreviousSibling(newCommentNode);
+
+                currentSibling = newCommentNode;
+            }
+        }
+    }
+
+    /**
+     * Checks whether the comment token trails the given closing brace on the same line.
+     *
+     * @param rcurly last closing brace node visited, may be null
+     * @param token comment token
+     * @return true if the comment follows the closing brace directly on its line
+     */
+    private static boolean isTrailingCommentAfterRcurly(@Nullable DetailAST rcurly,
+                                                        Token token) {
+        boolean result = false;
+        if (rcurly != null && rcurly.getLineNo() == token.getLine()) {
+            final List<Token> hiddenAfter = ((DetailAstImpl) rcurly).getHiddenAfter();
+            result = hiddenAfter != null && hiddenAfter.contains(token);
+        }
+        return result;
+    }
+
+    /**
+     * Checks that the node is a member of a type body or of a compact source file.
+     *
+     * @param node the node to check
+     * @return true if the parent of the node is an {@code OBJBLOCK}
+     *     or a {@code COMPACT_COMPILATION_UNIT}
+     */
+    private static boolean isClassMember(DetailAST node) {
+        final DetailAST parent = node.getParent();
+        return parent != null
+                && (parent.getType() == TokenTypes.OBJBLOCK
+                    || parent.getType() == TokenTypes.COMPACT_COMPILATION_UNIT);
+    }
+
+    /**
+     * Finds the outermost ancestor (or the node itself) that starts with the given node.
+     * A childless {@code MODIFIERS} node in front of the node is ignored, so that members
+     * without modifiers are treated the same way as members with modifiers.
+     *
+     * @param node the node to start from
+     * @return the outermost node whose first descendant leaf is the given node
+     */
+    private static DetailAST getLeftmostAncestor(DetailAST node) {
+        DetailAST result = node;
+        while (result.getParent() != null && isFirstSkippingEmptyModifiers(result)) {
+            result = result.getParent();
+        }
+        return result;
+    }
+
+    /**
+     * Checks that the node is the first child of its parent, not counting
+     * an empty {@code MODIFIERS} node.
+     *
+     * @param node the node to check, it must have a parent
+     * @return true if only an empty {@code MODIFIERS} node may precede the node
+     */
+    private static boolean isFirstSkippingEmptyModifiers(DetailAST node) {
+        DetailAST previous = node.getPreviousSibling();
+        while (previous != null
+                && previous.getType() == TokenTypes.MODIFIERS
+                && !previous.hasChildren()) {
+            previous = previous.getPreviousSibling();
+        }
+        return previous == null;
     }
 
     /**
