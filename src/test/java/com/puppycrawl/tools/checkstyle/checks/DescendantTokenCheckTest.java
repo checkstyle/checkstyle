@@ -25,9 +25,14 @@ import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KE
 import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KEY_SUM_MAX;
 import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KEY_SUM_MIN;
 
+import java.io.File;
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -36,6 +41,27 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/descendanttoken";
+    }
+
+    /**
+     * Normal violation tests cannot detect stale counts after beginTree because visitToken
+     * resets the counts before using them. Reflection is needed to verify that beginTree
+     * clears the counts before the next visitToken call.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final DescendantTokenCheck check = new DescendantTokenCheck();
+        check.setLimitedTokens("LITERAL_NATIVE", "LITERAL_SWITCH");
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputDescendantTokenIllegalTokens.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, root, "counts",
+                        counts -> Arrays.stream((int[]) counts).allMatch(count -> count == 0)))
+                .isTrue();
     }
 
     @Test
