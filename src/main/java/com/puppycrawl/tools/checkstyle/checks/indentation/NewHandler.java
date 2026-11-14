@@ -75,9 +75,9 @@ public class NewHandler extends AbstractExpressionHandler {
         }
 
         final DetailAST expression = mainAst.findFirstToken(TokenTypes.ELIST);
-        if (checkNestedNew(expression) && isOnStartOfLine(expression)) {
+        if (checkNestedNew(expression)) {
             final IndentLevel indentLevel = new IndentLevel(getIndent(),
-                    getLineWrappingIndent());
+                    getBasicOffset(), getLineWrappingIndent());
             checkExpressionSubtree(expression, indentLevel, false, false);
         }
 
