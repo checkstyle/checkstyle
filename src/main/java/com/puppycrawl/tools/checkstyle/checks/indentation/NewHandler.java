@@ -75,7 +75,8 @@ public class NewHandler extends AbstractExpressionHandler {
         }
 
         final DetailAST expression = mainAst.findFirstToken(TokenTypes.ELIST);
-        if (checkNestedNew(expression) && isOnStartOfLine(expression)) {
+        if (checkNestedNew(expression)
+                && (isOnStartOfLine(expression) || isStatementNew())) {
             final IndentLevel indentLevel = new IndentLevel(getIndent(),
                     getLineWrappingIndent());
             checkExpressionSubtree(expression, indentLevel, false, false);
@@ -83,6 +84,17 @@ public class NewHandler extends AbstractExpressionHandler {
 
         final DetailAST lparen = mainAst.findFirstToken(TokenTypes.LPAREN);
         checkLeftParen(lparen);
+    }
+
+    /**
+     * Checks if this {@code new} expression is a top-level statement in a code block.
+     *
+     * @return true if this {@code new} expression is a statement
+     */
+    private boolean isStatementNew() {
+        final DetailAST parent = mainAst.getParent();
+        return parent.getType() == TokenTypes.EXPR
+                && parent.getParent().getType() == TokenTypes.SLIST;
     }
 
     /**
