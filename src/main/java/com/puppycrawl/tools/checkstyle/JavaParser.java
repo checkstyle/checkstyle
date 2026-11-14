@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.grammar.UnicodeEscapeDecodingCharStream;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
 import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
@@ -73,6 +74,24 @@ public final class JavaParser {
     }
 
     /**
+     * Creates the character stream for the lexer. Unicode escapes are translated only when
+     * the text contains a backslash followed by {@code u}, the plain stream is faster.
+     *
+     * @param text the source text
+     * @return the character stream
+     */
+    private static CharStream createCharStream(String text) {
+        final CharStream result;
+        if (text.contains("\\" + "u")) {
+            result = new UnicodeEscapeDecodingCharStream(text);
+        }
+        else {
+            result = CharStreams.fromString(text);
+        }
+        return result;
+    }
+
+    /**
      * Static helper method to parses a Java source file.
      *
      * @param contents contains the contents of the file
@@ -82,8 +101,7 @@ public final class JavaParser {
     public static DetailAST parse(FileContents contents)
             throws CheckstyleException {
         final String fullText = contents.getText().getFullText().toString();
-        final CharStream codePointCharStream = CharStreams.fromString(fullText);
-        final JavaLanguageLexer lexer = new JavaLanguageLexer(codePointCharStream, true);
+        final JavaLanguageLexer lexer = new JavaLanguageLexer(createCharStream(fullText), true);
         lexer.setCommentListener(contents);
 
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);

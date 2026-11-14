@@ -8191,6 +8191,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/UnicodeEscapeDecodingCharStream.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to decode(int[],java.util.List&lt;int[]&gt;) not allowed on the given receiver.</message>
+    <lineContent>final int size = decode(buffer, escapes);</lineContent>
+    <details>
+      found   : @UnderInitialization @NonNull UnicodeEscapeDecodingCharStream
+      required: @Initialized @NonNull UnicodeEscapeDecodingCharStream
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/BaseCellEditor.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
