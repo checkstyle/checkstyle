@@ -81,4 +81,64 @@ public class CrAwareLexerTest {
                 .isEqualTo(2);
     }
 
+    @Test
+    public void testConsumeColumnWidthDecodingStream() {
+        final CharStream charStream = new UnicodeEscapeDecodingCharStream("\\u0041b");
+        final CrAwareLexerSimulator lexer =
+                new CrAwareLexerSimulator(null, null, null, null);
+        lexer.consume(charStream);
+
+        assertWithMessage("Translated escape should occupy the width of its spelling.")
+                .that(lexer.getCharPositionInLine())
+                .isEqualTo(6);
+
+        lexer.consume(charStream);
+
+        assertWithMessage("Plain character after an escape should occupy one column.")
+                .that(lexer.getCharPositionInLine())
+                .isEqualTo(7);
+    }
+
+    @Test
+    public void testConsumeEscapedLineBreaksDoNotStartNewLine() {
+        final CharStream charStream =
+                new UnicodeEscapeDecodingCharStream("\\u000D\\u000A\\u000Ab");
+        final CrAwareLexerSimulator lexer =
+                new CrAwareLexerSimulator(null, null, null, null);
+        for (int index = 0; index < 3; index++) {
+            lexer.consume(charStream);
+        }
+
+        assertWithMessage("Escaped line breaks should not increment line number.")
+                .that(lexer.getLine())
+                .isEqualTo(1);
+        assertWithMessage("Escaped line breaks should advance the column by their width.")
+                .that(lexer.getCharPositionInLine())
+                .isEqualTo(18);
+    }
+
+    @Test
+    public void testConsumeRawCarriageReturnBeforeEscapedLineFeed() {
+        final CharStream charStream = new UnicodeEscapeDecodingCharStream("\r\\u000A");
+        final CrAwareLexerSimulator lexer =
+                new CrAwareLexerSimulator(null, null, null, null);
+        lexer.consume(charStream);
+
+        assertWithMessage("Raw carriage return should increment line number.")
+                .that(lexer.getLine())
+                .isEqualTo(2);
+    }
+
+    @Test
+    public void testConsumeColumnWidthPlainStream() {
+        final CharStream charStream = CharStreams.fromString("\\u0041");
+        final CrAwareLexerSimulator lexer =
+                new CrAwareLexerSimulator(null, null, null, null);
+        lexer.consume(charStream);
+
+        assertWithMessage("Plain stream should occupy one column per character.")
+                .that(lexer.getCharPositionInLine())
+                .isEqualTo(1);
+    }
+
 }
