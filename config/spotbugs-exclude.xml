@@ -212,7 +212,6 @@
       MOM_MISLEADING_OVERLOAD_MODEL,
       NFF_NON_FUNCTIONAL_FIELD,
       OPM_OVERLY_PERMISSIVE_METHOD,
-      PMB_INSTANCE_BASED_THREAD_LOCAL,
       STT_STRING_PARSING_A_FIELD,
       WEM_WEAK_EXCEPTION_MESSAGING,
       " />
@@ -228,6 +227,15 @@
       <Class name="com.puppycrawl.tools.checkstyle.TreeWalker"/>
     </Or>
     <Bug pattern="ITC_INHERITANCE_TYPE_CHECKING"/>
+  </Match>
+  <Match>
+    <!-- Static context is problematic for multithreading. -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.api.AbstractCheck"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck"/>
+    </Or>
+    <Bug pattern="PMB_INSTANCE_BASED_THREAD_LOCAL"/>
   </Match>
   <Match>
     <!-- Swing TreeModel API requires passing 'this' as event source -->
