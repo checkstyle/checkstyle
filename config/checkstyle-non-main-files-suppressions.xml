@@ -186,6 +186,8 @@
   <suppress id="noEmptyFile"
              files="src/test/resources-noncompilable/.*/packagedeclaration/InputPackageDeclarationEmptyFile\.java"/>
   <suppress id="noEmptyFile"
+             files="src/test/resources-noncompilable/.*/unnecessarypermitsclause/InputUnnecessaryPermitsClauseEmptyFile\.java"/>
+  <suppress id="noEmptyFile"
              files="src/test/resources/.*/checkstyleanttask/InputCheckstyleAntTaskEmptyConfig\.xml"/>
   <suppress id="noEmptyFile"
              files="src/test/resources/.*/checkstyleanttask/InputCheckstyleAntTaskEmptyConfig\.xml"/>
