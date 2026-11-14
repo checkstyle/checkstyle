@@ -88,6 +88,15 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         TokenTypes.LITERAL_DO
     );
 
+    /** Branch of a conditional expression: the condition itself. */
+    private static final int QUESTION_CONDITION_BRANCH = 0;
+
+    /** Branch of a conditional expression: the branch taken when the condition is true. */
+    private static final int QUESTION_THEN_BRANCH = 1;
+
+    /** Branch of a conditional expression: the branch taken when the condition is false. */
+    private static final int QUESTION_ELSE_BRANCH = 2;
+
     /** Scope Deque. */
     private final Deque<ScopeData> scopeStack = new ArrayDeque<>();
 
@@ -336,20 +345,173 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param ident identifier.
      * @param candidate final local variable candidate.
      */
-    private static void determineAssignmentConditions(DetailAST ident,
-                                                      FinalVariableCandidate candidate) {
+    private void determineAssignmentConditions(DetailAST ident,
+                                               FinalVariableCandidate candidate) {
         if (candidate.assigned) {
             final int[] blockTypes = {
                 TokenTypes.LITERAL_ELSE,
                 TokenTypes.CASE_GROUP,
                 TokenTypes.SWITCH_RULE,
             };
-            if (!isInSpecificCodeBlocks(ident, blockTypes)) {
+            final boolean inOppositeBranch =
+                    isInOppositeBranchOfSameQuestion(ident, candidate);
+            if (!inOppositeBranch && !isInSpecificCodeBlocks(ident, blockTypes)) {
                 candidate.alreadyAssigned = true;
             }
         }
         else {
             candidate.assigned = true;
+        }
+    }
+
+    /**
+     * Checks whether the identifier is assigned in one branch of a conditional
+     * expression while a previous assignment of the same variable sits in the other
+     * branch of the same conditional expression. The two assignments are mutually
+     * exclusive, in the same way as assignments in the branches of an if-else
+     * statement, so the variable is still assigned only once on every path. In
+     * that case the variable is also put back into the uninitialized variables of
+     * its scope, as there is no block boundary inside an expression that would
+     * restore it the way leaving a branch block does.
+     *
+     * @param ident identifier.
+     * @param candidate final local variable candidate.
+     * @return true if the assignment is in the opposite branch of a conditional
+     *     expression from a previous assignment of the same variable.
+     */
+    private boolean isInOppositeBranchOfSameQuestion(DetailAST ident,
+                                                     FinalVariableCandidate candidate) {
+        boolean result = false;
+        final Deque<DetailAST> assignedVariables = currentScopeAssignedVariables.peek();
+        if (assignedVariables != null) {
+            final Map<DetailAST, Integer> branches = getQuestionBranches(ident);
+            if (!branches.isEmpty()) {
+                for (DetailAST assignedVariable : assignedVariables) {
+                    if (isSameVariables(candidate.variableIdent, assignedVariable)
+                            && isInOppositeBranches(branches, assignedVariable)) {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+        }
+        if (result) {
+            restoreUninitializedVariable(candidate);
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether a previous assignment is in the opposite branch of one of the
+     * conditional expressions the identifier is assigned in.
+     *
+     * @param branches conditional expressions containing the identifier, mapped to
+     *     the branch the identifier is in.
+     * @param assignedVariable a previous assignment of the same variable.
+     * @return true if both assignments are in opposite branches of one conditional
+     *     expression.
+     */
+    private static boolean isInOppositeBranches(Map<DetailAST, Integer> branches,
+                                                DetailAST assignedVariable) {
+        boolean result = false;
+        for (DetailAST token = assignedVariable.getParent(); token != null && !result;
+                token = token.getParent()) {
+            if (token.getType() == TokenTypes.QUESTION) {
+                final Integer branch = branches.get(token);
+                if (branch != null) {
+                    final int otherBranch = getQuestionBranch(token, assignedVariable);
+                    result = isOppositeBranch(branch, otherBranch);
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether two branches of a conditional expression are the then branch
+     * and the else branch, in any order.
+     *
+     * @param branch branch of one assignment.
+     * @param otherBranch branch of the other assignment.
+     * @return true if the branches are opposite.
+     */
+    private static boolean isOppositeBranch(int branch, int otherBranch) {
+        final boolean result;
+        switch (branch) {
+            case QUESTION_THEN_BRANCH -> result = otherBranch == QUESTION_ELSE_BRANCH;
+            case QUESTION_ELSE_BRANCH -> result = otherBranch == QUESTION_THEN_BRANCH;
+            default -> result = false;
+        }
+        return result;
+    }
+
+    /**
+     * Collects the conditional expressions a node is assigned in, mapped to the
+     * branch of the expression the node sits in.
+     *
+     * @param node node.
+     * @return map of QUESTION tokens to branch constants.
+     */
+    private static Map<DetailAST, Integer> getQuestionBranches(DetailAST node) {
+        final Map<DetailAST, Integer> branches = new HashMap<>();
+        for (DetailAST token = node.getParent(); token != null; token = token.getParent()) {
+            if (token.getType() == TokenTypes.QUESTION) {
+                branches.put(token, getQuestionBranch(token, node));
+            }
+        }
+        return branches;
+    }
+
+    /**
+     * Determines the branch of a conditional expression a node sits in. The direct
+     * child of the QUESTION token that contains the node decides: a child behind
+     * the COLON token is the else branch, a child that starts after the question
+     * mark is the then branch, and anything before it is the condition.
+     *
+     * @param question QUESTION token.
+     * @param node node inside the conditional expression.
+     * @return the branch constant for the node.
+     */
+    private static int getQuestionBranch(DetailAST question, DetailAST node) {
+        DetailAST child = node;
+        while (child.getParent() != question) {
+            child = child.getParent();
+        }
+        int branch = QUESTION_CONDITION_BRANCH;
+        boolean afterColon = false;
+        for (DetailAST current = question.getFirstChild(); current != null;
+                current = current.getNextSibling()) {
+            if (current.getType() == TokenTypes.COLON) {
+                afterColon = true;
+            }
+            if (current == child) {
+                if (afterColon) {
+                    branch = QUESTION_ELSE_BRANCH;
+                }
+                else if (child.getLineNo() > question.getLineNo()
+                        || child.getLineNo() == question.getLineNo()
+                        && child.getColumnNo() > question.getColumnNo()) {
+                    branch = QUESTION_THEN_BRANCH;
+                }
+                break;
+            }
+        }
+        return branch;
+    }
+
+    /**
+     * Puts the variable of the candidate back into the uninitialized variables of
+     * the scope that holds the candidate, if it is not there already.
+     *
+     * @param candidate final local variable candidate.
+     */
+    private void restoreUninitializedVariable(FinalVariableCandidate candidate) {
+        for (ScopeData scopeData : scopeStack) {
+            if (scopeData.scope.get(candidate.variableIdent.getText()) == candidate
+                    && !scopeData.uninitializedVariables.contains(candidate.variableIdent)) {
+                scopeData.uninitializedVariables.add(candidate.variableIdent);
+                break;
+            }
         }
     }
 
