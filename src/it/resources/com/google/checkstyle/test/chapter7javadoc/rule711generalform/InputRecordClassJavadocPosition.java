@@ -16,6 +16,7 @@ public record InputRecordClassJavadocPosition(String containerPath, String... op
    * @throws NullPointerException if any of the arguments are null
    */
   public InputRecordClassJavadocPosition {}
+  // violation 4 lines above 'Unused @param tag for 'options''
 
   /**
    * The configuration of a bind mount.
