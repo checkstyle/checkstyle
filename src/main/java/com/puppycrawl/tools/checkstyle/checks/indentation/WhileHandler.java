@@ -55,6 +55,7 @@ public class WhileHandler extends BlockParentHandler {
     public void checkIndentation() {
         checkCondExpr();
         super.checkIndentation();
+        checkWrappingIndentation(getMainAst(), getMainAst().findFirstToken(TokenTypes.RPAREN));
     }
 
 }
