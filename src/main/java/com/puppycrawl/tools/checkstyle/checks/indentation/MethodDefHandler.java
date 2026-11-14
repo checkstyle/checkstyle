@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -28,6 +30,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  */
 public class MethodDefHandler extends BlockParentHandler {
+
+    /** Token for modifier. */
+    private static final String MODIFIER = "modifier";
 
     /**
      * Construct an instance of this handler with the given indentation context,
@@ -55,8 +60,83 @@ public class MethodDefHandler extends BlockParentHandler {
         final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
         if (isOnStartOfLine(modifier)
             && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
-            logError(modifier, "modifier", expandedTabsColumnNo(modifier));
+            logError(modifier, MODIFIER, expandedTabsColumnNo(modifier));
         }
+        checkFirstTokenAfterAnnotations(modifier);
+    }
+
+    /**
+     * Checks the indentation of the first token of the method definition that is not an annotation.
+     * The modifiers node starts at the first annotation when annotations precede the method, so
+     * when they are placed on lines of their own, the line with the actual modifiers or the type
+     * would otherwise never be checked.
+     *
+     * @param modifiers modifiers node of the method definition
+     */
+    private void checkFirstTokenAfterAnnotations(DetailAST modifiers) {
+        final DetailAST firstToken = findFirstTokenAfterAnnotations(modifiers);
+        final int firstTokenColumn = expandedTabsColumnNo(firstToken);
+        if (firstToken.getLineNo() != modifiers.getLineNo()
+            && firstTokenColumn != expandedTabsColumnNo(modifiers)
+            && isOnStartOfLine(firstToken)
+            && !getIndent().isAcceptable(firstTokenColumn)) {
+            logError(firstToken, MODIFIER, firstTokenColumn);
+        }
+    }
+
+    /**
+     * Finds the first token of the method definition that is not an annotation. When every
+     * modifier is an annotation, the definition starts at the token returned by
+     * {@link #findDefinitionStartToken()}.
+     *
+     * @param modifiers modifiers node of the method definition
+     * @return the first token of the definition, or null if there is none
+     */
+    @Nullable
+    private DetailAST findFirstTokenAfterAnnotations(DetailAST modifiers) {
+        DetailAST firstToken = null;
+        for (DetailAST child = modifiers.getFirstChild(); child != null;
+                child = child.getNextSibling()) {
+            if (child.getType() != TokenTypes.ANNOTATION) {
+                firstToken = getFirstToken(child);
+                break;
+            }
+        }
+        if (firstToken == null) {
+            firstToken = findDefinitionStartToken();
+        }
+        return firstToken;
+    }
+
+    /**
+     * Finds the token the method definition starts at when it has no non-annotation modifier
+     * token. When the type parameters wrap over lines, the definition starts at them, as the
+     * type is then a continuation of the header. Constructors have no type node, so their
+     * definition starts at their name.
+     *
+     * @return the token the definition starts at, or null if there is none
+     */
+    @Nullable
+    private DetailAST findDefinitionStartToken() {
+        final DetailAST typeParameters =
+                getMainAst().findFirstToken(TokenTypes.TYPE_PARAMETERS);
+        final DetailAST type = getMainAst().findFirstToken(TokenTypes.TYPE);
+        final DetailAST firstToken;
+        if (typeParameters != null && type != null
+                && getFirstToken(type).getLineNo()
+                        != getFirstToken(typeParameters).getLineNo()) {
+            // the type parameters wrap over lines and the type is a continuation
+            // of the header, so the definition starts at the type parameters
+            firstToken = getFirstToken(typeParameters);
+        }
+        else if (type != null) {
+            firstToken = getFirstToken(type);
+        }
+        else {
+            // constructors have no type node, their name starts the definition
+            firstToken = getMainAst().findFirstToken(TokenTypes.IDENT);
+        }
+        return firstToken;
     }
 
     /**
