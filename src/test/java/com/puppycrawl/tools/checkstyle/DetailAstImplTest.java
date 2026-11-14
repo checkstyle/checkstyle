@@ -736,6 +736,73 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCacheGetLastChild() {
+        final DetailAST root = new DetailAstImpl();
+        final DetailAST lastChild = new DetailAstImpl();
+        TestUtil.setInternalState(root, "lastChild", lastChild);
+
+        assertWithMessage("Cached last child should be returned without rescanning children")
+                .that(root.getLastChild())
+                .isSameInstanceAs(lastChild);
+    }
+
+    @Test
+    public void testLastChildAfterSiblingChanges() {
+        final DetailAstImpl parent = new DetailAstImpl();
+        final DetailAstImpl first = new DetailAstImpl();
+        final DetailAstImpl second = new DetailAstImpl();
+        final DetailAstImpl third = new DetailAstImpl();
+        parent.addChild(first);
+        parent.addChild(second);
+        assertWithMessage("Appending caches the tail without rescanning previous children")
+                .that(TestUtil.getInternalState(parent, "lastChild", DetailAstImpl.class))
+                .isSameInstanceAs(second);
+        assertWithMessage("Last appended child")
+                .that(parent.getLastChild()).isSameInstanceAs(second);
+
+        parent.addChild(null);
+        assertWithMessage("Null append preserves cached tail")
+                .that(TestUtil.getInternalState(parent, "lastChild", DetailAstImpl.class))
+                .isSameInstanceAs(second);
+        assertWithMessage("Null append preserves last child")
+                .that(parent.getLastChild()).isSameInstanceAs(second);
+        first.addNextSibling(third);
+        assertWithMessage("Insertion preserves last child")
+                .that(parent.getLastChild()).isSameInstanceAs(second);
+        third.setNextSibling(null);
+        assertWithMessage("Truncation changes last child")
+                .that(parent.getLastChild()).isSameInstanceAs(third);
+        parent.addChild(second);
+        assertWithMessage("Append after truncation")
+                .that(third.getNextSibling()).isSameInstanceAs(second);
+    }
+
+    @Test
+    public void testLastChildAfterFirstChildReplacement() {
+        final DetailAstImpl parent = new DetailAstImpl();
+        final DetailAstImpl oldChild = new DetailAstImpl();
+        final DetailAstImpl replacement = new DetailAstImpl();
+        final DetailAstImpl newChild = new DetailAstImpl();
+        parent.addChild(oldChild);
+        parent.setFirstChild(replacement);
+        assertWithMessage("Replacement changes last child")
+                .that(parent.getLastChild()).isSameInstanceAs(replacement);
+        assertWithMessage("Last child lookup caches the replacement tail")
+                .that(TestUtil.getInternalState(parent, "lastChild", DetailAstImpl.class))
+                .isSameInstanceAs(replacement);
+        oldChild.setNextSibling(new DetailAstImpl());
+        parent.addChild(newChild);
+        assertWithMessage("Detached chain cannot change current children")
+                .that(replacement.getNextSibling()).isSameInstanceAs(newChild);
+        parent.removeChildren();
+        assertWithMessage("Removed children clear last child")
+                .that(parent.getLastChild()).isNull();
+        parent.addChild(oldChild);
+        assertWithMessage("A sibling chain can be appended after removal")
+                .that(parent.getLastChild()).isSameInstanceAs(oldChild.getNextSibling());
+    }
+
+    @Test
     public void testRemoveChildren() {
         final DetailAstImpl parent = new DetailAstImpl();
         final DetailAstImpl child1 = new DetailAstImpl();
