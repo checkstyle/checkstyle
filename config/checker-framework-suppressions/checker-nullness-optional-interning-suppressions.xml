@@ -2072,13 +2072,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExceptionThrowShouldUseContextCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference ident</message>
-    <lineContent>contextVars.add(ident.getText());</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExceptionThrowShouldUseContextCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference modifiers</message>
     <lineContent>modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;</lineContent>
   </checkerFrameworkError>

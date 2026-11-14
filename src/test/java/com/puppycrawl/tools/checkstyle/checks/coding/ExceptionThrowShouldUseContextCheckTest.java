@@ -194,4 +194,16 @@ public class ExceptionThrowShouldUseContextCheckTest extends AbstractModuleTestS
                 expected);
     }
 
+    @Test
+    public void testReceiverParameter() throws Exception {
+        final String[] expected = {
+            "19:13: " + getCheckMessage(MSG_KEY),
+            "46:17: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputExceptionThrowShouldUseContextReceiverParameter.java"),
+                expected);
+    }
+
 }
