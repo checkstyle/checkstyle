@@ -404,7 +404,7 @@ public class ExceptionThrowShouldUseContextCheck extends AbstractCheck {
     }
 
     /**
-     * Finds the nearest enclosing class, record, interface, or enum.
+     * Finds the nearest enclosing class, record, interface, enum, or annotation.
      *
      * @param node starting AST node
      * @return enclosing type AST node, or null if none
@@ -415,7 +415,8 @@ public class ExceptionThrowShouldUseContextCheck extends AbstractCheck {
             final int type = current.getType();
             switch (type) {
                 case TokenTypes.CLASS_DEF, TokenTypes.RECORD_DEF, TokenTypes.INTERFACE_DEF,
-                        TokenTypes.ENUM_DEF, TokenTypes.COMPACT_COMPILATION_UNIT -> {
+                        TokenTypes.ENUM_DEF, TokenTypes.ANNOTATION_DEF,
+                        TokenTypes.COMPACT_COMPILATION_UNIT -> {
                     return current;
                 }
                 default -> current = current.getParent();
