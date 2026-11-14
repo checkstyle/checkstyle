@@ -10,11 +10,11 @@ package com.puppycrawl.tools.checkstyle.checks.coding.constructorsdeclarationgro
 public class InputConstructorsDeclarationGroupingRecord {
     public record MyRecord(int a, int b) {
 
-        public MyRecord {
-        }
-
         public MyRecord(int a) {
             this(a, a);
+        }
+
+        public MyRecord {
         }
 
         public MyRecord(int a, int b, int c, int d) {
@@ -24,6 +24,24 @@ public class InputConstructorsDeclarationGroupingRecord {
         public MyRecord(int a, int b, int c) {
             this(a + b, c);
         }// violation 2 lines above 'Constructors should be ordered by increasing parameter count.'
+    }
+
+    public record RecordCompactOutOfOrder(int a, int b) {
+        public RecordCompactOutOfOrder {
+        }
+
+        public RecordCompactOutOfOrder(int a) {
+            this(a, a);
+        }// violation 2 lines above 'Constructors should be ordered by increasing parameter count.'
+    }
+
+    public record RecordZeroComponents() {
+        public RecordZeroComponents {
+        }
+
+        public RecordZeroComponents(int a) {
+            this();
+        }
     }
 
     static class Inner {
