@@ -58,6 +58,25 @@ public class XpathRegressionNestedIfDepthTest extends AbstractXpathTestSupport {
     }
 
     @Test
+    public void testElse() throws Exception {
+        final String[] expectedViolation = {
+            "18:17: " + getCheckMessage(NestedIfDepthCheck.class,
+                 NestedIfDepthCheck.MSG_KEY, 2, 1),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathNestedIfDepthElse']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_IF"
+                + "/SLIST/LITERAL_IF/LITERAL_ELSE/SLIST/LITERAL_IF"
+        );
+
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathNestedIfDepthElse.java"),
+                expectedXpathQueries, expectedViolation);
+    }
+
+    @Test
     public void testMax() throws Exception {
         final String[] expectedViolation = {
             "19:25: " + getCheckMessage(NestedIfDepthCheck.class,
