@@ -74,15 +74,30 @@ public class NewHandler extends AbstractExpressionHandler {
             checkExpressionSubtree(firstChild, getIndent(), false, false);
         }
 
-        final DetailAST expression = mainAst.findFirstToken(TokenTypes.ELIST);
-        if (checkNestedNew(expression) && isOnStartOfLine(expression)) {
-            final IndentLevel indentLevel = new IndentLevel(getIndent(),
-                    getLineWrappingIndent());
-            checkExpressionSubtree(expression, indentLevel, false, false);
-        }
-
         final DetailAST lparen = mainAst.findFirstToken(TokenTypes.LPAREN);
-        checkLeftParen(lparen);
+        if (lparen != null) {
+            checkLeftParen(lparen);
+            checkArgumentsAndRightParen(lparen);
+        }
+    }
+
+    /**
+     * Checks indentation for arguments and right parenthesis of multiline new statement.
+     *
+     * @param lparen left parenthesis
+     */
+    private void checkArgumentsAndRightParen(DetailAST lparen) {
+        final DetailAST rparen = mainAst.findFirstToken(TokenTypes.RPAREN);
+        if (rparen != null && !TokenUtil.areOnSameLine(rparen, lparen)) {
+            final DetailAST expression = mainAst.findFirstToken(TokenTypes.ELIST);
+            if (checkNestedNew(expression)) {
+                final IndentLevel indentLevel = new IndentLevel(getIndent(),
+                        getLineWrappingIndent());
+                checkExpressionSubtree(expression, indentLevel, false, true);
+            }
+
+            checkRightParen(lparen, rparen);
+        }
     }
 
     /**
