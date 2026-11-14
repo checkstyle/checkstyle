@@ -608,4 +608,15 @@ class UnusedPrivateFieldCheckTest extends AbstractModuleTestSupport {
                 .that(cleared).isEmpty();
     }
 
+    @Test
+    public void testUnusedPrivateFieldVar() throws Exception {
+        final String[] expected = {
+            "47:21: " + getCheckMessage(MSG_PRIVATE_FIELD, "field"),
+            "56:21: " + getCheckMessage(MSG_PRIVATE_FIELD, "unused"),
+            "65:21: " + getCheckMessage(MSG_PRIVATE_FIELD, "myField"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedPrivateFieldVar.java"), expected);
+    }
+
 }
