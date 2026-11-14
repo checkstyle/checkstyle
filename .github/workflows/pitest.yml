@@ -60,11 +60,29 @@ jobs:
 
       - name: Install Groovy
         run: |
-          curl --fail-with-body -s "https://get.sdkman.io" | bash
-          source "$HOME/.sdkman/bin/sdkman-init.sh"
-          sdk install groovy
-          echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
-          groovy --version
+          set -o pipefail
+          for attempt in 1 2 3; do
+            if (
+              curl --fail-with-body -sS "https://get.sdkman.io" | bash \
+                && source "$HOME/.sdkman/bin/sdkman-init.sh" \
+                && sdk install groovy \
+                && groovy --version
+            ); then
+              echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              echo "Groovy setup failed (attempt $attempt/3); retrying in 10 seconds."
+              sleep 10
+            fi
+          done
+          echo "Groovy setup failed after 3 attempts." >&2
+          exit 1
+
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Setup local maven cache
         uses: actions/cache@v6
@@ -73,11 +91,6 @@ jobs:
             ~/.m2/repository
             ~/.m2/wrapper
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
-
-      - name: Checkout
-        uses: actions/checkout@v7
-        with:
-          persist-credentials: false
 
       - name: Generate pitest-${{ matrix.profile }} report
         run: |
