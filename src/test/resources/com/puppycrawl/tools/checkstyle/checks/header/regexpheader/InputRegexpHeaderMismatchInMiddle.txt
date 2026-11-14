@@ -1,0 +1,8 @@
+//////////////
+package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
+// violation 1 lines above 'Header mismatch'
+
+import java.awt.*;
+import java.awt.*;
+import java.awt.*;
+import java.awt.*;
