@@ -13,8 +13,8 @@ package org.checkstyle.suppressionxpathfilter.sizes.parameternumber;
 public class InputXpathParameterNumberMethods
         extends InputXpathParameterNumberDefault {
 
+    // violation 2 lines below 'More than 10 parameters'
     @Override
-    // violation below 'More than 10 parameters'
     void myMethod(int a, int b, int c, int d, int e, int f, int g, int h,
                     int k, int l, int m) {
     }
