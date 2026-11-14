@@ -299,6 +299,11 @@ workflows:
           name: no-error-hazelcast
           image-name: *cs_img
           command: ./.ci/validation.sh no-error-hazelcast
+      - validate-with-maven-script:
+          name: no-error-strata
+          image-name: *cs_img
+          resource_class: large
+          command: ./.ci/validation.sh no-error-strata
 
   git-validation:
     jobs:
