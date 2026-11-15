@@ -244,13 +244,15 @@ public class RedundantThisCheck extends AbstractCheck {
      */
     private static DetailAST findEnclosingStatement(DetailAST node) {
         DetailAST statement = node;
-        while (!TokenUtil.isOfType(statement.getParent(),
-                    TokenTypes.SLIST, TokenTypes.OBJBLOCK)) {
+        while (statement.getParent() != null
+                && !TokenUtil.isOfType(statement.getParent(),
+                    TokenTypes.SLIST, TokenTypes.OBJBLOCK, TokenTypes.COMPACT_COMPILATION_UNIT)) {
             statement = statement.getParent();
         }
 
         DetailAST result = null;
-        if (statement.getParent().getType() == TokenTypes.SLIST) {
+        if (statement.getParent() != null
+                && statement.getParent().getType() == TokenTypes.SLIST) {
             result = statement;
         }
 
