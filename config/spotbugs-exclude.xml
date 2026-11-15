@@ -91,6 +91,13 @@
     <Bug pattern="CE_CLASS_ENVY"/>
   </Match>
   <Match>
+    <!-- The two command-line arguments are positional: args[0] is the xdocs directory
+         and args[1] is the output file, and their count is checked first. -->
+    <Class name="com.puppycrawl.tools.checkstyle.site.SearchIndexGenerator"/>
+    <Method name="execute"/>
+    <Bug pattern="CLI_CONSTANT_LIST_INDEX"/>
+  </Match>
+  <Match>
     <!-- These fields are restricted caches which must remain populated until the process ends. -->
     <Bug pattern="PMB_POSSIBLE_MEMORY_BLOAT"/>
     <Or>
@@ -202,7 +209,6 @@
        there should be one section per one bug pattern, with list of allowed classes or methods -->
   <Match>
     <Bug pattern="
-      CLI_CONSTANT_LIST_INDEX,
       EXS_EXCEPTION_SOFTENING_NO_CHECKED,
       EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS,
       FCCD_FIND_CLASS_CIRCULAR_DEPENDENCY,
