@@ -256,8 +256,13 @@
     <Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CHECKED"/>
   </Match>
   <Match>
+    <!-- Wrapping checked exceptions into CheckstyleException or runtime exceptions is
+         intentional when conforming to framework APIs or make sure that context that caused
+         it is preserved in wrapping Exception. -->
+    <Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS"/>
+  </Match>
+  <Match>
     <Bug pattern="
-      EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS,
       IMC_IMMATURE_CLASS_NO_TOSTRING,
       MOM_MISLEADING_OVERLOAD_MODEL,
       OPM_OVERLY_PERMISSIVE_METHOD,
