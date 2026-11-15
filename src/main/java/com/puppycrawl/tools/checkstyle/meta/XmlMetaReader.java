@@ -120,7 +120,7 @@ public final class XmlMetaReader {
      * @throws ParserConfigurationException if a parser configuration exception occurs
      * @throws SAXException if a SAX exception occurs during parsing the XML file
      */
-    public static ModuleDetails read(InputStream moduleMetadataStream, ModuleType moduleType)
+    /* package */ static ModuleDetails read(InputStream moduleMetadataStream, ModuleType moduleType)
             throws ParserConfigurationException, IOException, SAXException {
         ModuleDetails result = null;
         if (moduleType != null) {

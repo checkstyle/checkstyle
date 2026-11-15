@@ -185,10 +185,8 @@ public abstract class AbstractExpressionHandler {
      *
      * @param ast a root of subtree in which the search should be performed.
      * @return a token which occurs first in the file.
-     * @noinspection WeakerAccess
-     * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
      */
-    public static DetailAST getFirstToken(DetailAST ast) {
+    /* package */ static DetailAST getFirstToken(DetailAST ast) {
         DetailAST first = ast;
         DetailAST child = ast.getFirstChild();
 
