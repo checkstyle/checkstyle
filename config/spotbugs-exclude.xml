@@ -187,6 +187,13 @@
     <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH"/>
   </Match>
   <Match>
+    <!-- symbolCodes is the String value of the property, which is documented and has its
+         default value on the field. It is parsed into code points and ranges once it is set. -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck"/>
+    <Method name="parseSymbolCodes"/>
+    <Bug pattern="STT_STRING_PARSING_A_FIELD"/>
+  </Match>
+  <Match>
     <!-- Better to use DetailAstImpl here to avoid needless dependency of API package. -->
     <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor"/>
     <Method name="addLastSibling"/>
@@ -213,7 +220,6 @@
       NFF_NON_FUNCTIONAL_FIELD,
       OPM_OVERLY_PERMISSIVE_METHOD,
       PMB_INSTANCE_BASED_THREAD_LOCAL,
-      STT_STRING_PARSING_A_FIELD,
       WEM_WEAK_EXCEPTION_MESSAGING,
       " />
   </Match>
