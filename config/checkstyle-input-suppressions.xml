@@ -109,10 +109,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]missingdeprecated[\\/]compact[\\/]InputMissingDeprecatedCompactSourceFile\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]compact[\\/]InputSuppressWarningsCompactSourceFileDefault\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]compact[\\/]InputSuppressWarningsCompactSourceFileFormat\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]blocks[\\/]leftcurly[\\/]InputLeftCurlyTestNlWithAnnotations\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]coding[\\/]magicnumber[\\/]compact[\\/]InputMagicNumberCompactSourceFileDefault\.java"/>
