@@ -13,9 +13,10 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, PACKAGE_DEF, ENUM_CONSTANT_DEF, \
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 public class InputAnnotationLocationIncorrectTwo {
+   // violation 3 lines below '.* incorrect .* level 0, .* should be 3.'
    @MyAnnotation1
             (value = "")
-@MyAnn_21 // violation '.* incorrect .* level 0, .* should be 3.'
+@MyAnn_21
    class Foo {
         public void method1(@MyAnnotation3 @MyAnn_21 Object param1) {
             try {
