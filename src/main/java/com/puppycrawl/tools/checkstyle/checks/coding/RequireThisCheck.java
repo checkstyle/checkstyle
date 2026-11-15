@@ -1137,7 +1137,7 @@ public class RequireThisCheck extends AbstractCheck {
         AbstractFrame frame = current.peek();
 
         while (true) {
-            frame = findFrame(frame, name, lookMode);
+            frame = findFrameIn(frame, name, lookMode);
 
             if (frame == null || frame instanceof ClassFrame) {
                 break;
@@ -1157,7 +1157,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return AbstractFrame containing declaration or null.
      */
     private AbstractFrame findFrame(DetailAST name, LookMode lookMode) {
-        return findFrame(current.peek(), name, lookMode);
+        return findFrameIn(current.peek(), name, lookMode);
     }
 
     /**
@@ -1168,7 +1168,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @param lookMode mode defining whether we are looking for a method name.
      * @return AbstractFrame containing declaration or null.
      */
-    private static AbstractFrame findFrame(AbstractFrame frame, DetailAST name,
+    private static AbstractFrame findFrameIn(AbstractFrame frame, DetailAST name,
             LookMode lookMode) {
         return frame.getIfContains(name, lookMode);
     }

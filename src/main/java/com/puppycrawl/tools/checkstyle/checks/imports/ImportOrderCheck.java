@@ -657,7 +657,7 @@ public class ImportOrderCheck extends AbstractCheck {
             patterns = groupsReg;
         }
 
-        int number = getGroupNumber(patterns, name);
+        int number = findGroupNumber(patterns, name);
 
         if (isStatic && option == ImportOrderOption.BOTTOM) {
             number += groups.length + 1;
@@ -675,7 +675,7 @@ public class ImportOrderCheck extends AbstractCheck {
      * @param name the import name to find.
      * @return group number for given import name.
      */
-    private static int getGroupNumber(Pattern[] patterns, String name) {
+    private static int findGroupNumber(Pattern[] patterns, String name) {
         int bestIndex = patterns.length;
         int bestEnd = -1;
         int bestPos = Integer.MAX_VALUE;
