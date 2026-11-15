@@ -322,10 +322,10 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNlWithAnnotations() throws Exception {
         final String[] expected = {
-            "48:55: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 55),
-            "51:41: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 41),
-            "57:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 27),
-            "79:42: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 42),
+            "49:55: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 55),
+            "52:41: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 41),
+            "58:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 27),
+            "80:42: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 42),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyTestNlWithAnnotations.java"), expected);
