@@ -73,11 +73,12 @@ public class InputSuppressWarningsHolderAlias6 {
         System.out.println("This is a short line.");
     }
 
+    // filtered violation 4 lines below 'Line is longer than 75 characters'
     @SuppressWarnings("LINE")
     /**
     * This is a short Javadoc comment.
     * ThisJavadocCommentIsAReallyLongWordThatExceedsDefaultLineLimitOfEightyCharacters.
-    */ // filtered violation above 'Line is longer than 75 characters'
+    */
     void testMethod6(String str) {
         str = MSG_KEY;
         System.out.println("This is a short line.");
