@@ -253,4 +253,16 @@ public class RedundantThisCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testCompactSourceFileFieldInitializer() throws Exception {
+        final String[] expected = {
+            "11:9: " + getCheckMessage(MSG_KEY_FIELD, "a"),
+            "13:9: " + getCheckMessage(MSG_KEY_METHOD, "hashCode"),
+        };
+
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("compact/InputRedundantThisCompactFieldInitializer.java"),
+                expected);
+    }
+
 }
