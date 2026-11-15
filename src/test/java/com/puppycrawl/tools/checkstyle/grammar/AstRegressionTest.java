@@ -285,6 +285,36 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testJava14SwitchExpression2() throws Exception {
+        verifyAst(getPath("java14/ExpectedJava14SwitchExpression2.txt"),
+                getNonCompilablePath("java14/InputJava14SwitchExpression2.java"));
+    }
+
+    @Test
+    public void testJava14SwitchExpression3() throws Exception {
+        verifyAst(getPath("java14/ExpectedJava14SwitchExpression3.txt"),
+                getNonCompilablePath("java14/InputJava14SwitchExpression3.java"));
+    }
+
+    @Test
+    public void testJava14SwitchExpression4() throws Exception {
+        verifyAst(getPath("java14/ExpectedJava14SwitchExpression4.txt"),
+                getNonCompilablePath("java14/InputJava14SwitchExpression4.java"));
+    }
+
+    @Test
+    public void testJava14SwitchExpression5() throws Exception {
+        verifyAst(getPath("java14/ExpectedJava14SwitchExpression5.txt"),
+                getNonCompilablePath("java14/InputJava14SwitchExpression5.java"));
+    }
+
+    @Test
+    public void testJava14SwitchExpression6() throws Exception {
+        verifyAst(getPath("java14/ExpectedJava14SwitchExpression6.txt"),
+                getNonCompilablePath("java14/InputJava14SwitchExpression6.java"));
+    }
+
+    @Test
     public void testInputJava14TextBlocksTabSize() throws Exception {
         verifyAst(getPath("java14/ExpectedJava14TextBlocksTabSize.txt"),
             getPath("java14/InputJava14TextBlocksTabSize.java"));
