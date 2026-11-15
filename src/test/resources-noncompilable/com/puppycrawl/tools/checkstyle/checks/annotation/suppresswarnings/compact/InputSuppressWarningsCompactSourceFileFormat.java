@@ -16,15 +16,18 @@ int field = 0;
 @SuppressWarnings("")
 int emptyAllowed = 0;
 
-@SuppressWarnings({"unused", "unchecked"}) // violation 'The warning 'unchecked' cannot be'
+// violation below 'The warning 'unchecked' cannot be suppressed at this location'
+@SuppressWarnings({"unused", "unchecked"})
 void method() {
 }
 
-@SuppressWarnings(value = "unchecked") // violation 'The warning 'unchecked' cannot be'
+// violation below 'The warning 'unchecked' cannot be suppressed at this location'
+@SuppressWarnings(value = "unchecked")
 void valuePair() {
 }
 
-@java.lang.SuppressWarnings("unchecked") // violation 'The warning 'unchecked' cannot be'
+// violation below 'The warning 'unchecked' cannot be suppressed at this location'
+@java.lang.SuppressWarnings("unchecked")
 void fullyQualified() {
 }
 
@@ -36,7 +39,8 @@ void conditional() {
 void main() {
 }
 
-@SuppressWarnings("unchecked") // violation 'The warning 'unchecked' cannot be suppressed'
+// violation below 'The warning 'unchecked' cannot be suppressed at this location'
+@SuppressWarnings("unchecked")
 class Nested {
     @SuppressWarnings("unused")
     int allowed;
