@@ -460,7 +460,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * @return {@code true} if {@code ast} makes up part of an
      *         empty block contained under a {@code match} token type node.
      */
-    private static boolean isEmptyBlock(DetailAST ast, int parentType, int match) {
+    private static boolean isEmptyBlockMatching(DetailAST ast, int parentType, int match) {
         final boolean result;
         final int type = ast.getType();
         if (type == TokenTypes.RCURLY) {
@@ -486,7 +486,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean isEmptyMethodBlock(DetailAST ast, int parentType) {
         return allowEmptyMethods
-                && isEmptyBlock(ast, parentType, TokenTypes.METHOD_DEF);
+                && isEmptyBlockMatching(ast, parentType, TokenTypes.METHOD_DEF);
     }
 
     /**
@@ -529,9 +529,9 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean isEmptyLoop(DetailAST ast, int parentType) {
         return allowEmptyLoops
-                && (isEmptyBlock(ast, parentType, TokenTypes.LITERAL_FOR)
-                        || isEmptyBlock(ast, parentType, TokenTypes.LITERAL_WHILE)
-                        || isEmptyBlock(ast, parentType, TokenTypes.LITERAL_DO));
+                && (isEmptyBlockMatching(ast, parentType, TokenTypes.LITERAL_FOR)
+                        || isEmptyBlockMatching(ast, parentType, TokenTypes.LITERAL_WHILE)
+                        || isEmptyBlockMatching(ast, parentType, TokenTypes.LITERAL_DO));
     }
 
     /**
@@ -542,7 +542,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * @return {@code true} if {@code ast} makes up part of an allowed empty lambda block.
      */
     private boolean isEmptyLambda(DetailAST ast, int parentType) {
-        return allowEmptyLambdas && isEmptyBlock(ast, parentType, TokenTypes.LAMBDA);
+        return allowEmptyLambdas && isEmptyBlockMatching(ast, parentType, TokenTypes.LAMBDA);
     }
 
     /**
@@ -553,7 +553,8 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * @return {@code true} if {@code ast} makes up part of an allowed empty catch block.
      */
     private boolean isEmptyCatch(DetailAST ast, int parentType) {
-        return allowEmptyCatches && isEmptyBlock(ast, parentType, TokenTypes.LITERAL_CATCH);
+        return allowEmptyCatches
+                && isEmptyBlockMatching(ast, parentType, TokenTypes.LITERAL_CATCH);
     }
 
     /**
@@ -572,10 +573,10 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             final DetailAST grandParent = parent.getParent();
 
             final boolean isEmptyCaseInSwitchRule =
-                    isEmptyBlock(ast, parent.getType(), TokenTypes.SWITCH_RULE);
+                    isEmptyBlockMatching(ast, parent.getType(), TokenTypes.SWITCH_RULE);
 
             final boolean isEmptyCaseGroupCheckedFromLcurly =
-                    isEmptyBlock(ast, grandParent.getType(), TokenTypes.CASE_GROUP);
+                    isEmptyBlockMatching(ast, grandParent.getType(), TokenTypes.CASE_GROUP);
 
             final boolean isEmptyCaseGroupCheckedFromRcurly =
                     parent.getFirstChild().getType() == TokenTypes.RCURLY
