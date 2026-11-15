@@ -10,6 +10,19 @@
     <Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS" />
   </Match>
   <Match>
+    <!-- These are not value objects: none of them is compared with equals or used as a
+         set element or map key, so identity equality is what they need. IndentLevel is
+         compared through isAcceptable and isGreaterThan. -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilterSet"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.Comment"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.FilterSet"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag"/>
+    </Or>
+    <Bug pattern="IMC_IMMATURE_CLASS_NO_EQUALS"/>
+  </Match>
+  <Match>
     <!-- SpotBugs suggests replacing the List field 'order' with a Set because it is
          queried with 'contains'. The field cannot be a Set: it defines the sequence
          in which directive blocks must appear, so element positions matter. Rewriting
@@ -206,7 +219,6 @@
       EXS_EXCEPTION_SOFTENING_NO_CHECKED,
       EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS,
       FCCD_FIND_CLASS_CIRCULAR_DEPENDENCY,
-      IMC_IMMATURE_CLASS_NO_EQUALS,
       IMC_IMMATURE_CLASS_NO_TOSTRING,
       IMC_IMMATURE_CLASS_PRINTSTACKTRACE,
       MOM_MISLEADING_OVERLOAD_MODEL,
