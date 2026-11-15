@@ -53,7 +53,8 @@ class InputSingleLineJavadocIgnoredTags {
          // violation 2 lines above 'Single-line Javadoc comment should be multi-line.'
     }
 
-    /** @customTag */ // violation 'Single-line Javadoc comment should be multi-line.'
+    // violation below 'Single-line Javadoc comment should be multi-line.'
+    /** @customTag */
     void bar() {}
 
     /** @ignoredCustomTag */
