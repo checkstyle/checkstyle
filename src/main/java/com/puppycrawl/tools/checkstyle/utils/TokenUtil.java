@@ -102,7 +102,7 @@ public final class TokenUtil {
      *         and the underlying field is inaccessible
      * @see Field#getInt(Object)
      */
-    public static int getIntFromField(Field field, Object object) {
+    /* package */ static int getIntFromField(Field field, Object object) {
         try {
             return field.getInt(object);
         }

@@ -493,7 +493,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      * @param value the value to escape.
      * @return the escaped value if necessary.
      */
-    public static String escape(String value) {
+    private static String escape(String value) {
         final int length = value.length();
         final StringBuilder sb = new StringBuilder(length);
         for (int index = 0; index < length; index++) {
@@ -540,7 +540,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      * @return the string content from the give resource
      * @throws IOException if there is reading errors
      */
-    public static String readResource(String name) throws IOException {
+    /* package */ static String readResource(String name) throws IOException {
         try (InputStream inputStream = SarifLogger.class.getResourceAsStream(name);
              ByteArrayOutputStream result = new ByteArrayOutputStream()) {
             if (inputStream == null) {
