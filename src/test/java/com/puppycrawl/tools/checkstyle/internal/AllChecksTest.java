@@ -103,52 +103,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // we prefer all parameters be effectively final as to not damage readability
                 // we use ParameterAssignmentCheck to enforce this
                 "PARAMETER_DEF").collect(Collectors.toUnmodifiableSet()));
-        // we have no need to block these specific tokens
-        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalToken",
-                Stream.of("LITERAL_SUPER", "LITERAL_ASSERT", "ENUM_CONSTANT_DEF",
-                        "TYPE_PARAMETERS", "TYPE_UPPER_BOUNDS", "NUM_DOUBLE", "LITERAL_SWITCH",
-                        "ANNOTATIONS", "LITERAL_SHORT", "LITERAL_PROTECTED", "FOR_CONDITION",
-                        "FOR_INIT", "LITERAL_LONG", "MINUS", "OBJBLOCK", "LITERAL_NULL",
-                        "ANNOTATION", "LITERAL_TRUE", "COMMENT_CONTENT", "LITERAL_CHAR",
-                        "PARAMETER_DEF", "POST_DEC", "ANNOTATION_FIELD_DEF", "BLOCK_COMMENT_END",
-                        "TYPE", "LITERAL_INT", "BSR", "ENUM", "ANNOTATION_MEMBER_VALUE_PAIR",
-                        "TYPECAST", "LITERAL_SYNCHRONIZED", "PLUS_ASSIGN", "DOT", "LPAREN",
-                        "LITERAL_IF", "LITERAL_CATCH", "BAND", "INTERFACE_DEF", "LOR", "BNOT",
-                        "METHOD_CALL", "AT", "ELLIPSIS", "ARRAY_INIT", "FOR_EACH_CLAUSE",
-                        "LITERAL_THROWS", "CHAR_LITERAL", "CASE_GROUP", "POST_INC", "SEMI",
-                        "LITERAL_FINALLY", "ASSIGN", "RESOURCE_SPECIFICATION", "STATIC_IMPORT",
-                        "GENERIC_START", "IMPORT", "SL", "VARIABLE_DEF", "LITERAL_DOUBLE",
-                        "RCURLY", "RESOURCE", "SR", "COMMA", "BAND_ASSIGN", "METHOD_DEF",
-                        "LITERAL_VOID", "NUM_LONG", "LITERAL_TRANSIENT", "LITERAL_THIS", "LCURLY",
-                        "MINUS_ASSIGN", "TYPE_LOWER_BOUNDS", "TYPE_ARGUMENT", "LITERAL_CLASS",
-                        "INSTANCE_INIT", "DIV", "STAR", "UNARY_MINUS", "FOR_ITERATOR", "NOT_EQUAL",
-                        "LE", "LITERAL_INTERFACE", "LITERAL_FLOAT", "LITERAL_INSTANCEOF",
-                        "BOR_ASSIGN", "LT", "SL_ASSIGN", "ELIST", "ANNOTATION_ARRAY_INIT",
-                        "MODIFIERS", "LITERAL_BREAK", "EXTENDS_CLAUSE", "TYPE_PARAMETER",
-                        "LITERAL_DEFAULT", "STATIC_INIT", "BSR_ASSIGN", "TYPE_EXTENSION_AND",
-                        "BOR", "LITERAL_PRIVATE", "LITERAL_THROW", "LITERAL_BYTE", "BXOR",
-                        "WILDCARD_TYPE", "FINAL", "PARAMETERS", "RPAREN", "SR_ASSIGN",
-                        "UNARY_PLUS", "EMPTY_STAT", "LITERAL_STATIC", "LITERAL_CONTINUE",
-                        "STAR_ASSIGN", "LAMBDA", "RBRACK", "BXOR_ASSIGN", "CTOR_CALL",
-                        "LITERAL_FALSE", "DO_WHILE", "LITERAL_PUBLIC", "LITERAL_WHILE", "PLUS",
-                        "INC", "CTOR_DEF", "GENERIC_END", "DIV_ASSIGN", "SLIST", "LNOT", "LAND",
-                        "LITERAL_ELSE", "ABSTRACT", "STRICTFP", "QUESTION", "LITERAL_NEW",
-                        "LITERAL_RETURN", "SINGLE_LINE_COMMENT", "INDEX_OP", "EXPR",
-                        "BLOCK_COMMENT_BEGIN", "PACKAGE_DEF", "IMPLEMENTS_CLAUSE", "NUM_FLOAT",
-                        "LITERAL_DO", "EOF", "GE", "RESOURCES", "MOD", "DEC", "EQUAL",
-                        "LITERAL_BOOLEAN", "CLASS_DEF", "COLON", "LITERAL_TRY", "ENUM_DEF", "GT",
-                        "NUM_INT", "ANNOTATION_DEF", "METHOD_REF", "TYPE_ARGUMENTS",
-                        "DOUBLE_COLON", "IDENT", "MOD_ASSIGN", "LITERAL_FOR", "SUPER_CTOR_CALL",
-                        "STRING_LITERAL", "ARRAY_DECLARATOR", "LITERAL_CASE",
-                        "PATTERN_VARIABLE_DEF", "RECORD_DEF", "LITERAL_RECORD",
-                        "RECORD_COMPONENTS", "RECORD_COMPONENT_DEF", "COMPACT_CTOR_DEF",
-                        "TEXT_BLOCK_LITERAL_BEGIN", "TEXT_BLOCK_CONTENT", "TEXT_BLOCK_LITERAL_END",
-                        "LITERAL_YIELD", "SWITCH_RULE")
-                        .collect(Collectors.toUnmodifiableSet()));
         // we have no need to block specific token text
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText",
                 Stream.of("NUM_DOUBLE", "NUM_FLOAT", "NUM_INT", "NUM_LONG", "IDENT",
-                    "COMMENT_CONTENT", "STRING_LITERAL", "CHAR_LITERAL", "TEXT_BLOCK_CONTENT")
+                    "COMMENT_CONTENT", "CHAR_LITERAL", "TEXT_BLOCK_CONTENT")
                     .collect(Collectors.toUnmodifiableSet()));
         // only CLASS_DEF: require @since on public *Check types (see checkstyle-checks.xml)
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WriteTag",
@@ -194,11 +152,6 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // these are covered by GenericWhitespaceCheck
                 "WILDCARD_TYPE", "GENERIC_END", "GENERIC_START")
             .collect(Collectors.toUnmodifiableSet()));
-        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("RightCurlyAloneOrEmpty", Stream.of(
-                // these are covered by RightCurly check
-                "LITERAL_DO", "INTERFACE_DEF")
-            .collect(Collectors.toUnmodifiableSet()));
-
         // google
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AbbreviationAsWordInName", Stream.of(
                 // enum values should be uppercase
@@ -230,17 +183,6 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // google doesn't require or prevent braces on these
                 "LAMBDA", "LITERAL_DEFAULT", "LITERAL_CASE")
             .collect(Collectors.toUnmodifiableSet()));
-        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("EmptyBlock", Stream.of(
-                // google doesn't specifically mention empty braces at the start of a case/default
-                "LITERAL_DEFAULT", "LITERAL_CASE",
-                // can be empty for special cases via '6.2 Caught exceptions: not ignored'
-                "LITERAL_CATCH",
-                // specifically allowed via '5.2.4 Constant names'
-                "ARRAY_INIT",
-                // state of the configuration when test was made until
-                // https://github.com/checkstyle/checkstyle/issues/4121
-                "INSTANCE_INIT", "LITERAL_DO", "LITERAL_FOR", "LITERAL_SYNCHRONIZED",
-                "LITERAL_WHILE", "STATIC_INIT").collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("EmptyLineSeparator", Stream.of(
                 // module import declarations are not part of the Google style config token set
                 "MODULE_IMPORT", "ENUM_CONSTANT_DEF").collect(Collectors.toUnmodifiableSet()));
@@ -280,10 +222,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "COLON").collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceBefore", Stream.of(
                 // google uses GenericWhitespace for this behavior
-                "GENERIC_START", "GENERIC_END",
-                // whitespace is necessary between a type annotation and ellipsis
-                // according '4.6.2 Horizontal whitespace point 9'
-                "ELLIPSIS").collect(Collectors.toUnmodifiableSet()));
+                "GENERIC_START", "GENERIC_END").collect(Collectors.toUnmodifiableSet()));
         INTERNAL_MODULES = Definitions.INTERNAL_MODULES.stream()
                 .map(moduleName -> {
                     final List<String> packageTokens = Splitter
@@ -457,13 +396,6 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
                 configCheckTokens.put(checkName, configTokens);
 
-                // add all overridden tokens
-                final Set<String> overrideTokens = tokensToIgnore.get(checkName);
-
-                if (overrideTokens != null) {
-                    configTokens.addAll(overrideTokens);
-                }
-
                 configTokens.addAll(CheckUtil.getTokenNameSet(check.getRequiredTokens()));
                 checkTokens.put(checkName,
                         CheckUtil.getTokenNameSet(check.getAcceptableTokens()));
@@ -483,8 +415,20 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 }
             }
         }
+        assertWithMessage("Token exclusions should only reference checks audited in %s config",
+                configName)
+                .that(checkTokens.keySet())
+                .containsAtLeastElementsIn(tokensToIgnore.keySet());
         for (Entry<String, Set<String>> entry : checkTokens.entrySet()) {
             final Set<String> actual = configCheckTokens.get(entry.getKey());
+            final Set<String> ignoredTokens =
+                    tokensToIgnore.getOrDefault(entry.getKey(), Set.of());
+            assertWithMessage(
+                    "Token exclusions for '%s' in %s config should not overlap covered tokens",
+                    entry.getKey(), configName)
+                    .that(actual)
+                    .containsNoneIn(ignoredTokens);
+            actual.addAll(ignoredTokens);
             assertWithMessage(
                 "'%s' should have all acceptable tokens "
                     + "from check in %s config "
