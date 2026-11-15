@@ -300,6 +300,78 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testContainsAnnotationOnRecordComponent() {
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        astForTest.setType(TokenTypes.RECORD_COMPONENT_DEF);
+        final DetailAstImpl annotations = new DetailAstImpl();
+        annotations.setType(TokenTypes.ANNOTATIONS);
+        final DetailAstImpl type = new DetailAstImpl();
+        type.setType(TokenTypes.TYPE);
+        final DetailAstImpl ident = new DetailAstImpl();
+        ident.setType(TokenTypes.IDENT);
+        ident.setText("x");
+
+        annotations.setNextSibling(type);
+        type.setNextSibling(ident);
+        astForTest.setFirstChild(annotations);
+
+        assertWithMessage("Annotation holder of record component should be %s", annotations)
+                .that(AnnotationUtil.getAnnotationHolder(astForTest))
+                .isSameInstanceAs(annotations);
+        assertWithMessage("Record component should not contain %s", "Deprecated")
+                .that(AnnotationUtil.containsAnnotation(astForTest, "Deprecated"))
+                .isFalse();
+        assertWithMessage("Record component should not contain any annotation")
+                .that(AnnotationUtil.containsAnnotation(astForTest))
+                .isFalse();
+        assertWithMessage("Annotation should not be found on record component")
+                .that(AnnotationUtil.getAnnotation(astForTest, "Deprecated"))
+                .isNull();
+    }
+
+    @Test
+    public void testContainsAnnotationOnAnnotatedRecordComponent() {
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        astForTest.setType(TokenTypes.RECORD_COMPONENT_DEF);
+        final DetailAstImpl annotations = new DetailAstImpl();
+        final DetailAstImpl annotation = new DetailAstImpl();
+        final DetailAstImpl annotationNameHolder = new DetailAstImpl();
+        final DetailAstImpl annotationName = new DetailAstImpl();
+        annotations.setType(TokenTypes.ANNOTATIONS);
+        annotation.setType(TokenTypes.ANNOTATION);
+        annotationNameHolder.setType(TokenTypes.AT);
+        annotationName.setText("Deprecated");
+
+        annotationNameHolder.setNextSibling(annotationName);
+        annotation.setFirstChild(annotationNameHolder);
+        annotations.setFirstChild(annotation);
+        astForTest.setFirstChild(annotations);
+
+        assertWithMessage("Record component should contain %s", "Deprecated")
+                .that(AnnotationUtil.containsAnnotation(astForTest, "Deprecated"))
+                .isTrue();
+        assertWithMessage("Record component should contain an annotation")
+                .that(AnnotationUtil.containsAnnotation(astForTest))
+                .isTrue();
+        assertWithMessage("Annotation on record component should be %s", annotation)
+                .that(AnnotationUtil.getAnnotation(astForTest, "Deprecated"))
+                .isSameInstanceAs(annotation);
+    }
+
+    @Test
+    public void testContainsAnnotationOnNodeWithoutAnnotationHolder() {
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        astForTest.setType(TokenTypes.LITERAL_INT);
+
+        assertWithMessage("Node without annotation holder should not contain %s", "Deprecated")
+                .that(AnnotationUtil.containsAnnotation(astForTest, "Deprecated"))
+                .isFalse();
+        assertWithMessage("Annotation should not be found on node without annotation holder")
+                .that(AnnotationUtil.getAnnotation(astForTest, "Deprecated"))
+                .isNull();
+    }
+
+    @Test
     public void testCompactNoUnchecked() throws Exception {
 
         final String[] expected = {
