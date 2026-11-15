@@ -92,6 +92,13 @@ public class HiddenFieldCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "hidden.field";
 
+    /** Tokens of the type definitions that are always static. */
+    private static final int[] STATIC_TYPE_TOKENS = {
+        TokenTypes.ENUM_DEF,
+        TokenTypes.RECORD_DEF,
+        TokenTypes.INTERFACE_DEF,
+    };
+
     /**
      * Stack of sets of field names,
      * one for each class of a set of nested classes.
@@ -187,8 +194,7 @@ public class HiddenFieldCheck extends AbstractCheck {
         final DetailAST firstChild = ast.getFirstChild();
         if (TokenUtil.isOfType(firstChild, TokenTypes.IDENT)) {
             final String untypedLambdaParameterName = firstChild.getText();
-            if (frame.containsStaticField(untypedLambdaParameterName)
-                || isInstanceField(firstChild, untypedLambdaParameterName)) {
+            if (isFieldName(firstChild, untypedLambdaParameterName)) {
                 log(firstChild, MSG_KEY, untypedLambdaParameterName);
             }
         }
@@ -319,7 +325,7 @@ public class HiddenFieldCheck extends AbstractCheck {
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();
 
-            if ((frame.containsStaticField(name) || isInstanceField(ast, name))
+            if (isFieldName(ast, name)
                     && !isMatchingRegexp(name)
                     && !isIgnoredParam(ast, name)) {
                 log(nameAST, MSG_KEY, name);
@@ -338,6 +344,93 @@ public class HiddenFieldCheck extends AbstractCheck {
         return isIgnoredSetterParam(ast, name)
             || isIgnoredConstructorParam(ast)
             || isIgnoredParamOfAbstractMethod(ast);
+    }
+
+    /**
+     * Checks whether a local variable or parameter has the name of a field of an anonymous
+     * class that encloses it. Anonymous classes have no field frame, so their fields are
+     * found by walking up from the variable. Instance fields are not visible past a static
+     * method, a static initializer or a static type.
+     *
+     * @param ast the local variable or parameter.
+     * @param name the name of the variable.
+     * @return true if the variable has the name of a field of an enclosing anonymous class.
+     */
+    private static boolean isAnonymousClassField(DetailAST ast, String name) {
+        boolean found = false;
+        boolean inStaticMember = false;
+        DetailAST parent = ast.getParent();
+        while (parent != null && !found) {
+            if (isStaticBoundary(parent)) {
+                inStaticMember = true;
+            }
+            else if (parent.getType() == TokenTypes.OBJBLOCK
+                    && parent.getParent().getType() == TokenTypes.LITERAL_NEW) {
+                found = hasField(parent, name, !inStaticMember);
+            }
+            parent = parent.getParent();
+        }
+        return found;
+    }
+
+    /**
+     * Checks whether a local variable or parameter has the name of a field it can see.
+     *
+     * @param ast the local variable or parameter.
+     * @param name the name of the variable.
+     * @return true if a visible field has the same name.
+     */
+    private boolean isFieldName(DetailAST ast, String name) {
+        return frame.containsStaticField(name)
+            || isInstanceField(ast, name)
+            || isAnonymousClassField(ast, name);
+    }
+
+    /**
+     * Checks whether instance fields declared outside a node are not visible inside it:
+     * a static method, a static initializer or a static type.
+     *
+     * @param ast the node to check.
+     * @return true if instance fields of enclosing classes are not visible inside ast.
+     */
+    private static boolean isStaticBoundary(DetailAST ast) {
+        final boolean result;
+        if (ast.getType() == TokenTypes.METHOD_DEF) {
+            result = ast.findFirstToken(TokenTypes.MODIFIERS)
+                .findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+        }
+        else if (ast.getType() == TokenTypes.CLASS_DEF) {
+            result = isStaticInnerType(ast);
+        }
+        else {
+            result = ast.getType() == TokenTypes.STATIC_INIT
+                || TokenUtil.isOfType(ast, STATIC_TYPE_TOKENS);
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether a class body declares a field with the given name.
+     *
+     * @param objBlock the class body.
+     * @param name the name of the field.
+     * @param includeInstanceFields whether instance fields count, or only static fields.
+     * @return true if the class body declares such a field.
+     */
+    private static boolean hasField(DetailAST objBlock, String name,
+                                    boolean includeInstanceFields) {
+        boolean found = false;
+        DetailAST child = objBlock.getFirstChild();
+        while (child != null && !found) {
+            if (child.getType() == TokenTypes.VARIABLE_DEF
+                    && name.equals(child.findFirstToken(TokenTypes.IDENT).getText())) {
+                found = includeInstanceFields
+                    || child.findFirstToken(TokenTypes.MODIFIERS)
+                        .findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+            }
+            child = child.getNextSibling();
+        }
+        return found;
     }
 
     /**
