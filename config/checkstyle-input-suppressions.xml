@@ -91,10 +91,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormattingAnnotations\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]suppresswarningsholder[\\/]InputSuppressWarningsHolderAlias6\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]suppresswarningsholder[\\/]InputSuppressWarningsHolderAlias6\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]whitespace[\\/]emptylinewrappinginblock[\\/]InputEmptyLineWrappingInBlockArrayInit\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule462horizontalwhitespace[\\/]InputParenPad\.java"/>
