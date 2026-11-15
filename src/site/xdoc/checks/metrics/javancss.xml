@@ -59,6 +59,14 @@
         </p>
 
         <p>
+          A compact source file (JEP 512) declares an implicit class whose members are the top-level fields
+          and methods. The implicit class is treated as a class: its members are counted and the class
+          maximum applies to it. Unlike a named class, the implicit class declaration itself does not add
+          to the count, and the file's imports are counted towards the file only, not towards the implicit
+          class.
+        </p>
+
+        <p>
           Rationale: Too large methods and classes are hard to read and costly to maintain.
           A large NCSS number often means that a method or class has too many responsibilities
           and/or functionalities which should be decomposed into smaller units.
