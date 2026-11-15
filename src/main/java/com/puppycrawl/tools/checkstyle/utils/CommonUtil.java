@@ -449,7 +449,7 @@ public final class CommonUtil {
      * @param name name of the desired resource
      * @return URI of the resource
      */
-    public static URL getCheckstyleResource(String name) {
+    /* package */ static URL getCheckstyleResource(String name) {
         return CommonUtil.class.getResource(name);
     }
 
