@@ -175,8 +175,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]whitespace[\\/]parenpad[\\/]InputParenPadLeftRightAndNoSpace1SpaceRight\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule462horizontalwhitespace[\\/]InputParenPad\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule4853methodsandconstructorsannotations[\\/]InputMethodsAndConstructorsAnnotations\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule4853methodsandconstructorsannotations[\\/]InputMethodsAndConstructorsAnnotations\.java"/>

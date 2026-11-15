@@ -95,7 +95,8 @@ public class InputParenPad {
       //  '')' is preceded with whitespace.'
     }
 
-    @SuppressWarnings( "") // violation ''(' is followed by whitespace.'
+    // violation below ''(' is followed by whitespace.'
+    @SuppressWarnings( "")
     void method( boolean status) { // violation ''(' is followed by whitespace.'
       try ( Writer writer = new StringWriter( )) {
         // 3 violations above:
@@ -144,7 +145,8 @@ public class InputParenPad {
       //  '')' is preceded with whitespace.'
     }
 
-    @SuppressWarnings("" ) // violation '')' is preceded with whitespace.'
+    // violation below '')' is preceded with whitespace.'
+    @SuppressWarnings("" )
     void method(boolean status ) { // violation '')' is preceded with whitespace.'
       try (Writer writer = new StringWriter( ) ) {
         // 3 violations above:
