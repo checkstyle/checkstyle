@@ -68,12 +68,6 @@ public final class PropertyCacheFile {
      */
     public static final String EXTERNAL_RESOURCE_KEY_PREFIX = "module-resource*?:";
 
-    /** Size of default byte array for buffer. */
-    private static final int BUFFER_SIZE = 1024;
-
-    /** Default buffer for reading from streams. */
-    private static final byte[] BUFFER = new byte[BUFFER_SIZE];
-
     /** Default number for base 16 encoding. */
     private static final int BASE_16 = 16;
 
@@ -306,30 +300,8 @@ public final class PropertyCacheFile {
         final URI uri = CommonUtil.getUriByFilename(location);
 
         try (InputStream is = uri.toURL().openStream()) {
-            return toByteArray(is);
+            return is.readAllBytes();
         }
-    }
-
-    /**
-     * Reads all the contents of an input stream and returns it as a byte array.
-     *
-     * @param stream The input stream to read from.
-     * @return The resulting byte array of the stream.
-     * @throws IOException if there is an error reading the input stream.
-     */
-    private static byte[] toByteArray(InputStream stream) throws IOException {
-        final ByteArrayOutputStream content = new ByteArrayOutputStream();
-
-        while (true) {
-            final int size = stream.read(BUFFER);
-            if (size == -1) {
-                break;
-            }
-
-            content.write(BUFFER, 0, size);
-        }
-
-        return content.toByteArray();
     }
 
     /**
