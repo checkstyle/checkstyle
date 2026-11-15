@@ -550,11 +550,11 @@ public class MainTest {
                     throws IOException {
         assertMainReturnCode(0, "-c", getPath("InputMainConfig-classname2.xml"),
                 getPath("InputMain.java"));
-        final Violation invalidPatternMessageMain = new Violation(1,
+        final Violation invalidPatternViolationMain = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
                 "name.invalidPattern", new String[] {"InputMain", "^[a-z0-9]*$"},
                 null, getClass(), null);
-        final Violation invalidPatternMessageMainInner = new Violation(1,
+        final Violation invalidPatternViolationMainInner = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
                 "name.invalidPattern", new String[] {"InputMainInner", "^[a-z0-9]*$"},
                 null, getClass(), null);
@@ -563,10 +563,10 @@ public class MainTest {
             .that(systemOut.getCapturedData())
             .isEqualTo(addEndOfLine(auditStartMessage.getMessage(),
                     "[WARN] " + expectedPath + ":3:14: "
-                        + invalidPatternMessageMain.getViolation()
+                        + invalidPatternViolationMain.getViolation()
                         + " [TypeName]",
                     "[WARN] " + expectedPath + ":5:7: "
-                        + invalidPatternMessageMainInner.getViolation()
+                        + invalidPatternViolationMainInner.getViolation()
                         + " [TypeName]",
                     auditFinishMessage.getMessage()));
         assertWithMessage("Unexpected system error log")
@@ -608,14 +608,14 @@ public class MainTest {
                     throws Exception {
         assertMainReturnCode(2, "-c", getPath("InputMainConfig-classname2-error.xml"),
                     getPath("InputMain.java"));
-        final Violation errorCounterTwoMessage = new Violation(1,
+        final Violation errorCounterTwoViolation = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
                 new String[] {String.valueOf(2)}, null, getClass(), null);
-        final Violation invalidPatternMessageMain = new Violation(1,
+        final Violation invalidPatternViolationMain = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
                 "name.invalidPattern", new String[] {"InputMain", "^[a-z0-9]*$"},
                 null, getClass(), null);
-        final Violation invalidPatternMessageMainInner = new Violation(1,
+        final Violation invalidPatternViolationMainInner = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
                 "name.invalidPattern", new String[] {"InputMainInner", "^[a-z0-9]*$"},
                 null, getClass(), null);
@@ -624,13 +624,13 @@ public class MainTest {
             .that(systemOut.getCapturedData())
             .isEqualTo(addEndOfLine(auditStartMessage.getMessage(),
                     "[ERROR] " + expectedPath + ":3:14: "
-                        + invalidPatternMessageMain.getViolation() + " [TypeName]",
+                        + invalidPatternViolationMain.getViolation() + " [TypeName]",
                     "[ERROR] " + expectedPath + ":5:7: "
-                        + invalidPatternMessageMainInner.getViolation() + " [TypeName]",
+                        + invalidPatternViolationMainInner.getViolation() + " [TypeName]",
                     auditFinishMessage.getMessage()));
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
-            .isEqualTo(addEndOfLine(errorCounterTwoMessage.getViolation()));
+            .isEqualTo(addEndOfLine(errorCounterTwoViolation.getViolation()));
     }
 
     /**
@@ -646,10 +646,10 @@ public class MainTest {
                     throws Exception {
         assertMainReturnCode(1, "-c", getPath("InputMainConfig-classname2-error.xml"),
                     getPath("InputMain1.java"));
-        final Violation errorCounterTwoMessage = new Violation(1,
+        final Violation errorCounterTwoViolation = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
                 new String[] {String.valueOf(1)}, null, getClass(), null);
-        final Violation invalidPatternMessageMain = new Violation(1,
+        final Violation invalidPatternViolationMain = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
                 "name.invalidPattern", new String[] {"InputMain1", "^[a-z0-9]*$"},
                 null, getClass(), null);
@@ -658,35 +658,35 @@ public class MainTest {
             .that(systemOut.getCapturedData())
             .isEqualTo(addEndOfLine(auditStartMessage.getMessage(),
                     "[ERROR] " + expectedPath + ":3:14: "
-                        + invalidPatternMessageMain.getViolation() + " [TypeName]",
+                        + invalidPatternViolationMain.getViolation() + " [TypeName]",
                     auditFinishMessage.getMessage()));
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
-            .isEqualTo(addEndOfLine(errorCounterTwoMessage.getViolation()));
+            .isEqualTo(addEndOfLine(errorCounterTwoViolation.getViolation()));
     }
 
     @Test
     public void testMainExitCodeOn256Errors(@SysErr Capturable systemErr) {
         assertMainReturnCode(255, "-c", getPath("InputMainConfig-magicnumber.xml"),
                 getPath("InputMainMagicNumber256Errors.java"));
-        final Violation errorCounterMessage = new Violation(1,
+        final Violation errorCounterViolation = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
                 new String[] {String.valueOf(256)}, null, getClass(), null);
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
-            .isEqualTo(addEndOfLine(errorCounterMessage.getViolation()));
+            .isEqualTo(addEndOfLine(errorCounterViolation.getViolation()));
     }
 
     @Test
     public void testMainExitCodeOn300Errors(@SysErr Capturable systemErr) {
         assertMainReturnCode(255, "-c", getPath("InputMainConfig-magicnumber.xml"),
                 getPath("InputMainMagicNumber300Errors.java"));
-        final Violation errorCounterMessage = new Violation(1,
+        final Violation errorCounterViolation = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
                 new String[] {String.valueOf(300)}, null, getClass(), null);
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
-            .isEqualTo(addEndOfLine(errorCounterMessage.getViolation()));
+            .isEqualTo(addEndOfLine(errorCounterViolation.getViolation()));
     }
 
     @Test
@@ -694,10 +694,10 @@ public class MainTest {
             @SysOut Capturable systemOut)
                     throws Exception {
         assertMainReturnCode(1, "-c", "/sun_checks.xml", getPath("InputMain1.java"));
-        final Violation errorCounterTwoMessage = new Violation(1,
+        final Violation errorCounterTwoViolation = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
                 new String[] {String.valueOf(1)}, null, getClass(), null);
-        final Violation message = new Violation(1,
+        final Violation violation = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 "javadoc.packageInfo", new String[] {},
                 null, getClass(), null);
@@ -705,11 +705,11 @@ public class MainTest {
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo(addEndOfLine(auditStartMessage.getMessage(),
-                "[ERROR] " + expectedPath + ":1: " + message.getViolation() + " [JavadocPackage]",
+                "[ERROR] " + expectedPath + ":1: " + violation.getViolation() + " [JavadocPackage]",
                 auditFinishMessage.getMessage()));
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
-            .isEqualTo(addEndOfLine(errorCounterTwoMessage.getViolation()));
+            .isEqualTo(addEndOfLine(errorCounterTwoViolation.getViolation()));
     }
 
     @Test
@@ -875,11 +875,11 @@ public class MainTest {
         // We do separate validation for message as in Windows
         // disk drive letter appear in message,
         // so we skip that drive letter for compatibility issues
-        final Violation loadPropertiesMessage = new Violation(1,
+        final Violation loadPropertiesViolation = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, Main.LOAD_PROPERTIES_EXCEPTION,
                 new String[] {""}, null, getClass(), null);
         final String causeMessage = exc.getCause().getLocalizedMessage();
-        final String violation = loadPropertiesMessage.getViolation();
+        final String violation = loadPropertiesViolation.getViolation();
         final boolean samePrefix = causeMessage.substring(0, causeMessage.indexOf(' '))
                 .equals(violation
                         .substring(0, violation.indexOf(' ')));
