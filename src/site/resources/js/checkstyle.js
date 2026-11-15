@@ -290,3 +290,180 @@ window.addEventListener("load", function () {
     window.addEventListener("scroll", updateTocPosition);
     window.addEventListener("resize", updateTocPosition);
 });
+
+// Theme Controller (Light / Dark / Auto system mode)
+const THEME_STORAGE_KEY = "checkstyle-theme";
+
+const SUN_SVG = '<svg class="theme-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
+
+const MOON_SVG = '<svg class="theme-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+
+const MONITOR_SVG = '<svg class="theme-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>';
+
+function getStoredTheme() {
+    try {
+        return localStorage.getItem(THEME_STORAGE_KEY) || "system";
+    } catch (e) {
+        return "system";
+    }
+}
+
+function setStoredTheme(theme) {
+    try {
+        localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch (e) {
+        // Fallback for sandboxed environments or disabled storage
+    }
+}
+
+function getSystemTheme() {
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+    }
+    return "light";
+}
+
+function updateThemeToggleUI(storedTheme, effectiveTheme) {
+    const toggleBtn = document.getElementById("theme-toggle");
+    if (!toggleBtn) {
+        return;
+    }
+    const iconSpan = toggleBtn.querySelector(".theme-toggle-icon");
+    const textSpan = toggleBtn.querySelector(".theme-toggle-text");
+
+    let label = "Auto";
+    let icon = MONITOR_SVG;
+    let nextTheme = "light";
+
+    if (storedTheme === "light") {
+        label = "Light";
+        icon = SUN_SVG;
+        nextTheme = "dark";
+    } else if (storedTheme === "dark") {
+        label = "Dark";
+        icon = MOON_SVG;
+        nextTheme = "auto";
+    } else {
+        label = "Auto";
+        icon = MONITOR_SVG;
+        nextTheme = "light";
+    }
+
+    if (iconSpan) {
+        iconSpan.innerHTML = icon;
+    }
+    if (textSpan) {
+        textSpan.textContent = label;
+    }
+
+    const modeDescription = storedTheme === "system"
+        ? `Auto (${effectiveTheme})`
+        : label;
+    toggleBtn.setAttribute("aria-label", `Current theme: ${modeDescription}. Click to switch to ${nextTheme}.`);
+    toggleBtn.title = `Theme: ${modeDescription}. Click to switch to ${nextTheme}.`;
+}
+
+function applyTheme(theme) {
+    const effectiveTheme = theme === "system" ? getSystemTheme() : theme;
+    document.documentElement.setAttribute("data-theme", effectiveTheme);
+    document.documentElement.setAttribute("data-theme-preference", theme);
+    updateThemeToggleUI(theme, effectiveTheme);
+}
+
+function cycleTheme() {
+    const current = getStoredTheme();
+    let nextTheme = "system";
+    if (current === "system") {
+        nextTheme = "light";
+    } else if (current === "light") {
+        nextTheme = "dark";
+    } else {
+        nextTheme = "system";
+    }
+    setStoredTheme(nextTheme);
+    applyTheme(nextTheme);
+}
+
+function injectThemeToggle() {
+    const breadcrumb = document.querySelector("#breadcrumbs .breadcrumb");
+    if (!breadcrumb || document.getElementById("theme-toggle-item")) {
+        return;
+    }
+
+    const li = document.createElement("li");
+    li.id = "theme-toggle-item";
+    li.className = "pull-right";
+
+    const divider = document.createElement("span");
+    divider.className = "divider";
+    divider.textContent = "|";
+
+    const button = document.createElement("button");
+    button.id = "theme-toggle";
+    button.type = "button";
+    button.className = "theme-toggle-btn";
+
+    const iconSpan = document.createElement("span");
+    iconSpan.className = "theme-toggle-icon";
+
+    const textSpan = document.createElement("span");
+    textSpan.className = "theme-toggle-text";
+
+    button.appendChild(iconSpan);
+    button.appendChild(textSpan);
+
+    button.addEventListener("click", function (event) {
+        event.preventDefault();
+        cycleTheme();
+    });
+
+    li.appendChild(divider);
+    li.appendChild(button);
+
+    const publishDate = document.getElementById("publishDate");
+    if (publishDate) {
+        breadcrumb.insertBefore(li, publishDate);
+    } else {
+        breadcrumb.appendChild(li);
+    }
+
+    const stored = getStoredTheme();
+    const effective = stored === "system" ? getSystemTheme() : stored;
+    updateThemeToggleUI(stored, effective);
+}
+
+function initTheme() {
+    const stored = getStoredTheme();
+    applyTheme(stored);
+    injectThemeToggle();
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTheme);
+} else {
+    initTheme();
+}
+
+window.addEventListener("load", function () {
+    injectThemeToggle();
+});
+
+if (window.matchMedia) {
+    const colorSchemeMedia = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleMediaChange = function () {
+        if (getStoredTheme() === "system") {
+            applyTheme("system");
+        }
+    };
+    if (colorSchemeMedia.addEventListener) {
+        colorSchemeMedia.addEventListener("change", handleMediaChange);
+    } else if (colorSchemeMedia.addListener) {
+        colorSchemeMedia.addListener(handleMediaChange);
+    }
+}
+
+window.addEventListener("storage", function (event) {
+    if (event.key === THEME_STORAGE_KEY) {
+        applyTheme(event.newValue || "system");
+    }
+});
