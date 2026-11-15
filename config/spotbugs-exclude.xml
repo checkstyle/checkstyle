@@ -156,6 +156,30 @@
     <Bug pattern="REC_CATCH_EXCEPTION"/>
   </Match>
   <Match>
+    <!-- These methods cannot declare the checked exception they catch: property setters
+         are called through reflection and report a bad value with IllegalArgumentException,
+         the Ant task reports failures with Ant's BuildException, and the reflection helpers
+         use IllegalStateException. Each one wraps the caught exception as the cause. -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+      <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile"/>
+      <Class name="com.puppycrawl.tools.checkstyle.SarifLogger"/>
+      <Class name="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck"/>
+      <Class name="~.*\.checks\.header\.MultiFileRegexpHeaderCheck(\$HeaderFileMetadata)?"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck"/>
+      <Class name="com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter"/>
+      <Class name="com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter"/>
+      <Class name="com.puppycrawl.tools.checkstyle.filters.XpathFilterElement"/>
+      <Class name="com.puppycrawl.tools.checkstyle.meta.XmlMetaReader"/>
+      <Class name="com.puppycrawl.tools.checkstyle.site.SearchIndexGenerator"/>
+      <Class name="com.puppycrawl.tools.checkstyle.utils.CommonUtil"/>
+      <Class name="com.puppycrawl.tools.checkstyle.utils.TokenUtil"/>
+    </Or>
+    <Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS"/>
+  </Match>
+  <Match>
     <!-- Creates too many false positives on classes stored in sets/maps
          which require multiple objects to be stored. -->
     <Bug pattern="FCBL_FIELD_COULD_BE_LOCAL"/>
@@ -204,7 +228,6 @@
     <Bug pattern="
       CLI_CONSTANT_LIST_INDEX,
       EXS_EXCEPTION_SOFTENING_NO_CHECKED,
-      EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS,
       FCCD_FIND_CLASS_CIRCULAR_DEPENDENCY,
       IMC_IMMATURE_CLASS_NO_EQUALS,
       IMC_IMMATURE_CLASS_NO_TOSTRING,
