@@ -119,10 +119,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormattingAnnotations\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorIgnoreAnnotationBy\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]design[\\/]hideutilityclassconstructor[\\/]compact[\\/]InputHideUtilityClassConstructorCompactSourceFileProperties\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]invalidjavadocposition[\\/]InputInvalidJavadocPosition\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]invalidjavadocposition[\\/]InputInvalidJavadocPosition\.java"/>
