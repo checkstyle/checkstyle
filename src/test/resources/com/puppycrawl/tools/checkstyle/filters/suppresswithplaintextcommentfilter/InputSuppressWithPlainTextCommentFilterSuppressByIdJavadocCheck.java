@@ -30,7 +30,8 @@ public class InputSuppressWithPlainTextCommentFilterSuppressByIdJavadocCheck {
         return 3;
     }
 
-    /** @param unused asd **/ // filtered violation 'Unused @param tag for 'unused'.'
+    // filtered violation below 'Unused @param tag for 'unused'.'
+    /** @param unused asd **/
     void method2() {
     }
 
