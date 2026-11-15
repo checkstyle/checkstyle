@@ -144,6 +144,21 @@
     <Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS"/>
   </Match>
   <Match>
+    <!-- Swing classes are Serializable only through JFrame and AbstractTableModel, and are
+         never serialized. Their models are transient, so they do not need to be Serializable. -->
+    <Or>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.gui.MainFrame"/>
+        <Field name="model"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter"/>
+        <Field name="treeTableModel"/>
+      </And>
+    </Or>
+    <Bug pattern="NFF_NON_FUNCTIONAL_FIELD"/>
+  </Match>
+  <Match>
     <!-- It is better to catch all exceptions since it can throw a runtime exception. -->
     <Class name="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
     <Method name="getTranslationKeys"/>
@@ -210,7 +225,6 @@
       IMC_IMMATURE_CLASS_NO_TOSTRING,
       IMC_IMMATURE_CLASS_PRINTSTACKTRACE,
       MOM_MISLEADING_OVERLOAD_MODEL,
-      NFF_NON_FUNCTIONAL_FIELD,
       OPM_OVERLY_PERMISSIVE_METHOD,
       PMB_INSTANCE_BASED_THREAD_LOCAL,
       STT_STRING_PARSING_A_FIELD,
