@@ -71,6 +71,12 @@
     <Bug pattern="AI_ANNOTATION_ISSUES_NEEDS_NULLABLE"/>
   </Match>
   <Match>
+    <!-- Reported for about 240 classes. Their instances are not printed or logged, so a
+         toString method would be unused code. Classes whose text is shown, such as
+         AST nodes and full identifiers, already define it. -->
+    <Bug pattern="IMC_IMMATURE_CLASS_NO_TOSTRING"/>
+  </Match>
+  <Match>
     <!-- have never been a case for years, Eclipse does not show any other classes
            inherited from CommonASTWithHiddenTokens -->
     <Class name="com.puppycrawl.tools.checkstyle.DetailAstImpl" />
@@ -212,7 +218,6 @@
       EXS_EXCEPTION_SOFTENING_NO_CHECKED,
       EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS,
       IMC_IMMATURE_CLASS_NO_EQUALS,
-      IMC_IMMATURE_CLASS_NO_TOSTRING,
       IMC_IMMATURE_CLASS_PRINTSTACKTRACE,
       MOM_MISLEADING_OVERLOAD_MODEL,
       NFF_NON_FUNCTIONAL_FIELD,
