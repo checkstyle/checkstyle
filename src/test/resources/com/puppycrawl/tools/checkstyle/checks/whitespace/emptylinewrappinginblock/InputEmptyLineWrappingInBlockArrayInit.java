@@ -23,9 +23,11 @@ public class InputEmptyLineWrappingInBlockArrayInit {
         String[] value();
     }
 
-    @WithArray({ // violation ''{' must have exactly one empty line after.'
+    // violation 2 lines below ''{' must have exactly one empty line after.'
+    // violation 4 lines below ''}' must have exactly one empty line before'
+    @WithArray({
         "a",
         "b"
-    }) // violation ''}' must have exactly one empty line before'
+    })
     void multilineAnnotation() { }
 }
