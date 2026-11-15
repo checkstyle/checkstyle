@@ -32,7 +32,8 @@ public class InputParenPadLeftRightAndNoSpace1SpaceRight
             //           '')' is preceded with whitespace.'
         }
 
-        @SuppressWarnings("" ) // violation '')' is preceded with whitespace.'
+        // violation below '')' is preceded with whitespace.'
+        @SuppressWarnings("" )
         void method(boolean status ) { // violation '')' is preceded with whitespace.'
             try (Writer writer = new StringWriter( ) ) {
             // 3 violations above:
