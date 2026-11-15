@@ -12,7 +12,8 @@ import java.util.List;
 void main() {
 }
 
-@Deprecated // violation 'METHOD_DEF statement should not be line-wrapped.'
+// violation below 'METHOD_DEF statement should not be line-wrapped.'
+@Deprecated
 int oldSize(List<String> values) {
     return values.size();
 }
