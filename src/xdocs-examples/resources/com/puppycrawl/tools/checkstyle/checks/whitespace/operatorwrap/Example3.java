@@ -49,6 +49,12 @@ class Example3 {
             &=1 ;
     c
             <<= 1;
+
+    int a = 1;
+    int b1 = 2;
+    int c1 = 3;
+    int x4 = a / (b1
+            - c1);
   }
 }
 // xdoc section - end
