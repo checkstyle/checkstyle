@@ -16,7 +16,8 @@ int field = 0;
 @SuppressWarnings("unused")
 int allowedField = 0;
 
-@SuppressWarnings("   ") // violation 'The warning '   ' cannot be suppressed at this location'
+// violation below 'The warning '   ' cannot be suppressed at this location'
+@SuppressWarnings("   ")
 void method(@SuppressWarnings("") int param) { // violation 'The warning '' cannot be suppressed'
     @SuppressWarnings({"unused", ""}) // violation 'The warning '' cannot be suppressed'
     Object local = param;
@@ -28,32 +29,41 @@ void method(@SuppressWarnings("") int param) { // violation 'The warning '' cann
 void main() {
 }
 
-@SuppressWarnings("") // violation 'The warning '' cannot be suppressed at this location'
+// violation below 'The warning '' cannot be suppressed at this location'
+@SuppressWarnings("")
 class Nested {
-    @SuppressWarnings("") // violation 'The warning '' cannot be suppressed at this location'
+    // violation below 'The warning '' cannot be suppressed at this location'
+    @SuppressWarnings("")
     Nested() {
     }
 }
 
-@SuppressWarnings("") // violation 'The warning '' cannot be suppressed at this location'
+// violation below 'The warning '' cannot be suppressed at this location'
+@SuppressWarnings("")
 interface Shape {
 }
 
-@SuppressWarnings("") // violation 'The warning '' cannot be suppressed at this location'
+// violation below 'The warning '' cannot be suppressed at this location'
+@SuppressWarnings("")
 enum Color {
-    @SuppressWarnings("") // violation 'The warning '' cannot be suppressed at this location'
+    // violation below 'The warning '' cannot be suppressed at this location'
+    @SuppressWarnings("")
     RED
 }
 
-@SuppressWarnings("") // violation 'The warning '' cannot be suppressed at this location'
+// violation below 'The warning '' cannot be suppressed at this location'
+@SuppressWarnings("")
 record Point(int x) {
-    @SuppressWarnings("") // violation 'The warning '' cannot be suppressed at this location'
+    // violation below 'The warning '' cannot be suppressed at this location'
+    @SuppressWarnings("")
     Point {
     }
 }
 
-@SuppressWarnings("") // violation 'The warning '' cannot be suppressed at this location'
+// violation below 'The warning '' cannot be suppressed at this location'
+@SuppressWarnings("")
 @interface Marker {
-    @SuppressWarnings("") // violation 'The warning '' cannot be suppressed at this location'
+    // violation below 'The warning '' cannot be suppressed at this location'
+    @SuppressWarnings("")
     String value();
 }
