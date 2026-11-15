@@ -882,7 +882,7 @@ public class MagicNumberCheckTest extends AbstractModuleTestSupport {
             "23:24: " + getCheckMessage(MSG_KEY, "456"),
             "30:16: " + getCheckMessage(MSG_KEY, "31"),
             "31:19: " + getCheckMessage(MSG_KEY, "17"),
-            "34:15: " + getCheckMessage(MSG_KEY, "42"),
+            "35:15: " + getCheckMessage(MSG_KEY, "42"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("compact/InputMagicNumberCompactSourceFileDefault.java"),
