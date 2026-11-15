@@ -97,8 +97,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]whitespace[\\/]emptylinewrappinginblock[\\/]InputEmptyLineWrappingInBlockArrayInit\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]whitespace[\\/]nolinewrap[\\/]compact[\\/]InputNoLineWrapCompactSourceFileProperties\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule462horizontalwhitespace[\\/]InputParenPad\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule4853methodsandconstructorsannotations[\\/]InputMethodsAndConstructorsAnnotations\.java"/>
