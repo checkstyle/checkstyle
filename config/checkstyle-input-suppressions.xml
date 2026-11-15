@@ -117,8 +117,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]coding[\\/]magicnumber[\\/]compact[\\/]InputMagicNumberCompactSourceFileDefault\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]coding[\\/]multiplestringliterals[\\/]compact[\\/]InputMultipleStringLiteralsCompactSourceFileProperties\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormattingAnnotations\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorIgnoreAnnotationBy\.java"/>
