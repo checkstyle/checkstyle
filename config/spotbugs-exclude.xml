@@ -205,12 +205,117 @@
     <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor"/>
     <Bug pattern="PSC_PRESIZE_COLLECTIONS"/>
   </Match>
+  <Match>
+    <!-- Wrapping checked exceptions into CheckstyleException or runtime exceptions is
+         intentional when conforming to framework APIs or Checkstyle standard error handling. -->
+    <Or>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+        <Method name="relativizePathWithCatch"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile"/>
+        <Method name="getHashCodeBasedOnObjectContent"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.SarifLogger"/>
+        <Method name="renderFileNameUri"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask"/>
+        <Method name="createOverridingProperties"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask"/>
+        <Method name="createRootModule"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask"/>
+        <Method name="getListeners"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask"/>
+        <Method name="processFiles"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck"/>
+        <Method name="findMatchingNodesByXpathQuery"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck"/>
+        <Method name="setQuery"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck"/>
+        <Method name="setHeader"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck"/>
+        <Method name="getLines"/>
+      </And>
+      <And>
+        <Class
+        name=
+    "com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck$HeaderFileMetadata"
+        />
+        <Method name="createFromFile"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck"/>
+        <Method name="setFile"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter"/>
+        <Method name="getFileText"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter"/>
+        <Method name="getFileText"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.filters.XpathFilterElement"/>
+        <Method name="&lt;init&gt;"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.filters.XpathFilterElement"/>
+        <Method name="getItems"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.meta.XmlMetaReader"/>
+        <Method name="readAllModulesIncludingThirdPartyIfAny"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.site.SearchIndexGenerator"/>
+        <Method name="processGeneralPage"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.site.SearchIndexGenerator"/>
+        <Method name="processXmlFile"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.utils.CommonUtil"/>
+        <Method name="close"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.utils.CommonUtil"/>
+        <Method name="getConstructor"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.utils.CommonUtil"/>
+        <Method name="invokeConstructor"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.utils.TokenUtil"/>
+        <Method name="getIntFromField"/>
+      </And>
+    </Or>
+    <Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS"/>
+  </Match>
   <!-- After https://github.com/checkstyle/checkstyle/issues/11140
        there should be one section per one bug pattern, with list of allowed classes or methods -->
   <Match>
     <Bug pattern="
       EXS_EXCEPTION_SOFTENING_NO_CHECKED,
-      EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS,
       IMC_IMMATURE_CLASS_NO_EQUALS,
       IMC_IMMATURE_CLASS_NO_TOSTRING,
       IMC_IMMATURE_CLASS_PRINTSTACKTRACE,
