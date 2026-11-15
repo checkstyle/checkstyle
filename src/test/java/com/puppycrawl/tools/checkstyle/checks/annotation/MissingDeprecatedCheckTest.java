@@ -135,6 +135,15 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testRecordComponentJavadoc() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputMissingDeprecatedRecordComponent.java"), expected);
+    }
+
+    @Test
     public void testTwoInJavadocWithoutAnnotation() throws Exception {
 
         final String[] expected = {
