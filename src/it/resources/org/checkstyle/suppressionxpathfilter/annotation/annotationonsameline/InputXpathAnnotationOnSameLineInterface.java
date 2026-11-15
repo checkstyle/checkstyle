@@ -9,7 +9,8 @@ tokens = CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, \
 
 package org.checkstyle.suppressionxpathfilter.annotation.annotationonsameline;
 
-@Deprecated // violation 'Annotation 'Deprecated' should be on the same line with its target.'
+// violation below 'Annotation 'Deprecated' should be on the same line with its target.'
+@Deprecated
 interface InputXpathAnnotationOnSameLineInterface {
 
 }
