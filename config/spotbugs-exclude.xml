@@ -166,6 +166,13 @@
     <Bug pattern="MDM_RUNTIME_EXIT_OR_HALT"/>
   </Match>
   <Match>
+    <!-- Main#main is the command line interface, and prints the stack trace of a
+         CheckstyleException to System.err for the user, which MainTest verifies. -->
+    <Class name="com.puppycrawl.tools.checkstyle.Main"/>
+    <Method name="main"/>
+    <Bug pattern="IMC_IMMATURE_CLASS_PRINTSTACKTRACE"/>
+  </Match>
+  <Match>
     <!-- False positive as we override and enforce final so no more overrides. -->
     <Bug pattern="COM_COPIED_OVERRIDDEN_METHOD"/>
     <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck"/>
@@ -208,7 +215,6 @@
       FCCD_FIND_CLASS_CIRCULAR_DEPENDENCY,
       IMC_IMMATURE_CLASS_NO_EQUALS,
       IMC_IMMATURE_CLASS_NO_TOSTRING,
-      IMC_IMMATURE_CLASS_PRINTSTACKTRACE,
       MOM_MISLEADING_OVERLOAD_MODEL,
       NFF_NON_FUNCTIONAL_FIELD,
       OPM_OVERLY_PERMISSIVE_METHOD,
