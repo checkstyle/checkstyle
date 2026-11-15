@@ -102,7 +102,7 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
     @Test
     public void testThree() throws Exception {
         final String[] expectedViolation = {
-            "12:1: " + getCheckMessage(AnnotationOnSameLineCheck.class,
+            "13:1: " + getCheckMessage(AnnotationOnSameLineCheck.class,
                 AnnotationOnSameLineCheck.MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
         };
 
