@@ -279,12 +279,14 @@ public class FinalPatternVariableCheck extends AbstractCheck {
             final DetailAST preAssignBranch) {
         DetailAST matchedAssignToken = null;
 
-        for (int assignType : ASSIGN_TOKEN_TYPES) {
-            final DetailAST assignToken =
-                    preAssignBranch.findFirstToken(assignType);
-            if (assignToken != null) {
-                matchedAssignToken = assignToken;
-                break;
+        if (preAssignBranch.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
+            for (int assignType : ASSIGN_TOKEN_TYPES) {
+                final DetailAST assignToken =
+                        preAssignBranch.findFirstToken(assignType);
+                if (assignToken != null) {
+                    matchedAssignToken = assignToken;
+                    break;
+                }
             }
         }
 
