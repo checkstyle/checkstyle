@@ -107,8 +107,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationusestyle[\\/]compact[\\/]InputAnnotationUseStyleCompactExpanded\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]missingdeprecated[\\/]compact[\\/]InputMissingDeprecatedCompactSourceFile\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]compact[\\/]InputSuppressWarningsCompactSourceFileDefault\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]compact[\\/]InputSuppressWarningsCompactSourceFileFormat\.java"/>

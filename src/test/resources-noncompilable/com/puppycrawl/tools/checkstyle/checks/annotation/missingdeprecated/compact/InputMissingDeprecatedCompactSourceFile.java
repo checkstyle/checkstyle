@@ -23,10 +23,11 @@ void first() { // violation 'Must include both @java.lang.Deprecated annotation 
 @Deprecated
 int field = 0;
 
+// violation 4 lines below 'Must include both @java.lang.Deprecated annotation .*'
 /**
  * Annotation without the Javadoc tag.
  */
-@Deprecated // violation 'Must include both @java.lang.Deprecated annotation .*'
+@Deprecated
 void method() {
 }
 
