@@ -37,14 +37,18 @@ class InputAnnotationLocationIncorrect2One
 
     @MyAnnotation_12("foo") @MyAnn_22 void foo1() {}
 
+    // violation 2 lines below '.*'MyAnn_22' have incorrect indentation level 7, .* should be 4.'
     @MyAnnotation_12(value = "")
-       @MyAnn_22 // violation '.*'MyAnn_22' have incorrect indentation level 7, .* should be 4.'
+       @MyAnn_22
     void foo2() {}
 
+    // violation 4 lines below '.* incorrect .* level 8, .* should be 4.'
+    // violation 4 lines below '.* incorrect .* level 6, .* should be 4.'
+    // violation 4 lines below '.* incorrect .* level 10, .* should be 4.'
     @MyAnnotation_12(value = "")
-        @MyAnn_22 // violation '.* incorrect .* level 8, .* should be 4.'
-      @MyAnnotation_32 // violation '.* incorrect .* level 6, .* should be 4.'
-          @MyAnnotation_42 // violation '.* incorrect .* level 10, .* should be 4.'
+        @MyAnn_22
+      @MyAnnotation_32
+          @MyAnnotation_42
     class InnerClass
     {
         @MyAnn_22 @MyAnnotation_12
@@ -66,12 +70,14 @@ class InputAnnotationLocationIncorrect2One
         {
             // comment
         }
+        // violation 2 lines below '.* incorrect .* level 12, .* should be 8.'
         @MyAnnotation_12(value = "")
-            @MyAnn_22 // violation '.* incorrect .* level 12, .* should be 8.'
+            @MyAnn_22
         void foo1() {}
 
+        // violation 2 lines below '.* incorrect .* level 12, .* should be 8.'
         @MyAnnotation_12(value = "")
-            @MyAnn_22 // violation '.* incorrect .* level 12, .* should be 8.'
+            @MyAnn_22
         void foo2() {}
     }
 
@@ -93,8 +99,9 @@ class InputAnnotationLocationIncorrect2One
         @MyAnnotation_12(value = "")
            @MyAnn_22 void foo1() {} // violation '.* incorrect .* level 11, .* should be 8.'
 
+        // violation 2 lines below '.* incorrect .* level 10, .* should be 8.'
         @MyAnnotation_12(value = "")
-          @MyAnn_22 // violation '.* incorrect .* level 10, .* should be 8.'
+          @MyAnn_22
         void foo2() {}
 
         @MyAnnotation_12(value = "") void foo42() {}
@@ -102,17 +109,12 @@ class InputAnnotationLocationIncorrect2One
 
 }
 
-
 @interface MyAnnotation_12 {
-
         String value();}
 
 @interface MyAnn_22 {}
-
 @interface MyAnnotation_32 {}
-
 @interface MyAnnotation_42 {}
 
 @interface MyAnn_2 {
-
     String value();}
