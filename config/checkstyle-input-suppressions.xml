@@ -113,8 +113,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]compact[\\/]InputSuppressWarningsCompactSourceFileFormat\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]blocks[\\/]leftcurly[\\/]InputLeftCurlyTestNlWithAnnotations\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]coding[\\/]magicnumber[\\/]compact[\\/]InputMagicNumberCompactSourceFileDefault\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]coding[\\/]multiplestringliterals[\\/]compact[\\/]InputMultipleStringLiteralsCompactSourceFileProperties\.java"/>

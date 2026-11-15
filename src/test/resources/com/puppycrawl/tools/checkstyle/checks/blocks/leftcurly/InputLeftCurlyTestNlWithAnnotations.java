@@ -44,7 +44,8 @@ class InputLeftCurlyTestNlWithAnnotations
     }
 }
 
-@TestClassAnnotation // violation below ''{' at column 55 should be on a new line'
+// violation 2 lines below ''{' at column 55 should be on a new line'
+@TestClassAnnotation
 class InputLeftCurlyAnnotations2TestNlWithAnnotations {
     private static final int X = 10;
     @Override
