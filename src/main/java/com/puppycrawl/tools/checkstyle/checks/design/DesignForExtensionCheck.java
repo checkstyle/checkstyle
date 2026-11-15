@@ -271,7 +271,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      *
      * @param methodDef method definition token.
      * @param tokenType token type.
-     * @return true if a token has a javadoc comment.
+     * @return true if a token has a Javadoc comment.
      */
     private boolean hasJavadocCommentOnToken(DetailAST methodDef, int tokenType) {
         final DetailAST token = methodDef.findFirstToken(tokenType);
@@ -282,7 +282,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * Checks whether a javadoc comment exists under the token.
      *
      * @param token tree token.
-     * @return true if a javadoc comment exists under the token.
+     * @return true if a Javadoc comment exists under the token.
      */
     private boolean branchContainsJavadocComment(DetailAST token) {
         boolean result = false;
@@ -314,7 +314,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * a method as designed for extension.
      *
      * @param detailAST the ast we are checking for possible extension
-     * @return true if the javadoc of this ast contains the required comment pattern
+     * @return true if the Javadoc of this ast contains the required comment pattern
      */
     private boolean hasValidJavadocComment(DetailAST detailAST) {
         final String javadocString =
