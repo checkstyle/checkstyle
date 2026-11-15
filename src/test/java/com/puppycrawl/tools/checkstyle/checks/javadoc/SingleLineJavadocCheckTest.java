@@ -56,10 +56,10 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
     public void simpleTest() throws Exception {
         final String[] expected = {
             "22: " + getCheckMessage(MSG_KEY),
-            "40: " + getCheckMessage(MSG_KEY),
-            "52: " + getCheckMessage(MSG_KEY),
-            "55: " + getCheckMessage(MSG_KEY),
-            "61: " + getCheckMessage(MSG_KEY),
+            "41: " + getCheckMessage(MSG_KEY),
+            "54: " + getCheckMessage(MSG_KEY),
+            "58: " + getCheckMessage(MSG_KEY),
+            "64: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSingleLineJavadoc.java"), expected);
@@ -71,9 +71,9 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
             "14: " + getCheckMessage(MSG_KEY),
             "46: " + getCheckMessage(MSG_KEY),
             "51: " + getCheckMessage(MSG_KEY),
-            "56: " + getCheckMessage(MSG_KEY),
-            "62: " + getCheckMessage(MSG_KEY),
-            "67: " + getCheckMessage(MSG_KEY),
+            "57: " + getCheckMessage(MSG_KEY),
+            "63: " + getCheckMessage(MSG_KEY),
+            "68: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSingleLineJavadocIgnoredTags.java"), expected);
