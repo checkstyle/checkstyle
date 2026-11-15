@@ -23,7 +23,8 @@ public class InputJavadocMethodCustomMessage {
         return 3;
     }
 
-    /** @param unused asd **/ // violation 'Unused @param tag for 'unused' :)'
+    // violation below 'Unused @param tag for 'unused' :)'
+    /** @param unused asd **/
     void method2() {
     }
 

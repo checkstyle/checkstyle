@@ -546,8 +546,8 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final String msgExpectedTagCustom = "Expected @param tag for 'a' :)";
         final String[] expected = {
             "22: " + msgReturnExpectedCustom,
-            "26:9: " + msgUnusedTagCustom,
-            "33:22: " + msgExpectedTagCustom,
+            "27:9: " + msgUnusedTagCustom,
+            "34:22: " + msgExpectedTagCustom,
         };
 
         verifyWithInlineConfigParser(
