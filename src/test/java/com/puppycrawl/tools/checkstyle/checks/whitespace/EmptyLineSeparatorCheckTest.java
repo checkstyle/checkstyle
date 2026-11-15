@@ -1091,13 +1091,13 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "24:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
             "29:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
-            "30:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
-            "38:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
-            "50:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
-            "59:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
-            "75:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
-            "82:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "CLASS_DEF"),
-            "93:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "31:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "39:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "51:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "60:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "76:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "83:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "CLASS_DEF"),
+            "94:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorMultipleLines.java"),
@@ -1108,7 +1108,7 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
     public void testMultipleLines2() throws Exception {
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
-            "28:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "29:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorMultipleLines2.java"),

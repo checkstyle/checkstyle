@@ -21,13 +21,14 @@ public class InputEmptyLineSeparatorMultipleLines {
 
 
     /** Javadoc. */
-    @Deprecated // violation ''METHOD_DEF' has more than 1 empty lines before.'
-    void b() {
+    @Deprecated
+    void b() { // violation above ''METHOD_DEF' has more than 1 empty lines before.'
     }
 
 
     void x() {} // violation ''METHOD_DEF' has more than 1 empty lines before.'
-    @Deprecated // violation ''METHOD_DEF' should be separated from previous line.'
+    // violation below ''METHOD_DEF' should be separated from previous line.'
+    @Deprecated
     void e() {
     }
 
@@ -35,8 +36,8 @@ public class InputEmptyLineSeparatorMultipleLines {
     /* line one
      * line two
      * line three */
-    @Deprecated // violation ''METHOD_DEF' has more than 1 empty lines before.'
-    void f() {
+    @Deprecated
+    void f() { // violation above ''METHOD_DEF' has more than 1 empty lines before.'
     }
 
     void c() {
@@ -47,8 +48,8 @@ public class InputEmptyLineSeparatorMultipleLines {
     ============================================*/
 
 
-    @SuppressWarnings({"unchecked"}) // violation ''METHOD_DEF' has more than 1 empty lines before.'
-    void d() {
+    @SuppressWarnings({"unchecked"})
+    void d() { // violation above ''METHOD_DEF' has more than 1 empty lines before.'
     }
 
     @Test
@@ -56,8 +57,8 @@ public class InputEmptyLineSeparatorMultipleLines {
     }
 
 
-    @Test // violation ''METHOD_DEF' has more than 1 empty lines before.'
-    void testing_a() {
+    @Test
+    void testing_a() { // violation above ''METHOD_DEF' has more than 1 empty lines before.'
     }
 
     @MyAnnotation6
