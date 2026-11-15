@@ -25,7 +25,8 @@ InputEmptyLineSeparatorMultipleLines2 {
 
 
     void x() {}
-    @Deprecated // violation ''METHOD_DEF' should be separated from previous line.'
+    // violation below ''METHOD_DEF' should be separated from previous line.'
+    @Deprecated
     void e() {
     }
 
