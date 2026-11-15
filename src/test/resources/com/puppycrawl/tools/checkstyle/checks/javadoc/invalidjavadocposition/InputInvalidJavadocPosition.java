@@ -10,7 +10,8 @@ package /** invalid */ com.puppycrawl.tools // violation 'Javadoc .* placed in t
 /** invalid */ // violation 'Javadoc .* placed in the wrong location.'
 import java.lang.String;
 
-/** invalid */ // violation 'Javadoc .* placed in the wrong location.'
+// violation below 'Javadoc .* placed in the wrong location.'
+/** invalid */
 /** valid */
 class InputInvalidJavadocPosition {
     /** invalid */ // violation 'Javadoc .* placed in the wrong location.'
@@ -50,8 +51,9 @@ class InputInvalidJavadocPosition2 {
     void method24() { /** invalid */ } // violation 'Javadoc .* placed in the wrong location.'
     void method25() { /** invalid */ int variable; } // violation '.* placed in the wrong location.'
 }
+// violation 2 lines below 'Javadoc .* placed in the wrong location.'
 @Deprecated
-/** invalid */ // violation 'Javadoc .* placed in the wrong location.'
+/** invalid */
 class InputInvalidJavadocPosition3 {}
 /** valid */
 @Deprecated
