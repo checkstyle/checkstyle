@@ -211,7 +211,6 @@
       IMC_IMMATURE_CLASS_PRINTSTACKTRACE,
       MOM_MISLEADING_OVERLOAD_MODEL,
       NFF_NON_FUNCTIONAL_FIELD,
-      OPM_OVERLY_PERMISSIVE_METHOD,
       PMB_INSTANCE_BASED_THREAD_LOCAL,
       STT_STRING_PARSING_A_FIELD,
       WEM_WEAK_EXCEPTION_MESSAGING,
@@ -228,6 +227,24 @@
       <Class name="com.puppycrawl.tools.checkstyle.TreeWalker"/>
     </Or>
     <Bug pattern="ITC_INHERITANCE_TYPE_CHECKING"/>
+  </Match>
+  <Match>
+    <!-- Public methods and constructors of Checkstyle public API and utility classes.
+         Their visibility cannot be reduced without breaking backward compatibility
+         or subclassing contracts. -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+      <Class name="com.puppycrawl.tools.checkstyle.ConfigurationLoader"/>
+      <Class name="com.puppycrawl.tools.checkstyle.DefaultLogger"/>
+      <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.FileContents"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.Violation"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck"/>
+      <Class name="com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition"/>
+      <Class name="com.puppycrawl.tools.checkstyle.utils.CommonUtil"/>
+      <Class name="com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator"/>
+    </Or>
+    <Bug pattern="OPM_OVERLY_PERMISSIVE_METHOD"/>
   </Match>
   <Match>
     <!-- Swing TreeModel API requires passing 'this' as event source -->
