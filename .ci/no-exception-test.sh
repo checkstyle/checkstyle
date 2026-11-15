@@ -145,6 +145,62 @@ openjdk25-with-checks-nonjavadoc-error)
   removeFolderWithProtectedFiles contribution
   ;;
 
+rare-syntax-with-checks-nonjavadoc-error)
+  LOCAL_GIT_REPO=$(pwd)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
+  checkout_from https://github.com/checkstyle/contribution
+  sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
+        .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
+  # the input folder is named after RareSyntaxNoExceptionTest, in lower case
+  INPUT_FOLDER_NAME=$(printf '%s' 'RareSyntaxNoException' | tr '[:upper:]' '[:lower:]')
+  INPUT_FOLDER=com/puppycrawl/tools/checkstyle/internal/$INPUT_FOLDER_NAME
+  mkdir -p .ci-temp/contribution/checkstyle-tester/rare-syntax-inputs
+  cp src/test/resources/"$INPUT_FOLDER"/*.java \
+      .ci-temp/contribution/checkstyle-tester/rare-syntax-inputs/
+  cp src/test/resources-noncompilable/"$INPUT_FOLDER"/*.java \
+      .ci-temp/contribution/checkstyle-tester/rare-syntax-inputs/
+  cp config/projects-to-test/rare-syntax-inputs.config \
+      .ci-temp/contribution/checkstyle-tester/rare-syntax-inputs.config
+  cd .ci-temp/contribution/checkstyle-tester
+  export MAVEN_OPTS="-Xmx2g"
+  groovy ./diff.groovy --listOfProjects rare-syntax-inputs.config \
+      --mode single --allowExcludes \
+      --patchConfig checks-nonjavadoc-error.xml \
+      --localGitRepo  "$LOCAL_GIT_REPO" \
+      --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
+
+  cd ../../
+  removeFolderWithProtectedFiles contribution
+  ;;
+
+rare-syntax-with-checks-only-javadoc-error)
+  LOCAL_GIT_REPO=$(pwd)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
+  checkout_from https://github.com/checkstyle/contribution
+  # the input folder is named after RareSyntaxNoExceptionTest, in lower case
+  INPUT_FOLDER_NAME=$(printf '%s' 'RareSyntaxNoException' | tr '[:upper:]' '[:lower:]')
+  INPUT_FOLDER=com/puppycrawl/tools/checkstyle/internal/$INPUT_FOLDER_NAME
+  mkdir -p .ci-temp/contribution/checkstyle-tester/rare-syntax-inputs
+  cp src/test/resources/"$INPUT_FOLDER"/*.java \
+      .ci-temp/contribution/checkstyle-tester/rare-syntax-inputs/
+  cp src/test/resources-noncompilable/"$INPUT_FOLDER"/*.java \
+      .ci-temp/contribution/checkstyle-tester/rare-syntax-inputs/
+  cp config/projects-to-test/rare-syntax-inputs.config \
+      .ci-temp/contribution/checkstyle-tester/rare-syntax-inputs.config
+  cd .ci-temp/contribution/checkstyle-tester
+  export MAVEN_OPTS="-Xmx2g"
+  groovy ./diff.groovy --listOfProjects rare-syntax-inputs.config \
+      --mode single --allowExcludes \
+      --patchConfig checks-only-javadoc-error.xml \
+      --localGitRepo  "$LOCAL_GIT_REPO" \
+      --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
+
+  cd ../../
+  removeFolderWithProtectedFiles contribution
+  ;;
+
 no-exception-lucene-and-others-javadoc)
   CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }

@@ -193,3 +193,51 @@ jobs:
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - run: .ci/no-exception-test.sh openjdk25-with-checks-nonjavadoc-error
+
+  # this execution should stay on GitHub actions due to time/ memory limits in other CI
+  no-exception-rare-syntax:
+    if: github.event.action != 'closed' && github.repository == 'checkstyle/checkstyle'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up JDK 21
+        uses: actions/setup-java@v6.2.0
+        with:
+          java-version: 21
+          distribution: 'temurin'
+
+      - name: Install Groovy
+        run: |
+          for i in 1 2 3 4 5; do
+            if curl --fail-with-body -s "https://get.sdkman.io" | bash; then
+              break
+            fi
+            echo "SDKMAN installation attempt $i failed, retrying in 15 seconds..."
+            sleep 15s
+          done
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          for i in 1 2 3 4 5; do
+            if sdk install groovy; then
+              break
+            fi
+            echo "Groovy installation attempt $i failed, retrying in 15 seconds..."
+            sleep 15s
+          done
+          echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
+          groovy --version
+
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Setup local maven cache
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.m2/wrapper
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
+      - run: .ci/no-exception-test.sh rare-syntax-with-checks-nonjavadoc-error
+
+      - run: .ci/no-exception-test.sh rare-syntax-with-checks-only-javadoc-error
