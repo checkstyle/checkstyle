@@ -192,7 +192,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     public void testMultipleStringLiteralsCompactSourceFileProperties() throws Exception {
         final String[] expected = {
             "12:16: " + getCheckMessage(MSG_KEY, "\"thrice\"", 3),
-            "28:15: " + getCheckMessage(MSG_KEY, "\"anno\"", 3),
+            "29:15: " + getCheckMessage(MSG_KEY, "\"anno\"", 3),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(

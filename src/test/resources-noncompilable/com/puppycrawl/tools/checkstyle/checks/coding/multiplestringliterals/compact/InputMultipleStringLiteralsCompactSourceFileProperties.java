@@ -25,7 +25,8 @@ String seventh = "skip";
 
 String eighth = "skip";
 
-@MyAnnotation("anno") // violation 'The String \"anno\" appears 3 times in the file.'
+// violation below 'The String \"anno\" appears 3 times in the file.'
+@MyAnnotation("anno")
 void method1() {
 }
 
