@@ -30,6 +30,7 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Collections;
+import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -182,8 +183,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         checkConfig.addProperty("requiredTranslations", "ja,de");
         checkConfig.addProperty("baseName", "^InputTranslation.*$");
-        final Checker checker = createChecker(checkConfig);
-        checker.setBasedir(getPath(""));
+        final Checker checker = createChecker(checkConfig, Map.of("basedir", getPath("")));
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         final XMLLogger logger = new XMLLogger(out, OutputStreamOptions.NONE);
         checker.addListener(logger);
