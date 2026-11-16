@@ -34,8 +34,9 @@ class InputJavadocTypeAllowedAnnotationByDefault_3 {
  */
 @interface ThisIsOk_3 {}
 
+// violation 2 lines below 'Type Javadoc comment is missing @param '<T>' tag'
 /** */
-@Generated // violation 'Type Javadoc comment is missing @param '<T>' tag'
+@Generated
 class Application<T> {}
 
 @interface Generated {
