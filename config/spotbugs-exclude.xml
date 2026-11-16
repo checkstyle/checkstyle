@@ -61,8 +61,14 @@
     <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
   </Match>
   <Match>
-    <!-- There is some empty methods in AbstractCheck/AbstractJavadocCheck.
-         Making them abstract requires too much boilerplate in subclasses. -->
+    <!-- There are empty methods in AbstractCheck, AbstractFileSetCheck, and
+         AbstractJavadocCheck. Making them abstract requires too much boilerplate
+         in subclasses. -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.api.AbstractCheck"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck"/>
+    </Or>
     <Bug pattern="ACEM_ABSTRACT_CLASS_EMPTY_METHODS"/>
   </Match>
   <Match>
