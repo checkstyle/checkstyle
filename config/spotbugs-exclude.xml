@@ -205,13 +205,23 @@
     <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor"/>
     <Bug pattern="PSC_PRESIZE_COLLECTIONS"/>
   </Match>
+  <Match>
+    <!-- These classes do not represent value objects requiring custom equals methods. -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilterSet"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.Comment"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.FilterSet"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag"/>
+    </Or>
+    <Bug pattern="IMC_IMMATURE_CLASS_NO_EQUALS"/>
+  </Match>
   <!-- After https://github.com/checkstyle/checkstyle/issues/11140
        there should be one section per one bug pattern, with list of allowed classes or methods -->
   <Match>
     <Bug pattern="
       EXS_EXCEPTION_SOFTENING_NO_CHECKED,
       EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS,
-      IMC_IMMATURE_CLASS_NO_EQUALS,
       IMC_IMMATURE_CLASS_NO_TOSTRING,
       IMC_IMMATURE_CLASS_PRINTSTACKTRACE,
       MOM_MISLEADING_OVERLOAD_MODEL,
