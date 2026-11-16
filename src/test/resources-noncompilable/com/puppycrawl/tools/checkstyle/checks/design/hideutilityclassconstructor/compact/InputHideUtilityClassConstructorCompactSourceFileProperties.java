@@ -18,12 +18,14 @@ class CompactOtherIgnoredUtility {
     public static void func() {}
 }
 
-@CommonAnnot // violation 'should not have a public or default constructor'
+// violation below 'should not have a public or default constructor'
+@CommonAnnot
 class CompactFlaggedUtility {
     public static void func() {}
 }
 
-class CompactPlainUtility { // violation 'should not have a public or default constructor'
+// violation below 'should not have a public or default constructor'
+class CompactPlainUtility {
     public static void func() {}
 }
 
