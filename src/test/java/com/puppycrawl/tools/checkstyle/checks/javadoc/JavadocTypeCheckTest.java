@@ -295,8 +295,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "26:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<C456>"),
             "61:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
             "64:5: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<B>"),
-            "69:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
-            "73:5: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL, "@param"),
+            "70:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "74:5: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL, "@param"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeTypeParamsTags_1.java"), expected);
@@ -307,7 +307,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "22:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
             "60:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
-            "68:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "69:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeTypeParamsTags.java"), expected);
@@ -374,7 +374,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testAllowedAnnotationsNotAllowed() throws Exception {
 
         final String[] expected = {
-            "38:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
+            "39:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeAllowedAnnotations_3.java"),
@@ -467,8 +467,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testJavadocTypeInterfaceMemberScopeIsPublic() throws Exception {
 
         final String[] expected = {
-            "19:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
-            "24:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
+            "20:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
+            "26:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeInterfaceMemberScopeIsPublic.java"), expected);
