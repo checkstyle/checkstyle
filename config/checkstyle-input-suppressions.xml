@@ -107,16 +107,6 @@
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]invalidjavadocposition[\\/]InputInvalidJavadocPosition\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphCheck1\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrect\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrect2\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrect3\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrect5\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]singlelinejavadoc[\\/]InputSingleLineJavadoc\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]singlelinejavadoc[\\/]InputSingleLineJavadocIgnoredTags\.java"/>
