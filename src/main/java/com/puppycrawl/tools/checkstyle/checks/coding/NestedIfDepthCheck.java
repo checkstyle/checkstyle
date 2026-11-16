@@ -77,6 +77,11 @@ public final class NestedIfDepthCheck extends AbstractCheck {
     }
 
     @Override
+    public void beginTree(DetailAST rootAST) {
+        depth = 0;
+    }
+
+    @Override
     public void visitToken(DetailAST literalIf) {
         if (!isElseIf(literalIf)) {
             if (depth > max) {
