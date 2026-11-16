@@ -78,7 +78,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 java -jar checkstyle-${projectVersion}-all.jar -D&lt;property&gt;=&lt;value&gt; \
      [-c &lt;configurationFile&gt;] \
-     [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
+     [-f &lt;format&gt;]... [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;]... \
      [-s &lt;line:column&gt;] [-w | --tabWidth &lt;length&gt;] \
      [-g | --generate-xpath-suppression] [-G | --generate-checks-and-files-suppression] \
      [-t | --tree] [-T | --treeWithComments] [-J | --treeWithJavadoc] [-j | --javadocTree] \
@@ -147,6 +147,9 @@ java -jar checkstyle-${projectVersion}-all.jar -D&lt;property&gt;=&lt;value&gt; 
                   SarifLogger</a>, and
                   <a href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">
                   DefaultLogger</a> respectively. Defaults to <code>plain</code>.
+                  Can be given multiple times, each paired with the <code>-o</code> option at
+                  the same position to write that format to that file. The number of
+                  <code>-f</code> and <code>-o</code> options must be equal when both are given.
                 </td>
               </tr>
               <tr>
@@ -179,6 +182,9 @@ java -jar checkstyle-${projectVersion}-all.jar -D&lt;property&gt;=&lt;value&gt; 
                 </td>
                 <td>
                   Sets the output file. Defaults to stdout.
+                  Can be given multiple times, each paired with the <code>-f</code> option at
+                  the same position to write that format to that file. The number of
+                  <code>-f</code> and <code>-o</code> options must be equal when both are given.
                 </td>
               </tr>
               <tr>
