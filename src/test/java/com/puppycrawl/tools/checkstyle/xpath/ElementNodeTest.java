@@ -286,4 +286,21 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         }
     }
 
+    @Test
+    public void testCreateChildren() {
+        final DetailAstImpl rootAst = new DetailAstImpl();
+        final DetailAstImpl elementAst = new DetailAstImpl();
+        rootAst.addChild(elementAst);
+        final RootNode localRootNode = new RootNode(rootAst);
+        final List<AbstractNode> children =
+                ElementNode.createChildren(localRootNode, localRootNode, elementAst);
+
+        assertWithMessage("Expected one child node")
+                .that(children)
+                .hasSize(1);
+        assertWithMessage("Node depth should be 1")
+                .that(children.getFirst().getDepth())
+                .isEqualTo(1);
+    }
+
 }
