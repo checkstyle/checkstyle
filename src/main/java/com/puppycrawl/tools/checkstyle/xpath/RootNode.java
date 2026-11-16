@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.xpath;
 import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
 
 /**
  * Represents DetailAST's root node of Xpath-tree.
@@ -48,7 +47,7 @@ public class RootNode extends AbstractRootNode {
      */
     @Override
     protected List<AbstractNode> createChildren() {
-        return XpathUtil.createChildren(this, this, detailAst);
+        return ElementNode.createChildren(this, this, detailAst);
     }
 
     /**

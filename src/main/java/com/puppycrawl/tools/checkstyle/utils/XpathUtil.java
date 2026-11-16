@@ -21,18 +21,14 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.AstTreeStringPrinter;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
 import com.puppycrawl.tools.checkstyle.xpath.ElementNode;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
@@ -50,101 +46,11 @@ import net.sf.saxon.trans.XPathException;
  */
 public final class XpathUtil {
 
-    /**
-     * Token types which support text attribute.
-     * These token types were selected based on analysis that all others do not match required
-     * criteria - text attribute of the token must be useful and help to retrieve more precise
-     * results.
-     * There are three types of AST tokens:
-     * 1. Tokens for which the texts are equal to the name of the token. Or in other words,
-     * nodes for which the following expression is always true:
-     * {@snippet lang="text" :
-     *     detailAst.getText().equals(TokenUtil.getTokenName(detailAst.getType()))
-     * }
-     * For example:
-     * {@snippet lang="text" :
-     *     //MODIFIERS[@text='MODIFIERS']
-     *     //OBJBLOCK[@text='OBJBLOCK']
-     * }
-     * These tokens do not match required criteria because their texts do not carry any additional
-     * information, they do not affect the xpath requests and do not help to get more accurate
-     * results. The texts of these nodes are useless. No matter what code you analyze, these
-     * texts are always the same.
-     * In addition, they make xpath queries more complex, less readable and verbose.
-     * 2. Tokens for which the texts differ from token names, but texts are always constant.
-     * For example:
-     * <pre>
-     *     //LITERAL_VOID[@text='void']
-     *     //RCURLY[@text='}']
-     * </pre>
-     * These tokens are not used for the same reasons as were described in the previous part.
-     * 3. Tokens for which texts are not constant. The texts of these nodes are closely related
-     * to a concrete class, method, variable and so on.
-     * For example:
-     * {@snippet lang="text" :
-     *     String greeting = "HelloWorld";
-     *     //STRING_LITERAL[@text='HelloWorld']
-     * }
-     * {@snippet lang="text" :
-     *     int year = 2017;
-     *     //NUM_INT[@text=2017]
-     * }
-     * {@snippet lang="text" :
-     *     int age = 23;
-     *     //NUM_INT[@text=23]
-     * }
-     * As you can see same {@code NUM_INT} token type can have different texts, depending on
-     * context.
-     * {@snippet lang="text" :
-     *     public class MyClass {}
-     *     //IDENT[@text='MyClass']
-     * }
-     * Only these tokens support text attribute because they make our xpath queries more accurate.
-     * These token types are listed below.
-     */
-    private static final BitSet TOKEN_TYPES_WITH_TEXT_ATTRIBUTE = TokenUtil.asBitSet(
-            TokenTypes.IDENT, TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL,
-            TokenTypes.NUM_LONG, TokenTypes.NUM_INT, TokenTypes.NUM_DOUBLE, TokenTypes.NUM_FLOAT,
-            TokenTypes.TEXT_BLOCK_CONTENT, TokenTypes.COMMENT_CONTENT
-        );
-
-    /**
-     * This regexp is used to convert new line to newline tag.
-     */
-    private static final Pattern NEWLINE_TO_TAG = Pattern.compile("\n");
-
-    /**
-     * This regexp is used to convert carriage return to carriage-return tag.
-     */
-    private static final Pattern CARRIAGE_RETURN_TO_TAG = Pattern.compile("\r");
-
     /** Delimiter to separate xpath results. */
     private static final String DELIMITER = "---------" + System.lineSeparator();
 
     /** Stop instances being created. */
     private XpathUtil() {
-    }
-
-    /**
-     * Iterates siblings of the given node and creates new Xpath-nodes.
-     *
-     * @param root the root node
-     * @param parent the parent node
-     * @param firstChild the first DetailAST
-     * @return children list
-     */
-    public static List<AbstractNode> createChildren(AbstractNode root, AbstractNode parent,
-                                                    DetailAST firstChild) {
-        DetailAST currentChild = firstChild;
-        final int depth = parent.getDepth() + 1;
-        final List<AbstractNode> result = new ArrayList<>();
-        while (currentChild != null) {
-            final int index = result.size();
-            final ElementNode child = new ElementNode(root, parent, currentChild, depth, index);
-            result.add(child);
-            currentChild = currentChild.getNextSibling();
-        }
-        return result;
     }
 
     /**
@@ -154,7 +60,7 @@ public final class XpathUtil {
      * @return true if element supports {@code @text} attribute, false otherwise
      */
     public static boolean supportsTextAttribute(DetailAST ast) {
-        return TOKEN_TYPES_WITH_TEXT_ATTRIBUTE.get(ast.getType());
+        return ElementNode.supportsTextAttribute(ast);
     }
 
     /**
@@ -164,12 +70,7 @@ public final class XpathUtil {
      * @return text attribute of the ast element
      */
     public static String getTextAttributeValue(DetailAST ast) {
-        String text = ast.getText();
-        if (ast.getType() == TokenTypes.STRING_LITERAL) {
-            text = text.substring(1, text.length() - 1);
-        }
-        text = CARRIAGE_RETURN_TO_TAG.matcher(text).replaceAll("\\\\r");
-        return NEWLINE_TO_TAG.matcher(text).replaceAll("\\\\n");
+        return ElementNode.getTextAttributeValue(ast);
     }
 
     /**
@@ -188,7 +89,7 @@ public final class XpathUtil {
                 JavaParser.Options.WITH_COMMENTS));
             final List<NodeInfo> matchingItems = getXpathItems(xpath, rootNode);
             return matchingItems.stream()
-                .map(item -> ((ElementNode) item).getUnderlyingNode())
+                .map(item -> (DetailAST) ((AbstractNode) item).getUnderlyingNode())
                 .map(AstTreeStringPrinter::printBranch)
                 .collect(Collectors.joining(DELIMITER));
         }
