@@ -16,12 +16,14 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 public interface InputJavadocTypeInterfaceMemberScopeIsPublic {
 
-    /** @param <T> unused */  // violation 'Unused @param tag for '<T>'.'
+    // violation below 'Unused @param tag for '<T>'.'
+    /** @param <T> unused */
     enum Enum {
 
     }
 
-    /** @param <T> unused */  // violation 'Unused @param tag for '<T>'.'
+    // violation below 'Unused @param tag for '<T>'.'
+    /** @param <T> unused */
     class Class {
 
     }
