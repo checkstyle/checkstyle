@@ -89,14 +89,6 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/22775 -->
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]InputAnnotationLocationIncorrect2One\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]InputAnnotationLocationIncorrect2Two\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]InputAnnotationLocationIncorrect3Two\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]annotation[\\/]annotationlocation[\\/]InputAnnotationLocationIncorrectTwo\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationusestyle[\\/]InputAnnotationUseStyleCompact\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]annotationusestyle[\\/]InputAnnotationUseStyleNoParens\.java"/>
