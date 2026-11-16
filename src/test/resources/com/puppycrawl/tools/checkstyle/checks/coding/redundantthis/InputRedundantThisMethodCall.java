@@ -41,4 +41,12 @@ public class InputRedundantThisMethodCall {
         // 'Redundant "this", field 'name' can be accessed directly.'
         // 'Redundant "this", field 'email' can be accessed directly.'
     }
+
+    <T> T genericMethod(String param) {
+        return null;
+    }
+
+    int explicitTypeArguments() {
+        return this.<String>genericMethod("test").length();
+    }
 }
