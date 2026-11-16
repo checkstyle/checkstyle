@@ -49,11 +49,13 @@ enum DOGS5 {
     String[] um() default {};
     @Another({""}) //compact
     String[] duh() default {};
-    @Another(value={""}) //expanded // violation 'Annotation style must be 'COMPACT''
+    // violation below 'Annotation style must be 'COMPACT''
+    @Another(value={""}) //expanded
     DOGS[] pooches();
 }
 
-@Another(value={""}) //expanded // violation 'Annotation style must be 'COMPACT''
+// violation below 'Annotation style must be 'COMPACT''
+@Another(value={""}) //expanded
 enum E5 {
 
 }
