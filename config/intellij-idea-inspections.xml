@@ -3525,13 +3525,13 @@
     <option name="ignoreEnums" value="false"/>
     <option name="ignoreInterfaces" value="false"/>
   </inspection_tool>
-  <!-- suppressed as packges are not easily to change in library project
+  <!-- suppressed as packages are not easy to change in a library project
          that breaks compatibility -->
   <inspection_tool class="PackageWithTooFewClasses" enabled="false" level="ERROR"
                    enabled_by_default="false">
     <option name="limit" value="3"/>
   </inspection_tool>
-  <!-- suppressed as packges are not easily to change in library project
+  <!-- suppressed as packages are not easy to change in a library project
          that breaks compatibility -->
   <inspection_tool class="PackageWithTooManyClasses" enabled="false" level="ERROR"
                    enabled_by_default="false">
