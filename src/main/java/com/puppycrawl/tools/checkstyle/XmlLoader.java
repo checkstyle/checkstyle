@@ -37,8 +37,8 @@ import org.xml.sax.helpers.DefaultHandler;
  *
  * <p>
  * The error handling policy can be described as being austere, dead set,
- * disciplinary, dour, draconian, exacting, firm, forbidding, grim, hard, hard-
- * boiled, harsh, harsh, in line, iron-fisted, no-nonsense, oppressive,
+ * disciplinary, dour, draconian, exacting, firm, forbidding, grim, hard,
+ * hard-boiled, harsh, harsh, in line, iron-fasted, no-nonsense, oppressive,
  * persnickety, picky, prudish, punctilious, puritanical, rigid, rigorous,
  * scrupulous, set, severe, square, stern, stickler, straight, strait-laced,
  * stringent, stuffy, stuffy, tough, unpermissive, unsparing and uptight.
