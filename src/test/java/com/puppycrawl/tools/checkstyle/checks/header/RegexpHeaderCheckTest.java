@@ -311,13 +311,12 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRegexpHeaderMulti52()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader3.header"));
         final String[] expected = {
             "1: " + getCheckMessage(MSG_HEADER_MISSING),
         };
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputRegexpHeaderMulti52.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderMulti52Config.java"),
+                getPath("InputRegexpHeaderMulti52.txt"), expected);
     }
 
     @Test
