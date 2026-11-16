@@ -140,14 +140,6 @@
             files="[\\/]checks[\\/]javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrect3\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrect5\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeAllowedAnnotations_3\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeInterfaceMemberScopeIsPublic\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeTypeParamsTags\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeTypeParamsTags_1\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]singlelinejavadoc[\\/]InputSingleLineJavadoc\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
