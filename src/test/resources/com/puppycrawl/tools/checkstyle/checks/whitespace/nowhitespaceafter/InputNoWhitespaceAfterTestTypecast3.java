@@ -94,7 +94,7 @@ class InputNoWhitespaceAfterTestTypecast3
 
     Object foo() {
         return ( (Object
-                ) ""); // ^ ok
+                ) ""); // violation above '')' is followed by whitespace.'
     }
 
     public Object[]
