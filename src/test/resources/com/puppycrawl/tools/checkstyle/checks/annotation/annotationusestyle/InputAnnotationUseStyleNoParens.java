@@ -17,9 +17,10 @@ public class InputAnnotationUseStyleNoParens
 
 }
 
+// violation 3 lines below 'Annotation cannot have closing parenthesis'
 @SomeArraysDiffStyle(pooches={DOGS.LEO}, um={}, duh={"ignore"})
 @SuppressWarnings("") //compact_no_array
-@Deprecated() // violation 'Annotation cannot have closing parenthesis'
+@Deprecated()
 class Dep3 {
 
 }
@@ -40,7 +41,8 @@ enum SON3 {
 @InputAnnotationUseStyleCustomAnnotation6()
 enum DOGS3 {
 
-    @Deprecated() // violation 'Annotation cannot have closing parenthesis'
+    // violation below 'Annotation cannot have closing parenthesis'
+    @Deprecated()
     LEO,
     HERBIE
 }
