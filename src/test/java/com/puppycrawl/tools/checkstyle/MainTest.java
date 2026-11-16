@@ -40,7 +40,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.logging.Handler;
 import java.util.logging.Level;
@@ -76,129 +75,133 @@ import com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil;
 @SetSystemProperty(key = "picocli.ansi", value = "false")
 public class MainTest {
 
-    private static final String SHORT_USAGE = String.format(Locale.ROOT,
-            "Usage: checkstyle [OPTIONS]... file(s) or folder(s) ...%n"
-            + "Try 'checkstyle --help' for more information.%n");
+    private static final String EOL = System.lineSeparator();
 
-    private static final String USAGE = String.format(Locale.ROOT,
-          "Usage: checkstyle [-dEgGhjJtTV] [-b=<xpath>] [-c=<configurationFile>] "
-                  + "[-f=<format>]%n"
-                  + "                  [-o=<outputPath>] [-p=<propertiesFile>] "
-                  + "[-s=<suppressionLineColumnNumber>]%n"
-                  + "                  [-w=<tabWidth>] [-e=<exclude>]... [-x=<excludeRegex>]... "
-                  + "<files or folders>...%n"
-                  + "Checkstyle verifies that the specified source code files adhere to the"
-                  + " specified rules. By default,%n"
-                  + "violations are reported to standard out in plain format. Checkstyle requires"
-                  + " a configuration XML%n"
-                  + "file that configures the checks to apply.%n"
-                  + "      <files or folders>... One or more source files to verify%n"
-                  + "  -b, --branch-matching-xpath=<xpath>%n"
-                  + "                            Shows Abstract Syntax Tree(AST) branches that"
-                  + " match given XPath query.%n"
-                  + "  -c=<configurationFile>    Specifies the location of the file that defines"
-                  + " the configuration%n"
-                  + "                              modules. The location can either be a"
-                  + " filesystem location, or a name%n"
-                  + "                              passed to the ClassLoader.getResource()"
-                  + " method.%n"
-                  + "  -d, --debug               Prints all debug logging of CheckStyle utility.%n"
-                  + "  -e, --exclude=<exclude>   Directory/file to exclude from CheckStyle. The"
-                  + " path can be the full,%n"
-                  + "                              absolute path, or relative to the current"
-                  + " path. Multiple excludes are%n"
-                  + "                              allowed.%n"
-                  + "  -E, --executeIgnoredModules%n"
-                  + "                            Allows ignored modules to be run.%n"
-                  + "  -f=<format>               Specifies the output format. Valid values: "
-                  + "xml, sarif, plain for%n"
-                  + "                              XMLLogger, SarifLogger, and "
-                  + "DefaultLogger respectively. Defaults to%n"
-                  + "                              plain.%n"
-                  + "  -g, --generate-xpath-suppression%n"
-                  + "                            Generates an output xpath suppression XML to use"
-                  + " to suppress all%n"
-                  + "                              violations from user's config. Instead of"
-                  + " printing every violation,%n"
-                  + "                              all violations will be caught and single"
-                  + " suppressions xml file will%n"
-                  + "                              be printed out. Used only with -c option. Output"
-                  + " location can be%n"
-                  + "                              specified with -o option.%n"
-                  + "  -G, --generate-checks-and-files-suppression%n"
-                  + "                            Generates an output suppression XML that will"
-                  + " have suppress elements%n"
-                  + "                              with \"checks\" and \"files\" attributes only to"
-                  + " use to suppress all%n"
-                  + "                              violations from user's config. Instead of"
-                  + " printing every violation,%n"
-                  + "                              all violations will be caught and single"
-                  + " suppressions xml file will%n"
-                  + "                              be printed out. Used only with -c option. Output"
-                  + " location can be%n"
-                  + "                              specified with -o option.%n"
-                  + "  -h, --help                Show this help message and exit.%n"
-                  + "  -j, --javadocTree         This option is used to print the Parse Tree of"
-                  + " the Javadoc comment. The%n"
-                  + "                              file has to contain only Javadoc comment"
-                  + " content excluding '/**' and%n"
-                  + "                              '*/' at the beginning and at the end"
-                  + " respectively. It can only be%n"
-                  + "                              used on a single file and cannot be"
-                  + " combined with other options.%n"
-                  + "  -J, --treeWithJavadoc     This option is used to display the Abstract"
-                  + " Syntax Tree (AST) with%n"
-                  + "                              Javadoc nodes of the specified file. It can"
-                  + " only be used on a single%n"
-                  + "                              file and cannot be combined"
-                  + " with other options.%n"
-                  + "  -o=<outputPath>           Sets the output file. Defaults to stdout.%n"
-                  + "  -p=<propertiesFile>       Sets the property files to load.%n"
-                  + "  -s=<suppressionLineColumnNumber>%n"
-                  + "                            Prints xpath suppressions at the file's line and"
-                  + " column position.%n"
-                  + "                              Argument is the line and column number"
-                  + " (separated by a : ) in the%n"
-                  + "                              file that the suppression should be generated"
-                  + " for. The option cannot%n"
-                  + "                              be used with other options and requires exactly"
-                  + " one file to run on to%n"
-                  + "                              be specified. Note that the generated result"
-                  + " will have few queries,%n"
-                  + "                              joined by pipe(|). Together they will match all"
-                  + " AST nodes on%n"
-                  + "                              specified line and column. You need to choose"
-                  + " only one and recheck%n"
-                  + "                              that it works. Usage of all of them is also ok,"
-                  + " but might result in%n"
-                  + "                              undesirable matching and suppress other"
-                  + " issues.%n"
-                  + "  -t, --tree                This option is used to display the Abstract"
-                  + " Syntax Tree (AST) without%n"
-                  + "                              any comments of the specified file. It can"
-                  + " only be used on a single%n"
-                  + "                              file and cannot be combined with"
-                  + " other options.%n"
-                  + "  -T, --treeWithComments    This option is used to display the Abstract"
-                  + " Syntax Tree (AST) with%n"
-                  + "                              comment nodes excluding Javadoc of the"
-                  + " specified file. It can only be%n"
-                  + "                              used on a single file and cannot be combined"
-                  + " with other options.%n"
-                  + "  -V, --version             Print version information and exit.%n"
-                  + "  -w, --tabWidth=<tabWidth> Sets the length of the tab character. Used only"
-                  + " with -s option. Default%n"
-                  + "                              value is 8.%n"
-                  + "  -x, --exclude-regexp=<excludeRegex>%n"
-                  + "                            Directory/file pattern to exclude from CheckStyle."
-                  + " Multiple excludes%n"
-                  + "                              are allowed.%n");
+    private static final String SHORT_USAGE =
+            """
+            Usage: checkstyle [OPTIONS]... file(s) or folder(s) ...
+            Try 'checkstyle --help' for more information.
+            """.replace("\n", EOL);
+
+    private static final String USAGE =
+            """
+            Usage: checkstyle [-dEgGhjJtTV] [-b=<xpath>] [-c=<configurationFile>] \
+            [-f=<format>]
+                              [-o=<outputPath>] [-p=<propertiesFile>] \
+            [-s=<suppressionLineColumnNumber>]
+                              [-w=<tabWidth>] [-e=<exclude>]... [-x=<excludeRegex>]... \
+            <files or folders>...
+            Checkstyle verifies that the specified source code files adhere to the\
+             specified rules. By default,
+            violations are reported to standard out in plain format. Checkstyle requires\
+             a configuration XML
+            file that configures the checks to apply.
+                  <files or folders>... One or more source files to verify
+              -b, --branch-matching-xpath=<xpath>
+                                        Shows Abstract Syntax Tree(AST) branches that\
+             match given XPath query.
+              -c=<configurationFile>    Specifies the location of the file that defines\
+             the configuration
+                                          modules. The location can either be a\
+             filesystem location, or a name
+                                          passed to the ClassLoader.getResource()\
+             method.
+              -d, --debug               Prints all debug logging of CheckStyle utility.
+              -e, --exclude=<exclude>   Directory/file to exclude from CheckStyle. The\
+             path can be the full,
+                                          absolute path, or relative to the current\
+             path. Multiple excludes are
+                                          allowed.
+              -E, --executeIgnoredModules
+                                        Allows ignored modules to be run.
+              -f=<format>               Specifies the output format. Valid values: \
+            xml, sarif, plain for
+                                          XMLLogger, SarifLogger, and \
+            DefaultLogger respectively. Defaults to
+                                          plain.
+              -g, --generate-xpath-suppression
+                                        Generates an output xpath suppression XML to use\
+             to suppress all
+                                          violations from user's config. Instead of\
+             printing every violation,
+                                          all violations will be caught and single\
+             suppressions xml file will
+                                          be printed out. Used only with -c option. Output\
+             location can be
+                                          specified with -o option.
+              -G, --generate-checks-and-files-suppression
+                                        Generates an output suppression XML that will\
+             have suppress elements
+                                          with "checks" and "files" attributes only to\
+             use to suppress all
+                                          violations from user's config. Instead of\
+             printing every violation,
+                                          all violations will be caught and single\
+             suppressions xml file will
+                                          be printed out. Used only with -c option. Output\
+             location can be
+                                          specified with -o option.
+              -h, --help                Show this help message and exit.
+              -j, --javadocTree         This option is used to print the Parse Tree of\
+             the Javadoc comment. The
+                                          file has to contain only Javadoc comment\
+             content excluding '/**' and
+                                          '*/' at the beginning and at the end\
+             respectively. It can only be
+                                          used on a single file and cannot be\
+             combined with other options.
+              -J, --treeWithJavadoc     This option is used to display the Abstract\
+             Syntax Tree (AST) with
+                                          Javadoc nodes of the specified file. It can\
+             only be used on a single
+                                          file and cannot be combined\
+             with other options.
+              -o=<outputPath>           Sets the output file. Defaults to stdout.
+              -p=<propertiesFile>       Sets the property files to load.
+              -s=<suppressionLineColumnNumber>
+                                        Prints xpath suppressions at the file's line and\
+             column position.
+                                          Argument is the line and column number\
+             (separated by a : ) in the
+                                          file that the suppression should be generated\
+             for. The option cannot
+                                          be used with other options and requires exactly\
+             one file to run on to
+                                          be specified. Note that the generated result\
+             will have few queries,
+                                          joined by pipe(|). Together they will match all\
+             AST nodes on
+                                          specified line and column. You need to choose\
+             only one and recheck
+                                          that it works. Usage of all of them is also ok,\
+             but might result in
+                                          undesirable matching and suppress other\
+             issues.
+              -t, --tree                This option is used to display the Abstract\
+             Syntax Tree (AST) without
+                                          any comments of the specified file. It can\
+             only be used on a single
+                                          file and cannot be combined with\
+             other options.
+              -T, --treeWithComments    This option is used to display the Abstract\
+             Syntax Tree (AST) with
+                                          comment nodes excluding Javadoc of the\
+             specified file. It can only be
+                                          used on a single file and cannot be combined\
+             with other options.
+              -V, --version             Print version information and exit.
+              -w, --tabWidth=<tabWidth> Sets the length of the tab character. Used only\
+             with -s option. Default
+                                          value is 8.
+              -x, --exclude-regexp=<excludeRegex>
+                                        Directory/file pattern to exclude from CheckStyle.\
+             Multiple excludes
+                                          are allowed.
+            """.replace("\n", EOL);
 
     private static final Logger LOG = Logger.getLogger(MainTest.class.getName()).getParent();
     private static final Handler[] HANDLERS = LOG.getHandlers();
     private static final Level ORIGINAL_LOG_LEVEL = LOG.getLevel();
-
-    private static final String EOL = System.lineSeparator();
 
     @TempDir
     public File temporaryFolder;
