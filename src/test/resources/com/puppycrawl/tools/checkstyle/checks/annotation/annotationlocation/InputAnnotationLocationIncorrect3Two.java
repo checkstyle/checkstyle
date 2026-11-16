@@ -12,9 +12,10 @@ tokens = CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF,
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 public class InputAnnotationLocationIncorrect3Two {
+   // violation 3 lines below ''MyAnn_23' have incorrect indentation level 0, .* should be 3.'
    @MyAnnotation_13
             (value = "")
-@MyAnn_23 // violation 'Annotation 'MyAnn_23' have incorrect indentation level 0, .* should be 3.'
+@MyAnn_23
    class Foo3 {
         public void method1(@MyAnnotation_33 @MyAnn_23 Object param1) {
             try {
