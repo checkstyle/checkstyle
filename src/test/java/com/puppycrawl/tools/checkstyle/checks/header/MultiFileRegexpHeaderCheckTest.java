@@ -346,7 +346,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBlankLineMismatch() throws Exception {
-        final File fileNoBlank = new File(temporaryFolder, "noblank.java");
+        final File fileNoBlank = new File(temporaryFolder, "noBlank.java");
         Files.write(fileNoBlank.toPath(), List.of(
             "// First line",
             "// Second line",

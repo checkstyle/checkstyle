@@ -274,7 +274,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testQueryAllVariableDefWrongAttribute() throws Exception {
-        final String xpath = "//VARIABLE_DEF[@qwe]";
+        final String xpath = "//VARIABLE_DEF[@unknown]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertWithMessage("Invalid number of nodes")

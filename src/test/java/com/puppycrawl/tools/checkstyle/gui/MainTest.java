@@ -57,7 +57,7 @@ public class MainTest extends AbstractGuiTestSupport {
 
         SwingUtilities.invokeAndWait(() -> {
             final Window[] mainFrames = Arrays.stream(Window.getWindows())
-                    .filter(wnd -> wnd instanceof MainFrame && wnd.isVisible())
+                    .filter(window -> window instanceof MainFrame && window.isVisible())
                     .toArray(Window[]::new);
             Arrays.stream(mainFrames).forEach(Window::dispose);
             assertWithMessage("Only one window is expected")
