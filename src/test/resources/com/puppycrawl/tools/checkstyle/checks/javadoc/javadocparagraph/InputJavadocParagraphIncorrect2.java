@@ -8,7 +8,10 @@ violateExecutionOnNonTightHtml = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
-// 2 violations 5 lines below:
+// 2 violations 8 lines below:
+//  '<p> tag should be placed immediately before the first word'
+//  'tag should be preceded with an empty line.'
+// 2 violations 6 lines below:
 //  '<p> tag should be placed immediately before the first word'
 //  'tag should be preceded with an empty line.'
 /**
@@ -16,14 +19,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
  * <p>
  * Some Paragraph.<p>
  */
-// 2 violations 2 lines above:
-//  '<p> tag should be placed immediately before the first word'
-//  'tag should be preceded with an empty line.'
 class InputJavadocParagraphIncorrect2 {
 
-    // 2 violations 4 lines below:
+    // 2 violations 5 lines below:
     //  '<p> tag should be placed immediately before the first word'
     //  'tag should be preceded with an empty line.'
+    // violation 4 lines below '<p> tag should be placed immediately before the first word'
     /**
      * Some Summary.<P>
      *
@@ -31,10 +32,10 @@ class InputJavadocParagraphIncorrect2 {
      *
      * @since 8.0
      */
-    // violation 4 lines above '<p> tag should be placed immediately before the first word'
     public static final byte NUL = 0;
 
-    // violation 2 lines below 'tag should be preceded with an empty line.'
+    // violation 3 lines below 'tag should be preceded with an empty line.'
+    // violation 4 lines below '<p> tag should be placed immediately before the first word'
     /**
      * Some <p>Summary.
      *
@@ -43,29 +44,28 @@ class InputJavadocParagraphIncorrect2 {
      * @see <a href="example.com">
      *     Documentation about GWT emulated source</a>
      */
-    // violation 5 lines above '<p> tag should be placed immediately before the first word'
     boolean emulated() {return false;}
 
-    // 3 violations 7 lines below:
+    // 3 violations 16 lines below:
     //  'Redundant <p> tag.'
     //  '<p> tag should be placed immediately before the first word'
     //  'tag should be preceded with an empty line.'
-    // 2 violations 4 lines below:
+    // 2 violations 13 lines below:
     //  '<p> tag should be placed immediately before the first word'
     //  'tag should be preceded with an empty line.'
+    // 3 violations 11 lines below:
+    //  '<p> tag should be preceded with an empty line.'
+    //  '<p> tag should be placed immediately before the first word'
+    //  '<p> tag should be preceded with an empty line.'
+    // 4 violations 8 lines below:
+    //  '<p> tag should be placed immediately before the first word'
+    //  '<p> tag should be preceded with an empty line.'
+    //  '<p> tag should be placed immediately before the first word'
+    //  '<p> tag should be preceded with an empty line.'
     /**<p>Some Summary.<p>
      * <p>
      * <p><p>
      * <p>   Some paragraph.<p>*/
-    // 3 violations 2 lines above:
-    //  '<p> tag should be preceded with an empty line.'
-    //  '<p> tag should be placed immediately before the first word'
-    //  '<p> tag should be preceded with an empty line.'
-    // 4 violations 5 lines above:
-    //  '<p> tag should be placed immediately before the first word'
-    //  '<p> tag should be preceded with an empty line.'
-    //  '<p> tag should be placed immediately before the first word'
-    //  '<p> tag should be preceded with an empty line.'
      class InnerInputJavadocParagraphIncorrect {
 
         // 2 violations 4 lines below:
@@ -78,10 +78,14 @@ class InputJavadocParagraphIncorrect2 {
          */
         public static final byte NUL = 0;
 
-        // 2 violations 5 lines below:
+        // 2 violations 9 lines below:
         //  '<p> tag should be placed immediately before the first word'
         //  'Redundant <p> tag.'
-        // violation 5 lines below '<p> tag should be placed immediately before the first word'
+        // violation 9 lines below '<p> tag should be placed immediately before the first word'
+        // violation 10 lines below '<p> tag should be placed immediately before the first word'
+        // 2 violations 10 lines below:
+        //  '<p> tag should be placed immediately before the first word'
+        //  '<p> tag should be preceded with an empty line.'
         /**
          * <p>
          *  Some Summary.
@@ -93,19 +97,15 @@ class InputJavadocParagraphIncorrect2 {
          * @see <a href="example.com">
          *     Documentation about GWT emulated source</a>
          */
-        // violation 5 lines above '<p> tag should be placed immediately before the first word'
-        // 2 violations 5 lines above:
-        //  '<p> tag should be placed immediately before the first word'
-        //  '<p> tag should be preceded with an empty line.'
         boolean emulated() {return false;}
 
+      // 4 violations 6 lines below:
+      //  '<p> tag should be placed immediately before the first word'
+      //  '<p> tag should be preceded with an empty line.'
+      //  '<p> tag should be placed immediately before the first word'
+      //  '<p> tag should be preceded with an empty line.'
       /**
        * * <p>   Some Summary.<p>*/
-      // 4 violations above:
-      //  '<p> tag should be placed immediately before the first word'
-      //  '<p> tag should be preceded with an empty line.'
-      //  '<p> tag should be placed immediately before the first word'
-      //  '<p> tag should be preceded with an empty line.'
       int yyy = 99;
     }
 }
