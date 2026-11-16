@@ -972,7 +972,6 @@ nlow
 NMTOKEN
 noarch
 noarraytrailingcomma
-noblank
 nobr
 nocausegetmessageinexceptionconstructor
 noclone
@@ -1092,7 +1091,6 @@ packagename
 packagenamesloader
 packageobjectfactory
 packagestatement
-packge
 Pageflow
 Paikin
 Papaioannou
@@ -1180,7 +1178,6 @@ qualitygates
 Qube
 quebra
 qw
-qwe
 QX
 rawtypes
 rb
@@ -1444,7 +1441,6 @@ td
 teamcity
 technotes
 temurin
-testattr
 Testik
 testmodules
 testname
@@ -1609,7 +1605,6 @@ wiktionary
 withfile
 withgoogle
 wj
-wnd
 WOC
 woff
 wontfix

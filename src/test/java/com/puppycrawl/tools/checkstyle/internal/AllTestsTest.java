@@ -126,8 +126,9 @@ public class AllTestsTest {
             }
 
             final int slash = path.lastIndexOf(File.separatorChar);
-            final String packge = path.substring(0, slash);
-            final List<String> classes = allTests.computeIfAbsent(packge, key -> new ArrayList<>());
+            final String packageName = path.substring(0, slash);
+            final List<String> classes =
+                    allTests.computeIfAbsent(packageName, key -> new ArrayList<>());
 
             classes.add(path.substring(slash + 1));
         }
@@ -146,8 +147,9 @@ public class AllTestsTest {
             }
 
             final int slash = path.lastIndexOf(File.separatorChar);
-            final String packge = path.substring(0, slash);
-            final List<String> classes = allTests.computeIfAbsent(packge, key -> new ArrayList<>());
+            final String packageName = path.substring(0, slash);
+            final List<String> classes =
+                    allTests.computeIfAbsent(packageName, key -> new ArrayList<>());
 
             classes.add(path.substring(slash + 1));
         }
@@ -197,16 +199,16 @@ public class AllTestsTest {
             String path, String fileName) {
         List<String> classes;
         int slash = path.lastIndexOf(File.separatorChar);
-        String packge = path.substring(0, slash);
+        String packageName = path.substring(0, slash);
         boolean found = false;
 
         for (int depth = 0; depth < 4; depth++) {
             // -@cs[MoveVariableInsideIf] assignment value is modified later, so it can't be
             // moved
-            final String folderPath = packge;
-            slash = packge.lastIndexOf(File.separatorChar);
-            packge = path.substring(0, slash);
-            classes = allTests.get(packge);
+            final String folderPath = packageName;
+            slash = packageName.lastIndexOf(File.separatorChar);
+            packageName = path.substring(0, slash);
+            classes = allTests.get(packageName);
 
             if (classes != null
                     && checkInputMatchCorrectFileStructure(classes, folderPath, skipFileNaming,
@@ -254,8 +256,8 @@ public class AllTestsTest {
                 if (!path.contains(File.separatorChar + "grammar" + File.separatorChar)
                         && !path.contains(File.separatorChar + "internal" + File.separatorChar)) {
                     final int slash = path.lastIndexOf(File.separatorChar);
-                    final String packge = path.substring(0, slash);
-                    final List<String> classes = allTests.get(packge);
+                    final String packageName = path.substring(0, slash);
+                    final List<String> classes = allTests.get(packageName);
 
                     assertWithMessage("Test must be named after a production class "
                         + "and must be in the same package of the production class: %s", path)
