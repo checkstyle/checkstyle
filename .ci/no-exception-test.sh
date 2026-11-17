@@ -247,7 +247,7 @@ no-exception-samples-ant)
   checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
   cd .ci-temp/checkstyle-samples/ant-project
 
-  sed -i -e "/<dependencies>/,/<\/dependencies>/ "`
+  sed -i "/<dependencies>/,/<\/dependencies>/ "`
     `"s|name=\"checkstyle\" rev=\".*\""`
     `"|name=\"checkstyle\" rev=\"$CS_POM_VERSION\"|g" ivy.xml
 
@@ -265,7 +265,7 @@ no-exception-samples-gradle)
   checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
   cd .ci-temp/checkstyle-samples/gradle-project
 
-  sed -i "s/\(project\.ext\.checkstyleVersion = \)'[0-9.]\+'/\\1'${CS_POM_VERSION}'/" \
+  sed -i -E "s/(project\.ext\.checkstyleVersion = )'[0-9.]+'/\1'${CS_POM_VERSION}'/" \
     build.gradle
 
    echo "Checking gradle properties..."
@@ -285,7 +285,7 @@ no-exception-samples-maven)
   checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
   cd .ci-temp/checkstyle-samples/maven-project
 
-  sed -i "s|\(<checkstyle.version>\)[0-9.]\+\(</checkstyle.version>\)"`
+  sed -i -E "s|(<checkstyle.version>)[0-9.]+(</checkstyle.version>)"`
   `"|\1${CS_POM_VERSION}\2|" pom.xml
 
 

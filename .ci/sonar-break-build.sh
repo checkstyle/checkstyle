@@ -15,7 +15,7 @@ if [ ! -f $SONAR_RESULT ]; then
   exit 1
 fi
 
-CE_TASK_ID=$(cat $SONAR_RESULT | sed -n 's/ceTaskId=\(.*\)/\1/p')
+CE_TASK_ID=$(cat "$SONAR_RESULT" | sed -n -E 's/ceTaskId=(.*)/\1/p')
 
 if [ -z "$CE_TASK_ID" ]; then
   echo "ceTaskId is not set from sonar build"
@@ -52,7 +52,7 @@ ANALYSIS_URL="$SONAR_SERVER/api/qualitygates/project_status?analysisId=$ANALYSIS
 STATUS=$(curl -X GET -s -u "$SONAR_API_TOKEN": "$ANALYSIS_URL" \
     | jq -r .projectStatus.status)
 
-DASHBOARD_URL=$(cat $SONAR_RESULT | sed -n 's/dashboardUrl=\(.*\)/\1/p')
+DASHBOARD_URL=$(cat "$SONAR_RESULT" | sed -n -E 's/dashboardUrl=(.*)/\1/p')
 
 if [ "$STATUS" = "ERROR" ]; then
   echo "Quality gate failed."
