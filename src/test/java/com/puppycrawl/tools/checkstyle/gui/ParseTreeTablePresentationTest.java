@@ -169,7 +169,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid child token type")
             .that(type)
             .isEqualTo(JavadocCommentsTokenTypes.JAVADOC_CONTENT);
-        // get Child one more time to test cache of PModel
+        // get Child one more time to test the cache of the model
         final Object childSame = parseTree.getChild(commentContentNode, 0);
         assertWithMessage("Invalid child type")
                 .that(childSame)

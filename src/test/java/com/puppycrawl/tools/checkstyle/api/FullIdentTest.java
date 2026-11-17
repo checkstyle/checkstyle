@@ -100,7 +100,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         final FullIdent fullIdent = prepareFullIdentWithCoordinates(14, 15);
         assertWithMessage("Invalid full indent")
                 .that(fullIdent.toString())
-                .isEqualTo("MyTest.MyTestik[15x14]");
+                .isEqualTo("MyTest.MyInnerTest[15x14]");
     }
 
     @Test
@@ -108,7 +108,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         final FullIdent fullIdent = prepareFullIdentWithCoordinates(0, 0);
         assertWithMessage("Invalid full indent")
                 .that(fullIdent.toString())
-                .isEqualTo("MyTest.MyTestik[15x14]");
+                .isEqualTo("MyTest.MyInnerTest[15x14]");
     }
 
     @Test
@@ -197,7 +197,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         ast2.setType(TokenTypes.LE);
         ast2.setColumnNo(columnNo);
         ast2.setLineNo(lineNo);
-        ast2.setText("MyTestik");
+        ast2.setText("MyInnerTest");
 
         final DetailAstImpl ast1 = new DetailAstImpl();
         ast1.setType(TokenTypes.LITERAL_NEW);
