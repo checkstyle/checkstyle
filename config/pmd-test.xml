@@ -188,10 +188,12 @@
   </rule>
   <rule ref="category/java/multithreading.xml/DoNotUseThreads">
     <properties>
-      <!-- We use thread to limit the stack size for a test method. -->
+      <!-- Threads exercise concurrent resource reads and limit test stack size. -->
       <property name="violationSuppressXPath"
                value="//ClassDeclaration[@SimpleName='TestUtil']
-                        //MethodDeclaration[@Name='getResultWithLimitedResources']"/>
+                        //MethodDeclaration[@Name='getResultWithLimitedResources']
+                     | //ClassDeclaration[@SimpleName='PropertyCacheFileTest']
+                        //MethodDeclaration[@Name='testConcurrentExternalResourceReads']"/>
     </properties>
   </rule>
 
