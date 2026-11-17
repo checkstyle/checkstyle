@@ -263,6 +263,14 @@
     <Bug pattern="EI_EXPOSE_REP,EI_EXPOSE_REP2"/>
   </Match>
   <Match>
+    <!-- RootModule.destroy() is public API and cannot declare IOException, so a cache
+         persist failure is wrapped in IllegalStateException, see
+         CheckerTest#testDestroyCheckerWithWrongCacheFileNameLength -->
+    <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+    <Method name="destroy"/>
+    <Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CHECKED"/>
+  </Match>
+  <Match>
     <!-- until https://github.com/checkstyle/checkstyle/issues/22797 -->
     <Or>
       <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.CatchHandler"/>
