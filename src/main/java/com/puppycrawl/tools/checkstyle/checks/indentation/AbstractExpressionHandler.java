@@ -518,7 +518,11 @@ public abstract class AbstractExpressionHandler {
             final boolean isRecordPatternDelimiter =
                 TokenUtil.isOfType(tree.getType(), TokenTypes.LPAREN, TokenTypes.RPAREN)
                     && tree.getParent().getType() == TokenTypes.RECORD_PATTERN_DEF;
-            if (!isRecordPatternDelimiter) {
+            // non-empty 'ELIST' has no token of its own, the line it starts on
+            // is represented by its first expression
+            final boolean isElistWithExpressions = tree.getType() == TokenTypes.ELIST
+                    && tree.getFirstChild() != null;
+            if (!isRecordPatternDelimiter && !isElistWithExpressions) {
                 final int lineNum = tree.getLineNo();
                 final Integer colNum = astSet.getStartColumn(lineNum);
 

@@ -37,7 +37,7 @@ public class InputBooleanExpressionComplexity {
             public void method() {
                 new Settings(Settings.FALSE || Settings.FALSE ||
                         Settings.FALSE || _a || _b);
-                // violation above 'Boolean expression complexity is 4 (max allowed is 3).'
+                // violation 2 lines above 'Boolean expression complexity is 4 (max allowed is 3).'
             }
             public void method2() {
             }
@@ -55,10 +55,10 @@ public class InputBooleanExpressionComplexity {
     {
         new Settings(Settings.FALSE && Settings.FALSE && Settings.FALSE
                 && Settings.TRUE && Settings.TRUE);
-        // violation above 'Boolean expression complexity is 4 (max allowed is 3).'
+        // violation 2 lines above 'Boolean expression complexity is 4 (max allowed is 3).'
         new Settings(Settings.FALSE || Settings.FALSE || Settings.FALSE
                 || Settings.TRUE || Settings.TRUE);
-        // violation above 'Boolean expression complexity is 4 (max allowed is 3).'
+        // violation 2 lines above 'Boolean expression complexity is 4 (max allowed is 3).'
     }
 
     public void ignoredMethodParameters()
