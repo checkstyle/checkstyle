@@ -34,7 +34,7 @@ public class InputNoWhitespaceAfterArrayDeclarations
     }
     String aOptions[][]; //Correct
     int [][][] abc; // violation ''int' is followed by whitespace.'
-    int cba [][][]; // violation ''cba' is followed by whitespace.'
+    int arr [][][]; // violation ''arr' is followed by whitespace.'
     private String[][][] getSeveralLines() { //Correct
         return new String [][][] { // violation ''String' is followed by whitespace.'
                 new String [][] { // violation ''String' is followed by whitespace.'
