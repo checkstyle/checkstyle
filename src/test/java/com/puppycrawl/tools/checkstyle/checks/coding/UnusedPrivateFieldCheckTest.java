@@ -342,7 +342,7 @@ class UnusedPrivateFieldCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUnusedprivateFieldMethodDef() throws Exception {
+    public void testUnusedPrivateFieldMethodDef() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputUnusedPrivateFieldMethodDef.java"), expected);

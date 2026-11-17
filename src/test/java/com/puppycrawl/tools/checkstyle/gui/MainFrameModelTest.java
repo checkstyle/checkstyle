@@ -39,7 +39,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
     private static final String FILE_NAME_TEST_DATA = "InputMainFrameModel.java";
     private static final String FILE_NAME_NON_EXISTENT = "non-existent.file";
-    private static final String FILE_NAME_NON_JAVA = "NotJavaFile.notjava";
+    private static final String FILE_NAME_NON_JAVA = "NotJavaFile.txt";
     private static final String FILE_NAME_NON_COMPILABLE = "InputMainFrameModelIncorrectClass.java";
 
     private MainFrameModel model;
