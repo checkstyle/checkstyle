@@ -1402,6 +1402,10 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     @Override
     public DetailAstImpl visitExpressionList(JavaLanguageParser.ExpressionListContext ctx) {
         final DetailAstImpl elist = createImaginary(TokenTypes.ELIST);
+        // 'ELIST' starts where its first expression starts, the position of the
+        // first child 'EXPR' is the position of its root operator
+        elist.setLineNo(ctx.start.getLine());
+        elist.setColumnNo(ctx.start.getCharPositionInLine());
         processChildren(elist, ctx.children);
         return elist;
     }
