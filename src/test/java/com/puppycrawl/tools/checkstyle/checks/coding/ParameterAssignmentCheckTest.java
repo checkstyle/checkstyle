@@ -130,6 +130,46 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testLocalEnumInitializers() throws Exception {
+        final String[] expected = {
+            "12:14: " + getCheckMessage(MSG_KEY, "port"),
+            "20:14: " + getCheckMessage(MSG_KEY, "port"),
+            "24:14: " + getCheckMessage(MSG_KEY, "port"),
+            "32:14: " + getCheckMessage(MSG_KEY, "port"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterAssignmentLocalEnumInitializers.java"), expected);
+    }
+
+    @Test
+    public void testMultipleParametersInitializers() throws Exception {
+        final String[] expected = {
+            "12:14: " + getCheckMessage(MSG_KEY, "port"),
+            "13:14: " + getCheckMessage(MSG_KEY, "name"),
+            "20:14: " + getCheckMessage(MSG_KEY, "port"),
+            "21:14: " + getCheckMessage(MSG_KEY, "name"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterAssignmentMultipleParametersInitializers.java"), expected);
+    }
+
+    @Test
+    public void testMultiLevelInitializers() throws Exception {
+        final String[] expected = {
+            "12:14: " + getCheckMessage(MSG_KEY, "port"),
+            "15:22: " + getCheckMessage(MSG_KEY, "port"),
+            "22:22: " + getCheckMessage(MSG_KEY, "port"),
+            "25:14: " + getCheckMessage(MSG_KEY, "port"),
+            "29:14: " + getCheckMessage(MSG_KEY, "port"),
+            "32:23: " + getCheckMessage(MSG_KEY, "value"),
+            "39:23: " + getCheckMessage(MSG_KEY, "value"),
+            "42:14: " + getCheckMessage(MSG_KEY, "port"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterAssignmentMultiLevelInitializers.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final ParameterAssignmentCheck check = new ParameterAssignmentCheck();
         assertWithMessage("Acceptable tokens should not be null")
