@@ -80,7 +80,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testItIgnoreEmptyAndComspace() throws Exception {
+    public void testItIgnoreEmptyAndCommaSpace() throws Exception {
 
         final String[] expected = {
             "15:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),

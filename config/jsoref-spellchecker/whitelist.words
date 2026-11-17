@@ -226,7 +226,6 @@ commonutil
 Compat
 compilermsgs
 compoundstatements
-Comspace
 concat
 config
 configurationloader
@@ -244,7 +243,6 @@ COVEREDRATIO
 cpp
 crlf
 cron
-crossplatform
 csoff
 cson
 css
@@ -912,7 +910,6 @@ moradan
 mozilla
 MRELEASE
 mstudman
-multicharacter
 multifileregexpheader
 multiline
 multilinecommentleadingasteriskpresence
@@ -1009,7 +1006,6 @@ noscript
 NOSONAR
 nospace
 Nothin
-notjava
 NOTNULL
 nowarn
 nowhitespaceafter
@@ -1138,7 +1134,6 @@ Plychee
 PMB
 pmd
 pmdruleset
-PModel
 png
 Pno
 poetix
@@ -1441,7 +1436,6 @@ td
 teamcity
 technotes
 temurin
-Testik
 testmodules
 testname
 textblock
@@ -1538,7 +1532,6 @@ unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
-Unusedprivate
 unusedprivatefield
 unusedtryresourceshouldbeunnamed
 uppercased
