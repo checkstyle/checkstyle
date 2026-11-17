@@ -3074,7 +3074,7 @@ public final class TokenTypes {
      * {@snippet :
      *
      * CASE_GROUP -> CASE_GROUP
-     *    |--LITERAL_CASE -> cas
+     *    |--LITERAL_CASE -> case
      *    |   |--EXPR -> EXPR
      *    |   |   `--NUM_INT -> 0
      *    |   `--COLON -> :

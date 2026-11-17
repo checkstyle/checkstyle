@@ -139,12 +139,12 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
             final boolean hasAccessibleCtor = hasDefaultCtor || hasPublicCtor;
 
-            // figure out if class extends java.lang.object directly
+            // figure out if class extends java.lang.Object directly
             // keep it simple for now and get a 99% solution
-            final boolean extendsJlo =
+            final boolean extendsObject =
                 ast.findFirstToken(TokenTypes.EXTENDS_CLAUSE) == null;
 
-            final boolean isUtilClass = extendsJlo
+            final boolean isUtilClass = extendsObject
                 && !hasNonStaticMethodOrField && hasNonPrivateStaticMethodOrField;
 
             if (isUtilClass && hasAccessibleCtor && !hasStaticModifier) {

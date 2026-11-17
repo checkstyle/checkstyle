@@ -96,7 +96,7 @@ public class IllegalTokenCheck extends AbstractCheck {
     private static String convertToString(DetailAST ast) {
         return switch (ast.getType()) {
             case TokenTypes.LABELED_STAT -> ast.getFirstChild().getText() + ast.getText();
-            // multiline tokens need to become singlelined
+            // multiline tokens need to become single-line
             case TokenTypes.COMMENT_CONTENT -> JavadocUtil.escapeAllControlChars(ast.getText());
             default -> ast.getText();
         };

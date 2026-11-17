@@ -95,7 +95,7 @@ public final class ClassDataAbstractionCouplingCheck
     /** Default allowed complexity. */
     private static final int DEFAULT_MAX = 7;
 
-    /** Creates bew instance of the check. */
+    /** Creates new instance of the check. */
     public ClassDataAbstractionCouplingCheck() {
         super(DEFAULT_MAX);
     }

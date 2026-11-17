@@ -109,7 +109,6 @@ beanutils
 beforeexecutionexclusionfilefilter
 beginningcomments
 bestpractices
-bew
 bitbucket
 bjrke
 blankspaces
@@ -149,7 +148,6 @@ cacio
 caciocavallosilano
 calledmethods
 camelcase
-cas
 casegroup
 catchparametername
 CComments
@@ -598,7 +596,6 @@ iae
 IAOM
 ico
 icu
-Identation
 identifiernames
 Idref
 idx
@@ -744,7 +741,6 @@ jira
 jitpack
 jkl
 JLabel
-Jlo
 jls
 JNDI
 JNullness
@@ -1322,7 +1318,6 @@ simplifybooleanexpression
 simplifybooleanreturn
 sincetag
 singleline
-singlelined
 singlelinejavadoc
 singlespaceseparator
 sitetoc
