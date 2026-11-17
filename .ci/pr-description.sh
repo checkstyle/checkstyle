@@ -7,7 +7,7 @@ LINK_COMMITS=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQU
 COMMITS=$(curl --fail-with-body -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_COMMITS" \
              | jq '.[0] | .commit.message')
 echo 'Commit messages from github: '"${COMMITS:0:60}"...
-ISSUE_NUMBER=$(echo "$COMMITS" | sed -e 's/^.*Issue //' | sed -e 's/:.*//')
+ISSUE_NUMBER=$(echo "$COMMITS" | sed 's/^.*Issue //' | sed 's/:.*//')
 echo 'Issue number: '"$ISSUE_NUMBER" && RESULT=0
 if [[ $ISSUE_NUMBER =~ ^#[0-9]+$ ]]; then
     LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQUEST
