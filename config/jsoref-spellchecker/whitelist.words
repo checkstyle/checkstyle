@@ -97,7 +97,6 @@ awt
 azurewebsites
 Backquote
 backticks
-badpackage
 baeldung
 baratali
 Barowski
@@ -153,7 +152,6 @@ camelcase
 cas
 casegroup
 catchparametername
-cba
 CComments
 CDATA
 cde
@@ -931,7 +929,6 @@ MVC
 mvn
 mvnrepository
 mvnw
-Mycheckstyle
 mycompany
 mycompanychecks
 mycustom
