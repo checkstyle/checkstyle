@@ -71,9 +71,74 @@
     <Bug pattern="AI_ANNOTATION_ISSUES_NEEDS_NULLABLE"/>
   </Match>
   <Match>
-    <!-- Reported for about 240 classes. Their instances are not printed or logged, so a
-         toString method would be unused code. Classes whose text is shown, such as
-         AST nodes and full identifiers, already define it. -->
+    <!-- Modules (Checks, Filters and Indentation handlers) and the listed helper classes are
+         not printed or logged, so a toString method would be unused code. Classes whose
+         text is shown, such as AST nodes and full identifiers, already define it. -->
+    <Or>
+      <Class name="~.*\.[A-Za-z0-9]*(Check|Filter|Handler)"/>
+      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+      <Class name="~.*\.ChecksAndFilesSuppressionFileGeneratorAuditListener"/>
+      <Class name="com.puppycrawl.tools.checkstyle.ConfigurationLoader"/>
+      <Class name="com.puppycrawl.tools.checkstyle.DefaultConfiguration"/>
+      <Class name="com.puppycrawl.tools.checkstyle.DefaultContext"/>
+      <Class name="com.puppycrawl.tools.checkstyle.DefaultLogger"/>
+      <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor"/>
+      <Class name="com.puppycrawl.tools.checkstyle.JavadocCommentsAstVisitor"/>
+      <Class name="com.puppycrawl.tools.checkstyle.LocalizedMessage"/>
+      <Class name="com.puppycrawl.tools.checkstyle.PackageNamesLoader"/>
+      <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
+      <Class name="com.puppycrawl.tools.checkstyle.PropertiesExpander"/>
+      <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile"/>
+      <Class name="com.puppycrawl.tools.checkstyle.SarifLogger"/>
+      <Class name="com.puppycrawl.tools.checkstyle.TreeWalker"/>
+      <Class name="com.puppycrawl.tools.checkstyle.XMLLogger"/>
+      <Class name="com.puppycrawl.tools.checkstyle.XmlLoader"/>
+      <Class name="com.puppycrawl.tools.checkstyle.XpathFileGeneratorAuditListener"/>
+      <Class name="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.AuditEvent"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.FileContents"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.FileText"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.LineColumn"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.Violation"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.imports.ClassImportRule"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.imports.FileImportControl"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.imports.ModuleImportRule"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.imports.PkgImportControl"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.imports.PkgImportRule"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.DetailAstSet"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationContext"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.CommentSuppressor"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector"/>
+      <Class name="com.puppycrawl.tools.checkstyle.filters.CsvFilterElement"/>
+      <Class name="com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement"/>
+      <Class name="com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader"/>
+      <Class name="com.puppycrawl.tools.checkstyle.filters.XpathFilterElement"/>
+      <Class name="com.puppycrawl.tools.checkstyle.gui.BaseCellEditor"/>
+      <Class name="com.puppycrawl.tools.checkstyle.gui.CodeSelector"/>
+      <Class name="com.puppycrawl.tools.checkstyle.gui.CodeSelectorPresentation"/>
+      <Class name="com.puppycrawl.tools.checkstyle.gui.MainFrameModel"/>
+      <Class name="com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel"/>
+      <Class name="com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation"/>
+      <Class name="com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter"/>
+      <Class name="com.puppycrawl.tools.checkstyle.meta.ModuleDetails"/>
+      <Class name="com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails"/>
+      <Class name="com.puppycrawl.tools.checkstyle.site.SearchIndexGenerator"/>
+      <Class name="com.puppycrawl.tools.checkstyle.utils.WeakReferenceHolder"/>
+      <Class name="com.puppycrawl.tools.checkstyle.xpath.AttributeNode"/>
+      <Class name="com.puppycrawl.tools.checkstyle.xpath.ElementNode"/>
+      <Class name="com.puppycrawl.tools.checkstyle.xpath.RootNode"/>
+      <Class name="com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator"/>
+      <Class name="com.puppycrawl.tools.checkstyle.xpath.iterators.DescendantIterator"/>
+      <Class name="com.puppycrawl.tools.checkstyle.xpath.iterators.FollowingIterator"/>
+      <Class name="com.puppycrawl.tools.checkstyle.xpath.iterators.PrecedingIterator"/>
+      <Class name="com.puppycrawl.tools.checkstyle.xpath.iterators.ReverseDescendantIterator"/>
+      <Class name="com.puppycrawl.tools.checkstyle.xpath.iterators.ReverseListIterator"/>
+    </Or>
     <Bug pattern="IMC_IMMATURE_CLASS_NO_TOSTRING"/>
   </Match>
   <Match>
