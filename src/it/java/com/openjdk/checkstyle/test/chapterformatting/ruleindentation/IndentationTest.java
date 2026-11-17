@@ -82,7 +82,7 @@ public class IndentationTest extends AbstractOpenJdkModuleTestSupport {
 
     @Test
     public void testStyleGuideDosAndDonts() throws Exception {
-        verifyWithWholeConfig(getPath("InputIdentationDoAndDonts.java"));
+        verifyWithWholeConfig(getPath("InputIndentationDoAndDonts.java"));
     }
 
 }
