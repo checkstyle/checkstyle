@@ -4949,6 +4949,18 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testForceStrictConditionNestedMethodCall() throws Exception {
+        final String[] expected = {
+            "48:17: " + getCheckMessage(MSG_ERROR, "resources", 16, 24),
+            "53:33: " + getCheckMessage(MSG_ERROR, "resources", 32, 24),
+            "59:25: " + getCheckMessage(MSG_ERROR, ")", 24, 16),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputIndentationForceStrictConditionMethodCall.java"),
+                expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
