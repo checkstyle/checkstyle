@@ -97,7 +97,6 @@ awt
 azurewebsites
 Backquote
 backticks
-badpackage
 baeldung
 baratali
 Barowski
@@ -150,10 +149,8 @@ cacio
 caciocavallosilano
 calledmethods
 camelcase
-cas
 casegroup
 catchparametername
-cba
 CComments
 CDATA
 cde
@@ -200,7 +197,7 @@ clemens
 Clickable
 Cloneable
 Cloudflare
-cls
+clss
 cmdline
 cmp
 cmt
@@ -1149,7 +1146,6 @@ Postgresql
 prebuilts
 prefercodeorsnippetjavadocinlinetag
 preferliteraljavadocinlinetag
-prefs
 PRESIZE
 prettyprint
 printf
