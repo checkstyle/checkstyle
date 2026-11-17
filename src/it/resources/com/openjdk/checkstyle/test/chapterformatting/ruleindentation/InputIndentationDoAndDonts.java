@@ -2,7 +2,7 @@ package com.openjdk.checkstyle.test.chapterformatting.ruleindentation;
 
 // violation first line 'Header mismatch'
 
-public class InputIdentationDoAndDonts {
+public class InputIndentationDoAndDonts {
 
     enum Choice {
         ONE,
