@@ -99,6 +99,77 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInitializers() throws Exception {
+        final String[] expected = {
+            "24:14: " + getCheckMessage(MSG_KEY, "port"),
+            "36:22: " + getCheckMessage(MSG_KEY, "port"),
+            "39:14: " + getCheckMessage(MSG_KEY, "port"),
+            "43:14: " + getCheckMessage(MSG_KEY, "port"),
+            "55:23: " + getCheckMessage(MSG_KEY, "p"),
+            "59:14: " + getCheckMessage(MSG_KEY, "port"),
+            "63:14: " + getCheckMessage(MSG_KEY, "port"),
+            "70:14: " + getCheckMessage(MSG_KEY, "port"),
+            "74:14: " + getCheckMessage(MSG_KEY, "port"),
+            "80:23: " + getCheckMessage(MSG_KEY, "p"),
+            "90:14: " + getCheckMessage(MSG_KEY, "port"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterAssignmentInitializers.java"),
+                expected);
+    }
+
+    @Test
+    public void testInitializersInConstructor() throws Exception {
+        final String[] expected = {
+            "12:14: " + getCheckMessage(MSG_KEY, "port"),
+            "19:14: " + getCheckMessage(MSG_KEY, "port"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterAssignmentInitializers2.java"),
+                expected);
+    }
+
+    @Test
+    public void testLocalEnumInitializers() throws Exception {
+        final String[] expected = {
+            "12:14: " + getCheckMessage(MSG_KEY, "port"),
+            "20:14: " + getCheckMessage(MSG_KEY, "port"),
+            "24:14: " + getCheckMessage(MSG_KEY, "port"),
+            "32:14: " + getCheckMessage(MSG_KEY, "port"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterAssignmentLocalEnumInitializers.java"), expected);
+    }
+
+    @Test
+    public void testMultipleParametersInitializers() throws Exception {
+        final String[] expected = {
+            "12:14: " + getCheckMessage(MSG_KEY, "port"),
+            "13:14: " + getCheckMessage(MSG_KEY, "name"),
+            "20:14: " + getCheckMessage(MSG_KEY, "port"),
+            "21:14: " + getCheckMessage(MSG_KEY, "name"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterAssignmentMultipleParametersInitializers.java"), expected);
+    }
+
+    @Test
+    public void testMultiLevelInitializers() throws Exception {
+        final String[] expected = {
+            "12:14: " + getCheckMessage(MSG_KEY, "port"),
+            "15:22: " + getCheckMessage(MSG_KEY, "port"),
+            "22:22: " + getCheckMessage(MSG_KEY, "port"),
+            "25:14: " + getCheckMessage(MSG_KEY, "port"),
+            "29:14: " + getCheckMessage(MSG_KEY, "port"),
+            "32:23: " + getCheckMessage(MSG_KEY, "value"),
+            "39:23: " + getCheckMessage(MSG_KEY, "value"),
+            "42:14: " + getCheckMessage(MSG_KEY, "port"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterAssignmentMultiLevelInitializers.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final ParameterAssignmentCheck check = new ParameterAssignmentCheck();
         assertWithMessage("Acceptable tokens should not be null")
