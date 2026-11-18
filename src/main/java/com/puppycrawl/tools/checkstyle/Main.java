@@ -506,13 +506,13 @@ public final class Main {
         else {
             for (int index = 0; index < count; index++) {
                 final OutputFormat format;
-                final Path outputPath;
                 if (index < formats.size()) {
                     format = formats.get(index);
                 }
                 else {
                     format = OutputFormat.PLAIN;
                 }
+                final Path outputPath;
                 if (index < outputs.size()) {
                     outputPath = outputs.get(index);
                 }
