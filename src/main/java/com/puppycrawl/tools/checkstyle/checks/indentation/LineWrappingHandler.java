@@ -185,7 +185,7 @@ public class LineWrappingHandler {
      * @param firstNodesOnLines the nodes which are present in the beginning of each line.
      * @param indentLevel line wrapping indentation.
      */
-    public void checkForAnnotationIndentation(
+    private void checkForAnnotationIndentation(
             NavigableMap<Integer, DetailAST> firstNodesOnLines, int indentLevel) {
         final DetailAST firstLineNode = firstNodesOnLines.get(firstNodesOnLines.firstKey());
         DetailAST node = firstLineNode.getParent();
@@ -211,7 +211,7 @@ public class LineWrappingHandler {
      * @param node the node for which to check.
      * @return true if  parameter has no child.
      */
-    public static boolean checkForNullParameterChild(DetailAST node) {
+    private static boolean checkForNullParameterChild(DetailAST node) {
         return node.getFirstChild() == null && node.getType() == TokenTypes.PARAMETERS;
     }
 
@@ -221,7 +221,7 @@ public class LineWrappingHandler {
      * @param node the node for which to check.
      * @return true if method lparen starts from a new line.
      */
-    public static boolean checkForMethodLparenNewLine(DetailAST node) {
+    private static boolean checkForMethodLparenNewLine(DetailAST node) {
         final int parentType = node.getParent().getType();
         return parentType == TokenTypes.METHOD_DEF && node.getType() == TokenTypes.LPAREN;
     }
