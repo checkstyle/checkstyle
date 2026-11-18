@@ -205,6 +205,45 @@
     <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor"/>
     <Bug pattern="PSC_PRESIZE_COLLECTIONS"/>
   </Match>
+  <Match>
+    <!-- Public API used from other packages; visibility must not be reduced. -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+      <Class name="com.puppycrawl.tools.checkstyle.ConfigurationLoader"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.FileContents"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck"/>
+    </Or>
+    <Bug pattern="OPM_OVERLY_PERMISSIVE_METHOD"/>
+  </Match>
+  <Match>
+    <!-- Public API: allows library users to supply a custom AuditEventFormatter.
+         It is used from other packages (e.g. test utilities), so its visibility
+         must not be reduced. -->
+    <Class name="com.puppycrawl.tools.checkstyle.DefaultLogger"/>
+    <Method name="&lt;init&gt;"/>
+    <Bug pattern="OPM_OVERLY_PERMISSIVE_METHOD"/>
+  </Match>
+  <Match>
+    <!-- Used by tests in the same package or from outside this source tree
+         (e.g. the files generator), so visibility must not be reduced. -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.api.Violation"/>
+      <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
+      <Class name="com.puppycrawl.tools.checkstyle.SarifLogger"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler"/>
+      <Class name="com.puppycrawl.tools.checkstyle.meta.XmlMetaReader"/>
+      <Class name="com.puppycrawl.tools.checkstyle.utils.CommonUtil"/>
+      <Class name="com.puppycrawl.tools.checkstyle.utils.TokenUtil"/>
+      <Class name="com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator"/>
+    </Or>
+    <Bug pattern="OPM_OVERLY_PERMISSIVE_METHOD"/>
+  </Match>
+  <Match>
+    <!-- Called from outside this source tree (the files generator run by the
+         exec plugin in pom.xml), so its visibility must not be reduced. -->
+    <Class name="com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition"/>
+    <Bug pattern="OPM_OVERLY_PERMISSIVE_METHOD"/>
+  </Match>
   <!-- After https://github.com/checkstyle/checkstyle/issues/11140
        there should be one section per one bug pattern, with list of allowed classes or methods -->
   <Match>
@@ -216,7 +255,6 @@
       IMC_IMMATURE_CLASS_PRINTSTACKTRACE,
       MOM_MISLEADING_OVERLOAD_MODEL,
       NFF_NON_FUNCTIONAL_FIELD,
-      OPM_OVERLY_PERMISSIVE_METHOD,
       PMB_INSTANCE_BASED_THREAD_LOCAL,
       STT_STRING_PARSING_A_FIELD,
       WEM_WEAK_EXCEPTION_MESSAGING,
