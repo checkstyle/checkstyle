@@ -369,7 +369,7 @@ public final class CommonUtil {
      * @param filename name of the file
      * @return resolved file URI or null if URL is malformed or non-existent
      */
-    public static URI getWebOrFileProtocolUri(String filename) {
+    private static URI getWebOrFileProtocolUri(String filename) {
         URI uri;
         try {
             uri = URI.create(filename);
@@ -417,7 +417,7 @@ public final class CommonUtil {
      * @return URI of file in classpath
      * @throws CheckstyleException on failure
      */
-    public static URI getResourceFromClassPath(String filename) throws CheckstyleException {
+    private static URI getResourceFromClassPath(String filename) throws CheckstyleException {
         final URL configUrl;
         if (filename.charAt(0) == '/') {
             configUrl = getCheckstyleResource(filename);

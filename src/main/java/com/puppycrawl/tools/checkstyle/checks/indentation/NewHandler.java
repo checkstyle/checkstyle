@@ -92,7 +92,7 @@ public class NewHandler extends AbstractExpressionHandler {
      *
      * @return true if nested new is present.
      */
-    public boolean checkNestedNew(DetailAST expression) {
+    private boolean checkNestedNew(DetailAST expression) {
         boolean result = false;
         if (expression != null && expression.getFirstChild() != null) {
             final boolean isNestedNewPresent = expression.getFirstChild()
