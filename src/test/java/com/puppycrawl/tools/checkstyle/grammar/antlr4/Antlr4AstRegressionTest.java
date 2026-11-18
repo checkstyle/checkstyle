@@ -466,6 +466,12 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testExpressionListPosition() throws Exception {
+        verifyAst(getPath("ExpectedAntlr4AstRegressionExpressionListPosition.txt"),
+                getPath("InputAntlr4AstRegressionExpressionListPosition.java"));
+    }
+
+    @Test
     public void testInterfaceMemberAlternativePrecedence() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionInterfaceRecordDef.txt"),
                 getPath("InputAntlr4AstRegressionInterfaceRecordDef.java"));
