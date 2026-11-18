@@ -65,6 +65,5 @@ public class InputJavadocTypeTypeParamsTags<A,B1,C456 extends Comparable>
     }
 }
 
-// violation below 'Unused @param tag for 'x'.'
-/** @param x */
+/** @param x */ // violation 'Unused @param tag for 'x'.'
 class Test {}
