@@ -205,6 +205,29 @@
     <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor"/>
     <Bug pattern="PSC_PRESIZE_COLLECTIONS"/>
   </Match>
+  <Match>
+    <!-- Overloaded methods where one is static and another is non-static or has different
+         signatures are intentional. -->
+    <Or>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter"/>
+        <Method name="getMessageBundle"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck"/>
+        <Method name="findFrame"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+        <Method name="getGroupNumber"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+        <Method name="isEmptyBlock"/>
+      </And>
+    </Or>
+    <Bug pattern="MOM_MISLEADING_OVERLOAD_MODEL"/>
+  </Match>
   <!-- After https://github.com/checkstyle/checkstyle/issues/11140
        there should be one section per one bug pattern, with list of allowed classes or methods -->
   <Match>
@@ -214,7 +237,6 @@
       IMC_IMMATURE_CLASS_NO_EQUALS,
       IMC_IMMATURE_CLASS_NO_TOSTRING,
       IMC_IMMATURE_CLASS_PRINTSTACKTRACE,
-      MOM_MISLEADING_OVERLOAD_MODEL,
       NFF_NON_FUNCTIONAL_FIELD,
       OPM_OVERLY_PERMISSIVE_METHOD,
       PMB_INSTANCE_BASED_THREAD_LOCAL,
