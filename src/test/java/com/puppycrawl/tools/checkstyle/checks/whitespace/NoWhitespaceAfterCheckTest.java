@@ -150,7 +150,7 @@ public class NoWhitespaceAfterCheckTest extends AbstractModuleTestSupport {
             "26:9: " + getCheckMessage(MSG_KEY, "int"),
             "27:35: " + getCheckMessage(MSG_KEY, "get1"),
             "36:9: " + getCheckMessage(MSG_KEY, "int"),
-            "37:13: " + getCheckMessage(MSG_KEY, "cba"),
+            "37:13: " + getCheckMessage(MSG_KEY, "arr"),
             "39:27: " + getCheckMessage(MSG_KEY, "String"),
             "40:28: " + getCheckMessage(MSG_KEY, "String"),
             "47:12: " + getCheckMessage(MSG_KEY, "ar"),
