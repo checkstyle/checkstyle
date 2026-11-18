@@ -1673,20 +1673,6 @@ git-check-pull-number)
   done
   ;;
 
-git-changed-check)
-  # Prints the name of the first Check changed in the latest commit.
-  # Checks are detected from the file paths in the diff stat, they are
-  # the files named *Check.java. Used by the regression report workflow
-  # to resolve the "generate report for changed check" trigger.
-  DIFF_STAT=$(git diff --stat HEAD~1)
-  CHANGED_CHECK=$(printf '%s\n' "$DIFF_STAT" | grep -o '[A-Za-z0-9]*Check\.java' | head -1)
-  if [ -z "$CHANGED_CHECK" ]; then
-    echo "Error: no Check.java file found in the diff of the latest commit." >&2
-    exit 1
-  fi
-  echo "${CHANGED_CHECK%.java}"
-  ;;
-
 jacoco)
   export MAVEN_OPTS='-Xmx2g'
   ./mvnw -e --no-transfer-progress clean test \

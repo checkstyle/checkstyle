@@ -54,22 +54,6 @@ GitHub, generate report for {{folder in https://github.com/checkstyle/test-confi
 Workflow will download config.xml and list-of-projects.yml from
 [test-configs repository][test-configs-root], use then for diff report generation.
 
-### Diff Report for changed check
-
-Make a comment in PR:
-
-```txt
-GitHub, generate report for changed check in mode all-examples-in-one
-```
-
-Workflow will detect check that is changed in latest commit of PR, so there is
-no need to type name of check in comment. Detection is done by `git-changed-check`
-task of `.ci/validation.sh` script, it takes first file name that ends with
-`Check.java` from diff stat of latest commit. Workflow will use bundle
-`{{check name without Check}}/all-examples-in-one` from
-[test-configs repository][test-configs-root] for diff report generation.
-If latest commit does not change any check, workflow will fail.
-
 ### Diff Report by configuration in Pull Request Description
 
 Add the links of the config files in the PR description as described at
