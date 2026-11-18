@@ -256,17 +256,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryNullCheckWithInstanceOfCheck.java</fileName>
-    <specifier>purity.functional.argument</specifier>
-    <message>incompatible purity of argument to parameter mapper of Optional.map</message>
-    <lineContent>.map(DetailAST::getFirstChild);</lineContent>
-    <details>
-      found:    (no side effect annotation)
-      required: @SideEffectFree
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>purity.call</specifier>
     <message>call to non-deterministic side-effecting com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck::calculateTypeDeclarationDistance not allowed in deterministic side-effect-free method</message>
