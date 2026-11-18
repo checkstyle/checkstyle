@@ -543,6 +543,45 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    @Test
+    public void testOutputWithoutFormatWritesPlainToFile(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut)
+                    throws Exception {
+        final Path output =
+                Files.createTempFile(temporaryFolder.toPath(), "plain", ".output");
+        assertMainReturnCode(0, "-c", getPath("InputMainConfig-classname.xml"),
+                "-o", output.toString(),
+                getPath("InputMain.java"));
+        assertWithMessage("No format given, so nothing should go to stdout")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+        final String content = Files.readString(output);
+        assertWithMessage("Plain output must not be XML")
+            .that(content)
+            .doesNotContain("<?xml");
+        assertWithMessage("Plain output should contain the audit result")
+            .that(content)
+            .contains("Starting audit");
+    }
+
+    @Test
+    public void testFormatWithoutOutputWritesToStdout(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut)
+                    throws Exception {
+        assertMainReturnCode(0, "-c", getPath("InputMainConfig-classname.xml"),
+                "-f", "xml",
+                getPath("InputMain.java"));
+        assertWithMessage("XML output must go to stdout when no -o is given")
+            .that(systemOut.getCapturedData())
+            .contains("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+    }
+
     /**
      * This test method is created only to cover
      * pitest mutation survival at {@code Main#getOutputStreamOptions}.
