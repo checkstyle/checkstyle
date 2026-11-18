@@ -118,7 +118,7 @@ public class PkgImportControlTest {
         assertAccess(icCommon, "com.kazgroup.courtlink.common", "MyClass",
                 "org.hibernate.something", AccessResult.ALLOWED);
         assertAccess(icCommon, "com.kazgroup.courtlink.common", "MyClass",
-                "com.badpackage.something", AccessResult.DISALLOWED);
+                "com.invalid.something", AccessResult.DISALLOWED);
         assertAccess(icRoot, "com.kazgroup.courtlink", "MyClass",
                 "org.hibernate.something", AccessResult.DISALLOWED);
     }
@@ -164,7 +164,7 @@ public class PkgImportControlTest {
         assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
                 "org.hibernate.something", AccessResult.ALLOWED);
         assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
-                "com.badpackage.something", AccessResult.DISALLOWED);
+                "com.invalid.something", AccessResult.DISALLOWED);
         assertAccess(icRootRegexpChild, "com.kazgroup.courtlink", "MyClass",
                 "org.hibernate.something", AccessResult.DISALLOWED);
     }
