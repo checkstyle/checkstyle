@@ -44,6 +44,13 @@ import com.puppycrawl.tools.checkstyle.utils.NullUtil;
  * </p>
  *
  * <p>
+ * The check recognizes launchable {@code main} methods with either no parameters
+ * or one {@code String[]} (or {@code String...}) parameter. The method must return
+ * {@code void}, must not be {@code private}, and may be either {@code static} or an
+ * instance method.
+ * </p>
+ *
+ * <p>
  * Note: Compact source files
  * (<a href="https://openjdk.org/jeps/512">JEP 512</a>)
  * are skipped by design. The whole purpose of compact source files is to serve as
@@ -170,8 +177,7 @@ public class UncommentedMainCheck extends AbstractCheck {
     }
 
     /**
-     * Checks method definition if this is
-     * {@code public static void main(String[])}.
+     * Checks method definition if this is a launchable {@code main} method.
      *
      * @param method method definition node
      */
@@ -180,7 +186,7 @@ public class UncommentedMainCheck extends AbstractCheck {
                 // method not in inner class or in interface definition
                 && checkClassName()
                 && checkName(method)
-                && checkModifiers(method)
+                && checkAccess(method)
                 && checkType(method)
                 && checkParams(method)) {
             log(method, MSG_KEY);
@@ -208,17 +214,16 @@ public class UncommentedMainCheck extends AbstractCheck {
     }
 
     /**
-     * Checks that method has final and static modifiers.
+     * Checks that the method has public, protected, or package access.
      *
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
-    private static boolean checkModifiers(DetailAST method) {
+    private static boolean checkAccess(DetailAST method) {
         final DetailAST modifiers =
             NullUtil.notNull(method.findFirstToken(TokenTypes.MODIFIERS));
 
-        return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
-            && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+        return modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null;
     }
 
     /**
@@ -234,15 +239,16 @@ public class UncommentedMainCheck extends AbstractCheck {
     }
 
     /**
-     * Checks that method has only {@code String[]} or only {@code String...} param.
+     * Checks that method has no parameters or has only {@code String[]} or
+     * {@code String...} parameter.
      *
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
     private static boolean checkParams(DetailAST method) {
-        boolean checkPassed = false;
         final DetailAST params =
                 NullUtil.notNull(method.findFirstToken(TokenTypes.PARAMETERS));
+        boolean checkPassed = params.getChildCount() == 0;
 
         if (params.getChildCount() == 1) {
             final DetailAST parameterType =
