@@ -1013,7 +1013,13 @@ jdeprscan)
   ./mvnw -e --no-transfer-progress clean compile test-compile \
     dependency:build-classpath -Dmdep.outputFile=target/classpath.txt -Pno-validations
   mkdir -p .ci-temp
-  jdeprscan --class-path "$(cat target/classpath.txt)" --release 25 \
+  JAVA_HOME_DIRECTORY="$(java -XshowSettings:properties -version 2>&1 \
+    | sed -n 's/^[[:space:]]*java.home = //p')"
+  JDEPRSCAN="$JAVA_HOME_DIRECTORY/bin/jdeprscan"
+  if [ ! -x "$JDEPRSCAN" ]; then
+    JDEPRSCAN=jdeprscan
+  fi
+  "$JDEPRSCAN" --class-path "$(cat target/classpath.txt)" --release 25 \
         target/classes target/test-classes > .ci-temp/jdeprscan.log 2>&1 || true
   if grep -qvE '(^Directory)|(^$)' .ci-temp/jdeprscan.log ; then
     cat .ci-temp/jdeprscan.log
