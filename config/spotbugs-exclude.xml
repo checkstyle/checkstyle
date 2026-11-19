@@ -208,8 +208,15 @@
   <!-- After https://github.com/checkstyle/checkstyle/issues/11140
        there should be one section per one bug pattern, with list of allowed classes or methods -->
   <Match>
+    <!-- RootModule.destroy() is public API, IOException appeared long time after this
+         method become used in all solutions, we decided to keep it unchanged to not
+         cause migration problems for users -->
+    <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+    <Method name="destroy"/>
+    <Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CHECKED"/>
+  </Match>
+  <Match>
     <Bug pattern="
-      EXS_EXCEPTION_SOFTENING_NO_CHECKED,
       EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS,
       IMC_IMMATURE_CLASS_NO_EQUALS,
       IMC_IMMATURE_CLASS_NO_TOSTRING,
