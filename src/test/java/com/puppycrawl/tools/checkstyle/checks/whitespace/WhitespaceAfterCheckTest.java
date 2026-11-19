@@ -532,4 +532,11 @@ public class WhitespaceAfterCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testAllSlashesComment() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceAfterAllSlashesComment.java"),
+                expected);
+    }
 }
