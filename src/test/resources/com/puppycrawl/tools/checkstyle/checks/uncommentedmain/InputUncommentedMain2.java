@@ -13,7 +13,7 @@ public class InputUncommentedMain2
     private class PC {
 
         // uncommented main with depth 2
-        public void main(String[] args)
+        public void main(String[] args) // violation 'Uncommented main method found'
         {
             System.identityHashCode("InputUncommentedMain.main()");
         }
@@ -22,7 +22,7 @@ public class InputUncommentedMain2
         private class PC2 {
 
             // uncommented main with depth 3
-            public void main(String[] args)
+            public void main(String[] args) // violation 'Uncommented main method found'
             {
                 System.identityHashCode("InputUncommentedMain.main()");
             }

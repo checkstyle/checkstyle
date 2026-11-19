@@ -17,6 +17,13 @@
  &lt;/p&gt;
 
  &lt;p&gt;
+ The check recognizes launchable &lt;code&gt;main&lt;/code&gt; methods with either no parameters
+ or one &lt;code&gt;String[]&lt;/code&gt; (or &lt;code&gt;String...&lt;/code&gt;) parameter. The method must return
+ &lt;code&gt;void&lt;/code&gt;, must not be &lt;code&gt;private&lt;/code&gt;, and may be either &lt;code&gt;static&lt;/code&gt; or an
+ instance method.
+ &lt;/p&gt;
+
+ &lt;p&gt;
  Note: Compact source files
  (&lt;a href="https://openjdk.org/jeps/512"&gt;JEP 512&lt;/a&gt;)
  are skipped by design. The whole purpose of compact source files is to serve as
