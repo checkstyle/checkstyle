@@ -1018,4 +1018,75 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testModuleImportSameGroup() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrderModuleImportSameGroup.java"), expected);
+    }
+
+    @Test
+    public void testModuleImportBetweenGroups() throws Exception {
+        final String[] expected = {
+            "22:1: " + getCheckMessage(MSG_SEPARATION, "org.example.Foo"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrderModuleImportBetweenGroups.java"), expected);
+    }
+
+    @Test
+    public void testModuleImportBetweenGroupsSeparated() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrderModuleImportBetweenGroupsSeparated.java"),
+                expected);
+    }
+
+    @Test
+    public void testModuleImportFirstAndLast() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrderModuleImportFirstAndLast.java"), expected);
+    }
+
+    @Test
+    public void testModuleImportStaticTop() throws Exception {
+        final String[] expected = {
+            "22:1: " + getCheckMessage(MSG_SEPARATION, "java.util.List"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrderModuleImportStaticTop.java"), expected);
+    }
+
+    @Test
+    public void testModuleImportStaticBottom() throws Exception {
+        final String[] expected = {
+            "22:1: " + getCheckMessage(MSG_SEPARATION, "java.lang.Math.abs"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrderModuleImportStaticBottom.java"), expected);
+    }
+
+    @Test
+    public void testModuleImportMultiline() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrderModuleImportMultiline.java"), expected);
+    }
+
+    @Test
+    public void testModuleImportNoType() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrderModuleImportNoType.java"), expected);
+    }
+
 }
