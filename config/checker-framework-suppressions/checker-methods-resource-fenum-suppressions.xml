@@ -11,14 +11,14 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>[required.method.not.called]</message>
-    <lineContent>getOutputStream(options.outputPath),</lineContent>
+    <lineContent>getOutputStream(outputPath),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>[required.method.not.called]</message>
-    <lineContent>listener = new XpathFileGeneratorAuditListener(getOutputStream(options.outputPath),</lineContent>
+    <lineContent>listeners.add(new XpathFileGeneratorAuditListener(getOutputStream(outputPath),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
