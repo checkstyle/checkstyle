@@ -201,9 +201,59 @@ public class FinalPatternVariableCheck extends AbstractCheck {
                     }
                 }
             }
+
+            if (scopeRoot.getType() == TokenTypes.LITERAL_IF) {
+                addConditionReassignments(scopeRoot, ast,
+                        reassignedVariableIdents);
+            }
         }
 
         return reassignedVariableIdents;
+    }
+
+    /**
+     * Adds the identifiers of variables reassigned in the condition of an
+     * {@code if} statement to the list of reassigned variable identifiers.
+     * Only assignments positioned after the {@code instanceof} expression
+     * are added, because an assignment before it cannot target the pattern
+     * variable declared by that {@code instanceof}, for example when it
+     * assigns a field with the same name.
+     *
+     * @param ifStatement the if statement whose condition is searched
+     * @param ast ast tree of checked instanceof statement
+     * @param reassignedVariableIdents list to add the identifiers to
+     */
+    private static void addConditionReassignments(
+            final DetailAST ifStatement, final DetailAST ast,
+            final Collection<DetailAST> reassignedVariableIdents) {
+        DetailAST child = ifStatement.getFirstChild().getNextSibling();
+        while (child != null && child.getType() != TokenTypes.RPAREN) {
+            for (DetailAST node = child; node != null;
+                 node = shiftToNextTraversedBranch(node, child)) {
+                final DetailAST assignToken = getMatchedAssignToken(node);
+                if (assignToken != null
+                        && isPositionedAfter(assignToken, ast)) {
+                    reassignedVariableIdents.add(
+                            assignToken.getFirstChild());
+                }
+            }
+            child = child.getNextSibling();
+        }
+    }
+
+    /**
+     * Checks whether a node is positioned after another node in the source,
+     * comparing line numbers first and column numbers on the same line.
+     *
+     * @param node the node to check
+     * @param reference the node to compare against
+     * @return true if the node comes after the reference node
+     */
+    private static boolean isPositionedAfter(final DetailAST node,
+            final DetailAST reference) {
+        return node.getLineNo() > reference.getLineNo()
+                || node.getLineNo() == reference.getLineNo()
+                        && node.getColumnNo() > reference.getColumnNo();
     }
 
     /**
