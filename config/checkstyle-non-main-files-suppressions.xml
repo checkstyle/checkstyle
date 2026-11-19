@@ -22,6 +22,8 @@
   <suppress checks="NewlineAtEndOfFile"
              files="/test/.*/grammar/comments/InputFullOfSinglelineComments\.java"/>
   <suppress checks="NewlineAtEndOfFile"
+             files="/test/.*/whitespaceafter/InputWhitespaceAfterSingleLineCommentEof\.java"/>
+  <suppress checks="NewlineAtEndOfFile"
              files="/test/.*/asttreestringprinter/InputAstTreeStringPrinterFullOfSinglelineComments\.java"/>
   <suppress checks="NewlineAtEndOfFile"
              files="src/test/resources/.*/InputNoCodeInFile6\.java"/>

@@ -508,6 +508,13 @@ public class WhitespaceAfterCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSingleLineCommentEof() throws Exception {
+        verifyWithInlineConfigParser(
+            getPath("InputWhitespaceAfterSingleLineCommentEof.java"),
+            CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
     public void testWhitespaceAfterCompactSourceFileDefault() throws Exception {
         final String[] expected = {
             "18:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
