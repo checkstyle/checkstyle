@@ -47,10 +47,25 @@ public class UncommentedMainCheckTest extends AbstractModuleTestSupport {
             "17:5: " + getCheckMessage(MSG_KEY),
             "26:5: " + getCheckMessage(MSG_KEY),
             "35:5: " + getCheckMessage(MSG_KEY),
+            "53:5: " + getCheckMessage(MSG_KEY),
+            "62:5: " + getCheckMessage(MSG_KEY),
+            "90:5: " + getCheckMessage(MSG_KEY),
             "99:5: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUncommentedMain.java"), expected);
+    }
+
+    @Test
+    public void testJava25MainMethods() throws Exception {
+        final String[] expected = {
+            "11:5: " + getCheckMessage(MSG_KEY),
+            "16:5: " + getCheckMessage(MSG_KEY),
+            "21:5: " + getCheckMessage(MSG_KEY),
+            "26:5: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUncommentedMainJava25.java"), expected);
     }
 
     @Test
@@ -59,6 +74,9 @@ public class UncommentedMainCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_KEY),
             "35:5: " + getCheckMessage(MSG_KEY),
+            "53:5: " + getCheckMessage(MSG_KEY),
+            "62:5: " + getCheckMessage(MSG_KEY),
+            "90:5: " + getCheckMessage(MSG_KEY),
             "99:5: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
@@ -84,7 +102,10 @@ public class UncommentedMainCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDeepDepth() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY),
+            "25:13: " + getCheckMessage(MSG_KEY),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputUncommentedMain2.java"), expected);
     }
@@ -93,6 +114,7 @@ public class UncommentedMainCheckTest extends AbstractModuleTestSupport {
     public void testVisitPackage() throws Exception {
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_KEY),
+            "30:9: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUncommentedMain5.java"), expected);
@@ -134,6 +156,8 @@ public class UncommentedMainCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "11:5: " + getCheckMessage(MSG_KEY),
             "16:5: " + getCheckMessage(MSG_KEY),
+            "21:5: " + getCheckMessage(MSG_KEY),
+            "31:5: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
@@ -205,7 +229,8 @@ public class UncommentedMainCheckTest extends AbstractModuleTestSupport {
         final List<String> expectedFirstInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
         final List<String> expectedSecondInput = List.of(
                 "10:5: " + getCheckMessage(MSG_KEY),
-                "19:5: " + getCheckMessage(MSG_KEY)
+                "19:5: " + getCheckMessage(MSG_KEY),
+                "28:9: " + getCheckMessage(MSG_KEY)
         );
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }

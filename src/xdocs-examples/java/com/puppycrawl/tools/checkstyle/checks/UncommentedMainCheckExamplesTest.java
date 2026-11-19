@@ -34,7 +34,9 @@ public class UncommentedMainCheckExamplesTest extends AbstractExamplesModuleTest
     public void testExample1() throws Exception {
         final String[] expected = {
             "14:3: " + getCheckMessage(UncommentedMainCheck.MSG_KEY),
-            "38:3: " + getCheckMessage(UncommentedMainCheck.MSG_KEY),
+            "23:5: " + getCheckMessage(UncommentedMainCheck.MSG_KEY),
+            "29:5: " + getCheckMessage(UncommentedMainCheck.MSG_KEY),
+            "40:3: " + getCheckMessage(UncommentedMainCheck.MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -45,6 +47,8 @@ public class UncommentedMainCheckExamplesTest extends AbstractExamplesModuleTest
     public void testExample2() throws Exception {
         final String[] expected = {
             "16:3: " + getCheckMessage(UncommentedMainCheck.MSG_KEY),
+            "25:5: " + getCheckMessage(UncommentedMainCheck.MSG_KEY),
+            "31:5: " + getCheckMessage(UncommentedMainCheck.MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
