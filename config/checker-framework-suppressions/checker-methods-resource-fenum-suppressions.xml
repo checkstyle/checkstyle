@@ -18,7 +18,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>[required.method.not.called]</message>
-    <lineContent>listeners.add(new XpathFileGeneratorAuditListener(getOutputStream(outputPath),</lineContent>
+    <lineContent>return new XpathFileGeneratorAuditListener(getOutputStream(outputPath),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
