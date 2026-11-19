@@ -45,6 +45,13 @@
         </p>
 
         <p>
+          The check recognizes launchable <code>main</code> methods with either no parameters
+          or one <code>String[]</code> (or <code>String...</code>) parameter. The method must return
+          <code>void</code>, must not be <code>private</code>, and may be either <code>static</code> or an
+          instance method.
+        </p>
+
+        <p>
           Note: Compact source files
           (<a href="https://openjdk.org/jeps/512">JEP 512</a>)
           are skipped by design. The whole purpose of compact source files is to serve as
@@ -98,11 +105,13 @@ class Example1 {
   }
 
   class Start {
+    // violation below 'Uncommented main method found'
     public void main() {
     }
   }
 
   record MyRecord1() {
+    // violation below 'Uncommented main method found'
     public void main() {
     }
   }
@@ -142,11 +151,13 @@ class Example2 {
   }
 
   class Start {
+    // violation below 'Uncommented main method found'
     public void main() {
     }
   }
 
   record MyRecord1() {
+    // violation below 'Uncommented main method found'
     public void main() {
     }
   }

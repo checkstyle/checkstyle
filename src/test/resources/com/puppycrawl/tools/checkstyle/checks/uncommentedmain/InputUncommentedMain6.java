@@ -50,7 +50,7 @@ class UncommentedMainTest62
 class UncommentedMainTest63
 {
     // no-public main
-    static void main(String[] args)
+    static void main(String[] args) // violation 'Uncommented main method found'
     {
         System.identityHashCode("test3.main()");
     }
@@ -59,7 +59,7 @@ class UncommentedMainTest63
 class UncommentedMainTest64
 {
     // non-static main
-    public void main(String[] args)
+    public void main(String[] args) // violation 'Uncommented main method found'
     {
         System.identityHashCode("test4.main()");
     }
@@ -87,7 +87,7 @@ class UncommentedMainTest66
 class UncommentedMainTest67
 {
     // main w/o params
-    public static void main()
+    public static void main() // violation 'Uncommented main method found'
     {
         System.identityHashCode("test7.main()");
     }
