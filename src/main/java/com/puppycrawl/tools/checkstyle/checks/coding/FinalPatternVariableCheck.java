@@ -309,7 +309,9 @@ public class FinalPatternVariableCheck extends AbstractCheck {
                 modifiers.findFirstToken(TokenTypes.FINAL) != null;
         boolean result = false;
 
-        if (!isFinal) {
+        // Unnamed patterns cannot be referenced or reassigned,
+        // so there is nothing to declare final.
+        if (!isFinal && !"_".equals(patternVariableIdent.getText())) {
             boolean isReassigned = false;
             for (DetailAST assignTokenIdent : reassignedVariableIdents) {
                 if (patternVariableIdent.getText().equals(
