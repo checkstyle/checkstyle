@@ -212,7 +212,7 @@
   <Match>
     <!-- Must scan entire list to find the best item. -->
     <Class name="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
-    <Method name="getGroupNumber"/>
+    <Method name="findGroupNumber"/>
     <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH"/>
   </Match>
   <Match>
@@ -262,9 +262,16 @@
     <Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS"/>
   </Match>
   <Match>
+    <!-- It is normal practice to have public/protected method to be named in good way,
+         and have private method named the same to do all/majority of work. Second method
+         is static so means that logic is stateless that is good marker. -->
+    <Class name="com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter"/>
+    <Method name="getMessageBundle"/>
+    <Bug pattern="MOM_MISLEADING_OVERLOAD_MODEL"/>
+  </Match>
+  <Match>
     <Bug pattern="
       IMC_IMMATURE_CLASS_NO_TOSTRING,
-      MOM_MISLEADING_OVERLOAD_MODEL,
       OPM_OVERLY_PERMISSIVE_METHOD,
       WEM_WEAK_EXCEPTION_MESSAGING,
       " />
