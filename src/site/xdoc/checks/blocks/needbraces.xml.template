@@ -87,6 +87,23 @@
             <param name="path"
                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example4.java"/>
             <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to allow control statements whose trailing
+          substatement is on the same line as the parent construct (for
+          example an <code>else if</code> chain, or an <code>if</code>
+          nested inside a single-line <code>for</code>):
+        </p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example5.java"/>
+            <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example5.java"/>
+            <param name="type" value="code"/>
         </macro>
       </subsection>
 
