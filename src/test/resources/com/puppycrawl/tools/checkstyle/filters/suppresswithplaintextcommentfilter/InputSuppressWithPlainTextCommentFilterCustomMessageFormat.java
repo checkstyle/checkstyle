@@ -1,11 +1,11 @@
 /*
 SuppressWithPlainTextCommentFilter
+charset = (default)UTF-8
 offCommentFormat = (default)// CHECKSTYLE:OFF
 onCommentFormat = (default)// CHECKSTYLE:ON
 checkFormat = (default).*
 messageFormat = .*tab.*
 idFormat = (default)(null)
-
 
 com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck
 id = ignore
