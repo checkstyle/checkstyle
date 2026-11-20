@@ -200,7 +200,7 @@ public class WhitespaceBeforeEmptyBodyCheck extends AbstractCheck {
             tokenText = "static";
         }
         final int firstLastColumn = firstToken.getColumnNo()
-                + tokenText.length() - 1;
+                + tokenText.codePointCount(0, tokenText.length()) - 1;
         return secondToken.getColumnNo() - firstLastColumn > 1;
     }
 
