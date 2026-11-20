@@ -249,10 +249,33 @@
     <Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CHECKED"/>
   </Match>
   <Match>
+    <!-- It is normal practice to have public/protected method to be named in good way,
+         and have private method named the same to do all/majority of work. Second method
+         is static so means that logic is stateless that is good marker. -->
+    <Or>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter"/>
+        <Method name="getMessageBundle"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck"/>
+        <Method name="findFrame"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+        <Method name="getGroupNumber"/>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+        <Method name="isEmptyBlock"/>
+      </And>
+    </Or>
+    <Bug pattern="MOM_MISLEADING_OVERLOAD_MODEL"/>
+  </Match>
+  <Match>
     <Bug pattern="
       EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS,
       IMC_IMMATURE_CLASS_NO_TOSTRING,
-      MOM_MISLEADING_OVERLOAD_MODEL,
       OPM_OVERLY_PERMISSIVE_METHOD,
       STT_STRING_PARSING_A_FIELD,
       WEM_WEAK_EXCEPTION_MESSAGING,
