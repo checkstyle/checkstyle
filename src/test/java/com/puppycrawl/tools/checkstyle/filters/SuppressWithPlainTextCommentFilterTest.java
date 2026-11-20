@@ -32,6 +32,7 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpecte
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
@@ -48,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
 import com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
@@ -68,6 +70,33 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter";
+    }
+
+    @Test
+    public void testCharsetInheritedFromChecker() throws Exception {
+        final File input = new File(temporaryFolder, "input.txt");
+        Files.writeString(input.toPath(), "// CHECKSTYLE:OFF\nBAD\n// CHECKSTYLE:ON\nBAD\n",
+                StandardCharsets.UTF_16);
+        final File config = new File(temporaryFolder, "config.txt");
+        Files.writeString(config.toPath(),
+                """
+                /*xml
+                <module name="Checker">
+                  <property name="charset" value="UTF-16"/>
+                  <module name="RegexpSingleline">
+                    <property name="format" value="BAD"/>
+                  </module>
+                  <module name="SuppressWithPlainTextCommentFilter"/>
+                </module>
+                */
+                """, StandardCharsets.UTF_8);
+        final Configuration checkerConfig = InlineConfigParser
+                .parseWithXmlHeader(config.getAbsolutePath()).xmlConfiguration();
+        final String[] expected = {
+            "4: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED, "BAD"),
+        };
+
+        verify(createChecker(checkerConfig), input.getAbsolutePath(), expected);
     }
 
     @Test
