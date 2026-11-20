@@ -172,6 +172,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
         };
     }
 
