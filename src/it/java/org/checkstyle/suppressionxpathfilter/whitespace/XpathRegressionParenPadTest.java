@@ -44,7 +44,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
     @Test
     public void testLeftFollowed() throws Exception {
         final String[] expectedViolation = {
-            "17:12: " + getCheckMessage(ParenPadCheck.class,
+            "22:12: " + getCheckMessage(ParenPadCheck.class,
                     ParenPadCheck.MSG_WS_FOLLOWED, "("),
         };
 
@@ -63,7 +63,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
     @Test
     public void testLeftNotFollowed() throws Exception {
         final String[] expectedViolation = {
-            "17:12: " + getCheckMessage(ParenPadCheck.class,
+            "22:12: " + getCheckMessage(ParenPadCheck.class,
                     ParenPadCheck.MSG_WS_NOT_FOLLOWED, "("),
         };
 
@@ -82,7 +82,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
     @Test
     public void testRightPreceded() throws Exception {
         final String[] expectedViolation = {
-            "17:19: " + getCheckMessage(ParenPadCheck.class,
+            "22:19: " + getCheckMessage(ParenPadCheck.class,
                     ParenPadCheck.MSG_WS_PRECEDED, ")"),
         };
 
@@ -101,7 +101,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
     @Test
     public void testRightNotPreceded() throws Exception {
         final String[] expectedViolation = {
-            "17:19: " + getCheckMessage(ParenPadCheck.class,
+            "22:19: " + getCheckMessage(ParenPadCheck.class,
                     ParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
         };
 
