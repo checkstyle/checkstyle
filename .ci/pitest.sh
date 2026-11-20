@@ -19,10 +19,10 @@ case $1 in
 
   if [[ $(echo "$PROFILES" | grep -w -- "${1}" | cat) != "" ]]; then
     echo "Generation of pitest report:"
-    echo "./mvnw -e --no-transfer-progress -P$1 clean test-compile \
+    echo "./mvnw -e --no-transfer-progress -U -P$1 clean test-compile \
                 org.pitest:pitest-maven:mutationCoverage"
     set +e
-    ./mvnw -e --no-transfer-progress -P"$1" clean test-compile \
+    ./mvnw -e --no-transfer-progress -U -P"$1" clean test-compile \
       org.pitest:pitest-maven:mutationCoverage
     EXIT_CODE=$?
     set -e
