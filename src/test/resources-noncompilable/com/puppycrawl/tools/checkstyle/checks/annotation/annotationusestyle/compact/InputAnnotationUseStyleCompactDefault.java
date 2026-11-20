@@ -9,7 +9,8 @@ trailingArrayComma = (default)never
 
 // non-compiled with javac: Compilable with Java25
 
-@SuppressWarnings({"unused"}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SuppressWarnings({"unused"})
 int field1 = 0;
 
 @SuppressWarnings("unused")
@@ -18,7 +19,8 @@ int field2 = 0;
 @SuppressWarnings(value = "unused")
 int field3 = 0;
 
-@Deprecated() // violation 'Annotation cannot have closing parenthesis.'
+// violation below 'Annotation cannot have closing parenthesis.'
+@Deprecated()
 void method1() {
 }
 
