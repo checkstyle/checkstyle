@@ -133,6 +133,8 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example10",
             "checks/imports/importorder/Example11",
             "checks/imports/importorder/Example12",
+            "checks/imports/importorder/Example13",
+            "checks/imports/importorder/Example14",
             "checks/imports/importorder/Example2",
             "checks/imports/importorder/Example3",
             "checks/imports/importorder/Example4",

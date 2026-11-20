@@ -62,6 +62,9 @@
             <property default-value="" name="staticGroups" type="java.lang.String[]">
                <description>Specify list of &lt;b&gt;static&lt;/b&gt; import groups. Every group identified either by a common prefix string, or by a regular expression enclosed in forward slashes (e.g. &lt;code&gt;/regexp/&lt;/code&gt;). If an import matches two or more groups, the best match is selected (closest to the start, and the longest match). All static imports, which does not match any group, fall into an additional group, located at the end. Thus, the empty list of static groups (the default value) means one group for all static imports. This property has effect only when the property &lt;code&gt;option&lt;/code&gt; is set to &lt;code&gt;top&lt;/code&gt; or &lt;code&gt;bottom&lt;/code&gt;.</description>
             </property>
+            <property default-value="false" name="useContainerOrdering" type="boolean">
+               <description>Control whether to use container ordering (Eclipse IDE term) for type imports or not.</description>
+            </property>
             <property default-value="false"
                       name="useContainerOrderingForStatic"
                       type="boolean">
