@@ -393,6 +393,26 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     }
 
     @Test
+    public void testSupplementaryCharacters() throws Exception {
+        final String[] expected = {
+            "23:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 25),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilizingTrailingSpaceSupplementaryCharacters.java"),
+                expected);
+    }
+
+    @Test
+    public void testSupplementaryCharactersInFirstWord() throws Exception {
+        final String[] expected = {
+            "17:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 70),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilizingTrailingSpaceSupplementaryFirstWord.java"),
+                expected);
+    }
+
+    @Test
     public void testTagHeaderOnly() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
