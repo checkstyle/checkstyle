@@ -154,7 +154,8 @@ public final class BlockCommentPosition {
                 || isOnConstructor(blockComment)
                 || isOnEnumConstant(blockComment)
                 || isOnAnnotationField(blockComment)
-                || isOnCompactConstructor(blockComment);
+                || isOnCompactConstructor(blockComment)
+                || isOnRecordComponent(blockComment);
     }
 
     /**
@@ -211,6 +212,17 @@ public final class BlockCommentPosition {
     }
 
     /**
+     * Node is on record component declaration.
+     *
+     * @param blockComment DetailAST
+     * @return true if node is before record component
+     */
+    public static boolean isOnRecordComponent(DetailAST blockComment) {
+        return isOnPlainRecordComponent(blockComment)
+                || isOnRecordComponentWithAnnotation(blockComment);
+    }
+
+    /**
      * Node is on enum constant.
      *
      * @param blockComment DetailAST
@@ -259,6 +271,38 @@ public final class BlockCommentPosition {
         return blockComment.getParent().getType() == TokenTypes.MODULE_DEF
                 && prevSibling.getType() == TokenTypes.ANNOTATIONS
                 && !prevSibling.hasChildren();
+    }
+
+    /**
+     * Checks that block comment is on record component. The comment is placed under the
+     * component's type; in case of a fully qualified type it is nested in the {@code DOT}
+     * nodes of the type, so we go up to the {@code TYPE} node first.
+     *
+     * @param blockComment block comment start DetailAST
+     * @return true if block comment is on record component
+     */
+    private static boolean isOnPlainRecordComponent(DetailAST blockComment) {
+        DetailAST parent = blockComment.getParent();
+        // type could be in fully qualified form, so we go up to Type token
+        while (parent.getType() == TokenTypes.DOT) {
+            parent = parent.getParent();
+        }
+        return parent.getType() == TokenTypes.TYPE
+                && parent.getParent().getType() == TokenTypes.RECORD_COMPONENT_DEF
+                && getPrevSiblingSkipComments(blockComment) == null;
+    }
+
+    /**
+     * Checks that block comment is on record component and is placed before its annotation.
+     *
+     * @param blockComment block comment start DetailAST
+     * @return true if block comment is on record component with annotation
+     */
+    private static boolean isOnRecordComponentWithAnnotation(DetailAST blockComment) {
+        final DetailAST parent = blockComment.getParent();
+        return parent.getType() == TokenTypes.ANNOTATION
+                && parent.getParent().getParent().getType() == TokenTypes.RECORD_COMPONENT_DEF
+                && getPrevSiblingSkipComments(blockComment) == null;
     }
 
     /**
