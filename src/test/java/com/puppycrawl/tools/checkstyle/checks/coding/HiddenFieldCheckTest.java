@@ -876,7 +876,8 @@ public class HiddenFieldCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testClearState() throws Exception {
         final HiddenFieldCheck check = new HiddenFieldCheck();
-        final DetailAST root = JavaParser.parseFile(new File(getPath("InputHiddenField8.java")),
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputHiddenFieldClearState.java")),
                 JavaParser.Options.WITHOUT_COMMENTS);
         final Optional<DetailAST> classDef = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.CLASS_DEF);
