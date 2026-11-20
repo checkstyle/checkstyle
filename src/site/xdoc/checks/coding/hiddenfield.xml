@@ -38,7 +38,7 @@
 </div>
       <subsection name="Description" id="HiddenField_Description">
         <div>
-          Checks that a local variable or a parameter does not shadow
+          Checks that a local variable, a parameter or a record component does not shadow
           a field that is defined in the same class.
         </div>
       </subsection>
