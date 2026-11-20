@@ -391,6 +391,8 @@
             files="src/site/xdoc/checks/coding/unnecessarypermitsclause.xml.template"/>
   <suppress id="propertiesMacroMustExist"
             files="src/site/xdoc/checks/modifier/redundantmodifiercompactsource.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+            files="src/site/xdoc/checks/coding/duplicateelseifcondition.xml.template"/>
 
   <!-- Index templates don't need since macro by design -->
   <suppress id="sinceMacroMustExist"
