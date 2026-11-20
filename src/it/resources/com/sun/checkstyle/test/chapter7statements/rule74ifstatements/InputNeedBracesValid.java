@@ -40,4 +40,14 @@ public final class InputNeedBracesValid {
         }
     }
 
+    /**
+     * Dummy method containing permitted empty loop bodies.
+     *
+     * @param condition dummy condition.
+     */
+    public void emptyLoopBodies(final boolean condition) {
+        for (; condition;);
+        while (condition);
+    }
+
 }
