@@ -642,7 +642,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocMethodHtml() throws Exception {
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
+            "20:9: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodHtml.java"), expected);

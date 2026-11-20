@@ -61,7 +61,7 @@ public class JavadocTagContinuationIndentationCheckExamplesTest
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "a"),
+            "14:7: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "a"),
             "27: " + getCheckMessage(MSG_KEY, 4),
             "44: " + getCheckMessage(MSG_KEY, 4),
             "45: " + getCheckMessage(MSG_KEY, 4),
