@@ -91,6 +91,18 @@ public class InnerAssignmentCheck extends AbstractCheck {
         },
         {TokenTypes.EXPR, TokenTypes.LAMBDA},
         {TokenTypes.EXPR, TokenTypes.SWITCH_RULE, TokenTypes.LITERAL_SWITCH, TokenTypes.SLIST},
+        {TokenTypes.EXPR, TokenTypes.SWITCH_RULE, TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_IF},
+        {TokenTypes.EXPR, TokenTypes.SWITCH_RULE, TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_ELSE},
+        {TokenTypes.EXPR, TokenTypes.SWITCH_RULE, TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_WHILE},
+        {TokenTypes.EXPR, TokenTypes.SWITCH_RULE, TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_FOR},
+        {TokenTypes.EXPR, TokenTypes.SWITCH_RULE, TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_DO},
+        {TokenTypes.EXPR, TokenTypes.SWITCH_RULE, TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LABELED_STAT},
     };
 
     /**
