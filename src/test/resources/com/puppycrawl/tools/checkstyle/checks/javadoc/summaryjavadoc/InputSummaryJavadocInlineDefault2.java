@@ -14,15 +14,18 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
  */
 class InputSummaryJavadocInlineDefault2 {
 
+    // violation 2 lines below 'Summary .* missing an ending period.'
     /**
      * {@summary {}@throws Exception if a problem occurs}
-     */ // violation above 'Summary .* missing an ending period.'
+     */
     void foo4() throws Exception {}
+
     // violation below 'First sentence .* missing an ending period.'
     /**
      * mm{@inheritDoc}
      */
     void foo7() {}
+
     // violation below 'Summary javadoc is missing.'
     /**
      * {@link #setBounds(int,int,int,int)}
@@ -33,9 +36,11 @@ class InputSummaryJavadocInlineDefault2 {
      * {@summary {@code see} .}
      */
     void foo10() {}
+
+    // violation 2 lines below 'Summary .* missing an ending period.'
     /**
      * {@summary M m m m {@inheritDoc}}
-     */ // violation above 'Summary .* missing an ending period.'
+     */
     void foo14() {}
 
     /**{@summary @summary .} */
@@ -50,13 +55,16 @@ class InputSummaryJavadocInlineDefault2 {
      * {@summary {@input Javadoc}.}
      */
     void foo17(){}
+
+    // violation 2 lines below 'Summary javadoc is missing.'
     /**
      * {@summary}
-     */ // violation above 'Summary javadoc is missing.'
+     */
     void foo22() {}
 
+    // violation below 'Summary javadoc is missing.'
     /** */
-    String[] foo9() {return null;} // violation above 'Summary javadoc is missing.'
+    String[] foo9() {return null;}
 
     /**
      * {@summary Javadoc {@code code} correct.}
