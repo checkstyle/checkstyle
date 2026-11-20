@@ -25,7 +25,7 @@ class PC2 {
     private class PC3 {
 
         // uncommented main with depth 3
-        public void main(String[] args)
+        public void main(String[] args) // violation 'Uncommented main method found'
         {
             System.identityHashCode("PC.main()");
         }
