@@ -31,4 +31,22 @@ public class InputOneStatementPerLineUnnecessarySemi {
         class LocalClass {};
     };
 
+    String str = "123";
+    ;
+    @Deprecated
+    String str1 = "123";
+    ;
+    String str2 = "123";
+    ;
+
+    void method2() {
+        String str = "123";
+        ;
+        String str3 = "123";
+        ;
+        @SuppressWarnings("unused")
+        String str4 = "123";;
+        ;
+    }
+
 }
