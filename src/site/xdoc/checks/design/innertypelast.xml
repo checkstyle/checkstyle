@@ -31,7 +31,7 @@
 </div>
       <subsection name="Description" id="InnerTypeLast_Description">
         <div>
-          Checks nested (internal) classes/interfaces are declared at the bottom of the
+          Checks nested (internal) classes/interfaces/enums/annotations are declared at the bottom of the
           primary (top-level) class after all init and static init blocks,
           method, constructor and field declarations.
         </div>
@@ -62,6 +62,20 @@ class Test2 {
   class InnerTest1 {}
   // violation below 'fields and methods should be before inner types'
   public Test2() {}
+}
+
+class Test3 {
+  enum Status { ACTIVE, INACTIVE }
+  // violation below 'fields and methods should be before inner types'
+  private int count;
+  // violation below 'fields and methods should be before inner types'
+  public void doWork() {}
+}
+
+class Test4 {
+  @interface MyAnnotation { String value() default ""; }
+  // violation below 'fields and methods should be before inner types'
+  private int field;
 }
 
 class Example1 {

@@ -5,7 +5,7 @@
              name="InnerTypeLast"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks nested (internal) classes/interfaces are declared at the bottom of the
+ Checks nested (internal) classes/interfaces/enums/annotations are declared at the bottom of the
  primary (top-level) class after all init and static init blocks,
  method, constructor and field declarations.
  &lt;/div&gt;</description>

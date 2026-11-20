@@ -130,4 +130,56 @@ public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
                 expectedViolations);
     }
 
+    @Test
+    public void testFour() throws Exception {
+        final String[] expectedViolations = {
+            "17:5: " + getCheckMessage(InnerTypeLastCheck.class, MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='InputXpathInnerTypeLastFour']]"
+                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='count']]",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='InputXpathInnerTypeLastFour']]"
+                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='count']]"
+                        + "/MODIFIERS",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='InputXpathInnerTypeLastFour']]"
+                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='count']]"
+                        + "/MODIFIERS/LITERAL_PRIVATE"
+        );
+
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInnerTypeLastFour.java"),
+                expectedXpathQueries,
+                expectedViolations);
+    }
+
+    @Test
+    public void testFive() throws Exception {
+        final String[] expectedViolations = {
+            "17:5: " + getCheckMessage(InnerTypeLastCheck.class, MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='InputXpathInnerTypeLastFive']]"
+                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='field']]",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='InputXpathInnerTypeLastFive']]"
+                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='field']]"
+                        + "/MODIFIERS",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='InputXpathInnerTypeLastFive']]"
+                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='field']]"
+                        + "/MODIFIERS/LITERAL_PRIVATE"
+        );
+
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathInnerTypeLastFive.java"),
+                expectedXpathQueries,
+                expectedViolations);
+    }
+
 }
