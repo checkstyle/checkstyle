@@ -29,6 +29,7 @@ public class InputSummaryJavadocInlineForbidden2 {
                 void foo10() {
                 }
             };
+
     // violation 2 lines below 'Summary .* missing an ending period.'
     /**
      * {@summary first sentence is normally the summary.
@@ -44,9 +45,11 @@ public class InputSummaryJavadocInlineForbidden2 {
     public void validInlineJavadoc()
     {
     }
+
+    // violation 2 lines below 'Summary javadoc is missing.'
     /**
      * {@summary <p> </p>}
-     */ // violation above 'Summary javadoc is missing.'
+     */
     void foo12() {
     }
 
