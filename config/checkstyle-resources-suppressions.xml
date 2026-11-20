@@ -326,8 +326,6 @@
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/InputJavadocTypeJavadoc_3\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/InputRegexpCheckStopEarly\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/InputHiddenField8\.java"/>
 
   <suppress checks="FileLength"
     files="/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/InputClassFanOutComplexityRemoveIncorrectAnnotationToken\.java"/>
