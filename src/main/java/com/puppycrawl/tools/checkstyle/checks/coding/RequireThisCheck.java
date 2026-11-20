@@ -101,7 +101,9 @@ public class RequireThisCheck extends AbstractCheck {
         TokenTypes.TYPE_ARGUMENT,
         TokenTypes.RECORD_DEF,
         TokenTypes.RECORD_COMPONENT_DEF,
-        TokenTypes.RESOURCE
+        TokenTypes.RESOURCE,
+        TokenTypes.PATTERN_VARIABLE_DEF,
+        TokenTypes.RECORD_PATTERN_DEF
     );
     /** Set of all assign tokens. */
     private static final BitSet ASSIGN_TOKENS = TokenUtil.asBitSet(
@@ -385,7 +387,8 @@ public class RequireThisCheck extends AbstractCheck {
         if (!importOrPackage
                 && !typeName
                 && !DECLARATION_TOKENS.get(parentType)
-                && !isLambdaParameter(ast)) {
+                && !isLambdaParameter(ast)
+                && !isPatternVariableInScope(ast)) {
             final AbstractFrame fieldFrame = findClassFrame(ast, LookMode.NO_LOOK_FOR_METHOD);
 
             if (fieldFrame != null
@@ -395,6 +398,103 @@ public class RequireThisCheck extends AbstractCheck {
             }
         }
         return frame;
+    }
+
+    /**
+     * Checks whether the given IDENT refers to a pattern variable which is in scope
+     * according to the flow scoping rules (JLS 6.3.1) of {@code if}, {@code while},
+     * {@code &&}, {@code ||}, {@code !} and {@code ?:}.
+     *
+     * @param ast IDENT token
+     * @return true if the IDENT refers to a pattern variable which is in scope
+     */
+    private static boolean isPatternVariableInScope(DetailAST ast) {
+        boolean result = false;
+        DetailAST child = ast;
+        while (!result && child.getParent() != null) {
+            final DetailAST parent = child.getParent();
+            final DetailAST cond = skipParentheses(parent.getFirstChild());
+            if (child != cond && TokenUtil.isOfType(parent, TokenTypes.LITERAL_IF,
+                    TokenTypes.LITERAL_WHILE, TokenTypes.LAND, TokenTypes.LOR,
+                    TokenTypes.QUESTION)) {
+                final boolean whenTrue = switch (parent.getType()) {
+                    case TokenTypes.LOR -> false;
+                    case TokenTypes.QUESTION -> child == skipParentheses(cond.getNextSibling());
+                    default -> child.getType() != TokenTypes.LITERAL_ELSE;
+                };
+                result = patternVarsForBranch(cond, whenTrue).contains(ast.getText());
+            }
+            child = parent;
+        }
+        return result;
+    }
+
+    /**
+     * Returns the names of the pattern variables introduced by the given boolean
+     * expression when it evaluates to the given value (JLS 6.3.1).
+     *
+     * @param expr the expression, possibly preceded by parentheses.
+     * @param whenTrue whether to collect the variables introduced when the
+     *                 expression is true, otherwise when it is false.
+     * @return names of the introduced pattern variables.
+     */
+    private static Set<String> patternVarsForBranch(DetailAST expr, boolean whenTrue) {
+        final DetailAST node = skipParentheses(expr);
+        final Set<String> result;
+        switch (node.getType()) {
+            case TokenTypes.LITERAL_INSTANCEOF -> {
+                result = new HashSet<>();
+                if (whenTrue) {
+                    collectPatternVariableNames(node.getLastChild(), result);
+                }
+            }
+            case TokenTypes.EXPR -> result = patternVarsForBranch(node.getFirstChild(), whenTrue);
+            case TokenTypes.LNOT -> result = patternVarsForBranch(node.getFirstChild(), !whenTrue);
+            case TokenTypes.LAND, TokenTypes.LOR -> {
+                final DetailAST left = skipParentheses(node.getFirstChild());
+                result = patternVarsForBranch(left, whenTrue);
+                final Set<String> rightVars = patternVarsForBranch(left.getNextSibling(), whenTrue);
+                if (whenTrue == (node.getType() == TokenTypes.LAND)) {
+                    result.addAll(rightVars);
+                }
+                else {
+                    result.retainAll(rightVars);
+                }
+            }
+            default -> result = new HashSet<>();
+        }
+        return result;
+    }
+
+    /**
+     * Collects the names of all pattern variables declared in the given subtree.
+     *
+     * @param ast the root of the subtree.
+     * @param names the collection to add the names to.
+     */
+    private static void collectPatternVariableNames(DetailAST ast, Set<String> names) {
+        if (ast.getType() == TokenTypes.PATTERN_VARIABLE_DEF) {
+            names.add(ast.findFirstToken(TokenTypes.IDENT).getText());
+        }
+        for (DetailAST child = ast.getFirstChild(); child != null;
+                child = child.getNextSibling()) {
+            collectPatternVariableNames(child, names);
+        }
+    }
+
+    /**
+     * Skips the parentheses tokens starting from the given node and returns
+     * the first sibling which is not a parenthesis.
+     *
+     * @param ast the node to start from.
+     * @return the first node which is not a parenthesis.
+     */
+    private static DetailAST skipParentheses(DetailAST ast) {
+        DetailAST result = ast;
+        while (TokenUtil.isOfType(result, TokenTypes.LPAREN, TokenTypes.RPAREN)) {
+            result = result.getNextSibling();
+        }
+        return result;
     }
 
     /**
