@@ -176,8 +176,6 @@
             files="[\\/]filters[\\/]suppresswithplaintextcommentfilter[\\/]InputSuppressWithPlainTextCommentFilterSuppressByIdJavadocCheck\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]annotation[\\/]annotationonsameline[\\/]InputXpathAnnotationOnSameLineInterface\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]annotation[\\/]suppresswarnings[\\/]InputXpathSuppressWarningsAnnotationFieldDefinition\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]javadoc[\\/]blockcommentendposition[\\/]InputXpathBlockCommentEndPositionOne\.java"/>
 
