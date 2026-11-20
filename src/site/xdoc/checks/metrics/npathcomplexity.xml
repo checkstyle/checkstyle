@@ -22,6 +22,7 @@
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
               <li><a href="#Example2-config" class="toc-sublink">With a threshold of 100</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">With a threshold of 1</a></li>
             </ul>
           </li>
           <li><a href="#NPathComplexity_Example_of_Usage">Example of Usage</a></li>
@@ -260,6 +261,56 @@ public abstract class Example2 {
   public abstract String bar();
   public abstract String baz();
   public abstract void print(String str);
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check with a threshold of 1:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NPathComplexity"&gt;
+      &lt;property name="max" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+          Each catch clause adds an alternative path. Catching two exception types in
+          one clause still adds only one path. An unconditional cleanup call in a
+          finally block and the implicit close in try-with-resources add no branches.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3 {
+  void multiCatch() { // violation 'NPath Complexity is 2 (max allowed is 1).'
+    try {
+      work();
+    } catch (IllegalArgumentException | IllegalStateException ex) {
+      recover();
+    } finally {
+      cleanUp();
+    }
+  }
+
+  void separateCatches() { // violation 'NPath Complexity is 3 (max allowed is 1).'
+    try {
+      work();
+    } catch (IllegalArgumentException ex) {
+      recover();
+    } catch (IllegalStateException ex) {
+      recover();
+    }
+  }
+
+  void resource() throws Exception {
+    try (AutoCloseable resource = this::cleanUp) {
+      work();
+    }
+  }
+
+  void work() {}
+  void recover() {}
+  void cleanUp() {}
 }
 </code></pre></div>
       </subsection>
