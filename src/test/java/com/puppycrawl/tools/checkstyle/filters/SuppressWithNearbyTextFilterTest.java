@@ -44,7 +44,6 @@ import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport {
 
@@ -83,6 +82,58 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         verifyFilterWithInlineConfigParser(
             getPath("InputSuppressWithNearbyTextFilterDefaultConfig.java"),
             violationMessages, removeSuppressed(violationMessages, suppressedMessages)
+        );
+    }
+
+    @Test
+    public void testMultipleFiles() throws Exception {
+        final int expectedLineLength = 90;
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
+        final List<String> firstFileUnfiltered = List.of(
+            "29: " + getLineLengthCheckMessage(expectedLineLength, 94),
+            "31: " + getLineLengthCheckMessage(expectedLineLength, 97),
+            "41: " + getLineLengthCheckMessage(expectedLineLength, 94),
+            "44:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant", pattern),
+            "47:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant1", pattern)
+        );
+        final List<String> firstFileSuppressed = List.of(
+            "31: " + getLineLengthCheckMessage(expectedLineLength, 97),
+            "41: " + getLineLengthCheckMessage(expectedLineLength, 94),
+            "47:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant1", pattern)
+        );
+
+        final List<String> secondFileUnfiltered = List.of(
+            "29: " + getLineLengthCheckMessage(expectedLineLength, 98),
+            "38: " + getLineLengthCheckMessage(expectedLineLength, 100),
+            "42:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant2", pattern),
+            "45:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant3", pattern),
+            "47:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant4", pattern)
+        );
+        final List<String> secondFileSuppressed = List.of(
+            "42:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant2", pattern)
+        );
+
+        verifyFilterWithInlineConfigParser(
+            List.of(
+                getPath("InputSuppressWithNearbyTextFilterDefaultConfig.java"),
+                getPath("InputSuppressWithNearbyTextFilterMultipleFiles.java")
+            ),
+            List.of(
+                firstFileUnfiltered,
+                secondFileUnfiltered
+            ),
+            List.of(
+                removeSuppressed(firstFileUnfiltered, firstFileSuppressed),
+                removeSuppressed(secondFileUnfiltered, secondFileSuppressed)
+            )
         );
     }
 
@@ -523,91 +574,6 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         assertWithMessage("filter should accept directory")
                 .that(filter.accept(event))
                 .isTrue();
-    }
-
-    /**
-     * Calls the filter on two consecutive real input files and asserts that the 'suppressions'
-     * internal field is cleared after each run.
-     * Our goal is 100% test coverage and we need access to the implementation details
-     * so {@link AbstractModuleTestSupport#verifyFilterWithInlineConfigParser} is not used.
-     *
-     * @throws IOException if an error occurs while formatting the path to the input file.
-     */
-    @Test
-    public void testSuppressionsAreClearedEachRun() throws IOException {
-        final SuppressWithNearbyTextFilter filter = new SuppressWithNearbyTextFilter();
-
-        final List<?> suppressions1 = getSuppressionsAfterExecution(filter,
-                getPath("InputSuppressWithNearbyTextFilterDefaultConfig.java"));
-        assertWithMessage("Invalid suppressions size")
-                .that(suppressions1)
-                .hasSize(3);
-
-        final List<?> suppressions2 = getSuppressionsAfterExecution(filter,
-                getPath("InputSuppressWithNearbyTextFilterOneLineText.txt"));
-        assertWithMessage("Invalid suppressions size")
-                .that(suppressions2)
-                .isEmpty();
-    }
-
-    /**
-     * Calls the filter on two consecutive real input files and asserts that the
-     * 'cachedFileAbsolutePath' internal field has changed after the first run.
-     * Our goal is 100% test coverage and we need access to the implementation details
-     * so {@link AbstractModuleTestSupport#verifyFilterWithInlineConfigParser} is not used.
-     *
-     * @throws IOException if an error occurs while formatting the path to the input file.
-     */
-    @Test
-    public void testCachedFileAbsolutePathHasChangedEachRun() throws IOException {
-        final SuppressWithNearbyTextFilter filter = new SuppressWithNearbyTextFilter();
-
-        final String cachedFileAbsolutePath1 = getCachedFileAbsolutePathAfterExecution(filter,
-                getPath("InputSuppressWithNearbyTextFilterDefaultConfig.java"));
-        final String cachedFileAbsolutePath2 = getCachedFileAbsolutePathAfterExecution(filter,
-                getPath("InputSuppressWithNearbyTextFilterOneLineText.txt"));
-
-        assertWithMessage("cachedFileAbsolutePath has not changed")
-                .that(cachedFileAbsolutePath1)
-                .isNotEqualTo(cachedFileAbsolutePath2);
-    }
-
-    /**
-     * Calls the filter with a real input file and returns a list of identified suppressions.
-     *
-     * @return {@code Suppression} list.
-     */
-    private static List<?> getSuppressionsAfterExecution(SuppressWithNearbyTextFilter filter,
-                                                         String filename) {
-        final AuditEvent dummyEvent = buildDummyAuditEvent(filename);
-        filter.accept(dummyEvent);
-        return TestUtil.getInternalState(filter, "suppressions", List.class);
-    }
-
-    /**
-     * Calls the filter with a real input file and returns the
-     * state of the 'cachedFileAbsolutePath' field.
-     *
-     * @return {@code cachedFileAbsolutePath} value.
-     */
-    private static String getCachedFileAbsolutePathAfterExecution(SuppressWithNearbyTextFilter
-                                                                           filter,
-                                                                  String filename) {
-        final AuditEvent dummyEvent = buildDummyAuditEvent(filename);
-        filter.accept(dummyEvent);
-        return TestUtil.getInternalState(filter, "cachedFileAbsolutePath", String.class);
-    }
-
-    /**
-     * Builds a dummy audit event with a violation for the given file name.
-     *
-     * @param filename input file name.
-     * @return dummy {@code AuditEvent} instance.
-     */
-    private static AuditEvent buildDummyAuditEvent(String filename) {
-        final Violation violation = new Violation(1, null, null,
-                null, null, Object.class, null);
-        return new AuditEvent("", filename, violation);
     }
 
     private static String getLineLengthCheckMessage(int expectedLength, int actualLength) {

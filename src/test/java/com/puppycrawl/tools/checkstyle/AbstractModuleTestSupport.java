@@ -234,20 +234,68 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                                                             String[] expectedUnfiltered,
                                                             String... expectedFiltered)
             throws Exception {
-        final TestInputConfiguration testInputConfiguration =
-                InlineConfigParser.parseWithFilteredViolations(filePath);
+        verifyFilterWithInlineConfigParser(
+                List.of(filePath),
+                List.of(List.of(expectedUnfiltered)),
+                List.of(List.of(expectedFiltered)));
+    }
+
+    /**
+     * Performs verification of multiple files with their given file paths using the configuration
+     * specified in the first file so that all files are processed through a single filter
+     * instance. Also performs verification of the config with filters specified in each input file.
+     *
+     * @param filePaths paths of files to verify.
+     * @param expectedUnfiltered expected unfiltered messages for each file.
+     * @param expectedFiltered expected filtered messages for each file.
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected final void verifyFilterWithInlineConfigParser(List<String> filePaths,
+                                                            List<List<String>> expectedUnfiltered,
+                                                            List<List<String>> expectedFiltered)
+            throws Exception {
+        assertWithMessage("At least one input file must be supplied")
+                .that(filePaths)
+                .isNotEmpty();
+        assertWithMessage("Expected unfiltered violations must be supplied for every input file")
+                .that(expectedUnfiltered)
+                .hasSize(filePaths.size());
+        assertWithMessage("Expected filtered violations must be supplied for every input file")
+                .that(expectedFiltered)
+                .hasSize(filePaths.size());
+        final TestInputConfiguration firstTestInputConfiguration =
+                InlineConfigParser.parseWithFilteredViolations(filePaths.getFirst());
         final DefaultConfiguration configWithoutFilters =
-                testInputConfiguration.createConfigurationWithoutFilters();
-        final List<TestInputViolation> violationsWithoutFilters =
-                new ArrayList<>(testInputConfiguration.violations());
-        violationsWithoutFilters.addAll(testInputConfiguration.filteredViolations());
-        Collections.sort(violationsWithoutFilters);
-        verifyViolations(configWithoutFilters, filePath, violationsWithoutFilters);
-        verify(configWithoutFilters, filePath, expectedUnfiltered);
+                firstTestInputConfiguration.createConfigurationWithoutFilters();
         final DefaultConfiguration configWithFilters =
-                testInputConfiguration.createConfiguration();
-        verifyViolations(configWithFilters, filePath, testInputConfiguration.violations());
-        verify(configWithFilters, filePath, expectedFiltered);
+                firstTestInputConfiguration.createConfiguration();
+        final File[] inputs = new File[filePaths.size()];
+        final ImmutableMap.Builder<String, List<String>> expectedUnfilteredByFile =
+                ImmutableMap.builder();
+        final ImmutableMap.Builder<String, List<String>> expectedFilteredByFile =
+                ImmutableMap.builder();
+
+        for (int index = 0; index < filePaths.size(); index++) {
+            final String filePath = filePaths.get(index);
+            final TestInputConfiguration testInputConfiguration =
+                    InlineConfigParser.parseWithFilteredViolations(filePath);
+            final List<TestInputViolation> violationsWithoutFilters =
+                    new ArrayList<>(testInputConfiguration.violations());
+            violationsWithoutFilters.addAll(testInputConfiguration.filteredViolations());
+            Collections.sort(violationsWithoutFilters);
+            verifyViolations(testInputConfiguration.createConfigurationWithoutFilters(),
+                    filePath, violationsWithoutFilters);
+            verifyViolations(testInputConfiguration.createConfiguration(),
+                    filePath, testInputConfiguration.violations());
+            inputs[index] = new File(filePath);
+            expectedUnfilteredByFile.put(filePath, expectedUnfiltered.get(index));
+            expectedFilteredByFile.put(filePath, expectedFiltered.get(index));
+        }
+
+        verify(createChecker(configWithoutFilters), inputs,
+                expectedUnfilteredByFile.buildOrThrow());
+        verify(createChecker(configWithFilters), inputs,
+                expectedFilteredByFile.buildOrThrow());
     }
 
     /**
@@ -994,6 +1042,20 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             }
         }
         return messageBundle;
+    }
+
+    /**
+     * Remove suppressed violation messages from actual violation messages list.
+     *
+     * @param actualViolations actual violation messages
+     * @param suppressedViolations suppressed violation messages
+     * @return a list of actual violation messages minus suppressed violation messages
+     */
+    protected static List<String> removeSuppressed(List<String> actualViolations,
+                                                   List<String> suppressedViolations) {
+        final List<String> actualViolationsList = new ArrayList<>(actualViolations);
+        actualViolationsList.removeAll(suppressedViolations);
+        return actualViolationsList;
     }
 
     /**
