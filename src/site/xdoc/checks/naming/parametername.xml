@@ -81,7 +81,7 @@
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Sets the pattern to match valid identifiers.</td>
               <td><a href="../../property-types.html#Pattern">Pattern</a></td>
-              <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+              <td><code>^([a-z][a-zA-Z0-9]*|_)$</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -118,9 +118,9 @@ class Example1 {
   }
 }
 // violation 6 lines above """Name 'V2' must match pattern
-//  '\Q^[a-z][a-zA-Z0-9]*$\E'\."""
+//  '\Q^([a-z][a-zA-Z0-9]*|_)$\E'\."""
 // violation 6 lines above """Name 'V3' must match pattern
-//  '\Q^[a-z][a-zA-Z0-9]*$\E'\."""
+//  '\Q^([a-z][a-zA-Z0-9]*|_)$\E'\."""
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
@@ -178,7 +178,7 @@ class Example3 {
   }
 }
 // violation 6 lines above """Name 'V2' must match pattern
-//  '\Q^[a-z][a-zA-Z0-9]*$\E'\."""
+//  '\Q^([a-z][a-zA-Z0-9]*|_)$\E'\."""
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           The following configuration checks that the parameters always start with two
