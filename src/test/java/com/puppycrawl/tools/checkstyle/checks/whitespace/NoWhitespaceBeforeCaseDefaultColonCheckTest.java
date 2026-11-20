@@ -76,6 +76,17 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
     }
 
     @Test
+    public void testUnicode() throws Exception {
+        final String[] expected = {
+            "13:22: " + getCheckMessage(MSG_KEY, ":"),
+            "15:24: " + getCheckMessage(MSG_KEY, ":"),
+            "17:22: " + getCheckMessage(MSG_KEY, ":"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeCaseDefaultColonUnicode.java"), expected);
+    }
+
+    @Test
     public void testAcceptableTokenIsColon() {
         final NoWhitespaceBeforeCaseDefaultColonCheck check =
                 new NoWhitespaceBeforeCaseDefaultColonCheck();
