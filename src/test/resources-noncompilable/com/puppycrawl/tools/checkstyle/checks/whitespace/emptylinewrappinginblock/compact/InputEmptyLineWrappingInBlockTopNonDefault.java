@@ -1,6 +1,6 @@
 /*
 EmptyLineWrappingInBlock
-tokens = CLASS_DEF, METHOD_DEF
+tokens = CLASS_DEF, METHOD_DEF, RECORD_DEF, COMPACT_CTOR_DEF
 topSeparator = empty_line_allowed
 bottomSeparator = empty_line_allowed
 
@@ -15,4 +15,14 @@ void main() {
 class EmptyClass{}
 
 interface EmptyInterface{}
+
+record Point(int x, int y) {
+
+    Point {
+
+        int a = 0;
+
+    }
+
+}
 
