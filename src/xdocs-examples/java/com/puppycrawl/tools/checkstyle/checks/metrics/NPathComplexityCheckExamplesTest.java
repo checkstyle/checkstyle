@@ -50,4 +50,14 @@ public class NPathComplexityCheckExamplesTest extends AbstractExamplesModuleTest
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "14:3: " + getCheckMessage(NPathComplexityCheck.MSG_KEY, 2, 1),
+            "24:3: " + getCheckMessage(NPathComplexityCheck.MSG_KEY, 3, 1),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
 }
