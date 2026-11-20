@@ -18,6 +18,9 @@
 
   <!--  Intentional suppressions for testing -->
   <suppress checks="NewlineAtEndOfFile"
+            files="/whitespaceafter/InputWhitespaceAfter(Empty|SlashOnly)SingleLineCommentAtEof\.java"/>
+
+  <suppress checks="NewlineAtEndOfFile"
             files="/checks/newlineatendoffile/InputNewlineAtEndOfFileNoNewlineLfCrCrlf.java"/>
   <suppress checks="NewlineAtEndOfFile"
             files="checks/newlineatendoffile/InputNewlineAtEndOfFileNoNewline.java"/>
