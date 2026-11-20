@@ -76,7 +76,7 @@ public class InputJavadocThree {
     //  'Prefer literal or code javadoc inline tag over '&gt;'.'
     /**
      * <b>&lt;T&gt;</b> bold generic.
-     * <p> if (a &amp; b &gt; c) then do something. </p>
+     * if (a &amp; b &gt; c) then do something.
      */
     public void methodBad4() {
         // 2 violations 3 lines above:
@@ -86,7 +86,7 @@ public class InputJavadocThree {
 
     /**
      * <b>{@code <T>}</b> bold generic.
-     * <p> {@code if (a & b > c) then do something. } </p>
+     * {@code if (a & b > c) then do something. }
      */
     public void methodGood4() {
     }

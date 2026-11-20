@@ -38,14 +38,14 @@ public class InputJavadocOne {
 
     // violation 2 lines below 'Summary javadoc is missing.'
     /**
-     * {@summary <p> </p>}
+     * {@summary }
      */
     public String method4() {
         return "";
     }
 
     /**
-     * {@summary <p>This is a javadoc with period.<p/>}
+     * {@summary This is a javadoc with period.}
      */
     public void method5() {}
 

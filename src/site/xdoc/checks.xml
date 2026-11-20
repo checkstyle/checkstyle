@@ -1730,6 +1730,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/javadoc/openjdkjavadocparagraph.html#OpenjdkJavadocParagraph">
+                OpenjdkJavadocParagraph
+              </a>
+            </td>
+            <td>
+              Checks paragraph formatting required by the OpenJDK Java Style Guidelines.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/whitespace/openjdkmethodparameteralignment.html#OpenjdkMethodParameterAlignment">
                 OpenjdkMethodParameterAlignment
               </a>
