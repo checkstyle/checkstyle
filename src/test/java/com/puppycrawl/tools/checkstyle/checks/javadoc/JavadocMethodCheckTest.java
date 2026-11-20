@@ -730,4 +730,16 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testJavadocMethodUnnamed() throws Exception {
+        final String[] expected = {
+            "50:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "named"),
+            "65:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "_"),
+            "73:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "missing"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocMethodUnnamed.java"), expected);
+    }
+
 }
