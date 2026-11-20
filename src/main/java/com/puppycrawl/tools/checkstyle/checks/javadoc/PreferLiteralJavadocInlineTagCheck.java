@@ -110,7 +110,8 @@ public class PreferLiteralJavadocInlineTagCheck extends AbstractJavadocCheck {
         for (String htmlEntity : HTML_ENTITIES) {
             int htmlEntityIndex = text.indexOf(htmlEntity);
             while (htmlEntityIndex >= 0) {
-                log(textNode.getLineNumber(), textNode.getColumnNumber() + htmlEntityIndex,
+                log(textNode.getLineNumber(),
+                    textNode.getColumnNumber() + text.codePointCount(0, htmlEntityIndex),
                     MSG_KEY, htmlEntity);
                 htmlEntityIndex = text.indexOf(htmlEntity, htmlEntityIndex + htmlEntity.length());
             }
