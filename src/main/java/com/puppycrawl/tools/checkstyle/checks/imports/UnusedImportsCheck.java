@@ -274,8 +274,10 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
         final int parentType = parent.getType();
 
         // Ignore IDENTs that are part of the import statement itself
+        // and type parameter declarations, which are not uses of an import
         final boolean collect = parentType != TokenTypes.IMPORT
-                && parentType != TokenTypes.STATIC_IMPORT;
+                && parentType != TokenTypes.STATIC_IMPORT
+                && parentType != TokenTypes.TYPE_PARAMETER;
 
         if (collect) {
             final boolean isClassOrMethod = parentType == TokenTypes.DOT
