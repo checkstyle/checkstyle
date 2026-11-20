@@ -235,18 +235,13 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMismatchInMiddleOfHeader() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", getPath("InputRegexpHeader.header"));
-
-        final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
-        checkInstance.configure(checkConfig);
-
+        final String headerPath = getPath("InputRegexpHeader.header");
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_HEADER_MISMATCH, "// .*",
-                    getPath("InputRegexpHeader.header")),
+            "2: " + getCheckMessage(MSG_HEADER_MISMATCH, "// .*", headerPath),
         };
-        verify(checkConfig, getPath("InputRegexpHeaderMulti52.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderMismatchInMiddleConfig.java"),
+                getPath("InputRegexpHeaderMismatchInMiddle.txt"), expected);
     }
 
     @Test
