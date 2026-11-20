@@ -27,7 +27,7 @@
               <li><a href="#Example5-config" class="toc-sublink">A filter to suppress all audit events between a comment containing <code>CSOFF: ALMOST_ALL</code> and a comment containing <code>CSON: ALMOST_ALL</code>, except for the RegexpSingleline check. Checker is configured to check only XML files using RegexpSingleline check to detect disallowed 'code' values for the 'type' parameter</a></li>
               <li><a href="#Example6-config" class="toc-sublink">A filter to suppress audit events that match a specific message in the messageFormat (allowing suppression not only by the check's name but also by the message content, as the same check can report violations with different message formats) between a comment containing <code>CSOFF</code> and comment containing <code>CSON</code>. Checker is configured to check only XML files using RegexpSingleline check to detect disallowed 'code' and 'config' values for the 'type' parameter</a></li>
               <li><a href="#Example7-config" class="toc-sublink">Example of Checkstyle checks and SuppressWithPlainTextCommentFilter configuration - the checkFormat, set to '$1', indicates that the ID of the check is in the first group of offCommentFormat and onCommentFormat regular expressions. Checker is configured to check only XML files using RegexpSingleline check to detect disallowed 'code' and 'config' values for the 'type' parameter</a></li>
-              <li><a href="#Example8-config" class="toc-sublink">Example of how to configure the check to suppress more than one check. Checker is configured to check only SQL files using RegexpSingleline check to detect usage of JOIN operations and LineLength check to detect lines exceeding 60 characters</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">Example of how to configure the check to suppress more than one check. Checker is configured to check only SQL files using RegexpSingleline check to detect usage of JOIN operations and LineLength check to detect lines exceeding 60 characters. The filter explicitly reads suppression comments using US-ASCII; otherwise, it inherits the encoding from Checker</a></li>
             </ul>
           </li>
           <li>
@@ -90,6 +90,13 @@
               <th>type</th>
               <th>default value</th>
               <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="charset"/><a href="#charset">charset</a></td>
+              <td>Specify the character encoding used to read source files. The default is inherited from the parent <code>Checker</code> module.</td>
+              <td><a href="../property-types.html#String">String</a></td>
+              <td><code>the charset property of the parent &lt;a href=&quot;https://checkstyle.org/config.html#Checker&quot;&gt;Checker&lt;/a&gt; module</code></td>
+              <td>14.5.0</td>
             </tr>
             <tr>
               <td><a id="checkFormat"/><a href="#checkFormat">checkFormat</a></td>
@@ -433,7 +440,8 @@ keyC=value5
           Example of how to configure the check to suppress more than one check.
           Checker is configured to check only SQL files using RegexpSingleline check to detect
           usage of JOIN operations and LineLength check to detect lines exceeding 60
-          characters:
+          characters. The filter explicitly reads suppression comments using US-ASCII;
+          otherwise, it inherits the encoding from Checker:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -448,6 +456,7 @@ keyC=value5
     &lt;property name="max" value="60"/&gt;
   &lt;/module&gt;
   &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+    &lt;property name="charset" value="US-ASCII"/&gt;
     &lt;property name="offCommentFormat"
      value="CSOFF\: ([\w\|]+)"/&gt;
     &lt;property name="onCommentFormat"

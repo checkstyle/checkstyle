@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -114,6 +115,9 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     @XdocsPropertyType(PropertyType.PATTERN)
     private String idFormat;
 
+    /** Specify the character encoding used to read source files. */
+    private String charset = StandardCharsets.UTF_8.name();
+
     /**
      * Creates a new {@code SuppressWithPlainTextCommentFilter} instance.
      */
@@ -172,6 +176,17 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         idFormat = format;
     }
 
+    /**
+     * Setter to specify the character encoding used to read source files.
+     * The default is inherited from the parent {@code Checker} module.
+     *
+     * @param charset the character encoding name
+     * @since 14.5.0
+     */
+    public final void setCharset(String charset) {
+        this.charset = Charset.forName(charset).name();
+    }
+
     @Override
     public boolean accept(AuditEvent event) {
         boolean accepted = true;
@@ -204,14 +219,14 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
      * @return {@code FileText} instance.
      * @throws IllegalStateException if the file could not be read.
      */
-    private static FileText getFileText(String fileName) {
+    private FileText getFileText(String fileName) {
         final Path path = Path.of(fileName);
         FileText result = null;
 
         // some violations can be on a directory, instead of a file
         if (!Files.isDirectory(path)) {
             try {
-                result = new FileText(path.toFile(), StandardCharsets.UTF_8.name());
+                result = new FileText(path.toFile(), charset);
             }
             catch (IOException exc) {
                 throw new IllegalStateException("Cannot read source file: " + fileName, exc);
