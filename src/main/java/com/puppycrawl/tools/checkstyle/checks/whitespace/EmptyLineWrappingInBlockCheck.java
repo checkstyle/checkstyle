@@ -227,10 +227,19 @@ public class EmptyLineWrappingInBlockCheck extends AbstractCheck {
                     leftBrace = ast;
                 }
             }
+            case TokenTypes.LITERAL_SWITCH ->
+                leftBrace = ast.findFirstToken(TokenTypes.LCURLY);
             case TokenTypes.CASE_GROUP ->
                 leftBrace = ast.getLastChild().findFirstToken(TokenTypes.SLIST);
-            case TokenTypes.LITERAL_CASE, TokenTypes.LITERAL_DEFAULT ->
-                leftBrace = ast.getParent().getLastChild().findFirstToken(TokenTypes.SLIST);
+            case TokenTypes.LITERAL_CASE, TokenTypes.LITERAL_DEFAULT -> {
+                final DetailAST parent = ast.getParent();
+                if (parent.getType() == TokenTypes.SWITCH_RULE) {
+                    leftBrace = parent.findFirstToken(TokenTypes.SLIST);
+                }
+                else {
+                    leftBrace = parent.getLastChild().findFirstToken(TokenTypes.SLIST);
+                }
+            }
             default ->
                 leftBrace = ast.findFirstToken(TokenTypes.SLIST);
         }
