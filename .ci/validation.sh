@@ -1236,6 +1236,30 @@ no-error-strata)
   STRATA_CS_POM_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
                      -Dexec.args='${checkstyle.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  # shellcheck disable=2016 # we do not want to expand properties in this command
+  BUILD_CONFIG_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
+                     -Dexec.args='${build-config.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  # Strata inherits build-config 2.8.0 at root but modules/pom.xml overrides to 2.8.1
+  OG_GROUP="com.open"
+  OG_GROUP+="gamma"
+  ART_KEY="artifact"
+  mvn -e --no-transfer-progress dependency:get \
+    "-D${ART_KEY}=${OG_GROUP}:build-config:${BUILD_CONFIG_VERSION}"
+  mvn -e --no-transfer-progress dependency:get \
+    "-D${ART_KEY}=${OG_GROUP}:build-config:2.8.1"
+  # Remove JavadocVariable because scope property was removed in Checkstyle 13.10.0
+  while IFS= read -r jar; do
+    for xml in "checkstyle/checkstyle-main-v${STRATA_CS_POM_VERSION}.xml" \
+               "checkstyle/checkstyle-main.xml"; do
+      jar xf "${jar}" "${xml}" 2>/dev/null || continue
+      sed '/<module name="JavadocVariable">/,/<\/module>/d' "${xml}" > patched.xml
+      mv patched.xml "${xml}"
+      jar --update --file "${jar}" "${xml}"
+      rm -rf checkstyle
+    done
+  done < <(find ~/.m2/repository/com/"open"*"gamma"/build-config -name "build-config-*.jar" \
+           ! -name "*-sources.jar")
   mvn -e --no-transfer-progress install -B -Dstrict -DskipTests \
      -Dforbiddenapis.skip=true -Dcheckstyle.version="${CS_POM_VERSION}" \
      -Dcheckstyle.config.suffix="-v$STRATA_CS_POM_VERSION"
