@@ -47,6 +47,12 @@ public class CommentsTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testTrailingCommentAfterRcurly() throws Exception {
+        verifyAst(getPath("InputComments3Ast.txt"), getPath("InputComments3.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
     public void testInputFullOfBlockComments() throws Exception {
         verifyAst(getPath("InputFullOfBlockCommentsAst.txt"),
                     getPath("InputFullOfBlockComments.java"),
