@@ -277,7 +277,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "MOD_ASSIGN",
                 // COLON token ignored in check config, explained in
                 // https://github.com/checkstyle/checkstyle/issues/4122
-                "COLON").collect(Collectors.toUnmodifiableSet()));
+                "COLON",
+                // METHOD_REF is checked by SeparatorWrap to avoid duplicate violations
+                "METHOD_REF").collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceBefore", Stream.of(
                 // google uses GenericWhitespace for this behavior
                 "GENERIC_START", "GENERIC_END",

@@ -18,7 +18,8 @@ public class InputSeparatorWrapMethodRef {
     };
     Arrays.sort(
         stringArray,
-        String:: // violation ''::' should be on a new line.'
+        // violation below ''::' should be on a new line.'
+        String::
             compareToIgnoreCase);
   }
 }
