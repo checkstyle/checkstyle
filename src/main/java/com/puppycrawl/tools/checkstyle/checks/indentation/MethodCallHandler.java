@@ -239,12 +239,30 @@ public class MethodCallHandler extends AbstractExpressionHandler {
                     false, true);
 
                 checkRparenIndent(lparen, rparen);
-                checkWrappingIndentation(getMainAst(), getCallLastNode(getMainAst()));
+                if (!isChainedMethodCall()) {
+                    checkWrappingIndentation(getMainAst(), getCallLastNode(getMainAst()));
+                }
             }
         }
         else if (isSimpleReturnMethodCall()) {
             checkReturnStatementCallArguments();
         }
+    }
+
+    /**
+     * Checks if this method call is chained.
+     *
+     * @return true if method call is chained.
+     */
+    private boolean isChainedMethodCall() {
+        boolean chained = false;
+        if (getMainAst().getType() == TokenTypes.METHOD_CALL
+                && getMainAst().getFirstChild().getType() == TokenTypes.DOT) {
+            final DetailAST target = getMainAst().getFirstChild().getFirstChild();
+            chained = target.getType() == TokenTypes.METHOD_CALL
+                    || target.getType() == TokenTypes.LITERAL_NEW;
+        }
+        return chained;
     }
 
     /**
