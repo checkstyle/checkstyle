@@ -36,6 +36,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class XmlMetaReaderTest extends AbstractPathTestSupport {
 
@@ -198,6 +199,13 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
         try (InputStream is = IOUtils.toInputStream("", StandardCharsets.UTF_8)) {
             assertThat(XmlMetaReader.read(is, null)).isNull();
         }
+    }
+
+    @Test
+    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+        assertWithMessage("Constructor is not private")
+                .that(TestUtil.isUtilsClassHasPrivateConstructor(XmlMetaReader.class))
+                .isTrue();
     }
 
     private static Set<String> fullNames(List<ModuleDetails> modules) {
