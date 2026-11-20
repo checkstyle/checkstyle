@@ -287,8 +287,8 @@ public class EmptyLineWrappingInBlockCheckTest extends AbstractModuleTestSupport
         final String[] expected = {
             "16:44: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_ONE, "{"),
             "19:5: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_ONE, "}"),
-            "26:16: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_ONE, "{"),
-            "29:5: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_ONE, "}"),
+            "28:16: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_ONE, "{"),
+            "31:5: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_ONE, "}"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineWrappingInBlockArrayInit.java"), expected);
