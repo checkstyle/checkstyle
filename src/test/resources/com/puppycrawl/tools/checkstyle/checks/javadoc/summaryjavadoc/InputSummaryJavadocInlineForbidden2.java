@@ -44,9 +44,10 @@ public class InputSummaryJavadocInlineForbidden2 {
     public void validInlineJavadoc()
     {
     }
+    // violation 2 lines below 'Summary javadoc is missing.'
     /**
      * {@summary <p> </p>}
-     */ // violation above 'Summary javadoc is missing.'
+     */
     void foo12() {
     }
 
