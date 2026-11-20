@@ -90,4 +90,13 @@ public class ClassHeaderWrapOpenjdkCheckTest extends AbstractModuleTestSupport {
                     expected);
     }
 
+    @Test
+    public void testHeaderLengthCountsCodePoints() throws Exception {
+        final String[] expected = {
+            "10:5: " + getCheckMessage(MSG_KEY_UNNECESSARY_WRAP),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputClassHeaderWrapOpenjdkCodePoints.java"), expected);
+    }
+
 }
