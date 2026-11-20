@@ -380,6 +380,8 @@
   <suppress id="propertiesMacroMustExist"
             files="src/site/xdoc/checks/coding/useenhancedswitch.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+            files="src/site/xdoc/checks/coding/duplicateswitchbranch.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
             files="src/site/xdoc/checks/misc/multilinecommentleadingasteriskpresence.xml.template"/>
   <suppress id="propertiesMacroMustExist"
             files="src/site/xdoc/checks/naming/googlemethodname.xml.template"/>
