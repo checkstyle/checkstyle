@@ -353,11 +353,11 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCompactSourceFileDefault() throws Exception {
         final String[] expected = {
-            "12:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
-            "21:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
-            "26:40: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
-            "45:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
-            "45:17: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "13:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "23:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "28:40: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "47:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "47:17: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
         };
 
         verifyWithInlineConfigParser(
@@ -368,10 +368,10 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCompactSourceFileExpanded() throws Exception {
         final String[] expected = {
-            "12:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
-            "18:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
-            "26:48: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
-            "43:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
+            "13:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
+            "20:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
+            "28:48: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "46:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
         };
 
         verifyWithInlineConfigParser(
