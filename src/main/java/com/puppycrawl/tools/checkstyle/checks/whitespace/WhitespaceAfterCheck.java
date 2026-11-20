@@ -168,11 +168,11 @@ public class WhitespaceAfterCheck extends AbstractCheck {
         final DetailAST commentContent = ast.findFirstToken(TokenTypes.COMMENT_CONTENT);
         final String commentText = commentContent.getText();
         int index = 0;
-        while (commentText.charAt(index) == '/') {
+        while (index < commentText.length() && commentText.charAt(index) == '/') {
             index++;
         }
-        final int codePoint = commentText.codePointAt(index);
-        return Character.isWhitespace(codePoint);
+        return index == commentText.length()
+                || Character.isWhitespace(commentText.codePointAt(index));
     }
 
     /**
