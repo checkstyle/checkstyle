@@ -690,7 +690,7 @@ public void method();
               <a href="#LeftCurlyOption-eol">eol</a>
             </td>
             <td>
-              The brace must always be on the end of the line. For example:#
+              The brace must always be on the end of the line. For example:
               <div class="wrapper">
                 <pre><code class="language-java">if (condition) {
     ...
@@ -768,6 +768,16 @@ public void method();
           </tr>
         </table>
       </div>
+      <p>
+        These options match the brace placement of the named
+        <a href="https://en.wikipedia.org/wiki/Indentation_style">indentation styles</a>:
+        <code>eol</code> is used by the
+        <a href="https://en.wikipedia.org/wiki/Indentation_style#Java">Java</a> style, and by the
+        <a href="https://en.wikipedia.org/wiki/Indentation_style#K&amp;R">K&amp;R</a>
+        style for all blocks except method bodies;
+        <code>nl</code> is used by the
+        <a href="https://en.wikipedia.org/wiki/Indentation_style#Allman">Allman</a> style.
+      </p>
     </section>
 
     <section name="LineEndingOption">
@@ -1118,6 +1128,17 @@ if (a &#62; 0) {
 
         </table>
       </div>
+      <p>
+        These options match the brace placement of the named
+        <a href="https://en.wikipedia.org/wiki/Indentation_style">indentation styles</a>:
+        <code>same</code> is used by the
+        <a href="https://en.wikipedia.org/wiki/Indentation_style#K&amp;R">K&amp;R</a> and
+        <a href="https://en.wikipedia.org/wiki/Indentation_style#Java">Java</a> styles
+        (<code>} else {</code>);
+        <code>alone</code> is used by the
+        <a href="https://en.wikipedia.org/wiki/Indentation_style#Stroustrup">Stroustrup</a> and
+        <a href="https://en.wikipedia.org/wiki/Indentation_style#Allman">Allman</a> styles.
+      </p>
     </section>
 
     <section name="Scope">
