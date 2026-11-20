@@ -149,7 +149,7 @@ public class HideUtilityClassConstructorCheckTest
     @Test
     public void testIgnoreAnnotatedBy() throws Exception {
         final String[] expected = {
-            "30:1: " + getCheckMessage(MSG_KEY),
+            "31:1: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputHideUtilityClassConstructorIgnoreAnnotationBy.java"),
@@ -184,8 +184,8 @@ public class HideUtilityClassConstructorCheckTest
     @Test
     public void testHideUtilityClassConstructorCompactSourceFileProperties() throws Exception {
         final String[] expected = {
-            "21:1: " + getCheckMessage(MSG_KEY),
-            "26:1: " + getCheckMessage(MSG_KEY),
+            "22:1: " + getCheckMessage(MSG_KEY),
+            "28:1: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
