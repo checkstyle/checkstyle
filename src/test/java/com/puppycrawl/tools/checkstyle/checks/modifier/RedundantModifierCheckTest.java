@@ -131,14 +131,20 @@ public class RedundantModifierCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testPublicConstructorsInNestedClasses() throws Exception {
+        final String[] expected = {
+            "38:5: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRedundantModifierPublicConstructorsInNestedClasses.java"),
+                expected);
+    }
+
+    @Test
     public void testNestedClassConsInPublicInterfaceHasValidPublicModifier() throws Exception {
 
         final String[] expected = {
-            "25:17: " + getCheckMessage(MSG_KEY, "public"),
-            "28:13: " + getCheckMessage(MSG_KEY, "public"),
-            "31:21: " + getCheckMessage(MSG_KEY, "public"),
-            "43:12: " + getCheckMessage(MSG_KEY, "public"),
-            "52:17: " + getCheckMessage(MSG_KEY, "public"),
+            "27:13: " + getCheckMessage(MSG_KEY, "public"),
         };
 
         verifyWithInlineConfigParser(
