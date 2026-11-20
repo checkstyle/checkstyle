@@ -46,7 +46,7 @@ if [[ -n "$CHANGED_API_CLASSES_PATHS" ]]; then
     echo "Processing file: $CURRENT_API_CLASS_PATH"
 
     CURRENT_API_CLASS_NAME=$(
-      echo "$CURRENT_API_CLASS_PATH" | sed 's/src\/main\/java\/\(.*\)\.java/\1/'
+      echo "$CURRENT_API_CLASS_PATH" | sed -E 's/src\/main\/java\/(.*)\.java/\1/'
     )
     echo "CURRENT_API_CLASS_NAME=$CURRENT_API_CLASS_NAME"
 
@@ -121,8 +121,8 @@ while IFS= read -r CURRENT_XDOC_PATH; do
   fi
 
   CURRENT_XDOC_NAME=$(
-    echo "$CURRENT_XDOC_PATH" | sed 's/src\/site\/xdoc\/\(.*\)\.xml/\1/' | \
-    sed 's/.vm//'
+    echo "$CURRENT_XDOC_PATH" | sed -E 's/src\/site\/xdoc\/(.*)\.xml/\1/' | \
+    sed 's/\.vm//'
   )
   echo "CURRENT_XDOC_NAME=$CURRENT_XDOC_NAME"
 

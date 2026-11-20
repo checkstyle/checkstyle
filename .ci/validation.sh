@@ -900,7 +900,7 @@ javadoc-tool-validate)
   project_classpath="${project_classpath}:target/generated-classes"
 
   javadoc_source_version=$(java -version 2>&1 \
-    | sed -n 's/.* version "\([0-9][0-9]*\).*/\1/p' \
+    | sed -n -E 's/.* version "([0-9]+)\..*/\1/p' \
     | head -n 1)
   javadoc_preview_args=(--source "$javadoc_source_version")
 
