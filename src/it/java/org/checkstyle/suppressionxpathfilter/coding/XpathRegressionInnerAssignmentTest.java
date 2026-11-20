@@ -96,11 +96,6 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
                 + "/CLASS_DEF[./IDENT[@text='InputXpathInnerAssignmentMethodCall']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='result']]"
-                + "/ASSIGN/EXPR/METHOD_CALL/ELIST",
-                "/COMPILATION_UNIT"
-                + "/CLASS_DEF[./IDENT[@text='InputXpathInnerAssignmentMethodCall']]"
-                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod']]"
-                + "/SLIST/VARIABLE_DEF[./IDENT[@text='result']]"
                 + "/ASSIGN/EXPR/METHOD_CALL/ELIST/EXPR",
                 "/COMPILATION_UNIT"
                 + "/CLASS_DEF[./IDENT[@text='InputXpathInnerAssignmentMethodCall']]"
