@@ -54,8 +54,15 @@ options { tokenVocab=JavaLanguageLexer; }
     static int fileCounter = 0;
 
     /**
+     * Prediction context cache shared by all parser instances. It is replaced
+     * together with the DFA states, because ANTLR never removes entries from it
+     * and they are not needed by the new, empty DFA.
+     */
+    private static PredictionContextCache contextCache = new PredictionContextCache();
+
+    /**
      * We create a custom constructor so that we can clear the DFA
-     * states upon instantiation of JavaLanguageParser.
+     * states and the prediction context cache upon instantiation of JavaLanguageParser.
      *
      * @param input the token stream to parse
      * @param clearDfaLimit this is the number of files to parse before clearing
@@ -68,11 +75,15 @@ options { tokenVocab=JavaLanguageLexer; }
      */
     public JavaLanguageParser(TokenStream input, int clearDfaLimit) {
         super(input);
-        _interp = new ParserATNSimulator(this, _ATN , _decisionToDFA, _sharedContextCache);
         fileCounter++;
-        if (fileCounter > clearDfaLimit) {
-            _interp.clearDFA();
+        final boolean clearCaches = fileCounter > clearDfaLimit;
+        if (clearCaches) {
+            contextCache = new PredictionContextCache();
             fileCounter = 0;
+        }
+        _interp = new ParserATNSimulator(this, _ATN, _decisionToDFA, contextCache);
+        if (clearCaches) {
+            _interp.clearDFA();
         }
     }
 }
