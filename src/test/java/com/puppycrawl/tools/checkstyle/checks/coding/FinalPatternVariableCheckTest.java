@@ -97,4 +97,16 @@ public class FinalPatternVariableCheckTest extends AbstractModuleTestSupport {
             "InputFinalPatternVariableCheck2.java"), expected);
     }
 
+    @Test
+    public void testFinalPatternVariableAnnotation() throws Exception {
+        final String[] expected = {
+            "19:35: " + getCheckMessage(MSG_KEY, "str"),
+            "24:36: " + getCheckMessage(MSG_KEY, "num"),
+            "29:35: " + getCheckMessage(MSG_KEY, "s1"),
+        };
+
+        verifyWithInlineConfigParser(getPath(
+            "InputFinalPatternVariableAnnotation.java"), expected);
+    }
+
 }
