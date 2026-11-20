@@ -16,7 +16,7 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 /** Throws without a tag. */
 void fail() {
-    throw new Error(); // ok until https://github.com/checkstyle/checkstyle/issues/20221
+    throw new Error(); // violation 'Expected @throws tag for 'Error'.'
 }
 
 /** {@return the value} */
@@ -43,4 +43,10 @@ class Holder {
     @Deprecated
     void annotated(int value) {
     }
+}
+
+/** Last member of the compact source file, so nothing follows it. */
+void last() {
+    // violation below 'Expected @throws tag for 'IllegalStateException'.'
+    throw new IllegalStateException();
 }
