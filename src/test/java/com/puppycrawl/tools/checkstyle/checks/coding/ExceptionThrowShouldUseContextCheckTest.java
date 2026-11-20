@@ -206,4 +206,14 @@ public class ExceptionThrowShouldUseContextCheckTest extends AbstractModuleTestS
                 expected);
     }
 
+
+    @Test
+    public void testAnnotationType() throws Exception {
+        final String[] expected = {
+            "15:13: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputExceptionThrowShouldUseContextAnnotationType.java"),
+                expected);
+    }
 }
