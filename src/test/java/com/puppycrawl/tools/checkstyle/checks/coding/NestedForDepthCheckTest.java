@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck.MSG_KEY;
 
 import java.io.File;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -141,18 +140,16 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testClearState() throws Exception {
         final NestedForDepthCheck check = new NestedForDepthCheck();
-        final Optional<DetailAST> literalFor = TestUtil.findTokenInAstByPredicate(
-            JavaParser.parseFile(new File(getPath("InputNestedForDepthCheckDefaultMaxLevel.java")),
+        final DetailAST ast = TestUtil.findTokenInAstByPredicate(
+            JavaParser.parseFile(
+                new File(getPath("InputNestedForDepthCheckDefaultMaxLevel.java")),
                 JavaParser.Options.WITHOUT_COMMENTS),
-            ast -> ast.getType() == TokenTypes.LITERAL_FOR);
+            node -> node.getType() == TokenTypes.LITERAL_FOR).orElseThrow();
 
-        assertWithMessage("Ast should contain LITERAL_FOR")
-                .that(literalFor.isPresent())
-                .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
-                        literalFor.orElseThrow(), "depth", depth -> (Integer) depth == 0))
-                .isTrue();
+            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(
+                check, ast, "depth", depth -> (int) depth == 0))
+            .isTrue();
     }
 
 }
