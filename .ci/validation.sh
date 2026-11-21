@@ -827,7 +827,7 @@ check-since-version)
     fi
 
     echo "Grep for @since $CS_RELEASE_VERSION"
-    grep "* @since $CS_RELEASE_VERSION" "$NEW_CHECK_FILE"
+    grep -F "* @since $CS_RELEASE_VERSION" "$NEW_CHECK_FILE"
   else
     echo "No new Check, all is good."
   fi
