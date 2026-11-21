@@ -44,7 +44,7 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
                 createExclusionBeforeExecutionFileFilter(fileName);
 
         assertWithMessage("Should accept if file does not exist")
-                .that(filter.accept("ATest.java"))
+                .that(filter.accept("FirstTest.java"))
                 .isTrue();
     }
 
@@ -66,7 +66,7 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
                 createExclusionBeforeExecutionFileFilter(fileName);
 
         assertWithMessage("Should reject file, but did not")
-                .that(filter.accept("ATest.java"))
+                .that(filter.accept("FirstTest.java"))
                 .isFalse();
     }
 

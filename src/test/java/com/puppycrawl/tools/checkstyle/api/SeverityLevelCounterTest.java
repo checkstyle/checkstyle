@@ -45,11 +45,11 @@ public class SeverityLevelCounterTest {
                 .that(counter.getCount())
                 .isEqualTo(0);
         // not counted
-        counter.addError(new AuditEvent(this, "ATest.java", null));
-        counter.addError(new AuditEvent(this, "ATest.java", new Violation(1, 2, 0, null,
+        counter.addError(new AuditEvent(this, "FirstTest.java", null));
+        counter.addError(new AuditEvent(this, "FirstTest.java", new Violation(1, 2, 0, null,
                 null, null, SeverityLevel.INFO, null, null, null)));
         // counted
-        counter.addError(new AuditEvent(this, "ATest.java", new Violation(1, 2, 0, null,
+        counter.addError(new AuditEvent(this, "FirstTest.java", new Violation(1, 2, 0, null,
                 null, null, SeverityLevel.ERROR, null, null, null)));
         assertWithMessage("Invalid severity level count")
                 .that(counter.getCount())
@@ -59,7 +59,7 @@ public class SeverityLevelCounterTest {
     @Test
     public void testAddException() {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.ERROR);
-        final AuditEvent event = new AuditEvent(this, "ATest.java", null);
+        final AuditEvent event = new AuditEvent(this, "FirstTest.java", null);
         assertWithMessage("Invalid severity level count")
                 .that(counter.getCount())
                 .isEqualTo(0);
@@ -72,7 +72,7 @@ public class SeverityLevelCounterTest {
     @Test
     public void testAddExceptionWarning() {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.WARNING);
-        final AuditEvent event = new AuditEvent(this, "ATest.java", null);
+        final AuditEvent event = new AuditEvent(this, "FirstTest.java", null);
         assertWithMessage("Invalid severity level count")
                 .that(counter.getCount())
                 .isEqualTo(0);
@@ -85,7 +85,7 @@ public class SeverityLevelCounterTest {
     @Test
     public void testAuditStartedClearsState() {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.ERROR);
-        final AuditEvent event = new AuditEvent(this, "ATest.java", null);
+        final AuditEvent event = new AuditEvent(this, "FirstTest.java", null);
         final AuditEvent secondEvent = new AuditEvent(this, "OtherTest.java", null);
 
         counter.auditStarted(event);
