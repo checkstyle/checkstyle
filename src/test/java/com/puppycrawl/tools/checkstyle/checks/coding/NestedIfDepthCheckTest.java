@@ -63,6 +63,9 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "26:17: " + getCheckMessage(MSG_KEY, 2, 1),
             "52:17: " + getCheckMessage(MSG_KEY, 2, 1),
+            "56:17: " + getCheckMessage(MSG_KEY, 2, 1),
+            "62:17: " + getCheckMessage(MSG_KEY, 2, 1),
+            "66:17: " + getCheckMessage(MSG_KEY, 2, 1),
             "77:17: " + getCheckMessage(MSG_KEY, 2, 1),
             "102:18: " + getCheckMessage(MSG_KEY, 2, 1),
             "107:18: " + getCheckMessage(MSG_KEY, 2, 1),
@@ -70,6 +73,19 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputNestedIfDepthDefault.java"), expected);
+    }
+
+    @Test
+    public void testElseBlocks() throws Exception {
+
+        final String[] expected = {
+            "18:17: " + getCheckMessage(MSG_KEY, 2, 1),
+            "50:17: " + getCheckMessage(MSG_KEY, 2, 1),
+            "64:21: " + getCheckMessage(MSG_KEY, 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNestedIfDepthElseBlocks.java"), expected);
     }
 
     @Test

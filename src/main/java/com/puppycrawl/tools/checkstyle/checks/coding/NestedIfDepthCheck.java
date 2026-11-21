@@ -95,6 +95,12 @@ public final class NestedIfDepthCheck extends AbstractCheck {
 
     /**
      * Returns whether a token represents an ELSE as part of an ELSE / IF set.
+     * An {@code if} is a continuation of the same if-else chain when it is a direct
+     * child of an {@code else} token, or when it is the only statement in the block
+     * of an {@code else} statement and has no {@code else} branch of its own, which
+     * is the same code as an unbraced else-if. An {@code if} with its own
+     * {@code else} branch inside an {@code else} block is a complete nested if-else
+     * statement and counts towards the depth.
      *
      * @param ast the token to check
      * @return whether it is
@@ -102,7 +108,7 @@ public final class NestedIfDepthCheck extends AbstractCheck {
     private static boolean isElseIf(DetailAST ast) {
         final DetailAST parentAST = ast.getParent();
 
-        return isElse(parentAST) || isElseWithCurlyBraces(parentAST);
+        return isElse(parentAST) || isElseWithCurlyBraces(parentAST, ast);
     }
 
     /**
@@ -116,13 +122,16 @@ public final class NestedIfDepthCheck extends AbstractCheck {
     }
 
     /**
-     * Returns whether a token represents an SLIST as part of an ELSE statement.
+     * Returns whether a token represents an SLIST as part of an ELSE statement
+     * and the given {@code if} is a continuation of the if-else chain in it.
      *
-     * @param ast the token to check
-     * @return whether the toke does represent an SLIST as part of an ELSE
+     * @param ast the SLIST token to check
+     * @param literalIf the {@code if} token inside the SLIST
+     * @return whether the {@code if} is an else-if continuation in the block
      */
-    private static boolean isElseWithCurlyBraces(DetailAST ast) {
-        return ast.getChildCount() == 2 && isElse(ast.getParent());
+    private static boolean isElseWithCurlyBraces(DetailAST ast, DetailAST literalIf) {
+        return ast.getChildCount() == 2 && isElse(ast.getParent())
+            && literalIf.getChildCount(TokenTypes.LITERAL_ELSE) == 0;
     }
 
 }
