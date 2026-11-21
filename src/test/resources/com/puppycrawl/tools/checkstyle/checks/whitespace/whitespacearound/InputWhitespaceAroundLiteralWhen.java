@@ -9,6 +9,7 @@ allowEmptyCatches = (default)false
 allowEmptySwitchBlockStatements = (default)false
 ignoreEnhancedForColon = (default)true
 tokens = LITERAL_WHEN
+enforceWhitespaceAroundArrayInit = (default)false
 
 */
 
