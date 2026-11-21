@@ -131,13 +131,13 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testParensAlways() throws Exception {
         final String[] expected = {
-            "12:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
-            "27:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
-            "32:5: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
-            "80:32: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
-            "83:40: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
-            "91:9: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
-            "91:31: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
+            "13:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
+            "29:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
+            "35:5: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
+            "84:32: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
+            "87:40: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
+            "95:9: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
+            "95:31: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
         };
 
         verifyWithInlineConfigParser(
@@ -150,11 +150,11 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testParensNever() throws Exception {
         final String[] expected = {
-            "22:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
-            "40:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
-            "43:5: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
-            "86:32: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
-            "89:40: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "23:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "41:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "45:5: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "88:32: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "91:40: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
         };
 
         verifyWithInlineConfigParser(
@@ -183,11 +183,11 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testStyleCompact() throws Exception {
         final String[] expected = {
-            "52:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
-            "56:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
-            "76:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
-            "83:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
-            "88:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
+            "53:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
+            "58:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
+            "78:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
+            "85:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
+            "90:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
         };
 
         verifyWithInlineConfigParser(
