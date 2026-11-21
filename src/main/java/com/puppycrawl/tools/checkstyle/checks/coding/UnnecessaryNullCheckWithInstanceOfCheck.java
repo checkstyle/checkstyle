@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -75,10 +76,10 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
     }
 
     /**
-     * Checks for an unnecessary null check within a logical AND expression.
+     * Checks for an unnecessary null check within a logical AND expression or nested if statements.
      *
      * @param instanceOfNode the AST node representing the instanceof expression
-     * @return the identifier if the check is redundant, otherwise {@code null}
+     * @return the identifier if the check is redundant, otherwise empty
      */
     private static Optional<DetailAST> findUnnecessaryNullCheck(DetailAST instanceOfNode) {
         final DetailAST topLevelExpr = findTopLevelLogicalExpression(instanceOfNode);
@@ -88,7 +89,226 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
             result = findRedundantNullCheck(topLevelExpr, instanceOfNode)
                     .map(DetailAST::getFirstChild);
         }
+        if (result.isEmpty()) {
+            final DetailAST instanceOfIdent = instanceOfNode.findFirstToken(TokenTypes.IDENT);
+            if (instanceOfIdent != null) {
+                result = findRedundantNullCheckInOuterIf(instanceOfNode, instanceOfIdent);
+                if (result.isEmpty()) {
+                    result = findRedundantNullCheckInInnerIf(instanceOfNode, instanceOfIdent);
+                }
+            }
+        }
         return result;
+    }
+
+    /**
+     * Checks for a redundant null check in an outer if statement enclosing an inner if statement
+     * with an instanceof check.
+     *
+     * @param instanceOfNode the AST node representing the instanceof expression
+     * @param instanceOfIdent the identifier from the instanceof expression
+     * @return the AST node representing the redundant null check, or empty if not found
+     */
+    private static Optional<DetailAST> findRedundantNullCheckInOuterIf(DetailAST instanceOfNode,
+        DetailAST instanceOfIdent) {
+
+        Optional<DetailAST> result = Optional.empty();
+        final Optional<DetailAST> innerIfOpt = getEnclosingIfStatement(instanceOfNode);
+
+        if (innerIfOpt.isPresent()) {
+            final DetailAST innerIf = innerIfOpt.orElseThrow();
+            final Optional<DetailAST> outerIfOpt = getSingleEnclosingOuterIf(innerIf);
+
+            if (outerIfOpt.isPresent()) {
+                final DetailAST outerIf = outerIfOpt.orElseThrow();
+                if (hasNoElse(outerIf) && hasNoElse(innerIf)
+                        && isSimpleInstanceOf(innerIf, instanceOfNode)) {
+                    final Optional<DetailAST> notEqual = getSimpleNotEqualNode(outerIf);
+                    if (notEqual.isPresent()
+                            && isNullCheckRedundant(instanceOfIdent, notEqual.orElseThrow())) {
+                        result = notEqual.map(DetailAST::getFirstChild);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks for a redundant null check in an inner if statement enclosed by an outer if statement
+     * with an instanceof check.
+     *
+     * @param instanceOfNode the AST node representing the instanceof expression
+     * @param instanceOfIdent the identifier from the instanceof expression
+     * @return the AST node representing the redundant null check, or empty if not found
+     */
+    private static Optional<DetailAST> findRedundantNullCheckInInnerIf(DetailAST instanceOfNode,
+        DetailAST instanceOfIdent) {
+
+        Optional<DetailAST> result = Optional.empty();
+        final Optional<DetailAST> outerIfOpt = getEnclosingIfStatement(instanceOfNode);
+
+        if (outerIfOpt.isPresent()) {
+            final DetailAST outerIf = outerIfOpt.orElseThrow();
+            final Optional<DetailAST> innerIfOpt = getSingleInnerIf(outerIf);
+
+            if (innerIfOpt.isPresent()) {
+                final DetailAST innerIf = innerIfOpt.orElseThrow();
+                if (hasNoElse(outerIf) && hasNoElse(innerIf)
+                        && isSimpleInstanceOf(outerIf, instanceOfNode)) {
+                    final Optional<DetailAST> notEqual = getSimpleNotEqualNode(innerIf);
+                    if (notEqual.isPresent()
+                            && isNullCheckRedundant(instanceOfIdent, notEqual.orElseThrow())) {
+                        result = notEqual.map(DetailAST::getFirstChild);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Finds the if statement whose condition directly encloses the given node.
+     *
+     * @param node the node to search from
+     * @return the enclosing if statement, or empty if node is not in an if condition
+     */
+    private static Optional<DetailAST> getEnclosingIfStatement(DetailAST node) {
+        DetailAST current = node;
+        DetailAST result = null;
+        while (current.getParent() != null) {
+            if (current.getParent().getType() == TokenTypes.LITERAL_IF) {
+                final DetailAST cond = current.getParent().findFirstToken(TokenTypes.EXPR);
+                if (Objects.equals(current, cond)) {
+                    result = current.getParent();
+                }
+                break;
+            }
+            current = current.getParent();
+        }
+        return Optional.ofNullable(result);
+    }
+
+    /**
+     * Checks if the given if statement has no else branch.
+     *
+     * @param ifStatement the if statement to check
+     * @return true if ifStatement has no else branch
+     */
+    private static boolean hasNoElse(DetailAST ifStatement) {
+        return ifStatement.findFirstToken(TokenTypes.LITERAL_ELSE) == null;
+    }
+
+    /**
+     * Finds the enclosing outer if statement if the given inner if is its sole then-branch
+     * statement.
+     *
+     * @param innerIf the inner if statement
+     * @return the outer if statement, or empty if not solely enclosed by an if statement
+     */
+    private static Optional<DetailAST> getSingleEnclosingOuterIf(DetailAST innerIf) {
+        final DetailAST parent = innerIf.getParent();
+        Optional<DetailAST> outerIf = Optional.empty();
+        if (parent.getType() == TokenTypes.SLIST) {
+            if (parent.getParent().getType() == TokenTypes.LITERAL_IF
+                    && isOnlyStatementInBlock(innerIf, parent)) {
+                outerIf = Optional.of(parent.getParent());
+            }
+        }
+        else if (parent.getType() == TokenTypes.LITERAL_IF) {
+            outerIf = Optional.of(parent);
+        }
+        return outerIf;
+    }
+
+    /**
+     * Finds the single if statement directly contained in the then-branch of an outer if statement.
+     *
+     * @param ifStatement the outer if statement
+     * @return the single inner if statement, or empty if none
+     */
+    private static Optional<DetailAST> getSingleInnerIf(DetailAST ifStatement) {
+        Optional<DetailAST> innerIf = Optional.empty();
+        final DetailAST slist = ifStatement.findFirstToken(TokenTypes.SLIST);
+        if (slist == null) {
+            final DetailAST candidate =
+                    ifStatement.findFirstToken(TokenTypes.RPAREN).getNextSibling();
+            if (candidate.getType() == TokenTypes.LITERAL_IF) {
+                innerIf = Optional.of(candidate);
+            }
+        }
+        else {
+            final DetailAST firstStatement = slist.getFirstChild();
+            if (firstStatement.getType() == TokenTypes.LITERAL_IF
+                    && isOnlyStatementInBlock(firstStatement, slist)) {
+                innerIf = Optional.of(firstStatement);
+            }
+        }
+        return innerIf;
+    }
+
+    /**
+     * Extracts the simple condition expression node from an if statement condition.
+     *
+     * @param ifNode the if statement node
+     * @return the unwrapped condition expression node, or empty if condition is complex
+     */
+    private static Optional<DetailAST> getSimpleCondition(DetailAST ifNode) {
+        final DetailAST cond = ifNode.findFirstToken(TokenTypes.EXPR);
+        Optional<DetailAST> result = Optional.empty();
+        if (cond.findFirstToken(TokenTypes.LAND) == null
+                && cond.findFirstToken(TokenTypes.LOR) == null) {
+            DetailAST exprChild = cond.getFirstChild();
+            while (exprChild.getType() == TokenTypes.LPAREN) {
+                exprChild = exprChild.getNextSibling();
+            }
+            result = Optional.of(exprChild);
+        }
+        return result;
+    }
+
+    /**
+     * Checks if the condition of an if statement is a simple instanceof check matching the node.
+     *
+     * @param ifNode the if statement node
+     * @param instanceOfNode the expected instanceof node
+     * @return true if the condition is a simple instanceof expression matching instanceOfNode
+     */
+    private static boolean isSimpleInstanceOf(DetailAST ifNode, DetailAST instanceOfNode) {
+        return getSimpleCondition(ifNode)
+                .filter(cond -> Objects.equals(cond, instanceOfNode))
+                .isPresent();
+    }
+
+    /**
+     * Extracts a simple not equal operator node from the condition of an if statement.
+     *
+     * @param ifNode the if statement node
+     * @return the not equal node, or empty if the condition is not a simple not equal check
+     */
+    private static Optional<DetailAST> getSimpleNotEqualNode(DetailAST ifNode) {
+        return getSimpleCondition(ifNode)
+                .filter(cond -> cond.getType() == TokenTypes.NOT_EQUAL);
+    }
+
+    /**
+     * Checks whether the given statement is the only statement inside a block (SLIST).
+     *
+     * @param statement the statement to check
+     * @param slist the block node
+     * @return true if statement is the only statement in slist
+     */
+    private static boolean isOnlyStatementInBlock(DetailAST statement, DetailAST slist) {
+        boolean onlyStatement = true;
+        DetailAST child = slist.getFirstChild();
+        while (child != null) {
+            if (child.getType() != TokenTypes.RCURLY && !Objects.equals(child, statement)) {
+                onlyStatement = false;
+                break;
+            }
+            child = child.getNextSibling();
+        }
+        return onlyStatement;
     }
 
     /**
