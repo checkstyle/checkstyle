@@ -55,7 +55,8 @@ execute_benchmark() {
   for ((i = 0; i < NUM_EXECUTIONS; i++)); do
     local CMD=(java -jar "$JAR_PATH" -c "$CONFIG_FILE" \
       -x .git -x module-info.java "$SAMPLE_PROJECT")
-    local BENCHMARK=($(time_command "${CMD[@]}"))
+    local BENCHMARK
+    BENCHMARK=$(time_command "${CMD[@]}")
     echo "  Run $((i + 1))/$NUM_EXECUTIONS ($JAR_PATH): ${BENCHMARK}s" 1>&2
     TOTAL_SECONDS=$(echo "$TOTAL_SECONDS + $BENCHMARK" | bc)
   done
