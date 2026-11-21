@@ -31,7 +31,8 @@ public int hashCode() {
     return hash + 17; // violation ''17' is a magic number.'
 }
 
-@MyAnnotation(42) // violation ''42' is a magic number.'
+// violation below ''42' is a magic number.'
+@MyAnnotation(42)
 void annotatedMethod() {
 }
 
