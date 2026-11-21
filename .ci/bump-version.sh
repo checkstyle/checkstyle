@@ -38,7 +38,7 @@ function assertNumberIsIncrementedByOne {
   NEW_NUMBER=$1
   CURRENT_NUMBER=$2
   NUMBER_TYPE=$3
-  DIFFERENCE="$(($NEW_NUMBER-$CURRENT_NUMBER))"
+  DIFFERENCE="$((NEW_NUMBER - CURRENT_NUMBER))"
   if [ "$DIFFERENCE" -ne 1 ]; then
     echo "[ERROR] $NUMBER_TYPE number($CURRENT_NUMBER) has changed to" \
       "$NEW_NUMBER but it should be incremented by max 1."
