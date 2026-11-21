@@ -40,7 +40,7 @@ TARGET_RELEASE_INDEX=$(cat /var/tmp/cs-releases.json | \
     select(.value==\"checkstyle-$TARGET_RELEASE_NUM\") | .key")
 echo TARGET_RELEASE_INDEX="$TARGET_RELEASE_INDEX"
 
-PREVIOUS_RELEASE_INDEX=$(($TARGET_RELEASE_INDEX+1))
+PREVIOUS_RELEASE_INDEX=$((TARGET_RELEASE_INDEX + 1))
 echo PREVIOUS_RELEASE_INDEX="$PREVIOUS_RELEASE_INDEX"
 
 END_REF=$(cat /var/tmp/cs-releases.json | jq -r ".[$TARGET_RELEASE_INDEX].tag_name")
