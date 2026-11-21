@@ -81,7 +81,7 @@ public class XmlLoader extends DefaultHandler {
     }
 
     @Override
-    public InputSource resolveEntity(String publicId, String systemId) {
+    public InputSource resolveEntity(String publicId, String systemId) throws SAXException {
         InputSource inputSource = null;
         if (publicId != null) {
             final String dtdResourceName = publicIdToResourceNameMap.get(publicId);
@@ -89,6 +89,12 @@ public class XmlLoader extends DefaultHandler {
             if (dtdResourceName != null) {
                 final ClassLoader loader = getClass().getClassLoader();
                 final InputStream dtdIs = loader.getResourceAsStream(dtdResourceName);
+                if (dtdIs == null) {
+                    // -@cs[IllegalInstantiation] SAXException is in the overridden
+                    // method signature
+                    throw new SAXException("Unable to load DTD resource " + dtdResourceName
+                            + " for public ID " + publicId);
+                }
                 inputSource = new InputSource(dtdIs);
             }
         }
