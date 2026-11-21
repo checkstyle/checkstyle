@@ -445,9 +445,9 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
         final String[] expected = {
             "60:27: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "60:30: " + getCheckMessage(MSG_TEXT_BLOCK_CONTENT),
-            "68:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "68:22: " + getCheckMessage(MSG_TEXT_BLOCK_CONTENT),
-            "70:1: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+            "69:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "69:22: " + getCheckMessage(MSG_TEXT_BLOCK_CONTENT),
+            "71:1: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
         };
         verifyWithInlineConfigParser(
                 getPath("InputTextBlockGoogleStyleFormattingAnnotations.java"), expected);
