@@ -60,7 +60,12 @@ function checkout_from {
     git checkout "$TARGET_SHA"
     cd ../
   else
-    for i in 1 2 3 4 5; do git clone --depth 1 "$CLONE_URL" && break || sleep 15s; done
+    for i in 1 2 3 4 5; do
+      if git clone --depth 1 "$CLONE_URL"; then
+        break
+      fi
+      sleep 15s
+    done
   fi
   cd ../
 }
