@@ -51,7 +51,7 @@ public class BeforeExecutionFileFilterSetTest {
         set.addBeforeExecutionFileFilter(filter);
 
         assertWithMessage("Invalid accept state, should accept")
-                .that(set.accept("ATest.java"))
+                .that(set.accept("FirstTest.java"))
                 .isTrue();
     }
 
@@ -64,7 +64,7 @@ public class BeforeExecutionFileFilterSetTest {
         set.addBeforeExecutionFileFilter(filter);
 
         assertWithMessage("Invalid accept state, should not accept")
-                .that(set.accept("ATest.java"))
+                .that(set.accept("FirstTest.java"))
                 .isFalse();
     }
 

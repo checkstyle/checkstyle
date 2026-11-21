@@ -61,7 +61,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         final boolean optional = false;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
-        final AuditEvent ev = new AuditEvent(this, "ATest.java", null);
+        final AuditEvent ev = new AuditEvent(this, "FirstTest.java", null);
 
         assertWithMessage("Audit event should be excepted when there are no suppressions")
                 .that(filter.accept(ev))
@@ -76,7 +76,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
         final Violation violation = new Violation(1, 1, null, "msg", null,
                 SeverityLevel.ERROR, null, getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
+        final AuditEvent ev = new AuditEvent(this, "FirstTest.java", violation);
 
         assertWithMessage("Audit event should be rejected when there is a matching suppression")
                 .that(filter.accept(ev))
