@@ -23,7 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Utility class that has methods to check javadoc comment position in java file.
+ * Utility class that has methods to check Javadoc comment position in Java file.
  *
  */
 public final class BlockCommentPosition {

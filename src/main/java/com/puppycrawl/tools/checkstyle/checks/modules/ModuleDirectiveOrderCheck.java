@@ -185,7 +185,7 @@ public class ModuleDirectiveOrderCheck extends AbstractCheck {
      *
      * <p>
      * A directive of the same kind as the previous one continues the current
-     * block and must not be separated from it by blank lines. Otherwise the
+     * block and must not be separated from it by blank lines. Otherwise, the
      * directive starts a new block, which must not repeat an earlier kind,
      * must not belong before the previous block, and must be separated from
      * it by exactly one blank line. Blank line requirements are validated

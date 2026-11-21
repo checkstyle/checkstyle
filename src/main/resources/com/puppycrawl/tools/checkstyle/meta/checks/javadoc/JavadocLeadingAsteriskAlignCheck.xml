@@ -21,7 +21,7 @@
  &lt;/div&gt;
 
  &lt;p&gt;
- If you're using tabs then specify the the tab width in the
+ If you're using tabs then specify the tab width in the
  &lt;a href="https://checkstyle.org/config.html#tabWidth"&gt;tabWidth&lt;/a&gt; property.
  &lt;/p&gt;</description>
          <properties>

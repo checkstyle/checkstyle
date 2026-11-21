@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class ParserUtil {
 
-    /** Symbols with which javadoc starts. */
+    /** Symbols with which Javadoc starts. */
     private static final String JAVADOC_START = "/**";
     /** Symbols with which multiple comment starts. */
     private static final String BLOCK_MULTIPLE_COMMENT_BEGIN = "/*";
