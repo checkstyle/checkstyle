@@ -140,7 +140,9 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example6",
             "checks/imports/importorder/Example7",
             "checks/imports/importorder/Example8",
-            "checks/imports/importorder/Example9"
+            "checks/imports/importorder/Example9",
+            // Uses exception-handling constructs that are absent from the threshold examples.
+            "checks/metrics/npathcomplexity/Example3"
     );
 
     /**

@@ -63,6 +63,24 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/npathcomplexity/Example2.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check with a threshold of 1:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/npathcomplexity/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
+          Each catch clause adds an alternative path. Catching two exception types in
+          one clause still adds only one path. An unconditional cleanup call in a
+          finally block and the implicit close in try-with-resources add no branches.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/npathcomplexity/Example3.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
