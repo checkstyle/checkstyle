@@ -62,7 +62,7 @@ public class InputSimplifyBooleanReturn
 
     public boolean ifNoElse()
     {
-        if (isOddMillis()) {
+        if (isOddMillis()) { // violation 'Conditional logic can be removed.'
             return true;
         }
         return false;
