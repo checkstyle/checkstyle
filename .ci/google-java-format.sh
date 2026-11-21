@@ -92,20 +92,20 @@ else
 fi
 
 echo "Formatting all Input files file at src/it/resources/com/google/checkstyle/test :"
-COMPILABLE_INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.java" \
+mapfile -t COMPILABLE_INPUT_PATHS < <(find src/it/resources/com/google/checkstyle/test/ \
+  -name "Input*.java" \
   | grep -v -x -f config/google-java-format/excluded/compilable-input-paths.txt \
-  | xargs -r grep "$MARKER_FLAG" ': Compilable with Java25' || true
-  ))
+  | xargs -r grep "$MARKER_FLAG" ': Compilable with Java25' || true)
 
 for INPUT_PATH in "${COMPILABLE_INPUT_PATHS[@]}"; do
   java -jar "$JAR_PATH" --replace "$INPUT_PATH"
 done
 
 echo "Formatting all Non-compilable Input files file at src/it/resources-noncompilable/com/google/checkstyle/test :"
-NON_COMPILABLE_INPUT_PATHS=($(find src/it/resources-noncompilable/com/google/checkstyle/test/ -name "Input*.java" \
+mapfile -t NON_COMPILABLE_INPUT_PATHS < <(find src/it/resources-noncompilable/com/google/checkstyle/test/ \
+  -name "Input*.java" \
   | grep -v -x -f config/google-java-format/excluded/noncompilable-input-paths.txt \
-  | xargs -r grep "$MARKER_FLAG" ': Compilable with Java25' || true
-  ))
+  | xargs -r grep "$MARKER_FLAG" ': Compilable with Java25' || true)
 
 for INPUT_PATH in "${NON_COMPILABLE_INPUT_PATHS[@]}"; do
   java -jar "$JAR_PATH" --replace "$INPUT_PATH"

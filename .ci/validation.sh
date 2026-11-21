@@ -67,9 +67,9 @@ check-missing-pitests)
   fail=0
   mkdir -p target
 
-  list=($(cat pom.xml | \
+  mapfile -t list < <(cat pom.xml | \
     xmlstarlet sel --ps -N pom="http://maven.apache.org/POM/4.0.0" \
-    -t -v "//pom:profile[./pom:id[contains(text(),'pitest')]]//pom:targetClasses/pom:param"))
+    -t -v "//pom:profile[./pom:id[contains(text(),'pitest')]]//pom:targetClasses/pom:param")
 
   #  Temporary skip for Metadata generator related files for
   #  https://github.com/checkstyle/checkstyle/issues/8761
@@ -836,14 +836,14 @@ check-since-version)
 javac21-exceptional)
   # InputPackageDeclarationEmptyFile - empty file, no ability to put explanation comment
   # beforeexecutionexclusionfilefilter - exceptional hack for examples
-  files=($(grep -RELi --include='*.java' \
+  mapfile -t files < <(grep -RELi --include='*.java' \
         --exclude='module-info.java' \
         --exclude='InputPackageDeclarationEmptyFile.java' \
         --exclude-dir="beforeexecutionexclusionfilefilter" \
         '// non-compiled (syntax|with javac)?\:' \
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable))
+        src/xdocs-examples/resources-noncompilable || true)
   mkdir -p target
   for file in "${files[@]}"
   do
@@ -853,10 +853,10 @@ javac21-exceptional)
     javac -d target "${file}"
   done
 
-  files=($(grep -Rli --include='*.java' ': No package statement for testing purposes.' \
+  mapfile -t files < <(grep -Rli --include='*.java' ': No package statement for testing purposes.' \
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
+        src/xdocs-examples/resources-noncompilable || true)
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java files to process"
   else
@@ -872,10 +872,10 @@ javac21-exceptional)
   ;;
 
 javac25)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java25' \
+  mapfile -t files < <(grep -Rli --include='*.java' ': Compilable with Java25' \
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
+        src/xdocs-examples/resources-noncompilable || true)
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java25 files to process"
   else
