@@ -189,6 +189,19 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAnnotationOnSameLineTypecast() throws Exception {
+        final String[] expected = {
+            "18:25: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
+            "22:39: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
+            "26:26: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
+            "28:24: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann2"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAnnotationOnSameLineTypecast.java"),
+            expected);
+    }
+
+    @Test
     public void testAnnotationOnSameLineCompactSourceFile() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
