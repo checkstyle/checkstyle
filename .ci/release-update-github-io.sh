@@ -15,7 +15,7 @@ echo TARGET_VERSION="$TARGET_VERSION"
 cd .ci-temp/checkstyle.github.io/
 git config user.name 'github-actions[bot]'
 git config user.email 'github-actions[bot]@users.noreply.github.com'
-git rm -rf *
+git rm -rf ./*
 git checkout HEAD -- CNAME
 cp -R ../../target/site/* .
 git add .
