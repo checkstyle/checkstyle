@@ -482,6 +482,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.blocks.GoogleRightCurlyCheck");
         NAME_TO_FULL_MODULE_NAME.put("RightCurlyCheck",
                 BASE_PACKAGE + ".checks.blocks.RightCurlyCheck");
+        NAME_TO_FULL_MODULE_NAME.put("RightCurlyOfExpressionCheck",
+                BASE_PACKAGE + ".checks.blocks.RightCurlyOfExpressionCheck");
     }
 
     /**

@@ -110,6 +110,7 @@
           <item name="LeftCurly" href="checks/blocks/leftcurly.html"/>
           <item name="NeedBraces" href="checks/blocks/needbraces.html"/>
           <item name="RightCurly" href="checks/blocks/rightcurly.html"/>
+          <item name="RightCurlyOfExpression" href="checks/blocks/rightcurlyofexpression.html"/>
         </item>
         <item name="Class Design" href="checks/design/index.html" collapse="true">
           <item name="DesignForExtension" href="checks/design/designforextension.html"/>

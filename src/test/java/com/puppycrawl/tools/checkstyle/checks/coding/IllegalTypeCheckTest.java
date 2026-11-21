@@ -421,7 +421,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRecordComponentsPublicProtectedStatic() throws Exception {
         final String[] expected = {
-            "45:9: " + getCheckMessage(MSG_KEY, "HashSet")};
+            "45:9: " + getCheckMessage(MSG_KEY, "HashSet"),
+        };
 
         verifyWithInlineConfigParser(
                 getPath(

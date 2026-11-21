@@ -2098,6 +2098,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/blocks/rightcurlyofexpression.html#RightCurlyOfExpression">
+                RightCurlyOfExpression
+              </a>
+            </td>
+            <td>
+              Checks the placement of right curly braces (<code>'}'</code>) for expression blocks:
+              array initializers, block-bodied lambda expressions and anonymous classes.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/design/sealedshouldhavepermitslist.html#SealedShouldHavePermitsList">
                 SealedShouldHavePermitsList
               </a>
