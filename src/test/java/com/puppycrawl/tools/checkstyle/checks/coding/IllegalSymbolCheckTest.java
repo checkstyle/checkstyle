@@ -329,7 +329,7 @@ public class IllegalSymbolCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("InputIllegalSymbolNoConfig.java"),
+                getPath("InputIllegalSymbolEmptyList.java"),
                 expected);
 
         assertEquals("Expected should have 0 violations", 0, expected.length);
