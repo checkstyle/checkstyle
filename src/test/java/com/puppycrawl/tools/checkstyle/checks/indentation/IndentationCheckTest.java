@@ -1805,6 +1805,32 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNestedMethodCalls() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String fileName = getPath("InputIndentationNestedMethodCalls.java");
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_ERROR, "true", 12, 16),
+            "17:13: " + getCheckMessage(MSG_ERROR, "true", 12, 16),
+            "45:17: " + getCheckMessage(MSG_ERROR, "Arrays", 16, 12),
+            "46:17: " + getCheckMessage(MSG_ERROR, "true", 16, 12),
+            "47:17: " + getCheckMessage(MSG_ERROR, "true", 16, 12),
+            "51:17: " + getCheckMessage(MSG_ERROR, "Arrays", 16, 12),
+            "52:17: " + getCheckMessage(MSG_ERROR, "true", 16, 12),
+            "53:17: " + getCheckMessage(MSG_ERROR, "true", 16, 12),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testInvalidArrayInitWithTrueStrictCondition()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
