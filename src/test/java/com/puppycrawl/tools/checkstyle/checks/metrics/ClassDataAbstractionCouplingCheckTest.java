@@ -123,14 +123,9 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
     @Test
     public void testExcludedPackageCommonPackagesAllIgnored() throws Exception {
-        final String[] expected = {
-            "29:1: " + getCheckMessage(MSG_KEY, 1, 0, "[StrTokenizer]"),
-            "33:5: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
-            "40:1: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
-        };
-
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputClassDataAbstractionCouplingExcludedPackagesDirectPackages.java"),
+                getPath("InputClassDataAbstractionCouplingExcludedPackagesAllIgnored.java"),
                 expected);
     }
 
