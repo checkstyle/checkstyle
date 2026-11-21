@@ -43,7 +43,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
 
     @Test
     public void testDefaultPattern() throws Exception {
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expectedViolation = {
             "14:22: " + getCheckMessage(ParameterNameCheck.class,
@@ -87,7 +87,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
 
     @Test
     public void testIgnoreOverridden() throws Exception {
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expectedViolation = {
             "14:22: " + getCheckMessage(ParameterNameCheck.class,
