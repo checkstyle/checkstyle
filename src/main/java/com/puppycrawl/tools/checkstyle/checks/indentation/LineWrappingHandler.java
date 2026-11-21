@@ -147,11 +147,49 @@ public class LineWrappingHandler {
         else {
             firstNodeIndent = startIndent;
         }
-        final int currentIndent = firstNodeIndent + indentLevel;
-
         for (DetailAST node : firstNodesOnLines.values()) {
-            checkNodeIndentation(node, firstNodeIndent, currentIndent);
+            final int nodeFirstIndent = getFirstNodeIndent(node, firstNode, firstNodeIndent);
+            checkNodeIndentation(node, nodeFirstIndent, nodeFirstIndent + indentLevel);
         }
+    }
+
+    /**
+     * Gets the base indentation for a wrapped node, accounting for nested method calls.
+     *
+     * @param node the node on the wrapped line.
+     * @param firstNode the root node being checked for line wrapping.
+     * @param firstNodeIndent the indentation of the first line.
+     * @return the base indentation for the given node.
+     */
+    private int getFirstNodeIndent(DetailAST node, DetailAST firstNode, int firstNodeIndent) {
+        int indent = firstNodeIndent;
+        if (context.isForceStrictCondition()) {
+            if (node.getType() == TokenTypes.RPAREN
+                    && isNestedMethodCall(node.getParent(), firstNode)) {
+                indent = getLineStart(node.getParent());
+            }
+            else {
+                for (DetailAST cur = node; !cur.equals(firstNode); cur = cur.getParent()) {
+                    if (cur.getType() == TokenTypes.ELIST
+                            && isNestedMethodCall(cur.getParent(), firstNode)) {
+                        indent = getLineStart(cur.getParent());
+                        break;
+                    }
+                }
+            }
+        }
+        return indent;
+    }
+
+    /**
+     * Checks whether the given AST node is a nested method call within the wrapped construct.
+     *
+     * @param ast the AST node to check.
+     * @param firstNode the root node being checked for line wrapping.
+     * @return true if the node is a nested method call.
+     */
+    private static boolean isNestedMethodCall(DetailAST ast, DetailAST firstNode) {
+        return ast.getType() == TokenTypes.METHOD_CALL && !ast.equals(firstNode);
     }
 
     /**
