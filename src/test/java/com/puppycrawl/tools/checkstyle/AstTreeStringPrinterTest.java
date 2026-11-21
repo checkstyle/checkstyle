@@ -26,6 +26,7 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -103,6 +104,18 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
         assertWithMessage("Print AST output is invalid")
             .that(actual)
             .isEqualTo(expected);
+    }
+
+    @Test
+    public void testPrintAstIdentifierWithIgnorableCharacter() throws Exception {
+        final FileText text = new FileText(new File("Input.java"),
+                List.of("class A {", "    int a\\u0000b;", "}"));
+        final String actual = AstTreeStringPrinter.printAst(text,
+                JavaParser.Options.WITHOUT_COMMENTS);
+
+        assertWithMessage("Identifier text should be translated, position should be original")
+            .that(actual)
+            .contains("IDENT -> a" + (char) 0 + "b [2:9]");
     }
 
     @Test

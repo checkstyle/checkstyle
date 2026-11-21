@@ -41,7 +41,6 @@ projects:
     excludes:
       - '**/test/langtools/jdk/javadoc/doclet/testSupplementary/C.java'
       - '**/test/hotspot/jtreg/runtime/exceptionMsgs/methodPrinting/TestPrintingMethods.java'
-      - '**/test/langtools/tools/javac/MethodParameters/UncommonParamNames.java'
       - '**/test/langtools/tools/javac/unicode/UnicodeAtEOL.java'
       - '**/test/langtools/tools/javac/unicode/UnicodeCommentDelimiter.java'
       - '**/test/langtools/tools/javac/unicode/FirstChar2.java'

@@ -86,6 +86,15 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
+    public void testEncodeNullCharacterInIdentifierName() {
+        final String encoded = XMLLogger.encode("a" + (char) 0 + "b");
+
+        assertWithMessage("XML 1.0 forbids the null character, it must not be written")
+            .that(encoded)
+            .isEqualTo("a#x0;b");
+    }
+
+    @Test
     public void testIsReference()
             throws IOException {
         final XMLLogger test = new XMLLogger(outStream, OutputStreamOptions.NONE);
