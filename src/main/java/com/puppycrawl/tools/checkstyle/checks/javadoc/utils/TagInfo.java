@@ -24,7 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
 /**
  * Value object for storing data about a parsed tag.
  *
- * @param name Name of the tag ("link", "see", etc)
+ * @param name Name of the tag ("link", "see", etc.)
  * @param value Value of the tag
  * @param position Position of the tag in the given comment
  */

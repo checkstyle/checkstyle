@@ -340,7 +340,7 @@ public class XpathQueryGenerator {
      * Escape {@literal <}, {@literal >}, {@literal &}, {@literal '} and {@literal "} as their
      * entities.
      * Custom method for Xpath generation to maintain compatibility with Saxon and encoding outside
-     * Ascii range characters.
+     * ASCII range characters.
      *
      * <p>According to
      * <a href="https://saxon.sourceforge.net/saxon7.1/expressions.html">Saxon documentation</a>:

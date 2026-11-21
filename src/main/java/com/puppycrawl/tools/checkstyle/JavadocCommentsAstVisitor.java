@@ -127,7 +127,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
      *
      * @param tokens the token stream to check for hidden tokens
      * @param blockCommentLineNumber the line number of the block comment being parsed
-     * @param javadocColumnNumber the column number of the javadoc indent
+     * @param javadocColumnNumber the column number of the Javadoc indent
      */
     public JavadocCommentsAstVisitor(CommonTokenStream tokens,
                                      int blockCommentLineNumber, int javadocColumnNumber) {

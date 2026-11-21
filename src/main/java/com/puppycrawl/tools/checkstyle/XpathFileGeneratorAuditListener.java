@@ -47,7 +47,7 @@ public final class XpathFileGeneratorAuditListener
     /** Close output stream in auditFinished. */
     private final boolean closeStream;
 
-    /** Determines if xml header is printed. */
+    /** Determines if XML header is printed. */
     private boolean isXmlHeaderPrinted;
 
     /**

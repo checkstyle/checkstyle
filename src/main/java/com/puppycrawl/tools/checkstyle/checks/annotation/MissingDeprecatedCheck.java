@@ -151,7 +151,7 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
     /**
      * Checks to see if the javadoc contains a deprecated tag.
      *
-     * @param javadoc the javadoc of the AST
+     * @param javadoc the Javadoc of the AST
      * @return true if contains the tag
      */
     private boolean containsDeprecatedTag(DetailNode javadoc) {

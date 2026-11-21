@@ -95,9 +95,9 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     /**
      * Specify the period symbol. Used to check the first sentence ends with a period. Periods that
-     * are not followed by a whitespace character are ignored (eg. the period in v1.0). Because some
-     * periods include whitespace built into the character, if this is set to a non-default value
-     * any period will end the sentence, whether it is followed by whitespace or not.
+     * are not followed by a whitespace character are ignored (e.g. the period in v1.0). Because
+     * some periods include whitespace built into the character, if this is set to a non-default
+     * value any period will end the sentence, whether it is followed by whitespace or not.
      */
     private String period = DEFAULT_PERIOD;
 
@@ -125,10 +125,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     /**
      * Setter to specify the period symbol. Used to check the first sentence ends with a period.
-     * Periods that are not followed by a whitespace character are ignored (eg. the period in v1.0).
-     * Because some periods include whitespace built into the character, if this is set to a
-     * non-default value any period will end the sentence, whether it is followed by whitespace or
-     * not.
+     * Periods that are not followed by a whitespace character are ignored (e.g. the period in
+     * v1.0). Because some periods include whitespace built into the character, if this is set
+     * to anon-default value any period will end the sentence, whether it is followed by
+     * whitespace or not.
      *
      * @param period period's value.
      * @since 6.2
@@ -206,7 +206,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * Whether the {@code {@summary}} tag is defined first in the javadoc.
      *
      * @param inlineTagNode node of type {@link JavadocCommentsTokenTypes#JAVADOC_INLINE_TAG}
-     * @return {@code true} if the {@code {@summary}} tag is defined first in the javadoc
+     * @return {@code true} if the {@code {@summary}} tag is defined first in the Javadoc
      */
     private static boolean isDefinedFirst(DetailNode inlineTagNode) {
         boolean isDefinedFirst = true;
@@ -353,8 +353,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /**
      * Gets the string that is visible to user in javadoc.
      *
-     * @param summary entire content of summary javadoc.
-     * @return string that is visible to user in javadoc.
+     * @param summary entire content of summary Javadoc.
+     * @return string that is visible to user in Javadoc.
      */
     private static String getVisibleContent(String summary) {
         final String visibleSummary = HTML_ELEMENTS.matcher(summary).replaceAll("");
@@ -420,7 +420,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * Checks if the node starts with an {&#64;inheritDoc}.
      *
      * @param root the root node to examine.
-     * @return {@code true} if the javadoc starts with an {&#64;inheritDoc}.
+     * @return {@code true} if the Javadoc starts with an {&#64;inheritDoc}.
      */
     private static boolean startsWithInheritDoc(DetailNode root) {
         boolean found = false;
@@ -446,7 +446,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /**
      * Finds and returns summary sentence.
      *
-     * @param ast javadoc root node.
+     * @param ast Javadoc root node.
      * @return violation string.
      */
     private static String getSummarySentence(DetailNode ast) {
@@ -473,9 +473,9 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /**
      * Get concatenated string within text of html tags.
      *
-     * @param result javadoc string
+     * @param result Javadoc string
      * @param detailNode htmlContent node
-     * @return java doc tag content appended in result
+     * @return Javadoc tag content appended in result
      */
     private static String getStringInsideHtmlTag(String result, DetailNode detailNode) {
         final StringBuilder contents = new StringBuilder(result);

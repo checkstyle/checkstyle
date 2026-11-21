@@ -128,7 +128,7 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
      * it will be interpreted as a plain text. This check looks for a block tag
      * in the javadoc text, thus it needs the {@code TEXT} tokens.
      *
-     * @return the javadoc token set this must be registered for.
+     * @return the Javadoc token set this must be registered for.
      * @see JavadocCommentsTokenTypes
      */
     @Override
