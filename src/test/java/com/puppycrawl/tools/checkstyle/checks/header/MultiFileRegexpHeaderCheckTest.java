@@ -341,29 +341,13 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBlankLineMismatch() throws Exception {
-        final File fileNoBlank = new File(temporaryFolder, "noBlank.java");
-        Files.write(fileNoBlank.toPath(), List.of(
-            "// First line",
-            "// Second line",
-            "// Third line"));
-
-        final File headerFile = new File(temporaryFolder, "header.header");
-        Files.write(headerFile.toPath(), List.of(
-            "// First line",
-            "^$",
-            "// Third line"));
-
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", headerFile.getPath());
-
-        final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
-        checkInstance.configure(checkConfig);
-
+        final String headerPath = getPath("InputRegexpHeaderBlankLineMismatch.header");
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$", headerFile.getPath()),
+            "2: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$", headerPath),
         };
-        verify(checkConfig, fileNoBlank.getPath(), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderBlankLineMismatchConfig.java"),
+                getPath("InputRegexpHeaderBlankLineMismatch.txt"), expected);
     }
 
     @Test
