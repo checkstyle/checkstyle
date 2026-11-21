@@ -233,4 +233,26 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
                 expectedWithoutFilter, expectedWithFilter);
     }
 
+    @Test
+    public void testExample7() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "20:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "42"),
+            "21:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
+            "23: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 74),
+            "26: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 84),
+            "30: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 72),
+        };
+
+        final String[] expectedWithFilter = {
+            "21:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
+            "23: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 74),
+            "26: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 84),
+            "30: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 72),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example7.java"),
+                expectedWithoutFilter, expectedWithFilter);
+    }
+
 }
