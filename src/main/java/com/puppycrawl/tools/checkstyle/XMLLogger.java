@@ -305,34 +305,61 @@ public final class XMLLogger
 
         if (ent.charAt(0) == '&' && ent.endsWith(";")) {
             if (ent.charAt(1) == '#') {
-                // prefix is "&#"
-                int prefixLength = 2;
-
-                int radix = BASE_10;
-                if (ent.charAt(2) == 'x') {
-                    prefixLength++;
-                    radix = BASE_16;
-                }
-                try {
-                    Integer.parseInt(
-                        ent.substring(prefixLength, ent.length() - 1), radix);
-                    reference = true;
-                }
-                catch (final NumberFormatException ignored) {
-                    reference = false;
-                }
+                reference = isNumericReference(ent);
             }
             else {
-                final String name = ent.substring(1, ent.length() - 1);
-                for (String element : ENTITIES) {
-                    if (name.equals(element)) {
-                        reference = true;
-                        break;
-                    }
-                }
+                reference = isNamedReference(ent);
             }
         }
 
+        return reference;
+    }
+
+    /**
+     * Finds whether the given argument is a numeric character reference,
+     * for example {@code &#65;} or {@code &#x41;}.
+     *
+     * @param ent the possible numeric reference, starting with "&#" and ending with ";".
+     * @return whether the given argument is a valid numeric character reference
+     */
+    private static boolean isNumericReference(String ent) {
+        // prefix is "&#"
+        int prefixLength = 2;
+
+        int radix = BASE_10;
+        if (ent.charAt(2) == 'x') {
+            prefixLength++;
+            radix = BASE_16;
+        }
+
+        boolean reference;
+        try {
+            Integer.parseInt(
+                ent.substring(prefixLength, ent.length() - 1), radix);
+            reference = true;
+        }
+        catch (final NumberFormatException ignored) {
+            reference = false;
+        }
+        return reference;
+    }
+
+    /**
+     * Finds whether the given argument is one of the known named entities,
+     * for example {@code &amp;} or {@code &lt;}.
+     *
+     * @param ent the possible named entity, starting with "&" and ending with ";".
+     * @return whether the given argument is a known named entity
+     */
+    private static boolean isNamedReference(String ent) {
+        final String name = ent.substring(1, ent.length() - 1);
+        boolean reference = false;
+        for (String element : ENTITIES) {
+            if (name.equals(element)) {
+                reference = true;
+                break;
+            }
+        }
         return reference;
     }
 
