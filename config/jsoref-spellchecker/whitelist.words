@@ -1616,6 +1616,7 @@ xargs
 XDadd
 XDcompile
 xdeadbeef
+XDignore
 xdoc
 Xdoclint
 xdocspagetitle
