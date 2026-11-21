@@ -36,13 +36,14 @@ public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample1() throws Exception {
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String parameterPattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expectedWithoutFilter = {
             "21:7: " + getCheckMessage(VisibilityModifierCheck.class,
                     VisibilityModifierCheck.MSG_KEY, "field1"),
             "24:27: " + getCheckMessage(ParameterNameCheck.class,
                     ParameterNameCheck.MSG_INVALID_PATTERN,
-                    "V1", pattern),
+                    "V1", parameterPattern),
             "27:15: " + getCheckMessage(MethodNameCheck.class,
                     ParameterNameCheck.MSG_INVALID_PATTERN,
                     "Method2", pattern),
@@ -62,13 +63,14 @@ public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample2() throws Exception {
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String parameterPattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expectedWithoutFilter = {
             "23:7: " + getCheckMessage(VisibilityModifierCheck.class,
                     VisibilityModifierCheck.MSG_KEY, "field1"),
             "26:27: " + getCheckMessage(ParameterNameCheck.class,
                     ParameterNameCheck.MSG_INVALID_PATTERN,
-                    "V1", pattern),
+                    "V1", parameterPattern),
             "29:15: " + getCheckMessage(MethodNameCheck.class,
                     ParameterNameCheck.MSG_INVALID_PATTERN,
                     "Method2", pattern),
@@ -77,7 +79,7 @@ public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestS
         final String[] expectedWithFilter = {
             "26:27: " + getCheckMessage(ParameterNameCheck.class,
                     ParameterNameCheck.MSG_INVALID_PATTERN,
-                    "V1", pattern),
+                    "V1", parameterPattern),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example2.java"),
@@ -88,13 +90,14 @@ public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample3() throws Exception {
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String parameterPattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expectedWithoutFilter = {
             "24:7: " + getCheckMessage(VisibilityModifierCheck.class,
                     VisibilityModifierCheck.MSG_KEY, "field1"),
             "27:27: " + getCheckMessage(ParameterNameCheck.class,
                     ParameterNameCheck.MSG_INVALID_PATTERN,
-                    "V1", pattern),
+                    "V1", parameterPattern),
             "30:15: " + getCheckMessage(MethodNameCheck.class,
                     ParameterNameCheck.MSG_INVALID_PATTERN,
                     "Method2", pattern),
@@ -103,7 +106,7 @@ public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestS
         final String[] expectedWithFilter = {
             "27:27: " + getCheckMessage(ParameterNameCheck.class,
                     ParameterNameCheck.MSG_INVALID_PATTERN,
-                    "V1", pattern),
+                    "V1", parameterPattern),
             "30:15: " + getCheckMessage(MethodNameCheck.class,
                     ParameterNameCheck.MSG_INVALID_PATTERN,
                     "Method2", pattern),

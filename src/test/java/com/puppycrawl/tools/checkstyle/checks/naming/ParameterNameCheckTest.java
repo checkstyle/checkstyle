@@ -255,7 +255,7 @@ public class ParameterNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testParameterNameCompactSourceFileDefault() throws Exception {
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {
             "12:27: " + getCheckMessage(MSG_INVALID_PATTERN, "Bad", pattern),
@@ -277,6 +277,29 @@ public class ParameterNameCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("compact/InputParameterNameCompactSourceFileProperties.java"),
             expected);
+    }
+
+    @Test
+    public void testParameterNameUnnamed() throws Exception {
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
+
+        final String[] expected = {
+            "20:22: " + getCheckMessage(MSG_INVALID_PATTERN, "BadName", pattern),
+            "23:31: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputParameterNameUnnamed.java"), expected);
+    }
+
+    @Test
+    public void testParameterNameUnnamedCustomFormat() throws Exception {
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "14:21: " + getCheckMessage(MSG_INVALID_PATTERN, "_", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputParameterNameUnnamedCustomFormat.java"), expected);
     }
 
 }
