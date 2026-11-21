@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck.M
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SuperFinalizeCheckTest extends AbstractModuleTestSupport {
 
@@ -59,6 +60,14 @@ public class SuperFinalizeCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("compact/InputSuperFinalizeCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testLambdaAndCompactCtor() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputSuperFinalizeLambdaAndCompactCtor.java"),
                 expected);
     }
 
