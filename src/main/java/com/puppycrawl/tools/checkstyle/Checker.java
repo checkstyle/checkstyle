@@ -57,6 +57,8 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+import javax.annotation.Nullable;
+
 /**
  * This class provides the functionality to check a set of files.
  */
@@ -294,22 +296,29 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             // -@cs[IllegalCatch] There is no other way to deliver filename that was under
             // processing. See https://github.com/checkstyle/checkstyle/issues/2285
             catch (Exception exc) {
-                if (fileName != null && cacheFile != null) {
-                    cacheFile.remove(fileName);
-                }
+                removeFromCache(fileName);
 
                 // We need to catch all exceptions to put a reason failure (file name) in exception
                 throw new CheckstyleException(
                         getLocalizedMessage("Checker.processFilesException", filePath), exc);
             }
             catch (Error error) {
-                if (fileName != null && cacheFile != null) {
-                    cacheFile.remove(fileName);
-                }
+                removeFromCache(fileName);
 
                 // We need to catch all errors to put a reason failure (file name) in error
                 throw new Error(getLocalizedMessage("Checker.error", filePath), error);
             }
+        }
+    }
+
+    /**
+     * Removes the given file from the cache, if caching is enabled.
+     *
+     * @param fileName the name of the file to remove from the cache, can be null.
+     */
+    private void removeFromCache(@Nullable String fileName) {
+        if (fileName != null && cacheFile != null) {
+            cacheFile.remove(fileName);
         }
     }
 
