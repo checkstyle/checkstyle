@@ -83,7 +83,7 @@ public class UnnecessarySemicolonInEnumerationCheckTest extends AbstractModuleTe
     }
 
     @Test
-    public void abstractsemicolon() throws Exception {
+    public void abstractSemicolon() throws Exception {
 
         final String[] expected = {
             "18:5: " + getCheckMessage(MSG_SEMI),

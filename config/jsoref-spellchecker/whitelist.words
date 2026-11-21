@@ -5,7 +5,6 @@ abstractcheck
 abstractclassname
 abstractfileset
 abstractjavadoc
-abstractsemicolon
 ABx
 ACEM
 Acheckstyle
@@ -292,7 +291,6 @@ defaultlabelpresence
 defaultlogger
 delims
 Denforcer
-DENORMALIZER
 Depedency
 dependabot
 deprecatedtag
@@ -1382,7 +1380,6 @@ Styleable
 styleguide
 subdir
 subelements
-subext
 sublink
 subscope
 sudo
