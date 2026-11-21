@@ -2464,6 +2464,43 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testWhileWrappingStrict() throws Exception {
+        final String[] expected = {
+            "18:21: " + getCheckMessage(MSG_ERROR, "b", 20, 6),
+            "19:18: " + getCheckMessage(MSG_ERROR, "c", 17, 6),
+        };
+        verifyWithInlineConfigParser(getPath("InputIndentationWhileWrappingStrict.java"), expected);
+    }
+
+    @Test
+    public void testWhileWrappingRelaxed() throws Exception {
+        verifyWithInlineConfigParser(getPath("InputIndentationWhileWrappingRelaxed.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
+    public void testWhileWrappingDifferentStrict() throws Exception {
+        final String[] expected = {
+            "22:7: " + getCheckMessage(MSG_ERROR, "b", 6, 8),
+            "26:11: " + getCheckMessage(MSG_ERROR, "b", 10, 8),
+            "34:7: " + getCheckMessage(MSG_ERROR, "b", 6, 8),
+            "38:11: " + getCheckMessage(MSG_ERROR, "b", 10, 8),
+        };
+        verifyWithInlineConfigParser(getPath("InputIndentationWhileWrappingDifferentStrict.java"),
+                expected);
+    }
+
+    @Test
+    public void testWhileWrappingDifferentRelaxed() throws Exception {
+        final String[] expected = {
+            "22:7: " + getCheckMessage(MSG_ERROR, "b", 6, 8),
+            "34:7: " + getCheckMessage(MSG_ERROR, "b", 6, 8),
+        };
+        verifyWithInlineConfigParser(getPath("InputIndentationWhileWrappingDifferentRelaxed.java"),
+                expected);
+    }
+
+    @Test
     public void testInvalidWhileWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
