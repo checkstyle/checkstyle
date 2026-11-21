@@ -1,9 +1,9 @@
-/*xml
-<module name="Checker">
-  <module name="TreeWalker">
-    <module name="BooleanExpressionComplexity"/>
-  </module>
-</module>
+/*
+BooleanExpressionComplexity
+max = (default)3
+tokens = (default)CTOR_DEF,METHOD_DEF,EXPR,LAND,BAND,LOR,BOR,BXOR,COMPACT_CTOR_DEF
+treatUniformExpressionsAsOne = (default)true
+
 */
 
 // non-compiled with javac: Compilable with Java25
