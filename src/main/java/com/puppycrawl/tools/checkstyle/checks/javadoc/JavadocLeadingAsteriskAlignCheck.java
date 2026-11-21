@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </div>
  *
  * <p>
- * If you're using tabs then specify the the tab width in the
+ * If you're using tabs then specify the tab width in the
  * <a href="https://checkstyle.org/config.html#tabWidth">tabWidth</a> property.
  * </p>
  *
@@ -190,15 +190,15 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
      * Processes and returns an OptionalInt containing
      * the column number of leading asterisk without tabs expanded.
      *
-     * @param line javadoc comment line
+     * @param line Javadoc comment line
      * @return asterisk's column number
      */
     private static Optional<Integer> getAsteriskColumnNumber(String line) {
         final Pattern pattern = Pattern.compile("^(\\s*)\\*");
         final Matcher matcher = pattern.matcher(line);
 
-        // We may not always have a leading asterisk because a javadoc line can start with
-        // a non-whitespace character or the javadoc line can be empty.
+        // We may not always have a leading asterisk because a Javadoc line can start with
+        // a non-whitespace character or the Javadoc line can be empty.
         // In such cases, there is no leading asterisk and Optional will be empty.
         return Optional.of(matcher)
                 .filter(Matcher::find)
@@ -235,7 +235,7 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
      * Checks the column difference between
      * expected column number and leading asterisk column number.
      *
-     * @param expectedColNumber column number of javadoc starting token
+     * @param expectedColNumber column number of Javadoc starting token
      * @param asteriskColNumber column number of leading asterisk
      * @return true if the asterisk is aligned properly, false otherwise
      */

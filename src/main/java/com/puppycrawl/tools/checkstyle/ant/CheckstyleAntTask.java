@@ -297,7 +297,7 @@ public class CheckstyleAntTask extends Task {
         try {
             rootModule = createRootModule();
 
-            // setup the listeners
+            // set up the listeners
             final AuditListener[] listeners = getListeners();
             for (AuditListener element : listeners) {
                 rootModule.addListener(element);
@@ -435,7 +435,7 @@ public class CheckstyleAntTask extends Task {
             returnValue.setProperty(entry.getKey(), value);
         }
 
-        // override with properties specified in subelements
+        // override with properties specified in sub-elements
         for (Property property : overrideProps) {
             returnValue.setProperty(property.getKey(), property.getValue());
         }

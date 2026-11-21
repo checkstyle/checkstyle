@@ -41,7 +41,7 @@ open module com.puppycrawl.tools.checkstyle {
     requires org.apache.commons.logging;
     requires com.google.common;
     // org.reflections is an automatic module and cannot declare its own runtime dependency
-    // on slf4j; without this the JVM never resolves org.slf4j and metadata scanning
+    // on SLF4J; without this the JVM never resolves org.slf4j and metadata scanning
     // (XmlMetaReader, used for SARIF output) fails with NoClassDefFoundError.
     requires org.reflections;
     requires org.slf4j;

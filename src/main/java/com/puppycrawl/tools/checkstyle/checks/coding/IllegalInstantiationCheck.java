@@ -164,7 +164,7 @@ public class IllegalInstantiationCheck extends AbstractCheck {
     }
 
     /**
-     * Perform processing for an package token.
+     * Perform processing for a package token.
      *
      * @param ast the package token
      */
