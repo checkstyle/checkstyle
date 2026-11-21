@@ -272,7 +272,6 @@
   <Match>
     <Bug pattern="
       IMC_IMMATURE_CLASS_NO_TOSTRING,
-      OPM_OVERLY_PERMISSIVE_METHOD,
       WEM_WEAK_EXCEPTION_MESSAGING,
       " />
   </Match>
@@ -336,6 +335,23 @@
       <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck"/>
     </Or>
     <Bug pattern="PMB_INSTANCE_BASED_THREAD_LOCAL"/>
+  </Match>
+  <Match>
+    <!-- Public methods and constructors of Checkstyle public API and utility classes.
+         Their visibility cannot be reduced without breaking backward compatibility
+         or subclassing contracts. -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+      <Class name="com.puppycrawl.tools.checkstyle.ConfigurationLoader"/>
+      <Class name="com.puppycrawl.tools.checkstyle.DefaultLogger"/>
+      <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.FileContents"/>
+      <Class name="com.puppycrawl.tools.checkstyle.api.Violation"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck"/>
+      <Class name="com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition"/>
+      <Class name="com.puppycrawl.tools.checkstyle.utils.CommonUtil"/>
+    </Or>
+    <Bug pattern="OPM_OVERLY_PERMISSIVE_METHOD"/>
   </Match>
   <Match>
     <!-- Swing TreeModel API requires passing 'this' as event source -->

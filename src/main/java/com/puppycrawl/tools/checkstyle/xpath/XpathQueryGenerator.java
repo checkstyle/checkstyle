@@ -124,8 +124,8 @@ public class XpathQueryGenerator {
      * @param fileText the {@code FileText} object
      * @param tabWidth distance between tab stop position
      */
-    public XpathQueryGenerator(DetailAST rootAst, int lineNumber, int columnNumber, int tokenType,
-                               FileText fileText, int tabWidth) {
+    /* package */ XpathQueryGenerator(DetailAST rootAst, int lineNumber, int columnNumber,
+                                      int tokenType, FileText fileText, int tabWidth) {
         this.rootAst = rootAst;
         this.lineNumber = lineNumber;
         this.columnNumber = columnNumber;
