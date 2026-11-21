@@ -166,7 +166,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
-        public void testFileStarted() throws Exception {
+    public void testFileStarted() throws Exception {
         verifyWithInlineConfigParserAndXmlLogger(
             "InputXMLLoggerFileStarted.java",
             "ExpectedXMLLoggerFileStarted.xml");
