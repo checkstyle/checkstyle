@@ -22,6 +22,7 @@
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
               <li><a href="#Example2-config" class="toc-sublink">According to OpenJDK guidelines, where overloaded methods should be grouped together and ordered by increasing parameter count</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Allow overloaded methods to form separate groups by their modifiers, with static overloads grouped apart from instance overloads</a></li>
             </ul>
           </li>
           <li><a href="#OverloadMethodsDeclarationOrder_Example_of_Usage">Example of Usage</a></li>
@@ -48,6 +49,13 @@
               <th>type</th>
               <th>default value</th>
               <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="modifierGroups"/><a href="#modifierGroups">modifierGroups</a></td>
+              <td>Control how different types of overloaded methods can be grouped by their modifiers. Each value defines one group by a space separated list of modifier names, for example <code>"static"</code> or <code>"public static"</code>. The order of modifiers in a group does not matter. A method belongs to every group whose modifiers are all present in the explicit modifiers of the method, so methods of one name can form several groups, one per group they belong to. Methods whose modifiers match no group belong to the default group, and methods without explicit modifiers always form a separate group of their own.</td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
+              <td><code>{}</code></td>
+              <td>14.5.0</td>
             </tr>
             <tr>
               <td><a id="orderByIncreasingParameterCount"/><a href="#orderByIncreasingParameterCount">orderByIncreasingParameterCount</a></td>
@@ -86,7 +94,7 @@ class Example1 {
   void foo() {}
   // violation 2 lines below """All overloaded methods should be placed next
   //  to each other. Previous overloaded method located at line '24'."""
-  void otherSame(String s, int i) {}
+  static void otherSame(String s, int i) {}
 
   public enum ExampleEnum {
     VALUE_ONE,
@@ -99,7 +107,7 @@ class Example1 {
 
     // violation 2 lines below """All overloaded methods should be placed next
     //  to each other. Previous overloaded method located at line '35'."""
-    public void example(String s) {}
+    public static void example(String s) {}
 
   }
 }
@@ -135,7 +143,7 @@ class Example2 {
   void foo() {}
   // violation 2 lines below """All overloaded methods should be placed next
   //  to each other. Previous overloaded method located at line '24'."""
-  void otherSame(String s, int i) {}
+  static void otherSame(String s, int i) {}
 
   public enum ExampleEnum {
     VALUE_ONE,
@@ -148,8 +156,56 @@ class Example2 {
 
     // violation 2 lines below """All overloaded methods should be placed next
     //  to each other. Previous overloaded method located at line '35'."""
-    public void example(String s) {}
+    public static void example(String s) {}
     // violation above 'Overloaded methods should be ordered by increasing parameter count.'
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">To configure the check to allow overloaded methods
+          to form separate groups by their modifiers, with static overloads
+          grouped apart from instance overloads:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OverloadMethodsDeclarationOrder"&gt;
+      &lt;property name="modifierGroups" value="static"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3 {
+  void same(int i) {}
+  void same(String s, int i, int k) {}
+  // comments between overloaded methods are allowed.
+  void same(String s) {}
+
+  void same(int i, String s) {}
+
+  void notSame() {}
+  interface notSame{}
+
+  void otherSame(String s) {}
+  void foo() {}
+  // ok, static overloads form a separate group, so the method below
+  // is not required to be next to the previous overload.
+  static void otherSame(String s, int i) {}
+
+  public enum ExampleEnum {
+    VALUE_ONE,
+    VALUE_TWO;
+
+    public void example() {}
+    public void example(String s, int i) {}
+
+    void foo() {}
+
+    // ok, static overloads form a separate group, so the method below
+    // is not required to be next to the previous overload.
+    public static void example(String s) {}
+
   }
 }
 </code></pre></div>

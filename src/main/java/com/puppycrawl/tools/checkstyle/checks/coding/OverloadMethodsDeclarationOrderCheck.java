@@ -19,8 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.regex.Pattern;
+
+import javax.annotation.Nullable;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -51,9 +60,34 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
     public static final String MSG_ORDER = "overload.methods.declaration.order";
 
     /**
+     * Separator between the method name and the group identifier in a group key.
+     */
+    private static final String GROUP_KEY_SEPARATOR = ":";
+
+    /**
+     * Identifier of the group for methods whose modifiers match no configured group.
+     */
+    private static final String DEFAULT_GROUP = "default";
+
+    /**
+     * Identifier of the group for methods that have no explicit modifiers.
+     */
+    private static final String NO_MODIFIERS_GROUP = "noModifiers";
+
+    /**
+     * Pattern matching the whitespace that separates modifier names in a group.
+     */
+    private static final Pattern WHITESPACE_PATTERN = Pattern.compile("\\s+");
+
+    /**
      * Control whether to order overloaded methods by increasing parameter count.
      */
     private boolean orderByIncreasingParameterCount;
+
+    /**
+     * Control how different types of overloaded methods can be grouped by their modifiers.
+     */
+    private List<String> modifierGroups = new ArrayList<>();
 
     /**
      * Creates a new {@code OverloadMethodsDeclarationOrderCheck} instance.
@@ -71,6 +105,24 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
      */
     public void setOrderByIncreasingParameterCount(boolean orderByIncreasingParameterCount) {
         this.orderByIncreasingParameterCount = orderByIncreasingParameterCount;
+    }
+
+    /**
+     * Setter to control how different types of overloaded methods can be grouped by
+     * their modifiers. Each value defines one group by a space separated list of
+     * modifier names, for example {@code "static"} or {@code "public static"}.
+     * The order of modifiers in a group does not matter. A method belongs to every
+     * group whose modifiers are all present in the explicit modifiers of the method,
+     * so methods of one name can form several groups, one per group they belong to.
+     * Methods whose modifiers match no group belong to the default group, and methods
+     * without explicit modifiers always form a separate group of their own.
+     *
+     * @param modifierGroups the groups of modifiers that create separate groups
+     *        of overloaded methods.
+     * @since 14.5.0
+     */
+    public void setModifierGroups(String... modifierGroups) {
+        this.modifierGroups = new ArrayList<>(Arrays.asList(modifierGroups));
     }
 
     @Override
@@ -116,8 +168,8 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
      *        compilation unit for a JEP 512 compact source file.
      */
     private void checkOverloadMethodsGrouping(DetailAST objectBlock) {
-        final int allowedDistance = 1;
         DetailAST currentToken = objectBlock.getFirstChild();
+        final List<Set<String>> groups = parseModifierGroups();
         final Map<String, Integer> methodIndexMap = new HashMap<>();
         final Map<String, Integer> methodLineNumberMap = new HashMap<>();
 
@@ -130,31 +182,137 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
                 currentIndex++;
                 final String methodName =
                         currentToken.findFirstToken(TokenTypes.IDENT).getText();
-                final Integer previousIndex = methodIndexMap.get(methodName);
+                final List<String> groupKeys = getGroupKeys(currentToken, methodName, groups);
 
-                if (previousIndex != null) {
-                    final DetailAST previousSibling = currentToken.getPreviousSibling();
-                    final boolean isMethod = previousSibling.getType() == TokenTypes.METHOD_DEF;
+                final Integer violatedPreviousLine = findViolatedPreviousLine(currentToken,
+                        groupKeys, currentIndex, methodIndexMap, methodLineNumberMap);
+                if (violatedPreviousLine != null) {
+                    log(currentToken, MSG_KEY, violatedPreviousLine);
+                }
 
-                    if (!isMethod || currentIndex - previousIndex > allowedDistance) {
-                        final int previousLineWithOverloadMethod =
-                                methodLineNumberMap.get(methodName);
-                        log(currentToken, MSG_KEY,
-                                previousLineWithOverloadMethod);
-                    }
-
-                    if (orderByIncreasingParameterCount) {
-                        checkMethodOrdering(currentToken, methodName,
-                                methodIsOrderedMap, methodParameterCountMap);
-                    }
+                if (orderByIncreasingParameterCount
+                        && methodParameterCountMap.containsKey(methodName)) {
+                    checkMethodOrdering(currentToken, methodName,
+                            methodIsOrderedMap, methodParameterCountMap);
                 }
                 methodIsOrderedMap.putIfAbsent(methodName, Boolean.TRUE);
-                methodIndexMap.put(methodName, currentIndex);
-                methodLineNumberMap.put(methodName, currentToken.getLineNo());
+                for (String groupKey : groupKeys) {
+                    methodIndexMap.put(groupKey, currentIndex);
+                    methodLineNumberMap.put(groupKey, currentToken.getLineNo());
+                }
                 methodParameterCountMap.put(methodName, getParameterCount(currentToken));
             }
             currentToken = currentToken.getNextSibling();
         }
+    }
+
+    /**
+     * Finds the line of the closest previous overload that the method is separated
+     * from, among the groups the method belongs to. Overloads of a group are
+     * separated when any other method or member is located between them.
+     *
+     * @param currentMethod the method definition.
+     * @param groupKeys the keys of the groups the method belongs to.
+     * @param currentIndex the index of the method among the methods of the block.
+     * @param methodIndexMap map of group keys to the index of their last method.
+     * @param methodLineNumberMap map of group keys to the line of their last method.
+     * @return the line of the closest separated previous overload, or null if the
+     *         method is not separated from any previous overload of its groups.
+     */
+    @Nullable
+    private static Integer findViolatedPreviousLine(DetailAST currentMethod,
+            Collection<String> groupKeys, int currentIndex, Map<String, Integer> methodIndexMap,
+            Map<String, Integer> methodLineNumberMap) {
+        final int allowedDistance = 1;
+        Integer violatedPreviousLine = null;
+        for (String groupKey : groupKeys) {
+            final Integer previousIndex = methodIndexMap.get(groupKey);
+            if (previousIndex != null) {
+                final DetailAST previousSibling = currentMethod.getPreviousSibling();
+                final boolean isMethod = previousSibling.getType() == TokenTypes.METHOD_DEF;
+                if (!isMethod || currentIndex - previousIndex > allowedDistance) {
+                    final int previousLine = methodLineNumberMap.get(groupKey);
+                    if (violatedPreviousLine == null) {
+                        violatedPreviousLine = previousLine;
+                    }
+                    else {
+                        violatedPreviousLine = Math.max(violatedPreviousLine, previousLine);
+                    }
+                }
+            }
+        }
+        return violatedPreviousLine;
+    }
+
+    /**
+     * Parses the {@code modifierGroups} property into sets of modifier names,
+     * one set per configured group.
+     *
+     * @return the modifier groups as sets of modifier names.
+     */
+    private List<Set<String>> parseModifierGroups() {
+        return modifierGroups.stream()
+                .<Set<String>>map(group -> {
+                    return new HashSet<>(
+                            Arrays.asList(WHITESPACE_PATTERN.split(group)));
+                })
+                .toList();
+    }
+
+    /**
+     * Computes the keys of the groups the method belongs to. A key is the method name
+     * combined with the identifier of a group. If no groups are configured, the only
+     * key is the method name itself, so all overloads of a name form a single group.
+     *
+     * @param methodDef the method definition.
+     * @param methodName the name of the method.
+     * @param groups the modifier groups as sets of modifier names.
+     * @return the keys of the groups the method belongs to.
+     */
+    private static List<String> getGroupKeys(DetailAST methodDef, String methodName,
+            List<Set<String>> groups) {
+        final List<String> groupKeys = new ArrayList<>();
+        if (groups.isEmpty()) {
+            groupKeys.add(methodName);
+        }
+        else {
+            final Set<String> modifiers = getExplicitModifiers(methodDef);
+            if (modifiers.isEmpty()) {
+                groupKeys.add(methodName + GROUP_KEY_SEPARATOR + NO_MODIFIERS_GROUP);
+            }
+            else {
+                for (int index = 0; index < groups.size(); index++) {
+                    if (modifiers.containsAll(groups.get(index))) {
+                        groupKeys.add(methodName + GROUP_KEY_SEPARATOR + index);
+                    }
+                }
+                if (groupKeys.isEmpty()) {
+                    groupKeys.add(methodName + GROUP_KEY_SEPARATOR + DEFAULT_GROUP);
+                }
+            }
+        }
+        return groupKeys;
+    }
+
+    /**
+     * Gets the explicit modifiers of a method. Annotations are not modifiers,
+     * and no implicit modifiers are added, so a method declared without any
+     * modifier has an empty result even in an interface.
+     *
+     * @param methodDef the method definition.
+     * @return the names of the explicit modifiers of the method.
+     */
+    private static Set<String> getExplicitModifiers(DetailAST methodDef) {
+        final Set<String> modifiers = new HashSet<>();
+        final DetailAST modifiersAst = methodDef.findFirstToken(TokenTypes.MODIFIERS);
+        DetailAST modifier = modifiersAst.getFirstChild();
+        while (modifier != null) {
+            if (modifier.getType() != TokenTypes.ANNOTATION) {
+                modifiers.add(modifier.getText());
+            }
+            modifier = modifier.getNextSibling();
+        }
+        return modifiers;
     }
 
     /**
