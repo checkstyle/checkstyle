@@ -53,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 public class CommonUtilTest extends AbstractPathTestSupport {
 
     /** After appending to path produces equivalent, but denormalized path. */
-    private static final String PATH_DENORMALIZER = "/levelDown/.././";
+    private static final String PATH_WITH_PARENT_SEGMENTS = "/levelDown/.././";
 
     @Override
     public String getPackageLocation() {
@@ -223,7 +223,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     public void testRelativeNormalizedPathWithDenormalizedBaseDirectory() throws IOException {
         final String sampleAbsolutePath = new File("src/main/java").getCanonicalPath();
         final String absoluteFilePath = sampleAbsolutePath + "/SampleFile.java";
-        final String basePath = sampleAbsolutePath + PATH_DENORMALIZER;
+        final String basePath = sampleAbsolutePath + PATH_WITH_PARENT_SEGMENTS;
 
         final String relativePath = CommonUtil.relativizePath(basePath,
             absoluteFilePath);
@@ -365,8 +365,8 @@ public class CommonUtilTest extends AbstractPathTestSupport {
             .that(CommonUtil.getFileNameWithoutExtension("filename.extension"))
             .isEqualTo("filename");
         assertWithMessage("invalid result")
-            .that(CommonUtil.getFileNameWithoutExtension("filename.subext.extension"))
-            .isEqualTo("filename.subext");
+            .that(CommonUtil.getFileNameWithoutExtension("filename.inner.extension"))
+            .isEqualTo("filename.inner");
     }
 
     @Test
@@ -378,7 +378,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
             .that(CommonUtil.getFileExtension("filename.extension"))
             .isEqualTo("extension");
         assertWithMessage("Invalid extension")
-            .that(CommonUtil.getFileExtension("filename.subext.extension"))
+            .that(CommonUtil.getFileExtension("filename.inner.extension"))
             .isEqualTo("extension");
     }
 
