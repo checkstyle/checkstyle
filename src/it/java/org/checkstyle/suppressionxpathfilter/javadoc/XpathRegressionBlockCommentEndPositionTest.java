@@ -45,7 +45,7 @@ public class XpathRegressionBlockCommentEndPositionTest extends AbstractXpathTes
     public void testOne() throws Exception {
 
         final String[] expectedViolation = {
-            "13:17: " + getCheckMessage(BlockCommentEndPositionCheck.class,
+            "14:17: " + getCheckMessage(BlockCommentEndPositionCheck.class,
                     BlockCommentEndPositionCheck.MSG_BLOCK_COMMENT_END),
         };
 
