@@ -28,4 +28,34 @@ public class InputUnnecessaryNullCheckWithInstanceOfNestedIf {
             }
         }
     }
+    public void nestedIfForms(Object obj) {
+        if (obj != null) { // violation 'Unnecessary nullity check'
+            if (obj instanceof String) {
+                String str = (String) obj;
+            }
+        }
+        if (obj != null) // violation 'Unnecessary nullity check'
+            if (obj instanceof String) {
+                String str = (String) obj;
+            }
+        if (obj instanceof String) {
+            if (obj != null) { // violation 'Unnecessary nullity check'
+                String str = (String) obj;
+            }
+        }
+        if (obj instanceof String)
+            if (obj != null) { // violation 'Unnecessary nullity check'
+                String str = (String) obj;
+            }
+        if ((obj != null)) { // violation 'Unnecessary nullity check'
+            if ((obj instanceof String)) {
+                String str = (String) obj;
+            }
+        }
+        if (null != obj) { // violation 'Unnecessary nullity check'
+            if (obj instanceof String) {
+                String str = (String) obj;
+            }
+        }
+    }
 }

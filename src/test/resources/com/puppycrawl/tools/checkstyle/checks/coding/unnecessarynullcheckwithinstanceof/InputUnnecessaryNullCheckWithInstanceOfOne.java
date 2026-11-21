@@ -26,7 +26,7 @@ public class InputUnnecessaryNullCheckWithInstanceOfOne {
         }
     }
     public void separateIfStatements(Object obj) {
-        if (obj != null) {
+        if (obj != null) { // violation 'Unnecessary nullity check'
             if (obj instanceof String) {
                 String str = (String) obj;
             }
