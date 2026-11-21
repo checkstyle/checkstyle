@@ -75,7 +75,8 @@ compare_results() {
         return 1
     fi
   # Calculate absolute percentage difference for execution time
-  local DEVIATION_IN_SECONDS=$(echo "scale=4; \
+  local DEVIATION_IN_SECONDS
+  DEVIATION_IN_SECONDS=$(echo "scale=4; \
     ((${EXECUTION_TIME_SECONDS} - ${BASELINE_SECONDS}) / ${BASELINE_SECONDS}) * 100" | bc)
   DEVIATION_IN_SECONDS=$(echo "scale=4; \
     if ($DEVIATION_IN_SECONDS < 0) -($DEVIATION_IN_SECONDS) else $DEVIATION_IN_SECONDS" | bc)
