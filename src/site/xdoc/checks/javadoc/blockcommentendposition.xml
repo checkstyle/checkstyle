@@ -180,6 +180,10 @@ class Example2 { // violation above 'Block comment end must be on new line.'
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+BlockCommentEndPosition">
               Checkstyle Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+BlockCommentEndPosition">
+              Google Style</a>
+          </li>
         </ul>
       </subsection>
 

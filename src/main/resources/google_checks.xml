@@ -189,6 +189,7 @@
     <module name="JavadocLeadingAsteriskAlign"/>
     <module name="JavadocMissingLeadingAsterisk"/>
     <module name="JavadocContentLocation"/>
+    <module name="BlockCommentEndPosition"/>
     <module name="MissingSwitchDefault"/>
     <module name="FallThrough"/>
     <module name="UpperEll"/>

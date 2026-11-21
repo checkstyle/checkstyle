@@ -53,8 +53,9 @@ public class InputIncorrectJavadocLeadingAsteriskAlignment {
 */
   public InputIncorrectJavadocLeadingAsteriskAlignment(String a) {}
 
-  // violation 3 lines below 'Leading asterisk has .* indentation .* 4, expected is 1.'
-  // violation 3 lines below 'Leading asterisk has .* indentation .* 2, expected is 1.'
+  // violation 4 lines below 'Leading asterisk has .* indentation .* 4, expected is 1.'
+  // violation 4 lines below 'Leading asterisk has .* indentation .* 2, expected is 1.'
+  // violation 3 lines below 'Block comment end must be on new line.'
   /**
       * Misaligned leading asterisk.
     * Inner Class. */
@@ -86,10 +87,11 @@ public class InputIncorrectJavadocLeadingAsteriskAlignment {
     ONE,
 
 
-    // Closing tag should be alone on line. False negative until #18273
+    // Closing tag should be alone on line.
     // violation 2 lines below 'Leading asterisk has .* indentation .* 2, expected is 1'
     /**
       * Wrong Alignment. */
+    // violation above 'Block comment end must be on new line.'
     TWO
   }
 }

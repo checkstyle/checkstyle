@@ -2465,20 +2465,23 @@
                   config</a>)
                   <br />
                   <br />
+                  <span class="wrapper inline">
+                    <img
+                            src="images/ok_green.png"
+                            alt="" />
+                  </span>
+                  <a href="checks/javadoc/blockcommentendposition.html#BlockCommentEndPosition">
+                    BlockCommentEndPosition</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+BlockCommentEndPosition">
+                  config</a>)
+                  <br />
+                  <br />
                   Non covered:
                   <br />
                   1. There is a false negative related to Javadoc content that begins
                   with a leading asterisk. It is addressed at:
                   <a href="https://github.com/checkstyle/checkstyle/issues/18271">
                     #18271
-                  </a>
-                  <br />
-                  <br />
-                  2. There is a false negative concerning Javadoc blocks where the
-                  closing <code>*/</code> does not appear on its own line.
-                  It is addressed at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/18273">
-                    #18273
                   </a>
                 </td>
                 <td>
