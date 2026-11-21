@@ -40,6 +40,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
             "12:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "15:39: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "24:14: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "29:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "50:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "55:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "58:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
@@ -88,6 +89,12 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
             "11:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "18:21: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "26:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "32:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "37:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "42:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "47:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "50:14: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "55:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
         };
         verifyWithInlineConfigParser(getPath(
             "InputUnnecessaryNullCheckWithInstanceOfNestedIf.java"), expected);
