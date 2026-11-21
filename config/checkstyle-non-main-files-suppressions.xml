@@ -20,6 +20,9 @@
 
   <!-- Intentional no new line at the end. -->
   <suppress checks="NewlineAtEndOfFile"
+            files="/whitespaceafter/InputWhitespaceAfter(Empty|SlashOnly)SingleLineCommentAtEof\.java"/>
+
+  <suppress checks="NewlineAtEndOfFile"
              files="/test/.*/grammar/comments/InputFullOfSinglelineComments\.java"/>
   <suppress checks="NewlineAtEndOfFile"
              files="/test/.*/asttreestringprinter/InputAstTreeStringPrinterFullOfSinglelineComments\.java"/>
