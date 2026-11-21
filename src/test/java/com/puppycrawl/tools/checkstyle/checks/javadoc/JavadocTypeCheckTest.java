@@ -629,4 +629,26 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testTagFormatFullDescription() throws Exception {
+        final String[] expected = {
+            "61:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "\\S+@\\S+"),
+            "70:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\d+\\.\\d+"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeTagFormat.java"),
+                expected);
+    }
+
+    @Test
+    public void testTagFormatMultiline() throws Exception {
+        final String[] expected = {
+            "40:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "First Line\\s+Second Line"),
+            "40:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "^1\\.\\s+0$"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeTagFormatMultiline.java"),
+                expected);
+    }
+
 }
