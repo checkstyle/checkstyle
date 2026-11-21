@@ -44,4 +44,15 @@ public class EmptyStatementCheckExamplesTest extends AbstractExamplesModuleTestS
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
+            "15:3: " + getCheckMessage(MSG_KEY),
+            "18:14: " + getCheckMessage(MSG_KEY),
+            "25:3: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
 }
