@@ -35,19 +35,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
  * leading asterisks</a> in a Javadoc comment. The Check ensures that leading asterisks
  * are aligned vertically at the number of columns to the right of the slash ( / ) of the
- * opening Javadoc tag specified by the {@code indentation} property. By default they are
+ * opening Javadoc tag specified by the {@code indentation} property. By default, they are
  * aligned under the first asterisk ( &#42; )
  * of opening Javadoc tag. The alignment of closing Javadoc tag ( &#42;/ ) is also checked.
  * If a closing Javadoc tag contains non-whitespace character before it
  * then it's alignment will be ignored.
- * If the ending javadoc line contains a leading asterisk, then that leading asterisk's alignment
+ * If the ending Javadoc line contains a leading asterisk, then that leading asterisk's alignment
  * will be considered, the closing Javadoc tag will be ignored.
  * If the opening Javadoc tag line contains leading asterisks, then that line defines
  * the expected alignment and the {@code indentation} property is not applied.
  * </div>
  *
  * <p>
- * If you're using tabs then specify the the tab width in the
+ * If you're using tabs then specify the tab width in the
  * <a href="https://checkstyle.org/config.html#tabWidth">tabWidth</a> property.
  * </p>
  *
@@ -78,7 +78,7 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
 
     /**
      * Specify the number of columns to the right of the slash ( / ) of the opening
-     * javadoc tag at which the leading asterisks are expected. A negative value
+     * Javadoc tag at which the leading asterisks are expected. A negative value
      * expects the leading asterisks to the left of the slash ( / ).
      */
     private int indentation = DEFAULT_INDENTATION;
@@ -92,7 +92,7 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
 
     /**
      * Setter to specify the number of columns to the right of the slash ( / ) of the
-     * opening javadoc tag at which the leading asterisks are expected. A negative value
+     * opening Javadoc tag at which the leading asterisks are expected. A negative value
      * expects the leading asterisks to the left of the slash ( / ).
      *
      * @param indentation number of columns
@@ -190,7 +190,7 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
      * Processes and returns an OptionalInt containing
      * the column number of leading asterisk without tabs expanded.
      *
-     * @param line javadoc comment line
+     * @param line Javadoc comment line
      * @return asterisk's column number
      */
     private static Optional<Integer> getAsteriskColumnNumber(String line) {
@@ -222,7 +222,7 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
     /**
      * Converts a tab-expanded column number into an indentation level, which is
      * the number of columns the given column is to the right of the slash ( / )
-     * of the opening javadoc tag.
+     * of the opening Javadoc tag.
      *
      * @param columnNumberTabsExpanded tab-expanded column number
      * @return indentation level
@@ -235,7 +235,7 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
      * Checks the column difference between
      * expected column number and leading asterisk column number.
      *
-     * @param expectedColNumber column number of javadoc starting token
+     * @param expectedColNumber column number of Javadoc starting token
      * @param asteriskColNumber column number of leading asterisk
      * @return true if the asterisk is aligned properly, false otherwise
      */

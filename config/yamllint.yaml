@@ -13,7 +13,7 @@ rules:
   commas: enable
   comments: enable
   comments-indentation: enable
-  # We have no use for yaml directives, and we do not have single yaml files
+  # We have no use for YAML directives, and we do not have single YAML files
   # with multiple documents in them, so we do not need doc start or end.
   document-start: disable
   document-end: disable

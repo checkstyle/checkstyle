@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * This check makes sense only for library projects (not application projects)
  * which care of ideal OOP-design to make sure that class works in all cases even misusage.
  * Even in library projects this check most likely will find classes that are designed for extension
- * by somebody. User needs to use suppressions extensively to got a benefit from this check,
+ * by somebody. User needs to use suppressions extensively to get a benefit from this check,
  * and keep in suppressions all confirmed/known classes that are deigned for inheritance
  * intentionally to let the check catch only new classes, and bring this to team/user attention.
  * </p>
@@ -59,7 +59,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  *
  * <p>
- * ATTENTION: If the method which can be overridden in a subclass has a javadoc comment
+ * ATTENTION: If the method which can be overridden in a subclass has a Javadoc comment
  * (a good practice is to explain its self-use of overridable methods) the check will not
  * rise a violation. The violation can also be skipped if the method which can be overridden
  * in a subclass has one or more annotations that are specified in ignoredAnnotations
@@ -256,10 +256,10 @@ public class DesignForExtensionCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether a method has a javadoc comment.
+     * Checks whether a method has a Javadoc comment.
      *
      * @param methodDef method definition token.
-     * @return true if a method has a javadoc comment.
+     * @return true if a method has a Javadoc comment.
      */
     private boolean hasJavadocComment(DetailAST methodDef) {
         return hasJavadocCommentOnToken(methodDef, TokenTypes.MODIFIERS)
@@ -267,7 +267,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether a token has a javadoc comment.
+     * Checks whether a token has a Javadoc comment.
      *
      * @param methodDef method definition token.
      * @param tokenType token type.
@@ -279,7 +279,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether a javadoc comment exists under the token.
+     * Checks whether a Javadoc comment exists under the token.
      *
      * @param token tree token.
      * @return true if a Javadoc comment exists under the token.
@@ -310,7 +310,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether a javadoc contains the specified comment pattern that denotes
+     * Checks whether a Javadoc contains the specified comment pattern that denotes
      * a method as designed for extension.
      *
      * @param detailAST the ast we are checking for possible extension

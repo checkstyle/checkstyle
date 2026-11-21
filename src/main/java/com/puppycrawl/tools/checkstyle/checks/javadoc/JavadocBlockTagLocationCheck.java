@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
  * <div>
  * Checks that a
  * <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/javadoc/doc-comment-spec.html#block-tags">
- * javadoc block tag</a> appears only at the beginning of a line, ignoring
+ * Javadoc block tag</a> appears only at the beginning of a line, ignoring
  * leading asterisks and white space. A block tag is a token that starts with
  * {@code @} symbol and is preceded by a whitespace. This check ignores block
  * tags in comments and inside inline tags {&#64;code } and {&#64;literal }.
@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
  * <p>
  * Rationale: according to
  * <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/javadoc/doc-comment-spec.html#block-tags">
- * the specification</a> all javadoc block tags should be placed at the beginning
+ * the specification</a> all Javadoc block tags should be placed at the beginning
  * of a line. Tags that are not placed at the beginning are treated as plain text.
  * To recognize intentional tag placement to text area it is better to escape the
  * {@code @} symbol, and all non-escaped tags should be located at the beginning
@@ -72,7 +72,7 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
     public static final String MSG_BLOCK_TAG_LOCATION = "javadoc.blockTagLocation";
 
     /**
-     * This regexp is used to extract the javadoc tags.
+     * This regexp is used to extract the Javadoc tags.
      */
     private static final Pattern JAVADOC_BLOCK_TAG_PATTERN = Pattern.compile("\\s@(\\w+)");
 
@@ -100,7 +100,7 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
     };
 
     /**
-     * Specify the javadoc tags to process.
+     * Specify the Javadoc tags to process.
      */
     private Set<String> tags;
 
@@ -112,7 +112,7 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Setter to specify the javadoc tags to process.
+     * Setter to specify the Javadoc tags to process.
      *
      * @param values user's values.
      * @since 8.24
@@ -122,13 +122,13 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * The javadoc tokens that this check must be registered for. According to
+     * The Javadoc tokens that this check must be registered for. According to
      * <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/javadoc/doc-comment-spec.html#block-tags">
      * the specs</a> each block tag must appear at the beginning of a line, otherwise
      * it will be interpreted as a plain text. This check looks for a block tag
      * in the javadoc text, thus it needs the {@code TEXT} tokens.
      *
-     * @return the javadoc token set this must be registered for.
+     * @return the Javadoc token set this must be registered for.
      * @see JavadocCommentsTokenTypes
      */
     @Override

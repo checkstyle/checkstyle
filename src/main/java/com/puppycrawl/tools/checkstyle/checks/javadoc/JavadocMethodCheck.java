@@ -78,7 +78,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * <p>
  * ATTENTION: Checkstyle does not have information about hierarchy of exception types
  * so usage of base class is considered as separate exception type.
- * As workaround, you need to specify both types in javadoc (parent and exact type).
+ * As workaround, you need to specify both types in Javadoc (parent and exact type).
  * </p>
  *
  * <p>

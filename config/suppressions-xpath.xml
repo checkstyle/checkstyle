@@ -17,12 +17,12 @@
   <suppress-xpath checks="CyclomaticComplexity"
     query="//CLASS_DEF[./IDENT[@text='JavadocMethodCheck'
                      or @text='CustomImportOrderCheck']]//METHOD_DEF"/>
-  <!-- there are 3 thrown and all of them could be caused by xml parsing -->
+  <!-- there are 3 thrown and all of them could be caused by XML parsing -->
   <suppress-xpath checks="ThrowsCount"
                   query="//CLASS_DEF[./IDENT[@text='XmlMetaReader']]
                         //METHOD_DEF[./IDENT[@text='read']]/LITERAL_THROWS"/>
 
-  <!-- fillChecksFromJavadocPackage registers every bundled javadoc check, so a large
+  <!-- fillChecksFromJavadocPackage registers every bundled Javadoc check, so a large
        number of executable statements is expected. -->
   <suppress-xpath
           files="PackageObjectFactory.java"
