@@ -36,7 +36,7 @@ public class LocalizedMessageTest {
 
     @DefaultLocale("en")
     @Test
-    public void testNullArgs() {
+    void testNullArgs() {
         final LocalizedMessage messageClass = new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
                 DefaultLogger.class, "DefaultLogger.addException", "myfile");
         assertWithMessage("Violation should contain exception info")
@@ -52,7 +52,7 @@ public class LocalizedMessageTest {
     }
 
     @Test
-    public void testLanguageIsValid() {
+    void testLanguageIsValid() {
         final String language = DEFAULT_LOCALE.getLanguage();
         assumeFalse(language.isEmpty(), "Locale not set");
         assertWithMessage("Invalid language")
@@ -65,7 +65,7 @@ public class LocalizedMessageTest {
      * Verifies that the country specified with the system property {@code user.country} exists.
      */
     @Test
-    public void testCountryIsValid() {
+    void testCountryIsValid() {
         final String country = DEFAULT_LOCALE.getCountry();
         assumeFalse(country.isEmpty(), "Locale not set");
         assertWithMessage("Invalid country")
@@ -75,7 +75,7 @@ public class LocalizedMessageTest {
     }
 
     @Test
-    public void testMessageInFrench() {
+    void testMessageInFrench() {
         final LocalizedMessage violation = createSampleViolation();
         LocalizedMessage.setLocale(Locale.FRENCH);
 
@@ -86,7 +86,7 @@ public class LocalizedMessageTest {
 
     @DefaultLocale("fr")
     @Test
-    public void testEnforceEnglishLanguageBySettingUnitedStatesLocale() {
+    void testEnforceEnglishLanguageBySettingUnitedStatesLocale() {
         LocalizedMessage.setLocale(Locale.US);
         final LocalizedMessage violation = createSampleViolation();
 
@@ -97,7 +97,7 @@ public class LocalizedMessageTest {
 
     @DefaultLocale("fr")
     @Test
-    public void testEnforceEnglishLanguageBySettingRootLocale() {
+    void testEnforceEnglishLanguageBySettingRootLocale() {
         LocalizedMessage.setLocale(Locale.ROOT);
         final LocalizedMessage violation = createSampleViolation();
 
@@ -112,7 +112,7 @@ public class LocalizedMessageTest {
     }
 
     @Test
-    public void testArgsFieldIsSetToNullWhenArgsIsNull() {
+    void testArgsFieldIsSetToNullWhenArgsIsNull() {
         final LocalizedMessage message = new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
                 DefaultLogger.class, "DefaultLogger.addException", (Object[]) null);
         final Object[] args = TestUtil.getInternalState(message, "args", Object[].class);
@@ -123,7 +123,7 @@ public class LocalizedMessageTest {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
         LocalizedMessage.setLocale(DEFAULT_LOCALE);
     }
 
