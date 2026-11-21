@@ -528,7 +528,7 @@ public class ImportOrderCheck extends AbstractCheck {
      */
     private void doVisitTokenInSameGroup(boolean isStatic,
             boolean previous, String name, DetailAST ast) {
-        if (ordered) {
+        if (ordered || isStatic && staticImportsApart) {
             if (option == ImportOrderOption.INFLOW) {
                 if (isWrongOrder(name, isStatic)) {
                     log(ast, MSG_ORDERING_LEX, name, lastImport);
