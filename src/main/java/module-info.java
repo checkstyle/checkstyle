@@ -52,6 +52,7 @@ open module com.puppycrawl.tools.checkstyle {
     // javax.annotation.Nullable (jsr305) and org.jspecify.annotations (via guava).
     requires static jsr305;
     requires static org.jspecify;
+    requires static org.checkerframework.checker.qual;
     // Only needed by the Ant task; the ant dependency is "provided" scope.
     requires static ant;
 
