@@ -212,7 +212,6 @@ public class XdocsPagesTest {
             "MissingSwitchDefault",
             "ModifierOrder",
             "NewlineAtEndOfFile",
-            "PackageName",
             "ParameterName",
             "ParameterNumber",
             "ParenPad",
