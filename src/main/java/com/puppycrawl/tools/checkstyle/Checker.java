@@ -256,6 +256,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             .collect(Collectors.toUnmodifiableSet());
     }
 
+    // -@cs[CyclomaticComplexity] no easy way to split this logic of processing the file
     /**
      * Processes a list of files with all FileSetChecks.
      *
@@ -271,7 +272,6 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @noinspectionreason ProhibitedExceptionThrown - preserve Error propagation while adding
      *      the name of the file that was being processed.
      */
-    // -@cs[CyclomaticComplexity] no easy way to split this logic of processing the file
     private void processFiles(List<File> files) throws CheckstyleException {
         for (final File file : files) {
             String fileName = null;
@@ -294,22 +294,29 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             // -@cs[IllegalCatch] There is no other way to deliver filename that was under
             // processing. See https://github.com/checkstyle/checkstyle/issues/2285
             catch (Exception exc) {
-                if (fileName != null && cacheFile != null) {
-                    cacheFile.remove(fileName);
-                }
+                removeFromCache(fileName);
 
                 // We need to catch all exceptions to put a reason failure (file name) in exception
                 throw new CheckstyleException(
                         getLocalizedMessage("Checker.processFilesException", filePath), exc);
             }
             catch (Error error) {
-                if (fileName != null && cacheFile != null) {
-                    cacheFile.remove(fileName);
-                }
+                removeFromCache(fileName);
 
                 // We need to catch all errors to put a reason failure (file name) in error
                 throw new Error(getLocalizedMessage("Checker.error", filePath), error);
             }
+        }
+    }
+
+    /**
+     * Removes the given file from the cache, if caching is enabled.
+     *
+     * @param fileName the name of the file to remove from the cache, can be null.
+     */
+    private void removeFromCache(String fileName) {
+        if (fileName != null && cacheFile != null) {
+            cacheFile.remove(fileName);
         }
     }
 
