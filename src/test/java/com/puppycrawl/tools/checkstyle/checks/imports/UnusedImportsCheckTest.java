@@ -314,6 +314,20 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTypeParameterDeclaration() throws Exception {
+        final String[] expected = {
+            "10:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "11:8: " + getCheckMessage(MSG_KEY, "java.util.Map"),
+            "13:8: " + getCheckMessage(MSG_KEY, "java.util.ArrayList"),
+            "14:8: " + getCheckMessage(MSG_KEY, "java.util.HashMap"),
+            "16:8: " + getCheckMessage(MSG_KEY, "java.util.LinkedList"),
+            "17:8: " + getCheckMessage(MSG_KEY, "java.util.Deque"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsTypeParameter.java"), expected);
+    }
+
+    @Test
     public void testUnusedImports3() throws Exception {
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY, "java.awt.Rectangle"),
