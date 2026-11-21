@@ -1601,7 +1601,7 @@ no-warning-imports-java-design-patterns)
   ;;
 
 git-diff)
-  if [ "$(git status | grep 'Changes not staged\|Untracked files')" ]; then
+  if git status | grep -q 'Changes not staged\|Untracked files'; then
     printf "Please clean up or update .gitattributes file.\nGit status output:\n"
     printf "Top 300 lines of diff:\n"
     git status
