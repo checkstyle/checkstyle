@@ -12,7 +12,7 @@ echo 'Issue number: '"$ISSUE_NUMBER" && RESULT=0
 if [[ $ISSUE_NUMBER =~ ^#[0-9]+$ ]]; then
     LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQUEST
     LINK_ISSUE=https://api.github.com/repos/checkstyle/checkstyle/issues/${ISSUE_NUMBER:1}
-    REGEXP=($ISSUE_NUMBER\|https://github.com/checkstyle/checkstyle/issues/${ISSUE_NUMBER:1})
+    REGEXP=("$ISSUE_NUMBER|https://github.com/checkstyle/checkstyle/issues/${ISSUE_NUMBER:1}")
     PR_DESC=$(curl --fail-with-body -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_PR" \
                 | jq '.body' | grep -E "$REGEXP" | cat )
     echo 'PR Description grepped:'"${PR_DESC:0:80}"

@@ -1722,7 +1722,7 @@ ci-temp-check)
     FILES_NO_CONCURRENCY=()
     for f in $GITHUB_WORKFLOW_FILES; do
       if ! grep -wq "concurrency:" "$f"; then
-            FILES_NO_CONCURRENCY+=( $f )
+            FILES_NO_CONCURRENCY+=( "$f" )
       fi
     done
 
