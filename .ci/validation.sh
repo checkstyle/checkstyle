@@ -151,7 +151,7 @@ pr-age)
   echo "The PR is based on a master that is $COMMITS_SINCE_MASTER commit(s) old."
   echo "The max allowed is $MAX_ALLOWED."
 
-  if (( $COMMITS_SINCE_MASTER > $MAX_ALLOWED ));
+  if (( COMMITS_SINCE_MASTER > MAX_ALLOWED ));
   then
     echo "This PR is too old and should be rebased on origin/master."
     false
