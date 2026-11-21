@@ -28,4 +28,80 @@ public class InputUnnecessaryNullCheckWithInstanceOfNestedIf {
             }
         }
     }
+    public void nestedIfForms(Object obj) {
+        if (obj != null) { // violation 'Unnecessary nullity check'
+            if (obj instanceof String) {
+                String str = (String) obj;
+            }
+        }
+        if (obj != null) // violation 'Unnecessary nullity check'
+            if (obj instanceof String) {
+                String str = (String) obj;
+            }
+        if (obj instanceof String) {
+            if (obj != null) { // violation 'Unnecessary nullity check'
+                String str = (String) obj;
+            }
+        }
+        if (obj instanceof String)
+            if (obj != null) { // violation 'Unnecessary nullity check'
+                String str = (String) obj;
+            }
+        if ((obj != null)) { // violation 'Unnecessary nullity check'
+            if ((obj instanceof String)) {
+                String str = (String) obj;
+            }
+        }
+        if (null != obj) { // violation 'Unnecessary nullity check'
+            if (obj instanceof String) {
+                String str = (String) obj;
+            }
+        }
+    }
+    public void nestedIfNegativeCases(Object obj) {
+        if (obj != null) {
+            if (obj instanceof String) {
+                String str = (String) obj;
+            }
+        } else {
+            System.out.println("null");
+        }
+        if (obj != null) {
+            if (obj instanceof String) {
+                String str = (String) obj;
+            } else {
+                System.out.println("not a String");
+            }
+        }
+        if (obj != null) {
+            System.out.println(obj.hashCode());
+            if (obj instanceof String) {
+                String str = (String) obj;
+            }
+        }
+        if (obj != null || true) {
+            if (obj instanceof String) {
+                String str = (String) obj;
+            }
+        }
+        if (obj != null) {
+            if (obj instanceof String || true) {
+                String str = (String) obj;
+            }
+        }
+        if (obj instanceof String) {
+            if (obj != null) {
+                String str = (String) obj;
+            } else {
+                System.out.println("null");
+            }
+        }
+        if (obj instanceof String) {
+            if (obj != null) {
+                String str = (String) obj;
+            }
+        } else {
+            System.out.println("not a String");
+        }
+    }
 }
