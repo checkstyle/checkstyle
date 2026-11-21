@@ -310,12 +310,12 @@ public class PackageObjectFactoryTest {
                 + checkName + STRING_SEPARATOR
                 + package1 + PACKAGE_SEPARATOR + checkName + STRING_SEPARATOR
                 + package2 + PACKAGE_SEPARATOR + checkName;
-        final Violation exceptionMessage = new Violation(1,
+        final Violation exceptionViolation = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
                 new String[] {name, attemptedNames}, null, getClass(), null);
         assertWithMessage("Invalid exception message")
             .that(exc.getMessage())
-            .isEqualTo(exceptionMessage.getViolation());
+            .isEqualTo(exceptionViolation.getViolation());
     }
 
     @Test
