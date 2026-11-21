@@ -336,6 +336,24 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     }
 
     /**
+     * Gets the first array element's indentation when it starts on the opening brace's line.
+     *
+     * @return the element's column with tabs expanded, or -1 if no element starts on that line
+     */
+    protected final int getArrayFirstElementIndent() {
+        int result = -1;
+        final DetailAST leftCurly = getLeftCurly();
+        final DetailAST firstChild = leftCurly.getFirstChild();
+        if (firstChild.getType() != TokenTypes.RCURLY) {
+            final DetailAST firstNode = getFirstAstNode(firstChild);
+            if (TokenUtil.areOnSameLine(leftCurly, firstNode)) {
+                result = expandedTabsColumnNo(firstNode);
+            }
+        }
+        return result;
+    }
+
+    /**
      * A shortcut for the corresponding property.
      *
      * @return value of lineWrappingIndentation property from the indentation context

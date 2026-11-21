@@ -21,7 +21,7 @@ com.puppycrawl.tools.checkstyle.checks.indentation.indentation;       //indent:0
 
 @InputIndentationAnnArrInit.Baz({                                     //indent:0 exp:0
     "Hello",                                                          //indent:4 exp:4
-             "Checkstyle",                                            //indent:13 exp:4,6,36,70 warn
+             "Checkstyle",                                            //indent:13 exp:4,6 warn
   })                                                                  //indent:2 exp:0,4 warn
 
 class InputIndentationAnnArrInit {                                    //indent:0 exp:0
@@ -33,7 +33,7 @@ class InputIndentationAnnArrInit {                                    //indent:0
   @interface Baz {                                                    //indent:2 exp:2
     String[] value() default {                                        //indent:4 exp:4
         "Hello",                                                      //indent:8 exp:8
-      "Checkstyle"                                                    //indent:6 exp:8,10,33,70 warn
+      "Checkstyle"                                                    //indent:6 exp:8,10 warn
   };                                                                  //indent:2 exp:4,8 warn
   }                                                                   //indent:2 exp:2
 
@@ -50,7 +50,7 @@ interface SomeInterface {                                             //indent:0
 
   @SomeAnnotation(values =                                            //indent:2 exp:2
       {                                                               //indent:6 exp:6
-     Info.A,                                                          //indent:5 exp:6,8,10,70 warn
+     Info.A,                                                          //indent:5 exp:6,8,10 warn
       Info.B                                                          //indent:6 exp:6
      }                                                                //indent:5 exp:2,6 warn
   )                                                                   //indent:2 exp:2

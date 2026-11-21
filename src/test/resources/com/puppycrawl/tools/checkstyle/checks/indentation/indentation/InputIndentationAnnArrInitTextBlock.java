@@ -34,7 +34,7 @@ public class InputIndentationAnnArrInitTextBlock {                  //indent:0 e
     }                                                               //indent:4 exp:4
 
     @SuppressWarnings({                                             //indent:4 exp:4
-//below indent:4 exp:8,26,68 warn
+//below indent:4 exp:8 warn
     """
     text block with wrong opening delimiter indent                  //indent:4 exp:4
         """                                                         //indent:8 exp:8
@@ -43,10 +43,10 @@ public class InputIndentationAnnArrInitTextBlock {                  //indent:0 e
     }                                                               //indent:4 exp:4
 
     @SuppressWarnings({                                             //indent:4 exp:4
-//below indent:4 exp:8,26,68 warn
+//below indent:4 exp:8 warn
     """
     text block with wrong opening and closing delimiter             //indent:4 exp:4
-    """                                                             //indent:4 exp:12,30,72 warn
+    """                                                             //indent:4 exp:12 warn
     })                                                              //indent:4 exp:4
     public void method5() {                                         //indent:4 exp:4
     }                                                               //indent:4 exp:4
@@ -75,17 +75,17 @@ public class InputIndentationAnnArrInitTextBlock {                  //indent:0 e
 
     @SuppressWarnings(                                              //indent:4 exp:4
         {                                                           //indent:8 exp:8
-//below indent:4 exp:8,12,68 warn
+//below indent:4 exp:8,12 warn
     """
     brace on own line wrong opening indent                          //indent:4 exp:4
-    """                                                             //indent:4 exp:12,16,72 warn
+    """                                                             //indent:4 exp:12,16 warn
     })                                                              //indent:4 exp:4
     public void method8() {                                         //indent:4 exp:4
     }                                                               //indent:4 exp:4
 
     @SuppressWarnings(                                              //indent:4 exp:4
         {                                                           //indent:8 exp:8
-//below indent:4 exp:8,12,68 warn
+//below indent:4 exp:8,12 warn
     """
     brace on own line wrong opening and closing                     //indent:4 exp:4
         """                                                         //indent:8 exp:8,12

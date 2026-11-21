@@ -17,18 +17,18 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;     //in
 public class InputIndentationArrayInitIndentWithEmoji { //indent:0 exp:0
   private static final String[] UNSECURED_PATHS = {     //indent:2 exp:2
     "🧐 🥳",                                              //indent:4 exp:4
-     "2👆🏻",                                             //indent:5 exp:4,6,54,56 warn
+     "2👆🏻",                                             //indent:5 exp:4,6 warn
   };                                                    //indent:2 exp:2
 
   String[] array3 = new String[] {                      //indent:2 exp:2
     " 1😆 🤛🏻",                                           //indent:4 exp:4
-        "2😂🎄",                                          //indent:8 exp:4,6,37,56 warn
-          "🎄👍3"                                         //indent:10 exp:4,6,37,56 warn
+        "2😂🎄",                                          //indent:8 exp:4,6 warn
+          "🎄👍3"                                         //indent:10 exp:4,6 warn
   };                                                    //indent:2 exp:2
 
   String[][] a = {                                      //indent:2 exp:2
     {"😆 🤛🏻da sd", "d 👍 "  },                            //indent:4 exp:4
-          {"😂🎄 dwe", " 1😆 🤛🏻",                          //indent:10 exp:4,6,21,56,60 warn
+          {"😂🎄 dwe", " 1😆 🤛🏻",                          //indent:10 exp:10
       "2😂🎄",                                            //indent:6 exp:6
       "🤛🏻👆e"}                                           //indent:6 exp:6
   };                                                    //indent:2 exp:2
