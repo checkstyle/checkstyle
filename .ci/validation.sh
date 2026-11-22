@@ -1654,6 +1654,7 @@ git-check-pitest-suppressions)
   fi
   ;;
 
+
 git-check-pull-number)
   PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
   echo "PR_NUMBER=${PR_NUMBER}"
@@ -1751,6 +1752,49 @@ check-wildcards-on-pitest-target-classes)
     echo "$CLASSES_NO_WILDCARD"
   fi
   exit "$CLASSES_NO_WILDCARD_COUNT"
+  ;;
+
+check-unused-test-inputs)
+  IGNORE_LIST_FILE=".ci/check-unused-test-inputs-ignore.txt"
+  TEMP_DIR=".ci-temp/check-unused-test-inputs"
+  mkdir -p "$TEMP_DIR"
+
+  # Collect all Input class names referenced in test java files and configs
+  find src/test/java src/it/java config -type f ! -name "*.jar" ! -name "*.class" \
+    -exec grep -hoE "Input[A-Za-z0-9_]+" {} + | sort -u > "$TEMP_DIR/referenced-inputs.txt"
+
+  # Read ignore list, stripping comments and empty lines
+  grep -v -E "^\s*(#|$)" "$IGNORE_LIST_FILE" | sort -u > "$TEMP_DIR/ignored-inputs.txt"
+
+  # Merge referenced inputs and ignored inputs into allowed list
+  cat "$TEMP_DIR/referenced-inputs.txt" "$TEMP_DIR/ignored-inputs.txt" | sort -u \
+    > "$TEMP_DIR/allowed-inputs.txt"
+
+  # Collect all existing Input*.java files
+  find src/test/resources src/test/resources-noncompilable src/it/resources \
+    -type f -name "Input*.java" | sort > "$TEMP_DIR/all-input-files.txt"
+
+  # Extract base class names
+  sed 's#.*/##; s/\.java$//' "$TEMP_DIR/all-input-files.txt" | sort -u \
+    > "$TEMP_DIR/all-input-names.txt"
+
+  # Find unreferenced inputs that are not in the ignore list
+  comm -23 "$TEMP_DIR/all-input-names.txt" "$TEMP_DIR/allowed-inputs.txt" \
+    > "$TEMP_DIR/unreferenced-inputs.txt"
+
+  UNREFERENCED_COUNT=$(wc -l < "$TEMP_DIR/unreferenced-inputs.txt" | tr -d ' ')
+
+  if [ "$UNREFERENCED_COUNT" -gt 0 ]; then
+    echo "The following input files are not referenced by any test and not in $IGNORE_LIST_FILE:"
+    while IFS= read -r CLASSNAME; do
+      grep "/$CLASSNAME\.java" "$TEMP_DIR/all-input-files.txt" || echo "$CLASSNAME"
+    done < "$TEMP_DIR/unreferenced-inputs.txt"
+    echo ""
+    echo "All test input files must be referenced by tests or listed in $IGNORE_LIST_FILE."
+    exit 1
+  fi
+  rm -rf "$TEMP_DIR"
+  echo "All test input files are referenced by tests or listed in $IGNORE_LIST_FILE."
   ;;
 
 verify)
