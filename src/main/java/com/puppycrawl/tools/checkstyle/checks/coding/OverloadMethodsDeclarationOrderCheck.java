@@ -96,6 +96,7 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
         final int[] objectBlockParentTypes = {
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.LITERAL_NEW,
             TokenTypes.RECORD_DEF,

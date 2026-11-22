@@ -37,6 +37,15 @@ public class OverloadMethodsDeclarationOrderCheckTest
     }
 
     @Test
+    public void testEnumConstantBody() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_KEY, 11),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrderEnumConstantBody.java"), expected);
+    }
+
+    @Test
     public void testDefaultPart1() throws Exception {
         final String[] expected = {
             "33:5: " + getCheckMessage(MSG_KEY, 21),
@@ -55,6 +64,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
             "65:9: " + getCheckMessage(MSG_KEY, 58),
             "77:13: " + getCheckMessage(MSG_KEY, 70),
             "80:9: " + getCheckMessage(MSG_KEY, 65),
+            "93:13: " + getCheckMessage(MSG_KEY, 85),
         };
         verifyWithInlineConfigParser(
             getPath("InputOverloadMethodsDeclarationOrder2.java"), expected);
