@@ -37,9 +37,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   <li>It is a duplicate of another import. This is, when a class or a module
  *   is imported more than once.</li>
  *   <li>The class non-statically imported is from the {@code java.lang}
- *   package, e.g. importing {@code java.lang.String}.</li>
+ *   package, e.g. importing {@code java.lang.String}, or is a type nested
+ *   in a class of the {@code java.lang} package, e.g. importing
+ *   {@code java.lang.Thread.State}.</li>
  *   <li>The class non-statically imported is from the same package as the
- *   current package.</li>
+ *   current package, or is a type nested in a class of the same package.</li>
  * </ul>
  *
  * @since 3.0
@@ -146,6 +148,9 @@ public class RedundantImportCheck extends AbstractCheck {
 
     /**
      * Determines if an import statement is for types from a specified package.
+     * An import of a type nested in a type of the package is also considered
+     * to be from the package, as the nested type is a member of the package
+     * through its enclosing type.
      *
      * @param importName the import name
      * @param pkg the package name
@@ -155,9 +160,22 @@ public class RedundantImportCheck extends AbstractCheck {
         // imports from unnamed package are not allowed:
         // https://docs.oracle.com/javase/specs/jls/se7/html/jls-7.html#jls-7.5
         // So '.' must be present in member name and we are not checking for it
-        final int index = importName.lastIndexOf('.');
-        final String front = importName.substring(0, index);
-        return pkg.equals(front);
+        boolean fromPackage = false;
+        if (importName.startsWith(pkg + '.')) {
+            final String typeName = importName.substring(pkg.length() + 1);
+            final int index = typeName.indexOf('.');
+            final String outerTypeName;
+            if (index == -1) {
+                outerTypeName = typeName;
+            }
+            else {
+                outerTypeName = typeName.substring(0, index);
+            }
+            // a lowercase first segment is a subpackage, not a type of the package
+            fromPackage = "*".equals(outerTypeName)
+                    || Character.isUpperCase(outerTypeName.charAt(0));
+        }
+        return fromPackage;
     }
 
 }

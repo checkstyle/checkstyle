@@ -26,7 +26,6 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -69,9 +68,9 @@ public class ParseTreeTableModel implements TreeModel {
     /**
      * Set parse mode.
      *
-     * @param mode ParseMode enum
+     * @param mode MainFrameModel.ParseMode enum
      */
-    protected void setParseMode(ParseMode mode) {
+    protected void setParseMode(MainFrameModel.ParseMode mode) {
         presentationModel.setParseMode(mode);
     }
 

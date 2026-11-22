@@ -33,7 +33,6 @@ import java.util.ResourceBundle;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
@@ -60,8 +59,9 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
 
         final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
         final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
-                errorStream, OutputStreamOptions.CLOSE);
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE,
+                errorStream, AbstractAutomaticBean.OutputStreamOptions.CLOSE);
 
         verifyWithInlineConfigParserAndDefaultLogger(
                 getNonCompilablePath(inputFile),
@@ -78,8 +78,9 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
 
         final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
         final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
-                errorStream, OutputStreamOptions.CLOSE);
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE,
+                errorStream, AbstractAutomaticBean.OutputStreamOptions.CLOSE);
 
         verifyWithInlineConfigParserAndDefaultLogger(
                 getPath(inputFile),
@@ -96,8 +97,9 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
 
         final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
         final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
-                errorStream, OutputStreamOptions.CLOSE);
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE,
+                errorStream, AbstractAutomaticBean.OutputStreamOptions.CLOSE);
 
         verifyWithInlineConfigParserAndDefaultLogger(
                 getPath(inputFile),
@@ -112,7 +114,8 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
         final String expectedOutputFile = "ExpectedDefaultLoggerOutputSingleError.txt";
 
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(outputStream, OutputStreamOptions.CLOSE);
+        final DefaultLogger dl = new DefaultLogger(outputStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
 
         verifyWithInlineConfigParserAndDefaultLogger(
                 getPath(inputFile),
@@ -126,7 +129,8 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
         final String expectedOutputFile = "ExpectedDefaultLoggerOutputSingleError.txt";
 
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(outputStream, OutputStreamOptions.NONE);
+        final DefaultLogger dl = new DefaultLogger(outputStream,
+                AbstractAutomaticBean.OutputStreamOptions.NONE);
 
         verifyWithInlineConfigParserAndDefaultLogger(
                 getPath(inputFile),
@@ -179,7 +183,10 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final IllegalArgumentException ex =
                 TestUtil.getExpectedThrowable(IllegalArgumentException.class,
-                        () -> new DefaultLogger(outputStream, (OutputStreamOptions) null),
+                        () -> {
+                            new DefaultLogger(outputStream,
+                                    (AbstractAutomaticBean.OutputStreamOptions) null);
+                        },
                         "IllegalArgumentException expected");
         assertWithMessage("Invalid error message")
                 .that(ex)
@@ -199,7 +206,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
         final IllegalArgumentException ex =
                 TestUtil.getExpectedThrowable(IllegalArgumentException.class, () -> {
                     final DefaultLogger defaultLogger = new DefaultLogger(outputStream,
-                            OutputStreamOptions.CLOSE, outputStream, null);
+                            AbstractAutomaticBean.OutputStreamOptions.CLOSE, outputStream, null);
 
                     // Workaround for Eclipse error "The allocated object is never used"
                     assertWithMessage("defaultLogger should be non-null")
@@ -221,8 +228,9 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
 
         final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
         final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
-                errorStream, OutputStreamOptions.CLOSE);
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE,
+                errorStream, AbstractAutomaticBean.OutputStreamOptions.CLOSE);
 
         verifyWithInlineConfigParserAndDefaultLogger(
                 getPath(inputFile),
@@ -239,8 +247,9 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
 
         final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
         final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
-                errorStream, OutputStreamOptions.CLOSE);
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE,
+                errorStream, AbstractAutomaticBean.OutputStreamOptions.CLOSE);
 
         verifyWithInlineConfigParserAndDefaultLogger(
                 getPath(inputFile),
@@ -257,8 +266,9 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
 
         final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
         final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
-                errorStream, OutputStreamOptions.CLOSE);
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE,
+                errorStream, AbstractAutomaticBean.OutputStreamOptions.CLOSE);
 
         dl.finishLocalSetup();
 
@@ -302,8 +312,8 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
         try (MockByteArrayOutputStream infoStream = new MockByteArrayOutputStream();
              MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
             final DefaultLogger dl = new DefaultLogger(
-                    infoStream, OutputStreamOptions.CLOSE,
-                    errorStream, OutputStreamOptions.CLOSE);
+                    infoStream, AbstractAutomaticBean.OutputStreamOptions.CLOSE,
+                    errorStream, AbstractAutomaticBean.OutputStreamOptions.CLOSE);
 
             verifyWithInlineConfigParserAndDefaultLogger(
                     getNonCompilablePath(inputFile),
@@ -332,8 +342,8 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     public void testAddException() throws Exception {
         try (MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
             final DefaultLogger dl = new DefaultLogger(
-                    new ByteArrayOutputStream(), OutputStreamOptions.CLOSE,
-                    errorStream, OutputStreamOptions.CLOSE);
+                    new ByteArrayOutputStream(), AbstractAutomaticBean.OutputStreamOptions.CLOSE,
+                    errorStream, AbstractAutomaticBean.OutputStreamOptions.CLOSE);
 
             dl.addException(new AuditEvent(5000, "myfile"),
                     new IllegalStateException("oops"));
@@ -361,8 +371,8 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
         try (ByteArrayOutputStream infoStream = new ModifiedByteArrayOutputStream();
             ByteArrayOutputStream errorStream = new ModifiedByteArrayOutputStream()) {
             final DefaultLogger dl = new DefaultLogger(
-                    infoStream, OutputStreamOptions.NONE,
-                    errorStream, OutputStreamOptions.NONE);
+                    infoStream, AbstractAutomaticBean.OutputStreamOptions.NONE,
+                    errorStream, AbstractAutomaticBean.OutputStreamOptions.NONE);
 
             verifyWithInlineConfigParserAndDefaultLogger(
                     getPath(inputFile),
