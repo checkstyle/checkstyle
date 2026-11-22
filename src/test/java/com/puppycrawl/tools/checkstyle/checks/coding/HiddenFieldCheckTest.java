@@ -755,6 +755,45 @@ public class HiddenFieldCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testHiddenFieldRecordComponent() throws Exception {
+
+        final String[] expected = {
+            "19:22: " + getCheckMessage(MSG_KEY, "count"),
+            "28:25: " + getCheckMessage(MSG_KEY, "nestedStatic"),
+            "38:32: " + getCheckMessage(MSG_KEY, "shared"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputHiddenFieldRecordComponent.java"), expected);
+    }
+
+    @Test
+    public void testHiddenFieldRecordComponentIgnoreFormat() throws Exception {
+
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputHiddenFieldRecordComponentIgnoreFormat.java"), expected);
+    }
+
+    @Test
+    public void testHiddenFieldRecordComponentInInterface() throws Exception {
+
+        final String[] expected = {
+            "19:26: " + getCheckMessage(MSG_KEY, "count"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputHiddenFieldRecordComponentInInterface.java"), expected);
+    }
+
+    @Test
+    public void testHiddenFieldRecordComponentOwnStaticField() throws Exception {
+
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputHiddenFieldRecordComponentOwnStaticField.java"),
+                expected);
+    }
+
+    @Test
     public void testHiddenFieldImplicitlyStaticTypes() throws Exception {
 
         final String[] expected = {
