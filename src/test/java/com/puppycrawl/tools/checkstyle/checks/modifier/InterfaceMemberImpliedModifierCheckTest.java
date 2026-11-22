@@ -427,6 +427,24 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
+    public void testLocalTypes() throws Exception {
+        final String[] expected = {
+            "20:13: " + getCheckMessage(MSG_KEY, "public"),
+            "20:13: " + getCheckMessage(MSG_KEY, "static"),
+            "20:13: " + getCheckMessage(MSG_KEY, "final"),
+            "26:13: " + getCheckMessage(MSG_KEY, "public"),
+            "26:13: " + getCheckMessage(MSG_KEY, "abstract"),
+            "32:13: " + getCheckMessage(MSG_KEY, "public"),
+            "35:13: " + getCheckMessage(MSG_KEY, "public"),
+            "35:13: " + getCheckMessage(MSG_KEY, "static"),
+            "53:9: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputInterfaceMemberImpliedModifierLocalTypes.java"),
+            expected);
+    }
+
+    @Test
     public void testIllegalState() {
         final DetailAstImpl init = new DetailAstImpl();
         init.setType(TokenTypes.STATIC_INIT);
