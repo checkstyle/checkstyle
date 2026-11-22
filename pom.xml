@@ -2065,6 +2065,7 @@
               <dir>config</dir>
               <excludes>
                 <exclude>archunit-store/**</exclude>
+                <exclude>check-unused-test-inputs-ignore.txt</exclude>
                 <exclude>checker-framework-suppressions/**</exclude>
                 <exclude>codenarc-rules.groovy.txt</exclude>
                 <exclude>google-java-format/**</exclude>
