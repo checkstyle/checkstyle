@@ -648,6 +648,16 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFallThroughWeird() throws Exception {
+        final String[] expected = {
+            "15:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughWeird.java"),
+                expected);
+    }
+
+    @Test
     public void testFallThroughCompactSourceFileDefault() throws Exception {
         final String[] expected = {
             "15:9: " + getCheckMessage(MSG_FALL_THROUGH),
