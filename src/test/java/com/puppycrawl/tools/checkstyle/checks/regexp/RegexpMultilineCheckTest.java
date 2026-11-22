@@ -172,7 +172,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNoStackOverflowError() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        // http://madbean.com/2004/mb2004-20/
+        // Reference: regex stack overflow test case
         checkConfig.addProperty("format", "(x|y)*");
 
         final String[] expected = {
