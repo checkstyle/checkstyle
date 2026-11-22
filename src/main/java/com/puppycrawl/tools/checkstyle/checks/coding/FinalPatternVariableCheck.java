@@ -201,9 +201,63 @@ public class FinalPatternVariableCheck extends AbstractCheck {
                     }
                 }
             }
+
+            addConditionReassignments(scopeRoot, ast,
+                    reassignedVariableIdents);
         }
 
         return reassignedVariableIdents;
+    }
+
+    /**
+     * Adds the identifiers of variables reassigned in the condition of the scope
+     * root to the list of reassigned variable identifiers. Only assignments that
+     * come after the {@code instanceof} expression in document order are added,
+     * because an assignment before it cannot target the pattern variable declared
+     * by that {@code instanceof}, for example when it assigns a field with the
+     * same name. Assignments inside the {@code instanceof} expression itself,
+     * such as one in its left operand, happen before the pattern variable is
+     * declared and are not added either.
+     *
+     * @param scopeRoot the root of the reassignment scope
+     * @param ast ast tree of checked instanceof statement
+     * @param reassignedVariableIdents list to add the identifiers to
+     */
+    private static void addConditionReassignments(
+            final DetailAST scopeRoot, final DetailAST ast,
+            final Collection<DetailAST> reassignedVariableIdents) {
+        final DetailAST condition = scopeRoot.getFirstChild().getNextSibling();
+        boolean pastInstanceof = false;
+        for (DetailAST node = condition; node != null;
+             node = shiftToNextTraversedBranch(node, condition)) {
+            if (node.equals(ast)) {
+                pastInstanceof = true;
+            }
+            else if (pastInstanceof && !isDescendantOf(node, ast)) {
+                final DetailAST assignToken = getMatchedAssignToken(node);
+                if (assignToken != null) {
+                    reassignedVariableIdents.add(
+                            assignToken.getFirstChild());
+                }
+            }
+        }
+    }
+
+    /**
+     * Checks whether a node is a descendant of another node.
+     *
+     * @param node the node to check
+     * @param ancestor the possible ancestor of the node
+     * @return true if the node is a descendant of the ancestor node
+     */
+    private static boolean isDescendantOf(final DetailAST node,
+            final DetailAST ancestor) {
+        boolean result = false;
+        for (DetailAST current = node; current != null && !result;
+             current = current.getParent()) {
+            result = current.equals(ancestor);
+        }
+        return result;
     }
 
     /**
