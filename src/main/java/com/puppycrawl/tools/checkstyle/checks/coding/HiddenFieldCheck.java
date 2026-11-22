@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
- * Checks that a local variable or a parameter does not shadow
+ * Checks that a local variable, a parameter or a record component does not shadow
  * a field that is defined in the same class.
  * </div>
  *
@@ -168,8 +168,8 @@ public class HiddenFieldCheck extends AbstractCheck {
         switch (type) {
             case TokenTypes.VARIABLE_DEF,
                  TokenTypes.PARAMETER_DEF,
-                 TokenTypes.PATTERN_VARIABLE_DEF,
-                 TokenTypes.RECORD_COMPONENT_DEF -> processVariable(ast);
+                 TokenTypes.PATTERN_VARIABLE_DEF -> processVariable(ast);
+            case TokenTypes.RECORD_COMPONENT_DEF -> processRecordComponent(ast);
             case TokenTypes.LAMBDA -> processLambda(ast);
             default -> visitOtherTokens(ast, type);
         }
@@ -324,6 +324,25 @@ public class HiddenFieldCheck extends AbstractCheck {
                     && !isIgnoredParam(ast, name)) {
                 log(nameAST, MSG_KEY, name);
             }
+        }
+    }
+
+    /**
+     * Process a record component definition.
+     * Record components are implicitly static, so they can only hide
+     * static fields of enclosing types. The current frame is the
+     * record's own frame, which already holds the component itself
+     * as a field, so only the parent frame chain is checked.
+     *
+     * @param ast the record component token.
+     */
+    private void processRecordComponent(DetailAST ast) {
+        final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
+        final String name = nameAST.getText();
+
+        if (frame.getParent().containsStaticField(name)
+                && !isMatchingRegexp(name)) {
+            log(nameAST, MSG_KEY, name);
         }
     }
 
