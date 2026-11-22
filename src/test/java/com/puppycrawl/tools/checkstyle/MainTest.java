@@ -1441,26 +1441,27 @@ public class MainTest {
     @Test
     public void testGenerateXpathSuppressionOptionOne(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        final String expected = addEndOfLine(
-            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-                "<!DOCTYPE suppressions PUBLIC",
-                "    \"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2"
-                    + "//EN\"",
-                "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd\">",
-                "<suppressions>",
-                "  <suppress-xpath",
-                "       files=\"InputMainComplexityOverflow.java\"",
-                "       checks=\"MissingJavadocMethodCheck\"",
-                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]\"/>",
-                "  <suppress-xpath",
-                "       files=\"InputMainComplexityOverflow.java\"",
-                "       id=\"LeftCurlyEol\"",
-                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST\"/>",
-                "</suppressions>");
+        final String expected =
+                """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE suppressions PUBLIC
+                    "-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+                    "https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd">
+                <suppressions>
+                  <suppress-xpath
+                       files="InputMainComplexityOverflow.java"
+                       checks="MissingJavadocMethodCheck"
+                       query="/COMPILATION_UNIT/CLASS_DEF[./IDENT\
+                [@text='InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT\
+                [@text='provokeNpathIntegerOverflow']]"/>
+                  <suppress-xpath
+                       files="InputMainComplexityOverflow.java"
+                       id="LeftCurlyEol"
+                       query="/COMPILATION_UNIT/CLASS_DEF[./IDENT\
+                [@text='InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT\
+                [@text='provokeNpathIntegerOverflow']]/SLIST"/>
+                </suppressions>
+                """.replace("\n", EOL);
 
         assertMainReturnCode(0, "-c", "/google_checks.xml", "--generate-xpath-suppression",
                 getPath("InputMainComplexityOverflow.java"));
@@ -1475,34 +1476,33 @@ public class MainTest {
     @Test
     public void testGenerateXpathSuppressionOptionTwo(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        final String expected = addEndOfLine(
-            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-            "<!DOCTYPE suppressions PUBLIC",
-            "    \"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2"
-                + "//EN\"",
-            "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd\">",
-            "<suppressions>",
-            "  <suppress-xpath",
-            "       files=\"InputMainGenerateXpathSuppressions.java\"",
-            "       checks=\"ExplicitInitializationCheck\"",
-            "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputMainGenerateXpathSuppressions']]"
-                + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']\"/>",
-            "  <suppress-xpath",
-            "       files=\"InputMainGenerateXpathSuppressions.java\"",
-            "       checks=\"IllegalThrowsCheck\"",
-            "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputMainGenerateXpathSuppressions']]"
-                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/LITERAL_THROWS"
-                + "/IDENT[@text='RuntimeException']\"/>",
-            "  <suppress-xpath",
-            "       files=\"InputMainGenerateXpathSuppressions.java\"",
-            "       checks=\"NestedForDepthCheck\"",
-            "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputMainGenerateXpathSuppressions']]"
-                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_FOR/SLIST"
-                + "/LITERAL_FOR/SLIST/LITERAL_FOR\"/>",
-            "</suppressions>");
+        final String expected =
+                """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE suppressions PUBLIC
+                    "-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+                    "https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd">
+                <suppressions>
+                  <suppress-xpath
+                       files="InputMainGenerateXpathSuppressions.java"
+                       checks="ExplicitInitializationCheck"
+                       query="/COMPILATION_UNIT/CLASS_DEF[./IDENT\
+                [@text='InputMainGenerateXpathSuppressions']]/OBJBLOCK/VARIABLE_DEF/IDENT\
+                [@text='low']"/>
+                  <suppress-xpath
+                       files="InputMainGenerateXpathSuppressions.java"
+                       checks="IllegalThrowsCheck"
+                       query="/COMPILATION_UNIT/CLASS_DEF[./IDENT\
+                [@text='InputMainGenerateXpathSuppressions']]/OBJBLOCK/METHOD_DEF[./IDENT\
+                [@text='test']]/LITERAL_THROWS/IDENT[@text='RuntimeException']"/>
+                  <suppress-xpath
+                       files="InputMainGenerateXpathSuppressions.java"
+                       checks="NestedForDepthCheck"
+                       query="/COMPILATION_UNIT/CLASS_DEF[./IDENT\
+                [@text='InputMainGenerateXpathSuppressions']]/OBJBLOCK/METHOD_DEF[./IDENT\
+                [@text='test']]/SLIST/LITERAL_FOR/SLIST/LITERAL_FOR/SLIST/LITERAL_FOR"/>
+                </suppressions>
+                """.replace("\n", EOL);
 
         assertMainReturnCode(0, "-c", getPath("InputMainConfig-xpath-suppressions.xml"),
                 "--generate-xpath-suppression",
@@ -1533,20 +1533,21 @@ public class MainTest {
     @Test
     public void testGenerateXpathSuppressionOptionCustomOutput(@SysErr Capturable systemErr)
             throws IOException {
-        final String expected = addEndOfLine(
-            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-                "<!DOCTYPE suppressions PUBLIC",
-                "    \"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2"
-                    + "//EN\"",
-                "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd\">",
-                "<suppressions>",
-                "  <suppress-xpath",
-                "       files=\"InputMainGenerateXpathSuppressionsTabWidth.java\"",
-                "       checks=\"ExplicitInitializationCheck\"",
-                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='InputMainGenerateXpathSuppressionsTabWidth']]"
-                    + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']\"/>",
-                "</suppressions>");
+        final String expected =
+                """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE suppressions PUBLIC
+                    "-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+                    "https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd">
+                <suppressions>
+                  <suppress-xpath
+                       files="InputMainGenerateXpathSuppressionsTabWidth.java"
+                       checks="ExplicitInitializationCheck"
+                       query="/COMPILATION_UNIT/CLASS_DEF[./IDENT\
+                [@text='InputMainGenerateXpathSuppressionsTabWidth']]\
+                /OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']"/>
+                </suppressions>
+                """.replace("\n", EOL);
         final File file = new File(temporaryFolder, "file.output");
         assertMainReturnCode(0, "-c", getPath("InputMainConfig-xpath-suppressions.xml"), "-o",
                 file.getPath(), "--generate-xpath-suppression",
@@ -1565,20 +1566,21 @@ public class MainTest {
     @Test
     public void testGenerateXpathSuppressionOptionDefaultTabWidth(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        final String expected = addEndOfLine(
-            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-                "<!DOCTYPE suppressions PUBLIC",
-                "    \"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2"
-                    + "//EN\"",
-                "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd\">",
-                "<suppressions>",
-                "  <suppress-xpath",
-                "       files=\"InputMainGenerateXpathSuppressionsTabWidth.java\"",
-                "       checks=\"ExplicitInitializationCheck\"",
-                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='InputMainGenerateXpathSuppressionsTabWidth']]"
-                    + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']\"/>",
-                "</suppressions>");
+        final String expected =
+                """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE suppressions PUBLIC
+                    "-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+                    "https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd">
+                <suppressions>
+                  <suppress-xpath
+                       files="InputMainGenerateXpathSuppressionsTabWidth.java"
+                       checks="ExplicitInitializationCheck"
+                       query="/COMPILATION_UNIT/CLASS_DEF[./IDENT\
+                [@text='InputMainGenerateXpathSuppressionsTabWidth']]\
+                /OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']"/>
+                </suppressions>
+                """.replace("\n", EOL);
 
         assertMainReturnCode(0, "-c", getPath("InputMainConfig-xpath-suppressions.xml"),
                 "--generate-xpath-suppression",
@@ -1610,19 +1612,21 @@ public class MainTest {
     @Test
     public void testGenerateChecksAndFilesSuppressionOptionOne(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        final String expected = addEndOfLine(
-            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-                "<!DOCTYPE suppressions PUBLIC",
-                "    \"-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN\"",
-                "    \"https://checkstyle.org/dtds/suppressions_1_2.dtd\">",
-                "<suppressions>",
-                "  <suppress",
-                "      files=\"InputMainComplexityOverflow.java\"",
-                "      checks=\"MissingJavadocMethodCheck\"/>",
-                "  <suppress",
-                "      files=\"InputMainComplexityOverflow.java\"",
-                "      id=\"LeftCurlyEol\"/>",
-                "</suppressions>");
+        final String expected =
+                """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE suppressions PUBLIC
+                    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+                    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+                <suppressions>
+                  <suppress
+                      files="InputMainComplexityOverflow.java"
+                      checks="MissingJavadocMethodCheck"/>
+                  <suppress
+                      files="InputMainComplexityOverflow.java"
+                      id="LeftCurlyEol"/>
+                </suppressions>
+                """.replace("\n", EOL);
 
         assertMainReturnCode(0, "-c", "/google_checks.xml",
                 "--generate-checks-and-files-suppression",
@@ -1638,25 +1642,27 @@ public class MainTest {
     @Test
     public void testGenerateChecksAndFilesSuppressionOptionTwo(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        final String expected = addEndOfLine(
-            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-            "<!DOCTYPE suppressions PUBLIC",
-            "    \"-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN\"",
-            "    \"https://checkstyle.org/dtds/suppressions_1_2.dtd\">",
-            "<suppressions>",
-            "  <suppress",
-            "      files=\"InputMainGenerateChecksAndFilesSuppressions.java\"",
-            "      id=\"InitializeViolation\"/>",
-            "  <suppress",
-            "      files=\"InputMainGenerateChecksAndFilesSuppressions.java\"",
-            "      checks=\"IllegalThrowsCheck\"/>",
-            "  <suppress",
-            "      files=\"InputMainGenerateChecksAndFilesSuppressions.java\"",
-            "      checks=\"NestedForDepthCheck\"/>",
-            "  <suppress",
-            "      files=\"InputMainGenerateChecksAndFilesSuppressions.java\"",
-            "      id=\"MethodNaming\"/>",
-            "</suppressions>");
+        final String expected =
+                """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE suppressions PUBLIC
+                    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+                    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+                <suppressions>
+                  <suppress
+                      files="InputMainGenerateChecksAndFilesSuppressions.java"
+                      id="InitializeViolation"/>
+                  <suppress
+                      files="InputMainGenerateChecksAndFilesSuppressions.java"
+                      checks="IllegalThrowsCheck"/>
+                  <suppress
+                      files="InputMainGenerateChecksAndFilesSuppressions.java"
+                      checks="NestedForDepthCheck"/>
+                  <suppress
+                      files="InputMainGenerateChecksAndFilesSuppressions.java"
+                      id="MethodNaming"/>
+                </suppressions>
+                """.replace("\n", EOL);
 
         assertMainReturnCode(0, "-c", getPath("InputMainConfig-Checks-And-Files-suppressions.xml"),
                 "--generate-checks-and-files-suppression",
@@ -1689,16 +1695,18 @@ public class MainTest {
     public void testGenerateChecksAndFilesSuppressionOptionCustomOutput(
             @SysErr Capturable systemErr)
                     throws IOException {
-        final String expected = addEndOfLine(
-            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-                "<!DOCTYPE suppressions PUBLIC",
-                "    \"-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN\"",
-                "    \"https://checkstyle.org/dtds/suppressions_1_2.dtd\">",
-                "<suppressions>",
-                "  <suppress",
-                "      files=\"InputMainGenerateChecksAndFilesSuppressionsTabWidth.java\"",
-                "      id=\"InitializeViolation\"/>",
-                "</suppressions>");
+        final String expected =
+                """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE suppressions PUBLIC
+                    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+                    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+                <suppressions>
+                  <suppress
+                      files="InputMainGenerateChecksAndFilesSuppressionsTabWidth.java"
+                      id="InitializeViolation"/>
+                </suppressions>
+                """.replace("\n", EOL);
         final File file = new File(temporaryFolder, "file.output");
         assertMainReturnCode(0, "-c", getPath("InputMainConfig-Checks-And-Files-suppressions.xml"),
                 "-o", file.getPath(), "--generate-checks-and-files-suppression",
@@ -1717,16 +1725,18 @@ public class MainTest {
     @Test
     public void testGenerateChecksAndFilesSuppressionOptionDefaultTabWidth(
             @SysErr Capturable systemErr, @SysOut Capturable systemOut) {
-        final String expected = addEndOfLine(
-            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-                "<!DOCTYPE suppressions PUBLIC",
-                "    \"-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN\"",
-                "    \"https://checkstyle.org/dtds/suppressions_1_2.dtd\">",
-                "<suppressions>",
-                "  <suppress",
-                "      files=\"InputMainGenerateChecksAndFilesSuppressionsTabWidth.java\"",
-                "      id=\"InitializeViolation\"/>",
-                "</suppressions>");
+        final String expected =
+                """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE suppressions PUBLIC
+                    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+                    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+                <suppressions>
+                  <suppress
+                      files="InputMainGenerateChecksAndFilesSuppressionsTabWidth.java"
+                      id="InitializeViolation"/>
+                </suppressions>
+                """.replace("\n", EOL);
 
         assertMainReturnCode(0, "-c", getPath("InputMainConfig-Checks-And-Files-suppressions.xml"),
                 "--generate-checks-and-files-suppression",
@@ -1742,16 +1752,18 @@ public class MainTest {
     @Test
     public void testGenerateChecksAndFilesSuppressionOptionCustomTabWidth(
             @SysErr Capturable systemErr, @SysOut Capturable systemOut) {
-        final String expected = addEndOfLine(
-            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-                "<!DOCTYPE suppressions PUBLIC",
-                "    \"-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN\"",
-                "    \"https://checkstyle.org/dtds/suppressions_1_2.dtd\">",
-                "<suppressions>",
-                "  <suppress",
-                "      files=\"InputMainGenerateChecksAndFilesSuppressionsTabWidth.java\"",
-                "      id=\"InitializeViolation\"/>",
-                "</suppressions>");
+        final String expected =
+                """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE suppressions PUBLIC
+                    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+                    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+                <suppressions>
+                  <suppress
+                      files="InputMainGenerateChecksAndFilesSuppressionsTabWidth.java"
+                      id="InitializeViolation"/>
+                </suppressions>
+                """.replace("\n", EOL);
 
         assertMainReturnCode(0, "-c", getPath("InputMainConfig-Checks-And-Files-suppressions.xml"),
                 "--generate-checks-and-files-suppression", "--tabWidth", "20",
