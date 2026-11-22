@@ -34,5 +34,7 @@ public class InputLeftCurlyDefaultTypes
 
     class Inner
     { int a; }
-    // violation above ''{' at column 5 should be on the previous line'
+    // 2 violations above:
+    // ''{' at column 5 should be on the previous line'
+    // ''{' at column 5 should have line break after'
 }
