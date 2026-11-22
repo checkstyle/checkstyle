@@ -786,4 +786,25 @@ public class FinalLocalVariableCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testSwitchExpressions1() throws Exception {
+        final String[] expected = {
+            "18:19: " + getCheckMessage(MSG_KEY, "e"),
+            "35:13: " + getCheckMessage(MSG_KEY, "result"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressions1.java"),
+                expected);
+    }
+
+    @Test
+    public void testSwitchExpressions2() throws Exception {
+        final String[] expected = {
+            "18:19: " + getCheckMessage(MSG_KEY, "e"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressions2.java"),
+                expected);
+    }
+
 }
