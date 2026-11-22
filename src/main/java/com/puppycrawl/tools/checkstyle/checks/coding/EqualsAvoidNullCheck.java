@@ -436,14 +436,16 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      * @return true if the field or the variable from the specified class is of String type.
      */
     private boolean isStringFieldOrVariableFromClass(DetailAST objCalledOn,
-            final String className) {
+        final String className) {
         boolean result = false;
         final String name = objCalledOn.getText();
         FieldFrame frame = currentFrame;
         while (frame != null) {
             if (className.equals(frame.getFrameName())) {
                 final DetailAST field = frame.findField(name);
-                result = STRING.equals(getFieldType(field));
+                // field is null when it is inherited from a superclass,
+                // we cannot resolve its type here, so skip it safely
+                result = field != null && STRING.equals(getFieldType(field));
                 break;
             }
             frame = frame.getParent();
