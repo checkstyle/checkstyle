@@ -204,7 +204,7 @@ public class VisibilityModifierCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "23:46: " + getCheckMessage(MSG_KEY, "calendar"),
             "27:36: " + getCheckMessage(MSG_KEY, "address"),
-            "29:36: " + getCheckMessage(MSG_KEY, "adr"),
+            "29:36: " + getCheckMessage(MSG_KEY, "socketAddress"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutableSameTypeName.java"),
