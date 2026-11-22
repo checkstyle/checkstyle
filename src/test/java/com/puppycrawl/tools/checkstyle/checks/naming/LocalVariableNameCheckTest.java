@@ -74,6 +74,13 @@ public class LocalVariableNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testDefaultThree() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputLocalVariableName1one.java"), expected);
+    }
+
+    @Test
     public void testInnerClass()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
