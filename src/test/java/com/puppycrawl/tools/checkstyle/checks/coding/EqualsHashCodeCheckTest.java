@@ -49,6 +49,13 @@ public class EqualsHashCodeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSemanticOne() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEqualsHashCodeSemanticOne.java"), expected);
+    }
+
+    @Test
     public void testNoEquals() throws Exception {
         final String[] expected = {
             "10:5: " + getCheckMessage(MSG_KEY_EQUALS),
