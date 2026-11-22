@@ -87,8 +87,13 @@ public class AllChecksCompactSourceCoverageTest {
         }
 
         if (!failures.isEmpty()) {
-            assertWithMessage("The following checks lack compact source input coverage:\n"
-                    + String.join("\n", failures)).fail();
+            final String template =
+                """
+                The following checks lack compact source input coverage:
+                %s\
+                """;
+            assertWithMessage(String.format(Locale.ROOT, template,
+                    String.join("\n", failures))).fail();
         }
     }
 
@@ -137,8 +142,11 @@ public class AllChecksCompactSourceCoverageTest {
                 detail = ": missing a compact source input";
             }
             else {
-                detail = ": missing a default-config compact source input "
-                        + "(all properties at default)";
+                detail =
+                    """
+                    : missing a default-config compact source input \
+                    (all properties at default)\
+                    """;
             }
             failures.add(check.getSimpleName() + detail);
         }
@@ -149,9 +157,12 @@ public class AllChecksCompactSourceCoverageTest {
                 .filter(property -> !exercised.contains(property))
                 .collect(Collectors.toCollection(TreeSet::new));
         if (!missing.isEmpty()) {
-            failures.add(check.getSimpleName()
-                    + ": compact source inputs do not exercise these properties at a "
-                    + "non-default value: " + missing);
+            final String template =
+                """
+                %s: compact source inputs do not exercise these properties at a \
+                non-default value: %s\
+                """;
+            failures.add(String.format(Locale.ROOT, template, check.getSimpleName(), missing));
         }
         return failures;
     }
