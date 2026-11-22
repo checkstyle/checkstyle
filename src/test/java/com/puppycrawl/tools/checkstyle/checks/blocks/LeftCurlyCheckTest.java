@@ -787,4 +787,22 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testDefaultIfElse() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyDefaultIfElse.java"), expected);
+    }
+
+    @Test
+    public void testDefaultTypes() throws Exception {
+        final String[] expected = {
+            "19:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "36:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "36:5: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 5),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyDefaultTypes.java"), expected);
+    }
+
 }
