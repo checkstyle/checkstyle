@@ -1018,4 +1018,11 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testImportOrderBug() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputImportOrderBug.java"), expected);
+    }
+
 }
