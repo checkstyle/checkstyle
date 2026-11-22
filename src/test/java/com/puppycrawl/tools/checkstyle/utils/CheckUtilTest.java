@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck
 import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck.MSG_MULTIPLE;
 import static com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck.MSG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
@@ -46,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 
 public class CheckUtilTest extends AbstractModuleTestSupport {
@@ -147,6 +149,16 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputCheckUtilJavadocTypeNonGenericClass.java"), expected);
+    }
+
+    @Test
+    public void testMissingJavadocType() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING,
+                    "InputCheckUtilPackage"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtilPackage.java"), expected);
     }
 
     @Test
