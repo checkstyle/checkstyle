@@ -1060,10 +1060,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         assertWithMessage("Processing failure must still be propagated")
                 .that(exception).hasCauseThat().isInstanceOf(IndexOutOfBoundsException.class);
+        final String expectedSuffix =
+                """
+                </file>
+                </checkstyle>
+                """.replace("\n", System.lineSeparator());
         assertWithMessage("XML report must close the file and audit after a failure")
                 .that(output.toString(StandardCharsets.UTF_8))
-                .endsWith("</file>" + System.lineSeparator()
-                        + "</checkstyle>" + System.lineSeparator());
+                .endsWith(expectedSuffix);
         checker.destroy();
     }
 
@@ -1222,10 +1226,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // destroy is called by Main
         checker.destroy();
 
+        final String expectedSuffix =
+                """
+                </file>
+                </checkstyle>
+                """.replace("\n", System.lineSeparator());
         assertWithMessage("XML report must close the file and audit after an error")
                 .that(output.toString(StandardCharsets.UTF_8))
-                .endsWith("</file>" + System.lineSeparator()
-                        + "</checkstyle>" + System.lineSeparator());
+                .endsWith(expectedSuffix);
 
         final Properties cache = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
