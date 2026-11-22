@@ -111,15 +111,11 @@ public final class AnnotationUtil {
         if (annotations == null) {
             throw new IllegalArgumentException("annotations cannot be null");
         }
-        boolean result = false;
-        if (!annotations.isEmpty()) {
-            final DetailAST firstMatchingAnnotation = findFirstAnnotation(ast, annotationNode -> {
-                final String annotationFullIdent = getAnnotationFullIdent(annotationNode);
-                return annotations.contains(annotationFullIdent);
-            });
-            result = firstMatchingAnnotation != null;
-        }
-        return result;
+        final DetailAST firstMatchingAnnotation = findFirstAnnotation(ast, annotationNode -> {
+            final String annotationFullIdent = getAnnotationFullIdent(annotationNode);
+            return annotations.contains(annotationFullIdent);
+        });
+        return firstMatchingAnnotation != null;
     }
 
     /**
@@ -174,7 +170,8 @@ public final class AnnotationUtil {
 
         if (ast.getType() == TokenTypes.ENUM_CONSTANT_DEF
             || ast.getType() == TokenTypes.PACKAGE_DEF
-            || ast.getType() == TokenTypes.MODULE_DEF) {
+            || ast.getType() == TokenTypes.MODULE_DEF
+            || ast.getType() == TokenTypes.RECORD_COMPONENT_DEF) {
             annotationHolder = ast.findFirstToken(TokenTypes.ANNOTATIONS);
         }
         else {
@@ -246,11 +243,13 @@ public final class AnnotationUtil {
                                                  Predicate<DetailAST> predicate) {
         final DetailAST holder = getAnnotationHolder(ast);
         DetailAST result = null;
-        for (DetailAST child = holder.getFirstChild();
-            child != null; child = child.getNextSibling()) {
-            if (child.getType() == TokenTypes.ANNOTATION && predicate.test(child)) {
-                result = child;
-                break;
+        if (holder != null) {
+            for (DetailAST child = holder.getFirstChild();
+                child != null; child = child.getNextSibling()) {
+                if (child.getType() == TokenTypes.ANNOTATION && predicate.test(child)) {
+                    result = child;
+                    break;
+                }
             }
         }
 
