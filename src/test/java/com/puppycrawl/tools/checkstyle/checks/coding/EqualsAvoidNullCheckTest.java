@@ -159,6 +159,13 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInheritedStaticFieldQualifiedBySubclass() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEqualsAvoidNullInheritedStaticField.java"), expected);
+    }
+
+    @Test
     public void testEqualsAvoidNullNoFlagForBothIgnoreCase() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
