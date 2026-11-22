@@ -730,4 +730,46 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testNoJavadocOnlyPrivateScopePackage() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodNoJavadocOnlyPrivateScopePackage.java"), expected);
+    }
+
+    @Test
+    public void testNoJavadocProtectedScopePackage() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodNoJavadocProtectedScopePackage.java"), expected);
+    }
+
+    @Test
+    public void testPackageClass() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodPackageClass.java"), expected);
+    }
+
+    @Test
+    public void testPackageClass2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodPackageClass2.java"), expected);
+    }
+
+    @Test
+    public void testRelaxedJavadocOne() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodProtectedScopeJavadocOne.java"), expected);
+    }
+
+    @Test
+    public void testTags1Two() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodTags1Two.java"), expected);
+    }
+
 }
