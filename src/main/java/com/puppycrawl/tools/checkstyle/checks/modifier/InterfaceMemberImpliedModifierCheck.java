@@ -266,6 +266,8 @@ public class InterfaceMemberImpliedModifierCheck extends AbstractCheck {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.ANNOTATION_DEF,
         };
     }
 
@@ -279,7 +281,9 @@ public class InterfaceMemberImpliedModifierCheck extends AbstractCheck {
 
                 case TokenTypes.CLASS_DEF,
                      TokenTypes.INTERFACE_DEF,
-                     TokenTypes.ENUM_DEF -> processNestedType(ast);
+                     TokenTypes.ENUM_DEF,
+                     TokenTypes.RECORD_DEF,
+                     TokenTypes.ANNOTATION_DEF -> processNestedType(ast);
 
                 default -> throw new IllegalStateException(ast.toString());
             }
