@@ -324,7 +324,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
     /**
      * Creates {@link DefaultConfiguration} or the Checker.
-     * based on the the list of {@link Configuration}.
+     * based on the list of {@link Configuration}.
      *
      * @param configs list of {@code Configuration} instances.
      * @return {@code DefaultConfiguration} for the Checker.
