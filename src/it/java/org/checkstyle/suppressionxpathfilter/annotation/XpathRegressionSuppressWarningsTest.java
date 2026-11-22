@@ -302,7 +302,7 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
                 new File(getPath("InputXpathSuppressWarningsAnnotationFieldDefinition.java"));
 
         final String[] expectedViolations = {
-            "14:27: " + getCheckMessage(SuppressWarningsCheck.class,
+            "15:27: " + getCheckMessage(SuppressWarningsCheck.class,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED,
                     ""),
         };

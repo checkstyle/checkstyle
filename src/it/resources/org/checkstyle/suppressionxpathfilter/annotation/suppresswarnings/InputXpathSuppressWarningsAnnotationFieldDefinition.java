@@ -11,6 +11,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, \
 package org.checkstyle.suppressionxpathfilter.annotation.suppresswarnings;
 
 public @interface InputXpathSuppressWarningsAnnotationFieldDefinition {
-        @SuppressWarnings("") // violation 'The warning '' cannot be suppressed at this location'
+        // violation below 'The warning '' cannot be suppressed at this location'
+        @SuppressWarnings("")
         String foo() default "bar";
 }
