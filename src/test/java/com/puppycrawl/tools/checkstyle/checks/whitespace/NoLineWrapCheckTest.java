@@ -164,8 +164,8 @@ public class NoLineWrapCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNoLineWrapCompactSourceFileProperties() throws Exception {
         final String[] expected = {
-            "15:1: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
-            "20:1: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
+            "16:1: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
+            "21:1: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("compact/InputNoLineWrapCompactSourceFileProperties.java"),
