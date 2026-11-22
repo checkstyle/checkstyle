@@ -169,4 +169,13 @@ public class JavadocPackageCheckTest extends AbstractModuleTestSupport {
                 expectedFromSibling);
     }
 
+    @Test
+    public void testPackageClass() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocPackageClass.java"), expected);
+    }
+
 }
