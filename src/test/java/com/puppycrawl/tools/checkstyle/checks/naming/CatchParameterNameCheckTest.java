@@ -65,6 +65,13 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testDefaultConfigurationOnCorrectFile3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputCatchParameterNameSimpleOne2.java"), expected);
+    }
+
+    @Test
     public void testDefaultConfigurationOnFileWithViolations() throws Exception {
         final String defaultFormat = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
 
