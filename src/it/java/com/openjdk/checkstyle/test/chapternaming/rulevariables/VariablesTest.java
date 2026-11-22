@@ -45,4 +45,9 @@ public class VariablesTest extends AbstractOpenJdkModuleTestSupport {
         verifyWithWholeConfig(getPath("InputVariablesDoAndDonts.java"));
     }
 
+    @Test
+    public void testVariablesUnnamed() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputVariablesUnnamed.java"));
+    }
+
 }
