@@ -593,10 +593,14 @@ public class XdocsExampleFileTest {
             }
 
             if (anyDefaultExists) {
-                violations.add("Directory: " + relativePath
-                    + "\nDefault-config example exists but is not "
-                    + firstExample.getFileName()
-                    + " (should be the first example).");
+                final String template =
+                    """
+                    Directory: %s
+                    Default-config example exists but is not %s \
+                    (should be the first example).\
+                    """;
+                violations.add(String.format(Locale.ROOT, template,
+                        relativePath, firstExample.getFileName()));
             }
         }
     }
