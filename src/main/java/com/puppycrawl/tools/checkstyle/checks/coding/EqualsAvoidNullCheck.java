@@ -443,7 +443,9 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         while (frame != null) {
             if (className.equals(frame.getFrameName())) {
                 final DetailAST field = frame.findField(name);
-                result = STRING.equals(getFieldType(field));
+                // field is null when it is inherited from a superclass,
+                // we cannot resolve its type here, so skip it safely
+                result = field != null && STRING.equals(getFieldType(field));
                 break;
             }
             frame = frame.getParent();
