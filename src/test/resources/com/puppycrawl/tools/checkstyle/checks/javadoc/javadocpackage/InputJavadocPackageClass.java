@@ -7,6 +7,7 @@ fileExtensions = (default).java
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage;
+// violation 9 lines above 'Missing package-info.java file'
 
 public class InputJavadocPackageClass {
     public int i1;
