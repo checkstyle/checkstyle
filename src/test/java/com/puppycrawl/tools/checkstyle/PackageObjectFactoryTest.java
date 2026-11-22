@@ -501,9 +501,13 @@ public class PackageObjectFactoryTest {
 
         try (MockedStatic<ModuleReflectionUtil> utilities =
                      mockStatic(ModuleReflectionUtil.class)) {
+            final String exceptionMessage =
+                """
+                creation of objects by fully qualified\
+                 class names should not result in search of modules in classpath\
+                """;
             utilities.when(() -> ModuleReflectionUtil.getCheckstyleModules(packages, classLoader))
-                    .thenThrow(new IllegalStateException("creation of objects by fully qualified"
-                            + " class names should not result in search of modules in classpath"));
+                    .thenThrow(new IllegalStateException(exceptionMessage));
 
             final String fullyQualifiedName = MockClass.class.getName();
             assertWithMessage("class name is not in expected format")
@@ -526,15 +530,17 @@ public class PackageObjectFactoryTest {
                     objectFactory.createModule("PackageObjectFactoryTest$MockClass");
                 });
 
+        final String expectedPrefix =
+            """
+            Unable to instantiate 'PackageObjectFactoryTest$MockClass' class, it is also \
+            not possible to instantiate it as \
+            com.puppycrawl.tools.checkstyle.PackageObjectFactoryTest$MockClass, \
+            PackageObjectFactoryTest$MockClassCheck, \
+            com.puppycrawl.tools.checkstyle.PackageObjectFactoryTest$MockClassCheck\
+            """;
         assertWithMessage("Invalid exception message")
             .that(ex.getMessage())
-            .startsWith(
-                "Unable to instantiate 'PackageObjectFactoryTest$MockClass' class, it is also "
-                    + "not possible to instantiate it as "
-                    + "com.puppycrawl.tools.checkstyle.PackageObjectFactoryTest$MockClass, "
-                    + "PackageObjectFactoryTest$MockClassCheck, "
-                    + "com.puppycrawl.tools.checkstyle.PackageObjectFactoryTest$MockClassCheck"
-            );
+            .startsWith(expectedPrefix);
 
     }
 
