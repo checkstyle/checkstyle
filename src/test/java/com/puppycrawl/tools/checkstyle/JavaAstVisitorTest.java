@@ -131,11 +131,14 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
                 .map(Method::getName)
                 .collect(Collectors.toUnmodifiableSet());
 
-        assertWithMessage(
-            "Visit methods in 'JavaLanguageParserBaseVisitor' generated from production "
-                + "rules and labeled alternatives in 'JavaLanguageParser.g4' should be "
-                + "overridden in 'JavaAstVisitor' or be added to 'VISIT_METHODS_NOT_OVERRIDDEN' "
-                        + "with comment explaining why.")
+        final String message =
+            """
+            Visit methods in 'JavaLanguageParserBaseVisitor' generated from production \
+            rules and labeled alternatives in 'JavaLanguageParser.g4' should be \
+            overridden in 'JavaAstVisitor' or be added to 'VISIT_METHODS_NOT_OVERRIDDEN' \
+            with comment explaining why.\
+            """;
+        assertWithMessage(message)
                 .that(filteredVisitMethodNames)
                 .containsExactlyElementsIn(filteredBaseVisitMethodNames);
     }
@@ -164,8 +167,12 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
         // remove overridden 'visit' method from ParseTreeVisitor interface in JavaAstVisitor
         orderedVisitorMethodNames.remove("visit");
 
-        assertWithMessage("Visit methods in 'JavaAstVisitor' should appear in same order as "
-                + "production rules and labeled alternatives in 'JavaLanguageParser.g4'.")
+        final String message =
+            """
+            Visit methods in 'JavaAstVisitor' should appear in same order as \
+            production rules and labeled alternatives in 'JavaLanguageParser.g4'.\
+            """;
+        assertWithMessage(message)
                 .that(orderedVisitorMethodNames)
                 .containsExactlyElementsIn(orderedBaseVisitorMethodNames)
                 .inOrder();
@@ -194,8 +201,12 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
         // 'EXPR' node.
         final int expectedExprCount = 44;
 
-        assertWithMessage("The 'expr' parser rule does not build an imaginary"
-                + " 'EXPR' node. Any usage of this rule should be questioned.")
+        final String message =
+            """
+            The 'expr' parser rule does not build an imaginary\
+             'EXPR' node. Any usage of this rule should be questioned.\
+            """;
+        assertWithMessage(message)
                 .that(actualExprCount)
                 .isEqualTo(expectedExprCount);
 
