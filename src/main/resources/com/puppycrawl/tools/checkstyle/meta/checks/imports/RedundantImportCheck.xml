@@ -12,9 +12,11 @@
    &lt;li&gt;It is a duplicate of another import. This is, when a class or a module
    is imported more than once.&lt;/li&gt;
    &lt;li&gt;The class non-statically imported is from the &lt;code&gt;java.lang&lt;/code&gt;
-   package, e.g. importing &lt;code&gt;java.lang.String&lt;/code&gt;.&lt;/li&gt;
+   package, e.g. importing &lt;code&gt;java.lang.String&lt;/code&gt;, or is a type nested
+   in a class of the &lt;code&gt;java.lang&lt;/code&gt; package, e.g. importing
+   &lt;code&gt;java.lang.Thread.State&lt;/code&gt;.&lt;/li&gt;
    &lt;li&gt;The class non-statically imported is from the same package as the
-   current package.&lt;/li&gt;
+   current package, or is a type nested in a class of the same package.&lt;/li&gt;
  &lt;/ul&gt;</description>
          <message-keys>
             <message-key key="import.duplicate"/>

@@ -60,7 +60,6 @@ import org.apache.tools.ant.Project;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
@@ -1052,7 +1051,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         treewalkerConfig.addChild(checkConfig);
         final Checker checker = createChecker(createRootConfig(treewalkerConfig));
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
-        checker.addListener(new XMLLogger(output, OutputStreamOptions.NONE));
+        checker.addListener(new XMLLogger(output, AbstractAutomaticBean.OutputStreamOptions.NONE));
         final String filePath = getPath("InputChecker.java");
 
         final CheckstyleException exception = getExpectedThrowable(CheckstyleException.class,
@@ -1076,7 +1075,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final IllegalStateException fileFailure = new IllegalStateException("file completion");
         final IllegalStateException auditFailure = new IllegalStateException("audit completion");
         checker.addListener(new DefaultLogger(new ByteArrayOutputStream(),
-                OutputStreamOptions.NONE) {
+                AbstractAutomaticBean.OutputStreamOptions.NONE) {
             @Override
             public void fileFinished(AuditEvent event) {
                 throw fileFailure;
@@ -1202,7 +1201,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
-        checker.addListener(new XMLLogger(output, OutputStreamOptions.NONE));
+        checker.addListener(new XMLLogger(output, AbstractAutomaticBean.OutputStreamOptions.NONE));
         final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
         final Error error =
@@ -1556,7 +1555,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 new CloseAndFlushTestByteArrayOutputStream()) {
             checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
             checker.addListener(new DefaultLogger(testInfoOutputStream,
-                OutputStreamOptions.CLOSE, testErrorOutputStream, OutputStreamOptions.CLOSE));
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE, testErrorOutputStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE));
 
             final File tmpFile = createTempFile("file", ".java");
 
@@ -1584,7 +1584,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         try (CloseAndFlushTestByteArrayOutputStream testInfoOutputStream =
                 new CloseAndFlushTestByteArrayOutputStream()) {
             checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-            checker.addListener(new XMLLogger(testInfoOutputStream, OutputStreamOptions.CLOSE));
+            checker.addListener(new XMLLogger(testInfoOutputStream,
+                    AbstractAutomaticBean.OutputStreamOptions.CLOSE));
 
             final File tmpFile = createTempFile("file", ".java");
 
@@ -1617,8 +1618,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // so we need to set logger manually
         final ByteArrayOutputStream out = TestUtil.getInternalState(this,
                 "stream", ByteArrayOutputStream.class);
-        final DefaultLogger logger = new DefaultLogger(out, OutputStreamOptions.CLOSE, out,
-                OutputStreamOptions.NONE, new AuditEventDefaultFormatter());
+        final DefaultLogger logger = new DefaultLogger(out,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE, out,
+                AbstractAutomaticBean.OutputStreamOptions.NONE, new AuditEventDefaultFormatter());
         checker.addListener(logger);
 
         final File tempFile = createTempFile("file", ".java");
@@ -1670,8 +1672,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final OutputStream errorStream = new ByteArrayOutputStream();
         final DefaultLoggerWithCounter loggerWithCounter =
-            new DefaultLoggerWithCounter(infoStream, OutputStreamOptions.CLOSE,
-                                         errorStream, OutputStreamOptions.CLOSE);
+            new DefaultLoggerWithCounter(infoStream,
+                    AbstractAutomaticBean.OutputStreamOptions.CLOSE, errorStream,
+                    AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         checker.addListener(loggerWithCounter);
         final File cacheFile = createTempFile("cacheFile", ".txt");
         checker.setCacheFile(cacheFile.getAbsolutePath());
@@ -1827,9 +1830,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         private int fileFinishedCount;
 
         public DefaultLoggerWithCounter(OutputStream infoStream,
-                                        OutputStreamOptions infoStreamOptions,
-                                        OutputStream errorStream,
-                                        OutputStreamOptions errorStreamOptions) {
+                AbstractAutomaticBean.OutputStreamOptions infoStreamOptions,
+                OutputStream errorStream,
+                AbstractAutomaticBean.OutputStreamOptions errorStreamOptions) {
             super(infoStream, infoStreamOptions, errorStream, errorStreamOptions);
         }
 
