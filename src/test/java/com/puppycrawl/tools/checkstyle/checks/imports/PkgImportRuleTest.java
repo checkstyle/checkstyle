@@ -40,7 +40,7 @@ public class PkgImportRuleTest {
             .isNotNull();
         assertAccess(rule, "other", AccessResult.UNKNOWN);
         assertAccess(rule, "p", AccessResult.UNKNOWN);
-        assertAccess(rule, "pkgextra", AccessResult.UNKNOWN);
+        assertAccess(rule, "pkgExtra", AccessResult.UNKNOWN);
         assertAccess(rule, "pkg.a", AccessResult.ALLOWED);
         assertAccess(rule, "pkg.a.b", AccessResult.ALLOWED);
         assertAccess(rule, "pkg", AccessResult.UNKNOWN);
@@ -67,7 +67,7 @@ public class PkgImportRuleTest {
             .isNotNull();
         assertAccess(rule, "other", AccessResult.UNKNOWN);
         assertAccess(rule, "p", AccessResult.UNKNOWN);
-        assertAccess(rule, "pkgextra", AccessResult.UNKNOWN);
+        assertAccess(rule, "pkgExtra", AccessResult.UNKNOWN);
         assertAccess(rule, "pkg.a", AccessResult.ALLOWED);
         assertAccess(rule, "pkg.a.b", AccessResult.ALLOWED);
         assertAccess(rule, "pkg", AccessResult.UNKNOWN);
@@ -94,7 +94,7 @@ public class PkgImportRuleTest {
             .isNotNull();
         assertAccess(rule, "other", AccessResult.UNKNOWN);
         assertAccess(rule, "p", AccessResult.UNKNOWN);
-        assertAccess(rule, "pkgextra", AccessResult.UNKNOWN);
+        assertAccess(rule, "pkgExtra", AccessResult.UNKNOWN);
         assertAccess(rule, "pkg.a", AccessResult.ALLOWED);
         assertAccess(rule, "pkg.a.b", AccessResult.ALLOWED);
         assertAccess(rule, "pkg", AccessResult.UNKNOWN);
@@ -110,7 +110,7 @@ public class PkgImportRuleTest {
         assertWithMessage("Rule must not be null")
             .that(rule)
             .isNotNull();
-        assertAccess(rule, "pkgextra", AccessResult.UNKNOWN);
+        assertAccess(rule, "pkgExtra", AccessResult.UNKNOWN);
         assertAccess(rule, "pkg.a", AccessResult.UNKNOWN);
         assertAccess(rule, "pkg.a.b", AccessResult.UNKNOWN);
         assertAccess(rule, "pkg", AccessResult.UNKNOWN);

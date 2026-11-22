@@ -12,7 +12,6 @@ acm
 Aconfig
 actionlint
 addons
-adr
 AFBR
 AFilter
 allchecks
@@ -129,7 +128,6 @@ Bpmn
 breadcrumbs
 BSR
 Bsubscribe
-BTest
 btn
 btnfrs
 buf
@@ -1118,7 +1116,6 @@ pinentry
 pipefail
 PIPESTATUS
 pitest
-pkgextra
 pkx
 PLHM
 plugin
@@ -1289,7 +1286,6 @@ Savinov
 saxonica
 sbe
 sbt
-scache
 Schneeberger
 scm
 scopeutil
@@ -1365,7 +1361,6 @@ staticvariablename
 stdin
 Stdlib
 stdout
-stemp
 stext
 sthref
 stmt

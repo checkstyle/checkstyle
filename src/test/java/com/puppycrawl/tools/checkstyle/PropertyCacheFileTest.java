@@ -39,7 +39,6 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Properties;
 import java.util.Set;
 import java.util.UUID;
@@ -265,8 +264,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     public void testCacheDirectoryDoesNotExistAndShouldBeCreated() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
-        final String filePath = String.format(Locale.ENGLISH, "%s%2$stemp%2$scache.temp",
-            temporaryFolder, File.separator);
+        final String filePath = temporaryFolder + File.separator + "temp"
+            + File.separator + "cache.temp";
         final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
 
         // no exception expected, cache directory should be created

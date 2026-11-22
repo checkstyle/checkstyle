@@ -26,6 +26,6 @@ public final class InputVisibilityModifierImmutableSameTypeName
     public final InputVisibilityModifierGregorianCalendar calendar3 = null;
     public final InetSocketAddress address = null;
     // violation above 'Variable 'address' must be private and have accessor methods.'
-    public final InetSocketAddress adr = null;
-    // violation above 'Variable 'adr' must be private and have accessor methods.'
+    public final InetSocketAddress socketAddress = null;
+    // violation above 'Variable 'socketAddress' must be private and have accessor methods.'
 }
