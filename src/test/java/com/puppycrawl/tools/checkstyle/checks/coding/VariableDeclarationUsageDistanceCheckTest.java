@@ -1021,4 +1021,20 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             expected);
     }
 
+    @Test
+    public void testGeneralNew1() throws Exception {
+        final String[] expected = {
+            "21:17: " + getCheckMessage(MSG_KEY, "count", 3, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceGeneralNew1.java"), expected);
+    }
+
+    @Test
+    public void testSwitchExpressions1() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceSwitchExpressions1.java"), expected);
+    }
+
 }
