@@ -93,8 +93,6 @@
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]annotation[\\/]suppresswarnings[\\/]compact[\\/]InputSuppressWarningsCompactSourceFileFormat\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormattingAnnotations\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]invalidjavadocposition[\\/]InputInvalidJavadocPosition\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]javadoc[\\/]invalidjavadocposition[\\/]InputInvalidJavadocPosition\.java"/>
