@@ -24,12 +24,14 @@ import static com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarnings
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.instantiate;
 
+import java.io.File;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck;
@@ -297,6 +299,124 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
         assertWithMessage("Annotation should contain %s", astForTest)
                 .that(AnnotationUtil.containsAnnotation(astForTest, "Annotation"))
                 .isTrue();
+    }
+
+    @Test
+    public void testContainsAnnotationOnRecordComponent() throws Exception {
+        final DetailAST ast = JavaParser.parseFile(new File(
+                getPath("InputAnnotationUtilRecordAndEnumConstant.java")),
+                JavaParser.Options.WITH_COMMENTS);
+        final DetailAST component = findNode(ast, TokenTypes.RECORD_COMPONENT_DEF, "y");
+        final DetailAST annotations = component.findFirstToken(TokenTypes.ANNOTATIONS);
+
+        assertWithMessage("Annotation holder of record component should be %s", annotations)
+                .that(AnnotationUtil.getAnnotationHolder(component))
+                .isSameInstanceAs(annotations);
+        assertWithMessage("Record component should not contain %s", "Deprecated")
+                .that(AnnotationUtil.containsAnnotation(component, "Deprecated"))
+                .isFalse();
+        assertWithMessage("Record component should not contain any annotation")
+                .that(AnnotationUtil.containsAnnotation(component))
+                .isFalse();
+        assertWithMessage("Annotation should not be found on record component")
+                .that(AnnotationUtil.getAnnotation(component, "Deprecated"))
+                .isNull();
+    }
+
+    @Test
+    public void testContainsAnnotationOnAnnotatedRecordComponent() throws Exception {
+        final DetailAST ast = JavaParser.parseFile(new File(
+                getPath("InputAnnotationUtilRecordAndEnumConstant.java")),
+                JavaParser.Options.WITH_COMMENTS);
+        final DetailAST component = findNode(ast, TokenTypes.RECORD_COMPONENT_DEF, "x");
+        final DetailAST annotation = component.findFirstToken(TokenTypes.ANNOTATIONS)
+                .getFirstChild();
+
+        assertWithMessage("Record component should contain %s", "Deprecated")
+                .that(AnnotationUtil.containsAnnotation(component, "Deprecated"))
+                .isTrue();
+        assertWithMessage("Record component should contain an annotation")
+                .that(AnnotationUtil.containsAnnotation(component))
+                .isTrue();
+        assertWithMessage("Annotation on record component should be %s", annotation)
+                .that(AnnotationUtil.getAnnotation(component, "Deprecated"))
+                .isSameInstanceAs(annotation);
+    }
+
+    @Test
+    public void testContainsAnnotationOnAnnotatedEnumConstant() throws Exception {
+        final DetailAST ast = JavaParser.parseFile(new File(
+                getPath("InputAnnotationUtilRecordAndEnumConstant.java")),
+                JavaParser.Options.WITH_COMMENTS);
+        final DetailAST constant = findNode(ast, TokenTypes.ENUM_CONSTANT_DEF, "LEGACY");
+        final DetailAST annotations = constant.findFirstToken(TokenTypes.ANNOTATIONS);
+        final DetailAST annotation = annotations.getFirstChild();
+
+        assertWithMessage("Annotation holder of enum constant should be %s", annotations)
+                .that(AnnotationUtil.getAnnotationHolder(constant))
+                .isSameInstanceAs(annotations);
+        assertWithMessage("Enum constant should contain %s", "Deprecated")
+                .that(AnnotationUtil.containsAnnotation(constant, "Deprecated"))
+                .isTrue();
+        assertWithMessage("Enum constant should contain an annotation")
+                .that(AnnotationUtil.containsAnnotation(constant))
+                .isTrue();
+        assertWithMessage("Annotation on enum constant should be %s", annotation)
+                .that(AnnotationUtil.getAnnotation(constant, "Deprecated"))
+                .isSameInstanceAs(annotation);
+    }
+
+    @Test
+    public void testContainsAnnotationOnNodeWithoutAnnotationHolder() throws Exception {
+        final DetailAST ast = JavaParser.parseFile(new File(
+                getPath("InputAnnotationUtilRecordAndEnumConstant.java")),
+                JavaParser.Options.WITH_COMMENTS);
+        final DetailAST literal = findNode(ast, TokenTypes.LITERAL_INT, null);
+
+        assertWithMessage("Node without annotation holder should not contain %s", "Deprecated")
+                .that(AnnotationUtil.containsAnnotation(literal, "Deprecated"))
+                .isFalse();
+        assertWithMessage("Annotation should not be found on node without annotation holder")
+                .that(AnnotationUtil.getAnnotation(literal, "Deprecated"))
+                .isNull();
+    }
+
+    /**
+     * Finds the first node of the given type in the tree.
+     *
+     * @param ast the root of the tree to search
+     * @param type the token type to look for
+     * @param identText the text of the IDENT child to match, or null to match any node
+     * @return the first matching node, or null if there is none
+     */
+    private static DetailAST findNode(DetailAST ast, int type, String identText) {
+        DetailAST result = null;
+        if (ast.getType() == type && (identText == null || identText.equals(getIdentText(ast)))) {
+            result = ast;
+        }
+        else {
+            DetailAST child = ast.getFirstChild();
+            while (result == null && child != null) {
+                result = findNode(child, type, identText);
+                child = child.getNextSibling();
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Returns the text of the IDENT child of the given node.
+     *
+     * @param ast the node to get the IDENT text of
+     * @return the IDENT text, or null if the node has no IDENT child
+     */
+    private static String getIdentText(DetailAST ast) {
+        String result = null;
+        final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
+        if (ident != null) {
+            result = ident.getText();
+        }
+        return result;
     }
 
     @Test

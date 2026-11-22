@@ -181,17 +181,10 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
     private static DetailAST getParent(DetailAST commentBlock) {
         DetailAST result = commentBlock.getParent();
 
-        if (TokenUtil.isRootNode(result)) {
-            result = commentBlock.getNextSibling();
-        }
-
         while (true) {
             final int type = result.getType();
             if (TYPES_HASH_SET.get(type)) {
                 result = result.getParent();
-            }
-            else if (type == TokenTypes.SINGLE_LINE_COMMENT) {
-                result = result.getNextSibling();
             }
             else {
                 break;
