@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck.MSG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck.MSG_PKG_JAVADOC_MISSING;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.MSG_MISSING_TAG;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
@@ -48,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.BlockTagUtil;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.InlineTagUtil;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.TagInfo;
@@ -555,6 +557,17 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilEnumConstantDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForTypeDefinitions() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(WriteTagCheck.class, MSG_MISSING_TAG, "@author"),
+            "19:1: " + getCheckMessage(WriteTagCheck.class, MSG_MISSING_TAG, "@author"),
+            "33:1: " + getCheckMessage(WriteTagCheck.class, MSG_MISSING_TAG, "@author"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilTypeDefComments.java"), expected);
     }
 
     @Test
