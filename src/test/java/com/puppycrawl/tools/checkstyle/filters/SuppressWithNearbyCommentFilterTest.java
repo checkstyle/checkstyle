@@ -370,12 +370,16 @@ public class SuppressWithNearbyCommentFilterTest
                         violationAndSuppressedMessages
                     );
                 });
+        final String expected =
+            """
+            unable to parse influence from \
+            '-@csoff[MoveVariableInside(If|Else)](5) my comment text' using $3\
+            """;
         assertWithMessage("Invalid exception message")
             .that(exc)
             .hasCauseThat()
             .hasMessageThat()
-            .isEqualTo("unable to parse influence from "
-                    + "'-@csoff[MoveVariableInside(If|Else)](5) my comment text' using $3");
+            .isEqualTo(expected);
     }
 
     @Test
@@ -422,12 +426,16 @@ public class SuppressWithNearbyCommentFilterTest
                     execute(treeWalkerConfig, getPath(
                             "InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"));
                 });
+        final String expected =
+            """
+            unable to parse influence\
+             from 'SUPPRESS CHECKSTYLE MemberNameCheck' using a\
+            """;
         assertWithMessage("Invalid exception message")
             .that(exc)
             .hasCauseThat()
             .hasMessageThat()
-            .isEqualTo("unable to parse influence"
-                    + " from 'SUPPRESS CHECKSTYLE MemberNameCheck' using a");
+            .isEqualTo(expected);
     }
 
     @Test
@@ -518,10 +526,14 @@ public class SuppressWithNearbyCommentFilterTest
         final Object tag =
                 getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore")
                         .getFirst();
+        final String expected =
+            """
+            Tag[text='SUPPRESS CHECKSTYLE ignore', firstLine=1, lastLine=1, \
+            tagCheckRegexp=.*, tagMessageRegexp=null, tagIdRegexp=null]\
+            """;
         assertWithMessage("Invalid toString result")
             .that(tag.toString())
-            .isEqualTo("Tag[text='SUPPRESS CHECKSTYLE ignore', firstLine=1, lastLine=1, "
-                    + "tagCheckRegexp=.*, tagMessageRegexp=null, tagIdRegexp=null]");
+            .isEqualTo(expected);
     }
 
     @Test
@@ -531,10 +543,14 @@ public class SuppressWithNearbyCommentFilterTest
         final Object tag =
                 getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore")
                         .getFirst();
+        final String expected =
+            """
+            Tag[text='SUPPRESS CHECKSTYLE ignore', firstLine=1, lastLine=1, \
+            tagCheckRegexp=.*, tagMessageRegexp=null, tagIdRegexp=.*]\
+            """;
         assertWithMessage("Invalid toString result")
             .that(tag.toString())
-            .isEqualTo("Tag[text='SUPPRESS CHECKSTYLE ignore', firstLine=1, lastLine=1, "
-                    + "tagCheckRegexp=.*, tagMessageRegexp=null, tagIdRegexp=.*]");
+            .isEqualTo(expected);
     }
 
     /**
@@ -549,10 +565,14 @@ public class SuppressWithNearbyCommentFilterTest
         final Object tag =
                 getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore")
                         .getFirst();
+        final String expected =
+            """
+            Tag[text='SUPPRESS CHECKSTYLE ignore', firstLine=1, lastLine=1, \
+            tagCheckRegexp=IGNORE, tagMessageRegexp=msg, tagIdRegexp=null]\
+            """;
         assertWithMessage("Invalid toString result")
             .that(tag.toString())
-            .isEqualTo("Tag[text='SUPPRESS CHECKSTYLE ignore', firstLine=1, lastLine=1, "
-                    + "tagCheckRegexp=IGNORE, tagMessageRegexp=msg, tagIdRegexp=null]");
+            .isEqualTo(expected);
     }
 
     @Test
