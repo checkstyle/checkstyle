@@ -454,4 +454,11 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testSurroundingCode2Two() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputCommentsIndentationSurroundingCode2Two.java"), expected);
+    }
+
 }
