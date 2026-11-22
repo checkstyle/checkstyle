@@ -513,4 +513,11 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testUnusedImports15Extensions() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImports15Extensions.java"), expected);
+    }
+
 }
