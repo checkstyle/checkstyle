@@ -619,4 +619,89 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                 expected);
     }
 
+    @Test
+    public void testDefaultPart2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameTypePart2.java"), expected);
+    }
+
+    @Test
+    public void testTypeNamesForThreePermittedCapitalLettersPart2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameType2Part2.java"), expected);
+    }
+
+    @Test
+    public void testTypeNamesForFourPermittedCapitalLettersPart2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameType3Part2.java"), expected);
+    }
+
+    @Test
+    public void testTypeNamesForFivePermittedCapitalLettersPart2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameType4Part2.java"), expected);
+    }
+
+    @Test
+    public void testTypeAndVariablesAndMethodNamesPart2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameType5Part2.java"), expected);
+    }
+
+    @Test
+    public void testTypeAndVariablesAndMethodNamesWithIgnoresFinalPart2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameIgnoreFinalPart2.java"), expected);
+    }
+
+    @Test
+    public void testTypeAndVariablesAndMethodNamesWithIgnoresStaticPart2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameIgnoreStaticPart2.java"), expected);
+    }
+
+    @Test
+    public void testTypeAndVariablesAndMethodNamesWithIgnoresStaticFinalPart2()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameIgnoreStaticFinalPart2.java"), expected);
+    }
+
+    @Test
+    public void testTypeAndVariablesAndMethodNamesWithIgnoresFinalKeepStaticFinalPart2()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameIgnoreFinalKeepStaticFinalPart2.java"),
+                expected);
+    }
+
+    @Test
+    public void testTypeAndVariablesAndMethodNamesWithIgnoresStaticKeepStaticFinalPart2()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameIgnoreStaticKeepStaticFinalPart2.java"),
+                expected);
+    }
+
 }
