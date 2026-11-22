@@ -448,7 +448,7 @@ public class RedundantModifierCheck extends AbstractCheck {
                 parent = null;
             }
             else if (parent.getType() == TokenTypes.ENUM_DEF) {
-                checkFinal = modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+                checkFinal = isFinalInEnum(modifiers, parent);
                 parent = null;
             }
             else {
@@ -516,6 +516,37 @@ public class RedundantModifierCheck extends AbstractCheck {
         final DetailAST type = parameterDef.getFirstChild().getNextSibling();
         final String typeName = FullIdent.createFullIdentBelow(type).getText();
         return "Object".equals(typeName) || "java.lang.Object".equals(typeName);
+    }
+
+    /**
+     * Checks whether a method of an enum cannot be overridden, because it is static or
+     * because the enum is implicitly final.
+     *
+     * @param modifiers the modifiers of the method
+     * @param enumDef the ENUM_DEF node that declares the method
+     * @return true if the method cannot be overridden
+     */
+    private static boolean isFinalInEnum(DetailAST modifiers, DetailAST enumDef) {
+        return modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null
+            || isImplicitlyFinalEnum(enumDef);
+    }
+
+    /**
+     * Checks whether an enum is implicitly final, which it is when none of its
+     * constants has a class body (JLS 8.9).
+     *
+     * @param enumDef the ENUM_DEF node
+     * @return true if no enum constant has a class body
+     */
+    private static boolean isImplicitlyFinalEnum(DetailAST enumDef) {
+        boolean result = true;
+        DetailAST child = enumDef.findFirstToken(TokenTypes.OBJBLOCK).getFirstChild();
+        while (result && child != null) {
+            result = child.getType() != TokenTypes.ENUM_CONSTANT_DEF
+                || child.findFirstToken(TokenTypes.OBJBLOCK) == null;
+            child = child.getNextSibling();
+        }
+        return result;
     }
 
     /**

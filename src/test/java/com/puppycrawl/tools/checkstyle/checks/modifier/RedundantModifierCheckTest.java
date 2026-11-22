@@ -325,6 +325,17 @@ public class RedundantModifierCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFinalMethodsInImplicitlyFinalEnums() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_KEY, "final"),
+            "48:9: " + getCheckMessage(MSG_KEY, "final"),
+            "55:16: " + getCheckMessage(MSG_KEY, "final"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRedundantModifierEnumFinalMethods.java"), expected);
+    }
+
+    @Test
     public void testRecords() throws Exception {
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_KEY, "static"),
