@@ -2,7 +2,9 @@
 FinalLocalVariable
 validateEnhancedForLoopVariable = (default)false
 validateUnnamedVariables = (default)false
-tokens = (default)VARIABLE_DEF
+tokens = (default)IDENT,CTOR_DEF,METHOD_DEF,SLIST,OBJBLOCK,COMPACT_COMPILATION_UNIT,LITERAL_BREAK, \
+          LITERAL_FOR,VARIABLE_DEF,EXPR
+
 
 */
 // non-compiled with javac: Compilable with Java21 individually
@@ -33,7 +35,7 @@ public class InputFinalLocalVariableCheckSwitchExpressions2 {
     }
 
     void foo2() {
-        int x = 0; // violation "Variable 'x' should be declared final"
+        int x = 0;
         final int a = (int) Math.random();
 
         switch (a) {
