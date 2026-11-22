@@ -1,3 +1,10 @@
+/*
+CommentsIndentation
+tokens = SINGLE_LINE_COMMENT
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
 import java.util.Arrays;
