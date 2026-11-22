@@ -86,7 +86,7 @@ public class SeverityLevelCounterTest {
     public void testAuditStartedClearsState() {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.ERROR);
         final AuditEvent event = new AuditEvent(this, "ATest.java", null);
-        final AuditEvent secondEvent = new AuditEvent(this, "BTest.java", null);
+        final AuditEvent secondEvent = new AuditEvent(this, "OtherTest.java", null);
 
         counter.auditStarted(event);
         assertWithMessage("Invalid severity level count")
