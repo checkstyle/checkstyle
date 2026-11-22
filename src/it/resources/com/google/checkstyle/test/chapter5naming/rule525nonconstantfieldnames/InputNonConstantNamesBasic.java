@@ -15,8 +15,8 @@ public class InputNonConstantNamesBasic {
   // violation below ''prot_ected' .* underscores allowed only between adjacent digits.'
   protected int prot_ected;
   int package_; // violation ''package_' .* underscores allowed only between adjacent digits.'
-  // violation below ''priva\$te' must .* contain only letters, digits or underscores'
-  private int priva$te;
+  // violation below ''field\$name' must .* contain only letters, digits or underscores'
+  private int field$name;
 
   public int ppublic;
   protected int pprotected;

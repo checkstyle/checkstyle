@@ -1,6 +1,6 @@
 /*
 RegexpSinglelineJava
-format = don't\\suse trailing comments
+format = don't\\s+use trailing comments
 message = (default)(null)
 ignoreCase = (default)false
 minimum = (default)0

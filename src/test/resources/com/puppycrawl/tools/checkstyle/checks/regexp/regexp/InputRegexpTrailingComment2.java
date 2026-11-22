@@ -1,6 +1,6 @@
 /*
 Regexp
-format = don't\\suse trailing comments
+format = don't\\s+use trailing comments
 message = (default)null
 illegalPattern = true
 duplicateLimit = (default)0

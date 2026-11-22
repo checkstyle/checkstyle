@@ -64,7 +64,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRequiredFail() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_REQUIRED_REGEXP, "This\\stext is not in the file"),
+            "1: " + getCheckMessage(MSG_REQUIRED_REGEXP, "This\\s+text is not in the file"),
         };
         verifyWithInlineConfigParser(getPath("InputRegexpSemantic2.java"), expected);
     }
@@ -203,7 +203,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     public void testIgnoreCommentsFalseCppStyle() throws Exception {
         // See if the comment is removed properly
         final String[] expected = {
-            "16: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "don't\\suse trailing comments"),
+            "16: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "don't\\s+use trailing comments"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment2.java"), expected);

@@ -9,7 +9,7 @@ violateExecutionOnNonTightHtml = (default)false
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
 /**
- * The Tiles taglib and framework allows building
+ * The Tiles framework allows building
   web pages by assembling reusable pieces of pages,
   called Tiles. A Tile is usually a simple JSP page.
 
