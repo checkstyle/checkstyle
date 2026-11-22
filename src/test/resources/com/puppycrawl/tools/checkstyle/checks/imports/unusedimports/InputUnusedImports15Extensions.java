@@ -1,5 +1,7 @@
 /*
-No config
+UnusedImports
+processJavadoc = (default)true
+violateExecutionOnNonTightHtml = (default)false
 
 
 */
