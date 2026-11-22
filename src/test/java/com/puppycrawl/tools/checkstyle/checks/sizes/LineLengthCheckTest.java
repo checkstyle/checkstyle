@@ -26,6 +26,7 @@ import java.nio.charset.CodingErrorAction;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class LineLengthCheckTest extends AbstractModuleTestSupport {
 
@@ -151,6 +152,20 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineXmlConfig(
                 getPath("InputLineLengthUnmappableCharacters.java"), expected);
+    }
+
+    @Test
+    public void testSimpleThree() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputLineLengthSimpleThree.java"), expected);
+    }
+
+    @Test
+    public void testSimple1Three() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputLineLengthSimple1Three.java"), expected);
     }
 
 }
