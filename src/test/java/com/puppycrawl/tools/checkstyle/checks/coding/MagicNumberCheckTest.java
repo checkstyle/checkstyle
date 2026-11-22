@@ -592,6 +592,17 @@ public class MagicNumberCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIgnoreFieldDeclarationEnum()
+            throws Exception {
+        final String[] expected = {
+            "33:33: " + getCheckMessage(MSG_KEY, "46"),
+            "37:32: " + getCheckMessage(MSG_KEY, "47"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberIgnoreFieldDeclarationEnum.java"), expected);
+    }
+
+    @Test
     public void testWaiverParentToken()
             throws Exception {
         final String[] expected = {

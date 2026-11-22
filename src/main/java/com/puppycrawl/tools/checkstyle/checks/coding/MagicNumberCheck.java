@@ -356,6 +356,8 @@ public class MagicNumberCheck extends AbstractCheck {
 
                 result = grandParent.getType() == TokenTypes.CLASS_DEF
                     || grandParent.getType() == TokenTypes.RECORD_DEF
+                    || grandParent.getType() == TokenTypes.ENUM_DEF
+                    || grandParent.getType() == TokenTypes.ENUM_CONSTANT_DEF
                     || grandParent.getType() == TokenTypes.LITERAL_NEW;
             }
         }
