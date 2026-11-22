@@ -135,6 +135,36 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testRecordComponentJavadoc() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputMissingDeprecatedRecordComponent.java"), expected);
+    }
+
+    @Test
+    public void testRecordComponentDeprecatedTag() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingDeprecatedRecordComponentDeprecatedTag.java"),
+                expected);
+    }
+
+    @Test
+    public void testEnumConstantJavadoc() throws Exception {
+
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMissingDeprecatedEnumConstant.java"), expected);
+    }
+
+    @Test
     public void testTwoInJavadocWithoutAnnotation() throws Exception {
 
         final String[] expected = {
@@ -169,6 +199,24 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testPackageInfoWithDeprecatedAnnotation() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("annotated/package-info.java"), expected);
+    }
+
+    @Test
+    public void testTopLevelClassWithoutModifiers() throws Exception {
+        final String[] expected = {
+            "13: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingDeprecatedTopLevelClass.java"), expected);
+    }
+
+    @Test
     public void testDepPackageInfoBelowComment() throws Exception {
 
         final String[] expected = {
@@ -186,6 +234,17 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedSingleComment.java"), expected);
+    }
+
+    @Test
+    public void testPackageInfoWithTagBelowComment() throws Exception {
+
+        final String[] expected = {
+            "13: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMissingDeprecatedTagPackageBelowComment.java"), expected);
     }
 
     @Test
