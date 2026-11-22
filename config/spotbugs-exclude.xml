@@ -262,6 +262,10 @@
     <Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS"/>
   </Match>
   <Match>
+    <!-- logging is not used to benefit from tracing or debugging by toString -->
+    <Bug pattern="IMC_IMMATURE_CLASS_NO_TOSTRING"/>
+  </Match>
+  <Match>
     <!-- It is normal practice to have public/protected method to be named in good way,
          and have private method named the same to do all/majority of work. Second method
          is static so means that logic is stateless that is good marker. -->
@@ -271,7 +275,6 @@
   </Match>
   <Match>
     <Bug pattern="
-      IMC_IMMATURE_CLASS_NO_TOSTRING,
       WEM_WEAK_EXCEPTION_MESSAGING,
       " />
   </Match>
