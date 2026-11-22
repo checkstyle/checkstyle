@@ -835,12 +835,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final File mock = new File("testFile") {
             @Serial
             private static final long serialVersionUID = 1L;
+
             /**
              * Test is checking catch clause when exception is thrown.
              *
              * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
+             * @noinspectionreason ProhibitedExceptionThrown - mocked file must throw for the test
              */
             @Override
             public long lastModified() {
@@ -1184,6 +1184,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final File mock = new File("testFile") {
             @Serial
             private static final long serialVersionUID = 1L;
+
             @Override
             public String getAbsolutePath() {
                 return "testFile";
@@ -1193,8 +1194,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
              * Test is checking catch clause when exception is thrown.
              *
              * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
+             * @noinspectionreason ProhibitedExceptionThrown - mocked file must throw for the test
              */
             @Override
             public File getAbsoluteFile() {

@@ -880,7 +880,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     }
 
     /**
-     * If variable definition is a type field.
+     * If variable definition is a type field, including a field of an anonymous class
+     * or of an enum constant body.
      *
      * @param variableDef variable definition.
      * @return true variable definition is a type field.
@@ -889,7 +890,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         final DetailAST parent = variableDef.getParent();
 
         return parent.getType() == TokenTypes.COMPACT_COMPILATION_UNIT
-                || TokenUtil.isTypeDeclaration(parent.getParent().getType());
+                || TokenUtil.isTypeDeclaration(parent.getParent().getType())
+                || TokenUtil.isOfType(parent.getParent(),
+                        TokenTypes.LITERAL_NEW, TokenTypes.ENUM_CONSTANT_DEF);
     }
 
 }
