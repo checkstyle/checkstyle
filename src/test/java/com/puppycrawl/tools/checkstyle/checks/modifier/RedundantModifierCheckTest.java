@@ -345,6 +345,17 @@ public class RedundantModifierCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFinalMethodsInRecords() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY, "final"),
+            "33:13: " + getCheckMessage(MSG_KEY, "final"),
+            "44:13: " + getCheckMessage(MSG_KEY, "final"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRedundantModifierRecordFinalMethods.java"), expected);
+    }
+
+    @Test
     public void testSealedClasses() throws Exception {
         final String[] expected = {
             "15:4: " + getCheckMessage(MSG_KEY, "final"),
