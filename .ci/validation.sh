@@ -1227,18 +1227,48 @@ no-error-strata)
   set -e
   CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
-  echo CS_version: "${CS_POM_VERSION}"
-  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  echo "CS_version: ${CS_POM_VERSION}"
+  ./mvnw -e --no-transfer-progress clean install -DskipTests -Pno-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/OpenGamma/Strata.git
   cd .ci-temp/Strata
-  # shellcheck disable=2016 # we do not want to expand properties in this command
-  STRATA_CS_POM_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
-                     -Dexec.args='${checkstyle.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  STRATA_CS_POM_VERSION="$(mvn -e --no-transfer-progress -q help:evaluate \
+    -Dexpression=checkstyle.version -DforceStdout -f modules/pom.xml)"
+  BUILD_CONFIG_VERSION="$(mvn -e --no-transfer-progress -q help:evaluate \
+    -Dexpression=build-config.version -DforceStdout -f modules/pom.xml)"
+  ROOT_BUILD_CONFIG_VERSION="$(mvn -e --no-transfer-progress -q help:evaluate \
+    -Dexpression=build-config.version -DforceStdout)"
+
+  VERSIONS_TO_PATCH=("${BUILD_CONFIG_VERSION}")
+  if [ "${ROOT_BUILD_CONFIG_VERSION}" != "${BUILD_CONFIG_VERSION}" ]; then
+    VERSIONS_TO_PATCH+=("${ROOT_BUILD_CONFIG_VERSION}")
+  fi
+  # build-config contains JavadocVariable module with outdated 'scope' property.
+  # Comment it out so modern Checkstyle can run remaining checks.
+  for bcv in "${VERSIONS_TO_PATCH[@]}"; do
+    mvn -e --no-transfer-progress dependency:copy \
+      -Dartifact="com.opengamma:build-config:${bcv}:jar" \
+      -DoutputDirectory=.
+    jar xf "build-config-${bcv}.jar" \
+      "checkstyle/checkstyle-main-v${STRATA_CS_POM_VERSION}.xml"
+    sed -i'' '/<module name="JavadocVariable">/,/<\/module>/ {
+      s|<module name="JavadocVariable">|<!-- <module name="JavadocVariable">|
+      s|</module>|</module> -->|
+    }' "checkstyle/checkstyle-main-v${STRATA_CS_POM_VERSION}.xml"
+    jar uf "build-config-${bcv}.jar" \
+      "checkstyle/checkstyle-main-v${STRATA_CS_POM_VERSION}.xml"
+    mvn -e --no-transfer-progress install:install-file \
+      -Dfile="build-config-${bcv}.jar" \
+      -DgroupId=com.opengamma \
+      -DartifactId=build-config \
+      -Dversion="${bcv}" \
+      -Dpackaging=jar
+    rm -rf checkstyle "build-config-${bcv}.jar"
+  done
+
   mvn -e --no-transfer-progress install -B -Dstrict -DskipTests \
      -Dforbiddenapis.skip=true -Dcheckstyle.version="${CS_POM_VERSION}" \
-     -Dcheckstyle.config.suffix="-v$STRATA_CS_POM_VERSION"
+     -Dcheckstyle.config.suffix="-v${STRATA_CS_POM_VERSION}"
   cd ../
   removeFolderWithProtectedFiles Strata
   ;;
