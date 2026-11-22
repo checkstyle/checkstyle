@@ -54,11 +54,15 @@ public class AbstractAutomaticBeanTest {
                     .that(exc)
                     .hasCauseThat()
                     .isNull();
+            final String expectedMessage =
+                """
+                Property 'NonExistent' does not exist,\
+                 please check the documentation\
+                """;
             assertWithMessage("Invalid exception message")
                     .that(exc)
                     .hasMessageThat()
-                    .isEqualTo("Property 'NonExistent' does not exist,"
-                            + " please check the documentation");
+                    .isEqualTo(expectedMessage);
         }
     }
 
@@ -77,11 +81,15 @@ public class AbstractAutomaticBeanTest {
                     .that(exc)
                     .hasCauseThat()
                     .isNull();
+            final String expectedMessage =
+                """
+                Property 'privateField' does not exist,\
+                 please check the documentation\
+                """;
             assertWithMessage("Invalid exception message")
                     .that(exc)
                     .hasMessageThat()
-                    .isEqualTo("Property 'privateField' does not exist,"
-                            + " please check the documentation");
+                    .isEqualTo(expectedMessage);
         }
     }
 
@@ -96,9 +104,12 @@ public class AbstractAutomaticBeanTest {
                     .fail();
         }
         catch (CheckstyleException exc) {
-            final String expectedMessage = "dummy is not allowed as a child in bean config. "
-                    + "Please review 'Parent Module' section for this Check"
-                    + " in web documentation if Check is standard.";
+            final String expectedMessage =
+                """
+                dummy is not allowed as a child in bean config. \
+                Please review 'Parent Module' section for this Check \
+                in web documentation if Check is standard.\
+                """;
             assertWithMessage("Invalid exception message")
                     .that(exc)
                     .hasMessageThat()
@@ -119,12 +130,16 @@ public class AbstractAutomaticBeanTest {
                     .fail();
         }
         catch (CheckstyleException exc) {
+            final String expectedMessage =
+                """
+                childConf is not allowed as a \
+                child in parentConf. Please review 'Parent Module' section \
+                for this Check in web documentation if Check is standard.\
+                """;
             assertWithMessage("Invalid exception message")
                     .that(exc)
                     .hasMessageThat()
-                    .isEqualTo("childConf is not allowed as a "
-                            + "child in parentConf. Please review 'Parent Module' section "
-                            + "for this Check in web documentation if Check is standard.");
+                    .isEqualTo(expectedMessage);
         }
     }
 
