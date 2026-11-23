@@ -85,10 +85,10 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
         final List<ModuleDetails> actual = XmlMetaReader
                 .readAllModulesIncludingThirdPartyIfAny("com.puppycrawl.tools.checkstyle.meta");
 
-        assertWithMessage("Rescanning a scanned package should not duplicate modules")
+        assertWithMessage("Scanning a package again should not duplicate modules")
                 .that(actual)
                 .hasSize(ALL_MODULES.size());
-        assertWithMessage("Rescanning a scanned package should not change the modules")
+        assertWithMessage("Scanning a package again should not change the modules")
                 .that(fullNames(actual))
                 .containsExactlyElementsIn(fullNames(ALL_MODULES));
     }

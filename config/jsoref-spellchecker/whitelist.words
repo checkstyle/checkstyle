@@ -921,7 +921,6 @@ mycompany
 mycompanychecks
 mycustom
 mycustomtag
-myfile
 myname
 myproject
 Mysql
@@ -1200,7 +1199,6 @@ reportyml
 requiredtags
 requireemptylinebeforeblocktaggroup
 requirethis
-Rescanning
 resourceleak
 rethrowing
 rethrown
@@ -1641,7 +1639,6 @@ xsi
 xsl
 xslt
 xsltproc
-XSO
 xvf
 xwiki
 XXE
