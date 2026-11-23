@@ -147,4 +147,17 @@ public class InappropriateJavadocBlockTagsOnTypeCheckTest extends AbstractModule
                 .contains("EQUALS");
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_INAPPROPRIATE_TAG, "return",
+                "InputInappropriateJavadocBlockTagsOnTypeCompactSourceFile"),
+            "14:1: " + getCheckMessage(MSG_INAPPROPRIATE_TAG, "throws",
+                "InputInappropriateJavadocBlockTagsOnTypeCompactSourceFile"),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputInappropriateJavadocBlockTagsOnTypeCompactSourceFile.java"),
+                expected);
+    }
+
 }
