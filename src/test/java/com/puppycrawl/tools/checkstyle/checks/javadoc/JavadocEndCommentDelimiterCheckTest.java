@@ -86,4 +86,14 @@ public class JavadocEndCommentDelimiterCheckTest extends AbstractModuleTestSuppo
                 getPath("InputJavadocEndCommentDelimiterIncorrect.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "17:3: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputJavadocEndCommentDelimiterCompactSourceFile.java"),
+                expected);
+    }
+
 }
