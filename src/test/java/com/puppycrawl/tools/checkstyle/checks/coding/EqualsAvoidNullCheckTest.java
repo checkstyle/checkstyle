@@ -36,6 +36,30 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "17:41: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "20:50: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "34:40: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputEqualsAvoidNullFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "20:40: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputEqualsAvoidNullFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testEqualsWithDefault() throws Exception {
 
         final String[] expected = {
