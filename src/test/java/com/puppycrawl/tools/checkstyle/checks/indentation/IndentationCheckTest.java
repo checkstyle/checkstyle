@@ -4201,19 +4201,11 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLambdaCastAsInvocationTarget() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
-        checkConfig.addProperty("tabWidth", "4");
-        checkConfig.addProperty("basicOffset", "4");
-        checkConfig.addProperty("braceAdjustment", "0");
-        checkConfig.addProperty("caseIndent", "4");
-        checkConfig.addProperty("lineWrappingIndentation", "4");
-        checkConfig.addProperty("forceStrictCondition", "false");
-
         final String[] expected = {
-            "16:25: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "block", 24, "12, 20"),
-            "29:25: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "block", 24, "12, 20"),
+            "20:25: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "block", 24, "12, 20"),
+            "34:25: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "block", 24, "12, 20"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
             getPath("InputIndentationLambdaCastAsInvocationTarget.java"),
             expected);
     }
