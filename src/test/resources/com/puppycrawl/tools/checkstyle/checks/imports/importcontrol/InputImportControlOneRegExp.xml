@@ -6,7 +6,7 @@
 <import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports">
   <allow class="java\.awt.Image" regex="true"/>
   <allow class="java..*.Button.ABORT" regex="true"/>
-  <allow class="java.(io|lui).File" local-only="true" regex="true"/>
+  <allow class="java.(io|nio).File" local-only="true" regex="true"/>
   <subpackage name="importcontrol">
     <allow pkg="javax.swing" regex="true"/>
   </subpackage>
