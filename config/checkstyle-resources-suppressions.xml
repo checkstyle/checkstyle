@@ -5,6 +5,8 @@
   "https://checkstyle.org/dtds/suppressions_1_1.dtd">
 
 <suppressions>
+  <suppress checks="PackageDeclarationCheck"
+    files="unusedprivatefield/flexible-constructor-bodies/InputUnusedPrivateFieldFlexibleConstructorBodies(Custom)?\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclaration"
