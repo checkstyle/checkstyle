@@ -43,14 +43,14 @@ public class SeverityMatchFilterTest {
         final Violation errorViolation =
             new Violation(1, 0, "", "", null,
                 errorLevel, null, getClass(), null);
-        final AuditEvent ev2 = new AuditEvent(this, "ATest.java", errorViolation);
+        final AuditEvent ev2 = new AuditEvent(this, "FirstTest.java", errorViolation);
         assertWithMessage("level:%s", errorLevel)
                 .that(filter.accept(ev2))
                 .isTrue();
         final SeverityLevel infoLevel = SeverityLevel.INFO;
         final Violation infoViolation =
                 new Violation(1, 0, "", "", null, infoLevel, null, getClass(), null);
-        final AuditEvent ev3 = new AuditEvent(this, "ATest.java", infoViolation);
+        final AuditEvent ev3 = new AuditEvent(this, "FirstTest.java", infoViolation);
         assertWithMessage("level:%s", infoLevel)
             .that(filter.accept(ev3))
             .isFalse();
@@ -68,14 +68,14 @@ public class SeverityMatchFilterTest {
         final Violation errorViolation =
             new Violation(1, 0, "", "", null,
                 errorLevel, null, getClass(), null);
-        final AuditEvent ev2 = new AuditEvent(this, "ATest.java", errorViolation);
+        final AuditEvent ev2 = new AuditEvent(this, "FirstTest.java", errorViolation);
         assertWithMessage("level:%s", errorLevel)
             .that(filter.accept(ev2))
             .isFalse();
         final SeverityLevel infoLevel = SeverityLevel.INFO;
         final Violation infoViolation =
                 new Violation(1, 0, "", "", null, infoLevel, null, getClass(), null);
-        final AuditEvent ev3 = new AuditEvent(this, "ATest.java", infoViolation);
+        final AuditEvent ev3 = new AuditEvent(this, "FirstTest.java", infoViolation);
         assertWithMessage("level:%s", infoLevel)
                 .that(filter.accept(ev3))
                 .isTrue();
@@ -94,14 +94,14 @@ public class SeverityMatchFilterTest {
         final Violation errorViolation =
             new Violation(1, 0, "", "", null,
                 errorLevel, null, getClass(), null);
-        final AuditEvent ev2 = new AuditEvent(this, "ATest.java", errorViolation);
+        final AuditEvent ev2 = new AuditEvent(this, "FirstTest.java", errorViolation);
         assertWithMessage("level:%s", errorLevel)
                 .that(filter.accept(ev2))
                 .isTrue();
         final SeverityLevel infoLevel = SeverityLevel.INFO;
         final Violation infoViolation = new Violation(1, 0, "", "", null, infoLevel,
             null, getClass(), null);
-        final AuditEvent ev3 = new AuditEvent(this, "ATest.java", infoViolation);
+        final AuditEvent ev3 = new AuditEvent(this, "FirstTest.java", infoViolation);
         assertWithMessage("level:%s", infoLevel)
             .that(filter.accept(ev3))
             .isFalse();
