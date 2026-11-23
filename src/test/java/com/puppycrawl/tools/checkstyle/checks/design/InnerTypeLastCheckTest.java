@@ -61,6 +61,18 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testLocalAndAnonymousClassesInCodeBlocks() throws Exception {
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY),
+            "18:13: " + getCheckMessage(MSG_KEY),
+            "33:13: " + getCheckMessage(MSG_KEY),
+            "43:13: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputInnerTypeLastLocalClass.java"), expected);
+    }
+
+    @Test
     public void testIfRootClassChecked() throws Exception {
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_KEY),

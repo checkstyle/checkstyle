@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <div>
@@ -84,7 +83,8 @@ public class InnerTypeLastCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         DetailAST nextSibling = ast;
         while (nextSibling != null) {
-            if (!ScopeUtil.isInCodeBlock(ast)
+            // A local type is a statement, and the statements after it are not members
+            if (ast.getParent().getType() != TokenTypes.SLIST
                     && CLASS_MEMBER_TOKENS.contains(nextSibling.getType())) {
                 log(nextSibling, MSG_KEY);
             }
