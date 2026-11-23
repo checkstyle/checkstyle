@@ -183,4 +183,17 @@ public class ArrayBracketNoWhitespaceCheckTest extends AbstractModuleTestSupport
             .isEqualTo(check.getDefaultTokens());
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "10:26: " + getCheckMessage(MSG_WS_PRECEDED, "["),
+            "11:25: " + getCheckMessage(MSG_WS_FOLLOWED, "["),
+            "13:19: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
+            "14:18: " + getCheckMessage(MSG_WS_PRECEDED, "["),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputArrayBracketNoWhitespaceCompact.java"),
+                expected);
+    }
+
 }
