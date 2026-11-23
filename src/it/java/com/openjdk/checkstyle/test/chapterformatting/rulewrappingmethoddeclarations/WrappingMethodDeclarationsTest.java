@@ -35,4 +35,9 @@ public class WrappingMethodDeclarationsTest extends AbstractOpenJdkModuleTestSup
         verifyWithWholeConfig(getPath("InputWrappingMethodDoAndDonts.java"));
     }
 
+    @Test
+    public void testWrappingMethodDeclarationsMethodParameterAlignment() throws Exception {
+        verifyWithWholeConfig(getPath("InputOpenjdkMethodParameterAlignment.java"));
+    }
+
 }
