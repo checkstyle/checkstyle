@@ -35,6 +35,18 @@ public class WhitespaceBeforeEmptyBodyCheckTest extends AbstractModuleTestSuppor
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "19:22: " + getCheckMessage(MSG_KEY, "{"),
+            "34:22: " + getCheckMessage(MSG_KEY, "{"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputWhitespaceBeforeEmptyBodyFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final WhitespaceBeforeEmptyBodyCheck checkObj = new WhitespaceBeforeEmptyBodyCheck();
         assertWithMessage(
