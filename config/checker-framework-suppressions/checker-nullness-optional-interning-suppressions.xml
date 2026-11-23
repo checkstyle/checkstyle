@@ -2519,6 +2519,13 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference nameAST</message>
+    <lineContent>final String name = nameAST.getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference node.findFirstToken(TokenTypes.IDENT)</message>
     <lineContent>final String name = node.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
   </checkerFrameworkError>

@@ -5,7 +5,7 @@
              name="HiddenField"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks that a local variable or a parameter does not shadow
+ Checks that a local variable, a parameter or a record component does not shadow
  a field that is defined in the same class.
  &lt;/div&gt;
 
