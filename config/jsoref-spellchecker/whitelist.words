@@ -829,7 +829,6 @@ lte
 lucene
 lui
 luiframework
-madbean
 magicnumber
 mailhost
 mailto
@@ -1361,7 +1360,6 @@ staticvariablename
 stdin
 Stdlib
 stdout
-stext
 sthref
 stmt
 streamapi
@@ -1399,7 +1397,6 @@ suppresswarningsholder
 suppresswithnearbycommentfilter
 suppresswithnearbytextfilter
 suppresswithplaintextcommentfilter
-suse
 svg
 switchstatements
 sxpath
