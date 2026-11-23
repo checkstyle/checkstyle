@@ -229,6 +229,7 @@ jobs:
         id: parse
         env:
           COMMENT_BODY: ${{ env.TRIGGER_PHRASE }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           NAME='^Git[Hh]ub,'
           PATTERN_FOR_DESCRIPTION=$NAME' generate report for configs in PR description[[:space:]]*$'
@@ -240,10 +241,27 @@ jobs:
           PATTERN_FOR_BASELINE_REPORT=$NAME' generate baseline report for ([^[:space:]]+) with (.*)'
 
           if [[ "$COMMENT_BODY" =~ $PATTERN_FOR_CHANGED_CHECK ]]; then
-            # Take the name of the changed Check from the diff of the latest
-            # commit, so the maintainer does not have to copy it from
-            # test-configs by hand.
-            CHANGED_CHECK=$(cd .ci-temp/checkstyle && ./.ci/validation.sh git-changed-check)
+            # Take the name of the changed Check from the list of files
+            # changed in the PR, so the maintainer does not have to copy
+            # it from test-configs by hand. The list comes from the
+            # GitHub CLI, so no checkout is needed for this, and it also
+            # works on PRs whose branch predates the git-changed-check
+            # task in .ci/validation.sh. The first Check.java in the
+            # list wins, same as in the git-changed-check task.
+            PR_NUMBER="${PULL_REQUEST_URL##*/}"
+            CHANGED_FILES=$(gh api \
+              "repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/files" \
+              --paginate --jq '.[].filename') || {
+              echo "Failed to get the list of changed files of the PR." >&2
+              exit 1
+            }
+            CHANGED_CHECK=$(printf '%s\n' "$CHANGED_FILES" \
+              | grep -o '[A-Za-z0-9]*Check\.java' | head -1) || true
+            if [ -z "$CHANGED_CHECK" ]; then
+              echo "Failed to detect the changed Check from the PR diff." >&2
+              exit 1
+            fi
+            CHANGED_CHECK="${CHANGED_CHECK%.java}"
             echo "Changed Check from PR diff: $CHANGED_CHECK"
             ./.ci/append-to-github-output.sh "mode" "existing_config_bundle"
             ./.ci/append-to-github-output.sh \
