@@ -37,6 +37,19 @@ public class OpenjdkAnnotationLocationCheckTest extends AbstractModuleTestSuppor
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "18:34: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "Before"),
+            "18:34: " + getCheckMessage(MSG_KEY_ANNOTATION_ALONE_OR_SAME, "Before"),
+            "31:21: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "After"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputOpenjdkAnnotationLocationFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final OpenjdkAnnotationLocationCheck obj =
             new OpenjdkAnnotationLocationCheck();
