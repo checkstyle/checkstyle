@@ -324,6 +324,18 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSwitchExpressionOnOneLine() throws Exception {
+        final String[] expected = {
+            "32:62: " + getCheckMessage(MSG_KEY),
+            "37:54: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineSwitchExpressionOnOneLine.java"),
+                expected);
+    }
+
+    @Test
     public void testBreakAndContinueStatement() throws Exception {
         final String[] expected = {
             "18:28: " + getCheckMessage(MSG_KEY),
