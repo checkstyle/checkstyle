@@ -189,4 +189,14 @@ public class ClassMemberImpliedModifierCheckTest
             .isEqualTo(init.toString());
     }
 
+    @Test
+    public void testLocalTypes() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_KEY, "static"),
+            "26:13: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputClassMemberImpliedModifierLocalTypes.java"), expected);
+    }
+
 }
