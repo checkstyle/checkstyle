@@ -195,6 +195,23 @@ public class ConstantNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testLocalAndAnonymousClasses() throws Exception {
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
+        final String[] expected = {
+            "18:30: " + getCheckMessage(MSG_INVALID_PATTERN, "max", pattern),
+            "24:21: " + getCheckMessage(MSG_INVALID_PATTERN, "lower", pattern),
+            "34:17: " + getCheckMessage(MSG_INVALID_PATTERN, "lower", pattern),
+            "44:30: " + getCheckMessage(MSG_INVALID_PATTERN, "min", pattern),
+            "49:26: " + getCheckMessage(MSG_INVALID_PATTERN, "anonField", pattern),
+            "54:30: " + getCheckMessage(MSG_INVALID_PATTERN, "anonField", pattern),
+            "60:30: " + getCheckMessage(MSG_INVALID_PATTERN, "inLambda", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputConstantNameLocalClass.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final ConstantNameCheck constantNameCheckObj = new ConstantNameCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();

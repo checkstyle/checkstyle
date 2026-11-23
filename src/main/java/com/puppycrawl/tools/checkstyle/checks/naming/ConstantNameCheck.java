@@ -117,7 +117,7 @@ public class ConstantNameCheck extends AbstractAccessControlNameCheck {
             || ScopeUtil.isInAnnotationBlock(ast)
             || ScopeUtil.isInInterfaceBlock(ast);
         if (isStaticFinal && shouldCheckInScope(modifiersAST)
-                        && !ScopeUtil.isInCodeBlock(ast)) {
+                        && !ScopeUtil.isLocalVariableDef(ast)) {
             // Handle the serialVersionUID and serialPersistentFields constants
             // which are used for Serialization. Cannot enforce rules on it. :-)
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
