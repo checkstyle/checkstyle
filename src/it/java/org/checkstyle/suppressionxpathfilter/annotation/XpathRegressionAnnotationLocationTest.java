@@ -216,4 +216,31 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
 
     }
 
+    @Test
+    public void testAnnotation() throws Exception {
+        final String[] expectedViolation = {
+            "17:1: " + getCheckMessage(AnnotationLocationCheck.class,
+                    AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/ANNOTATION_DEF"
+                        + "[./IDENT[@text='InputXpathAnnotationLocationAnnotation']]",
+                "/COMPILATION_UNIT/ANNOTATION_DEF"
+                        + "[./IDENT[@text='InputXpathAnnotationLocationAnnotation']]"
+                        + "/MODIFIERS",
+                "/COMPILATION_UNIT/ANNOTATION_DEF"
+                        + "[./IDENT[@text='InputXpathAnnotationLocationAnnotation']]/"
+                        + "MODIFIERS/ANNOTATION[./IDENT[@text='Annotation']]",
+                "/COMPILATION_UNIT/ANNOTATION_DEF"
+                        + "[./IDENT[@text='InputXpathAnnotationLocationAnnotation']]/"
+                        + "MODIFIERS/ANNOTATION[./IDENT[@text='Annotation']]/AT"
+        );
+
+        verifyXpathWithInlineConfigParser(
+                getPath("InputXpathAnnotationLocationAnnotation.java"),
+                expectedXpathQueries,
+                expectedViolation);
+    }
+
 }
