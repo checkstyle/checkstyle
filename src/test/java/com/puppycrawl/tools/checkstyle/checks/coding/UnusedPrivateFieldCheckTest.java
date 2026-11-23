@@ -49,6 +49,28 @@ class UnusedPrivateFieldCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "16:21: " + getCheckMessage(MSG_PRIVATE_FIELD, "unused"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputUnusedPrivateFieldFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "21:21: " + getCheckMessage(MSG_PRIVATE_FIELD, "unused"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputUnusedPrivateFieldFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final UnusedPrivateFieldCheck checkObj =
                 new UnusedPrivateFieldCheck();
