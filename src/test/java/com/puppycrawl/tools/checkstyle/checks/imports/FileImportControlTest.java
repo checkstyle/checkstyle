@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
 
 public class FileImportControlTest {
 
-    private final PkgImportControl root = new PkgImportControl("com.kazgroup.courtlink",
+    private final PkgImportControl root = new PkgImportControl("com.example.project",
             false, MismatchStrategy.DISALLOWED);
 
     private final FileImportControl fileNode = new FileImportControl(root, "MyClass",
@@ -50,16 +50,16 @@ public class FileImportControlTest {
     @Test
     public void testLocateFinest() {
         assertWithMessage("Unexpected response")
-            .that(root.locateFinest("com.kazgroup.courtlink.domain", "Random"))
+            .that(root.locateFinest("com.example.project.domain", "Random"))
             .isEqualTo(root);
         assertWithMessage("Unexpected response")
-            .that(root.locateFinest("com.kazgroup.courtlink.common.api", "MyClass"))
+            .that(root.locateFinest("com.example.project.common.api", "MyClass"))
             .isEqualTo(fileNode);
         assertWithMessage("Unexpected response")
-            .that(root.locateFinest("com.kazgroup.courtlink.common.api", "SomeOtherName"))
+            .that(root.locateFinest("com.example.project.common.api", "SomeOtherName"))
             .isEqualTo(fileRegexpNode);
         assertWithMessage("Unexpected response")
-            .that(root.locateFinest("com.kazgroup.courtlink", null))
+            .that(root.locateFinest("com.example.project", null))
             .isEqualTo(root);
     }
 
