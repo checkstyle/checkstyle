@@ -43,6 +43,30 @@ public class ParenPadCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "16:15: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "16:30: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputParenPadFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "18:15: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "18:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputParenPadFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testDefault()
             throws Exception {
         final String[] expected = {
