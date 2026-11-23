@@ -89,6 +89,7 @@ class InputOverloadMethodsDeclarationOrder2 {
             public void middle() {
             }
 
+            // violation below 'All overloaded methods should be placed next to each other.'
             public void value(String s) {
             }
         };
