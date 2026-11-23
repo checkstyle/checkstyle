@@ -2412,6 +2412,13 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalPatternVariableCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ident</message>
+    <lineContent>if (name.equals(ident.getText())) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalPatternVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference modifiers</message>
     <lineContent>modifiers.findFirstToken(TokenTypes.FINAL) != null;</lineContent>
   </checkerFrameworkError>

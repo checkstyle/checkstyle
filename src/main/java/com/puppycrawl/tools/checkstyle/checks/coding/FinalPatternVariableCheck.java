@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -313,7 +314,9 @@ public class FinalPatternVariableCheck extends AbstractCheck {
             boolean isReassigned = false;
             for (DetailAST assignTokenIdent : reassignedVariableIdents) {
                 if (patternVariableIdent.getText().equals(
-                        assignTokenIdent.getText())) {
+                        assignTokenIdent.getText())
+                        && isReassignmentOfPatternVariable(
+                                patternVariableIdent, assignTokenIdent)) {
                     isReassigned = true;
                     break;
                 }
@@ -321,6 +324,101 @@ public class FinalPatternVariableCheck extends AbstractCheck {
             result = !isReassigned;
         }
 
+        return result;
+    }
+
+    /**
+     * Checks whether an assignment reassigns the given pattern variable.
+     * An assignment belongs to the pattern variable declared by the nearest
+     * enclosing {@code if} or {@code while} statement whose condition declares
+     * a pattern variable with the same name, for example a sibling {@code if}
+     * statement that declares its own pattern variable. If no enclosing
+     * statement declares such a variable, the assignment is matched by name only,
+     * as before.
+     *
+     * @param patternVariableIdent AST ident of the pattern variable
+     * @param assignTokenIdent AST ident of the assignment target
+     * @return true if the assignment reassigns the pattern variable
+     */
+    private static boolean isReassignmentOfPatternVariable(
+            final DetailAST patternVariableIdent,
+            final DetailAST assignTokenIdent) {
+        final DetailAST coveringDef =
+                getCoveringPatternVariableDef(assignTokenIdent);
+        return coveringDef == null
+                || Objects.equals(coveringDef, patternVariableIdent.getParent());
+    }
+
+    /**
+     * Gets the pattern variable definition that covers an assignment: the
+     * definition of the pattern variable with the same name declared by the
+     * nearest enclosing {@code if} or {@code while} statement.
+     *
+     * @param assignTokenIdent AST ident of the assignment target
+     * @return the covering PATTERN_VARIABLE_DEF node, or null if there is none
+     */
+    @Nullable
+    private static DetailAST getCoveringPatternVariableDef(
+            final DetailAST assignTokenIdent) {
+        DetailAST result = null;
+        for (DetailAST node = assignTokenIdent;
+             node != null && result == null;
+             node = node.getParent()) {
+            final int type = node.getType();
+            if (type == TokenTypes.LITERAL_IF
+                    || type == TokenTypes.LITERAL_WHILE) {
+                result = findPatternVariableDefInCondition(
+                        node, assignTokenIdent.getText());
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Finds a pattern variable definition with the given name in the
+     * parenthesised condition of an {@code if} or {@code while} statement.
+     *
+     * @param conditional the if or while statement
+     * @param name the pattern variable name to look for
+     * @return the PATTERN_VARIABLE_DEF node, or null if the condition
+     *         declares no pattern variable with that name
+     */
+    @Nullable
+    private static DetailAST findPatternVariableDefInCondition(
+            final DetailAST conditional, final String name) {
+        DetailAST result = null;
+        DetailAST child = conditional.getFirstChild();
+        while (result == null
+                && child.getType() != TokenTypes.RPAREN) {
+            result = findPatternVariableDef(child, name);
+            child = child.getNextSibling();
+        }
+        return result;
+    }
+
+    /**
+     * Finds a pattern variable definition with the given name in a branch.
+     *
+     * @param branch the branch to search
+     * @param name the pattern variable name to look for
+     * @return the PATTERN_VARIABLE_DEF node, or null if there is none
+     */
+    @Nullable
+    private static DetailAST findPatternVariableDef(
+            final DetailAST branch, final String name) {
+        DetailAST result = null;
+        for (DetailAST node = branch;
+             node != null;
+             node = shiftToNextTraversedBranch(node, branch)) {
+            if (node.getType() == TokenTypes.PATTERN_VARIABLE_DEF) {
+                final DetailAST ident =
+                        node.findFirstToken(TokenTypes.IDENT);
+                if (name.equals(ident.getText())) {
+                    result = node;
+                    break;
+                }
+            }
+        }
         return result;
     }
 

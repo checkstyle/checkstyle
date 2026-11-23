@@ -97,4 +97,46 @@ public class FinalPatternVariableCheckTest extends AbstractModuleTestSupport {
             "InputFinalPatternVariableCheck2.java"), expected);
     }
 
+    @Test
+    public void testFinalPatternVariableCheck3() throws Exception {
+        final String[] expected = {
+            "15:35: " + getCheckMessage(MSG_KEY, "str"),
+            "26:35: " + getCheckMessage(MSG_KEY, "str"),
+            "37:35: " + getCheckMessage(MSG_KEY, "str"),
+            "41:35: " + getCheckMessage(MSG_KEY, "str"),
+            "48:35: " + getCheckMessage(MSG_KEY, "str"),
+            "56:35: " + getCheckMessage(MSG_KEY, "str"),
+            "76:36: " + getCheckMessage(MSG_KEY, "text"),
+            "85:35: " + getCheckMessage(MSG_KEY, "str"),
+            "98:35: " + getCheckMessage(MSG_KEY, "str"),
+            "102:52: " + getCheckMessage(MSG_KEY, "other"),
+        };
+
+        verifyWithInlineConfigParser(getPath(
+            "InputFinalPatternVariableCheck3.java"), expected);
+    }
+
+    @Test
+    public void testFinalPatternVariableCheck5() throws Exception {
+        final String[] expected = {
+            "17:44: " + getCheckMessage(MSG_KEY, "str"),
+            "27:35: " + getCheckMessage(MSG_KEY, "str"),
+            "38:35: " + getCheckMessage(MSG_KEY, "str"),
+            "51:44: " + getCheckMessage(MSG_KEY, "str"),
+        };
+
+        verifyWithInlineConfigParser(getNonCompilablePath(
+            "InputFinalPatternVariableCheck5.java"), expected);
+    }
+
+    @Test
+    public void testFinalPatternVariableCheck6() throws Exception {
+        final String[] expected = {
+            "14:40: " + getCheckMessage(MSG_KEY, "_"),
+        };
+
+        verifyWithInlineConfigParser(getNonCompilablePath(
+            "InputFinalPatternVariableCheck6.java"), expected);
+    }
+
 }
