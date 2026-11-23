@@ -45,6 +45,29 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_KEY, 4, 3),
+            "28:13: " + getCheckMessage(MSG_KEY, 4, 3),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputBooleanExpressionComplexityFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "19:13: " + getCheckMessage(MSG_KEY, 3, 2),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputBooleanExpressionComplexityFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
     public void test() throws Exception {
 
         final String[] expected = {
