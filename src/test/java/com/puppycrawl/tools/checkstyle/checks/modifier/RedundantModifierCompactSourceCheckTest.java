@@ -118,4 +118,14 @@ public class RedundantModifierCompactSourceCheckTest extends AbstractModuleTestS
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_KEY, "final"),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputRedundantModifierCompactSourceCompactSourceFile.java"),
+                expected);
+    }
+
 }
