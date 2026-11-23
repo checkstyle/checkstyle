@@ -12,6 +12,9 @@ violateExecutionOnNonTightHtml = (default)false
  * @throws Exception This is also invalid.
  */
 public class InputInappropriateJavadocBlockTagsOnTypeCompactSourceFile {}
+// 2 violations above:
+//    'Invalid '@return' tag for'
+//    'Invalid '@throws' tag for'
 
 /** Valid Javadoc with no inappropriate tags. */
 class ValidType {}
