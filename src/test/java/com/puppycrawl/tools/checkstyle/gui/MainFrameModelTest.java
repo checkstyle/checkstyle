@@ -33,7 +33,6 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
 public class MainFrameModelTest extends AbstractModuleTestSupport {
 
@@ -58,7 +57,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
     @Test
     public void testParseModeEnum() {
-        for (final ParseMode parseMode : ParseMode.values()) {
+        for (final MainFrameModel.ParseMode parseMode : MainFrameModel.ParseMode.values()) {
             final String expected = switch (parseMode) {
                 case PLAIN_JAVA -> "Plain Java";
                 case JAVA_WITH_COMMENTS -> "Java with comments";
@@ -72,7 +71,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOpenFileWithParseModeJavaWithComments() throws Exception {
-        model.setParseMode(ParseMode.JAVA_WITH_COMMENTS);
+        model.setParseMode(MainFrameModel.ParseMode.JAVA_WITH_COMMENTS);
         model.openFile(testData);
 
         verifyCorrectTestDataInFrameModel();
@@ -80,7 +79,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOpenFileWithParseModeJavaWithJavadocAndComments() throws Exception {
-        model.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
+        model.setParseMode(MainFrameModel.ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         model.openFile(testData);
 
         verifyCorrectTestDataInFrameModel();
@@ -226,7 +225,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     @Test
     public void testOpenFileForUnknownParseMode() throws IOException {
         final File javaFile = new File(getPath(FILE_NAME_TEST_DATA));
-        final ParseMode mock = mock();
+        final MainFrameModel.ParseMode mock = mock();
         model.setParseMode(mock);
         final IllegalArgumentException ex =
                 getExpectedThrowable(IllegalArgumentException.class,

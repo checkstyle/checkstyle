@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -55,7 +54,7 @@ public class ParseTreeTablePresentation {
     private DetailAST root;
 
     /** Parsing mode. */
-    private ParseMode parseMode;
+    private MainFrameModel.ParseMode parseMode;
 
     /**
      * Constructor initialise root node.
@@ -78,9 +77,9 @@ public class ParseTreeTablePresentation {
     /**
      * Set parse mode.
      *
-     * @param mode ParseMode enum
+     * @param mode MainFrameModel.ParseMode enum
      */
-    protected void setParseMode(ParseMode mode) {
+    protected void setParseMode(MainFrameModel.ParseMode mode) {
         parseMode = mode;
     }
 
@@ -183,7 +182,7 @@ public class ParseTreeTablePresentation {
             }
         }
         else {
-            if (parseMode == ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS
+            if (parseMode == MainFrameModel.ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS
                     && ((DetailAST) parent).getType() == TokenTypes.COMMENT_CONTENT
                     && JavadocUtil.isJavadocComment(((DetailAST) parent).getParent())) {
                 // getChildCount return 0 on COMMENT_CONTENT,
@@ -259,7 +258,7 @@ public class ParseTreeTablePresentation {
      */
     private Object getChildAtDetailAst(DetailAST parent, int index) {
         final Object result;
-        if (parseMode == ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS
+        if (parseMode == MainFrameModel.ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS
                 && parent.getType() == TokenTypes.COMMENT_CONTENT
                 && JavadocUtil.isJavadocComment(parent.getParent())) {
             result = getJavadocTree(parent.getParent());

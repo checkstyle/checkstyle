@@ -32,7 +32,6 @@ import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
 public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
 
@@ -45,7 +44,7 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
     @BeforeEach
     public void loadFile() throws Exception {
         model = new MainFrameModel();
-        model.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
+        model.setParseMode(MainFrameModel.ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         model.openFile(new File(getPath("InputCodeSelectorPresentation.java")));
         tree = ((DetailAST) model.getParseTreeTableModel().getRoot())
                 .getFirstChild().getNextSibling();

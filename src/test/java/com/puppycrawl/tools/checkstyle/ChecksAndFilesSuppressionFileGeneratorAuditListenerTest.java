@@ -28,7 +28,6 @@ import java.nio.charset.StandardCharsets;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -83,7 +82,7 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
         final OutputStream out = new ByteArrayOutputStream();
         final ChecksAndFilesSuppressionFileGeneratorAuditListener listener =
                 new ChecksAndFilesSuppressionFileGeneratorAuditListener(
-                        out, OutputStreamOptions.CLOSE);
+                        out, AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         final AuditEvent ev = new AuditEvent(this, "Test.java", null);
         listener.fileStarted(ev);
         listener.auditFinished(null);
@@ -101,7 +100,7 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
         final OutputStream out = new ByteArrayOutputStream();
         final ChecksAndFilesSuppressionFileGeneratorAuditListener listener =
                 new ChecksAndFilesSuppressionFileGeneratorAuditListener(out,
-                        OutputStreamOptions.CLOSE);
+                        AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         final AuditEvent ev = new AuditEvent(this, "Test.java", null);
         listener.fileFinished(ev);
         listener.auditFinished(null);
@@ -122,7 +121,7 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
         final OutputStream out = new ByteArrayOutputStream();
         final ChecksAndFilesSuppressionFileGeneratorAuditListener logger =
                 new ChecksAndFilesSuppressionFileGeneratorAuditListener(out,
-                        OutputStreamOptions.CLOSE);
+                        AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final Violation violation =
                 new Violation(1, 1,
@@ -145,7 +144,7 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
     public void testCloseStream() {
         final ChecksAndFilesSuppressionFileGeneratorAuditListener listener =
                 new ChecksAndFilesSuppressionFileGeneratorAuditListener(outStream,
-                OutputStreamOptions.CLOSE);
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         listener.finishLocalSetup();
         listener.auditStarted(null);
         listener.auditFinished(null);
@@ -162,7 +161,7 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
     public void testNoCloseStream() {
         final ChecksAndFilesSuppressionFileGeneratorAuditListener listener =
                 new ChecksAndFilesSuppressionFileGeneratorAuditListener(outStream,
-                        OutputStreamOptions.NONE);
+                        AbstractAutomaticBean.OutputStreamOptions.NONE);
         listener.finishLocalSetup();
         listener.auditStarted(null);
         listener.auditFinished(null);
@@ -256,7 +255,7 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
         final OutputStream out = new ByteArrayOutputStream();
         final ChecksAndFilesSuppressionFileGeneratorAuditListener listener =
                 new ChecksAndFilesSuppressionFileGeneratorAuditListener(out,
-                        OutputStreamOptions.CLOSE);
+                        AbstractAutomaticBean.OutputStreamOptions.CLOSE);
 
         listener.finishLocalSetup();
         listener.auditStarted(null);
@@ -302,7 +301,7 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
     private void verifyOutput(String expected, AuditEvent... events) {
         final ChecksAndFilesSuppressionFileGeneratorAuditListener listener =
             new ChecksAndFilesSuppressionFileGeneratorAuditListener(outStream,
-                OutputStreamOptions.CLOSE);
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
 
         for (AuditEvent event : events) {
             listener.addError(event);

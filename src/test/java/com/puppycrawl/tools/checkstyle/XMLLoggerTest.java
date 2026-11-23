@@ -28,7 +28,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
@@ -58,7 +57,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     @Test
     public void testEncode()
             throws IOException {
-        final XMLLogger test = new XMLLogger(outStream, OutputStreamOptions.NONE);
+        final XMLLogger test = new XMLLogger(outStream,
+                AbstractAutomaticBean.OutputStreamOptions.NONE);
         assertWithMessage("should be able to create XMLLogger without issue")
             .that(test)
             .isNotNull();
@@ -88,7 +88,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     @Test
     public void testIsReference()
             throws IOException {
-        final XMLLogger test = new XMLLogger(outStream, OutputStreamOptions.NONE);
+        final XMLLogger test = new XMLLogger(outStream,
+                AbstractAutomaticBean.OutputStreamOptions.NONE);
         assertWithMessage("should be able to create XMLLogger without issue")
             .that(test)
             .isNotNull();
@@ -133,7 +134,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     @Test
     public void testCloseStream()
             throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        final XMLLogger logger = new XMLLogger(outStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         logger.auditFinished(null);
 
@@ -153,7 +155,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     @Test
     public void testNoCloseStream()
             throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.NONE);
+        final XMLLogger logger = new XMLLogger(outStream,
+                AbstractAutomaticBean.OutputStreamOptions.NONE);
         logger.auditStarted(null);
         logger.auditFinished(null);
 
@@ -192,7 +195,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
      */
     @Test
     public void testAddErrorWithNullFileName() throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        final XMLLogger logger = new XMLLogger(outStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final Violation violation =
                 new Violation(1, 1,
@@ -260,7 +264,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     @Test
     public void testAddExceptionWithNullFileName()
             throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        final XMLLogger logger = new XMLLogger(outStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final Violation violation =
                 new Violation(1, 1,
@@ -284,7 +289,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     @Test
     public void testAddExceptionAfterFileStarted()
             throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        final XMLLogger logger = new XMLLogger(outStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
 
         final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
@@ -314,7 +320,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     @Test
     public void testAddExceptionBeforeFileFinished()
             throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        final XMLLogger logger = new XMLLogger(outStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final Violation violation =
                 new Violation(1, 1,
@@ -340,7 +347,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     @Test
     public void testAddExceptionBetweenFileStartedAndFinished()
             throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        final XMLLogger logger = new XMLLogger(outStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final Violation violation =
                 new Violation(1, 1,
@@ -374,7 +382,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     @Test
     public void testFileOpenTag()
             throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        final XMLLogger logger = new XMLLogger(outStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final AuditEvent ev = new AuditEvent(this, "Test&.java");
         logger.fileFinished(ev);
@@ -412,7 +421,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     public void testNullOutputStreamOptions() {
         try {
             final XMLLogger logger = new XMLLogger(outStream,
-                    (OutputStreamOptions) null);
+                    (AbstractAutomaticBean.OutputStreamOptions) null);
             // assert required to calm down eclipse's 'The allocated object is never used' violation
             assertWithMessage("Null instance")
                 .that(logger)
@@ -433,7 +442,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
      */
     @Test
     public void testFinishLocalSetup() {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        final XMLLogger logger = new XMLLogger(outStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         logger.finishLocalSetup();
         logger.auditStarted(null);
         logger.auditFinished(null);

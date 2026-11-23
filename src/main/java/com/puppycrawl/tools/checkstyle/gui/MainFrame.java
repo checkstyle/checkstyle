@@ -45,7 +45,6 @@ import javax.swing.border.Border;
 import javax.swing.filechooser.FileFilter;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
 /**
  * Displays information about a parse tree.
@@ -135,11 +134,12 @@ public final class MainFrame extends JFrame {
         reloadFileButton.setMnemonic(KeyEvent.VK_R);
         reloadFileButton.setText("Reload File");
 
-        final JComboBox<ParseMode> modesCombobox = new JComboBox<>(ParseMode.values());
+        final JComboBox<MainFrameModel.ParseMode> modesCombobox = new JComboBox<>(
+                MainFrameModel.ParseMode.values());
         modesCombobox.setName("modesCombobox");
         modesCombobox.setSelectedIndex(0);
         modesCombobox.addActionListener(event -> {
-            model.setParseMode((ParseMode) modesCombobox.getSelectedItem());
+            model.setParseMode((MainFrameModel.ParseMode) modesCombobox.getSelectedItem());
             reloadAction.actionPerformed(null);
         });
 

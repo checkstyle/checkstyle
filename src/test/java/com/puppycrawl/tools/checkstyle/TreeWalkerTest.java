@@ -54,7 +54,6 @@ import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.internal.util.Checks;
 
-import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -847,8 +846,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
         final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
-                errorStream, OutputStreamOptions.CLOSE);
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE,
+                errorStream, AbstractAutomaticBean.OutputStreamOptions.CLOSE);
 
         verifyWithInlineConfigParserAndDefaultLogger(
                 getNonCompilablePath(inputFile),
