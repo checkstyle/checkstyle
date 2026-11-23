@@ -869,12 +869,12 @@ public class HiddenFieldCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testHiddenField8Enum() throws Exception {
         final String[] expected = {
-            "30:17: " + getCheckMessage(MSG_KEY, "hidden"),
-            "40:31: " + getCheckMessage(MSG_KEY, "hidden"),
-            "47:13: " + getCheckMessage(MSG_KEY, "hidden"),
-            "53:13: " + getCheckMessage(MSG_KEY, "hiddenStatic"),
-            "60:41: " + getCheckMessage(MSG_KEY, "x"),
-            "66:30: " + getCheckMessage(MSG_KEY, "xAxis"),
+            "32:17: " + getCheckMessage(MSG_KEY, "hidden"),
+            "42:31: " + getCheckMessage(MSG_KEY, "hidden"),
+            "49:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "55:13: " + getCheckMessage(MSG_KEY, "hiddenStatic"),
+            "62:41: " + getCheckMessage(MSG_KEY, "x"),
+            "68:30: " + getCheckMessage(MSG_KEY, "xAxis"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputHiddenField8Enum.java"), expected);
@@ -883,15 +883,15 @@ public class HiddenFieldCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testHiddenField8NothingHidden() throws Exception {
         final String[] expected = {
-            "29:29: " + getCheckMessage(MSG_KEY, "prop"),
-            "35:29: " + getCheckMessage(MSG_KEY, "prop"),
-            "41:29: " + getCheckMessage(MSG_KEY, "prop"),
-            "53:28: " + getCheckMessage(MSG_KEY, "prop"),
-            "67:13: " + getCheckMessage(MSG_KEY, "hidden"),
-            "72:13: " + getCheckMessage(MSG_KEY, "hidden"),
-            "77:13: " + getCheckMessage(MSG_KEY, "hidden"),
-            "81:13: " + getCheckMessage(MSG_KEY, "hidden"),
-            "108:23: " + getCheckMessage(MSG_KEY, "y"),
+            "31:29: " + getCheckMessage(MSG_KEY, "prop"),
+            "37:29: " + getCheckMessage(MSG_KEY, "prop"),
+            "43:29: " + getCheckMessage(MSG_KEY, "prop"),
+            "55:28: " + getCheckMessage(MSG_KEY, "prop"),
+            "69:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "74:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "79:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "83:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "110:23: " + getCheckMessage(MSG_KEY, "y"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputHiddenField8NothingHidden.java"), expected);
@@ -900,14 +900,15 @@ public class HiddenFieldCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testHiddenField8PropertySetter() throws Exception {
         final String[] expected = {
-            "27:56: " + getCheckMessage(MSG_KEY, "prop"),
-            "41:29: " + getCheckMessage(MSG_KEY, "prop"),
-            "52:42: " + getCheckMessage(MSG_KEY, "prop2"),
-            "64:19: " + getCheckMessage(MSG_KEY, "i"),
+            "29:56: " + getCheckMessage(MSG_KEY, "prop"),
+            "43:29: " + getCheckMessage(MSG_KEY, "prop"),
+            "54:42: " + getCheckMessage(MSG_KEY, "prop2"),
+            "66:19: " + getCheckMessage(MSG_KEY, "i"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputHiddenField8PropertySetter.java"), expected);
     }
+
     /**
      * We cannot reproduce situation when visitToken is called and leaveToken is not.
      * So, we have to use reflection to be sure that even in such situation
