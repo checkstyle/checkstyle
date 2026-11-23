@@ -37,6 +37,18 @@ public class OpenjdkMethodThrowsAlignmentCheckTest extends AbstractModuleTestSup
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "19:26: " + getCheckMessage(MSG_KEY_NOT_ON_NEW_LINE),
+            "46:15: " + getCheckMessage(MSG_KEY_WRONG_INDENTATION),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputOpenjdkMethodThrowsAlignmentFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final OpenjdkMethodThrowsAlignmentCheck check =
                 new OpenjdkMethodThrowsAlignmentCheck();
