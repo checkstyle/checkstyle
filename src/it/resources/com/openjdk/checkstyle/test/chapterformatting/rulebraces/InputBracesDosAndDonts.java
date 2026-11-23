@@ -4,12 +4,12 @@ package com.openjdk.checkstyle.test.chapterformatting.rulebraces;
 
 public class InputBracesDosAndDonts {
     int[][] matrix;
-    void method() {
+    void method() { // violation ''METHOD_DEF' should be separated from previous line.'
 
     }
 
     void method1()
-    {
+    { // violation ''{' at column 5 should be on the previous line.'
 
     }
 
