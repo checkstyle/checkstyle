@@ -39,6 +39,32 @@ public class AnnotatedDeclarationVisibilityCheckTest
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "19:9: " + getCheckMessage(MSG_KEY, "public"),
+            "29:9: " + getCheckMessage(MSG_KEY, "private"),
+            "44:9: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputAnnotatedDeclarationVisibilityFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "31:9: " + getCheckMessage(MSG_KEY, "protected"),
+            "40:9: " + getCheckMessage(MSG_KEY, "private"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputAnnotatedDeclarationVisibilityFlexibleConstructorBodiesCustom"
+                        + ".java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final AnnotatedDeclarationVisibilityCheck annotatedMethodVisibilityModifierCheck =
                 new AnnotatedDeclarationVisibilityCheck();
