@@ -47,6 +47,29 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "unused"),
+            "30:13: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "unused"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputUnusedLocalVariableFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "20:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "unused"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputUnusedLocalVariableFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final UnusedLocalVariableCheck checkObj =
                 new UnusedLocalVariableCheck();
