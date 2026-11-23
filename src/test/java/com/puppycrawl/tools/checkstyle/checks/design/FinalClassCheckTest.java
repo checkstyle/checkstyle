@@ -42,6 +42,18 @@ public class FinalClassCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_KEY, "Before"),
+            "25:5: " + getCheckMessage(MSG_KEY, "After"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputFinalClassFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final FinalClassCheck checkObj = new FinalClassCheck();
         final int[] expected = {
