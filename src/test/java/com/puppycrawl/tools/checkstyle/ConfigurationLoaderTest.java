@@ -505,7 +505,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
-                "subdir/InputConfigurationLoaderExternalEntitySubDir.xml", props);
+                "subdirectory/InputConfigurationLoaderExternalEntitySubDir.xml", props);
 
         final Properties attributes = new Properties();
         attributes.setProperty("tabWidth", "4");
@@ -521,7 +521,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         props.setProperty("checkstyle.basedir", "basedir");
 
         final File file = new File(
-                getPath("subdir/InputConfigurationLoaderExternalEntitySubDir.xml"));
+                getPath("subdirectory/InputConfigurationLoaderExternalEntitySubDir.xml"));
         final DefaultConfiguration config =
             (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                     file.toURI().toString(), new PropertiesExpander(props));
