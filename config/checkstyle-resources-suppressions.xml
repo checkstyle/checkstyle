@@ -4,6 +4,8 @@
   "-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN"
   "https://checkstyle.org/dtds/suppressions_1_1.dtd">
 
+  <suppress checks="PackageDeclarationCheck"
+    files="methodparampad/flexible-constructor-bodies/InputMethodParamPadFlexibleConstructorBodies(Custom)?\.java"/>
 <suppressions>
 
   <!-- intentional problem for testing -->

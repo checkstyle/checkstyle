@@ -40,6 +40,28 @@ public class MethodParamPadCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "16:16: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputMethodParamPadFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "19:15: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputMethodParamPadFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final MethodParamPadCheck checkObj = new MethodParamPadCheck();
         assertWithMessage("MethodParamPadCheck#getRequiredTokens should return empty array "
