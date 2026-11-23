@@ -146,6 +146,21 @@ public class RedundantImportCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNestedClassImports() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_SAME,
+                "com.puppycrawl.tools.checkstyle.checks.imports.redundantimport"
+                    + ".InputRedundantImportNestedClassOuter.Inner"),
+            "11:1: " + getCheckMessage(MSG_SAME,
+                "com.puppycrawl.tools.checkstyle.checks.imports.redundantimport"
+                    + ".InputRedundantImportNestedClassOuter.Inner.Deep"),
+            "13:1: " + getCheckMessage(MSG_LANG, "java.lang.Thread.State"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRedundantImportNestedClass.java"), expected);
+    }
+
+    @Test
     public void testModuleImportBuiltInModules() throws Exception {
         final String[] expected = {
             "11:1: " + getCheckMessage(MSG_DUPLICATE, 10, "java.base"),

@@ -29,7 +29,6 @@ import java.nio.charset.StandardCharsets;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -98,7 +97,8 @@ public class XpathFileGeneratorAuditListenerTest {
     public void testFinishLocalSetup() {
         final OutputStream out = new ByteArrayOutputStream();
         final XpathFileGeneratorAuditListener listener =
-                new XpathFileGeneratorAuditListener(out, OutputStreamOptions.CLOSE);
+                new XpathFileGeneratorAuditListener(out,
+                        AbstractAutomaticBean.OutputStreamOptions.CLOSE);
 
         listener.finishLocalSetup();
         listener.auditStarted(null);
@@ -113,7 +113,8 @@ public class XpathFileGeneratorAuditListenerTest {
     public void testFileStarted() {
         final OutputStream out = new ByteArrayOutputStream();
         final XpathFileGeneratorAuditListener listener =
-                new XpathFileGeneratorAuditListener(out, OutputStreamOptions.CLOSE);
+                new XpathFileGeneratorAuditListener(out,
+                        AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         final AuditEvent ev = new AuditEvent(this, "Test.java", null);
         listener.fileStarted(ev);
         listener.auditFinished(null);
@@ -127,7 +128,8 @@ public class XpathFileGeneratorAuditListenerTest {
     public void testFileFinished() {
         final OutputStream out = new ByteArrayOutputStream();
         final XpathFileGeneratorAuditListener listener =
-                new XpathFileGeneratorAuditListener(out, OutputStreamOptions.CLOSE);
+                new XpathFileGeneratorAuditListener(out,
+                        AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         final AuditEvent ev = new AuditEvent(this, "Test.java", null);
         listener.fileFinished(ev);
         listener.auditFinished(null);
@@ -141,7 +143,8 @@ public class XpathFileGeneratorAuditListenerTest {
     public void testAddException() {
         final OutputStream out = new ByteArrayOutputStream();
         final XpathFileGeneratorAuditListener logger =
-                new XpathFileGeneratorAuditListener(out, OutputStreamOptions.CLOSE);
+                new XpathFileGeneratorAuditListener(out,
+                        AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final Violation violation =
                 new Violation(1, 1,
@@ -268,7 +271,8 @@ public class XpathFileGeneratorAuditListenerTest {
     @Test
     public void testCloseStream() {
         final XpathFileGeneratorAuditListener listener =
-                new XpathFileGeneratorAuditListener(outStream, OutputStreamOptions.CLOSE);
+                new XpathFileGeneratorAuditListener(outStream,
+                        AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         listener.finishLocalSetup();
         listener.auditStarted(null);
         listener.auditFinished(null);
@@ -281,7 +285,8 @@ public class XpathFileGeneratorAuditListenerTest {
     @Test
     public void testNoCloseStream() {
         final XpathFileGeneratorAuditListener listener =
-                new XpathFileGeneratorAuditListener(outStream, OutputStreamOptions.NONE);
+                new XpathFileGeneratorAuditListener(outStream,
+                        AbstractAutomaticBean.OutputStreamOptions.NONE);
         listener.finishLocalSetup();
         listener.auditStarted(null);
         listener.auditFinished(null);
@@ -349,7 +354,8 @@ public class XpathFileGeneratorAuditListenerTest {
         final TestByteArrayOutputStream out = new TestByteArrayOutputStream();
 
         final XpathFileGeneratorAuditListener listener =
-                new XpathFileGeneratorAuditListener(out, OutputStreamOptions.CLOSE);
+                new XpathFileGeneratorAuditListener(out,
+                        AbstractAutomaticBean.OutputStreamOptions.CLOSE);
 
         for (AuditEvent event : events) {
             listener.addError(event);

@@ -63,7 +63,6 @@ import org.junitpioneer.jupiter.SetSystemProperty;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
-import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Violation;
@@ -522,12 +521,12 @@ public class MainTest {
     @Test
     public void testGetOutputStreamOptionsMethod() throws Exception {
         final Path path = new File(getPath("InputMain.java")).toPath();
-        final OutputStreamOptions option =
+        final AbstractAutomaticBean.OutputStreamOptions option =
                 TestUtil.invokeStaticMethod(Main.class, "getOutputStreamOptions",
-                        OutputStreamOptions.class, path);
+                        AbstractAutomaticBean.OutputStreamOptions.class, path);
         assertWithMessage("Main.getOutputStreamOptions return CLOSE on not null Path")
                 .that(option)
-                .isEqualTo(OutputStreamOptions.CLOSE);
+                .isEqualTo(AbstractAutomaticBean.OutputStreamOptions.CLOSE);
     }
 
     @Test
@@ -2067,7 +2066,7 @@ public class MainTest {
     public void testXmlOutputFormatCreateListener() throws IOException {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         final AuditListener listener = Main.OutputFormat.XML.createListener(out,
-                OutputStreamOptions.CLOSE);
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         assertWithMessage("listener is XMLLogger")
                 .that(listener)
                 .isInstanceOf(XMLLogger.class);
@@ -2077,7 +2076,7 @@ public class MainTest {
     public void testSarifOutputFormatCreateListener() throws IOException {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         final AuditListener listener = Main.OutputFormat.SARIF.createListener(out,
-                OutputStreamOptions.CLOSE);
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         assertWithMessage("listener is SarifLogger")
                 .that(listener)
                 .isInstanceOf(SarifLogger.class);
@@ -2087,7 +2086,7 @@ public class MainTest {
     public void testPlainOutputFormatCreateListener() throws IOException {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         final AuditListener listener = Main.OutputFormat.PLAIN.createListener(out,
-                OutputStreamOptions.CLOSE);
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         assertWithMessage("listener is DefaultLogger")
                 .that(listener)
                 .isInstanceOf(DefaultLogger.class);
