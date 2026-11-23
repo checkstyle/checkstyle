@@ -439,4 +439,22 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
                 getPath("InputJavadocUtilizingTrailingSpaceUrl.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "22:3: " + getCheckMessage(MSG_TOO_SHORT, 80, 35),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputJavadocUtilizingTrailingSpaceCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileNonDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputJavadocUtilizingTrailingSpaceCompactSourceFileNonDefault.java"),
+                expected);
+    }
+
 }

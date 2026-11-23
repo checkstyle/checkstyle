@@ -15,3 +15,13 @@ violateExecutionOnNonTightHtml = (default)false
  * Valid compact source main method.
  */
 void main() {}
+
+// violation 3 lines below 'Line under-utilized'
+/**
+ * @return
+ * This line is intentionally short
+ * and should be reported as too short.
+ */
+int helper() {
+    return 0;
+}
