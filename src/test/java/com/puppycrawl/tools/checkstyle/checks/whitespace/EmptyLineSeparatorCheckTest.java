@@ -171,6 +171,20 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFieldsInAnonymousClass() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "19:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "33:13: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "45:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "51:13: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorFieldsInAnonymousClass.java"), expected);
+    }
+
+    @Test
     public void testMethodInAnonymousClass() throws Exception {
         final String[] expected = {
             "21:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
