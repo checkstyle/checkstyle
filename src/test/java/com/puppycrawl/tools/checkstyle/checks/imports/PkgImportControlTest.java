@@ -27,19 +27,19 @@ import org.junit.jupiter.api.Test;
 public class PkgImportControlTest {
 
     private final PkgImportControl icRoot = new PkgImportControl(
-            "com.kazgroup.courtlink", false, MismatchStrategy.DISALLOWED);
+            "com.example.project", false, MismatchStrategy.DISALLOWED);
     private final PkgImportControl icCommon = new PkgImportControl(icRoot,
             "common", false, MismatchStrategy.DELEGATE_TO_PARENT);
     private final PkgImportControl icUncommon = new PkgImportControl(icRoot,
             "uncommon", true, MismatchStrategy.DELEGATE_TO_PARENT);
 
     private final PkgImportControl icRootRegexpChild = new PkgImportControl(
-            "com.kazgroup.courtlink", false, MismatchStrategy.DELEGATE_TO_PARENT);
+            "com.example.project", false, MismatchStrategy.DELEGATE_TO_PARENT);
     private final PkgImportControl icCommonRegexpChild = new PkgImportControl(icRootRegexpChild,
             "common", false, MismatchStrategy.DELEGATE_TO_PARENT);
 
     private final PkgImportControl icRootRegexpParent = new PkgImportControl(
-            "com\\.[^.]+\\.courtlink", true, MismatchStrategy.DELEGATE_TO_PARENT);
+            "com\\.[^.]+\\.project", true, MismatchStrategy.DELEGATE_TO_PARENT);
     private final PkgImportControl icBootRegexpParen = new PkgImportControl(icRootRegexpParent,
             "bo+t", true, MismatchStrategy.DELEGATE_TO_PARENT);
 
@@ -55,11 +55,11 @@ public class PkgImportControlTest {
 
         icRootRegexpChild.addChild(icCommonRegexpChild);
         icRootRegexpChild.addImportRule(
-            new PkgImportRule(false, false, ".*\\.(spring|lui)framework", false, true));
+            new PkgImportRule(false, false, ".*\\.(spring|checker)framework", false, true));
         icRootRegexpChild.addImportRule(
             new PkgImportRule(false, false, "org\\.hibernate", false, true));
         icRootRegexpChild.addImportRule(
-            new PkgImportRule(true, false, "org\\.(apache|lui)\\.commons", false, true));
+            new PkgImportRule(true, false, "org\\.(apache|test)\\.commons", false, true));
 
         icCommon.addImportRule(
             new PkgImportRule(true, false, "org.hibernate", false, false));
@@ -80,17 +80,17 @@ public class PkgImportControlTest {
     @Test
     public void testDotMetaCharacter() {
         assertWithMessage("Unexpected response")
-            .that(icUncommon.locateFinest("com-kazgroup.courtlink.uncommon.regexp", "MyClass"))
+            .that(icUncommon.locateFinest("com-example.project.uncommon.regexp", "MyClass"))
             .isNull();
     }
 
     @Test
     public void testLocateFinest() {
         assertWithMessage("Unexpected response")
-            .that(icRoot.locateFinest("com.kazgroup.courtlink.domain", "MyClass"))
+            .that(icRoot.locateFinest("com.example.project.domain", "MyClass"))
             .isEqualTo(icRoot);
         assertWithMessage("Unexpected response")
-            .that(icRoot.locateFinest("com.kazgroup.courtlink.common.api", "MyClass"))
+            .that(icRoot.locateFinest("com.example.project.common.api", "MyClass"))
             .isEqualTo(icCommon);
         assertWithMessage("Unexpected response")
             .that(icRoot.locateFinest("com", "MyClass"))
@@ -100,26 +100,26 @@ public class PkgImportControlTest {
     @Test
     public void testEnsureTrailingDot() {
         assertWithMessage("Unexpected response")
-            .that(icRoot.locateFinest("com.kazgroup.courtlinks", "MyClass"))
+            .that(icRoot.locateFinest("com.example.projects", "MyClass"))
             .isNull();
         assertWithMessage("Unexpected response")
-            .that(icRoot.locateFinest("com.kazgroup.courtlink/common.api", "MyClass"))
+            .that(icRoot.locateFinest("com.example.project/common.api", "MyClass"))
             .isNull();
     }
 
     @Test
     public void testCheckAccess() {
-        assertAccess(icCommon, "com.kazgroup.courtlink.common", "MyClass",
+        assertAccess(icCommon, "com.example.project.common", "MyClass",
                 "org.springframework.something", AccessResult.DISALLOWED);
-        assertAccess(icCommon, "com.kazgroup.courtlink.common", "MyClass",
+        assertAccess(icCommon, "com.example.project.common", "MyClass",
                 "org.apache.commons.something", AccessResult.ALLOWED);
-        assertAccess(icCommon, "com.kazgroup.courtlink.common", "MyClass",
+        assertAccess(icCommon, "com.example.project.common", "MyClass",
                 "org.apache.commons", AccessResult.DISALLOWED);
-        assertAccess(icCommon, "com.kazgroup.courtlink.common", "MyClass",
+        assertAccess(icCommon, "com.example.project.common", "MyClass",
                 "org.hibernate.something", AccessResult.ALLOWED);
-        assertAccess(icCommon, "com.kazgroup.courtlink.common", "MyClass",
+        assertAccess(icCommon, "com.example.project.common", "MyClass",
                 "com.invalid.something", AccessResult.DISALLOWED);
-        assertAccess(icRoot, "com.kazgroup.courtlink", "MyClass",
+        assertAccess(icRoot, "com.example.project", "MyClass",
                 "org.hibernate.something", AccessResult.DISALLOWED);
     }
 
@@ -133,10 +133,10 @@ public class PkgImportControlTest {
     @Test
     public void testRegExpChildLocateFinest() {
         assertWithMessage("Unexpected response")
-            .that(icRootRegexpChild.locateFinest("com.kazgroup.courtlink.domain", "MyClass"))
+            .that(icRootRegexpChild.locateFinest("com.example.project.domain", "MyClass"))
             .isEqualTo(icRootRegexpChild);
         assertWithMessage("Unexpected response")
-            .that(icRootRegexpChild.locateFinest("com.kazgroup.courtlink.common.api", "MyClass"))
+            .that(icRootRegexpChild.locateFinest("com.example.project.common.api", "MyClass"))
             .isEqualTo(icCommonRegexpChild);
         assertWithMessage("Unexpected response")
             .that(icRootRegexpChild.locateFinest("com", "MyClass"))
@@ -145,27 +145,27 @@ public class PkgImportControlTest {
 
     @Test
     public void testRegExpChildCheckAccess() {
-        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
+        assertAccess(icCommonRegexpChild, "com.example.project.common", "MyClass",
                 "org.springframework.something", AccessResult.DISALLOWED);
-        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
-                "org.luiframework.something", AccessResult.DISALLOWED);
-        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
+        assertAccess(icCommonRegexpChild, "com.example.project.common", "MyClass",
+                "org.checkerframework.something", AccessResult.DISALLOWED);
+        assertAccess(icCommonRegexpChild, "com.example.project.common", "MyClass",
                 "de.springframework.something", AccessResult.DISALLOWED);
-        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
-                "de.luiframework.something", AccessResult.DISALLOWED);
-        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
+        assertAccess(icCommonRegexpChild, "com.example.project.common", "MyClass",
+                "de.checkerframework.something", AccessResult.DISALLOWED);
+        assertAccess(icCommonRegexpChild, "com.example.project.common", "MyClass",
                 "org.apache.commons.something", AccessResult.ALLOWED);
-        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
-                "org.lui.commons.something", AccessResult.ALLOWED);
-        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
+        assertAccess(icCommonRegexpChild, "com.example.project.common", "MyClass",
+                "org.test.commons.something", AccessResult.ALLOWED);
+        assertAccess(icCommonRegexpChild, "com.example.project.common", "MyClass",
                 "org.apache.commons", AccessResult.DISALLOWED);
-        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
-                "org.lui.commons", AccessResult.DISALLOWED);
-        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
+        assertAccess(icCommonRegexpChild, "com.example.project.common", "MyClass",
+                "org.test.commons", AccessResult.DISALLOWED);
+        assertAccess(icCommonRegexpChild, "com.example.project.common", "MyClass",
                 "org.hibernate.something", AccessResult.ALLOWED);
-        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
+        assertAccess(icCommonRegexpChild, "com.example.project.common", "MyClass",
                 "com.invalid.something", AccessResult.DISALLOWED);
-        assertAccess(icRootRegexpChild, "com.kazgroup.courtlink", "MyClass",
+        assertAccess(icRootRegexpChild, "com.example.project", "MyClass",
                 "org.hibernate.something", AccessResult.DISALLOWED);
     }
 
@@ -182,16 +182,16 @@ public class PkgImportControlTest {
             .that(icRootRegexpParent.locateFinest("com", "MyClass"))
             .isNull();
         assertWithMessage("Package should not be null")
-            .that(icRootRegexpParent.locateFinest("com/test/courtlink", "MyClass"))
+            .that(icRootRegexpParent.locateFinest("com/test/project", "MyClass"))
             .isNull();
         assertWithMessage("Package should not be null")
-            .that(icRootRegexpParent.locateFinest("com.test.test.courtlink", "MyClass"))
+            .that(icRootRegexpParent.locateFinest("com.test.test.project", "MyClass"))
             .isNull();
         assertWithMessage("Invalid package")
-            .that(icRootRegexpParent.locateFinest("com.test.courtlink.domain", "MyClass"))
+            .that(icRootRegexpParent.locateFinest("com.test.project.domain", "MyClass"))
             .isEqualTo(icRootRegexpParent);
         assertWithMessage("Invalid package")
-            .that(icRootRegexpParent.locateFinest("com.kazgroup.courtlink.domain", "MyClass"))
+            .that(icRootRegexpParent.locateFinest("com.example.project.domain", "MyClass"))
             .isEqualTo(icRootRegexpParent);
     }
 
@@ -199,21 +199,21 @@ public class PkgImportControlTest {
     public void testRegExpParentInSubpackageIsConsidered() {
         assertWithMessage("Invalid package")
             .that(icRootRegexpParent
-                .locateFinest("com.kazgroup.courtlink.boot.api", "MyClass"))
+                .locateFinest("com.example.project.boot.api", "MyClass"))
             .isEqualTo(icBootRegexpParen);
         assertWithMessage("Invalid package")
             .that(icRootRegexpParent
-                .locateFinest("com.kazgroup.courtlink.bot.api", "MyClass"))
+                .locateFinest("com.example.project.bot.api", "MyClass"))
             .isEqualTo(icBootRegexpParen);
     }
 
     @Test
     public void testRegExpParentEnsureTrailingDot() {
         assertWithMessage("Invalid package")
-            .that(icRootRegexpParent.locateFinest("com.kazgroup.courtlinks", "MyClass"))
+            .that(icRootRegexpParent.locateFinest("com.example.projects", "MyClass"))
             .isNull();
         assertWithMessage("Invalid package")
-            .that(icRootRegexpParent.locateFinest("com.kazgroup.courtlink/common.api", "MyClass"))
+            .that(icRootRegexpParent.locateFinest("com.example.project/common.api", "MyClass"))
             .isNull();
     }
 
