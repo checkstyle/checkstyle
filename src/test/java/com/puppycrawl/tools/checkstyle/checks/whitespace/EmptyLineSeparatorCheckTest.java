@@ -39,6 +39,30 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "17:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CTOR_DEF"),
+            "29:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CTOR_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputEmptyLineSeparatorFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "24:30: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "34:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputEmptyLineSeparatorFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final EmptyLineSeparatorCheck checkObj = new EmptyLineSeparatorCheck();
         assertWithMessage("EmptyLineSeparatorCheck#getRequiredTokens should return empty array "
