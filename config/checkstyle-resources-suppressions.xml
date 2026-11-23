@@ -6,6 +6,10 @@
 
 <suppressions>
 
+  <!-- JEP 513 coverage directory contains hyphens; see issue #22768. -->
+  <suppress checks="PackageDeclarationCheck"
+    files="returncount/flexible-constructor-bodies/InputReturnCountFlexibleConstructorBodies(Custom)?\.java"/>
+
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclaration"
             files="src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/InputEmptyLineSeparatorCompactNoPackage.java"/>

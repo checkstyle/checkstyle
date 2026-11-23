@@ -47,6 +47,30 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "18:48: " + getCheckMessage(MSG_KEY, 3, 2),
+            "37:48: " + getCheckMessage(MSG_KEY, 3, 2),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputReturnCountFlexibleConstructorBodies.java"), expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "24:9: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
+            "25:48: " + getCheckMessage(MSG_KEY, 2, 1),
+            "42:9: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
+            "44:48: " + getCheckMessage(MSG_KEY, 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputReturnCountFlexibleConstructorBodiesCustom.java"), expected);
+    }
+
+    @Test
     public void testCompactSourceFile() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY, 3, 2),
