@@ -34,6 +34,32 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "16:16: " + getCheckMessage(MSG_KEY, "stop"),
+            "16:30: " + getCheckMessage(MSG_KEY, "log"),
+            "27:15: " + getCheckMessage(MSG_KEY, "value"),
+            "27:26: " + getCheckMessage(MSG_KEY, "flag"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputFinalParametersFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "19:16: " + getCheckMessage(MSG_KEY, "text"),
+            "29:15: " + getCheckMessage(MSG_KEY, "name"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputFinalParametersFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testCompactSourceFile() throws Exception {
         final String[] expected = {
             "14:16: " + getCheckMessage(MSG_KEY, "number"),
