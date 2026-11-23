@@ -234,7 +234,8 @@ public class RedundantThisCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCompactSourceFile() throws Exception {
         final String[] expected = {
-            "13:5: " + getCheckMessage(MSG_KEY_FIELD, "a"),
+            "11:9: " + getCheckMessage(MSG_KEY_FIELD, "a"),
+            "16:5: " + getCheckMessage(MSG_KEY_FIELD, "a"),
         };
 
         verifyWithInlineConfigParser(
@@ -245,7 +246,8 @@ public class RedundantThisCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCheckMethodsCompactSourceFile() throws Exception {
         final String[] expected = {
-            "14:5: " + getCheckMessage(MSG_KEY_METHOD, "method"),
+            "10:9: " + getCheckMessage(MSG_KEY_METHOD, "hashCode"),
+            "18:5: " + getCheckMessage(MSG_KEY_METHOD, "method"),
         };
 
         verifyWithInlineConfigParser(
