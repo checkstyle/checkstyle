@@ -866,6 +866,48 @@ public class HiddenFieldCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputHiddenFieldRecordPattern.java"), expected);
     }
 
+    @Test
+    public void testHiddenField8Enum() throws Exception {
+        final String[] expected = {
+            "30:17: " + getCheckMessage(MSG_KEY, "hidden"),
+            "40:31: " + getCheckMessage(MSG_KEY, "hidden"),
+            "47:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "53:13: " + getCheckMessage(MSG_KEY, "hiddenStatic"),
+            "60:41: " + getCheckMessage(MSG_KEY, "x"),
+            "66:30: " + getCheckMessage(MSG_KEY, "xAxis"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputHiddenField8Enum.java"), expected);
+    }
+
+    @Test
+    public void testHiddenField8NothingHidden() throws Exception {
+        final String[] expected = {
+            "29:29: " + getCheckMessage(MSG_KEY, "prop"),
+            "35:29: " + getCheckMessage(MSG_KEY, "prop"),
+            "41:29: " + getCheckMessage(MSG_KEY, "prop"),
+            "53:28: " + getCheckMessage(MSG_KEY, "prop"),
+            "67:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "72:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "77:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "81:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "108:23: " + getCheckMessage(MSG_KEY, "y"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputHiddenField8NothingHidden.java"), expected);
+    }
+
+    @Test
+    public void testHiddenField8PropertySetter() throws Exception {
+        final String[] expected = {
+            "27:56: " + getCheckMessage(MSG_KEY, "prop"),
+            "41:29: " + getCheckMessage(MSG_KEY, "prop"),
+            "52:42: " + getCheckMessage(MSG_KEY, "prop2"),
+            "64:19: " + getCheckMessage(MSG_KEY, "i"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputHiddenField8PropertySetter.java"), expected);
+    }
     /**
      * We cannot reproduce situation when visitToken is called and leaveToken is not.
      * So, we have to use reflection to be sure that even in such situation

@@ -5,7 +5,7 @@ ignoreConstructorParameter = (default)false
 ignoreSetter = (default)false
 setterCanReturnItsClass = (default)false
 ignoreAbstractMethods = (default)false
-tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
+tokens = (default)VARIABLE_DEF, PARAMETER_DEF, CLASS_DEF, ENUM_DEF, ENUM_CONSTANT_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_DEF, RECORD_COMPONENT_DEF, COMPACT_COMPILATION_UNIT
 
 
 */
@@ -24,7 +24,7 @@ public class InputHiddenField8PropertySetter
      * if setterCanReturnItsClass == true then
      *     success as it is then considered to be a setter
      */
-    public InputHiddenField8PropertySetter setProp(int prop)
+    public InputHiddenField8PropertySetter setProp(int prop)  // violation ''prop' hides a field'
     {
         this.prop = prop;
         return this;
@@ -38,7 +38,7 @@ enum PropertySetter48 {
     private int prop;
     private int prop2;
 
-    public void setProp(int prop) {
+    public void setProp(int prop) {  // violation ''prop' hides a field'
         this.prop = prop;
     }
 
@@ -49,7 +49,7 @@ enum PropertySetter48 {
      * if setterCanReturnItsClass == true then
      *     success as it is then considered to be a setter
      */
-    public PropertySetter48 setProp2(int prop2)
+    public PropertySetter48 setProp2(int prop2)   // violation ''prop2' hides a field'
     {
         this.prop2 = prop2;
         return this;
@@ -61,7 +61,7 @@ class OneLetterField8
 {
     int i;
 
-    void setI(int i)
+    void setI(int i)  // violation ''i' hides a field'
     {
         this.i = i;
     }

@@ -5,7 +5,7 @@ ignoreConstructorParameter = (default)false
 ignoreSetter = (default)false
 setterCanReturnItsClass = (default)false
 ignoreAbstractMethods = (default)false
-tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
+tokens = (default)VARIABLE_DEF, PARAMETER_DEF, CLASS_DEF, ENUM_DEF, ENUM_CONSTANT_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_DEF, RECORD_COMPONENT_DEF, COMPACT_COMPILATION_UNIT
 
 
 */
@@ -16,7 +16,7 @@ public interface InputHiddenField8NothingHidden
 {
     public static int notHidden = 0;
 
-    // not a violation
+    // This declaration should be ignored.
     public void noShadow(int notHidden);
 }
 
@@ -26,19 +26,19 @@ class PropertySetter18
     private int prop;
 
     /** setter */
-    public void setProp(int prop)
+    public void setProp(int prop)  // violation ''prop' hides a field'
     {
         this.prop = prop;
     }
 
     /** violation - incorrect method name */
-    public void setprop(int prop)
+    public void setprop(int prop)  // violation ''prop' hides a field'
     {
         this.prop = prop;
     }
 
     /** violation - more than one parameter */
-    public void setProp(int prop, int extra)
+    public void setProp(int prop, int extra)  // violation ''prop' hides a field'
     {
         this.prop = prop;
     }
@@ -50,7 +50,7 @@ class PropertySetter28
     private int prop;
 
     /** violation - not a void method */
-    public int setProp(int prop)
+    public int setProp(int prop)  // violation ''prop' hides a field'
     {
         this.prop = prop;
         return 0;
@@ -64,21 +64,21 @@ class StaticFields8
 
     public static void staticMethod()
     {
-        int hidden;
+        int hidden;  // violation ''hidden' hides a field'
     }
 
     public void method()
     {
-        int hidden;
+        int hidden;  // violation ''hidden' hides a field'
     }
 
     static
     {
-        int hidden;
+        int hidden;  // violation ''hidden' hides a field'
     }
 
     {
-        int hidden;
+        int hidden;  // violation ''hidden' hides a field'
     }
 }
 
@@ -105,7 +105,7 @@ class StaticMethods8
         void useX(int x) {
             x++;
         }
-        void useY(int y) {
+        void useY(int y) {  // violation ''y' hides a field'
             y++;
         }
     }
