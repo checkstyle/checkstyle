@@ -43,6 +43,30 @@ public class DeclarationOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "34:9: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "47:9: " + getCheckMessage(MSG_ACCESS),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputDeclarationOrderFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "45:9: " + getCheckMessage(MSG_INSTANCE),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputDeclarationOrderFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testDefault1() throws Exception {
 
         final String[] expected = {
