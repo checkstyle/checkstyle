@@ -38,6 +38,18 @@ public class GoogleRightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "22:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
+            "33:28: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 28),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputGoogleRightCurlyFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
     public void testMultiBlockStatements() throws Exception {
         final String[] expected = {
             "14:25: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 25),
