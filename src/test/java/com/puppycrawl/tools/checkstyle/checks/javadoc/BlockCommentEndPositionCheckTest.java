@@ -97,4 +97,24 @@ public class BlockCommentEndPositionCheckTest extends AbstractModuleTestSupport 
                 getPath("InputBlockCommentEndPositionTrim.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "16:61: " + getCheckMessage(MSG_BLOCK_COMMENT_END),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputBlockCommentEndPositionCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileAlone() throws Exception {
+        final String[] expected = {
+            "16:54: " + getCheckMessage(MSG_BLOCK_COMMENT_END),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputBlockCommentEndPositionCompactSourceFileAlone.java"),
+                expected);
+    }
+
 }

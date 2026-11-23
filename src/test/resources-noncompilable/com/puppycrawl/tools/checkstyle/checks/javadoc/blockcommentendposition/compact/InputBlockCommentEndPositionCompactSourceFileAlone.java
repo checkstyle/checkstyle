@@ -11,3 +11,7 @@ strategy = alone
  * end alone on line.
  */
 void main() {}
+
+// violation below 'Block comment end must be on new line.'
+/** Compact source helper with a single-line comment. */
+void helper() {}
