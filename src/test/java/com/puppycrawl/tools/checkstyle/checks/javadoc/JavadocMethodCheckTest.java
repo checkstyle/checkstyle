@@ -44,6 +44,37 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "19:24: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "stop"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputJavadocMethodFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustomTags() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputJavadocMethodFlexibleConstructorBodiesCustomTags.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "24:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputJavadocMethodFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testTabColumns() throws Exception {
         final String[] expected = {
             "15:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@param"),
