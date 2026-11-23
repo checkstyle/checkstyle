@@ -43,6 +43,29 @@ public class ExecutableStatementCountCheckTest
         return "com/puppycrawl/tools/checkstyle/checks/sizes/executablestatementcount";
     }
 
+    @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "17:9: " + getCheckMessage(MSG_KEY, 31, 30),
+            "54:9: " + getCheckMessage(MSG_KEY, 31, 30),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputExecutableStatementCountFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "19:9: " + getCheckMessage(MSG_KEY, 4, 3),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputExecutableStatementCountFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
     @SuppressWarnings("unchecked")
     @Test
     public void testStatefulFieldsClearedOnBeginTree() {
