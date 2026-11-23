@@ -271,7 +271,10 @@ public class InterfaceMemberImpliedModifierCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ScopeUtil.isInInterfaceBlock(ast) && !ScopeUtil.isInCodeBlock(ast)) {
+        // A member of the interface, which excludes the local variables and local
+        // types of its method bodies
+        if (ScopeUtil.isInInterfaceBlock(ast)
+                && ast.getParent().getType() == TokenTypes.OBJBLOCK) {
             switch (ast.getType()) {
                 case TokenTypes.METHOD_DEF -> processMethod(ast);
 
