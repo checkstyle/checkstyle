@@ -1360,7 +1360,6 @@ stdout
 sthref
 stmt
 streamapi
-streamreader
 strictfp
 stringliteralequality
 strkkk
@@ -1433,7 +1432,6 @@ Thymeleaf
 tidelift
 timeline
 timezone
-TKN
 tmp
 tngtech
 toc
