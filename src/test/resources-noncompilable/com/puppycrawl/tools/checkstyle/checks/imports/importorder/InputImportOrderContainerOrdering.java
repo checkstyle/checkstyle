@@ -20,7 +20,7 @@ import static io.netty.handler.codec.http.HttpConstants.COLON;
 import static io.netty.handler.codec.http.HttpHeaders.addHeader;
 import static io.netty.handler.codec.http.HttpHeaders.setHeader;
 import static io.netty.handler.Codec.HTTP.HttpHeaders.tmp.same; // violation 'Wrong lexicographical order for 'io.netty.handler.Codec.HTTP.HttpHeaders.tmp.same' import. Should be before 'io.netty.handler.codec.http.HttpHeaders.setHeader'.'
-import static io.netty.handler.Codec.HTTP.HttpHeaders.TKN.same; // violation 'Wrong lexicographical order for 'io.netty.handler.Codec.HTTP.HttpHeaders.TKN.same' import. Should be before 'io.netty.handler.Codec.HTTP.HttpHeaders.tmp.same'.'
+import static io.netty.handler.Codec.HTTP.HttpHeaders.TOKEN.same; // violation 'Wrong lexicographical order for 'io.netty.handler.Codec.HTTP.HttpHeaders.TOKEN.same' import. Should be before 'io.netty.handler.Codec.HTTP.HttpHeaders.tmp.same'.'
 
 public class InputImportOrderContainerOrdering {
 

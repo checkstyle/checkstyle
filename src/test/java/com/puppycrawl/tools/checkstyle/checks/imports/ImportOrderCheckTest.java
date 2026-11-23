@@ -766,7 +766,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
                     "io.netty.handler.Codec.HTTP.HttpHeaders.tmp.same",
                     "io.netty.handler.codec.http.HttpHeaders.setHeader"),
             "23:1: " + getCheckMessage(MSG_ORDERING_LEX,
-                    "io.netty.handler.Codec.HTTP.HttpHeaders.TKN.same",
+                    "io.netty.handler.Codec.HTTP.HttpHeaders.TOKEN.same",
                     "io.netty.handler.Codec.HTTP.HttpHeaders.tmp.same"),
         };
         verifyWithInlineConfigParser(
