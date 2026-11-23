@@ -45,6 +45,31 @@ public class FinalLocalVariableCheckTest extends AbstractModuleTestSupport {
         return "com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable";
     }
 
+    @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "17:17: " + getCheckMessage(MSG_KEY, "local"),
+            "30:17: " + getCheckMessage(MSG_KEY, "local"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputFinalLocalVariableFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "20:17: " + getCheckMessage(MSG_KEY, "local"),
+            "21:25: " + getCheckMessage(MSG_KEY, "item"),
+            "34:17: " + getCheckMessage(MSG_KEY, "local"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputFinalLocalVariableFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
     /**
      * Simulates a traversal stopped before leaveToken so the next tree must discard all state.
      * Reflection observes private containers because completed audits balance their scopes.
