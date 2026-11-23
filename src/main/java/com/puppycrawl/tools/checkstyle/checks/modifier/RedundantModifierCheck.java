@@ -442,8 +442,9 @@ public class RedundantModifierCheck extends AbstractCheck {
                 checkFinal = classModifiers.findFirstToken(TokenTypes.FINAL) != null;
                 parent = null;
             }
-            else if (parent.getType() == TokenTypes.LITERAL_NEW
-                    || parent.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+            else if (TokenUtil.isOfType(parent, TokenTypes.LITERAL_NEW,
+                    TokenTypes.ENUM_CONSTANT_DEF, TokenTypes.RECORD_DEF)) {
+                // anonymous classes and records are implicitly final
                 checkFinal = true;
                 parent = null;
             }
