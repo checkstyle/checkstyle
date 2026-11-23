@@ -124,6 +124,7 @@ public class CovariantEqualsCheck extends AbstractCheck {
             TokenTypes.LITERAL_NEW,
             TokenTypes.ENUM_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
         };
     }
 

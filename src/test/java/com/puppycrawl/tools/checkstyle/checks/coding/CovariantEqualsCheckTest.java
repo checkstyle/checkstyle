@@ -78,6 +78,16 @@ public class CovariantEqualsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCovariantEqualsEnumConstantBody()
+            throws Exception {
+        final String[] expected = {
+            "11:17: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCovariantEqualsEnumConstantBody.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final CovariantEqualsCheck check = new CovariantEqualsCheck();
         assertWithMessage("Acceptable tokens should not be null")
