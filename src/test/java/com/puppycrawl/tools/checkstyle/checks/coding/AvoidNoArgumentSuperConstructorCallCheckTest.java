@@ -36,6 +36,17 @@ public class AvoidNoArgumentSuperConstructorCallCheckTest
     }
 
     @Test
+    public void testFlexibleConstructorBodiesCoverage() throws Exception {
+        final String[] expected = {
+            "27:13: " + getCheckMessage(MSG_CTOR),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputAvoidNoArgumentSuperConstructorCallFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
     public void testDefault() throws Exception {
 
         final String[] expected = {
