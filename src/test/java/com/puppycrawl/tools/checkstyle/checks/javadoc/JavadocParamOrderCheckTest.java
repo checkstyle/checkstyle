@@ -34,6 +34,17 @@ public class JavadocParamOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "21:12: " + getCheckMessage(MSG_KEY, "stop"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputJavadocParamOrderFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
     public void testParamOrder() throws Exception {
         final String[] expected = {
             "17:8: " + getCheckMessage(MSG_KEY, "p1"),
