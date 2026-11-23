@@ -200,4 +200,34 @@ public class IndentationTest extends AbstractIndentationTestSupport {
             getPath("InputFormattedLineBreakAfterLeftCurlyOfBlockInSwitch.java"));
     }
 
+    @Test
+    public void testAnnotationArrayInitMultilineCorrect() throws Exception {
+        verifyWithWholeConfig(getPath("InputAnnotationArrayInitMultilineCorrect.java"));
+    }
+
+    @Test
+    public void testLambdaChildCorrect() throws Exception {
+        verifyWithWholeConfig(getPath("InputLambdaChildCorrect.java"));
+    }
+
+    @Test
+    public void testNewKeywordChildrenCorrect() throws Exception {
+        verifyWithWholeConfig(getPath("InputNewKeywordChildrenCorrect.java"));
+    }
+
+    @Test
+    public void testSingleSwitchStatementWithoutCurlyCorrect() throws Exception {
+        verifyWithWholeConfig(getPath("InputSingleSwitchStatementWithoutCurlyCorrect.java"));
+    }
+
+    @Test
+    public void testSwitchOnStartOfTheLineCorrect() throws Exception {
+        verifyWithWholeConfig(getPath("InputSwitchOnStartOfTheLineCorrect.java"));
+    }
+
+    @Test
+    public void testSwitchWrappingIndentationCorrect() throws Exception {
+        verifyWithWholeConfig(getPath("InputSwitchWrappingIndentationCorrect.java"));
+    }
+
 }
