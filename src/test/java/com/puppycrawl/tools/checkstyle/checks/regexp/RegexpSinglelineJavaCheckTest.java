@@ -99,7 +99,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     public void testIgnoreCommentsFalseCppStyle() throws Exception {
         // See if the comment is removed properly
         final String[] expected = {
-            "17: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "don't\\suse trailing comments"),
+            "17: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "don't\\s+use trailing comments"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment2.java"), expected);
@@ -195,7 +195,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMissing() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_REGEXP_MINIMUM, 1, "This\\stext is not in the file"),
+            "1: " + getCheckMessage(MSG_REGEXP_MINIMUM, 1, "This\\s+text is not in the file"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaSemantic7.java"), expected);
