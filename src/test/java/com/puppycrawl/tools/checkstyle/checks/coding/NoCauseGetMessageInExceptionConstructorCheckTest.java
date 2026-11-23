@@ -175,4 +175,14 @@ public class NoCauseGetMessageInExceptionConstructorCheckTest extends AbstractMo
             .isTrue();
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "13:9: " + getCheckMessage(MSG_KEY, "ex"),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputNoCauseGetMessageInExceptionConstructorCompactSourceFile.java"),
+                expected);
+    }
+
 }
