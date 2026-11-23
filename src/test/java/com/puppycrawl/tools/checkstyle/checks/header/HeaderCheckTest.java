@@ -108,7 +108,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
     public void testInvalidCharset() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
         checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
-        checkConfig.addProperty("charset", "XSO-8859-1");
+        checkConfig.addProperty("charset", "UNKNOWN-8859-1");
         final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
                 () -> createChecker(checkConfig));
         assertWithMessage("Invalid exception message")
@@ -120,14 +120,14 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
                 .that(ex)
                 .hasCauseThat()
                 .hasMessageThat()
-                        .isEqualTo("Cannot set property 'charset' to 'XSO-8859-1'");
+                        .isEqualTo("Cannot set property 'charset' to 'UNKNOWN-8859-1'");
         assertWithMessage("Invalid cause exception message")
                 .that(ex)
                 .hasCauseThat()
                 .hasCauseThat()
                 .hasCauseThat()
                 .hasMessageThat()
-                        .startsWith("unsupported charset: 'XSO-8859-1'");
+                        .startsWith("unsupported charset: 'UNKNOWN-8859-1'");
     }
 
     @Test

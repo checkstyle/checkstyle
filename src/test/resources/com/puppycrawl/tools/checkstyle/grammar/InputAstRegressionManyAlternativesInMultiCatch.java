@@ -8,7 +8,7 @@ public class InputAstRegressionManyAlternativesInMultiCatch {
     public static void main(String[] args) {
         try {
             System.out.println(args[7]);
-            File myFile = new File("myfile.txt");
+            File myFile = new File("myFile.txt");
             InputStream stream = myFile.toURL().openStream();
             foo1();
         } catch (ArrayIndexOutOfBoundsException | IOException
