@@ -85,11 +85,15 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("headerFile", getPath("nonExistent.file"));
         final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
                 () -> createChecker(checkConfig));
+        final String expectedMessage =
+            """
+            cannot initialize module \
+            com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck\
+            """;
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
-                        .isEqualTo("cannot initialize module"
-                            + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck");
+                        .isEqualTo(expectedMessage);
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasCauseThat()
@@ -111,11 +115,15 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("charset", "XSO-8859-1");
         final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
                 () -> createChecker(checkConfig));
+        final String expectedMessage =
+            """
+            cannot initialize module \
+            com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck\
+            """;
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
-                        .isEqualTo("cannot initialize module"
-                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck");
+                        .isEqualTo(expectedMessage);
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasCauseThat()
@@ -136,24 +144,32 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("headerFile", "");
         final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
                 () -> createChecker(checkConfig));
+        final String expectedMessage =
+            """
+            cannot initialize module \
+            com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck\
+            """;
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
-                        .isEqualTo("cannot initialize module"
-                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck");
+                        .isEqualTo(expectedMessage);
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasCauseThat()
                 .hasMessageThat()
                         .isEqualTo("Cannot set property 'headerFile' to ''");
+        final String expectedCauseMessage =
+            """
+            property 'headerFile' is missing or invalid in module \
+            com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck\
+            """;
         assertWithMessage("Invalid cause exception message")
                 .that(ex)
                 .hasCauseThat()
                 .hasCauseThat()
                 .hasCauseThat()
                 .hasMessageThat()
-                        .isEqualTo("property 'headerFile' is missing or invalid in module"
-                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck");
+                        .isEqualTo(expectedCauseMessage);
     }
 
     @Test
@@ -162,11 +178,15 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("headerFile", null);
         final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
                 () -> createChecker(checkConfig));
+        final String expectedMessage =
+            """
+            cannot initialize module \
+            com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck\
+            """;
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
-                        .isEqualTo("cannot initialize module"
-                                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck");
+                        .isEqualTo(expectedMessage);
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasCauseThat()
@@ -176,10 +196,13 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNotMatch() throws Exception {
+        final String expectedHeader =
+            """
+            // checkstyle: Checks Java source code and other text files for adherence to a \
+            set of rules.\
+            """;
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_MISMATCH,
-                    "// checkstyle: Checks Java source code and other text files for adherence to a"
-                        + " set of rules."),
+            "2: " + getCheckMessage(MSG_MISMATCH, expectedHeader),
         };
         verifyWithInlineConfigParserSeparateConfigAndTarget(
                 getPath("InputHeaderjava2NotMatchConfig.java"),
@@ -201,11 +224,15 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         final IllegalArgumentException ex =
                 getExpectedThrowable(IllegalArgumentException.class,
                         () -> check.setHeader("Header2"));
+        final String expectedMessage =
+            """
+            header has already been set - \
+            set either header or headerFile, not both\
+            """;
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
-                        .isEqualTo("header has already been set - "
-                                + "set either header or headerFile, not both");
+                        .isEqualTo(expectedMessage);
     }
 
     @Test
@@ -278,12 +305,16 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         final ReflectiveOperationException ex =
                 getExpectedThrowable(ReflectiveOperationException.class,
                         () -> TestUtil.invokeVoidMethod(check, "loadHeaderFile"));
+        final String expectedMessage =
+            """
+            header has already been set - \
+            set either header or headerFile, not both\
+            """;
         assertWithMessage("Invalid exception cause message")
                 .that(ex)
                 .hasCauseThat()
                         .hasMessageThat()
-                                .isEqualTo("header has already been set - "
-                                    + "set either header or headerFile, not both");
+                                .isEqualTo(expectedMessage);
     }
 
     @Test
