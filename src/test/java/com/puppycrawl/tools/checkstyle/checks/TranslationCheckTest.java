@@ -65,18 +65,12 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
 
     @Test
     public void testTranslation() throws Exception {
-        final Configuration checkConfig = createModuleConfig(TranslationCheck.class);
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY, "only.english"),
         };
-        final File[] propertyFiles = {
-            new File(getPath("messages_test_de.properties")),
-            new File(getPath("messages_test.properties")),
-        };
-        verify(
-            createChecker(checkConfig),
-            propertyFiles,
-            getPath("messages_test_de.properties"),
+        verifyWithInlineConfigParser(
+            getPath("messages_testkeys_de.properties"),
+            getPath("messages_testkeys.properties"),
             expected);
     }
 
