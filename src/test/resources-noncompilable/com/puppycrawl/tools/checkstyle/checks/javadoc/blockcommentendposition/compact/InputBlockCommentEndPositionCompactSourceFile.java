@@ -10,3 +10,8 @@ strategy = (default)alone_or_singleline
  * Valid compact source main method.
  */
 void main() {}
+
+// violation 2 lines below 'Block comment end must be on new line.'
+/**
+ * Compact source helper whose comment ends on a text line. */
+void helper() {}
