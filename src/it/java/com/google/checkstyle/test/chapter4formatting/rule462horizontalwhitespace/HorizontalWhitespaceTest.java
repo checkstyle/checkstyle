@@ -245,4 +245,19 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputFormattedArrayBracketNoWhitespace.java"));
     }
 
+    @Test
+    public void testWhitespaceAfterDoubleSlashesCorrect() throws Exception {
+        verifyWithWholeConfig(getPath("InputWhitespaceAfterDoubleSlashesCorrect.java"));
+    }
+
+    @Test
+    public void testWhitespaceAroundArrowCorrect() throws Exception {
+        verifyWithWholeConfig(getPath("InputWhitespaceAroundArrowCorrect.java"));
+    }
+
+    @Test
+    public void testSingleSpaceSeparatorReservedWordsFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedSingleSpaceSeparatorReservedWords.java"));
+    }
+
 }
