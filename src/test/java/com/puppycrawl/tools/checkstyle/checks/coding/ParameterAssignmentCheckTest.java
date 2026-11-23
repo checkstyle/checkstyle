@@ -44,6 +44,18 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "17:18: " + getCheckMessage(MSG_KEY, "stop"),
+            "28:19: " + getCheckMessage(MSG_KEY, "value"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputParameterAssignmentFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
     public void testDefault()
             throws Exception {
         final String[] expected = {
