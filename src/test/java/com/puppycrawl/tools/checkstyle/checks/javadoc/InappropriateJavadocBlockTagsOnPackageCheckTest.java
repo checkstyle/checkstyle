@@ -199,4 +199,12 @@ public class InappropriateJavadocBlockTagsOnPackageCheckTest extends AbstractMod
                 .contains("EQUALS");
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputInappropriateJavadocBlockTagsOnPackageCompactSourceFile.java"),
+                expected);
+    }
+
 }
