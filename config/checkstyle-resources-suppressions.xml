@@ -4,6 +4,8 @@
   "-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN"
   "https://checkstyle.org/dtds/suppressions_1_1.dtd">
 
+  <suppress checks="PackageDeclarationCheck"
+    files="annotateddeclarationvisibility/flexible-constructor-bodies/InputAnnotatedDeclarationVisibilityFlexibleConstructorBodies(Custom)?\.java"/>
 <suppressions>
 
   <!-- intentional problem for testing -->
