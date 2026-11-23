@@ -335,14 +335,14 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
                     new ByteArrayOutputStream(), OutputStreamOptions.CLOSE,
                     errorStream, OutputStreamOptions.CLOSE);
 
-            dl.addException(new AuditEvent(5000, "myfile"),
+            dl.addException(new AuditEvent(5000, "myFile"),
                     new IllegalStateException("oops"));
 
             final String errorOutput = errorStream.toString(StandardCharsets.UTF_8);
 
             assertWithMessage("Exception output should contain filename")
                     .that(errorOutput)
-                    .contains("myfile");
+                    .contains("myFile");
             assertWithMessage("Exception output should contain exception type")
                     .that(errorOutput)
                     .contains("java.lang.IllegalStateException");
