@@ -45,6 +45,30 @@ public class RedundantThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "19:13: " + getCheckMessage(MSG_KEY_FIELD, "value"),
+            "32:13: " + getCheckMessage(MSG_KEY_FIELD, "value"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputRedundantThisFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "22:13: " + getCheckMessage(MSG_KEY_FIELD, "value"),
+            "39:13: " + getCheckMessage(MSG_KEY_METHOD, "compute"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputRedundantThisFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final RedundantThisCheck check = new RedundantThisCheck();
         assertWithMessage("Acceptable tokens should not be null")
