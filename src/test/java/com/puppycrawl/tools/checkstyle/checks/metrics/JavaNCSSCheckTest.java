@@ -44,6 +44,28 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "17:9: " + getCheckMessage(MSG_METHOD, 58, 50),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputJavaNCSSFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "22:9: " + getCheckMessage(MSG_METHOD, 8, 5),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputJavaNCSSFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
     public void test() throws Exception {
 
         final String[] expected = {
