@@ -115,8 +115,13 @@ public class XdocsExampleFileTest {
             }
         }
         if (!failures.isEmpty()) {
-            assertWithMessage("Xdocs are missing properties:\n" + String.join("\n", failures))
-                    .fail();
+            final String template =
+                """
+                Xdocs are missing properties:
+                %s\
+                """;
+            assertWithMessage(String.format(Locale.ROOT, template,
+                    String.join("\n", failures))).fail();
         }
     }
 
@@ -142,9 +147,13 @@ public class XdocsExampleFileTest {
                 });
         }
         if (!failures.isEmpty()) {
-            assertWithMessage("Example files are missing corresponding test methods:\n"
-                    + String.join("\n", failures))
-                    .fail();
+            final String template =
+                """
+                Example files are missing corresponding test methods:
+                %s\
+                """;
+            assertWithMessage(String.format(Locale.ROOT, template,
+                    String.join("\n", failures))).fail();
         }
     }
 
@@ -182,10 +191,13 @@ public class XdocsExampleFileTest {
         }
 
         if (!failures.isEmpty()) {
-            assertWithMessage(
-                "The following example files are not referenced in any xml.template file:\n"
-                    + String.join("\n", failures))
-                .fail();
+            final String template =
+                """
+                The following example files are not referenced in any xml.template file:
+                %s\
+                """;
+            assertWithMessage(String.format(Locale.ROOT, template,
+                    String.join("\n", failures))).fail();
         }
     }
 
@@ -213,9 +225,13 @@ public class XdocsExampleFileTest {
         }
 
         if (!failures.isEmpty()) {
-            assertWithMessage("Found examples with duplicate behavior:\n"
-                    + String.join("\n", failures))
-                    .fail();
+            final String template =
+                """
+                Found examples with duplicate behavior:
+                %s\
+                """;
+            assertWithMessage(String.format(Locale.ROOT, template,
+                    String.join("\n", failures))).fail();
         }
     }
 
