@@ -126,6 +126,8 @@ public class InterfaceMemberImpliedModifierCheckTest
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.ANNOTATION_DEF,
         };
         assertWithMessage("Required tokens are invalid")
             .that(actual)
@@ -346,6 +348,23 @@ public class InterfaceMemberImpliedModifierCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierNestedOnInterface4.java"),
+            expected);
+    }
+
+    @Test
+    public void testNestedRecordsAndAnnotationsOnInterface() throws Exception {
+        final String[] expected = {
+            "18:5: " + getCheckMessage(MSG_KEY, "public"),
+            "18:5: " + getCheckMessage(MSG_KEY, "static"),
+            "25:5: " + getCheckMessage(MSG_KEY, "static"),
+            "29:5: " + getCheckMessage(MSG_KEY, "public"),
+            "35:5: " + getCheckMessage(MSG_KEY, "public"),
+            "35:5: " + getCheckMessage(MSG_KEY, "static"),
+            "44:5: " + getCheckMessage(MSG_KEY, "public"),
+            "44:5: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputInterfaceMemberImpliedModifierNestedRecords.java"),
             expected);
     }
 
