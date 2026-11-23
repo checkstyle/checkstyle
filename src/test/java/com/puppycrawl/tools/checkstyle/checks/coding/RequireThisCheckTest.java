@@ -48,6 +48,29 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "19:13: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "29:13: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputRequireThisFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "23:13: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputRequireThisFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testIt() throws Exception {
         final String[] expected = {
             "20:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
