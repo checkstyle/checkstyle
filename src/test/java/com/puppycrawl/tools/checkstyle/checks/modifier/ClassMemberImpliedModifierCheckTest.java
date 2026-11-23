@@ -145,6 +145,17 @@ public class ClassMemberImpliedModifierCheckTest
     }
 
     @Test
+    public void testLocalTypes() throws Exception {
+        final String[] expected = {
+            "13:5: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputClassMemberImpliedModifierLocalTypes.java"),
+                expected);
+    }
+
+    @Test
     public void testCompactSourceFile() throws Exception {
         final String[] expected = {
             "12:1: " + getCheckMessage(MSG_KEY, "static"),
