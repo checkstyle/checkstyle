@@ -38,6 +38,19 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "22:10: " + getCheckMessage(MSG_SEMI),
+            "35:10: " + getCheckMessage(MSG_SEMI),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputUnnecessarySemicolonAfterTypeMemberDeclaration"
+                        + "FlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
     public void testUnnecessarySemicolonAfterTypeMemberDeclarationCompactSourceFileDefault()
             throws Exception {
         final String[] expected = {
