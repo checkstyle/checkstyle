@@ -145,6 +145,54 @@ openjdk25-with-checks-nonjavadoc-error)
   removeFolderWithProtectedFiles contribution
   ;;
 
+all-checks-on-all-checkstyle-inputs)
+  LOCAL_GIT_REPO=$(pwd)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
+  checkout_from https://github.com/checkstyle/contribution
+  sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
+        .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
+  cd .ci-temp/contribution/checkstyle-tester
+  # the yml file is the config for the checkstyle repository itself, it is
+  # in the same format as config/list-of-projects.yml from the regression
+  # report GitHub Action; the project to run over is this repository, so
+  # only the name and the excludes are taken from it, no files are copied
+  yq -r '.projects[0] | .name + "|local|../../../||"
+      + (.excludes | join(","))' \
+      ../../../config/projects-to-test/all-checks-on-all-checkstyle-inputs.yml \
+      > all-checks-on-all-checkstyle-inputs.config
+  export MAVEN_OPTS="-Xmx2g"
+  groovy ./diff.groovy --listOfProjects all-checks-on-all-checkstyle-inputs.config \
+      --mode single --allowExcludes \
+      --patchConfig checks-nonjavadoc-error.xml \
+      --localGitRepo  "$LOCAL_GIT_REPO" \
+      --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
+
+  cd ../../
+  removeFolderWithProtectedFiles contribution
+  ;;
+
+all-checks-on-all-checkstyle-inputs-javadoc)
+  LOCAL_GIT_REPO=$(pwd)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    || { echo "Failed to get git branch."; exit 1; }
+  checkout_from https://github.com/checkstyle/contribution
+  cd .ci-temp/contribution/checkstyle-tester
+  yq -r '.projects[0] | .name + "|local|../../../||"
+      + (.excludes | join(","))' \
+      ../../../config/projects-to-test/all-checks-on-all-checkstyle-inputs.yml \
+      > all-checks-on-all-checkstyle-inputs.config
+  export MAVEN_OPTS="-Xmx2g"
+  groovy ./diff.groovy --listOfProjects all-checks-on-all-checkstyle-inputs.config \
+      --mode single --allowExcludes \
+      --patchConfig checks-only-javadoc-error.xml \
+      --localGitRepo  "$LOCAL_GIT_REPO" \
+      --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
+
+  cd ../../
+  removeFolderWithProtectedFiles contribution
+  ;;
+
 no-exception-lucene-and-others-javadoc)
   CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }

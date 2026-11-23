@@ -1,0 +1,30 @@
+# List of projects to check with Checkstyle
+# File format is the same as in config/list-of-projects.yml, which is used
+# by the regression report GitHub Action: each project has a name, a repo
+# to take sources from, and a list of folders to exclude from execution.
+# This file has a single project, checkstyle itself, so the no-exception
+# job can run all checks over all checkstyle inputs. Excludes are folders
+# with completely uncompiled files, they are not able to be executed over.
+projects:
+  - name: checkstyle
+    scm: git
+    url: https://github.com/checkstyle/checkstyle.git
+    reference: master
+    excludes:
+      - '**/.ci-temp/**/*'
+      - '**/resources-noncompilable/**/asttreestringprinter/**/*'
+      - '**/resources-noncompilable/**/filefilters/**/*'
+      - '**/resources-noncompilable/**/main/**/*'
+      - '**/resources-noncompilable/**/suppressionsstringprinter/**/*'
+      - '**/resources-noncompilable/**/gui/**/*'
+      - '**/resources-noncompilable/**/javadocpropertiesgenerator/**/*'
+      # yamllint disable rule:line-length
+      - 'src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/javaparser/InputJavaParser.java'
+      - '**/InputAllEscapedUnicodeCharacters.java'
+      - '**/resources-noncompilable/**/javaparser/InputJavaParser.java'
+      # yamllint disable rule:line-length
+      - '**/resources-noncompilable/**/checks/imports/unusedimports/InputUnusedImportsSingleWordPackage.java'
+      - '**/resources-noncompilable/**/grammar/java19/*'
+      - '**/resources-noncompilable/**/treewalker/**/*'
+      - '**/resources-noncompilable/**/defaultlogger/**/*'
+      - '**/target/test-classes/**/*'
