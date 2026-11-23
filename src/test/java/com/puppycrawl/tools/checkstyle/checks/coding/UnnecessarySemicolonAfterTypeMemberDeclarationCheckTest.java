@@ -96,6 +96,22 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
     }
 
     @Test
+    public void testAnonymousClassAndEnumConstantBody() throws Exception {
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_SEMI),
+            "20:9: " + getCheckMessage(MSG_SEMI),
+            "31:13: " + getCheckMessage(MSG_SEMI),
+            "40:9: " + getCheckMessage(MSG_SEMI),
+            "47:13: " + getCheckMessage(MSG_SEMI),
+            "51:13: " + getCheckMessage(MSG_SEMI),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessarySemicolonAfterTypeMemberDeclarationAnonymous.java"),
+                expected);
+    }
+
+    @Test
     public void testCompactSourceFile() throws Exception {
 
         final String[] expected = {

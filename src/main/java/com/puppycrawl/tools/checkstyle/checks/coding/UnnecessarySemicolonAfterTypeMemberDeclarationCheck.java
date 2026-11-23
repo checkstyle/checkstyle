@@ -97,6 +97,25 @@ public final class UnnecessarySemicolonAfterTypeMemberDeclarationCheck extends A
             case TokenTypes.ENUM_CONSTANT_DEF -> checkEnumConstant(ast);
             default -> checkTypeMember(ast);
         }
+        checkFirstMemberOfAnonymousClass(ast);
+    }
+
+    /**
+     * Checks if a semicolon precedes the first member of an anonymous class body.
+     * Anonymous classes are not visited as tokens, so their first member is checked.
+     *
+     * @param ast type member
+     */
+    private void checkFirstMemberOfAnonymousClass(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        if (parent.getType() == TokenTypes.OBJBLOCK
+                && parent.getParent().getType() == TokenTypes.LITERAL_NEW) {
+            final DetailAST previous = ast.getPreviousSibling();
+            if (isSemicolon(previous)
+                    && previous.getPreviousSibling().getType() == TokenTypes.LCURLY) {
+                log(previous, MSG_SEMI);
+            }
+        }
     }
 
     /**
@@ -146,6 +165,13 @@ public final class UnnecessarySemicolonAfterTypeMemberDeclarationCheck extends A
         final DetailAST next = ast.getNextSibling();
         if (isSemicolon(next) && isSemicolon(next.getNextSibling())) {
             log(next.getNextSibling(), MSG_SEMI);
+        }
+        final DetailAST body = ast.findFirstToken(TokenTypes.OBJBLOCK);
+        if (body != null) {
+            final DetailAST firstMember = body.getFirstChild().getNextSibling();
+            if (isSemicolon(firstMember)) {
+                log(firstMember, MSG_SEMI);
+            }
         }
     }
 
