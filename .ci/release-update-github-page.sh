@@ -5,7 +5,7 @@ source ./.ci/util.sh
 
 if [[ -z $1 ]]; then
   echo "release number is not set"
-  echo "usage: $BASH_SOURCE {release number}"
+  echo "usage: ${BASH_SOURCE[0]} {release number}"
   exit 1
 fi
 TARGET_VERSION=$1
