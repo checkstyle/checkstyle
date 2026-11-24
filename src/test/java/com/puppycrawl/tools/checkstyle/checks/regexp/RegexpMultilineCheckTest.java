@@ -169,6 +169,13 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
                 getPath("InputRegexpMultilineSemantic8.java"), expected);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParser because the checked file is generated at
+     * runtime: it needs a 100,000 character line of {@code x} and {@code y} to provoke the
+     * StackOverflowError, which is not practical to keep as an Input file.
+     *
+     * @throws Exception if an error occurs
+     */
     @Test
     public void testNoStackOverflowError() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
