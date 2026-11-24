@@ -75,9 +75,9 @@ public class InputUnnecessaryNullCheckWithInstanceOfOne {
          for (int i = 0; getData!= null && getData instanceof String; i++) {
              return;
          }
-         // violation below 'Unnecessary nullity check'
+         // The OR branch can succeed when the value is null.
          if (data != null && (!Objects.equals(s, b) || data instanceof String)) {
-             // violation below 'Unnecessary nullity check'
+             // The OR branch can succeed when the value is null.
             boolean result = b != null && (s != null || b instanceof String);
             return;
         }
