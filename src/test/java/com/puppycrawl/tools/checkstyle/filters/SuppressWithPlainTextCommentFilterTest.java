@@ -154,28 +154,18 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
     @Test
     public void testSuppressionCommentsInSqlFile() throws Exception {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        filterCfg.addProperty("offCommentFormat", "-- CHECKSTYLE OFF");
-        filterCfg.addProperty("onCommentFormat", "-- CHECKSTYLE ON");
-
-        final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
-        checkCfg.addProperty("eachLine", "true");
-
         final String[] suppressed = {
-            "2:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "14:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         final String[] violationMessages = {
-            "2:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "5:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "14:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "18:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
-        verifySuppressed(
-            "InputSuppressWithPlainTextCommentFilter.sql",
-            removeSuppressed(violationMessages, suppressed),
-            filterCfg, checkCfg
-        );
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithPlainTextCommentFilter.sql"),
+            violationMessages, removeSuppressed(violationMessages, suppressed));
     }
 
     @Test
