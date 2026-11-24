@@ -92,6 +92,8 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
             TokenTypes.DEC,
             TokenTypes.POST_DEC,
             TokenTypes.LAMBDA,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.STATIC_INIT,
         };
     }
 
@@ -113,6 +115,9 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
         if (TokenUtil.isOfType(type, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF)) {
             visitMethodDef(ast);
         }
+        else if (TokenUtil.isOfType(type, TokenTypes.INSTANCE_INIT, TokenTypes.STATIC_INIT)) {
+            visitInitializer();
+        }
         else if (type == TokenTypes.LAMBDA) {
             if (ast.getParent().getType() != TokenTypes.SWITCH_RULE) {
                 visitLambda(ast);
@@ -126,7 +131,8 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         final int type = ast.getType();
-        if (TokenUtil.isOfType(type, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF)
+        if (TokenUtil.isOfType(type, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF,
+                TokenTypes.INSTANCE_INIT, TokenTypes.STATIC_INIT)
                 || type == TokenTypes.LAMBDA
                 && ast.getParent().getType() != TokenTypes.SWITCH_RULE) {
             parameterNames = parameterNamesStack.pop();
@@ -158,6 +164,15 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
         parameterNames = new HashSet<>();
 
         visitMethodParameters(ast.findFirstToken(TokenTypes.PARAMETERS));
+    }
+
+    /**
+     * Initializer blocks have no parameters and cannot assign enclosing
+     * method parameters, so start a fresh, empty scope.
+     */
+    private void visitInitializer() {
+        parameterNamesStack.push(parameterNames);
+        parameterNames = new HashSet<>();
     }
 
     /**
