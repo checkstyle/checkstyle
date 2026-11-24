@@ -1,3 +1,15 @@
+/*
+Indentation
+arrayInitIndent = (default)4
+basicOffset = (default)4
+braceAdjustment = (default)0
+caseIndent = (default)4
+forceStrictCondition = true
+lineWrappingIndentation = (default)4
+tabWidth = 4
+throwsIndent = (default)4
+
+*/
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;          //indent:0 exp:0
 
 import java.awt.Component;                                                       //indent:0 exp:0
@@ -8,6 +20,7 @@ public class InputIndentationTryChildOnSameLineStrict {                         
         if (a == b) return true;                                                 //indent:8 exp:8
         final boolean[] ret = new boolean[1];                                    //indent:8 exp:8
         try {                                                                    //indent:8 exp:8
+            // violation below ''@' has incorrect indentation level 43, expected level should be 12.'
             invokeAndWait(new Runnable() { @Override                             //indent:12 exp:12
                 public void run() {                                              //indent:16 exp:16
                     synchronized (ret) {                                         //indent:20 exp:20
