@@ -528,29 +528,15 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testHeaderWithTrailingBlanksFailsWhenFileIsShorter() throws Exception {
-        final File headerFile = new File(temporaryFolder, "headerWithBlanks.header");
-        Files.write(headerFile.toPath(), List.of(
-            "// Line 1",
-            "",
-            "// Line 3"
-        ));
-
-        final File testFile = new File(temporaryFolder, "shorterFile.java");
-        Files.write(testFile.toPath(), List.of(
-            "// Line 1"
-        ));
-
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", headerFile.getPath());
-
-        final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
-        checkInstance.configure(checkConfig);
-
+        final String headerPath =
+                getPath("InputRegexpHeaderTrailingBlanksFileShorter.header");
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_HEADER_MISSING, headerFile.getPath(), headerFile.getPath()),
+            "1: " + getCheckMessage(MSG_HEADER_MISSING, headerPath, headerPath),
         };
-        verify(checkConfig, testFile.getPath(), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderTrailingBlanksFileShorterConfig.java"),
+                getPath("InputRegexpHeaderTrailingBlanksFileShorter.txt"),
+                expected);
     }
 
     @Test
