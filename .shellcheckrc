@@ -15,7 +15,6 @@ disable=SC2004 # (style): $/${} is unnecessary on arithmetic variables.
 disable=SC2087 # (warning): Quote 'EOF' to make here document expansions happen on the server-side.
 disable=SC2102 # (info): Ranges can only match single chars (mentioned due to duplicates).
 disable=SC2242 # (error): Can only exit with status 0-255.
-disable=SC2115 # (warning): Use "${var:?}" to ensure this never expands to /* .
 disable=SC2128 # (warning): Expanding an array without an index only gives the first element.
 disable=SC2063 # (warning): Grep uses regex, but this looks like a glob.
 # SC2126 permanently disabled,  'grep | wc -l' is easier to read than 'grep -c || true'
