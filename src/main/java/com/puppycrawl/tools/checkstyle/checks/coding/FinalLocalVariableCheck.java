@@ -655,7 +655,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
 
     /**
      * Checks if current variable is defined in
-     *  {@link TokenTypes#FOR_INIT for-loop init}, e.g.:
+     *  {@link TokenTypes#FOR_INIT for-loop init}. For example:
      *
      * <p>
      * {@code

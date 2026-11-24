@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -179,21 +180,16 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @param ast the javadoc text node
      */
     private void validateUntaggedSummary(DetailNode ast) {
-        final String summaryDoc = getSummarySentence(ast);
-        if (summaryDoc.isEmpty()) {
+        final List<DetailNode> summaryNodes = getSummaryNodes(ast);
+        if (isSummaryMissing(summaryNodes)) {
             log(ast, MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
-            if (summaryDoc.contains(period)) {
-                final Optional<String> firstSentence = getFirstSentence(ast, period);
+            final Optional<String> firstSentence = getFirstSentence(summaryNodes, period);
 
-                if (firstSentence.isPresent()) {
-                    if (containsForbiddenFragment(firstSentence.get())) {
-                        log(ast, MSG_SUMMARY_JAVADOC);
-                    }
-                }
-                else {
-                    log(ast, MSG_SUMMARY_FIRST_SENTENCE);
+            if (firstSentence.isPresent()) {
+                if (containsForbiddenFragment(firstSentence.get())) {
+                    log(ast, MSG_SUMMARY_JAVADOC);
                 }
             }
             else {
@@ -444,78 +440,87 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Finds and returns summary sentence.
+     * Gets the nodes that are searched for the summary. Block tags stay as single nodes, so
+     * their text is never read as summary text. An HTML element is opened only when no
+     * summary text comes before it.
      *
      * @param ast Javadoc root node.
-     * @return violation string.
+     * @return the nodes of the summary.
      */
-    private static String getSummarySentence(DetailNode ast) {
-        final StringBuilder result = new StringBuilder(256);
+    private static List<DetailNode> getSummaryNodes(DetailNode ast) {
+        final List<DetailNode> summaryNodes = new ArrayList<>();
         DetailNode node = ast.getFirstChild();
         while (node != null) {
-            if (node.getType() == JavadocCommentsTokenTypes.TEXT) {
-                result.append(node.getText());
+            if (node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT
+                    && isSummaryMissing(summaryNodes)) {
+                addHtmlNodes(node, summaryNodes);
             }
             else {
-                final String summary = result.toString();
-                if (CommonUtil.isBlank(summary)
-                        && node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
-                    final DetailNode htmlContentToken = JavadocUtil.findFirstToken(
-                            node, JavadocCommentsTokenTypes.HTML_CONTENT);
-                    result.append(getStringInsideHtmlTag(summary, htmlContentToken));
-                }
+                summaryNodes.add(node);
             }
             node = node.getNextSibling();
         }
-        return result.toString().trim();
+        return summaryNodes;
     }
 
     /**
-     * Get concatenated string within text of html tags.
+     * Adds the nodes inside an HTML element, opening any nested HTML elements.
      *
-     * @param result Javadoc string
-     * @param detailNode htmlContent node
-     * @return Javadoc tag content appended in result
+     * @param htmlNode the HTML element or HTML content node.
+     * @param summaryNodes the list that receives the nodes.
      */
-    private static String getStringInsideHtmlTag(String result, DetailNode detailNode) {
-        final StringBuilder contents = new StringBuilder(result);
-        if (detailNode != null) {
-            DetailNode tempNode = detailNode.getFirstChild();
-            while (tempNode != null) {
-                if (tempNode.getType() == JavadocCommentsTokenTypes.TEXT) {
-                    contents.append(tempNode.getText());
-                }
-                else {
-                    final DetailNode htmlContentToken = JavadocUtil.findFirstToken(
-                            tempNode, JavadocCommentsTokenTypes.HTML_CONTENT);
-                    contents.append(getStringInsideHtmlTag("", htmlContentToken));
-                }
-                tempNode = tempNode.getNextSibling();
+    private static void addHtmlNodes(DetailNode htmlNode, List<DetailNode> summaryNodes) {
+        DetailNode node = htmlNode.getFirstChild();
+        while (node != null) {
+            if (node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT
+                    || node.getType() == JavadocCommentsTokenTypes.HTML_CONTENT) {
+                addHtmlNodes(node, summaryNodes);
             }
+            else {
+                summaryNodes.add(node);
+            }
+            node = node.getNextSibling();
         }
-        return contents.toString();
     }
 
     /**
-     * Finds the first sentence.
+     * Checks whether the summary nodes contain no non-blank text.
      *
-     * @param ast The Javadoc root node.
+     * @param summaryNodes the nodes of the summary.
+     * @return {@code true} if there is no summary text.
+     */
+    private static boolean isSummaryMissing(Collection<DetailNode> summaryNodes) {
+        return summaryNodes.stream().noneMatch(node -> {
+            return node.getType() == JavadocCommentsTokenTypes.TEXT
+                    && !CommonUtil.isBlank(node.getText());
+        });
+    }
+
+    /**
+     * Finds the first sentence. Only summary text can end it, so a period inside
+     * an inline tag or a later HTML element does not count.
+     *
+     * @param summaryNodes The nodes of the summary.
      * @param period The configured period symbol.
      * @return An Optional containing the first sentence up to and excluding the period, or an empty
      *     Optional if no ending was found.
      */
-    private static Optional<String> getFirstSentence(DetailNode ast, String period) {
+    private static Optional<String> getFirstSentence(Iterable<DetailNode> summaryNodes,
+                                                     String period) {
         final List<String> sentenceParts = new ArrayList<>();
         Optional<String> result = Optional.empty();
-        for (String text : (Iterable<String>) streamTextParts(ast)::iterator) {
-            final Optional<String> sentenceEnding = findSentenceEnding(text, period);
+        for (DetailNode node : summaryNodes) {
+            Optional<String> sentenceEnding = Optional.empty();
+            if (node.getType() == JavadocCommentsTokenTypes.TEXT) {
+                sentenceEnding = findSentenceEnding(node.getText(), period);
+            }
 
             if (sentenceEnding.isPresent()) {
                 sentenceParts.add(sentenceEnding.get());
                 result = Optional.of(String.join("", sentenceParts));
                 break;
             }
-            sentenceParts.add(text);
+            streamTextParts(node).forEach(sentenceParts::add);
         }
         return result;
     }
