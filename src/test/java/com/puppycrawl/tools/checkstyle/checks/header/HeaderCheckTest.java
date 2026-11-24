@@ -224,6 +224,14 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
                     .isEqualTo("unable to load header file " + uri);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParser because this test sets the Checker's
+     * {@code cacheFile} to a temporary file created at runtime and runs the check twice,
+     * so that the second run reads the header from the cache. An inline config can only
+     * hold a fixed path, which would write the cache file into the source tree.
+     *
+     * @throws Exception if an error occurs
+     */
     @Test
     public void testCacheHeaderFile() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
@@ -245,6 +253,14 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         verify(checkerConfig, getPath("InputHeader.java"), expected);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParser because this test sets the Checker's
+     * {@code cacheFile} to a temporary file created at runtime and runs the check twice,
+     * so that the second run reads the header from the cache. An inline config can only
+     * hold a fixed path, which would write the cache file into the source tree.
+     *
+     * @throws Exception if an error occurs
+     */
     @Test
     public void testCacheHeaderWithoutFile() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
