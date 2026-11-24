@@ -6,7 +6,7 @@ source ./.ci/util.sh
 
 if [[ -z $1 ]]; then
   echo "version is not set"
-  echo "Usage: $BASH_SOURCE <version>"
+  echo "Usage: ${BASH_SOURCE[0]} <version>"
   exit 1
 fi
 

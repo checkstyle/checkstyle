@@ -8,7 +8,7 @@ checkForVariable "SF_USER"
 
 if [[ -z $1 ]]; then
   echo "Release version is not set"
-  echo "usage: $BASH_SOURCE {release version}"
+  echo "usage: ${BASH_SOURCE[0]} {release version}"
   exit 1
 fi
 
