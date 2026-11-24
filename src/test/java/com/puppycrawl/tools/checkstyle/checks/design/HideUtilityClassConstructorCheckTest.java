@@ -193,4 +193,15 @@ public class HideUtilityClassConstructorCheckTest
                 expected);
     }
 
+    @Test
+    public void testIgnoreAnnotationByFullyQualifiedName() throws Exception {
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath(
+                    "InputHideUtilityClassConstructorIgnoreAnnotationByFullyQualifiedName.java"),
+                expected);
+    }
+
 }
