@@ -105,6 +105,13 @@ public class JavadocSeeTagOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTrailingDot() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocSeeTagOrderTrailingDot.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
     public void testPackageInfo() throws Exception {
         verifyWithInlineConfigParser(
                 getPath("package-info.java"),
