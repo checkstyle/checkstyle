@@ -1,11 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!--xml
+<module name="Checker">
+  <module name="com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter">
+    <property name="offCommentFormat" value="CS-OFF"/>
+    <property name="onCommentFormat" value="CS-ON"/>
+  </module>
+  <module name="com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck">
+    <property name="eachLine" value="true"/>
+  </module>
+</module>
+-->
 
 <!-- CS-OFF -->
 
 <root>
     <child>
 	</child>
+    <!-- // filtered violation above 'Line contains a tab character.'
+    -->
     <!-- CS-ON -->
     <child>
 	</child>
+    <!-- // violation above 'Line contains a tab character.'
+    -->
 </root>
