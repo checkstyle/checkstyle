@@ -721,6 +721,13 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                 .inOrder();
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParser because this test checks several files,
+     * including non-compilable ones, in one Checker run and expects violations per file,
+     * while the inline config methods verify a single Input file.
+     *
+     * @throws Exception if an error occurs
+     */
     @Test
     public void testSkipFileOnJavaParseExceptionTrue() throws Exception {
         final DefaultConfiguration config = createModuleConfig(TreeWalker.class);
@@ -792,6 +799,13 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         verifyWithInlineXmlConfig(path, expected);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParser because this test checks several files,
+     * including non-compilable ones, in one Checker run and expects violations per file,
+     * while the inline config methods verify a single Input file.
+     *
+     * @throws Exception if an error occurs
+     */
     @Test
     public void testSkipFileOnJavaParseExceptionSkipChecks() throws Exception {
         final DefaultConfiguration config = createModuleConfig(TreeWalker.class);
@@ -813,6 +827,13 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         verify(checker, files, expectedViolation);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParser because this test checks several files,
+     * including non-compilable ones, in one Checker run and expects violations per file,
+     * while the inline config methods verify a single Input file.
+     *
+     * @throws Exception if an error occurs
+     */
     @Test
     public void testJavaParseExceptionSeverityDefaultError() throws Exception {
         final DefaultConfiguration config = createModuleConfig(TreeWalker.class);
