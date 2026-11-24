@@ -649,36 +649,24 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
     @Test
     public void testFilterWithIdAndCustomMessageFormat() throws Exception {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        filterCfg.addProperty("offCommentFormat", "CHECKSTYLE stop (\\w+) (\\w+)");
-        filterCfg.addProperty("onCommentFormat", "CHECKSTYLE resume (\\w+) (\\w+)");
-        filterCfg.addProperty("idFormat", "$1");
-        filterCfg.addProperty("messageFormat", "$2");
-
-        final DefaultConfiguration regexpCheckCfg = createModuleConfig(RegexpSinglelineCheck.class);
-        regexpCheckCfg.addProperty("id", "warning");
-        regexpCheckCfg.addProperty("format", "^.*COUNT\\(\\*\\).*$");
-
         final String[] suppressedViolationMessages = {
-            "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "17: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^.*COUNT\\(\\*\\).*$"),
         };
 
         final String[] expectedViolationMessages = {
-            "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "17: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^.*COUNT\\(\\*\\).*$"),
-            "5: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "21: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^.*COUNT\\(\\*\\).*$"),
-            "8: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "25: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^.*COUNT\\(\\*\\).*$"),
         };
 
-        verifySuppressed(
-            "InputSuppressWithPlainTextCommentFilterCustomMessageFormat.sql",
-            removeSuppressed(expectedViolationMessages, suppressedViolationMessages),
-            filterCfg, regexpCheckCfg
-        );
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithPlainTextCommentFilterIdAndCustomMessageFormat.sql"),
+            expectedViolationMessages,
+            removeSuppressed(expectedViolationMessages, suppressedViolationMessages));
     }
 
     @Test
