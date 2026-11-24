@@ -4249,16 +4249,12 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testYieldNestedSwitchExpressionWithCaseIndentZero() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
-        checkConfig.addProperty("tabWidth", "4");
-        checkConfig.addProperty("caseIndent", "0");
-
         final String[] expected = {
-            "21:21: " + getCheckMessage(MSG_CHILD_ERROR, "case", 20, 16),
-            "22:21: " + getCheckMessage(MSG_CHILD_ERROR, "case", 20, 16),
+            "23:21: " + getCheckMessage(MSG_CHILD_ERROR, "case", 20, 16),
+            "25:21: " + getCheckMessage(MSG_CHILD_ERROR, "case", 20, 16),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
             getPath("InputIndentationYieldNestedSwitchExpressionCaseIndentZero.java"),
             expected);
     }
