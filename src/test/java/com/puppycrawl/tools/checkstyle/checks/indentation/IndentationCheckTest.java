@@ -4212,21 +4212,13 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIndentationChainedMethodCallWithLambda() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
-        checkConfig.addProperty("tabWidth", "4");
-        checkConfig.addProperty("basicOffset", "4");
-        checkConfig.addProperty("braceAdjustment", "0");
-        checkConfig.addProperty("caseIndent", "4");
-        checkConfig.addProperty("lineWrappingIndentation", "4");
-        checkConfig.addProperty("forceStrictCondition", "false");
-
         final String[] expected = {
-            "23:29: " + getCheckMessage(MSG_ERROR, "if", 28, "20"),
-            "24:33: " + getCheckMessage(MSG_CHILD_ERROR, "if", 32, "24"),
-            "25:29: " + getCheckMessage(MSG_ERROR, "if rcurly", 28, "20"),
-            "26:25: " + getCheckMessage(MSG_ERROR, "block rcurly", 24, "16"),
+            "26:29: " + getCheckMessage(MSG_ERROR, "if", 28, "20"),
+            "28:33: " + getCheckMessage(MSG_CHILD_ERROR, "if", 32, "24"),
+            "30:29: " + getCheckMessage(MSG_ERROR, "if rcurly", 28, "20"),
+            "32:25: " + getCheckMessage(MSG_ERROR, "block rcurly", 24, "16"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
             getPath("InputIndentationChainedMethodCallWithLambda.java"),
             expected);
     }
