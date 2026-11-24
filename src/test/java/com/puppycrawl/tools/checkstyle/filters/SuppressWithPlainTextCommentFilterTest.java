@@ -297,29 +297,19 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
     @Test
     public void testInvalidMessageFormatInSqlFile() {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        filterCfg.addProperty("onCommentFormat", "CSON (\\w+)");
-        filterCfg.addProperty("messageFormat", "e[l");
-
-        final DefaultConfiguration checkCfg = createModuleConfig(RegexpSinglelineCheck.class);
-        checkCfg.addProperty("format", "^.*COUNT\\(\\*\\).*$");
-
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
 
         final String[] violationMessages = {
-            "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "14: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                     "^.*COUNT\\(\\*\\).*$"),
         };
 
         final CheckstyleException exc = getExpectedThrowable(
                 CheckstyleException.class,
                 () -> {
-                    verifySuppressed(
-                        "InputSuppressWithPlainTextCommentFilterWithCustomOnComment.sql",
-                        removeSuppressed(violationMessages, suppressed),
-                        filterCfg, checkCfg
-                    );
+                    verifyFilterWithInlineConfigParser(
+                        getPath("InputSuppressWithPlainTextCommentFilterWithCustomOnComment.sql"),
+                        violationMessages, removeSuppressed(violationMessages, suppressed));
                 });
         final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
         assertWithMessage("Invalid exception message")
