@@ -438,30 +438,15 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMismatchLineCondition() throws Exception {
-        final File testFile = new File(temporaryFolder, "mismatchFile.java");
-        Files.write(testFile.toPath(), List.of(
-            "// First line matches",
-            "// This line doesn't match the header pattern",
-            "// Third line matches"));
-
-        final File headerFile = new File(temporaryFolder, "mismatchHeader.header");
-        Files.write(headerFile.toPath(), List.of(
-            "// First line matches",
-            "// Second line matches",
-            "// Third line matches"));
-
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", headerFile.getPath());
-
-        final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
-        checkInstance.configure(checkConfig);
-
+        final String headerPath = getPath("InputRegexpHeaderMismatchLineCondition.header");
         final String[] expected = {
             "2: " + getCheckMessage(MSG_HEADER_MISMATCH,
-                "// Second line matches", headerFile.getPath()),
+                "// Second line matches", headerPath),
         };
-        verify(checkConfig, testFile.getPath(), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderMismatchLineConditionConfig.java"),
+                getPath("InputRegexpHeaderMismatchLineCondition.txt"),
+                expected);
     }
 
     @Test

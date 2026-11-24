@@ -1,0 +1,4 @@
+// First line matches
+// This line doesn't match the header pattern
+// Third line matches
+// violation 2 lines above 'Header mismatch'
