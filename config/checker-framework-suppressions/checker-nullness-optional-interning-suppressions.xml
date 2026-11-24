@@ -940,17 +940,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter byteStream of InputSource constructor.</message>
-    <lineContent>inputSource = new InputSource(dtdIs);</lineContent>
-    <details>
-      found   : @Initialized @Nullable InputStream
-      required: @Initialized @NonNull InputStream
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter handler of XmlLoader.createXmlReader.</message>
     <lineContent>parser = createXmlReader(this);</lineContent>
     <details>
@@ -970,12 +959,12 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for publicId.</message>
-    <lineContent>public InputSource resolveEntity(String publicId, String systemId) {</lineContent>
+    <lineContent>public InputSource resolveEntity(String publicId, String systemId) throws SAXException {</lineContent>
     <details>
       found   : @Initialized @NonNull String
       required: @Initialized @Nullable String
       Consequence: method in @Initialized @NonNull XmlLoader
-      @Initialized @NonNull InputSource resolveEntity(@Initialized @NonNull XmlLoader this, @Initialized @NonNull String p0, @Initialized @NonNull String p1)
+      @Initialized @NonNull InputSource resolveEntity(@Initialized @NonNull XmlLoader this, @Initialized @NonNull String p0, @Initialized @NonNull String p1) throws @Initialized @NonNull SAXException
       cannot override method in @Initialized @NonNull EntityResolver
       @Initialized @Nullable InputSource resolveEntity(@Initialized @NonNull EntityResolver this, @Initialized @Nullable String p0, @Initialized @NonNull String p1) throws @Initialized @NonNull SAXException@Initialized @NonNull IOException
     </details>
