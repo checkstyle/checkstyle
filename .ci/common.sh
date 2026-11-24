@@ -107,9 +107,9 @@ function should_run_job {
 
     if [[ $SKIP_JOB_BY_FILES == 'false' && $SKIP_JOB_BY_COMMIT == 'false' ]]; then
          echo "CI should be run."
-         RUN_JOB=1
+         export RUN_JOB=1
     else
          echo "CI should not run.";
-         RUN_JOB=0
+         export RUN_JOB=0
     fi
 }
