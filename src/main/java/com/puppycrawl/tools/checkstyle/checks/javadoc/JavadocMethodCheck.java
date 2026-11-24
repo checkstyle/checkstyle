@@ -526,7 +526,8 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
         DetailAST child = params.getFirstChild();
         while (child != null) {
             final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
-            if (ident != null) {
+            // Unnamed parameters have no name to document, so they need no @param tag.
+            if (ident != null && !"_".equals(ident.getText())) {
                 returnValue.add(ident);
             }
             child = child.getNextSibling();
