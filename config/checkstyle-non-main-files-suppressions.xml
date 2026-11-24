@@ -103,6 +103,9 @@
          files="src/it/resources/.*/ruleimportstatements/.*\.java"/>
   <suppress id="lineLength"
          files="src/test/resources/.*/checks/whitespace/whitespaceafter/example1/package-info\.java"/>
+  <!-- the inline config start delimiter of XML Inputs has no space after comment start -->
+  <suppress id="commentStartSpaceXml"
+         files="src/test/resources/.*/suppresswithplaintextcommentfilter/InputSuppressWithPlainTextCommentFilter\.xml"/>
   <!-- we can not change expected as it will require change of main class logic -->
   <suppress id="lineLength"
          files="src/test/resources/.*/.*ExpectedXMLLogger.*\.xml"/>
