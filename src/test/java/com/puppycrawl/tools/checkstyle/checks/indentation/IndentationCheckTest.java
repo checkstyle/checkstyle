@@ -3103,6 +3103,29 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInterfaceMethodWithArrayReturnType() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_ERROR, "method def modifier", 0, 4),
+            "17:1: " + getCheckMessage(MSG_ERROR, "method1", 0, 4),
+            "18:1: " + getCheckMessage(MSG_ERROR, "method def modifier", 0, 4),
+            "19:1: " + getCheckMessage(MSG_ERROR, "method2", 0, 4),
+            "20:1: " + getCheckMessage(MSG_ERROR, "method def modifier", 0, 4),
+            "21:1: " + getCheckMessage(MSG_ERROR, "method3", 0, 4),
+        };
+        verifyWarns(checkConfig,
+                getPath("InputIndentationInterfaceMethodArrayReturnType.java"), expected);
+    }
+
+    @Test
     public void testAnonymousClassInMethodWithCurlyOnNewLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
