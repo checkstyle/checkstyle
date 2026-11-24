@@ -298,6 +298,14 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         return "com/puppycrawl/tools/checkstyle/internal/allchecks";
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParser because this test runs every Checkstyle
+     * module, one after another, with its default configuration on the same Input file.
+     * An inline config holds a single configuration for its Input, so it can't describe
+     * a different module for each run.
+     *
+     * @throws Exception if an error occurs
+     */
     @Test
     public void testAllModulesWithDefaultConfiguration() throws Exception {
         final String inputFilePath = getPath("InputAllChecksDefaultConfig.java");
