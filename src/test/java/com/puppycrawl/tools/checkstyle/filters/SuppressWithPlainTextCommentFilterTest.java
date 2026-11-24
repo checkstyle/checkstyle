@@ -201,31 +201,21 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
     @Test
     public void testInvalidCheckFormat() {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        filterCfg.addProperty("checkFormat", "e[l");
-        filterCfg.addProperty("onCommentFormat", "// cs-on");
-        filterCfg.addProperty("offCommentFormat", "// cs-off");
-
-        final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
-        checkCfg.addProperty("eachLine", "true");
-
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
 
         final String[] violationMessages = {
-            "5:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_FILE_CONTAINS_TAB),
-            "8:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "10:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "20:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "24:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "27:30: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "30:13: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         final CheckstyleException exc = getExpectedThrowable(
                 CheckstyleException.class,
                 () -> {
-                    verifySuppressed(
-                        "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
-                        removeSuppressed(violationMessages, suppressed),
-                        filterCfg, checkCfg
-                    );
+                    verifyFilterWithInlineConfigParser(
+                        getPath("InputSuppressWithPlainTextCommentFilterInvalidCheckFormat.java"),
+                        violationMessages, removeSuppressed(violationMessages, suppressed));
                 });
         final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
         assertWithMessage("Invalid exception message")
