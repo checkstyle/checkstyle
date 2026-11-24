@@ -38,7 +38,7 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     private String getHtmlTagsPath(String filename) throws IOException {
-        return getPath("htmltags" + File.separator + filename);
+        return getPath("html" + File.separator + filename);
     }
 
     private String getBlockTagsPath(String filename) throws IOException {
