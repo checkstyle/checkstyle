@@ -4597,37 +4597,28 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAnnotationBeforeClassOpenJdkCase() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
-        checkConfig.addProperty("basicOffset", "4");
-        checkConfig.addProperty("braceAdjustment", "0");
-        checkConfig.addProperty("caseIndent", "4");
-        checkConfig.addProperty("lineWrappingIndentation", "4");
-        checkConfig.addProperty("throwsIndent", "4");
-        checkConfig.addProperty("forceStrictCondition", "false");
-        checkConfig.addProperty("tabWidth", "4");
-        checkConfig.addProperty("arrayInitIndent", "2");
         final String fileName = getPath("InputIndentationAnnotBeforeClassOpenJdkCase.java");
         final String[] expected = {
-            "12:4: " + getCheckMessage(MSG_ERROR, "class def modifier", 3, 4),
-            "13:4: " + getCheckMessage(MSG_ERROR, "class def modifier", 3, 4),
-            "15:9: " + getCheckMessage(MSG_ERROR, "class def modifier", 8, 4),
-            "16:9: " + getCheckMessage(MSG_ERROR, "class def modifier", 8, 4),
-            "18:3: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 4),
-            "19:3: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 4),
-            "21:7: " + getCheckMessage(MSG_ERROR, "class def modifier", 6, 4),
-            "22:7: " + getCheckMessage(MSG_ERROR, "class def modifier", 6, 4),
-            "24:4: " + getCheckMessage(MSG_ERROR, "class def modifier", 3, 4),
-            "26:4: " + getCheckMessage(MSG_ERROR, "class def modifier", 3, 4),
-            "28:7: " + getCheckMessage(MSG_ERROR, "class def modifier", 6, 4),
-            "30:7: " + getCheckMessage(MSG_ERROR, "class def modifier", 6, 4),
-            "32:3: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 4),
-            "33:3: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 4),
-            "35:4: " + getCheckMessage(MSG_ERROR, "enum def modifier", 3, 4),
-            "36:4: " + getCheckMessage(MSG_ERROR, "enum def modifier", 3, 4),
-            "38:4: " + getCheckMessage(MSG_ERROR, "interface def modifier", 3, 4),
-            "39:4: " + getCheckMessage(MSG_ERROR, "interface def modifier", 3, 4),
+            "18:4: " + getCheckMessage(MSG_ERROR, "class def modifier", 3, 4),
+            "19:4: " + getCheckMessage(MSG_ERROR, "class def modifier", 3, 4),
+            "23:9: " + getCheckMessage(MSG_ERROR, "class def modifier", 8, 4),
+            "24:9: " + getCheckMessage(MSG_ERROR, "class def modifier", 8, 4),
+            "28:3: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 4),
+            "29:3: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 4),
+            "33:7: " + getCheckMessage(MSG_ERROR, "class def modifier", 6, 4),
+            "34:7: " + getCheckMessage(MSG_ERROR, "class def modifier", 6, 4),
+            "38:4: " + getCheckMessage(MSG_ERROR, "class def modifier", 3, 4),
+            "40:4: " + getCheckMessage(MSG_ERROR, "class def modifier", 3, 4),
+            "44:7: " + getCheckMessage(MSG_ERROR, "class def modifier", 6, 4),
+            "46:7: " + getCheckMessage(MSG_ERROR, "class def modifier", 6, 4),
+            "50:3: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 4),
+            "51:3: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 4),
+            "55:4: " + getCheckMessage(MSG_ERROR, "enum def modifier", 3, 4),
+            "56:4: " + getCheckMessage(MSG_ERROR, "enum def modifier", 3, 4),
+            "60:4: " + getCheckMessage(MSG_ERROR, "interface def modifier", 3, 4),
+            "61:4: " + getCheckMessage(MSG_ERROR, "interface def modifier", 3, 4),
         };
-        verify(checkConfig, fileName, expected);
+        verifyWithInlineConfigParser(fileName, expected);
     }
 
     @Test
