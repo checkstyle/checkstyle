@@ -108,7 +108,12 @@
                | //ClassDeclaration[@SimpleName='ImmutabilityTest']
                     //FieldDeclaration//VariableDeclarator[@Name='CHECKSTYLE_CHECKS']
                | //ClassDeclaration[@SimpleName='ImmutabilityTest']
-                    //MethodDeclaration[@Name='testUtilClassesImmutability']"/>
+                    //MethodDeclaration[@Name='testUtilClassesImmutability']
+               | //ClassDeclaration[@SimpleName='ArchUnitVerifyMethodTest']
+                    //MethodDeclaration[@Name='testTestMethodsShouldUseVerifyMethod'
+                        or @Name='useVerifyMethodOrHaveJavadoc'
+                        or @Name='getFullNamesOfMethodsThatUseVerifyMethod'
+                        or @Name='TestMethodJavadocIndex']"/>
     </properties>
   </rule>
 
