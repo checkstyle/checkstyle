@@ -4,7 +4,7 @@ set -e
 
 if [[ -z $1 ]]; then
   echo "path to google-java-format-x.y.z-all-deps.jar is not set"
-  echo "Usage: $BASH_SOURCE <path to jar>"
+  echo "Usage: ${BASH_SOURCE[0]} <path to jar>"
   exit 1
 fi
 
@@ -31,7 +31,7 @@ is_suppressed() {
 
 if [[ ! -f "$JAR_PATH" || -z "$ARG" ]]; then
   echo "Error: jar path does not exist or mode is not set"
-  echo "Usage: $BASH_SOURCE <path to jar> <java21|java25>"
+  echo "Usage: ${BASH_SOURCE[0]} <path to jar> <java21|java25>"
   exit 1
 fi
 

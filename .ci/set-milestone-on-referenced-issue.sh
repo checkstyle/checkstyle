@@ -6,7 +6,7 @@ source ./.ci/util.sh
 
 if [[ -z $1 ]]; then
   echo "[ERROR] Commits array is not set."
-  echo "Usage: $BASH_SOURCE <commits array>"
+  echo "Usage: ${BASH_SOURCE[0]} <commits array>"
   exit 1
 fi
 
