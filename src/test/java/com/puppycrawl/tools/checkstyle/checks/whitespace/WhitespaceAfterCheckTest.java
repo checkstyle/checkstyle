@@ -475,6 +475,22 @@ public class WhitespaceAfterCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnicodeAnnotations() throws Exception {
+        final String accentedName = Character.toString(0xC9);
+        final String scriptName = Character.toString(0x1D49C);
+        final String[] expected = {
+            "15:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "Ascii"),
+            "17:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, accentedName),
+            "19:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, scriptName),
+            "21:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, scriptName.repeat(2)),
+            "24:52: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, scriptName.repeat(2)),
+            "29:38: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, scriptName),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputWhitespaceAfterUnicodeAnnotations.java"), expected);
+    }
+
+    @Test
     public void testWhitespaceAfterAnnotationInPackageFile() throws Exception {
         final String[] expected = {
             "9:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
