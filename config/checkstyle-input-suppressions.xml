@@ -98,10 +98,6 @@
             files="[\\/]checks[\\/]whitespace[\\/]emptylinewrappinginblock[\\/]InputEmptyLineWrappingInBlockArrayInit\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule462horizontalwhitespace[\\/]InputParenPad\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule4853methodsandconstructorsannotations[\\/]InputMethodsAndConstructorsAnnotations\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule4853methodsandconstructorsannotations[\\/]InputMethodsAndConstructorsAnnotations\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]javadoc[\\/]blockcommentendposition[\\/]InputXpathBlockCommentEndPositionOne\.java"/>
 
