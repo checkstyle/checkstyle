@@ -67,10 +67,10 @@ public class ScopeTest {
     @Test
     public void testMixedCaseSpaces() {
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance("NothinG "))
+            .that(Scope.getInstance("nOtHiNg "))
             .isEqualTo(Scope.NOTHING);
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance(" PuBlic"))
+            .that(Scope.getInstance(" pUbLiC"))
             .isEqualTo(Scope.PUBLIC);
         assertWithMessage("Invalid scope")
             .that(Scope.getInstance(" ProteCted"))
@@ -79,7 +79,7 @@ public class ScopeTest {
             .that(Scope.getInstance("    PackAge "))
             .isEqualTo(Scope.PACKAGE);
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance("privaTe   "))
+            .that(Scope.getInstance("pRiVaTe   "))
             .isEqualTo(Scope.PRIVATE);
         assertWithMessage("Invalid scope")
             .that(Scope.getInstance("AnonInner"))
@@ -90,10 +90,10 @@ public class ScopeTest {
     @Test
     public void testMixedCaseSpacesWithDifferentLocale() {
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance("NothinG "))
+            .that(Scope.getInstance("nOtHiNg "))
             .isEqualTo(Scope.NOTHING);
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance(" PuBlic"))
+            .that(Scope.getInstance(" pUbLiC"))
             .isEqualTo(Scope.PUBLIC);
         assertWithMessage("Invalid scope")
             .that(Scope.getInstance(" ProteCted"))
@@ -102,7 +102,7 @@ public class ScopeTest {
             .that(Scope.getInstance("    PackAge "))
             .isEqualTo(Scope.PACKAGE);
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance("privaTe   "))
+            .that(Scope.getInstance("pRiVaTe   "))
             .isEqualTo(Scope.PRIVATE);
         assertWithMessage("Invalid scope")
             .that(Scope.getInstance("AnonInner"))
