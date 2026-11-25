@@ -305,9 +305,10 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         };
 
         verifyFilterWithInlineConfigParser(
-                getPath("InputSuppressWithNearbyTextFilterNearbyTextPattern"
-                        + "CompactVariableCheckPattern.java"),
-                violationMessages, removeSuppressed(violationMessages, suppressedMessages)
+            getPath(
+                "InputSuppressWithNearbyTextFilterNearbyTextPatternCompactVariableCheckPattern"
+                        + ".java"),
+            violationMessages, removeSuppressed(violationMessages, suppressedMessages)
         );
     }
 
