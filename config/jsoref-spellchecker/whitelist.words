@@ -550,7 +550,6 @@ Gtk
 gui
 guieffect
 gwt
-gx
 gz
 hadoop
 hamcrest
@@ -1102,7 +1101,6 @@ pinentry
 pipefail
 PIPESTATUS
 pitest
-pkx
 PLHM
 plugin
 Plychee
