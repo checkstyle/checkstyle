@@ -49,7 +49,6 @@ InputSuppressionXpathFilter1
 InputSuppressionXpathFilter2
 InputSuppressionXpathFilter3
 InputSuppressionXpathFilter4
-InputSuppressionXpathFilterNoStackoverflowError
 
 # Auxiliary / special test inputs
 InputMissingJavadocPackageNotPackageInfo-package-info
