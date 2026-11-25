@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  * @see "https://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags"
  */
 public class InputAbstractJavadocNonTightHtmlTagsOne {
-    /** <p> <p> paraception </p> */ // violation 'Unclosed HTML tag found: p'
+    /** <p> <p> description </p> */ // violation 'Unclosed HTML tag found: p'
     private int field1;
 
     // violation below 'Unclosed HTML tag found: li'
