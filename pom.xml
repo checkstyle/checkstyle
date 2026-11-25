@@ -2077,6 +2077,7 @@
                 <exclude>markdownlint.rb</exclude>
                 <exclude>openrewrite-recipes-checkstyle.properties</exclude>
                 <exclude>org.eclipse.jdt.core.prefs</exclude>
+                <exclude>pitest-suppressions/**</exclude>
                 <exclude>search-index-schema.json</exclude>
                 <exclude>projects-to-test/**</exclude>
                 <exclude>qodana.yml</exclude>
@@ -2096,6 +2097,14 @@
                 <include>**/*.xml</include>
               </includes>
               <systemId>config/checker-framework-suppressions.xsd</systemId>
+            </validationSet>
+            <validationSet>
+              <validating>true</validating>
+              <dir>config/pitest-suppressions</dir>
+              <includes>
+                <include>**/*.xml</include>
+              </includes>
+              <systemId>config/pitest-suppressions.xsd</systemId>
             </validationSet>
             <validationSet>
               <validating>true</validating>
