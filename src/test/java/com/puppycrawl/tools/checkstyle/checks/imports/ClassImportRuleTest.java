@@ -62,7 +62,7 @@ public class ClassImportRuleTest {
 
     @Test
     public void testClassImportRuleRegexp() {
-        final ClassImportRule rule = new ClassImportRule(true, false, "pk[gx]\\.a", true);
+        final ClassImportRule rule = new ClassImportRule(true, false, "pk[gG]\\.a", true);
         assertWithMessage("Class import rule should not be null")
             .that(rule)
             .isNotNull();
@@ -70,7 +70,7 @@ public class ClassImportRuleTest {
         assertAccess(rule, "p", AccessResult.UNKNOWN);
         assertAccess(rule, "pkgExtra", AccessResult.UNKNOWN);
         assertAccess(rule, "pkg.a", AccessResult.ALLOWED);
-        assertAccess(rule, "pkx.a", AccessResult.ALLOWED);
+        assertAccess(rule, "pkG.a", AccessResult.ALLOWED);
         assertAccess(rule, "pkg.a.b", AccessResult.UNKNOWN);
         assertAccess(rule, "pkg", AccessResult.UNKNOWN);
     }
