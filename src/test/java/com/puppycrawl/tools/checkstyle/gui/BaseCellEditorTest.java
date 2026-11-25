@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.gui;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import java.util.EventObject;
+
 import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
 
@@ -79,6 +81,92 @@ public class BaseCellEditorTest {
         assertWithMessage("Editor listener should be canceled")
                 .that(cellEditorListenerCanceled[0])
                 .isTrue();
+
+    }
+
+    @Test
+    public void testIsCellEditable() {
+        final BaseCellEditor cellEditor = new BaseCellEditor();
+
+        assertWithMessage("Cell should be editable")
+                .that(cellEditor.isCellEditable(new EventObject(this)))
+                .isTrue();
+    }
+
+    @Test
+    public void testShouldSelectCell() {
+        final BaseCellEditor cellEditor = new BaseCellEditor();
+
+        assertWithMessage("Cell should not be selected")
+                .that(cellEditor.shouldSelectCell(new EventObject(this)))
+                .isFalse();
+    }
+
+    @Test
+    public void testCancelCellEditingDoesNotNotifyListeners() {
+        final BaseCellEditor cellEditor = new BaseCellEditor();
+        final EditingEventCounter listener = new EditingEventCounter();
+        cellEditor.addCellEditorListener(listener);
+
+        cellEditor.cancelCellEditing();
+
+        assertWithMessage("Cancelling should not notify listeners as the tree is read-only")
+                .that(listener.getCanceledCount())
+                .isEqualTo(0);
+    }
+
+    @Test
+    public void testRemovedCellEditorListenerIsNotNotified() {
+        final BaseCellEditor cellEditor = new BaseCellEditor();
+        final EditingEventCounter removedListener = new EditingEventCounter();
+        final EditingEventCounter remainingListener = new EditingEventCounter();
+        cellEditor.addCellEditorListener(removedListener);
+        cellEditor.addCellEditorListener(remainingListener);
+        cellEditor.removeCellEditorListener(removedListener);
+
+        cellEditor.fireEditingStopped();
+        cellEditor.fireEditingCanceled();
+
+        assertWithMessage("Removed listener should not be notified about stopping")
+                .that(removedListener.getStoppedCount())
+                .isEqualTo(0);
+        assertWithMessage("Removed listener should not be notified about cancelling")
+                .that(removedListener.getCanceledCount())
+                .isEqualTo(0);
+        assertWithMessage("Remaining listener should be notified about stopping")
+                .that(remainingListener.getStoppedCount())
+                .isEqualTo(1);
+        assertWithMessage("Remaining listener should be notified about cancelling")
+                .that(remainingListener.getCanceledCount())
+                .isEqualTo(1);
+    }
+
+    /**
+     * Cell editor listener that counts editing events.
+     */
+    private static final class EditingEventCounter implements CellEditorListener {
+
+        private int stoppedCount;
+
+        private int canceledCount;
+
+        @Override
+        public void editingStopped(ChangeEvent event) {
+            stoppedCount++;
+        }
+
+        @Override
+        public void editingCanceled(ChangeEvent event) {
+            canceledCount++;
+        }
+
+        private int getStoppedCount() {
+            return stoppedCount;
+        }
+
+        private int getCanceledCount() {
+            return canceledCount;
+        }
 
     }
 
