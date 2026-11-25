@@ -77,7 +77,7 @@ public class JavadocPackageCheckTest extends AbstractModuleTestSupport {
             "1: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
         };
         verifyWithInlineConfigParser(
-            getPath("bothfiles" + File.separator + "InputJavadocPackageBothIgnored.java"),
+            getPath("both" + File.separator + "InputJavadocPackageBothIgnored.java"),
             expected);
     }
 
@@ -96,7 +96,7 @@ public class JavadocPackageCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
             getPath("packagehtml" + File.separator + "InputJavadocPackageHtmlIgnored2.java"),
-            getPath("noparentfile" + File.separator + "package-info.java"),
+            getPath("standalone" + File.separator + "package-info.java"),
             expected);
     }
 
@@ -162,9 +162,9 @@ public class JavadocPackageCheckTest extends AbstractModuleTestSupport {
         final List<String> expectedFromSibling = List.of(
                 "1: " + getCheckMessage(MSG_PACKAGE_INFO));
         verifyWithInlineConfigParser(
-                getNonCompilablePath("module-info/withfile/module-info.java"),
+                getNonCompilablePath("module-info/sibling/module-info.java"),
                 getNonCompilablePath(
-                        "module-info/withfile/InputJavadocPackageModuleInfoWithFile.java"),
+                        "module-info/sibling/InputJavadocPackageModuleInfoWithFile.java"),
                 expectedFromModuleInfo,
                 expectedFromSibling);
     }
