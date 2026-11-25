@@ -167,7 +167,7 @@
         <subsection name="Use Cases" id="SuppressWithNearbyCommentFilter_Use_Cases">
         <p id="UseCase1-config">
           To configure a filter so that
-          <code>CHECKSTYLE IGNORE <i>check</i> FOR NEXT<i>var</i> LINES</code>
+          <code>CHECKSTYLE IGNORE <i>check</i> FOR NEXT <i>var</i> LINES</code>
           avoids triggering any audits for the given check for
           the current line and the next <i>var</i> lines (for a total of <i>var</i>+1 lines):
         </p>

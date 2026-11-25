@@ -34,7 +34,7 @@
             <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#SuppressWithNearbyCommentFilter_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
-              <li><a href="#UseCase1-config" class="toc-sublink">A filter so that <code>CHECKSTYLE IGNORE check FOR NEXTvar LINES</code> avoids triggering any audits for the given check for the current line and the next var lines (for a total of var+1 lines)</a></li>
+              <li><a href="#UseCase1-config" class="toc-sublink">A filter so that <code>CHECKSTYLE IGNORE check FOR NEXT var LINES</code> avoids triggering any audits for the given check for the current line and the next var lines (for a total of var+1 lines)</a></li>
               <li><a href="#UseCase2-config" class="toc-sublink">A filter to avoid any audits on code like</a></li>
               <li><a href="#UseCase3-config" class="toc-sublink">A filter to allow suppress one or more Checks (separated by "|") and demand comment no less than 14 symbols</a></li>
               <li><a href="#UseCase4-config" class="toc-sublink">Example of Checkstyle checks and SuppressWithNearbyCommentFilter configuration (idFormat which is set to '$1' points that ID of the checks is in the first group of commentFormat regular expressions)</a></li>
@@ -411,7 +411,7 @@ public class Example8 {
         <subsection name="Use Cases" id="SuppressWithNearbyCommentFilter_Use_Cases">
         <p id="UseCase1-config">
           To configure a filter so that
-          <code>CHECKSTYLE IGNORE <i>check</i> FOR NEXT<i>var</i> LINES</code>
+          <code>CHECKSTYLE IGNORE <i>check</i> FOR NEXT <i>var</i> LINES</code>
           avoids triggering any audits for the given check for
           the current line and the next <i>var</i> lines (for a total of <i>var</i>+1 lines):
         </p>
