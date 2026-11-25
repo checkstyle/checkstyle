@@ -13,7 +13,6 @@ disable=SC2206 # (warning): Quote to prevent word splitting/globbing.
 disable=SC2143 # (style): Use grep -q instead of comparing output with [ -n .. ].
 disable=SC2004 # (style): $/${} is unnecessary on arithmetic variables.
 disable=SC2087 # (warning): Quote 'EOF' to make here document expansions happen on the server-side.
-disable=SC2102 # (info): Ranges can only match single chars (mentioned due to duplicates).
 disable=SC2242 # (error): Can only exit with status 0-255.
 disable=SC2115 # (warning): Use "${var:?}" to ensure this never expands to /* .
 disable=SC2128 # (warning): Expanding an array without an index only gives the first element.
