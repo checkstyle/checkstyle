@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 public class InputAbstractJavadocNonTightHtmlTags2 {
     // violation below 'Unclosed HTML tag found: p'
-    /** <p> <p> paraception </p>  */
+    /** <p> <p> description </p>  */
     private int field1;
 
     // violation 2 lines below 'Javadoc comment at column 68 has parse error.'

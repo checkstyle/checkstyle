@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  * @see "https://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags"
  */
 public class InputAbstractJavadocNonTightHtmlTagsNoViolationTwo {
-    /** <p> <p> paraception </p> </p> */
+    /** <p> <p> description </p> </p> */
      private int field4;
 
     /**

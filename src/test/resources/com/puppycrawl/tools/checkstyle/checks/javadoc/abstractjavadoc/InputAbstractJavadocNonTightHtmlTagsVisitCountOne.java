@@ -17,7 +17,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  * @see "https://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags"
  */
 public class InputAbstractJavadocNonTightHtmlTagsVisitCountOne {
-    /** <p> <p> paraception </p> </p> */
+    /** <p> <p> description </p> </p> */
     private int field1;
 
     /**<li> paraTags should be opened list isn't nested in parse tree </li>*/
