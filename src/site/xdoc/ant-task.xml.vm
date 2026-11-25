@@ -458,7 +458,7 @@
   &lt;!-- use your own server and email addresses below. See Ant documentation for details --&gt;
 
   &lt;mail from=&quot;qa@some.domain&quot;
-        tolist=&quot;someone@some.domain,someoneelse@some.domain&quot;
+        tolist=&quot;someone@some.domain,someone.else@some.domain&quot;
         mailhost=&quot;mailbox.some.domain&quot;
         subject=&quot;Checkstyle violation(s) in project ${ant.project.name}&quot;
         files=&quot;checkstyle_report.html&quot;/&gt;
