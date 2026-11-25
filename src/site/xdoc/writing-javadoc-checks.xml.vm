@@ -734,7 +734,7 @@ JAVADOC_CONTENT -> JAVADOC_CONTENT [0:0]
  public class Test {
      /**
       <p><p>
-      paraception. Will result in a violation from the <tt>JavadocParagraph</tt> check due to
+      Nested paragraphs. Will result in a violation from the <tt>JavadocParagraph</tt> check due to
       redundant tags.
       </p></p>
       */
