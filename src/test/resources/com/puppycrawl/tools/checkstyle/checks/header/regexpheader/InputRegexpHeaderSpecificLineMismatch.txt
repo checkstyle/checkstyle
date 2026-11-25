@@ -1,0 +1,6 @@
+// First line
+// Second line
+This line doesn't match the pattern
+// Fourth line
+// Fifth line
+// violation 3 lines above 'Header mismatch'
