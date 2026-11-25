@@ -20,7 +20,7 @@ direction TB
         +getColumn() : int
         +getSeverityLevel() : SeverityLevel
         +getSourceName() : String
-        +getLocalizedMessage() : LocalizedMessage
+        +getViolation() : Violation
     }
 
     AuditListener <|-- DefaultLogger
