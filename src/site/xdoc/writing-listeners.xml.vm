@@ -140,13 +140,13 @@ public class VerboseListener
     mCloseOut = true;
   }
 
-  public void auditStarted(AuditEvent aEvt)
+  public void auditStarted(AuditEvent aEvent)
   {
     mTotalErrors = 0;
     mWriter.println("Audit started.");
   }
 
-  public void auditFinished(AuditEvent aEvt)
+  public void auditFinished(AuditEvent aEvent)
   {
     mWriter.println("Audit finished. Total errors: " + mTotalErrors);
     mWriter.flush();
@@ -155,45 +155,45 @@ public class VerboseListener
     }
   }
 
-  public void fileStarted(AuditEvent aEvt)
+  public void fileStarted(AuditEvent aEvent)
   {
     mErrors = 0;
     mWriter.println(
-        "Started checking file '" + aEvt.getFileName() + "'.");
+        "Started checking file '" + aEvent.getFileName() + "'.");
   }
 
-  public void fileFinished(AuditEvent aEvt)
+  public void fileFinished(AuditEvent aEvent)
   {
-    mWriter.println("Finished checking file '" + aEvt.getFileName()
+    mWriter.println("Finished checking file '" + aEvent.getFileName()
         + "'. Errors: " + mErrors);
   }
 
-  public void addError(AuditEvent aEvt)
+  public void addError(AuditEvent aEvent)
   {
-    printEvent(aEvt);
-    if (SeverityLevel.ERROR.equals(aEvt.getSeverityLevel())) {
+    printEvent(aEvent);
+    if (SeverityLevel.ERROR.equals(aEvent.getSeverityLevel())) {
       mErrors++;
       mTotalErrors++;
     }
   }
 
-  public void addException(AuditEvent aEvt, Throwable aThrowable)
+  public void addException(AuditEvent aEvent, Throwable aThrowable)
   {
-    printEvent(aEvt);
+    printEvent(aEvent);
     aThrowable.printStackTrace(System.out);
     mErrors++;
     mTotalErrors++;
   }
 
-  private void printEvent(AuditEvent aEvt)
+  private void printEvent(AuditEvent aEvent)
   {
     mWriter.println("Logging error -"
-        + " file: '" + aEvt.getFileName() + "'"
-        + " line: " + aEvt.getLine()
-        + " column: " + aEvt.getColumn()
-        + " severity: " + aEvt.getSeverityLevel()
-        + " message: " + aEvt.getMessage()
-        + " source: " + aEvt.getSourceName());
+        + " file: '" + aEvent.getFileName() + "'"
+        + " line: " + aEvent.getLine()
+        + " column: " + aEvent.getColumn()
+        + " severity: " + aEvent.getSeverityLevel()
+        + " message: " + aEvent.getMessage()
+        + " source: " + aEvent.getSourceName());
   }
 }
       </code></pre></div>
