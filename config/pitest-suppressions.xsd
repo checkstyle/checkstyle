@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="suppressedMutations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="mutation" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="sourceFile" type="xs:string"/>
+              <xs:element name="mutatedClass" type="xs:string"/>
+              <xs:element name="mutatedMethod" type="xs:string"/>
+              <xs:element name="mutator" type="xs:string"/>
+              <xs:element name="description" type="xs:string"/>
+              <xs:element name="lineContent" type="xs:string"/>
+              <xs:element name="lineNumber" type="xs:integer" minOccurs="0"/>
+            </xs:all>
+            <xs:attribute name="unstable" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="true"/>
+                  <xs:enumeration value="false"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
