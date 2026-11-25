@@ -6,4 +6,4 @@ fileExtensions = (default).java
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.noparentfile;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.standalone;
