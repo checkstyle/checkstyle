@@ -83,7 +83,7 @@
       </p>
 
       <span class="wrapper">
-        <img src="images/AuditListener.png" width="2776" height="3840"
+        <img src="images/AuditListener.png" width="562" height="696"
                alt="AuditListener UML diagram"/>
       </span>
 
@@ -401,3 +401,4 @@ MailLogger.mailhost=localhost
     </section>
   </body>
 </document>
+
