@@ -68,10 +68,10 @@ public class SeverityLevelTest {
     @Test
     public void testMixedCaseSpaces() {
         assertWithMessage("Invalid getInstance result")
-            .that(SeverityLevel.getInstance("IgnoRe "))
+            .that(SeverityLevel.getInstance("iGnOrE "))
             .isEqualTo(SeverityLevel.IGNORE);
         assertWithMessage("Invalid getInstance result")
-            .that(SeverityLevel.getInstance(" iNfo"))
+            .that(SeverityLevel.getInstance(" InFo"))
             .isEqualTo(SeverityLevel.INFO);
         assertWithMessage("Invalid getInstance result")
             .that(SeverityLevel.getInstance(" WarniNg"))
@@ -85,10 +85,10 @@ public class SeverityLevelTest {
     @Test
     public void testMixedCaseSpacesWithDifferentLocales() {
         assertWithMessage("Invalid getInstance result")
-            .that(SeverityLevel.getInstance("IgnoRe "))
+            .that(SeverityLevel.getInstance("iGnOrE "))
             .isEqualTo(SeverityLevel.IGNORE);
         assertWithMessage("Invalid getInstance result")
-            .that(SeverityLevel.getInstance(" iNfo"))
+            .that(SeverityLevel.getInstance(" InFo"))
             .isEqualTo(SeverityLevel.INFO);
         assertWithMessage("Invalid getInstance result")
             .that(SeverityLevel.getInstance(" WarniNg"))
