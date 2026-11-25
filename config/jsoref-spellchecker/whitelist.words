@@ -109,7 +109,6 @@ bestpractices
 bitbucket
 bjrke
 blankspaces
-Blic
 blockandinlinetags
 blockcomment
 blockcommentendposition
@@ -986,7 +985,6 @@ noreply
 noscript
 NOSONAR
 nospace
-Nothin
 NOTNULL
 nowarn
 nowhitespaceafter
@@ -1129,7 +1127,6 @@ prettyprint
 printf
 println
 PRINTSTACKTRACE
-priva
 PRMC
 programpractice
 Proguard
