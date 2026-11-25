@@ -42,10 +42,10 @@ public final class InputVisibilityModifierGenerics {
     public final Optional<Object> obj;
     // violation above 'Variable 'obj' must be private and have accessor methods.'
 
-    public String rqUID;
-    // violation above 'Variable 'rqUID' must be private and have accessor methods.'
-    public Optional<String> rqTime;
-    // violation above 'Variable 'rqTime' must be private and have accessor methods.'
+    public String requestUID;
+    // violation above 'Variable 'requestUID' must be private and have accessor methods.'
+    public Optional<String> requestTime;
+    // violation above 'Variable 'requestTime' must be private and have accessor methods.'
     public ImmutableMap<String, BigDecimal> rates;
     // violation above 'Variable 'rates' must be private and have accessor methods.'
     public ImmutableMap<String, ArrayList<Long>> loans;
