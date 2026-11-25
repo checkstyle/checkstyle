@@ -23,7 +23,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -60,8 +60,7 @@ public class IllegalBlockTagCheck extends AbstractJavadocCheck {
     private Pattern tagTextPattern = MATCH_NOTHING;
 
     /** Specify the name of tag. */
-    @Nullable
-    private String tag;
+    private @Nullable String tag;
 
     /**
      * Creates a new {@code IllegalBlockTagCheck} instance.
@@ -211,8 +210,7 @@ public class IllegalBlockTagCheck extends AbstractJavadocCheck {
      * @param ast the structural node (e.g., CLASS_DEF, METHOD_DEF)
      * @return the Javadoc block comment if found, or null
      */
-    @Nullable
-    private static DetailAST findJavadoc(DetailAST ast) {
+    private static @Nullable DetailAST findJavadoc(DetailAST ast) {
         DetailAST cmt = ast.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
         if (cmt == null) {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);

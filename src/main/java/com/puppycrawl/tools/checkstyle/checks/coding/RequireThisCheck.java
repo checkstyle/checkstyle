@@ -29,7 +29,7 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -603,8 +603,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @param ast IDENT ast to check.
      * @return the class frame where violation is found or null otherwise.
      */
-    @Nullable
-    private AbstractFrame getClassFrameWhereViolationIsFound(DetailAST ast) {
+    private @Nullable AbstractFrame getClassFrameWhereViolationIsFound(DetailAST ast) {
         AbstractFrame frameWhereViolationIsFound = null;
         final AbstractFrame variableDeclarationFrame = findFrame(ast, LookMode.NO_LOOK_FOR_METHOD);
         final FrameType variableDeclarationFrameType = variableDeclarationFrame.getType();

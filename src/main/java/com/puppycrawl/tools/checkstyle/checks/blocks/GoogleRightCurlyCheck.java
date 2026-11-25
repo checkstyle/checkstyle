@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -363,8 +363,7 @@ public class GoogleRightCurlyCheck extends AbstractCheck {
      * @param node ast token
      * @return the next sibling token, or {@code null} if none exists
      */
-    @Nullable
-    private static DetailAST getNextToken(DetailAST node) {
+    private static @Nullable DetailAST getNextToken(DetailAST node) {
         DetailAST current = node;
         DetailAST nextToken = null;
         while (current != null && nextToken == null) {

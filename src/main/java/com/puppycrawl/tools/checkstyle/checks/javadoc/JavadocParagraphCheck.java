@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Set;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -238,8 +238,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @param tag html tag.
      * @return block tag if the paragraph tag is followed by block tag or null if not found.
      */
-    @Nullable
-    private static String findFollowedBlockTagName(DetailNode tag) {
+    private static @Nullable String findFollowedBlockTagName(DetailNode tag) {
         final DetailNode htmlElement = findFirstHtmlElementAfter(tag);
         String blockTagName = null;
 
@@ -256,8 +255,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @param tag html tag.
      * @return first html element after the paragraph tag or null if not found.
      */
-    @Nullable
-    private static DetailNode findFirstHtmlElementAfter(DetailNode tag) {
+    private static @Nullable DetailNode findFirstHtmlElementAfter(DetailNode tag) {
         DetailNode htmlElement = getNextSibling(tag);
 
         while (htmlElement != null
@@ -289,8 +287,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @param htmlElement block-level html tag.
      * @return block-level html element name or null if not found.
      */
-    @Nullable
-    private static String getHtmlElementName(DetailNode htmlElement) {
+    private static @Nullable String getHtmlElementName(DetailNode htmlElement) {
         final DetailNode htmlTagStart = htmlElement.getFirstChild();
         final DetailNode htmlTagName =
                 JavadocUtil.findFirstToken(htmlTagStart, JavadocCommentsTokenTypes.TAG_NAME);

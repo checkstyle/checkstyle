@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Represents a single entry in the client-side search index.

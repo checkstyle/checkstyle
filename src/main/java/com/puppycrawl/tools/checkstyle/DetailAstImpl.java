@@ -22,9 +22,8 @@ package com.puppycrawl.tools.checkstyle;
 import java.util.BitSet;
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import org.antlr.v4.runtime.Token;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -400,9 +399,8 @@ public final class DetailAstImpl implements DetailAST {
         return previousSibling;
     }
 
-    @Nullable
     @Override
-    public DetailAST findFirstToken(int tokenType) {
+    public @Nullable DetailAST findFirstToken(int tokenType) {
         DetailAST returnValue = null;
         for (DetailAST ast = firstChild; ast != null; ast = ast.getNextSibling()) {
             if (ast.getType() == tokenType) {

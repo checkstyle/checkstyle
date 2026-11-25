@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * An interface of Checkstyle's AST nodes for traversing trees generated from the

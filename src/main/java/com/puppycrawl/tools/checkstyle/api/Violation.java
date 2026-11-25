@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Objects;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.LocalizedMessage;
 
@@ -69,8 +69,7 @@ public final class Violation implements Comparable<Violation> {
     private final Class<?> sourceClass;
 
     /** A custom violation overriding the default violation from the bundle. */
-    @Nullable
-    private final String customMessage;
+    private final @Nullable String customMessage;
 
     /**
      * Creates a new {@code Violation} instance. The column number defaults to 0.
@@ -500,8 +499,7 @@ public final class Violation implements Comparable<Violation> {
      *
      * @return the source class name or {@code null}
      */
-    @Nullable
-    private String getSourceClassName() {
+    private @Nullable String getSourceClassName() {
         final String name;
         if (sourceClass == null) {
             name = null;

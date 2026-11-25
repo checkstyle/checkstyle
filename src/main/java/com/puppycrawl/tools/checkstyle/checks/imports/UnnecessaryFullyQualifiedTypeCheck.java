@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -155,8 +155,7 @@ public class UnnecessaryFullyQualifiedTypeCheck extends AbstractCheck {
     private final Set<String> onDemandImportPackages = new HashSet<>();
 
     /** The package the file belongs to, or {@code null} for the default package. */
-    @Nullable
-    private String packageName;
+    private @Nullable String packageName;
 
     /**
      * Creates new {@code UnnecessaryFullyQualifiedTypeCheck} instance.
@@ -421,8 +420,7 @@ public class UnnecessaryFullyQualifiedTypeCheck extends AbstractCheck {
      *     on-demand import, or {@code null} if none of the on-demand imported
      *     packages contain a class of that name
      */
-    @Nullable
-    private String resolveViaOnDemandImport(String simpleName) {
+    private @Nullable String resolveViaOnDemandImport(String simpleName) {
         String resolved = null;
         for (String onDemandPackage : onDemandImportPackages) {
             try {

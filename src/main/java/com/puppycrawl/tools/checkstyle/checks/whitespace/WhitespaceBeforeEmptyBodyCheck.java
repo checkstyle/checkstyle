@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -114,8 +114,7 @@ public class WhitespaceBeforeEmptyBodyCheck extends AbstractCheck {
      * @param ast the AST to get brace token for
      * @return the left curly token, or null if the construct has no-body
      */
-    @Nullable
-    private static DetailAST findOpeningBrace(DetailAST ast) {
+    private static @Nullable DetailAST findOpeningBrace(DetailAST ast) {
         final int astType = ast.getType();
         return switch (astType) {
             case TokenTypes.CLASS_DEF,
