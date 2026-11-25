@@ -2067,6 +2067,7 @@
                 <exclude>archunit-store/**</exclude>
                 <exclude>checker-framework-suppressions/**</exclude>
                 <exclude>codenarc-rules.groovy.txt</exclude>
+                <exclude>error-prone-suppressions/**</exclude>
                 <exclude>google-java-format/**</exclude>
                 <exclude>intellij-idea-inspections.properties</exclude>
                 <exclude>java-regexp.header</exclude>
@@ -2096,6 +2097,14 @@
                 <include>**/*.xml</include>
               </includes>
               <systemId>config/checker-framework-suppressions.xsd</systemId>
+            </validationSet>
+            <validationSet>
+              <validating>true</validating>
+              <dir>config/error-prone-suppressions</dir>
+              <includes>
+                <include>**/*.xml</include>
+              </includes>
+              <systemId>config/error-prone-suppressions.xsd</systemId>
             </validationSet>
             <validationSet>
               <validating>true</validating>
