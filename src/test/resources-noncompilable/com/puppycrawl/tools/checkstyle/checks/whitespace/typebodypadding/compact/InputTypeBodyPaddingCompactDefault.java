@@ -15,6 +15,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, RECORD_DEF, ANNOTATION_DEF
 void main() {
 }
 
-class DefaultConfig { // violation 'Blank line required after the opening brace of type definition.'
+// Skipped with default skipInner = true as a member of the implicit class.
+class DefaultConfig {
     int x;
-} // violation 'Blank line required before the closing brace of type definition.'
+}
