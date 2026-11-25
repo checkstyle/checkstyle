@@ -3,7 +3,6 @@
 
 # Remaining unused inputs from issue #22929
 InputAbbreviationAsWordInNameCheckEnhancedInstanceofAllowXmlLength1
-InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeCommentsInterfaces
 InputHiddenField8Enum
 InputHiddenField8NothingHidden
 InputHiddenField8PropertySetter
