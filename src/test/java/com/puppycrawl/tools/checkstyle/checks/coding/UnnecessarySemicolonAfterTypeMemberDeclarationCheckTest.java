@@ -45,10 +45,10 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
             "17:21: " + getCheckMessage(MSG_SEMI),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("compact/"
-                    + "InputUnnecessarySemicolonAfterTypeMemberDeclarationCompactSourceFile"
-                    + "Default.java"),
-                expected);
+            getNonCompilablePath("compact/"
+                + "InputUnnecessarySemicolonAfterTypeMemberDeclarationCompactSourceFileDefault"
+                + ".java"),
+            expected);
     }
 
     @Test
