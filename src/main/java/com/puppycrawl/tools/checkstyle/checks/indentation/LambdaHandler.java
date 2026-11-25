@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
