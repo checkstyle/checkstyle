@@ -99,10 +99,9 @@ public class NumericalPrefixesInfixesSuffixesCharacterCaseCheckTest
             "31:15: " + getCheckMessage(MSG_SUFFIX),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
-                        "compact/InputNumericalPrefixesInfixesSuffixes"
-                                + "CharacterCaseCompactSourceFile.java"),
-                expected
+            getNonCompilablePath(
+                "compact/InputNumericalPrefixesInfixesSuffixesCharacterCaseCompactSourceFile.java"),
+            expected
         );
     }
 
