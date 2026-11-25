@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -126,8 +126,7 @@ public final class JavadocUtil {
      * @param ast the declaration AST node
      * @return the attached Javadoc block comment, or {@code null} if none is found
      */
-    @Nullable
-    public static DetailAST getAttachedJavadocComment(final DetailAST ast) {
+    public static @Nullable DetailAST getAttachedJavadocComment(final DetailAST ast) {
         DetailAST result = null;
         DetailAST child = ast.getFirstChild();
         while (result == null && child.getType() != TokenTypes.IDENT) {
@@ -147,8 +146,7 @@ public final class JavadocUtil {
      * @param ast the package declaration AST node
      * @return the attached Javadoc block comment, or {@code null} if none is found
      */
-    @Nullable
-    public static DetailAST getAttachedJavadocCommentForPackage(final DetailAST ast) {
+    public static @Nullable DetailAST getAttachedJavadocCommentForPackage(final DetailAST ast) {
         DetailAST result = null;
         final DetailAST prevSibling = ast.getPreviousSibling();
         if (prevSibling != null
@@ -181,8 +179,7 @@ public final class JavadocUtil {
      * @param ast the AST node to search
      * @return the Javadoc block comment, or {@code null} if none is found
      */
-    @Nullable
-    private static DetailAST findJavadocComment(DetailAST ast) {
+    private static @Nullable DetailAST findJavadocComment(DetailAST ast) {
         DetailAST result = null;
         if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN && isJavadocComment(ast)) {
             result = ast;

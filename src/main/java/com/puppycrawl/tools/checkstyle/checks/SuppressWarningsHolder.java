@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -120,8 +120,7 @@ public class SuppressWarningsHolder extends AbstractCheck {
      * @param sourceName the source name of the check (generally the class name)
      * @return the alias of the simple check name for the given check
      */
-    @Nullable
-    private static String getSimpleNameAlias(String sourceName) {
+    private static @Nullable String getSimpleNameAlias(String sourceName) {
         final String checkName = CommonUtil.baseClassName(sourceName);
         final String checkNameSuffix = "Check";
         // check alias for the CheckNameCheck

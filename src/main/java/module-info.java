@@ -48,9 +48,7 @@ open module com.puppycrawl.tools.checkstyle {
     // AbstractNode in the exported xpath package implements Saxon's NodeInfo,
     // so Saxon types are part of Checkstyle's public API and must be readable by consumers.
     requires transitive net.sf.saxon;
-    // Compile-time only annotations, not needed at runtime:
-    // javax.annotation.Nullable (jsr305) and org.jspecify.annotations (via guava).
-    requires static jsr305;
+    // Compile-time only annotations, not needed at runtime.
     requires static org.jspecify;
     // Only needed by the Ant task; the ant dependency is "provided" scope.
     requires static ant;

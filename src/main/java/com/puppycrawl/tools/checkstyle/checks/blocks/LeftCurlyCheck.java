@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 import java.util.Locale;
 import java.util.Optional;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -203,8 +203,7 @@ public class LeftCurlyCheck extends AbstractCheck {
      * @return {@code DetailAST} if the first child is {@code TokenTypes.SLIST},
      *     {@code null} otherwise.
      */
-    @Nullable
-    private static DetailAST getBraceFromSwitchMember(DetailAST ast) {
+    private static @Nullable DetailAST getBraceFromSwitchMember(DetailAST ast) {
         final DetailAST brace;
         final DetailAST parent = ast.getParent();
         if (parent.getType() == TokenTypes.SWITCH_RULE) {
@@ -223,8 +222,7 @@ public class LeftCurlyCheck extends AbstractCheck {
      * @return {@code DetailAST} if the first child is {@code TokenTypes.SLIST},
      *     {@code null} otherwise.
      */
-    @Nullable
-    private static DetailAST getBraceAsFirstChild(DetailAST ast) {
+    private static @Nullable DetailAST getBraceAsFirstChild(DetailAST ast) {
         DetailAST brace = null;
         if (ast != null) {
             final DetailAST candidate = ast.getFirstChild();

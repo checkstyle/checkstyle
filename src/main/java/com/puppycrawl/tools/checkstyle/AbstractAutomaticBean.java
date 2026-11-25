@@ -27,8 +27,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nullable;
-
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.beanutils.ConvertUtilsBean;
@@ -44,6 +42,7 @@ import org.apache.commons.beanutils.converters.FloatConverter;
 import org.apache.commons.beanutils.converters.IntegerConverter;
 import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configurable;
@@ -423,10 +422,9 @@ public abstract class AbstractAutomaticBean
             // no code by default
         }
 
-        @Nullable
         @Override
         @SuppressWarnings("unchecked")
-        public Object convert(Class type, Object value) {
+        public @Nullable Object convert(Class type, Object value) {
             final String url = value.toString();
             URI result = null;
 

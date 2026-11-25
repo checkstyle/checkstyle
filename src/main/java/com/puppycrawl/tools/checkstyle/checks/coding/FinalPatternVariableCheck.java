@@ -24,7 +24,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -244,8 +244,7 @@ public class FinalPatternVariableCheck extends AbstractCheck {
      * @param boundAst AST Branch that traverse cannot extend to.
      * @return next possible branch within traverse trajectory.
      */
-    @Nullable
-    private static DetailAST shiftToNextTraversedBranch(
+    private static @Nullable DetailAST shiftToNextTraversedBranch(
             final DetailAST ast, final DetailAST boundAst) {
         DetailAST newAst = ast;
 
@@ -274,8 +273,7 @@ public class FinalPatternVariableCheck extends AbstractCheck {
      * @param preAssignBranch branch preceding ASSIGN token types.
      * @return type of ASSIGN token.
      */
-    @Nullable
-    private static DetailAST getMatchedAssignToken(
+    private static @Nullable DetailAST getMatchedAssignToken(
             final DetailAST preAssignBranch) {
         DetailAST matchedAssignToken = null;
 
@@ -337,8 +335,7 @@ public class FinalPatternVariableCheck extends AbstractCheck {
      * @return the AST node representing the reassignment scope root,
      *         or {@code null} if none is found
      */
-    @Nullable
-    private static DetailAST findReassignmentScopeRoot(final DetailAST ast) {
+    private static @Nullable DetailAST findReassignmentScopeRoot(final DetailAST ast) {
 
         DetailAST result = null;
 

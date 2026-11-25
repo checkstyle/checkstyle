@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.Set;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -216,8 +216,7 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
      * @return the closest same-line token that follows the bracket, or {@code null}
      *         if no such token exists on that line
      */
-    @Nullable
-    private static DetailAST findNextToken(DetailAST rightBracket) {
+    private static @Nullable DetailAST findNextToken(DetailAST rightBracket) {
         DetailAST candidate = null;
         DetailAST current = rightBracket;
 
@@ -244,8 +243,7 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
      * @param current the current AST node being evaluated
      * @return the new best candidate
      */
-    @Nullable
-    private static DetailAST findBestCandidate(@Nullable DetailAST candidate,
+    private static @Nullable DetailAST findBestCandidate(@Nullable DetailAST candidate,
             DetailAST rightBracket, DetailAST current) {
         DetailAST result = candidate;
         final boolean newCandidate = current.getLineNo() == rightBracket.getLineNo()

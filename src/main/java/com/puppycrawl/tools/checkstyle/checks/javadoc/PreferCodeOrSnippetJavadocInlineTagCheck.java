@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -289,8 +289,7 @@ public class PreferCodeOrSnippetJavadocInlineTagCheck extends AbstractJavadocChe
      * @param htmlElement the HTML_ELEMENT node
      * @return the tag name (e.g., "code", "pre")
      */
-    @Nullable
-    private static String getHtmlTagName(DetailNode htmlElement) {
+    private static @Nullable String getHtmlTagName(DetailNode htmlElement) {
         String result = null;
         final DetailNode htmlTagStart = JavadocUtil.findFirstToken(
             htmlElement, JavadocCommentsTokenTypes.HTML_TAG_START);

@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -285,8 +285,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
      *
      * @return the ENUM_CONSTANT_DEF node if found, null otherwise
      */
-    @Nullable
-    private DetailAST findParentEnumConstantDef() {
+    private @Nullable DetailAST findParentEnumConstantDef() {
         DetailAST result = null;
         DetailAST parent = getMainAst().getParent();
         while (parent != null) {

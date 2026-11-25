@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -43,8 +43,7 @@ public class JavadocThrowsOrderCheck extends AbstractJavadocCheck {
     public static final String MSG_KEY = "javadoc.throws.order";
 
     /** The greatest exception name found so far in the current Javadoc tree. */
-    @Nullable
-    private String previousExceptionName;
+    private @Nullable String previousExceptionName;
 
     /**
      * Creates a new {@code JavadocThrowsOrderCheck} instance.
