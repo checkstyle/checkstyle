@@ -42,8 +42,10 @@ class CommentSuppressor implements MatchSuppressor {
     @Override
     public boolean shouldSuppress(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
-        return currentContents
-                .hasIntersectionWithComment(startLineNo, startColNo, endLineNo, endColNo);
+        // Regex offsets count UTF-16 code units, while comment columns count code points.
+        final int start = currentContents.getLine(startLineNo - 1).codePointCount(0, startColNo);
+        final int end = currentContents.getLine(endLineNo - 1).codePointCount(0, endColNo + 1) - 1;
+        return currentContents.hasIntersectionWithComment(startLineNo, start, endLineNo, end);
     }
 
 }

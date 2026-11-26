@@ -36,6 +36,12 @@ public class InputRegexpSinglelineJavaTrailingComment9 {
         /* int y */int y/**/;
     }
 
+    void unicode() {
+        // violation below 'Line matches the illegal pattern'
+        /*😀*/int y/**/;
+        String value = "😀😀😀😀😀😀😀😀"; /* int y */
+    }
+
     /**
      * comment with trailing space
      */

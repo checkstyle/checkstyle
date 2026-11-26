@@ -157,6 +157,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     public void testIgnoreCommentsInlineMiddle() throws Exception {
         final String[] expected = {
             "36: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "int y"),
+            "41: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "int y"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment9.java"), expected);
