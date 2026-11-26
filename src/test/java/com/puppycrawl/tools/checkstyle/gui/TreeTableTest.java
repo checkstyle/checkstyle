@@ -27,16 +27,23 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import javax.swing.JTree;
 import javax.swing.KeyStroke;
+import javax.swing.UIManager;
+import javax.swing.table.TableCellEditor;
 import javax.swing.tree.TreePath;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractGuiTestSupport;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
 public class TreeTableTest extends AbstractGuiTestSupport {
 
@@ -244,6 +251,146 @@ public class TreeTableTest extends AbstractGuiTestSupport {
         assertWithMessage("Selected cell expected not be editable")
                 .that(treeTable.isCellEditable(1, 0))
                 .isEqualTo(false);
+    }
+
+    @Test
+    public void testUpdateUiUsesTreeColors() {
+        treeTable.updateUI();
+
+        assertWithMessage("Table should use the tree background")
+                .that(treeTable.getBackground())
+                .isEqualTo(UIManager.getColor("Tree.background"));
+        assertWithMessage("Table should use the tree foreground")
+                .that(treeTable.getForeground())
+                .isEqualTo(UIManager.getColor("Tree.foreground"));
+    }
+
+    @Test
+    public void testEditingRowOfTreeColumnIsHidden() {
+        treeTable.setEditingRow(2);
+
+        treeTable.setEditingColumn(0);
+        assertWithMessage("Editing row of the tree column should be hidden")
+                .that(treeTable.getEditingRow())
+                .isEqualTo(-1);
+
+        treeTable.setEditingColumn(1);
+        assertWithMessage("Editing row of other columns should be returned")
+                .that(treeTable.getEditingRow())
+                .isEqualTo(2);
+    }
+
+    @Test
+    public void testSetRowHeightUpdatesTree() {
+        final int newRowHeight = treeTable.getRowHeight() + 3;
+
+        treeTable.setRowHeight(newRowHeight);
+
+        assertWithMessage("Tree row height should follow the table")
+                .that(treeTable.getTree().getRowHeight())
+                .isEqualTo(newRowHeight);
+
+        treeTable.setRowHeight(newRowHeight);
+
+        assertWithMessage("Tree row height should stay the same")
+                .that(treeTable.getTree().getRowHeight())
+                .isEqualTo(newRowHeight);
+    }
+
+    @Test
+    public void testCellEditorReturnsTree() {
+        final TableCellEditor cellEditor = treeTable.getDefaultEditor(ParseTreeTableModel.class);
+
+        assertWithMessage("Cell editor component should be the tree")
+                .that(cellEditor.getTableCellEditorComponent(treeTable, null, false, 0, 0))
+                .isSameInstanceAs(treeTable.getTree());
+    }
+
+    @Test
+    public void testCellEditorIsNeverEditable() {
+        final TableCellEditor cellEditor = treeTable.getDefaultEditor(ParseTreeTableModel.class);
+        final MouseEvent mouseEvent = new MouseEvent(treeTable, MouseEvent.MOUSE_CLICKED,
+                0, 0, 5, 3, 1, false);
+        final ActionEvent actionEvent =
+                new ActionEvent(treeTable, ActionEvent.ACTION_PERFORMED, "edit");
+
+        assertWithMessage("Tree cells should not be editable by mouse events, "
+                        + "which are forwarded to the tree")
+                .that(cellEditor.isCellEditable(mouseEvent))
+                .isFalse();
+        assertWithMessage("Tree cells should not be editable by other events")
+                .that(cellEditor.isCellEditable(actionEvent))
+                .isFalse();
+    }
+
+    @Test
+    public void testFindNodesTwice() throws IOException {
+        final MainFrame mainFrame = new MainFrame();
+        mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
+        final JButton findNodeButton = findComponentByName(mainFrame,
+                "findNodeButton", JButton.class);
+        final JTextArea xpathTextArea = findComponentByName(mainFrame,
+                "xpathTextArea", JTextArea.class);
+        xpathTextArea.setText("//CLASS_DEF[./IDENT[@text='Inner']]");
+        findNodeButton.doClick();
+        final String firstResult = xpathTextArea.getText();
+        xpathTextArea.setText("//CLASS_DEF[./IDENT[@text='Inner']]");
+
+        findNodeButton.doClick();
+
+        assertWithMessage("Finding an already expanded node should give the same result")
+                .that(xpathTextArea.getText())
+                .isEqualTo(firstResult);
+    }
+
+    @Test
+    public void testXpathIsNotGeneratedForJavadocNode() throws Exception {
+        final String fileName = getPath("InputTreeTableJavadoc.java");
+        final MainFrameModel model = new MainFrameModel();
+        model.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
+        model.openFile(new File(fileName));
+        final TreeTable javadocTreeTable = new TreeTable(model.getParseTreeTableModel());
+        javadocTreeTable.setLinePositionList(model.getLinesToPosition());
+        final JTextArea textArea = findComponentByName(new MainFrame(),
+                "xpathTextArea", JTextArea.class);
+        textArea.setText(Files.readString(Path.of(fileName)));
+        javadocTreeTable.setEditor(textArea);
+        javadocTreeTable.setXpathEditor(textArea);
+        final JTree tree = javadocTreeTable.getTree();
+        final TreePath javadocPath = findJavadocNodePath(tree, tree.getPathForRow(0));
+        tree.makeVisible(javadocPath);
+        tree.setSelectionPath(javadocPath);
+
+        javadocTreeTable.getActionForKeyStroke(KeyStroke.getKeyStroke("ENTER"))
+                .actionPerformed(new ActionEvent(javadocTreeTable,
+                        ActionEvent.ACTION_PERFORMED, "expand/collapse"));
+
+        assertWithMessage("XPath should not be generated for javadoc nodes")
+                .that(textArea.getText())
+                .isEqualTo("Xpath is not supported yet for javadoc nodes");
+    }
+
+    /**
+     * Finds the path to the first node that is not a {@link DetailAST}.
+     *
+     * @param tree the tree to search
+     * @param path the path to start from
+     * @return the path to the first javadoc node, or null if there is none
+     */
+    private static TreePath findJavadocNodePath(JTree tree, TreePath path) {
+        TreePath result = null;
+        final Object node = path.getLastPathComponent();
+        if (node instanceof DetailAST) {
+            final int childCount = tree.getModel().getChildCount(node);
+            for (int index = 0; index < childCount && result == null; index++) {
+                result = findJavadocNodePath(tree,
+                        path.pathByAddingChild(tree.getModel().getChild(node, index)));
+            }
+        }
+        else {
+            result = path;
+        }
+        return result;
     }
 
 }
