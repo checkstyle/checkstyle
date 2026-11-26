@@ -95,6 +95,18 @@
           </tr>
           <tr>
             <td>
+              <a href="duplicateelseifcondition.html#DuplicateElseIfCondition">
+                DuplicateElseIfCondition
+              </a>
+            </td>
+            <td>
+              Checks that a condition is not repeated where it can never matter: an <code>else
+              if</code> condition identical to an earlier condition in the same
+              <code>if-else-if</code> chain.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="emptystatement.html#EmptyStatement">
                 EmptyStatement
               </a>
