@@ -2,7 +2,6 @@
 # Remove entries as test coverage is restored in #22929.
 
 # Remaining unused inputs from issue #22929
-InputAbbreviationAsWordInNameCheckEnhancedInstanceofAllowXmlLength1
 InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeCommentsInterfaces
 InputHiddenField8Enum
 InputHiddenField8NothingHidden
