@@ -459,11 +459,11 @@ public class JavadocTagInfoTest {
         final IllegalArgumentException excName =
                 TestUtil.getExpectedThrowable(
                     IllegalArgumentException.class, () -> {
-                        JavadocTagInfo.fromName("myname");
+                        JavadocTagInfo.fromName("unknown");
                     });
         assertWithMessage("Invalid exception message")
             .that(excName.getMessage())
-            .isEqualTo("the name [myname] is not a valid Javadoc tag name");
+            .isEqualTo("the name [unknown] is not a valid Javadoc tag name");
 
         final IllegalArgumentException excTextNull =
                 TestUtil.getExpectedThrowable(
@@ -477,11 +477,11 @@ public class JavadocTagInfoTest {
         final IllegalArgumentException excText =
                 TestUtil.getExpectedThrowable(
                     IllegalArgumentException.class, () -> {
-                        JavadocTagInfo.fromText("myname");
+                        JavadocTagInfo.fromText("unknown");
                     });
         assertWithMessage("Invalid exception message")
             .that(excText.getMessage())
-            .isEqualTo("the text [myname] is not a valid Javadoc tag text");
+            .isEqualTo("the text [unknown] is not a valid Javadoc tag text");
 
         assertWithMessage("Invalid fromText result")
             .that(JavadocTagInfo.fromText("@version"))
