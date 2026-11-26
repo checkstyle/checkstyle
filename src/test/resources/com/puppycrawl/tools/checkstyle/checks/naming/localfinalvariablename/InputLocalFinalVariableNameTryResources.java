@@ -60,7 +60,7 @@ public class InputLocalFinalVariableNameTryResources {
         final String fileName = "Test";
         try (BufferedReader BR = new BufferedReader(new InputStreamReader(
                 new FileInputStream(fileName), StandardCharsets.UTF_8));
-             ZipFile zf = new ZipFile(fileName)) { // violation 'Name 'zf' must match pattern'
+             ZipFile zip = new ZipFile(fileName)) { // violation 'Name 'zip' must match pattern'
         } finally {
 
         }

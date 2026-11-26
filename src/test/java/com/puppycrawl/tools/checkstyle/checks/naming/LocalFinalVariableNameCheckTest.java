@@ -52,7 +52,7 @@ public class LocalFinalVariableNameCheckTest extends AbstractModuleTestSupport {
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {
-            "24:19: " + getCheckMessage(MSG_INVALID_PATTERN, "CDE", pattern),
+            "24:19: " + getCheckMessage(MSG_INVALID_PATTERN, "ONE", pattern),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLocalFinalVariableName.java"), expected);
@@ -100,7 +100,7 @@ public class LocalFinalVariableNameCheckTest extends AbstractModuleTestSupport {
         final String pattern = "[A-Z]+";
 
         final String[] expected = {
-            "21:19: " + getCheckMessage(MSG_INVALID_PATTERN, "cde", pattern),
+            "21:19: " + getCheckMessage(MSG_INVALID_PATTERN, "one", pattern),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLocalFinalVariableName1.java"), expected);
@@ -172,7 +172,7 @@ public class LocalFinalVariableNameCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "32:30: " + getCheckMessage(MSG_INVALID_PATTERN, "br", pattern),
             "43:29: " + getCheckMessage(MSG_INVALID_PATTERN, "br", pattern),
-            "63:22: " + getCheckMessage(MSG_INVALID_PATTERN, "zf", pattern),
+            "63:22: " + getCheckMessage(MSG_INVALID_PATTERN, "zip", pattern),
             "82:30: " + getCheckMessage(MSG_INVALID_PATTERN, "fis8859_1", pattern),
             "86:32: " + getCheckMessage(MSG_INVALID_PATTERN, "reader", pattern),
         };

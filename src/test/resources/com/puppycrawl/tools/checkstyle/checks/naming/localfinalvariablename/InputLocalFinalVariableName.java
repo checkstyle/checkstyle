@@ -20,8 +20,8 @@ final class InputLocalFinalVariableName
         int ABC = 0;
 
         // final decls
-        final int cde = 0;
-        final int CDE = 0; // violation 'Name 'CDE' must match pattern'
+        final int one = 0;
+        final int ONE = 0; // violation 'Name 'ONE' must match pattern'
 
         // decl in for loop init statement
         for (int k = 0; k < 1; k++)
