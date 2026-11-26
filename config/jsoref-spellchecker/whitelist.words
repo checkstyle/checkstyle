@@ -1,6 +1,7 @@
 Aapt
 aarch
 abbreviationaswordinname
+abcdef
 abstractcheck
 abstractclassname
 abstractfileset
@@ -1466,8 +1467,12 @@ ub
 uber
 ubuntu
 ucc
+ud
+udc
+ude
 UElement
 ufeff
+uffff
 ul
 UMD
 UML
@@ -1515,7 +1520,10 @@ usr
 UTests
 UTF
 Uth
+uu
 UUID
+uuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
 UWF
 uxxxx
 validator
@@ -1587,6 +1595,7 @@ xa
 xabc
 xar
 xargs
+xay
 XDadd
 XDcompile
 xdeadbeef

@@ -23,17 +23,24 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck.MSG_JAVADOC_CONTENT_SECOND_LINE;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.antlr.v4.runtime.CharStream;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck;
+import com.puppycrawl.tools.checkstyle.grammar.UnicodeEscapeDecodingCharStream;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class JavaParserTest extends AbstractModuleTestSupport {
@@ -420,6 +427,131 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavaParserHiddenComments4.java"), expected);
+    }
+
+    @Test
+    public void testCreateCharStreamDecodesUnicodeEscapes() throws ReflectiveOperationException {
+        final CharStream stream = TestUtil.invokeStaticMethod(
+                JavaParser.class, "createCharStream", CharStream.class, "int \\u0061 = 1;");
+
+        assertWithMessage("Source with a Unicode escape must use the decoding stream")
+                .that(stream)
+                .isInstanceOf(UnicodeEscapeDecodingCharStream.class);
+    }
+
+    @Test
+    public void testCreateCharStreamPlainWithoutUnicodeEscapes()
+            throws ReflectiveOperationException {
+        final CharStream stream = TestUtil.invokeStaticMethod(
+                JavaParser.class, "createCharStream", CharStream.class, "int a = 1; // \\n");
+
+        assertWithMessage("Source without a Unicode escape must use the plain stream")
+                .that(stream)
+                .isNotInstanceOf(UnicodeEscapeDecodingCharStream.class);
+    }
+
+    @Test
+    public void testEscapedLineBreaksInTextBlockKeepRawPositions(@TempDir Path dir)
+            throws Exception {
+        final DetailAST root = parseSource(dir, JavaParser.Options.WITHOUT_COMMENTS,
+                """
+                class A {
+                    String s = ""\"
+                        a\\u000D\\u000Ab
+                        ""\";
+                    int x;
+                }
+                """);
+
+        assertPosition(findToken(root, TokenTypes.TEXT_BLOCK_LITERAL_END, "\"\"\""), 4, 8);
+        assertPosition(findToken(root, TokenTypes.IDENT, "x"), 5, 8);
+    }
+
+    @Test
+    public void testRawCarriageReturnBeforeEscapedLineFeed(@TempDir Path dir) throws Exception {
+        final DetailAST root = parseSource(dir, JavaParser.Options.WITHOUT_COMMENTS,
+                "class A {\r\\u000A    int x;\n}\n");
+
+        assertPosition(findToken(root, TokenTypes.LITERAL_INT, "int"), 2, 10);
+        assertPosition(findToken(root, TokenTypes.IDENT, "x"), 2, 14);
+    }
+
+    @Test
+    public void testEscapedLineFeedEndsLineComment(@TempDir Path dir) throws Exception {
+        final DetailAST root = parseSource(dir, JavaParser.Options.WITH_COMMENTS,
+                "class A {\n    // c \\u000A int x;\n    int y;\n}\n");
+
+        assertWithMessage("Comment must end at the escaped line feed")
+                .that(findToken(root, TokenTypes.COMMENT_CONTENT, " c \\u000A").getText())
+                .isEqualTo(" c \\u000A");
+        assertPosition(findToken(root, TokenTypes.IDENT, "x"), 2, 20);
+        assertPosition(findToken(root, TokenTypes.IDENT, "y"), 3, 8);
+    }
+
+    @Test
+    public void testEscapesInIdentifierAndStringLiteral(@TempDir Path dir) throws Exception {
+        final DetailAST root = parseSource(dir, JavaParser.Options.WITHOUT_COMMENTS,
+                "class A {\n    int \\u0061b = 1;\n    String s = \"\\uffff\"; int w;\n}\n");
+
+        assertPosition(findToken(root, TokenTypes.IDENT, "ab"), 2, 8);
+        assertPosition(findToken(root, TokenTypes.STRING_LITERAL, "\"\\uffff\""), 3, 15);
+        assertPosition(findToken(root, TokenTypes.IDENT, "w"), 3, 29);
+    }
+
+    @Test
+    public void testLiteralsAndCommentsKeepEscapesAsWritten(@TempDir Path dir) throws Exception {
+        final DetailAST root = parseSource(dir, JavaParser.Options.WITH_COMMENTS,
+                """
+                class A {
+                    char c = '\\u0041';
+                    String t = ""\"
+                        \\u0061
+                        ""\";
+                    // \\u0061
+                }
+                """);
+
+        assertWithMessage("Char literal keeps its escape")
+                .that(findToken(root, TokenTypes.CHAR_LITERAL, "'\\u0041'").getText())
+                .isEqualTo("'\\u0041'");
+        assertWithMessage("Text block keeps its escape")
+                .that(findToken(root, TokenTypes.TEXT_BLOCK_CONTENT,
+                        "\n        \\u0061\n        ").getText())
+                .isEqualTo("\n        \\u0061\n        ");
+        assertWithMessage("Comment keeps its escape")
+                .that(findToken(root, TokenTypes.COMMENT_CONTENT, " \\u0061\n").getText())
+                .isEqualTo(" \\u0061\n");
+    }
+
+    @Test
+    public void testIdentifierWithIgnorableCharacters(@TempDir Path dir) throws Exception {
+        final DetailAST root = parseSource(dir, JavaParser.Options.WITHOUT_COMMENTS,
+                "class A {\n    int a\\u0000b;\n    int c\\u0007d;\n    int e\\u0000;\n}\n");
+
+        assertPosition(findToken(root, TokenTypes.IDENT, "a" + (char) 0 + "b"), 2, 8);
+        assertPosition(findToken(root, TokenTypes.IDENT, "c" + (char) 7 + "d"), 3, 8);
+        assertPosition(findToken(root, TokenTypes.IDENT, "e" + (char) 0), 4, 8);
+    }
+
+    private static DetailAST parseSource(Path dir, JavaParser.Options options, String source)
+            throws IOException, CheckstyleException {
+        final Path file = dir.resolve("Input.java");
+        Files.writeString(file, source);
+        return JavaParser.parseFileText(new FileText(file.toFile(), "UTF-8"), options);
+    }
+
+    private static DetailAST findToken(DetailAST root, int type, String text) {
+        return TestUtil.findTokenInAstByPredicate(root,
+                ast -> ast.getType() == type && text.equals(ast.getText())).orElseThrow();
+    }
+
+    private static void assertPosition(DetailAST ast, int line, int column) {
+        assertWithMessage("Line of %s", ast)
+                .that(ast.getLineNo())
+                .isEqualTo(line);
+        assertWithMessage("Column of %s", ast)
+                .that(ast.getColumnNo())
+                .isEqualTo(column);
     }
 
     private static final class CountComments {

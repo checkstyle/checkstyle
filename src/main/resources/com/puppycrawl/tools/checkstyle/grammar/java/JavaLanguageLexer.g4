@@ -130,6 +130,8 @@ tokens {
 @header {
 import com.puppycrawl.tools.checkstyle.grammar.CommentListener;
 import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
+import com.puppycrawl.tools.checkstyle.grammar.UnicodeEscapeDecodingCharStream;
+import org.antlr.v4.runtime.misc.Interval;
 }
 
 @lexer::members {
@@ -155,6 +157,19 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
      */
     public void setCommentListener(CommentListener commentListener) {
             this.commentListener = commentListener;
+    }
+
+    /**
+     * Gives the current identifier token its translated text. The character stream keeps
+     * the original spelling for every token by default, only identifiers are the exception:
+     * string literals, text blocks and comments keep the escapes as they are written.
+     * This is the only place where token text is translated.
+     */
+    private void translateIdentifierText() {
+        if (_input instanceof UnicodeEscapeDecodingCharStream decoding) {
+            setText(decoding.getDecodedText(
+                    Interval.of(_tokenStartCharIndex, getCharIndex() - 1)));
+        }
     }
 
     /** Tracks the starting line of a block comment. */
@@ -409,7 +424,7 @@ SINGLE_LINE_COMMENT:
 
 // Identifiers
 
-IDENT:         Letter LetterOrDigit*;
+IDENT:         Letter LetterOrDigit* { translateIdentifierText(); };
 
 // Fragment rules
 
@@ -448,6 +463,10 @@ fragment Digits
 fragment LetterOrDigit
     : Letter
     | [0-9]
+    // identifier-ignorable characters below 0x80, they may be part of an identifier but never
+    // its first character (Character.isIdentifierIgnorable), so they are not in Letter.
+    // The ignorable characters from 0x80 are already covered by Letter.
+    | [\u0000-\u0008\u000E-\u001B\u007F]
     ;
 
 fragment Letter
