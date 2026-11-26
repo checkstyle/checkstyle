@@ -59,9 +59,9 @@ class InputJavadocParagraphIncorrect2 {
     //  '<p> tag should be preceded with an empty line.'
     // 4 violations 8 lines below:
     //  '<p> tag should be placed immediately before the first word'
-    //  'tag should be preceded with an empty line.'
+    //  '<p> tag should be preceded with an empty line.'
     //  '<p> tag should be placed immediately before the first word'
-    //  'tag should be preceded with an empty line.'
+    //  '<p> tag should be preceded with an empty line.'
     /**<p>Some Summary.<p>
      * <p>
      * <p><p>
