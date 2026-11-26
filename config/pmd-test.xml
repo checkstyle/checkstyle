@@ -28,7 +28,7 @@
       between target class and it's test -->
     <exclude name="TooManyMethods"/>
     <!-- we have too much UTs for each main class, it is better to keep all tests in one
-      file to ease navigation and search for tes -->
+      file to ease navigation and search for tests -->
     <exclude name="CouplingBetweenObjects"/>
     <!-- we have too much UTs for each main class, it is better to keep all tests in one
       file to ease navigation and search for test -->
