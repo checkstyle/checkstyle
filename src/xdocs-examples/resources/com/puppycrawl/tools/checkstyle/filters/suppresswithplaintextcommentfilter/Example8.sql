@@ -11,6 +11,7 @@
     <property name="max" value="60"/>
   </module>
   <module name="SuppressWithPlainTextCommentFilter">
+    <property name="charset" value="US-ASCII"/>
     <property name="offCommentFormat"
      value="CSOFF\: ([\w\|]+)"/>
     <property name="onCommentFormat"

@@ -1,5 +1,6 @@
 /*
 SuppressWithNearbyTextFilter
+charset = (default)UTF-8
 nearbyTextPattern = -@cs\\[(\\w+)\\] (\\w+)
 checkPattern = $1
 messagePattern = (default)(null)
@@ -18,7 +19,6 @@ constantWaiverParentToken = (default)TYPECAST, METHOD_CALL, EXPR, ARRAY_INIT, UN
 tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 
 */
-
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbytextfilter;
 
 public class InputSuppressWithNearbyTextFilterNearbyTextPatternCompactVariableCheckPattern {
