@@ -60,10 +60,10 @@ public class MainFrameModel {
         /**
          * Provides description.
          *
-         * @param descr description
+         * @param description description
          */
-        ParseMode(String descr) {
-            description = descr;
+        ParseMode(String description) {
+            this.description = description;
         }
 
         @Override
