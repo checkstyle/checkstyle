@@ -82,25 +82,25 @@ abstract class NonAAAAbstractClassName25 {
 
 interface Interface15 {
 
-    String VALUELONG = "value"; // in interface this is final/static
+    String PARAMETER = "value"; // in interface this is final/static
 
 }
 
 interface Interface25 {
 
-    static String VALUELONG = "value"; // in interface this is final/static
+    static String PARAMETER = "value"; // in interface this is final/static
 
 }
 
 interface Interface35 {
 
-    final String VALUELONG = "value"; // in interface this is final/static
+    final String PARAMETER = "value"; // in interface this is final/static
 
 }
 
 interface Interface45 {
 
-    final static String VALUELONG = "value"; // in interface this is final/static
+    final static String PARAMETER = "value"; // in interface this is final/static
 
 }
 

@@ -25,23 +25,23 @@ public class InputAbbreviationAsWordInNameIgnoreNonStaticFinalPart2 {
     }
 
     @interface Annotation1 {
-        // violation below 'Abbreviation in name 'VALUELONG''
-        String VALUELONG = "value";
+        // violation below 'Abbreviation in name 'PARAMETER''
+        String PARAMETER = "value";
     }
 
     @interface Annotation2 {
-        // violation below 'Abbreviation in name 'VALUELONG''
-        static String VALUELONG = "value";
+        // violation below 'Abbreviation in name 'PARAMETER''
+        static String PARAMETER = "value";
     }
 
     @interface Annotation3 {
-        // violation below 'Abbreviation in name 'VALUELONG''
-        final String VALUELONG = "value";
+        // violation below 'Abbreviation in name 'PARAMETER''
+        final String PARAMETER = "value";
     }
 
     @interface Annotation4 {
-        // violation below 'Abbreviation in name 'VALUELONG''
-        final static String VALUELONG = "value";
+        // violation below 'Abbreviation in name 'PARAMETER''
+        final static String PARAMETER = "value";
     }
 
     // violation below 'Abbreviation in name 'InnerClassOneVIOLATION''
