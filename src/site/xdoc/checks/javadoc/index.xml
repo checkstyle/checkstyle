@@ -341,6 +341,16 @@
           </tr>
           <tr>
             <td>
+              <a href="openjdkjavadocparagraph.html#OpenjdkJavadocParagraph">
+                OpenjdkJavadocParagraph
+              </a>
+            </td>
+            <td>
+              Checks paragraph formatting required by the OpenJDK Java Style Guidelines.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="prefercodeorsnippetjavadocinlinetag.html#PreferCodeOrSnippetJavadocInlineTag">
                 PreferCodeOrSnippetJavadocInlineTag
               </a>

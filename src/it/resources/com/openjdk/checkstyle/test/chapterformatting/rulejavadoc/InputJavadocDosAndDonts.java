@@ -34,4 +34,13 @@ public class InputJavadocDosAndDonts {
      */
     public void styleGuideDonts2() {
     }
+
+    // violation 4 lines below 'Paragraphs should be separated with a <p> tag.'
+    /**
+     * First paragraph.
+     *
+     * Second paragraph.
+     */
+    public void missingParagraphTag() {
+    }
 }

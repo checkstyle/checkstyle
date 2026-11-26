@@ -800,6 +800,7 @@
     <module name="JavadocParagraph"/>
     <module name="JavadocParamOrder"/>
     <module name="JavadocRegexp"/>
+    <module name="OpenjdkJavadocParagraph"/>
     <module name="JavadocSeeTagOrder"/>
     <module name="JavadocTagContinuationIndentation"/>
     <module name="JavadocThrowsOrder"/>

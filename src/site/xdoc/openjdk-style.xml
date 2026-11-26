@@ -1183,19 +1183,19 @@
                   config</a>)
                   <br />
                   <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/javadoc/openjdkjavadocparagraph.html#OpenjdkJavadocParagraph">
+                    OpenjdkJavadocParagraph</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OpenjdkJavadocParagraph">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
                     <img src="images/ban_red.png" alt="" />
                   </span>
                   Inline tag rule can not be covered until:
                   <a href="https://github.com/checkstyle/checkstyle/issues/20980">
                     #20980
-                  </a>
-                  <br />
-                  <span class="wrapper inline">
-                    <img src="images/ban_red.png" alt="" />
-                  </span>
-                  Paragraph tag rule can not be covered until:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/20628">
-                    #20628
                   </a>
                 </td>
                 <td>
