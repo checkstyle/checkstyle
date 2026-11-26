@@ -1805,6 +1805,18 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testChainedMethodCallsWithWrappedArguments() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "8");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        final String fileName =
+                getPath("InputIndentationChainedMethodCallsWithWrappedArguments.java");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testInvalidArrayInitWithTrueStrictCondition()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
