@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 import java.util.Locale;
 import java.util.Optional;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;

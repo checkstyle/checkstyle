@@ -564,4 +564,813 @@
     <Method name="setupChild" />
     <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
   </Match>
+  <Match>
+    <!-- Temporary suppressions for JSpecify-triggered findFirstToken nullness findings.
+         These existing nullness violations will be resolved in a separate issue. -->
+    <Or>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheck"/>
+        <Or>
+          <Method name="getAnnotationName"/>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck"/>
+        <Or>
+          <Method name="logCommaViolation"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck"/>
+        <Or>
+          <Method name="containsInheritDocTag"/>
+        </Or>
+      </And>
+      <And>
+        <Class
+          name=
+          "com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideOnRecordAccessorCheck"/>
+        <Or>
+          <Method name="getRecordComponentNames"/>
+          <Method name="isRecordAccessorMethod"/>
+        </Or>
+      </And>
+      <And>
+        <Class
+          name=
+          "com.puppycrawl.tools.checkstyle.checks.annotation.OpenjdkAnnotationLocationCheck"/>
+        <Or>
+          <Method name="getTargetName"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck"/>
+        <Or>
+          <Method name="getCondLeft"/>
+          <Method name="getCondRight"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck"/>
+        <Or>
+          <Method name="hasText"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck"/>
+        <Or>
+          <Method name="isEmptyCatchBlock"/>
+          <Method name="visitCatchBlock"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+        <Or>
+          <Method name="isSingleLineIf"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck"/>
+        <Or>
+          <Method name="isOverridingMethod"/>
+          <Method name="leaveToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class
+          name=
+          "com.puppycrawl.tools.checkstyle.checks.coding.AvoidNoArgumentSuperConstructorCallCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class
+          name=
+          "com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGroupingCheck"/>
+        <Or>
+          <Method name="getChildList"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck"/>
+        <Or>
+          <Method name="isFirstParameterObject"/>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"/>
+        <Or>
+          <Method name="isForwardReference"/>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck"/>
+        <Or>
+          <Method name="checkMethodCall"/>
+          <Method name="containsOneArgument"/>
+          <Method name="getFieldType"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck"/>
+        <Or>
+          <Method name="isHashCodeMethod"/>
+          <Method name="isObjectParam"/>
+        </Or>
+      </And>
+      <And>
+        <Class
+          name=
+          "com.puppycrawl.tools.checkstyle.checks.coding.ExceptionThrowShouldUseContextCheck"/>
+        <Or>
+          <Method name="addRecordComponents"/>
+          <Method name="collectCatchVariablesWithContext"/>
+          <Method name="collectCompactCtorParameters"/>
+          <Method name="collectFields"/>
+          <Method name="collectStandardParameters"/>
+          <Method name="isInnerClass"/>
+          <Method name="isThrowWithoutContext"/>
+          <Method name="processLocalVariableDef"/>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck"/>
+        <Or>
+          <Method name="isSkipCase"/>
+          <Method name="validateNonObjects"/>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+        <Or>
+          <Method name="isMultipleTypeCatch"/>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck"/>
+        <Or>
+          <Method name="addBodyBranch"/>
+          <Method name="shouldBeFinal"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+        <Or>
+          <Method name="isIgnoredParamOfAbstractMethod"/>
+          <Method name="isInStatic"/>
+          <Method name="isSetterMethod"/>
+          <Method name="lambda$visitOtherTokens$0"/>
+          <Method name="processVariable"/>
+          <Method name="visitOtherTokens"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck"/>
+        <Or>
+          <Method name="processClassDef"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck"/>
+        <Or>
+          <Method name="isIgnorableMethod"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck"/>
+        <Or>
+          <Method name="isCheckedMethod"/>
+          <Method name="isVerifiable"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+        <Or>
+          <Method name="findContainingConstantDef"/>
+          <Method name="isInHashCodeMethod"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck"/>
+        <Or>
+          <Method name="getForInitVariables"/>
+          <Method name="getForIteratorVariables"/>
+          <Method name="leaveForEach"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.NoArrayTrailingCommaCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="~.*\.checks\.coding\.NoCauseGetMessageInExceptionConstructorCheck"/>
+        <Or>
+          <Method name="getThrownType"/>
+          <Method name="matchesCatchScope"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.NoEnumTrailingCommaCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class
+          name=
+          "com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck"/>
+        <Or>
+          <Method name="checkOverloadMethodsGrouping"/>
+          <Method name="getParameterCount"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.ParameterAssignmentCheck"/>
+        <Or>
+          <Method name="visitMethodDef"/>
+          <Method name="visitParameters"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RedundantThisCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck"/>
+        <Or>
+          <Method name="collectMethodDeclarations"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$ClassFrame"/>
+        <Or>
+          <Method name="hasFinalField"/>
+          <Method name="isSimilarSignature"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck"/>
+        <Or>
+          <Method name="visitMethodDef"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck"/>
+        <Or>
+          <Method name="isLambdaSingleParameterSurrounded"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryPermitsClauseCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="~.*\.checks\.coding\.UnnecessarySemicolonAfterTypeMemberDeclarationCheck"/>
+        <Or>
+          <Method name="checkTypeDefinition"/>
+        </Or>
+      </And>
+      <And>
+        <Class
+          name=
+          "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInEnumerationCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="~.*\.coding\.UnusedCatchParameterShouldBeUnnamedCheck\$CatchParameterDetails"/>
+        <Or>
+          <Method name="&lt;init&gt;"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck"/>
+        <Or>
+          <Method name="addInstanceOrClassVar"/>
+          <Method name="addLocalVariables"/>
+          <Method name="addPatternVariable"/>
+          <Method name="getQualifiedTypeDeclarationName"/>
+          <Method name="skipUnnamedPatternVariables"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedPrivateFieldCheck"/>
+        <Or>
+          <Method name="handleVariableDef"/>
+          <Method name="resolveDeclaredTypeName"/>
+        </Or>
+      </And>
+      <And>
+        <Class
+          name=
+          "com.puppycrawl.tools.checkstyle.checks.coding.UnusedTryResourceShouldBeUnnamedCheck"/>
+        <Or>
+          <Method name="collectTrackedResources"/>
+          <Method name="lambda$collectTrackedResources$1"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.UseEnhancedSwitchCheck"/>
+        <Or>
+          <Method name="allCaseGroupsTerminate"/>
+        </Or>
+      </And>
+      <And>
+        <Class
+          name=
+          "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck"/>
+        <Or>
+          <Method name="getFirstNodeInsideForWhileDoWhileBlocks"/>
+          <Method name="getFirstNodeInsideTryCatchFinallyBlocks"/>
+          <Method name="isInitializationSequence"/>
+          <Method name="isVariableInOperatorExpr"/>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"/>
+        <Or>
+          <Method name="getAnnotationName"/>
+          <Method name="hasDefaultOrExplicitNonPrivateCtor"/>
+          <Method name="hasEmptyImplementation"/>
+          <Method name="hasIgnoredAnnotation"/>
+          <Method name="isNativeMethod"/>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck"/>
+        <Or>
+          <Method name="extractQualifiedTypeName"/>
+          <Method name="visitCtor"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$ClassDesc"/>
+        <Or>
+          <Method name="&lt;init&gt;"/>
+        </Or>
+      </And>
+      <And>
+        <Class
+          name=
+          "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck"/>
+        <Or>
+          <Method name="isAbstract"/>
+          <Method name="isStatic"/>
+        </Or>
+      </And>
+      <And>
+        <Class
+          name=
+          "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck$Details"/>
+        <Or>
+          <Method name="invoke"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck"/>
+        <Or>
+          <Method name="isNamedAsException"/>
+          <Method name="visitVariableDef"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck"/>
+        <Or>
+          <Method name="isPublic"/>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class
+          name=
+          "com.puppycrawl.tools.checkstyle.checks.design.SealedShouldHavePermitsListCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck"/>
+        <Or>
+          <Method name="getAnnotationName"/>
+          <Method name="isInPrivateMethod"/>
+          <Method name="isOverriding"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+        <Or>
+          <Method name="getTypeArgsClassNames"/>
+          <Method name="isFinalField"/>
+          <Method name="isImmutableField"/>
+          <Method name="visitVariableDef"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+        <Or>
+          <Method name="checkParam"/>
+          <Method name="isIgnoredPrimitiveParam"/>
+          <Method name="visitMethod"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler"/>
+        <Or>
+          <Method name="getNonListChild"/>
+          <Method name="getRightCurly"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.CatchHandler"/>
+        <Or>
+          <Method name="checkCondExpr"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.ClassDefHandler"/>
+        <Or>
+          <Method name="checkAnnotationDefModifiers"/>
+          <Method name="checkClassDefModifiers"/>
+          <Method name="checkIndentation"/>
+          <Method name="getLeftCurly"/>
+          <Method name="getRightCurly"/>
+        </Or>
+      </And>
+      <And>
+        <Class
+          name=
+          "com.puppycrawl.tools.checkstyle.checks.indentation.ClassHeaderWrapOpenjdkCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.DoWhileHandler"/>
+        <Or>
+          <Method name="checkWhileExpr"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.IfHandler"/>
+        <Or>
+          <Method name="checkCondExpr"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.MemberDefHandler"/>
+        <Or>
+          <Method name="checkIndentation"/>
+          <Method name="checkModifiers"/>
+          <Method name="checkType"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler"/>
+        <Or>
+          <Method name="areMethodsChained"/>
+          <Method name="checkIndentation"/>
+          <Method name="checkReturnStatementCallArguments"/>
+          <Method name="getSuggestedChildIndent"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.MethodDefHandler"/>
+        <Or>
+          <Method name="checkModifiers"/>
+          <Method name="getMethodDefLineStart"/>
+        </Or>
+      </And>
+      <And>
+        <Class
+          name=
+          "com.puppycrawl.tools.checkstyle.checks.indentation.OpenjdkMethodThrowsAlignmentCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.SwitchHandler"/>
+        <Or>
+          <Method name="checkSwitchExpr"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.SynchronizedHandler"/>
+        <Or>
+          <Method name="checkSynchronizedExpr"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.TryHandler"/>
+        <Or>
+          <Method name="checkTryResources"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="~.*\.checks\.javadoc\.InappropriateJavadocBlockTagsOnTypeCheck"/>
+        <Or>
+          <Method name="visitJavadocToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+        <Or>
+          <Method name="checkParamTags"/>
+          <Method name="getParameters"/>
+          <Method name="getRecordComponents"/>
+          <Method name="searchMatchingTypeParameter"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocSeeTagOrderCheck"/>
+        <Or>
+          <Method name="findEnclosingTypeName"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo$14"/>
+        <Or>
+          <Method name="isValidOn"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo$6"/>
+        <Or>
+          <Method name="isValidOn"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+        <Or>
+          <Method name="isGetterMethod"/>
+          <Method name="isSetterMethod"/>
+          <Method name="matchesSkipRegex"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.metrics.AbstractClassCouplingCheck"/>
+        <Or>
+          <Method name="visitClassDef"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck"/>
+        <Or>
+          <Method name="visitConditional"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"/>
+        <Or>
+          <Method name="isAnnotationOnType"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
+        <Or>
+          <Method name="checkEnumConstructorModifiers"/>
+          <Method name="getMethodAnnotationsList"/>
+          <Method name="isClassProtected"/>
+          <Method name="isClassPublic"/>
+          <Method name="isUnnamedVariable"/>
+          <Method name="processAbstractMethodParameters"/>
+          <Method name="processInterfaceOrAnnotation"/>
+          <Method name="processMethods"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.modules.ModuleDirectiveOrderCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck"/>
+        <Or>
+          <Method name="mustCheckName"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck"/>
+        <Or>
+          <Method name="isAbstract"/>
+          <Method name="visitClassDef"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck"/>
+        <Or>
+          <Method name="mustCheckName"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.naming.LambdaParameterNameCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"/>
+        <Or>
+          <Method name="mustCheckName"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck"/>
+        <Or>
+          <Method name="mustCheckName"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck"/>
+        <Or>
+          <Method name="mustCheckName"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"/>
+        <Or>
+          <Method name="isTwoPrecedingPreviousLinesFromCommentEmpty"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck"/>
+        <Or>
+          <Method name="getPositionAfter"/>
+          <Method name="getTypeLastNode"/>
+        </Or>
+      </And>
+      <And>
+        <Class
+          name=
+          "com.puppycrawl.tools.checkstyle.checks.whitespace.OpenjdkMethodParameterAlignmentCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+        <Or>
+          <Method name="getRightNode"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck"/>
+        <Or>
+          <Method name="isFollowsEmptyForIterator"/>
+          <Method name="isInTypecast"/>
+          <Method name="isPrecedingEmptyForInit"/>
+          <Method name="visitLiteralFor"/>
+          <Method name="visitResourceSpecification"/>
+          <Method name="visitToken"/>
+          <Method name="visitTokenWithOptionalParentheses"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.whitespace.TypeBodyPaddingCheck"/>
+        <Or>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
+        <Or>
+          <Method name="isCommentFollowedByWhitespace"/>
+          <Method name="visitToken"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor"/>
+        <Or>
+          <Method name="visitLastFormalParameter"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator"/>
+        <Or>
+          <Method name="isPublicStaticFinalIntField"/>
+          <Method name="iteratePublicStaticIntFields"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.utils.AnnotationUtil"/>
+        <Or>
+          <Method name="lambda$getAnnotation$1"/>
+        </Or>
+      </And>
+      <And>
+        <Class name="com.puppycrawl.tools.checkstyle.utils.CheckUtil"/>
+        <Or>
+          <Method name="checkIf"/>
+          <Method name="checkLoop"/>
+          <Method name="checkTry"/>
+          <Method name="getTypeParameterNames"/>
+          <Method name="getTypeParameters"/>
+          <Method name="isEqualsMethod"/>
+          <Method name="isNonVoidMethod"/>
+        </Or>
+      </And>
+    </Or>
+    <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE"/>
+  </Match>
 </FindBugsFilter>
