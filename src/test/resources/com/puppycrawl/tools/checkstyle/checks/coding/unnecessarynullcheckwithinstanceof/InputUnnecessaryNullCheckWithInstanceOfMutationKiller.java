@@ -82,7 +82,7 @@ public class InputUnnecessaryNullCheckWithInstanceOfMutationKiller {
     }
 
     public void testFindDirectChildMultipleSiblings(Object a, Object b, Object c, Object d) {
-        // violation below 'Unnecessary nullity check'
+        // The OR branch can succeed when the value is null.
         if (a != null && (a instanceof String || b != null) && c != null && d != null) {
             System.out.println("ok");
         }

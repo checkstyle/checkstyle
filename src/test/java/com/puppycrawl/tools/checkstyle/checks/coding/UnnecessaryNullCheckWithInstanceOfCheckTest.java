@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheck
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleTestSupport {
 
@@ -46,8 +47,6 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
             "61:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "70:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "75:26: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "79:14: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "81:30: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "87:19: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
         };
         verifyWithInlineConfigParser(getPath(
@@ -200,16 +199,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
     @Test
     public void testUnnecessaryNullCheckWithInstanceofComplexCases() throws Exception {
 
-        final String[] expected = {
-            "14:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "19:27: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "22:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "27:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "34:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "39:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "61:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "66:25: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath(
                 "InputUnnecessaryNullCheckWithInstanceOfComplexCases.java"), expected);
     }
@@ -226,7 +216,6 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
             "56:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "75:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "79:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "86:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "90:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "97:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
         };
@@ -264,7 +253,6 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
             "40:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "45:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "52:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "63:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "68:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "77:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "85:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
@@ -272,6 +260,23 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
         verifyWithInlineConfigParser(
                 getPath("InputUnnecessaryNullCheckWithInstanceOfArithmeticDereference.java"),
                 expected);
+    }
+
+    @Test
+    public void testLogicalOrBranches() throws Exception {
+        final String[] expected = {
+            "32:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "37:29: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "42:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "48:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "54:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "59:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "83:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "93:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "102:20: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryNullCheckWithInstanceOfOrBranches.java"), expected);
     }
 
     @Test
