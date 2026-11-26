@@ -79,6 +79,8 @@ public class EmptyLineWrappingInBlockCheckTest extends AbstractModuleTestSupport
             TokenTypes.METHOD_DEF,
             TokenTypes.SLIST,
             TokenTypes.STATIC_INIT,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
         assertWithMessage(
                 "Invalid acceptable tokens")
@@ -155,12 +157,16 @@ public class EmptyLineWrappingInBlockCheckTest extends AbstractModuleTestSupport
     @Test
     public void testNoEmptyLine() throws Exception {
         final String[] expected = {
-            "11:25: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_NO, "{"),
-            "13:1: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_NO, "}"),
-            "16:63: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_NO, "{"),
-            "21:1: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_NO, "}"),
-            "24:70: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_NO, "{"),
-            "28:1: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_NO, "}"),
+            "12:25: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_NO, "{"),
+            "14:1: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_NO, "}"),
+            "17:63: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_NO, "{"),
+            "22:1: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_NO, "}"),
+            "25:70: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_NO, "{"),
+            "29:1: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_NO, "}"),
+            "31:28: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_NO, "{"),
+            "33:11: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_NO, "{"),
+            "37:5: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_NO, "}"),
+            "39:1: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_NO, "}"),
         };
 
         verifyWithInlineConfigParser(
@@ -242,7 +248,13 @@ public class EmptyLineWrappingInBlockCheckTest extends AbstractModuleTestSupport
     public void testTrimOptionProperty() throws Exception {
         final String[] expected = {
             "12:59: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_NO, "{"),
-            "20:1: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_NO, "}"),
+            "21:52: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_NO, "{"),
+            "25:5: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_NO, "}"),
+            "27:32: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_NO, "{"),
+            "29:15: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_NO, "{"),
+            "33:9: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_NO, "}"),
+            "35:5: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_NO, "}"),
+            "38:1: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_NO, "}"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineWrappingInBlockNoEmptyLineTrim.java"), expected);
@@ -285,10 +297,17 @@ public class EmptyLineWrappingInBlockCheckTest extends AbstractModuleTestSupport
     @Test
     public void testArrayInit() throws Exception {
         final String[] expected = {
+            "15:53: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_ONE, "{"),
             "16:44: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_ONE, "{"),
             "19:5: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_ONE, "}"),
             "26:16: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_ONE, "{"),
             "29:5: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_ONE, "}"),
+            "33:46: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_ONE, "{"),
+            "35:5: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_ONE, "}"),
+            "37:32: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_ONE, "{"),
+            "38:15: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_TOP_ONE, "{"),
+            "40:9: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_ONE, "}"),
+            "41:5: " + getCheckMessage(MSG_EMPTY_LINE_WRAPPING_BOTTOM_ONE, "}"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineWrappingInBlockArrayInit.java"), expected);

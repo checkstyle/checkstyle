@@ -160,6 +160,9 @@ public class EmptyLineWrappingInBlockCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.SLIST,
             TokenTypes.STATIC_INIT,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
+
         };
     }
 
@@ -216,7 +219,8 @@ public class EmptyLineWrappingInBlockCheck extends AbstractCheck {
         switch (ast.getType()) {
             case TokenTypes.ARRAY_INIT, TokenTypes.ANNOTATION_ARRAY_INIT -> leftBrace = ast;
             case TokenTypes.INTERFACE_DEF, TokenTypes.CLASS_DEF, TokenTypes.ANNOTATION_DEF,
-                TokenTypes.ENUM_DEF, TokenTypes.ENUM_CONSTANT_DEF, TokenTypes.LITERAL_NEW -> {
+                 TokenTypes.ENUM_DEF, TokenTypes.ENUM_CONSTANT_DEF, TokenTypes.LITERAL_NEW,
+                 TokenTypes.RECORD_DEF -> {
                 final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
                 if (objBlock != null) {
                     leftBrace = objBlock.getFirstChild();
