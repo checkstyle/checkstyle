@@ -119,7 +119,10 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
             .that(instance.getExternalResourceLocations())
             .isEmpty();
 
-        verify(checkConfig, getPath("InputRegexpHeaderDefaultConfig.java"), EMPTY_STRING_ARRAY);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderMultiEmptyFilenameConfig.java"),
+                getPath("InputRegexpHeaderMultiEmptyFilename.java"),
+                EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -132,19 +135,13 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAllHeaderLinesMatchedWithEmptyLine() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", getPath("InputRegexpHeaderNewLines.header"));
-
-        final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
-        checkInstance.configure(checkConfig);
-
         final String[] expected = {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$",
                     getPath("InputRegexpHeaderNewLines.header")),
         };
-        verify(checkConfig,
-                getPath("InputRegexpHeaderConsecutiveNewLines.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderMultiAllMatchedEmptyLineConfig.java"),
+                getPath("InputRegexpHeaderMultiAllMatchedEmptyLine.java"), expected);
     }
 
     @Test
@@ -163,36 +160,24 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRegexpHeader() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", getPath("InputRegexpHeader.header"));
-
-        final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
-        checkInstance.configure(checkConfig);
-
         final String[] expected = {
             "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "^/*$",
                     getPath("InputRegexpHeader.header")),
         };
-        verify(checkConfig, getPath("InputRegexpHeaderNonMatching.java"),
-                expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderMultiRegexpHeaderConfig.java"),
+                getPath("InputRegexpHeaderMultiRegexpHeader.java"), expected);
     }
 
     @Test
     public void testRegexpHeaderUrl() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", getUriString("InputRegexpHeader.header"));
-
-        final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
-        checkInstance.configure(checkConfig);
-
         final String[] expected = {
             "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "^/*$",
                     getUriString("InputRegexpHeader.header")),
         };
-        verify(checkConfig, getPath("InputRegexpHeaderNonMatching.java"),
-                expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderMultiRegexpHeaderUrlConfig.java"),
+                getPath("InputRegexpHeaderMultiRegexpHeaderUrl.java"), expected);
     }
 
     @Test
@@ -246,18 +231,13 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMismatchInHeaderLine() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", getPath("InputRegexpHeader.header"));
-
-        final MultiFileRegexpHeaderCheck checkInstance = new MultiFileRegexpHeaderCheck();
-        checkInstance.configure(checkConfig);
-
         final String[] expected = {
             "2: " + getCheckMessage(MSG_HEADER_MISMATCH, "// .*",
                     getPath("InputRegexpHeader.header")),
         };
-        verify(checkConfig, getPath("InputRegexpHeaderMulti52.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderMultiMismatchHeaderLineConfig.java"),
+                getPath("InputRegexpHeaderMultiMismatchHeaderLine.java"), expected);
     }
 
     @Test
