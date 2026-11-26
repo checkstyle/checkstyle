@@ -68,7 +68,7 @@ public class AvoidStaticImportCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testStarExcludes()
             throws Exception {
-        // allow the "java.io.File.*" AND "sun.net.ftpclient.FtpClient.*" star imports
+        // allow the "java.io.File.*" AND "sun.net.ftp.FtpClient.*" star imports
         final String[] expected = {
             "26:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "29:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.E"),
