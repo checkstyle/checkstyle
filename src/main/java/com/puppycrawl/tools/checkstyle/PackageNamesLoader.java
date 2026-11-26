@@ -103,16 +103,16 @@ public final class PackageNamesLoader extends XmlLoader {
      * @return the full name of the current package.
      */
     private String getPackageName() {
-        final StringBuilder buf = new StringBuilder(256);
+        final StringBuilder builder = new StringBuilder(256);
         final Iterator<String> iterator = packageStack.descendingIterator();
         while (iterator.hasNext()) {
             final String subPackage = iterator.next();
-            buf.append(subPackage);
+            builder.append(subPackage);
             if (!subPackage.endsWith(".") && iterator.hasNext()) {
-                buf.append('.');
+                builder.append('.');
             }
         }
-        return buf.toString();
+        return builder.toString();
     }
 
     @Override
