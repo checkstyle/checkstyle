@@ -57,6 +57,7 @@ class UnusedPrivateFieldCheckTest extends AbstractModuleTestSupport {
         final int[] expected = {
             TokenTypes.IMPORT,
             TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
             TokenTypes.PARAMETERS,
@@ -82,6 +83,7 @@ class UnusedPrivateFieldCheckTest extends AbstractModuleTestSupport {
         final int[] expected = {
             TokenTypes.IMPORT,
             TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
             TokenTypes.PARAMETERS,
@@ -96,6 +98,16 @@ class UnusedPrivateFieldCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Acceptable tokens are invalid")
                 .that(actual)
                 .isEqualTo(expected);
+    }
+
+    @Test
+    public void testUnusedPrivateFieldInCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "11:13: " + getCheckMessage(MSG_PRIVATE_FIELD, "unused"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputUnusedPrivateFieldCompactSource.java"),
+                expected);
     }
 
     @Test
