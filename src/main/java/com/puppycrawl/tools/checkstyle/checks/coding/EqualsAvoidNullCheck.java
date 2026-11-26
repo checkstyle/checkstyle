@@ -443,7 +443,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         while (frame != null) {
             if (className.equals(frame.getFrameName())) {
                 final DetailAST field = frame.findField(name);
-                result = STRING.equals(getFieldType(field));
+                result = field != null && STRING.equals(getFieldType(field));
                 break;
             }
             frame = frame.getParent();

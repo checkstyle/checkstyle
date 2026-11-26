@@ -275,6 +275,16 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInheritedStaticFields() throws Exception {
+        final String[] expected = {
+            "24:34: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "25:44: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEqualsAvoidNullInheritedStaticFields.java"), expected);
+    }
+
+    @Test
     public void testInputEqualsAvoidNullEnhancedInstanceof() throws Exception {
 
         final String[] expected = {
