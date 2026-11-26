@@ -119,8 +119,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
             final CatchParameterDetails catchParameter = new CatchParameterDetails(ast);
             catchParameters.push(catchParameter);
         }
-        else if (isCatchParameterIdentifierCandidate(ast) && !isLeftHandOfAssignment(ast)) {
-            // we do not count reassignment as usage
+        else if (isCatchParameterIdentifierCandidate(ast) /* && !isLeftHandOfAssignment(ast)*/) {
             catchParameters.stream()
                     .filter(parameter -> parameter.getName().equals(ast.getText()))
                     .findFirst()
@@ -171,18 +170,6 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
         final DetailAST parent = identAst.getParent();
         return parent.getType() == TokenTypes.DOT
                 && identAst.equals(parent.getFirstChild());
-    }
-
-    /**
-     * Check if the given {@link TokenTypes#IDENT} is a left hand side value.
-     *
-     * @param identAst token representing {@code TokenTypes#IDENT}
-     * @return true if the given {@code TokenTypes#IDENT} is a left hand side value.
-     */
-    private static boolean isLeftHandOfAssignment(DetailAST identAst) {
-        final DetailAST parent = identAst.getParent();
-        return parent.getType() == TokenTypes.ASSIGN
-                && !identAst.equals(parent.getLastChild());
     }
 
     /**

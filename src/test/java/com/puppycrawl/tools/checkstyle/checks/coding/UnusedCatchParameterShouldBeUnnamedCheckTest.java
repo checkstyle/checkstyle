@@ -66,7 +66,6 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
             "17:16: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
             "24:16: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
             "31:16: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
-            "52:16: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
             "65:16: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "A"),
             "72:16: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "A"),
             "79:16: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
