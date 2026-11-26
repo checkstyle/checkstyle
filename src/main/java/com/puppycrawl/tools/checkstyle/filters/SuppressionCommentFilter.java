@@ -260,7 +260,7 @@ public class SuppressionCommentFilter
             final int eventLine = event.getLine();
             if (tag.getLine() > eventLine
                 || tag.getLine() == eventLine
-                    && tag.getColumn() > event.getColumn()) {
+                    && tag.getColumn() > event.getColumnCharIndex()) {
                 break;
             }
             if (tag.isMatch(event)) {
