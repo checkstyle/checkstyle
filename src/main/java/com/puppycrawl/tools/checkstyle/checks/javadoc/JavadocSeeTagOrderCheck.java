@@ -374,7 +374,7 @@ public class JavadocSeeTagOrderCheck extends AbstractJavadocCheck {
                             reference, JavadocCommentsTokenTypes.MEMBER_REFERENCE);
                     result = parseMember(member, "", Category.LOCAL, enclosingTypeName);
                 }
-                else {
+                else if (!endsWithDot(firstChild.getText())) {
                     result = parseIdentifierReference(reference, firstChild);
                 }
             }
@@ -518,6 +518,18 @@ public class JavadocSeeTagOrderCheck extends AbstractJavadocCheck {
                 }
             }
             return parameterTypes;
+        }
+
+        /**
+         * Checks whether the given dotted name ends with a dot, as in
+         * {@code java.util.List.}. Such a name has an empty last segment, so it is
+         * neither a type nor a package name and cannot be classified.
+         *
+         * @param name the dotted name
+         * @return {@code true} if the name ends with a dot
+         */
+        private static boolean endsWithDot(String name) {
+            return name.charAt(name.length() - 1) == DOT;
         }
 
         /**
