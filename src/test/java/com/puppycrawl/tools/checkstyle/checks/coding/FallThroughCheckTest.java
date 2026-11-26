@@ -548,6 +548,20 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNestedSwitchRules() throws Exception {
+        final String[] expected = {
+            "35:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "40:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "45:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "50:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "56:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "109:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughNestedSwitchRules.java"), expected);
+    }
+
+    @Test
     public void testInlineSingleCase() throws Exception {
         final String[] expected = {
             "12:17: " + getCheckMessage(MSG_FALL_THROUGH_LAST),

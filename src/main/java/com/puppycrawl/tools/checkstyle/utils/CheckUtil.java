@@ -788,16 +788,58 @@ public final class CheckUtil {
      */
     private static boolean checkSwitch(DetailAST literalSwitchAst,
                                        boolean useContinue, Set<String> labels) {
-        DetailAST caseGroup = literalSwitchAst.findFirstToken(TokenTypes.CASE_GROUP);
-        boolean isTerminated = caseGroup != null;
-        while (isTerminated && caseGroup.getType() != TokenTypes.RCURLY) {
-            final DetailAST caseBody =
-                caseGroup.findFirstToken(TokenTypes.SLIST);
-            isTerminated = caseBody != null
-                    && isTerminated(caseBody, false, useContinue, labels);
-            caseGroup = caseGroup.getNextSibling();
+        final DetailAST firstRule = literalSwitchAst.findFirstToken(TokenTypes.SWITCH_RULE);
+        boolean isTerminated;
+        if (firstRule == null) {
+            DetailAST caseGroup = literalSwitchAst.findFirstToken(TokenTypes.CASE_GROUP);
+            isTerminated = caseGroup != null;
+            while (isTerminated && caseGroup.getType() != TokenTypes.RCURLY) {
+                final DetailAST caseBody =
+                    caseGroup.findFirstToken(TokenTypes.SLIST);
+                isTerminated = caseBody != null
+                        && isTerminated(caseBody, false, useContinue, labels);
+                caseGroup = caseGroup.getNextSibling();
+            }
+        }
+        else {
+            isTerminated = checkSwitchRules(firstRule, useContinue, labels);
         }
         return isTerminated;
+    }
+
+    /**
+     * Checks whether an exhaustive arrow switch has only terminating rule bodies.
+     * Pattern and null labels require an exhaustive switch in valid Java source.
+     *
+     * @param firstRule first switch rule
+     * @param useContinue whether continue terminates the enclosing scope
+     * @param labels label names
+     * @return whether the switch cannot complete normally
+     */
+    private static boolean checkSwitchRules(DetailAST firstRule,
+                                           boolean useContinue, Set<String> labels) {
+        boolean exhaustive = false;
+        boolean terminated = true;
+        for (DetailAST rule = firstRule; rule != null && terminated;
+                rule = rule.getNextSibling()) {
+            if (rule.getType() == TokenTypes.SWITCH_RULE) {
+                final DetailAST caseLabel = TokenUtil.findFirstTokenByPredicate(rule, child -> {
+                    return TokenUtil.isOfType(child,
+                            TokenTypes.LITERAL_CASE, TokenTypes.LITERAL_DEFAULT);
+                }).orElseThrow();
+                exhaustive |= caseLabel.getType() == TokenTypes.LITERAL_DEFAULT
+                        || TokenUtil.findFirstTokenByPredicate(caseLabel, child -> {
+                            return TokenUtil.isOfType(child, TokenTypes.PATTERN_VARIABLE_DEF,
+                                    TokenTypes.RECORD_PATTERN_DEF)
+                                    || child.getType() == TokenTypes.EXPR
+                                        && child.getFirstChild().getType()
+                                            == TokenTypes.LITERAL_NULL;
+                        }).isPresent();
+                final DetailAST body = getNextNonCommentAst(rule.findFirstToken(TokenTypes.LAMBDA));
+                terminated = isTerminated(body, false, useContinue, labels);
+            }
+        }
+        return exhaustive && terminated;
     }
 
     /**
