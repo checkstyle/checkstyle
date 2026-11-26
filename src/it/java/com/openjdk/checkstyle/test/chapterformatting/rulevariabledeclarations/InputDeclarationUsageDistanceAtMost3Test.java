@@ -28,7 +28,7 @@ public class InputDeclarationUsageDistanceAtMost3Test extends AbstractOpenJdkMod
     @Override
     public String getPackageLocation() {
         return "com/openjdk/checkstyle/test/chapterformatting/"
-            + "rulevariabledeclarations/declarationrightbeforefirstusage";
+            + "rulevariabledeclarations/usage";
     }
 
     @Test
