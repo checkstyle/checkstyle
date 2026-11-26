@@ -1021,6 +1021,7 @@
               <goal>testCompile</goal>
             </goals>
             <configuration>
+              <fork>true</fork>
               <useModulePath>false</useModulePath>
               <showWarnings>false</showWarnings>
               <skip>${checkstyle.skipCompileInputResources}</skip>
@@ -1032,6 +1033,7 @@
               <compilerArgs combine.children="append">
                 <arg>-Xlint:none</arg>
                 <arg>-nowarn</arg>
+                <arg>-XDignore.symbol.file</arg>
               </compilerArgs>
             </configuration>
           </execution>
