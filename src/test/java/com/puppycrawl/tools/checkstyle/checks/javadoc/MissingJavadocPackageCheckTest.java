@@ -64,7 +64,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
-        verifyWithInlineConfigParser(getPath("nojavadoc/package-info.java"), expected);
+        verifyWithInlineConfigParser(getPath("undocumented/package-info.java"), expected);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
             "10:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
-                getPath("nojavadoc/blockcomment/package-info.java"), expected);
+                getPath("undocumented/blockcomment/package-info.java"), expected);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
             "9:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
-                getPath("nojavadoc/singleline/package-info.java"), expected);
+                getPath("undocumented/singleline/package-info.java"), expected);
     }
 
     @Test
@@ -91,7 +91,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
             "9:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
-                getPath("nojavadoc/single/package-info.java"), expected);
+                getPath("undocumented/single/package-info.java"), expected);
     }
 
     @Test
@@ -100,7 +100,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
             "9:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
-                getPath("nojavadoc/annotation/package-info.java"), expected);
+                getPath("undocumented/annotation/package-info.java"), expected);
     }
 
     @Test
@@ -109,7 +109,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
             "13:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
-                getPath("nojavadoc/annotation/blockcomment/package-info.java"), expected);
+                getPath("undocumented/annotation/blockcomment/package-info.java"), expected);
     }
 
     @Test
@@ -118,7 +118,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
             "11:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
-                getPath("nojavadoc/detached/package-info.java"), expected);
+                getPath("undocumented/detached/package-info.java"), expected);
     }
 
     @Test
@@ -133,7 +133,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
             "9:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
-                getPath("nojavadoc/blank/package-info.java"), expected);
+                getPath("undocumented/blank/package-info.java"), expected);
     }
 
     @Test

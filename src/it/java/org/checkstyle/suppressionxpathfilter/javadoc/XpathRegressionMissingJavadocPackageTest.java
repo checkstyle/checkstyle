@@ -68,7 +68,7 @@ public class XpathRegressionMissingJavadocPackageTest extends AbstractXpathTestS
         );
 
         verifyXpathWithInlineConfigParser(
-                getPath("nojavadoc/package-info.java"),
+                getPath("undocumented/package-info.java"),
                 expectedXpathQueries,
                 expectedViolation);
     }
