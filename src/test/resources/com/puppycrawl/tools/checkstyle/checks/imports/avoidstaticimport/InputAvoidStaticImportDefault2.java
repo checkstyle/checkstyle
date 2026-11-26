@@ -1,6 +1,6 @@
 /*
 AvoidStaticImport
-excludes = java.io.File.*, sun.net.ftpclient.FtpClient.*
+excludes = java.io.File.*, sun.net.ftp.FtpClient.*
 
 
 */
