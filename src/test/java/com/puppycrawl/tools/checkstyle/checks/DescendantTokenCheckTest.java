@@ -25,9 +25,16 @@ import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KE
 import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KEY_SUM_MAX;
 import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KEY_SUM_MIN;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -393,6 +400,25 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("compact/InputDescendantTokenCompactRoot.java"),
                 expected);
+    }
+
+    @Test
+    public void testClearState() throws Exception {
+        final DescendantTokenCheck check = new DescendantTokenCheck();
+        check.setLimitedTokens("EMPTY_STAT");
+        final Optional<DetailAST> emptyStat = TestUtil.findTokenInAstByPredicate(
+            JavaParser.parseFile(new File(getPath("InputDescendantTokenEmptyStatement.java")),
+                JavaParser.Options.WITHOUT_COMMENTS),
+            ast -> ast.getType() == TokenTypes.EMPTY_STAT);
+
+        assertWithMessage("Ast should contain EMPTY_STAT")
+                .that(emptyStat.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        emptyStat.orElseThrow(), "counts",
+                        counts -> Arrays.stream((int[]) counts).allMatch(count -> count == 0)))
+                .isTrue();
     }
 
 }
