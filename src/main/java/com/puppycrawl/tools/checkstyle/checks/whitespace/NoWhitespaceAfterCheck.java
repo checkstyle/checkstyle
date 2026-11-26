@@ -222,10 +222,19 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      */
     private boolean hasTrailingWhitespace(DetailAST ast,
         int whitespaceColumnNo, int whitespaceLineNo) {
+        // A type cast is closed by a parenthesis that may sit on a later line
+        // than the cast itself, so the whitespace that follows the cast is
+        // read from the line of that parenthesis.
+        final int whitespaceOwnerLineNo;
+        if (ast.getType() == TokenTypes.TYPECAST) {
+            whitespaceOwnerLineNo = whitespaceLineNo;
+        }
+        else {
+            whitespaceOwnerLineNo = ast.getLineNo();
+        }
+        final int[] line = getLineCodePoints(whitespaceOwnerLineNo - 1);
         final boolean result;
-        final int astLineNo = ast.getLineNo();
-        final int[] line = getLineCodePoints(astLineNo - 1);
-        if (astLineNo == whitespaceLineNo && whitespaceColumnNo < line.length) {
+        if (whitespaceOwnerLineNo == whitespaceLineNo && whitespaceColumnNo < line.length) {
             result = CommonUtil.isCodePointWhitespace(line, whitespaceColumnNo);
         }
         else {

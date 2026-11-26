@@ -133,9 +133,38 @@ public class NoWhitespaceAfterCheckTest extends AbstractModuleTestSupport {
     public void testTypecast3() throws Exception {
         final String[] expected = {
             "37:17: " + getCheckMessage(MSG_KEY, ")"),
+            "96:18: " + getCheckMessage(MSG_KEY, ")"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestTypecast3.java"), expected);
+    }
+
+    @Test
+    public void testTypecastWrapped() throws Exception {
+        final String[] expected = {
+            "16:22: " + getCheckMessage(MSG_KEY, ")"),
+            "18:22: " + getCheckMessage(MSG_KEY, ")"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterTestTypecastWrapped.java"), expected);
+    }
+
+    @Test
+    public void testTypecastNoLineBreaks() throws Exception {
+        final String[] expected = {
+            "16:22: " + getCheckMessage(MSG_KEY, ")"),
+            "19:22: " + getCheckMessage(MSG_KEY, ")"),
+            "24:22: " + getCheckMessage(MSG_KEY, ")"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterTestTypecastNoLineBreaks.java"), expected);
+    }
+
+    @Test
+    public void testArrayDeclaratorWrapped() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterTestArrayDeclaratorWrapped.java"), expected);
     }
 
     @Test
