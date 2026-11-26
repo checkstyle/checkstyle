@@ -458,11 +458,9 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "43:35: " + getWarningMessage("XMLHTTP", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(
-                getPath(
-                        "InputAbbreviationAsWordInNameCheckEnhanced"
-                                + "InstanceofAllowXmlLength1.java"),
-                expected);
+        final String fileName = getPath(
+            "InputAbbreviationAsWordInNameCheckEnhancedInstanceofAllowXmlLength1.java");
+        verifyWithInlineConfigParser(fileName, expected);
     }
 
     @Test
