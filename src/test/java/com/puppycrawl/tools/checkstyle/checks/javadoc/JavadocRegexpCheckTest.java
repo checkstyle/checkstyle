@@ -19,11 +19,23 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocRegexpCheck.MSG_JAVADOC_REGEXP;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
+
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocRegexpCheckTest extends AbstractModuleTestSupport {
@@ -126,6 +138,148 @@ public class JavadocRegexpCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputJavadocRegexpTextSplitAcrossLines.java"), expected);
+    }
+
+    @Test
+    public void testSetFormatAfterMatching() throws Exception {
+        final String filePath = getPath("InputJavadocRegexpCacheFormat.java");
+        final String alphaViolation = "16: " + getCheckMessage(MSG_JAVADOC_REGEXP, "alpha");
+        final String betaViolation = "22: " + getCheckMessage(MSG_JAVADOC_REGEXP, "beta");
+        verifyWithInlineConfigParser(filePath, new String[] {alphaViolation});
+
+        final JavadocRegexpCheck check = new JavadocRegexpCheck();
+        final TreeWalker walker = createTreeWalker(check, filePath);
+        try {
+            assertWithMessage("Initial format should match alpha")
+                    .that(processFile(walker, filePath)).containsExactly(alphaViolation);
+            check.setFormat("beta");
+            assertWithMessage("Updated format should match beta instead of alpha")
+                    .that(processFile(walker, filePath)).containsExactly(betaViolation);
+            check.setFormat("alpha");
+            assertWithMessage("Restored format should match alpha again")
+                    .that(processFile(walker, filePath)).containsExactly(alphaViolation);
+        }
+        finally {
+            walker.destroy();
+        }
+    }
+
+    @Test
+    public void testSetIgnoreCaseAfterMatching() throws Exception {
+        final String filePath = getPath("InputJavadocRegexpCacheIgnoreCase.java");
+        final String uppercaseViolation = "16: " + getCheckMessage(MSG_JAVADOC_REGEXP, "ALPHA");
+        final String lowercaseViolation = "22: " + getCheckMessage(MSG_JAVADOC_REGEXP, "ALPHA");
+        verifyWithInlineConfigParser(filePath, new String[] {uppercaseViolation});
+
+        final JavadocRegexpCheck check = new JavadocRegexpCheck();
+        final TreeWalker walker = createTreeWalker(check, filePath);
+        try {
+            assertWithMessage("Case-sensitive matching should only report uppercase text")
+                    .that(processFile(walker, filePath)).containsExactly(uppercaseViolation);
+            check.setIgnoreCase(true);
+            assertWithMessage("Ignoring case should report both comments")
+                    .that(processFile(walker, filePath))
+                    .containsExactly(uppercaseViolation, lowercaseViolation).inOrder();
+            check.setIgnoreCase(false);
+            assertWithMessage("Restoring case sensitivity should stop reporting lowercase text")
+                    .that(processFile(walker, filePath)).containsExactly(uppercaseViolation);
+        }
+        finally {
+            walker.destroy();
+        }
+    }
+
+    @Test
+    public void testInvalidRegexpIsDeferredUntilJavadocProcessing() throws Exception {
+        final String noJavadocPath = getPath("InputJavadocRegexpInvalidFormatNoJavadoc.java");
+        final String javadocPath = getPath("InputJavadocRegexpCacheFormat.java");
+        final JavadocRegexpCheck check = new JavadocRegexpCheck();
+        final TreeWalker walker = createTreeWalker(check, noJavadocPath);
+        try {
+            assertWithMessage("Invalid regex should not fail without Javadoc")
+                    .that(processFile(walker, noJavadocPath)).isEmpty();
+            check.beginJavadocTree(null);
+            final IllegalArgumentException exception = getExpectedThrowable(
+                    IllegalArgumentException.class,
+                    () -> check.finishJavadocTree(null),
+                    "Invalid regex should fail at finishJavadocTree");
+            assertWithMessage("Regex compilation should retain its error message")
+                    .that(exception).hasMessageThat()
+                    .isEqualTo("Failed to initialise regular expression [");
+            assertWithMessage("Regex syntax error should remain the cause")
+                    .that(exception).hasCauseThat().isInstanceOf(PatternSyntaxException.class);
+            getExpectedThrowable(IllegalArgumentException.class,
+                    () -> processFile(walker, javadocPath),
+                    "Failed compilation should not leave a usable cached pattern");
+            check.setFormat("alpha");
+            assertWithMessage("A valid format should recover after failed compilation")
+                    .that(processFile(walker, javadocPath))
+                    .containsExactly("16: " + getCheckMessage(MSG_JAVADOC_REGEXP, "alpha"));
+        }
+        finally {
+            walker.destroy();
+        }
+    }
+
+    @Test
+    public void testSameInstanceProcessesDifferentFiles() throws Exception {
+        final String firstPath = getPath("InputJavadocRegexpCacheFormat.java");
+        final String secondPath = getPath("InputJavadocRegexpCacheSecondFile.java");
+        final String firstViolation = "16: " + getCheckMessage(MSG_JAVADOC_REGEXP, "alpha");
+        final String secondViolation = "22: " + getCheckMessage(MSG_JAVADOC_REGEXP, "alpha");
+        verifyWithInlineConfigParser(firstPath, new String[] {firstViolation});
+        verifyWithInlineConfigParser(secondPath, new String[] {secondViolation});
+
+        final JavadocRegexpCheck check = new JavadocRegexpCheck();
+        final TreeWalker walker = createTreeWalker(check, firstPath);
+        try {
+            assertWithMessage("First file should report its matching comment")
+                    .that(processFile(walker, firstPath)).containsExactly(firstViolation);
+            assertWithMessage("Second file should use its own content and line numbers")
+                    .that(processFile(walker, secondPath)).containsExactly(secondViolation);
+            assertWithMessage("Returning to the first file should not retain second-file state")
+                    .that(processFile(walker, firstPath)).containsExactly(firstViolation);
+        }
+        finally {
+            walker.destroy();
+        }
+    }
+
+    @Test
+    public void testRegexpIsReusedAcrossFiles() throws Exception {
+        final String firstPath = getPath("InputJavadocRegexpCacheFormat.java");
+        final String secondPath = getPath("InputJavadocRegexpCacheSecondFile.java");
+        final JavadocRegexpCheck check = new JavadocRegexpCheck();
+        final TreeWalker walker = createTreeWalker(check, firstPath);
+        try {
+            processFile(walker, firstPath);
+            final Pattern firstRegexp = TestUtil.getInternalState(check, "regexp", Pattern.class);
+            assertWithMessage("Processing Javadoc should compile the pattern")
+                    .that(firstRegexp).isNotNull();
+            processFile(walker, secondPath);
+            final Pattern secondRegexp = TestUtil.getInternalState(check, "regexp", Pattern.class);
+            assertWithMessage("Different files should reuse the cached pattern")
+                    .that(secondRegexp).isSameInstanceAs(firstRegexp);
+        }
+        finally {
+            walker.destroy();
+        }
+    }
+
+    private static TreeWalker createTreeWalker(JavadocRegexpCheck check, String filePath)
+            throws Exception {
+        final TreeWalker walker = new TreeWalker();
+        walker.setModuleFactory(name -> check);
+        walker.configure(InlineConfigParser.parse(filePath).createConfiguration().getChildren()[0]);
+        return walker;
+    }
+
+    private static List<String> processFile(TreeWalker walker, String filePath) throws Exception {
+        final File file = new File(filePath);
+        final FileText text = new FileText(file, StandardCharsets.UTF_8.name());
+        return walker.process(file, text).stream()
+                .map(violation -> violation.getLineNo() + ": " + violation.getViolation())
+                .toList();
     }
 
 }
