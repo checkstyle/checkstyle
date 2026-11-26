@@ -1,7 +1,7 @@
 /*
 AvoidStaticImport
 excludes = java.io.File.listRoots.listRoots, javax.swing.WindowConstants, javax.swing.*, \
-           sun.net.ftpclient.FtpClient.*FtpClient, sun.net.ftpclient.FtpClientjunk, \
+           sun.net.ftp.FtpClient.*FtpClient, sun.net.ftp.FtpClientjunk, \
            java.io.File.listRootsmorejunk
 
 
