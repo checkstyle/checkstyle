@@ -4,13 +4,7 @@ MissingJavadocPackage
 
 */
 
-/*
-*  Some comment
- */
-
 // violation 2 lines below 'Missing javadoc for package-info.java file.'
-@Nullable
+@Deprecated
 package com.puppycrawl.tools.checkstyle.checks
-        .javadoc.missingjavadocpackage.nojavadoc.annotation.blockcomment;
-
-import javax.annotation.Nullable;
+        .javadoc.missingjavadocpackage.undocumented.annotation;
