@@ -125,6 +125,22 @@ public class TypeBodyPaddingCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputTypeBodyPaddingCompactDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactNonDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputTypeBodyPaddingCompactNonDefault.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final TypeBodyPaddingCheck check = new TypeBodyPaddingCheck();
         final int[] actual = check.getAcceptableTokens();
