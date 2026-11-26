@@ -21,4 +21,21 @@ public class InputRedundantThisSwitchCase {
                 return this.max;
         }
     }
+
+    private int x;
+
+    void localVariableDeclaredInEarlierCase(int kind) {
+        switch (kind) {
+            case 1:
+                int x = 1;
+                System.out.println(x);
+                break;
+            case 2:
+                x = 5;
+                this.x = x;
+                break;
+            default:
+                break;
+        }
+    }
 }
