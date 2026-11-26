@@ -179,4 +179,24 @@ public class ImportOrderCheckExamplesTest extends AbstractExamplesModuleTestSupp
         verifyWithInlineConfigParser(getPath("Example12.java"), expected);
     }
 
+    @Test
+    public void testExample13() throws Exception {
+        final String[] expected = {
+
+        };
+
+        verifyWithInlineConfigParser(getPath("Example13.java"), expected);
+    }
+
+    @Test
+    public void testExample14() throws Exception {
+        final String[] expected = {
+            "18:1: " + getCheckMessage(MSG_ORDERING_LEX,
+                    "java.util.concurrent.Callable",
+                    "java.util.Set"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example14.java"), expected);
+    }
+
 }

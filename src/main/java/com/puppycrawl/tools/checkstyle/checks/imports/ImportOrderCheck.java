@@ -180,6 +180,11 @@ public class ImportOrderCheck extends AbstractCheck {
     private boolean sortStaticImportsAlphabetically;
 
     /**
+     * Control whether to use container ordering (Eclipse IDE term) for type imports or not.
+     */
+    private boolean useContainerOrdering;
+
+    /**
      * Control whether to use container ordering (Eclipse IDE term) for static imports or not.
      */
     private boolean useContainerOrderingForStatic;
@@ -319,14 +324,26 @@ public class ImportOrderCheck extends AbstractCheck {
     }
 
     /**
+     * Setter to control whether to use container ordering (Eclipse IDE term) for type
+     * imports or not.
+     *
+     * @param useContainerOrdering whether to use container ordering for type imports or not.
+     * @since 14.5.0
+     */
+    public void setUseContainerOrdering(boolean useContainerOrdering) {
+        this.useContainerOrdering = useContainerOrdering;
+    }
+
+    /**
      * Setter to control whether to use container ordering (Eclipse IDE term) for static
      * imports or not.
      *
-     * @param useContainerOrdering whether to use container ordering for static imports or not.
+     * @param useContainerOrderingForStatic whether to use container ordering for static imports
+     *                                      or not.
      * @since 7.1
      */
-    public void setUseContainerOrderingForStatic(boolean useContainerOrdering) {
-        useContainerOrderingForStatic = useContainerOrdering;
+    public void setUseContainerOrderingForStatic(boolean useContainerOrderingForStatic) {
+        this.useContainerOrderingForStatic = useContainerOrderingForStatic;
     }
 
     @Override
@@ -570,25 +587,34 @@ public class ImportOrderCheck extends AbstractCheck {
         }
         else {
             // out of lexicographic order
-            result = compare(lastImport, name, caseSensitive) > 0;
+            if (useContainerOrdering) {
+                result = compareContainerOrder(lastImport, name, caseSensitive) > 0;
+            }
+            else {
+                result = compare(lastImport, name, caseSensitive) > 0;
+            }
         }
         return result;
     }
 
     /**
      * Compares two import strings.
-     * We first compare the container of the static import, container being the type enclosing
-     * the static element being imported. When this returns 0, we compare the qualified
-     * import name. For e.g. this is what is considered to be container names:
+     * We first compare the container of the import, container being the type enclosing
+     * the static element or package enclosing the type being imported. When this returns 0,
+     * we compare the qualified import name. For e.g. this is what is considered to be
+     * container names:
      * {@snippet lang="text" :
      * import static HttpConstants.COLON     => HttpConstants
      * import static HttpHeaders.addHeader   => HttpHeaders
      * import static HttpHeaders.setHeader   => HttpHeaders
      * import static HttpHeaders.Names.DATE  => HttpHeaders.Names
+     * import lombok.val                      => lombok
+     * import lombok.experimental.FieldDefaults => lombok.experimental
      * }
      *
      * <p>
-     * According to this logic, HttpHeaders.Names would come after HttpHeaders.
+     * According to this logic, HttpHeaders.Names would come after HttpHeaders, and
+     * lombok.experimental would come after lombok.
      * For more details, see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=473629#c3">
      * static imports comparison method</a> in Eclipse.
      * </p>
@@ -624,13 +650,17 @@ public class ImportOrderCheck extends AbstractCheck {
 
     /**
      * Extracts import container name from fully qualified import name.
-     * An import container name is the type which encloses the static element being imported.
-     * For example, HttpConstants, HttpHeaders, HttpHeaders.Names are import container names:
+     * An import container name is the type which encloses the static element being imported,
+     * or the package enclosing the type being imported.
+     * For example, HttpConstants, HttpHeaders, HttpHeaders.Names, lombok are
+     * import container names:
      * {@snippet lang="text" :
      * import static HttpConstants.COLON     => HttpConstants
      * import static HttpHeaders.addHeader   => HttpHeaders
      * import static HttpHeaders.setHeader   => HttpHeaders
      * import static HttpHeaders.Names.DATE  => HttpHeaders.Names
+     * import lombok.val                      => lombok
+     * import lombok.experimental.FieldDefaults => lombok.experimental
      * }
      *
      * @param qualifiedImportName fully qualified import name.

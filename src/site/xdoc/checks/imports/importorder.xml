@@ -29,6 +29,8 @@
               <li><a href="#Example7-config" class="toc-sublink">With groups of static imports</a></li>
               <li><a href="#Example8-config" class="toc-sublink">Example for <code>useContainerOrderingForStatic=true</code></a></li>
               <li><a href="#Example9-config" class="toc-sublink">Example for <code>useContainerOrderingForStatic=false</code></a></li>
+              <li><a href="#Example13-config" class="toc-sublink">Example for <code>useContainerOrdering=true</code></a></li>
+              <li><a href="#Example14-config" class="toc-sublink">Example for <code>useContainerOrdering=false</code></a></li>
               <li><a href="#Example10-config" class="toc-sublink">Example for <code>separatedStaticGroups=true</code></a></li>
               <li><a href="#Example11-config" class="toc-sublink">With groups of static imports when staticGroups="" represents all imports as {@code everything else} group</a></li>
               <li><a href="#Example12-config" class="toc-sublink">With groups of static imports when staticGroups="java, javax" represents three groups i.e java*, javax* and * (everything else). In below example the static imports <code> com...</code> should be in last group</a></li>
@@ -138,6 +140,13 @@
               <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>8.12</td>
+            </tr>
+            <tr>
+              <td><a id="useContainerOrdering"/><a href="#useContainerOrdering">useContainerOrdering</a></td>
+              <td>Control whether to use container ordering (Eclipse IDE term) for type imports or not.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>14.5.0</td>
             </tr>
             <tr>
               <td><a id="useContainerOrderingForStatic"/><a href="#useContainerOrderingForStatic">useContainerOrderingForStatic</a></td>
@@ -502,6 +511,75 @@ import static java.lang.Byte.MAX_VALUE;
 import static java.lang.Character.toLowerCase;
 import static java.lang.Character.valueOf;
 import static java.lang.Character.UnicodeBlock.BASIC_LATIN;
+// violation above 'Wrong lexicographical order for ...'
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p>
+          The following example shows the idea of the 'useContainerOrdering'
+          option that is useful for Eclipse IDE users to match ordering validation.
+          This is how the import comparison works for type imports: we first compare
+          the container (package) of the type import. When the result of the comparison
+          is 0 (containers are equal), we compare the fully qualified import names to
+          determine the correct order.
+        </p>
+        <p>
+          For example, these are the container names for the given imports:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.List;                =&gt; java.util
+import java.util.Set;                 =&gt; java.util
+import java.util.concurrent.Callable; =&gt; java.util.concurrent
+</code></pre></div>
+        <p>
+          According to this logic, imports belonging to the same package container should be
+          ordered alphabetically, and imports from subpackages (such as
+          <code>java.util.concurrent</code>) will come after imports from the parent package
+          container (<code>java.util</code>).
+        </p>
+        <hr class="example-separator"/>
+        <p id="Example13-config">
+          Example for <code>useContainerOrdering=true</code>
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportOrder"&gt;
+      &lt;property name="useContainerOrdering" value="true"/&gt;
+      &lt;property name="ordered" value="true"/&gt;
+      &lt;property name="caseSensitive" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example13-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.Callable;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example14-config">
+          Example for <code>useContainerOrdering=false</code>
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportOrder"&gt;
+      &lt;property name="useContainerOrdering" value="false"/&gt;
+      &lt;property name="ordered" value="true"/&gt;
+      &lt;property name="caseSensitive" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example14-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.Callable;
 // violation above 'Wrong lexicographical order for ...'
 </code></pre></div>
         <hr class="example-separator"/>
