@@ -23,8 +23,8 @@ class Other <foo extends Serializable & Cloneable> {
         return null;//comment
     }
 
-    <Tfo$o2T extends foo> /*comment*/Tfo$o2T getTwo(Tfo$o2T a) {
-        // violation above 'Name 'Tfo\$o2T' must match pattern'
+    <Two$o2T extends foo> /*comment*/Two$o2T getTwo(Two$o2T a) {
+        // violation above 'Name 'Two\$o2T' must match pattern'
         return null;
     }
     <foo extends Runnable> foo getShadow() { // violation 'Name 'foo' must match pattern'
