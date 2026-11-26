@@ -74,8 +74,8 @@ class TreeTableCellRenderer extends JTree implements TableCellRenderer {
         super.updateUI();
         // Make the tree's cell renderer use the table's cell selection
         // colors.
-        final TreeCellRenderer tcr = getCellRenderer();
-        if (tcr instanceof final DefaultTreeCellRenderer renderer) {
+        final TreeCellRenderer treeCellRenderer = getCellRenderer();
+        if (treeCellRenderer instanceof final DefaultTreeCellRenderer renderer) {
             renderer.setBorderSelectionColor(null);
             renderer.setTextSelectionColor(
                     UIManager.getColor(COLOR_KEY_TABLE_SELECTION_FOREGROUND));
