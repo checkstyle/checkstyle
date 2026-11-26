@@ -420,8 +420,8 @@
 
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
-  &lt;metadata name=&quot;com.myproject.cs-version&quot; value=&quot;4.4&quot;/&gt;
-  &lt;metadata name=&quot;com.myproject.cs-version.desc&quot; value=&quot;legacy config&quot;/&gt;
+  &lt;metadata name=&quot;com.example.cs-version&quot; value=&quot;4.4&quot;/&gt;
+  &lt;metadata name=&quot;com.example.cs-version.desc&quot; value=&quot;legacy config&quot;/&gt;
   ...
 &lt;/module&gt;
         </code></pre></div>
