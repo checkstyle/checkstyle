@@ -1,4 +1,4 @@
-package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.declarationrightbeforefirstusage;
+package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.usage;
 
 // violation first line 'Header mismatch'
 
