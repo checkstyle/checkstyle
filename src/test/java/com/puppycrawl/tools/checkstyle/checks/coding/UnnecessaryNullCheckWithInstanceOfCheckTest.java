@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheck
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleTestSupport {
 
@@ -40,6 +41,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
             "12:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "15:39: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "24:14: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "29:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "50:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "55:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "58:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
@@ -88,9 +90,23 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
             "11:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "18:21: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "26:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "32:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "37:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "42:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "47:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "50:14: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "55:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
         };
         verifyWithInlineConfigParser(getPath(
             "InputUnnecessaryNullCheckWithInstanceOfNestedIf.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofNested2() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath(
+            "InputUnnecessaryNullCheckWithInstanceOfNestedIf2.java"), expected);
     }
 
     @Test
