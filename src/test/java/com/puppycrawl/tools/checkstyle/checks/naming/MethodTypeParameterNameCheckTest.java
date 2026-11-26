@@ -65,7 +65,7 @@ public class MethodTypeParameterNameCheckTest
         final String[] expected = {
             "14:13: " + getCheckMessage(MSG_INVALID_PATTERN, "TT", pattern),
             "16:6: " + getCheckMessage(MSG_INVALID_PATTERN, "e_e", pattern),
-            "26:6: " + getCheckMessage(MSG_INVALID_PATTERN, "Tfo$o2T", pattern),
+            "26:6: " + getCheckMessage(MSG_INVALID_PATTERN, "Two$o2T", pattern),
             "30:6: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
             "35:10: " + getCheckMessage(MSG_INVALID_PATTERN, "_fo", pattern),
         };
@@ -82,7 +82,7 @@ public class MethodTypeParameterNameCheckTest
         final String[] expected = {
             "14:13: " + getCheckMessage(MSG_INVALID_PATTERN, "TT", pattern),
             "16:6: " + getCheckMessage(MSG_INVALID_PATTERN, "e_e", pattern),
-            "26:6: " + getCheckMessage(MSG_INVALID_PATTERN, "Tfo$o2T", pattern),
+            "26:6: " + getCheckMessage(MSG_INVALID_PATTERN, "Two$o2T", pattern),
             "35:10: " + getCheckMessage(MSG_INVALID_PATTERN, "_fo", pattern),
             "42:6: " + getCheckMessage(MSG_INVALID_PATTERN, "E", pattern),
             "44:14: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
