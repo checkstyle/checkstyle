@@ -68,7 +68,8 @@ public class IllegalTokenCheckTest extends AbstractModuleTestSupport {
         final String path = getPath("InputIllegalTokensCheckCommentsContent.java");
         final String[] expected = {
             "1:3: " + getCheckMessage(MSG_KEY,
-                        "\\nIllegalToken\\ntokens = COMMENT_CONTENT\\n\\n\\n"),
+                        "\\nIllegalToken\\n"
+                            + "tokens = COMMENT_CONTENT\\n\\n\\n"),
             "10:3: " + getCheckMessage(MSG_KEY,
                         "\\n// violation first line 'is not allowed'\\n"
                             + "// violation 2 lines above 'is not allowed'\\n"
