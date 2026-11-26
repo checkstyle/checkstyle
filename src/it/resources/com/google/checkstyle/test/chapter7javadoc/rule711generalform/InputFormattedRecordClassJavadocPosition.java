@@ -17,6 +17,8 @@ public record InputFormattedRecordClassJavadocPosition(String containerPath, Str
    */
   public InputFormattedRecordClassJavadocPosition {}
 
+  // violation 5 lines above 'Unused @param tag for 'options''
+
   /**
    * The configuration of a bind mount.
    *

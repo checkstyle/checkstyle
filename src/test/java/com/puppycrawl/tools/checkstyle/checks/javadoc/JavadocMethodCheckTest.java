@@ -340,6 +340,46 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSurroundingAccessModifierRecord() throws Exception {
+        final String[] expected = {
+            "22:9: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "a"),
+            "28:32: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
+            "57:36: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
+            "67:36: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodSurroundingAccessModifierRecord.java"), expected);
+    }
+
+    @Test
+    public void testTopLevelRecord() throws Exception {
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "a"),
+            "26:28: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodTopLevelRecord.java"), expected);
+    }
+
+    @Test
+    public void testTopLevelPackageRecord() throws Exception {
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "a"),
+            "26:21: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodTopLevelPackageRecord.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceTopLevelMethod() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocMethodCompactSourceTopLevelMethod.java"),
+                expected);
+    }
+
+    @Test
     public void testDoAllowMissingJavadocTagsByDefault() throws Exception {
         final String[] expected = {
             "24: " + getCheckMessage(MSG_RETURN_EXPECTED),
@@ -700,6 +740,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "41: " + getCheckMessage(MSG_RETURN_EXPECTED),
             "46:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "other"),
             "51:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "size"),
+            "62:5: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
         };
 
         verifyWithInlineConfigParser(
