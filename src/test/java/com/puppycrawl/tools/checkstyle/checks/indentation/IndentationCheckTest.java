@@ -432,9 +432,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWarns(checkConfig,
-            getPath("InputIndentation"
-                + "AnnotationClosingParenthesisEndsInSameIndentationAsOpen.java"),
-                expected);
+            getPath("InputIndentationAnnotationClosingParenthesisEndsInSameIndentationAsOpen.java"),
+            expected);
     }
 
     @Test
