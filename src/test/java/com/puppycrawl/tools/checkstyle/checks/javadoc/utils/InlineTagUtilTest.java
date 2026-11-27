@@ -108,11 +108,11 @@ public class InlineTagUtilTest {
         final IllegalArgumentException exc =
                 TestUtil.getExpectedThrowable(
                     IllegalArgumentException.class, () -> {
-                        InlineTagUtil.extractInlineTags("abc\ndef");
+                        InlineTagUtil.extractInlineTags("valid", "abc\ndef");
                     });
         assertWithMessage("Unexpected error message")
                 .that(exc.getMessage())
-                .contains("newline");
+                .isEqualTo("comment line 2 cannot contain newlines");
     }
 
     @Test

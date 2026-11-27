@@ -272,7 +272,6 @@
   <Match>
     <Bug pattern="
       IMC_IMMATURE_CLASS_NO_TOSTRING,
-      WEM_WEAK_EXCEPTION_MESSAGING,
       " />
   </Match>
   <Match>
@@ -563,5 +562,163 @@
     <Class name="com.puppycrawl.tools.checkstyle.TreeWalker" />
     <Method name="setupChild" />
     <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <!-- These constructors identify outputStreamOptions as the null argument. -->
+  <Match>
+    <Or>
+      <Class name=
+       "com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener"/>
+      <Class name="com.puppycrawl.tools.checkstyle.SarifLogger"/>
+      <Class name="com.puppycrawl.tools.checkstyle.XMLLogger"/>
+      <Class name="com.puppycrawl.tools.checkstyle.XpathFileGeneratorAuditListener"/>
+    </Or>
+    <Method name="&lt;init&gt;" returns="void"
+     params="java.io.OutputStream,
+            com.puppycrawl.tools.checkstyle.AbstractAutomaticBean$OutputStreamOptions"/>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
+  </Match>
+  <!-- The configuration parsing exception retains the underlying failure as its cause. -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.ConfigurationLoader"/>
+    <Method name="loadConfiguration"
+            params="org.xml.sax.InputSource,com.puppycrawl.tools.checkstyle.PropertyResolver,
+            com.puppycrawl.tools.checkstyle.ConfigurationLoader$IgnoredModulesOptions,
+            com.puppycrawl.tools.checkstyle.ThreadModeSettings"
+            returns="com.puppycrawl.tools.checkstyle.api.Configuration"/>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
+  </Match>
+  <!-- These constructors identify a null class loader or a null package name. -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
+    <Or>
+      <Method name="&lt;init&gt;" returns="void"
+              params="java.lang.String,java.lang.ClassLoader"/>
+      <Method name="&lt;init&gt;" returns="void"
+              params="java.util.Set,java.lang.ClassLoader,
+              com.puppycrawl.tools.checkstyle.PackageObjectFactory$ModuleLoadOption"/>
+    </Or>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
+  </Match>
+  <!-- The only constructor argument is properties, and this guard rejects null. -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.PropertiesExpander"/>
+    <Method name="&lt;init&gt;" params="java.util.Properties" returns="void"/>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
+  </Match>
+  <!-- Each null guard names the rejected argument, config or fileName. -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile"/>
+    <Method name="&lt;init&gt;" returns="void"
+            params="com.puppycrawl.tools.checkstyle.api.Configuration,java.lang.String"/>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
+  </Match>
+  <!-- The null guards identify the argument. Invalid tag messages include its value. -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo"/>
+    <Or>
+      <Method name="fromText" params="java.lang.String"
+              returns="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo"/>
+      <Method name="fromName" params="java.lang.String"
+              returns="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo"/>
+    </Or>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
+  </Match>
+  <!-- The Ant task identifies the duplicate attribute or missing input. -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask"/>
+    <Or>
+      <Method name="setConfig" params="java.lang.String" returns="void"/>
+      <Method name="execute" params="" returns="void"/>
+    </Or>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
+  </Match>
+  <!-- The message identifies the null extensions array. -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck"/>
+    <Method name="setFileExtensions" params="java.lang.String[]" returns="void"/>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
+  </Match>
+  <!-- The constructor identifies the null event source. -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.api.AuditEvent"/>
+    <Method name="&lt;init&gt;" returns="void"
+            params="java.lang.Object,java.lang.String,
+            com.puppycrawl.tools.checkstyle.api.Violation"/>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
+  </Match>
+  <!-- The message names the conflicting header settings and explains the remedy. -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck"/>
+    <Method name="checkHeaderNotInitialized" params="" returns="void"/>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
+  </Match>
+  <!-- A blank header path has no file name to include in the diagnostic. -->
+  <Match>
+    <Class name=
+     "com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck$HeaderFileMetadata"/>
+    <Method name="createFromFile" params="java.lang.String"
+    returns=
+    "com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck$HeaderFileMetadata"/>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
+  </Match>
+  <!-- Each guard identifies the null argument or the blank annotation name. -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.utils.AnnotationUtil"/>
+    <Or>
+      <Method name="containsAnnotation" returns="boolean"
+              params="com.puppycrawl.tools.checkstyle.api.DetailAST,java.util.Set"/>
+      <Method name="getAnnotationHolder" returns="com.puppycrawl.tools.checkstyle.api.DetailAST"
+              params="com.puppycrawl.tools.checkstyle.api.DetailAST"/>
+      <Method name="getAnnotation" returns="com.puppycrawl.tools.checkstyle.api.DetailAST"
+              params="com.puppycrawl.tools.checkstyle.api.DetailAST,java.lang.String"/>
+    </Or>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
+  </Match>
+  <!-- The constructor identifies level as the null argument. -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter"/>
+    <Method name="&lt;init&gt;" returns="void"
+            params="com.puppycrawl.tools.checkstyle.api.SeverityLevel"/>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
+  </Match>
+  <!-- The guard identifies the missing identifier AST. -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder"/>
+    <Method name="getIdentifier" returns="java.lang.String"
+            params="com.puppycrawl.tools.checkstyle.api.DetailAST"/>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
+  </Match>
+  <!-- Both guards list the alternative attributes that satisfy the suppression rule. -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader"/>
+    <Or>
+      <Method name="getSuppressElement" params="org.xml.sax.Attributes"
+              returns="com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement"/>
+      <Method name="getXpathFilter" params="org.xml.sax.Attributes"
+              returns="com.puppycrawl.tools.checkstyle.filters.XpathFilterElement"/>
+    </Or>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
+  </Match>
+
+  <!-- The null guard identifies MODIFIERS as the required AST token type. -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.utils.CheckUtil"/>
+    <Method name="getAccessModifierFromModifiersTokenDirectly"
+            params="com.puppycrawl.tools.checkstyle.api.DetailAST"
+            returns="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption"/>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
+  </Match>
+  <!-- Both exception messages include the rejected Javadoc node. -->
+  <Match>
+    <Or>
+      <Class name=
+       "com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnFieldCheck"/>
+      <Class name=
+       "com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnPackageCheck"
+      />
+    </Or>
+    <Method name="getTagName" params="com.puppycrawl.tools.checkstyle.api.DetailNode"
+            returns="java.lang.String"/>
+    <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"/>
   </Match>
 </FindBugsFilter>

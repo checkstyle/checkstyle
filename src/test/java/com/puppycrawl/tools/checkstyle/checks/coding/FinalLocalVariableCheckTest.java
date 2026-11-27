@@ -300,8 +300,11 @@ public class FinalLocalVariableCheckTest extends AbstractModuleTestSupport {
         final DetailAstImpl lambdaAst = new DetailAstImpl();
         lambdaAst.setType(TokenTypes.LAMBDA);
 
-        getExpectedThrowable(IllegalStateException.class,
+        final IllegalStateException exc = getExpectedThrowable(IllegalStateException.class,
                 () -> check.visitToken(lambdaAst));
+        assertWithMessage("Invalid error message")
+                .that(exc.getMessage())
+                .isEqualTo("Incorrect token type: " + TokenTypes.LAMBDA);
     }
 
     @Test

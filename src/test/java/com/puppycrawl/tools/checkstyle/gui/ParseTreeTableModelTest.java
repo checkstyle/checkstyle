@@ -278,7 +278,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         catch (IllegalStateException exc) {
             assertWithMessage("Invalid error message")
                 .that(exc.getMessage())
-                .isEqualTo("Unknown column");
+                .isEqualTo("Unknown column: " + parseTree.getColumnCount());
         }
     }
 
@@ -357,7 +357,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         catch (IllegalStateException exc) {
             assertWithMessage("Invalid error message")
                 .that(exc.getMessage())
-                .isEqualTo("Unknown column");
+                .isEqualTo("Unknown column: " + parseTree.getColumnCount());
         }
 
         assertWithMessage("Invalid cell editable status")

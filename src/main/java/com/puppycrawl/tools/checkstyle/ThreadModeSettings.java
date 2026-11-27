@@ -64,18 +64,13 @@ public record ThreadModeSettings(int checkerThreadsNumber,
      * @throws IllegalArgumentException when name is Checker or TreeWalker
      */
     public String resolveName(String name) {
-        if (checkerThreadsNumber > 1) {
-            if (CHECKER_MODULE_NAME.equals(name)) {
-                throw new IllegalArgumentException(
-                        "Multi thread mode for Checker module is not implemented");
-            }
-            if (TREE_WALKER_MODULE_NAME.equals(name)) {
-                throw new IllegalArgumentException(
-                        "Multi thread mode for TreeWalker module is not implemented");
-            }
+        if (checkerThreadsNumber > 1
+                && (CHECKER_MODULE_NAME.equals(name) || TREE_WALKER_MODULE_NAME.equals(name))) {
+            throw new IllegalArgumentException(
+                    "Multi thread mode for " + name + " module is not implemented");
         }
-
         return name;
+
     }
 
 }

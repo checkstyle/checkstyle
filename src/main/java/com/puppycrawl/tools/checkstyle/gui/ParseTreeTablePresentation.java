@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class ParseTreeTablePresentation {
 
     /** Exception message. */
-    private static final String UNKNOWN_COLUMN_MSG = "Unknown column";
+    private static final String UNKNOWN_COLUMN_MSG = "Unknown column: ";
 
     /** Column names. */
     private static final String[] COLUMN_NAMES = {
@@ -118,7 +118,7 @@ public class ParseTreeTablePresentation {
             case 0 -> ParseTreeTableModel.class;
             case 1, 4 -> String.class;
             case 2, 3 -> Integer.class;
-            default -> throw new IllegalStateException(UNKNOWN_COLUMN_MSG);
+            default -> throw new IllegalStateException(UNKNOWN_COLUMN_MSG + column);
         };
     }
 
@@ -295,7 +295,7 @@ public class ParseTreeTablePresentation {
             case 2 -> node.getLineNumber();
             case 3 -> node.getColumnNumber();
             case 4 -> node.getText();
-            default -> throw new IllegalStateException(UNKNOWN_COLUMN_MSG);
+            default -> throw new IllegalStateException(UNKNOWN_COLUMN_MSG + column);
         };
     }
 
@@ -317,7 +317,7 @@ public class ParseTreeTablePresentation {
             case 2 -> ast.getLineNo();
             case 3 -> ast.getColumnNo();
             case 4 -> ast.getText();
-            default -> throw new IllegalStateException(UNKNOWN_COLUMN_MSG);
+            default -> throw new IllegalStateException(UNKNOWN_COLUMN_MSG + column);
         };
     }
 
