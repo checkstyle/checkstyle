@@ -66,9 +66,11 @@ public final class InlineTagUtil {
      * @throws IllegalArgumentException when comment lines contain newlines
      */
     public static List<TagInfo> extractInlineTags(String... lines) {
-        for (String line : lines) {
+        for (int index = 0; index < lines.length; index++) {
+            final String line = lines[index];
             if (line.indexOf(LINE_FEED) != -1 || line.indexOf(CARRIAGE_RETURN) != -1) {
-                throw new IllegalArgumentException("comment lines cannot contain newlines");
+                throw new IllegalArgumentException(
+                        "comment line " + (index + 1) + " cannot contain newlines");
             }
         }
 
