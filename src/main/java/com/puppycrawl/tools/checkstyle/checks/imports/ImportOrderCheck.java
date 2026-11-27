@@ -390,6 +390,13 @@ public class ImportOrderCheck extends AbstractCheck {
         }
 
         lastImportLine = ast.findFirstToken(TokenTypes.SEMI).getLineNo();
+        // module imports are not ordered here, but must not count as a blank line separator
+        DetailAST next = ast.getNextSibling();
+        while (next != null && next.getType() == TokenTypes.MODULE_IMPORT
+                && !isSeparatorBeforeImport(next.getLineNo())) {
+            lastImportLine = next.findFirstToken(TokenTypes.SEMI).getLineNo();
+            next = next.getNextSibling();
+        }
         lastImportStatic = isStatic;
         beforeFirstImport = false;
     }
