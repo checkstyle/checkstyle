@@ -7208,13 +7208,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/AnonInnerLengthCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference closingBrace</message>
-    <lineContent>closingBrace.getLineNo() - openingBrace.getLineNo() + 1;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/ExecutableStatementCountCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter ast of Context constructor.</message>
