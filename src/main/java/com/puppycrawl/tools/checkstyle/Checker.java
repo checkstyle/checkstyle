@@ -273,21 +273,27 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      */
     // -@cs[CyclomaticComplexity] no easy way to split this logic of processing the file
     private void processFiles(List<File> files) throws CheckstyleException {
+        final boolean hasGlobalStatefulCheck = fileSetChecks.stream()
+                .anyMatch(Checker::isGlobalStatefulCheck);
         for (final File file : files) {
             String fileName = null;
             final String filePath = file.getPath();
             try {
                 fileName = file.getAbsolutePath();
                 final long timestamp = file.lastModified();
-                if (cacheFile != null && cacheFile.isInCache(fileName, timestamp)
-                        || !acceptFileStarted(fileName)) {
+                final boolean isInCache = cacheFile != null
+                        && cacheFile.isInCache(fileName, timestamp);
+                if (isInCache && !hasGlobalStatefulCheck) {
+                    continue;
+                }
+                if (!acceptFileStarted(fileName)) {
                     continue;
                 }
                 if (cacheFile != null) {
                     cacheFile.put(fileName, timestamp);
                 }
                 try (FileAuditCompletion completion = new FileAuditCompletion(fileName)) {
-                    final SortedSet<Violation> fileViolations = processFile(file);
+                    final SortedSet<Violation> fileViolations = processFile(file, isInCache);
                     fireErrors(fileName, fileViolations);
                 }
             }
@@ -314,21 +320,25 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     }
 
     /**
-     * Processes a file with all FileSetChecks.
+     * Processes a file with applicable FileSetChecks.
      *
      * @param file a file to process.
+     * @param processGlobalChecksOnly whether to process only global stateful checks.
      * @return a sorted set of violations to be logged.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      * @noinspection ProhibitedExceptionThrown
      * @noinspectionreason ProhibitedExceptionThrown - there is no other way to obey
      *      haltOnException field
      */
-    private SortedSet<Violation> processFile(File file) throws CheckstyleException {
+    private SortedSet<Violation> processFile(File file, boolean processGlobalChecksOnly)
+            throws CheckstyleException {
         final SortedSet<Violation> fileViolations = new TreeSet<>();
         try {
             final FileText theText = new FileText(file.getAbsoluteFile(), charset);
             for (final FileSetCheck fsc : fileSetChecks) {
-                fileViolations.addAll(fsc.process(file, theText));
+                if (!processGlobalChecksOnly || isGlobalStatefulCheck(fsc)) {
+                    fileViolations.addAll(fsc.process(file, theText));
+                }
             }
         }
         catch (final IOException ioe) {
@@ -356,6 +366,16 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                     null, getClass(), null));
         }
         return fileViolations;
+    }
+
+    /**
+     * Checks whether a file set check needs the complete set of accepted files.
+     *
+     * @param fileSetCheck check to inspect.
+     * @return {@code true} if the check is global stateful.
+     */
+    private static boolean isGlobalStatefulCheck(FileSetCheck fileSetCheck) {
+        return fileSetCheck.getClass().isAnnotationPresent(GlobalStatefulCheck.class);
     }
 
     /**
