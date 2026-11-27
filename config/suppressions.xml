@@ -198,10 +198,6 @@
             files=".*/src/test/java/com/puppycrawl/tools/checkstyle/(?!utils|xpath|checks/coding|checks/design|checks/modifier|checks/naming|checks/annotation|checks/indentation|checks/metrics|checks/whitespace|checks/javadoc|checks/NewlineAtEndOfFileCheckTest|checks/SuppressWarningsHolderTest|checks/UncommentedMainCheckTest|CheckerTest|ConfigurationLoaderTest|DetailNodeTreeStringPrinterTest|JavadocPropertiesGeneratorTest|MainTest|PackageNamesLoaderTest|SarifLoggerTest|SuppressionsStringPrinterTest|ThreadModeSettingsTest|TreeWalkerTest).*"/>
   <!-- MissingCtor only matters for production code (src/main/java) which generates Javadoc -->
   <suppress checks="MissingCtor" files=".*/src/(test|it|xdocs-examples)/.*\.java"/>
-
-  <!-- suppress until https://github.com/checkstyle/checkstyle/issues/21861 -->
-  <suppress id="xpathTestsUseInlineConfigParser"
-            files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]naming[\\/]XpathRegressionTypeNameTest\.java"/>
-
 </suppressions>
 
+ 
