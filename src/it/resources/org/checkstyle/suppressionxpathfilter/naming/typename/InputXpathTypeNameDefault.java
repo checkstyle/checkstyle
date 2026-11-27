@@ -1,7 +1,14 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="TypeName"/>
+  </module>
+</module>
+*/
+
 package org.checkstyle.suppressionxpathfilter.naming.typename;
 
 public class InputXpathTypeNameDefault {
     public interface FirstName {}
-    private class SecondName_ {} // warn
-
+    protected class SecondName_ {} // violation
 }
