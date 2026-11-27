@@ -922,8 +922,6 @@ javadoc-tool-validate)
     local subpackages=$3
     local output_name=$4
     local log_file="$output_dir/$output_name.log"
-    local root
-    local package_name
 
     echo "Validating Javadoc syntax in $description"
     if ! javadoc -quiet \
