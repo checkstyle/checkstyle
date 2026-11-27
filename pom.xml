@@ -2087,8 +2087,18 @@
                 <exclude>signatures.txt</exclude>
                 <exclude>spotless/import.order</exclude>
                 <exclude>spotless/licence.header</exclude>
+                <exclude>spotbugs-exclude.xml</exclude>
+                <exclude>spotbugs-exclude.xsd</exclude>
                 <exclude>yamllint.yaml</exclude>
               </excludes>
+            </validationSet>
+            <validationSet>
+              <validating>true</validating>
+              <dir>config</dir>
+              <includes>
+                <include>spotbugs-exclude.xml</include>
+              </includes>
+              <systemId>config/spotbugs-exclude.xsd</systemId>
             </validationSet>
             <validationSet>
               <validating>true</validating>

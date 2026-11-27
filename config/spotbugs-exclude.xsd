@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="FindBugsFilter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Match" type="filterGroupType" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="filterGroupType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Package" type="nameType"/>
+      <xs:element name="Class" type="nameType"/>
+      <xs:element name="Field" type="nameType"/>
+      <xs:element name="Method" type="nameType"/>
+      <xs:element name="Bug" type="bugType"/>
+      <xs:element name="Or" type="filterGroupType"/>
+      <xs:element name="And" type="filterGroupType"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="nameType">
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="bugType">
+    <xs:attribute name="pattern" type="xs:string" use="required"/>
+  </xs:complexType>
+
+</xs:schema>
