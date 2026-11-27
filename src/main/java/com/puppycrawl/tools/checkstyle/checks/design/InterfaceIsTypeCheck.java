@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 
 /**
  * <div>
@@ -81,7 +82,7 @@ public final class InterfaceIsTypeCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST objBlock =
-                ast.findFirstToken(TokenTypes.OBJBLOCK);
+                NullUtil.notNull(ast.findFirstToken(TokenTypes.OBJBLOCK));
         final DetailAST methodDef =
                 objBlock.findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST variableDef =
