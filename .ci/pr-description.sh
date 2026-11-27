@@ -14,7 +14,7 @@ if [[ $ISSUE_NUMBER =~ ^#[0-9]+$ ]]; then
     LINK_ISSUE=https://api.github.com/repos/checkstyle/checkstyle/issues/${ISSUE_NUMBER:1}
     REGEXP=($ISSUE_NUMBER\|https://github.com/checkstyle/checkstyle/issues/${ISSUE_NUMBER:1})
     PR_DESC=$(curl --fail-with-body -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_PR" \
-                | jq '.body' | grep -E "$REGEXP" | cat )
+                | jq '.body' | grep -E "${REGEXP[0]}" | cat )
     echo 'PR Description grepped:'"${PR_DESC:0:80}"
     if [[ -z $PR_DESC ]]; then
          echo 'Please put a reference to an Issue in the PR description,'
