@@ -269,7 +269,10 @@ public class HiddenFieldCheck extends AbstractCheck {
                 || ast.getType() == TokenTypes.RECORD_DEF
                 || ast.getType() == TokenTypes.ENUM_DEF
                 // member type of interface or annotation is implicitly static
-                || ScopeUtil.isInInterfaceOrAnnotationBlock(ast);
+                || ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
+                // local type in static context has no enclosing instance
+                || TokenUtil.isOfType(ast.getParent(), TokenTypes.SLIST)
+                    && isInStatic(ast);
     }
 
     /**
