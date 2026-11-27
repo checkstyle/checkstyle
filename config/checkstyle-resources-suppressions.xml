@@ -299,6 +299,10 @@
   <suppress checks="PackageDeclaration"
             files="/it/resources/com/google/checkstyle/test/chapter3filestructure/rule32packagestatement/InputMissingPackageDeclaration\.java"/>
 
+  <!-- Package names intentionally differ from directory for PackageNameCheck testing. -->
+  <suppress checks="PackageDeclaration"
+            files="/it/resources/com/sun/checkstyle/test/chapter3fileorganization/rule312packageandimportnames/InputPackageName(Valid|Invalid)\.java"/>
+
   <!-- intentional problem for testing -->
   <suppress checks="FileLength"
     files="/it/resources/com/google/checkstyle/test/.*/.*/.*\.java"/>

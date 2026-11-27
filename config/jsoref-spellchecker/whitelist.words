@@ -1044,6 +1044,7 @@ overridable
 overridealwaysused
 OVERRIDERS
 owasp
+packageandimportnames
 packageannotation
 packagecomment
 packagedeclaration
