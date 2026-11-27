@@ -83,13 +83,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * TranslationCheck will rise violation that the language code is incorrect.
  * </p>
  *
- * <p>
- * Attention: this Check could produce false-positives if it is used with
- * <a href="https://checkstyle.org/config.html#Checker">Checker</a> that use cache
- * (property "cacheFile") This is known design problem, will be addressed at
- * <a href="https://github.com/checkstyle/checkstyle/issues/3539">issue</a>.
- * </p>
- *
  * @since 3.0
  */
 @GlobalStatefulCheck
