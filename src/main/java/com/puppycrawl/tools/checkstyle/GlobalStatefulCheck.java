@@ -32,6 +32,8 @@ import java.lang.annotation.Target;
  * This annotation should be used, if a check accumulates some information during the audit,
  * and processed only once at the end of the audit (however, the check still
  * can produce some messages, while collecting information).
+ * File set checks with this annotation receive all accepted files, including files whose
+ * contents and configuration have not changed according to the Checker cache.
  * The check methods and fields should be thread safe, because they may be accessed from others
  * threads at the same time.
  * Checker guarantees that there will be exactly one check instance
