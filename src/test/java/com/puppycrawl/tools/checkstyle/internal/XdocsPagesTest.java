@@ -255,9 +255,9 @@ public class XdocsPagesTest {
         "running.xml",
         "checks.xml",
         "property-types.xml",
-        "google-style.xml",
-        "openjdk-style.xml",
-        "sun-style.xml",
+        "google-style.xml.vm",
+        "openjdk-style.xml.vm",
+        "sun-style.xml.vm",
         "doc-comments-style.xml",
         "style-configs.xml",
         "writing-filters.xml",
@@ -267,7 +267,7 @@ public class XdocsPagesTest {
         "idea.xml",
         "beginning-development.xml",
         "writing-checks.xml",
-        "config.xml",
+        "config.xml.vm",
         "report-issue.xml",
         "result-reports.xml",
         "xpath.xml",
@@ -735,15 +735,15 @@ public class XdocsPagesTest {
                 final String nameString = name.getNodeValue();
                 final String subsectionId = id.getNodeValue();
                 final String expectedId;
-                if ("google-style.xml".equals(fileName)) {
+                if ("google-style.xml.vm".equals(fileName)) {
                     sectionName = "Google";
                     expectedId = (sectionName + "_" + nameString).replace(' ', '_');
                 }
-                else if ("sun-style.xml".equals(fileName)) {
+                else if ("sun-style.xml.vm".equals(fileName)) {
                     sectionName = "Sun";
                     expectedId = (sectionName + "_" + nameString).replace(' ', '_');
                 }
-                else if ("openjdk-style.xml".equals(fileName)) {
+                else if ("openjdk-style.xml.vm".equals(fileName)) {
                     sectionName = "OpenJDK";
                     expectedId = (sectionName + "_" + nameString).replace(' ', '_');
                 }
@@ -933,7 +933,7 @@ public class XdocsPagesTest {
     public void testAllCheckSectionsEx() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
 
-        final Path path = Path.of(XdocUtil.DIRECTORY_PATH + "/config.xml");
+        final Path path = Path.of(XdocUtil.DIRECTORY_PATH + "/config.xml.vm");
         final String fileName = path.getFileName().toString();
 
         final NodeList sources = getTagSourcesNode(path, "section");
@@ -2641,7 +2641,7 @@ public class XdocsPagesTest {
 
     @Test
     public void testOpenJdkStyleRules() throws Exception {
-        final Path path = Path.of("src/site/xdoc/openjdk-style.xml");
+        final Path path = Path.of("src/site/xdoc/openjdk-style.xml.vm");
         final NodeList source = getTagSourcesNode(path, "tr");
         final Set<String> styleChecks = new HashSet<>(OPENJDK_MODULES);
 
@@ -2667,7 +2667,7 @@ public class XdocsPagesTest {
 
         removeCommonUndocumentedModules(styleChecks);
         assertWithMessage(
-            "openjdk-style.xml requires the following check(s) to appear: %s", styleChecks)
+            "openjdk-style.xml.vm requires the following check(s) to appear: %s", styleChecks)
             .that(styleChecks)
             .isEmpty();
     }
@@ -2689,7 +2689,7 @@ public class XdocsPagesTest {
             if (!moduleIsCheck) {
                 if (href.startsWith(partialConfigUrl)) {
                     assertWithMessage(
-                        "openjdk-style.xml rule '%s' module '%s' has too many config links",
+                        "openjdk-style.xml.vm rule '%s' module '%s' has too many config links",
                         ruleName, moduleName).fail();
                 }
                 continue;
@@ -2698,7 +2698,7 @@ public class XdocsPagesTest {
             hasChecks = true;
 
             assertWithMessage(
-                "The module '%s' in the rule '%s' of the style guide 'openjdk-style.xml'"
+                "The module '%s' in the rule '%s' of the style guide 'openjdk-style.xml.vm'"
                     + " should not appear more than once in the section.",
                 moduleName, ruleName)
                 .that(usedModules)
@@ -2706,7 +2706,7 @@ public class XdocsPagesTest {
 
             usedModules.add(moduleName);
 
-            assertWithMessage("openjdk-style.xml rule '%s' module '%s' shouldn't end"
+            assertWithMessage("openjdk-style.xml.vm rule '%s' module '%s' shouldn't end"
                     + " with 'Check'", ruleName, moduleName)
                 .that(moduleName.endsWith("Check"))
                 .isFalse();
@@ -2722,13 +2722,13 @@ public class XdocsPagesTest {
                 final String expectedUrl = partialConfigUrl + moduleName;
 
                 assertWithMessage(
-                    "openjdk-style.xml rule '%s' module '%s' should have matching config url",
+                    "openjdk-style.xml.vm rule '%s' module '%s' should have matching config url",
                     ruleName, moduleName)
                     .that(configUrl)
                     .isEqualTo(expectedUrl);
             }
             else {
-                assertWithMessage("openjdk-style.xml rule '%s' module '%s' is missing the"
+                assertWithMessage("openjdk-style.xml.vm rule '%s' module '%s' is missing the"
                         + " config link", ruleName, moduleName).fail();
             }
         }
@@ -2739,7 +2739,7 @@ public class XdocsPagesTest {
     private static void validateOpenJdkStyleSamples(Iterator<Node> itrSample,
             boolean hasChecks, String ruleName) {
         if (itrSample.hasNext()) {
-            assertWithMessage("openjdk-style.xml rule '%s' should have checks if it has"
+            assertWithMessage("openjdk-style.xml.vm rule '%s' should have checks if it has"
                     + " sample links", ruleName)
                     .that(hasChecks)
                     .isTrue();
@@ -2748,26 +2748,26 @@ public class XdocsPagesTest {
             final String inputFolderUrl = sample.getAttributes().getNamedItem("href")
                     .getTextContent();
 
-            assertWithMessage("openjdk-style.xml rule '%s' should have matching sample url",
+            assertWithMessage("openjdk-style.xml.vm rule '%s' should have matching sample url",
                 ruleName)
                     .that(inputFolderUrl)
                     .startsWith("https://github.com/checkstyle/checkstyle/"
                         + "tree/master/src/it/resources/com/openjdk/checkstyle/test/");
 
             assertWithMessage(
-                "openjdk-style.xml rule '%s' should have a inputs test folder that exists",
+                "openjdk-style.xml.vm rule '%s' should have a inputs test folder that exists",
                 ruleName)
                     .that(new File(inputFolderUrl.substring(53).replace('/',
                             File.separatorChar)).exists())
                     .isTrue();
 
-            assertWithMessage("openjdk-style.xml rule '%s' has too many samples link",
+            assertWithMessage("openjdk-style.xml.vm rule '%s' has too many samples link",
                 ruleName)
                     .that(itrSample.hasNext())
                     .isFalse();
         }
         else {
-            assertWithMessage("openjdk-style.xml rule '%s' is missing sample link", ruleName)
+            assertWithMessage("openjdk-style.xml.vm rule '%s' is missing sample link", ruleName)
                 .that(hasChecks)
                 .isFalse();
         }
