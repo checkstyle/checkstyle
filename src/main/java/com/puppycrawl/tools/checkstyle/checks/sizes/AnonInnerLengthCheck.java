@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 
 /**
  * <div>
@@ -80,7 +81,7 @@ public class AnonInnerLengthCheck extends AbstractCheck {
         final DetailAST openingBrace = ast.findFirstToken(TokenTypes.OBJBLOCK);
         if (openingBrace != null) {
             final DetailAST closingBrace =
-                openingBrace.findFirstToken(TokenTypes.RCURLY);
+                NullUtil.notNull(openingBrace.findFirstToken(TokenTypes.RCURLY));
             final int length =
                 closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
             if (length > max) {
