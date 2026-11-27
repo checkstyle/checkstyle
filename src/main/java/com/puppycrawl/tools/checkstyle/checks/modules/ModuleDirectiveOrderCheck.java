@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 
 /**
  * <div>
@@ -165,7 +166,8 @@ public class ModuleDirectiveOrderCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST directiveBlock = ast.findFirstToken(TokenTypes.DIRECTIVE_BLOCK);
+        final DetailAST directiveBlock =
+                NullUtil.notNull(ast.findFirstToken(TokenTypes.DIRECTIVE_BLOCK));
         final Set<String> seenKinds = new HashSet<>();
         DetailAST previous = null;
         for (DetailAST child = directiveBlock.getFirstChild(); child != null;
