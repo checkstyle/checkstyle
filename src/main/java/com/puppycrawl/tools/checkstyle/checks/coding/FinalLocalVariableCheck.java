@@ -264,7 +264,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 }
             }
 
-            default -> throw new IllegalStateException("Incorrect token type");
+            default -> throw new IllegalStateException("Incorrect token type: " + ast.getType());
         }
     }
 
