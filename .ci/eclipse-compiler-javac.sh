@@ -66,11 +66,11 @@ java -jar "$ECJ_PATH" -target "${JAVA_RELEASE}" -source "${JAVA_RELEASE}" -encod
         -d target/eclipse-compile \
         -properties config/org.eclipse.jdt.core.prefs \
         -enableJavadoc \
-        -nowarn:[target/generated-sources/antlr] \
-        -nowarn:[src/test/resources/] \
-        -nowarn:[src/test/resources-noncompilable/] \
-        -nowarn:[src/it/resources/] \
-        -nowarn:[src/it/resources-noncompilable/] \
+        "-nowarn:[target/generated-sources/antlr]" \
+        "-nowarn:[src/test/resources/]" \
+        "-nowarn:[src/test/resources-noncompilable/]" \
+        "-nowarn:[src/it/resources/]" \
+        "-nowarn:[src/it/resources-noncompilable/]" \
         src/main/java \
         target/generated-sources/antlr \
         src/test/java \
