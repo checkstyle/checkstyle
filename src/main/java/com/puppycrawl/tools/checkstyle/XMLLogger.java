@@ -295,44 +295,75 @@ public final class XMLLogger
     }
 
     /**
-     * Finds whether the given argument is character or entity reference.
+     * Finds whether the given argument is a numeric character reference,
+     * in either decimal or hexadecimal form.
      *
-     * @param ent the possible entity to look for.
-     * @return whether the given argument a character or entity reference
+     * @param ent the possible numeric reference, which starts with an ampersand
+     *     and a hash sign and ends with a semicolon.
+     * @return whether the given argument is a valid numeric character reference
      */
     public static boolean isReference(String ent) {
         boolean reference = false;
 
         if (ent.charAt(0) == '&' && ent.endsWith(";")) {
             if (ent.charAt(1) == '#') {
-                // prefix is "&#"
-                int prefixLength = 2;
-
-                int radix = BASE_10;
-                if (ent.charAt(2) == 'x') {
-                    prefixLength++;
-                    radix = BASE_16;
-                }
-                try {
-                    Integer.parseInt(
-                        ent.substring(prefixLength, ent.length() - 1), radix);
-                    reference = true;
-                }
-                catch (final NumberFormatException ignored) {
-                    reference = false;
-                }
+                reference = isNumericReference(ent);
             }
             else {
-                final String name = ent.substring(1, ent.length() - 1);
-                for (String element : ENTITIES) {
-                    if (name.equals(element)) {
-                        reference = true;
-                        break;
-                    }
-                }
+                reference = isNamedReference(ent);
             }
         }
 
+        return reference;
+    }
+
+    /**
+     * Finds whether the given argument is a numeric character reference,
+     * in either decimal or hexadecimal form.
+     *
+     * @param ent the possible numeric reference, which starts with an ampersand
+     *     and a hash sign and ends with a semicolon.
+     * @return whether the given argument is a valid numeric character reference
+     */
+    private static boolean isNumericReference(String ent) {
+        // prefix is "&#"
+        int prefixLength = 2;
+
+        int radix = BASE_10;
+        if (ent.charAt(2) == 'x') {
+            prefixLength++;
+            radix = BASE_16;
+        }
+
+        boolean reference;
+        try {
+            Integer.parseInt(
+                ent.substring(prefixLength, ent.length() - 1), radix);
+            reference = true;
+        }
+        catch (final NumberFormatException ignored) {
+            reference = false;
+        }
+        return reference;
+    }
+
+    /**
+     * Finds whether the given argument is one of the known named entities,
+     * such as the ones for an ampersand or a less-than sign.
+     *
+     * @param ent the possible named entity, which starts with an ampersand
+     *     and ends with a semicolon.
+     * @return whether the given argument is a known named entity
+     */
+    private static boolean isNamedReference(String ent) {
+        final String name = ent.substring(1, ent.length() - 1);
+        boolean reference = false;
+        for (String element : ENTITIES) {
+            if (name.equals(element)) {
+                reference = true;
+                break;
+            }
+        }
         return reference;
     }
 
