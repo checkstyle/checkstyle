@@ -18,7 +18,7 @@ class CompactFlaggedVarargsMain {
 }
 
 class CompactInstanceMain {
-    void main() {
+    void main() { // violation 'Uncommented main method found'
     }
 }
 
@@ -28,7 +28,7 @@ class CompactWrongTypeMain {
 }
 
 class CompactNonPublicMain {
-    static void main(String[] args) {
+    static void main(String[] args) { // violation 'Uncommented main method found'
     }
 }
 
