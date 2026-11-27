@@ -40,7 +40,7 @@
           should be preferred over corresponding octal or Unicode escaped characters.
         </p>
         <p>
-          <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/openjdk_checks.xml">
+          <a href="https://github.com/checkstyle/checkstyle/blob/checkstyle-${projectVersion}/src/main/resources/openjdk_checks.xml">
             Incomplete Checkstyle configuration for 'OpenJDK Java Style'</a>
         </p>
       </subsection>

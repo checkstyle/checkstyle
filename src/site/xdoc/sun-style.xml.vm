@@ -35,7 +35,7 @@
         </p>
 
         <p>
-          <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml">
+          <a href="https://github.com/checkstyle/checkstyle/blob/checkstyle-${projectVersion}/src/main/resources/sun_checks.xml">
             incomplete Checkstyle configuration for 'Sun's Java Style'</a>
         </p>
       </subsection>
