@@ -362,6 +362,17 @@ no-error-configurate)
   git fetch --depth 1 origin update-checkstyle-14:update-checkstyle-14
   git checkout update-checkstyle-14
   cat >> customConfig.gradle << 'EOF'
+beforeSettings { settings ->
+    // Use public repositories before Configurate's primary repository.
+    settings.pluginManagement.repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+    settings.dependencyResolutionManagement.repositories {
+        mavenCentral()
+    }
+}
+
 allprojects {
     tasks.withType(Checkstyle).configureEach {
         javaLauncher = javaToolchains.launcherFor {
