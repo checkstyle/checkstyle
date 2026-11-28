@@ -86,10 +86,9 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
             "14: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
-                        "compact/InputRequireEmptyLineBeforeBlockTagGroupCompactSourceFile"
-                                + "Default.java"),
-                expected);
+            getNonCompilablePath(
+                "compact/InputRequireEmptyLineBeforeBlockTagGroupCompactSourceFileDefault.java"),
+            expected);
     }
 
 }
