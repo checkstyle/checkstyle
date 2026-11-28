@@ -450,6 +450,19 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testPeriodOutsideSummary() throws Exception {
+        final String[] expected = {
+            "18:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "26:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "34:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "40:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocPeriodOutsideSummary.java"), expected);
+    }
+
+    @Test
     public void testAsteriskBannerJavadoc() throws Exception {
         final String[] expected = {
             "14:9: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),

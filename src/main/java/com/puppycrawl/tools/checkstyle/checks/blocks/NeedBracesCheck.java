@@ -192,7 +192,7 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current statement is single-line statement, e.g.:
+     * Checks if current statement is single-line statement. For example:
      *
      * <p>
      * {@code
@@ -225,7 +225,7 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current while statement is single-line statement, e.g.:
+     * Checks if current while statement is single-line statement. For example:
      *
      * <p>
      * {@code
@@ -246,7 +246,7 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current do-while statement is single-line statement, e.g.:
+     * Checks if current do-while statement is single-line statement. For example:
      *
      * <p>
      * {@code
@@ -267,7 +267,7 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current for statement is single-line statement, e.g.:
+     * Checks if current for statement is single-line statement. For example:
      *
      * <p>
      * {@code
@@ -290,7 +290,7 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current if statement is single-line statement, e.g.:
+     * Checks if current if statement is single-line statement. For example:
      *
      * <p>
      * {@code
@@ -319,7 +319,7 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current lambda statement is single-line statement, e.g.:
+     * Checks if current lambda statement is single-line statement. For example:
      *
      * <p>
      * {@code
@@ -350,7 +350,7 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current ast's parent is a switch rule, e.g.:
+     * Checks if current ast's parent is a switch rule. For example:
      *
      * <p>
      * {@code
@@ -396,7 +396,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
     /**
      * Checks if switch member in case group (case or default statement)
-     * is single-line statement, e.g.:
+     * is single-line statement. For example:
      *
      * <p>
      * {@code
@@ -422,7 +422,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
     /**
      * Checks if switch member in switch rule (case or default statement) is
-     * single-line statement, e.g.:
+     * single-line statement. For example:
      *
      * <p>
      * {@code
@@ -442,7 +442,7 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current else statement is single-line statement, e.g.:
+     * Checks if current else statement is single-line statement. For example:
      *
      * <p>
      * {@code
