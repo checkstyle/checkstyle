@@ -395,6 +395,9 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "26:17: " + getCheckMessage(NestedIfDepthCheck.class, MSG_KEY, 2, 1),
             "52:17: " + getCheckMessage(NestedIfDepthCheck.class, MSG_KEY, 2, 1),
+            "56:17: " + getCheckMessage(NestedIfDepthCheck.class, MSG_KEY, 2, 1),
+            "62:17: " + getCheckMessage(NestedIfDepthCheck.class, MSG_KEY, 2, 1),
+            "66:17: " + getCheckMessage(NestedIfDepthCheck.class, MSG_KEY, 2, 1),
         };
         verifyWithInlineConfigParser(
                 getPath("InputCheckUtil3.java"), expected);
