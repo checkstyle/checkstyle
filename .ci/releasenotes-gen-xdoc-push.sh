@@ -6,7 +6,7 @@ checkForVariable "READ_ONLY_TOKEN"
 
 if [[ -z $1 ]]; then
   echo "version is not set"
-  echo "Usage: $BASH_SOURCE <version>"
+  echo "Usage: ${BASH_SOURCE[0]} <version>"
   exit 1
 fi
 
