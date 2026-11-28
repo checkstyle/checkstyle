@@ -128,4 +128,22 @@ public class JavadocRegexpCheckTest extends AbstractModuleTestSupport {
                 getPath("InputJavadocRegexpTextSplitAcrossLines.java"), expected);
     }
 
+    @Test
+    public void testCompactDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputJavadocRegexpCompactDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactProperties() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_JAVADOC_REGEXP, "AKA"),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputJavadocRegexpCompactProperties.java"),
+                expected);
+    }
+
 }
