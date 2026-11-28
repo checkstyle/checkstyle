@@ -206,30 +206,56 @@ public class IllegalBlockTagCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Finds the Javadoc comment associated with a structural AST node.
+     * Finds the Javadoc comment attached to a structural AST node.
+     *
+     * <p>The comment can be a child of the node itself or of the token that starts the
+     * definition, such as its modifiers, an annotation, its type or its type parameters.
+     * Only a comment that is a Javadoc in a valid position is returned, so a leading block
+     * comment such as a license header is skipped. The search stops at the definition's
+     * name, so comments of nested members or in a body are never taken.</p>
      *
      * @param ast the structural node (e.g., CLASS_DEF, METHOD_DEF)
      * @return the Javadoc block comment if found, or null
      */
     @Nullable
     private static DetailAST findJavadoc(DetailAST ast) {
-        DetailAST cmt = ast.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
-        if (cmt == null) {
-            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-
-            if (modifiers != null) {
-                final DetailAST annotation = modifiers.findFirstToken(TokenTypes.ANNOTATION);
-                cmt = modifiers.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
-                if (annotation != null) {
-                    cmt = annotation.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
-                }
+        DetailAST javadoc = null;
+        DetailAST child = ast.getFirstChild();
+        while (child.getType() != TokenTypes.IDENT) {
+            final DetailAST found = findLastJavadoc(child);
+            if (found != null) {
+                javadoc = found;
             }
-            if (cmt == null && type != null) {
-                cmt = type.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+            child = child.getNextSibling();
+        }
+        return javadoc;
+    }
+
+    /**
+     * Finds the last Javadoc comment in a subtree of a definition header.
+     *
+     * @param node the root of the subtree
+     * @return the last Javadoc block comment in the subtree, or null
+     */
+    @Nullable
+    private static DetailAST findLastJavadoc(DetailAST node) {
+        DetailAST javadoc = null;
+        if (node.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+            if (JavadocUtil.isJavadocComment(node)) {
+                javadoc = node;
             }
         }
-        return cmt;
+        else {
+            DetailAST child = node.getFirstChild();
+            while (child != null) {
+                final DetailAST found = findLastJavadoc(child);
+                if (found != null) {
+                    javadoc = found;
+                }
+                child = child.getNextSibling();
+            }
+        }
+        return javadoc;
     }
 
 }
