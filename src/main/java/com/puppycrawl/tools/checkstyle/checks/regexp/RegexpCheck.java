@@ -307,13 +307,32 @@ public class RegexpCheck extends AbstractCheck {
         boolean ignore = false;
         if (ignoreComments) {
             final FileContents theFileContents = getFileContents();
-            final int startColumn = start.getColumn();
+            final int startColumn = toCodePointColumn(text, start);
             final int endLine = end.getLine();
-            final int endColumn = end.getColumn();
+            final int endColumn = toCodePointColumn(text, end);
             ignore = theFileContents.hasIntersectionWithComment(startLine,
                 startColumn, endLine, endColumn);
         }
         return ignore;
+    }
+
+    /**
+     * Converts the column of a position in the file text, which counts UTF-16 chars,
+     * to the code point column that comments are stored with.
+     *
+     * @param text file text
+     * @param position line and char column of the position
+     * @return code point column of the position, or the char column if the position
+     *     is after the last line
+     */
+    private static int toCodePointColumn(FileText text, LineColumn position) {
+        final int lineIndex = position.getLine() - 1;
+        int column = position.getColumn();
+        if (lineIndex < text.size()) {
+            final String line = text.get(lineIndex);
+            column = line.codePointCount(0, Math.min(column, line.length()));
+        }
+        return column;
     }
 
     /**
