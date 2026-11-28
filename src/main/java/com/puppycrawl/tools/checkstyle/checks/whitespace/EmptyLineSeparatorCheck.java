@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -727,8 +728,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private boolean isTwoPrecedingPreviousLinesFromCommentEmpty(DetailAST token) {
         boolean upToPrePreviousLinesEmpty = false;
+        final DetailAST type = NullUtil.notNull(token.findFirstToken(TokenTypes.TYPE));
 
-        for (DetailAST typeChild = token.findFirstToken(TokenTypes.TYPE).getLastChild();
+        for (DetailAST typeChild = type.getLastChild();
              typeChild != null; typeChild = typeChild.getPreviousSibling()) {
 
             if (typeChild.getLineNo() > 2
