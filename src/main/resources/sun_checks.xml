@@ -174,7 +174,11 @@
     <module name="EmptyBlock"/>
     <module name="LeftCurly"/>
     <module name="NeedBraces"/>
-    <module name="RightCurly"/>
+    <module name="RightCurly">
+      <property name="tokens"
+               value="LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE,
+                      LITERAL_FOR, LITERAL_WHILE"/>
+    </module>
 
     <!-- Checks for common coding problems               -->
     <!-- See https://checkstyle.org/checks/coding/index.html -->
