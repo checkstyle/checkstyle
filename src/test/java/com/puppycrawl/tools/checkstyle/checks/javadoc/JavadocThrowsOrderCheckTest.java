@@ -59,4 +59,15 @@ public class JavadocThrowsOrderCheckTest extends AbstractModuleTestSupport {
                 getPath("InputJavadocThrowsOrderIncorrect.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "15:4: " + getCheckMessage(MSG_KEY, "throws", "AlphaException",
+                    "ZebraException"),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputJavadocThrowsOrderCompactDefault.java"),
+                expected);
+    }
+
 }
