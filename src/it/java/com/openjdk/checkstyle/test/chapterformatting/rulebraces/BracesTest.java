@@ -50,4 +50,9 @@ public class BracesTest extends AbstractOpenJdkModuleTestSupport {
         verifyWithWholeConfig(getPath("InputBracesNeedBracesInvalid.java"));
     }
 
+    @Test
+    public void testBracesDosAndDonts() throws Exception {
+        verifyWithWholeConfig(getPath("InputBracesDosAndDonts.java"));
+    }
+
 }
