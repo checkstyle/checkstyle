@@ -34,6 +34,17 @@ public class JavadocNoErrorInThrowsTagCheckTest extends AbstractModuleTestSuppor
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "22:12: " + getCheckMessage(MSG_KEY, "AssertionError", "@throws"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputJavadocNoErrorInThrowsTagFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
     public void testCorrect() throws Exception {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocNoErrorInThrowsTagCorrect.java"),
