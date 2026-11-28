@@ -4,9 +4,8 @@ MissingJavadocPackage
 
 */
 
-/**
- * Dangling javadoc
+/*
+ * block comment
  */
-/* comment */
 package com.puppycrawl.tools.checkstyle // violation 'Missing javadoc for package-info.java file.'
-        .checks.javadoc.missingjavadocpackage.nojavadoc.detached;
+        .checks.javadoc.missingjavadocpackage.undocumented.blockcomment;
