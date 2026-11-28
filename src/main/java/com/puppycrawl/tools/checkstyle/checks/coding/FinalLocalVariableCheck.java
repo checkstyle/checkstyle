@@ -88,6 +88,15 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         TokenTypes.LITERAL_DO
     );
 
+    /** Branch of a conditional expression: the condition itself. */
+    private static final int QUESTION_CONDITION_BRANCH = 0;
+
+    /** Branch of a conditional expression: the branch taken when the condition is true. */
+    private static final int QUESTION_THEN_BRANCH = 1;
+
+    /** Branch of a conditional expression: the branch taken when the condition is false. */
+    private static final int QUESTION_ELSE_BRANCH = 2;
+
     /** Scope Deque. */
     private final Deque<ScopeData> scopeStack = new ArrayDeque<>();
 
@@ -245,7 +254,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
 
             case TokenTypes.IDENT -> {
                 final int parentType = ast.getParent().getType();
-                if (isAssignOperator(parentType) && isFirstChild(ast)) {
+                if (ASSIGN_OPERATOR_TYPES.get(parentType) && ast.getPreviousSibling() == null) {
                     final Optional<FinalVariableCandidate> candidate = getFinalCandidate(ast);
                     if (candidate.isPresent()) {
                         determineAssignmentConditions(ast, candidate.orElseThrow());
@@ -336,21 +345,126 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param ident identifier.
      * @param candidate final local variable candidate.
      */
-    private static void determineAssignmentConditions(DetailAST ident,
-                                                      FinalVariableCandidate candidate) {
+    private void determineAssignmentConditions(DetailAST ident,
+                                               FinalVariableCandidate candidate) {
         if (candidate.assigned) {
             final int[] blockTypes = {
                 TokenTypes.LITERAL_ELSE,
                 TokenTypes.CASE_GROUP,
                 TokenTypes.SWITCH_RULE,
             };
-            if (!isInSpecificCodeBlocks(ident, blockTypes)) {
+            if (isInOppositeBranchOfSameQuestion(ident, candidate)) {
+                // There is no block boundary inside an expression that would put the
+                // variable back into the uninitialized variables of its scope the way
+                // leaving a branch block does, so it is restored here.
+                ScopeData candidateScope = null;
+                for (ScopeData scopeData : scopeStack) {
+                    if (scopeData.scope.get(candidate.variableIdent.getText()) == candidate) {
+                        candidateScope = scopeData;
+                    }
+                }
+                candidateScope.uninitializedVariables.add(candidate.variableIdent);
+            }
+            else if (!isInSpecificCodeBlocks(ident, blockTypes)) {
                 candidate.alreadyAssigned = true;
             }
         }
         else {
             candidate.assigned = true;
         }
+    }
+
+    /**
+     * Checks whether the identifier is assigned in one branch of a conditional expression
+     * while a previous assignment of the same variable sits in the other branch of the
+     * same conditional expression. The two assignments are mutually exclusive, in the
+     * same way as assignments in the branches of an if-else statement, so the variable
+     * is still assigned only once on every execution path through the expression.
+     *
+     * @param ident identifier.
+     * @param candidate final local variable candidate.
+     * @return true if the assignment is in the opposite branch of a conditional
+     *     expression from a previous assignment of the same variable.
+     */
+    private boolean isInOppositeBranchOfSameQuestion(DetailAST ident,
+                                                     FinalVariableCandidate candidate) {
+        final Map<DetailAST, Integer> branches = new HashMap<>();
+        for (DetailAST token = ident; token != null; token = token.getParent()) {
+            if (token.getType() == TokenTypes.QUESTION) {
+                branches.put(token, getQuestionBranch(token, ident));
+            }
+        }
+        boolean result = false;
+        final Deque<DetailAST> assignedVariables = currentScopeAssignedVariables.peek();
+        for (DetailAST assignedVariable : assignedVariables) {
+            if (isSameVariables(candidate.variableIdent, assignedVariable)
+                    && isInOppositeBranches(branches, assignedVariable)) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether a previous assignment is in the opposite branch of one of the
+     * conditional expressions the identifier is assigned in. An ancestor of the
+     * previous assignment can only be such a conditional expression if it is a key
+     * of the given map, so every ancestor is looked up in the map on the way up.
+     *
+     * @param branches conditional expressions containing the identifier, mapped to
+     *     the branch the identifier is in.
+     * @param assignedVariable a previous assignment of the same variable.
+     * @return true if both assignments are in opposite branches of one conditional expression.
+     */
+    private static boolean isInOppositeBranches(Map<DetailAST, Integer> branches,
+                                                DetailAST assignedVariable) {
+        boolean result = false;
+        for (DetailAST token = assignedVariable; token != null && !result;
+                token = token.getParent()) {
+            final Integer branch = branches.get(token);
+            if (branch != null) {
+                final int otherBranch = getQuestionBranch(token, assignedVariable);
+                // The branches are opposite exactly when one of them is the then
+                // branch and the other one is the else branch, which is when the
+                // two branch constants add up to the sum of both of them.
+                result = branch + otherBranch == QUESTION_THEN_BRANCH + QUESTION_ELSE_BRANCH;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Determines the branch of a conditional expression a node sits in. The direct
+     * child of the QUESTION token that contains the node decides the branch: the
+     * child without a previous sibling is the condition, a child that has the COLON
+     * token among its previous siblings is the else branch, and any other child is
+     * the then branch of the conditional expression.
+     *
+     * @param question QUESTION token.
+     * @param node node inside the conditional expression.
+     * @return the branch constant for the node.
+     */
+    private static int getQuestionBranch(DetailAST question, DetailAST node) {
+        DetailAST child = node;
+        while (child.getParent() != question) {
+            child = child.getParent();
+        }
+        int branch = QUESTION_THEN_BRANCH;
+        final DetailAST previousSibling = child.getPreviousSibling();
+        if (previousSibling == null) {
+            branch = QUESTION_CONDITION_BRANCH;
+        }
+        else {
+            for (DetailAST sibling = previousSibling; sibling != null;
+                    sibling = sibling.getPreviousSibling()) {
+                if (sibling.getType() == TokenTypes.COLON) {
+                    branch = QUESTION_ELSE_BRANCH;
+                    break;
+                }
+            }
+        }
+        return branch;
     }
 
     /**
@@ -538,29 +652,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         // for-each variables are implicitly assigned
         candidate.assigned = variableAst.getParent().getType() == TokenTypes.FOR_EACH_CLAUSE;
         scope.put(astNode.getText(), candidate);
-        if (!isInitialized(variableAst)) {
+        if (variableAst.getLastChild().getType() != TokenTypes.ASSIGN) {
             scopeStack.peek().uninitializedVariables.add(astNode);
         }
-    }
-
-    /**
-     * Check if VARIABLE_DEF is initialized or not.
-     *
-     * @param ast VARIABLE_DEF to be checked
-     * @return true if initialized
-     */
-    private static boolean isInitialized(DetailAST ast) {
-        return ast.getLastChild().getType() == TokenTypes.ASSIGN;
-    }
-
-    /**
-     * Whether the ast is the first child of its parent.
-     *
-     * @param ast the ast to check.
-     * @return true if the ast is the first child of its parent.
-     */
-    private static boolean isFirstChild(DetailAST ast) {
-        return ast.getPreviousSibling() == null;
     }
 
     /**
@@ -641,16 +735,6 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             parentLoop = parentLoop.getParent();
         }
         return parentLoop;
-    }
-
-    /**
-     * Is Arithmetic operator.
-     *
-     * @param parentType token AST
-     * @return true is token type is in arithmetic operator
-     */
-    private static boolean isAssignOperator(int parentType) {
-        return ASSIGN_OPERATOR_TYPES.get(parentType);
     }
 
     /**

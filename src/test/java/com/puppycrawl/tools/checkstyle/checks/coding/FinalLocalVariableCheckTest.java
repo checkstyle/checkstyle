@@ -355,6 +355,36 @@ public class FinalLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testVariableAssignedInTernaryBranches() throws Exception {
+
+        final String[] expected = {
+            "14:13: " + getCheckMessage(MSG_KEY, "x"),
+            "15:13: " + getCheckMessage(MSG_KEY, "r"),
+            "20:13: " + getCheckMessage(MSG_KEY, "x"),
+            "21:13: " + getCheckMessage(MSG_KEY, "r"),
+            "26:13: " + getCheckMessage(MSG_KEY, "x"),
+            "27:13: " + getCheckMessage(MSG_KEY, "r"),
+            "32:13: " + getCheckMessage(MSG_KEY, "x"),
+            "33:13: " + getCheckMessage(MSG_KEY, "r"),
+            "39:13: " + getCheckMessage(MSG_KEY, "x"),
+            "40:13: " + getCheckMessage(MSG_KEY, "r"),
+            "48:17: " + getCheckMessage(MSG_KEY, "r"),
+            "56:13: " + getCheckMessage(MSG_KEY, "r"),
+            "62:13: " + getCheckMessage(MSG_KEY, "r"),
+            "68:13: " + getCheckMessage(MSG_KEY, "r"),
+            "73:13: " + getCheckMessage(MSG_KEY, "x"),
+            "77:17: " + getCheckMessage(MSG_KEY, "r"),
+            "84:13: " + getCheckMessage(MSG_KEY, "x"),
+            "95:13: " + getCheckMessage(MSG_KEY, "r"),
+            "101:13: " + getCheckMessage(MSG_KEY, "r"),
+            "107:13: " + getCheckMessage(MSG_KEY, "y"),
+            "109:13: " + getCheckMessage(MSG_KEY, "r"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableTernary.java"), expected);
+    }
+
+    @Test
     public void testVariableIsAssignedInsideAndOutsideSwitchBlock() throws Exception {
         final String[] expected = {
             "39:13: " + getCheckMessage(MSG_KEY, "b"),
