@@ -644,6 +644,7 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
         };
         assertWithMessage("Default acceptable tokens are invalid")
             .that(actual)
@@ -1069,6 +1070,19 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorAnnotations.java"),
+                expected);
+    }
+
+    @Test
+    public void testEmptyLineSeparatorAnnotationMembers() throws Exception {
+        final String[] expected = {
+            "18:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "ANNOTATION_FIELD_DEF"),
+            "21:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "ANNOTATION_FIELD_DEF"),
+            "24:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "ANNOTATION_FIELD_DEF"),
+            "27:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorAnnotationMembers.java"),
                 expected);
     }
 
