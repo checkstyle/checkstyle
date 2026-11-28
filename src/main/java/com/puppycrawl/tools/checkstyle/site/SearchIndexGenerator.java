@@ -358,7 +358,8 @@ public final class SearchIndexGenerator {
     private void execute(String... args) throws IOException {
         if (args.length < 2) {
             throw new IllegalArgumentException(
-                    "Usage: SearchIndexGenerator <xdocsDir> <outputFilePath>");
+                    "Usage: SearchIndexGenerator <xdocsDir> <outputFilePath>"
+                            + " (received " + args.length + " arguments)");
         }
 
         final Path xdocsPath = Path.of(args[0]);
