@@ -75,6 +75,20 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example3.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          To Disable the treatUniformExpressionsAsOne property:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example4.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
