@@ -42,10 +42,10 @@ public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractMod
             "15:43: " + getCheckMessage(MSG_SEMI),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("compact/"
-                    + "InputUnnecessarySemicolonInTryWithResourcesCompactSourceFile"
-                    + "Default.java"),
-                expected);
+            getNonCompilablePath("compact/"
+                + "InputUnnecessarySemicolonInTryWithResourcesCompactSourceFileDefault"
+                + ".java"),
+            expected);
     }
 
     @Test
@@ -56,10 +56,10 @@ public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractMod
             "19:42: " + getCheckMessage(MSG_SEMI),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("compact/"
-                    + "InputUnnecessarySemicolonInTryWithResourcesCompactSourceFile"
-                    + "Properties.java"),
-                expected);
+            getNonCompilablePath("compact/"
+                + "InputUnnecessarySemicolonInTryWithResourcesCompactSourceFileProperties"
+                + ".java"),
+            expected);
     }
 
     @Test
