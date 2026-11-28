@@ -30,6 +30,7 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -93,21 +94,17 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
 
     @Test
     public void testDifferentBases() throws Exception {
-        final Configuration checkConfig = createModuleConfig(TranslationCheck.class);
-        final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY, "only.english"),
-        };
-        final File[] propertyFiles = {
-            new File(getPath("messages_test_de.properties")),
-            new File(getPath("messages_test.properties")),
-            new File(getPath("messages_translation.properties")),
-            new File(getPath("messages_translation_de.properties")),
-        };
-        verify(
-            createChecker(checkConfig),
-            propertyFiles,
-            getPath("messages_test_de.properties"),
-            expected);
+        verifyWithInlineConfigParser(
+            List.of(
+                getPath("messages_first_de.properties"),
+                getPath("messages_first.properties"),
+                getPath("messages_second.properties"),
+                getPath("messages_second_de.properties")),
+            List.of(
+                List.of("1: " + getCheckMessage(MSG_KEY, "only.english")),
+                List.of(),
+                List.of(),
+                List.of()));
     }
 
     @Test
