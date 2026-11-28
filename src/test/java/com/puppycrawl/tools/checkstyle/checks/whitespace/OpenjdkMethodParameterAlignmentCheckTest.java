@@ -36,6 +36,18 @@ public class OpenjdkMethodParameterAlignmentCheckTest extends AbstractModuleTest
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_WRAP),
+            "43:9: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputOpenjdkMethodParameterAlignmentFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final OpenjdkMethodParameterAlignmentCheck checkObj =
                 new OpenjdkMethodParameterAlignmentCheck();
