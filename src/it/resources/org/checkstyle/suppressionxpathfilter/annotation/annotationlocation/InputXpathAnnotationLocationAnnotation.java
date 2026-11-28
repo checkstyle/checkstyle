@@ -1,9 +1,20 @@
+/*
+AnnotationLocation
+allowSamelineMultipleAnnotations = (default)false
+allowSamelineSingleParameterlessAnnotation = (default)true
+allowSamelineParameterizedAnnotation = (default)false
+tokens = ANNOTATION_DEF
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.annotation.annotationlocation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
-@Annotation("bar") @interface InputXpathAnnotationLocationAnnotation {//warn
+// violation below 'Annotation 'Annotation' should be alone on line.'
+@Annotation("bar") @interface InputXpathAnnotationLocationAnnotation {
 
 }
 
