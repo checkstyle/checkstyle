@@ -28,6 +28,10 @@ import static com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS;
 
 import java.io.File;
 
+import javax.swing.event.TreeModelEvent;
+import javax.swing.event.TreeModelListener;
+import javax.swing.tree.TreePath;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -386,6 +390,72 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid column name")
             .that(parseTree.getColumnName(4))
             .isEqualTo("Text");
+    }
+
+    @Test
+    public void testValueForPathChangedDoesNotChangeTree() {
+        final ParseTreeTableModel parseTree = new ParseTreeTableModel(classDef);
+        final Object root = parseTree.getRoot();
+        final int childCount = parseTree.getChildCount(root);
+        parseTree.valueForPathChanged(new TreePath(root), "new value");
+        assertWithMessage("Root should not change as the tree is read-only")
+            .that(parseTree.getRoot())
+            .isSameInstanceAs(root);
+        assertWithMessage("Child count should not change as the tree is read-only")
+            .that(parseTree.getChildCount(root))
+            .isEqualTo(childCount);
+    }
+
+    @Test
+    public void testRemovedTreeModelListenerIsNotNotified() {
+        final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
+        final StructureChangeCounter removedListener = new StructureChangeCounter();
+        final StructureChangeCounter remainingListener = new StructureChangeCounter();
+        parseTree.addTreeModelListener(removedListener);
+        parseTree.addTreeModelListener(remainingListener);
+        parseTree.removeTreeModelListener(removedListener);
+
+        parseTree.setParseTree(classDef);
+
+        assertWithMessage("Removed listener should not be notified")
+            .that(removedListener.getCount())
+            .isEqualTo(0);
+        assertWithMessage("Remaining listener should be notified once")
+            .that(remainingListener.getCount())
+            .isEqualTo(1);
+    }
+
+    /**
+     * Tree model listener that counts 'tree structure changed' events.
+     */
+    private static final class StructureChangeCounter implements TreeModelListener {
+
+        private int count;
+
+        @Override
+        public void treeNodesChanged(TreeModelEvent event) {
+            // not used in this test
+        }
+
+        @Override
+        public void treeNodesInserted(TreeModelEvent event) {
+            // not used in this test
+        }
+
+        @Override
+        public void treeNodesRemoved(TreeModelEvent event) {
+            // not used in this test
+        }
+
+        @Override
+        public void treeStructureChanged(TreeModelEvent event) {
+            count++;
+        }
+
+        private int getCount() {
+            return count;
+        }
+
     }
 
 }
