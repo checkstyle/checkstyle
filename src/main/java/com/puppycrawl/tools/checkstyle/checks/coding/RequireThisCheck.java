@@ -25,6 +25,7 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Queue;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -101,7 +102,9 @@ public class RequireThisCheck extends AbstractCheck {
         TokenTypes.TYPE_ARGUMENT,
         TokenTypes.RECORD_DEF,
         TokenTypes.RECORD_COMPONENT_DEF,
-        TokenTypes.RESOURCE
+        TokenTypes.RESOURCE,
+        TokenTypes.PATTERN_VARIABLE_DEF,
+        TokenTypes.RECORD_PATTERN_DEF
     );
     /** Set of all assign tokens. */
     private static final BitSet ASSIGN_TOKENS = TokenUtil.asBitSet(
@@ -390,7 +393,8 @@ public class RequireThisCheck extends AbstractCheck {
 
             if (fieldFrame != null
                     && ((ClassFrame) fieldFrame).hasInstanceMember(ast)
-                    && !isInheritedByAnonymousClass(ast, fieldFrame)) {
+                    && !isInheritedByAnonymousClass(ast, fieldFrame)
+                    && !isPatternVariableInScope(ast, fieldFrame)) {
                 frame = getClassFrameWhereViolationIsFound(ast);
             }
         }
@@ -1260,6 +1264,326 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private static boolean isAstSimilar(DetailAST left, DetailAST right) {
         return left.getType() == right.getType() && left.getText().equals(right.getText());
+    }
+
+    /**
+     * Returns the AST boundary node for the given class frame where variable resolution
+     * should stop.
+     *
+     * @param fieldFrame the class frame where the field is declared.
+     * @return the AST node representing the boundary of the class frame.
+     */
+    private static DetailAST getClassFrameBoundary(AbstractFrame fieldFrame) {
+        final DetailAST boundary;
+        if (fieldFrame instanceof final AnonymousClassFrame anonFrame) {
+            boundary = anonFrame.getLiteralNew();
+        }
+        else {
+            boundary = fieldFrame.getFrameNameIdent().getParent();
+        }
+        return boundary;
+    }
+
+    /**
+     * Checks whether the given IDENT refers to a pattern variable that is in scope
+     * according to the flow scoping rules (JLS 6.3.1) of {@code if}, {@code while},
+     * {@code for}, {@code &&}, {@code ||}, {@code !}, {@code ?:}, and {@code switch}.
+     *
+     * @param ast IDENT token.
+     * @param fieldFrame the class frame where the field was found.
+     * @return true if the IDENT refers to a pattern variable in scope.
+     */
+    private static boolean isPatternVariableInScope(DetailAST ast, AbstractFrame fieldFrame) {
+        final String name = ast.getText();
+        final DetailAST boundary = getClassFrameBoundary(fieldFrame);
+        boolean inScope = false;
+        DetailAST child = ast;
+
+        while (child != null && !Objects.equals(child, boundary) && !inScope) {
+            final DetailAST parent = child.getParent();
+            if (parent != null) {
+                inScope = isPatternVariableInScopeForParent(child, parent, name);
+            }
+            child = parent;
+        }
+
+        return inScope;
+    }
+
+    /**
+     * Checks whether a pattern variable is introduced into scope by the given parent node.
+     *
+     * @param child child AST node under parent.
+     * @param parent parent AST node.
+     * @param name name of the variable to check.
+     * @return true if the pattern variable is in scope.
+     */
+    private static boolean isPatternVariableInScopeForParent(
+            DetailAST child, DetailAST parent, String name) {
+        final boolean inScope;
+        switch (parent.getType()) {
+            case TokenTypes.LAND ->
+                inScope = CheckUtil.isBeforeInSource(parent, child)
+                        && patternVarsForBranch(parent.getFirstChild(), true).contains(name);
+            case TokenTypes.LOR ->
+                inScope = CheckUtil.isBeforeInSource(parent, child)
+                        && patternVarsForBranch(parent.getFirstChild(), false).contains(name);
+            case TokenTypes.QUESTION ->
+                inScope = isPatternVarInScopeForQuestion(child, parent, name);
+            case TokenTypes.LITERAL_IF ->
+                inScope = isPatternVarInScopeForIf(child, parent, name);
+            case TokenTypes.LITERAL_WHILE ->
+                inScope = isPatternVarInScopeForWhile(child, parent, name);
+            case TokenTypes.LITERAL_FOR ->
+                inScope = isPatternVarInScopeForFor(child, parent, name);
+            case TokenTypes.SWITCH_RULE, TokenTypes.CASE_GROUP ->
+                inScope = isPatternVarInScopeForSwitch(child, parent, name);
+            case TokenTypes.SLIST ->
+                inScope = isPatternVariableInScopeFromPreviousStatements(child, name);
+            default ->
+                inScope = false;
+        }
+        return inScope;
+    }
+
+    /**
+     * Checks whether a pattern variable is in scope in a for loop iterator or body.
+     *
+     * @param child child AST node.
+     * @param parent LITERAL_FOR AST node.
+     * @param name name of the variable.
+     * @return true if the pattern variable is in scope.
+     */
+    private static boolean isPatternVarInScopeForFor(
+            DetailAST child, DetailAST parent, String name) {
+        final DetailAST forCond = parent.findFirstToken(TokenTypes.FOR_CONDITION);
+        final boolean inScope;
+        if (forCond != null && CheckUtil.isBeforeInSource(forCond, child)) {
+            final DetailAST cond = forCond.findFirstToken(TokenTypes.EXPR);
+            inScope = patternVarsForBranch(cond, true).contains(name);
+        }
+        else {
+            inScope = false;
+        }
+        return inScope;
+    }
+
+    /**
+     * Checks whether a pattern variable is in scope in a branch of a ternary expression.
+     *
+     * @param child child AST node.
+     * @param parent QUESTION AST node.
+     * @param name name of the variable.
+     * @return true if the pattern variable is in scope.
+     */
+    private static boolean isPatternVarInScopeForQuestion(
+            DetailAST child, DetailAST parent, String name) {
+        final DetailAST colon = parent.findFirstToken(TokenTypes.COLON);
+        final DetailAST cond = parent.getFirstChild();
+        final boolean inScope;
+        if (CheckUtil.isBeforeInSource(parent, child)
+                && CheckUtil.isBeforeInSource(child, colon)) {
+            inScope = patternVarsForBranch(cond, true).contains(name);
+        }
+        else if (CheckUtil.isBeforeInSource(colon, child)) {
+            inScope = patternVarsForBranch(cond, false).contains(name);
+        }
+        else {
+            inScope = false;
+        }
+        return inScope;
+    }
+
+    /**
+     * Checks whether a pattern variable is in scope in an if statement's branch.
+     *
+     * @param child child AST node.
+     * @param parent LITERAL_IF AST node.
+     * @param name name of the variable.
+     * @return true if the pattern variable is in scope.
+     */
+    private static boolean isPatternVarInScopeForIf(
+            DetailAST child, DetailAST parent, String name) {
+        final DetailAST cond = parent.findFirstToken(TokenTypes.EXPR);
+        final DetailAST rparen = parent.findFirstToken(TokenTypes.RPAREN);
+        final DetailAST thenStmt = rparen.getNextSibling();
+        final DetailAST elseLiteral = parent.findFirstToken(TokenTypes.LITERAL_ELSE);
+        final boolean inScope;
+        if (Objects.equals(child, thenStmt)) {
+            inScope = patternVarsForBranch(cond, true).contains(name);
+        }
+        else if (Objects.equals(child, elseLiteral)) {
+            inScope = patternVarsForBranch(cond, false).contains(name);
+        }
+        else {
+            inScope = false;
+        }
+        return inScope;
+    }
+
+    /**
+     * Checks whether a pattern variable is in scope in a while loop body.
+     *
+     * @param child child AST node.
+     * @param parent LITERAL_WHILE AST node.
+     * @param name name of the variable.
+     * @return true if the pattern variable is in scope.
+     */
+    private static boolean isPatternVarInScopeForWhile(
+            DetailAST child, DetailAST parent, String name) {
+        final DetailAST cond = parent.findFirstToken(TokenTypes.EXPR);
+        final DetailAST rparen = parent.findFirstToken(TokenTypes.RPAREN);
+        final DetailAST body = rparen.getNextSibling();
+        return Objects.equals(child, body)
+                && patternVarsForBranch(cond, true).contains(name);
+    }
+
+    /**
+     * Checks whether a pattern variable is in scope in a switch rule or case group.
+     *
+     * @param child child AST node.
+     * @param parent SWITCH_RULE or CASE_GROUP AST node.
+     * @param name name of the variable.
+     * @return true if the pattern variable is in scope.
+     */
+    private static boolean isPatternVarInScopeForSwitch(
+            DetailAST child, DetailAST parent, String name) {
+        final boolean inScope;
+        if (parent.getType() == TokenTypes.SWITCH_RULE) {
+            final DetailAST caseNode = parent.findFirstToken(TokenTypes.LITERAL_CASE);
+            if (Objects.equals(child, caseNode)) {
+                inScope = false;
+            }
+            else {
+                final Set<String> declared = new HashSet<>();
+                collectPatternVariableNames(caseNode, declared);
+                inScope = declared.contains(name);
+            }
+        }
+        else if (child.getType() == TokenTypes.LITERAL_CASE) {
+            inScope = false;
+        }
+        else {
+            final Set<String> declared = new HashSet<>();
+            for (DetailAST caseNode = parent.getFirstChild();
+                    caseNode != null && caseNode.getType() == TokenTypes.LITERAL_CASE;
+                    caseNode = caseNode.getNextSibling()) {
+                collectPatternVariableNames(caseNode, declared);
+            }
+            inScope = declared.contains(name);
+        }
+        return inScope;
+    }
+
+    /**
+     * Checks whether a pattern variable is in scope in a block from previous terminating
+     * statements.
+     *
+     * @param stmt statement AST node in a block.
+     * @param name name of the variable.
+     * @return true if the pattern variable is in scope.
+     */
+    private static boolean isPatternVariableInScopeFromPreviousStatements(
+            DetailAST stmt, String name) {
+        boolean inScope = false;
+        for (DetailAST prev = stmt.getPreviousSibling(); prev != null && !inScope;
+                prev = prev.getPreviousSibling()) {
+            if (prev.getType() == TokenTypes.LITERAL_WHILE) {
+                final DetailAST cond = prev.findFirstToken(TokenTypes.EXPR);
+                inScope = patternVarsForBranch(cond, false).contains(name);
+            }
+            else if (prev.getType() == TokenTypes.LITERAL_IF) {
+                final DetailAST cond = prev.findFirstToken(TokenTypes.EXPR);
+                final DetailAST rparen = prev.findFirstToken(TokenTypes.RPAREN);
+                final DetailAST thenStmt = rparen.getNextSibling();
+                final DetailAST elseLiteral = prev.findFirstToken(TokenTypes.LITERAL_ELSE);
+                if (CheckUtil.isTerminated(thenStmt)) {
+                    inScope = patternVarsForBranch(cond, false).contains(name);
+                }
+                else if (elseLiteral != null
+                        && CheckUtil.isTerminated(elseLiteral.getFirstChild())) {
+                    inScope = patternVarsForBranch(cond, true).contains(name);
+                }
+            }
+        }
+        return inScope;
+    }
+
+    /**
+     * Returns the names of the pattern variables introduced by the given boolean
+     * expression when it evaluates to the given boolean value (JLS 6.3.1).
+     *
+     * @param expr the expression AST node.
+     * @param whenTrue whether to collect variables introduced when the expression is true.
+     * @return names of introduced pattern variables.
+     */
+    private static Set<String> patternVarsForBranch(DetailAST expr, boolean whenTrue) {
+        final DetailAST node = skipParentheses(expr);
+        final Set<String> result = new HashSet<>();
+        if (node != null) {
+            switch (node.getType()) {
+                case TokenTypes.LITERAL_INSTANCEOF -> {
+                    if (whenTrue) {
+                        collectPatternVariableNames(node, result);
+                    }
+                }
+                case TokenTypes.EXPR ->
+                    result.addAll(patternVarsForBranch(node.getFirstChild(), whenTrue));
+                case TokenTypes.LNOT ->
+                    result.addAll(patternVarsForBranch(node.getFirstChild(), !whenTrue));
+                case TokenTypes.LAND, TokenTypes.LOR -> {
+                    final DetailAST left = node.getFirstChild();
+                    final DetailAST right = node.getLastChild();
+                    result.addAll(patternVarsForBranch(left, whenTrue));
+                    final Set<String> rightVars = patternVarsForBranch(right, whenTrue);
+                    if (whenTrue == (node.getType() == TokenTypes.LAND)) {
+                        result.addAll(rightVars);
+                    }
+                    else {
+                        result.retainAll(rightVars);
+                    }
+                }
+                default -> {
+                    // other expressions do not introduce pattern variables
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Collects the names of all pattern variables declared in the given subtree.
+     *
+     * @param ast the root of the subtree.
+     * @param names the collection to add the names to.
+     */
+    private static void collectPatternVariableNames(DetailAST ast, Set<String> names) {
+        if (ast.getType() == TokenTypes.PATTERN_VARIABLE_DEF) {
+            final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
+            if (ident != null) {
+                names.add(ident.getText());
+            }
+        }
+        else {
+            for (DetailAST child = ast.getFirstChild(); child != null;
+                    child = child.getNextSibling()) {
+                collectPatternVariableNames(child, names);
+            }
+        }
+    }
+
+    /**
+     * Skips parentheses tokens and unrolls nested EXPR wrappers.
+     *
+     * @param ast the node to start from.
+     * @return the unwrapped expression node, or null.
+     */
+    private static DetailAST skipParentheses(DetailAST ast) {
+        DetailAST result = ast;
+        while (result != null && TokenUtil.isOfType(result, TokenTypes.LPAREN, TokenTypes.RPAREN)) {
+            result = result.getNextSibling();
+        }
+        return result;
     }
 
     /** An AbstractFrame type. */
