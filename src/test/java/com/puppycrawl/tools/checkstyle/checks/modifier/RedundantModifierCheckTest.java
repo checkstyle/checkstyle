@@ -38,6 +38,29 @@ public class RedundantModifierCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY, "public"),
+            "28:9: " + getCheckMessage(MSG_KEY, "private"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputRedundantModifierFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputRedundantModifierFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testClassesInsideOfInterfaces() throws Exception {
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_KEY, "static"),
