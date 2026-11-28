@@ -4248,6 +4248,17 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testWrappedMethodChainsInArguments() throws Exception {
+        final String[] expected = {
+            "40:15: " + getCheckMessage(MSG_ERROR, ".", 14, 16),
+            "44:25: " + getCheckMessage(MSG_ERROR, ".", 24, 20),
+            "51:17: " + getCheckMessage(MSG_ERROR, ".", 16, 12),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputIndentationWrappedMethodChainsInArguments.java"), expected);
+    }
+
+    @Test
     public void testYieldNestedSwitchExpressionWithCaseIndentZero() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");

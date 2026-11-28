@@ -174,9 +174,37 @@ public class LineWrappingHandler {
                 }
             }
             else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
-                logWarningMessage(node, currentIndent);
+                logWarningMessage(node, getWrappedLineIndent(node, firstNodeIndent, currentIndent));
             }
         }
+    }
+
+    /**
+     * Allows an additional continuation indent for a method chain inside an argument.
+     *
+     * @param node the first token on the wrapped line.
+     * @param firstNodeIndent indentation of the enclosing construct.
+     * @param currentIndent normal continuation indentation.
+     * @return indentation to check for this line.
+     */
+    private int getWrappedLineIndent(DetailAST node, int firstNodeIndent, int currentIndent) {
+        int indent = currentIndent;
+        if (context.isForceStrictCondition()
+                && node.getType() == TokenTypes.DOT
+                && node.getParent().getType() == TokenTypes.METHOD_CALL
+                && expandedTabsColumnNo(node) != currentIndent) {
+            final DetailAST arguments = getAncestorOfType(node, TokenTypes.ELIST);
+            if (arguments != null && TokenUtil.isOfType(arguments.getParent(),
+                    TokenTypes.METHOD_CALL, TokenTypes.CTOR_CALL, TokenTypes.SUPER_CTOR_CALL,
+                    TokenTypes.LITERAL_NEW, TokenTypes.ENUM_CONSTANT_DEF)) {
+                DetailAST receiver = node.getFirstChild();
+                while (TokenUtil.isOfType(receiver, TokenTypes.DOT, TokenTypes.METHOD_CALL)) {
+                    receiver = receiver.getFirstChild();
+                }
+                indent += Math.max(0, getLineStart(receiver) - firstNodeIndent);
+            }
+        }
+        return indent;
     }
 
     /**
@@ -327,7 +355,7 @@ public class LineWrappingHandler {
 
             final DetailAST parentNode = node.getParent();
             final boolean isArrayInitPresentInAncestors =
-                isParentContainsTokenType(node, TokenTypes.ANNOTATION_ARRAY_INIT);
+                getAncestorOfType(node, TokenTypes.ANNOTATION_ARRAY_INIT) != null;
             final boolean isCurrentNodeCloseAnnotationAloneInLine =
                 node.getLineNo() == lastAnnotationLine
                     && isEndOfScope(lastAnnotationNode, node);
@@ -374,21 +402,18 @@ public class LineWrappingHandler {
     }
 
     /**
-     * Checks that some parent of given node contains given token type.
+     * Finds the nearest ancestor of the given type.
      *
      * @param node node to check
      * @param type type to look for
-     * @return true if there is a parent of given type
+     * @return nearest ancestor of the given type, or null if there is none
      */
-    private static boolean isParentContainsTokenType(final DetailAST node, int type) {
-        boolean returnValue = false;
-        for (DetailAST ast = node.getParent(); ast != null; ast = ast.getParent()) {
-            if (ast.getType() == type) {
-                returnValue = true;
-                break;
-            }
+    private static DetailAST getAncestorOfType(DetailAST node, int type) {
+        DetailAST ancestor = node.getParent();
+        while (ancestor != null && ancestor.getType() != type) {
+            ancestor = ancestor.getParent();
         }
-        return returnValue;
+        return ancestor;
     }
 
     /**
