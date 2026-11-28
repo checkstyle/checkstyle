@@ -508,8 +508,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
-                        "compact/InputTextBlockGoogleStyleFormattingCompactSourceFile"
-                                + "Default.java"),
+                        "compact/InputTextBlockGoogleStyleFormattingCompactSourceFileDefault.java"),
                 expected);
     }
 
