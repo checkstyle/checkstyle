@@ -23,8 +23,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
-import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseStatus;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -65,8 +63,9 @@ public final class DetailNodeTreeStringPrinter {
      */
     public static DetailNode parseJavadocAsDetailNode(DetailAST blockComment) {
         final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
-        final ParseStatus status = parser.parseJavadocComment(blockComment);
-        final ParseErrorMessage parseErrorMessage = status.getParseErrorMessage();
+        final JavadocDetailNodeParser.ParseStatus status = parser.parseJavadocComment(blockComment);
+        final JavadocDetailNodeParser.ParseErrorMessage parseErrorMessage =
+                status.getParseErrorMessage();
         if (parseErrorMessage != null) {
             throw new IllegalArgumentException(getParseErrorMessage(parseErrorMessage));
         }
@@ -74,12 +73,14 @@ public final class DetailNodeTreeStringPrinter {
     }
 
     /**
-     * Builds violation base on ParseErrorMessage's violation key, its arguments, etc.
+     * Builds violation base on JavadocDetailNodeParser.ParseErrorMessage's violation key,
+     * its arguments, etc.
      *
-     * @param parseErrorMessage ParseErrorMessage
+     * @param parseErrorMessage JavadocDetailNodeParser.ParseErrorMessage
      * @return error violation
      */
-    private static String getParseErrorMessage(ParseErrorMessage parseErrorMessage) {
+    private static String getParseErrorMessage(
+            JavadocDetailNodeParser.ParseErrorMessage parseErrorMessage) {
         final LocalizedMessage message = new LocalizedMessage(
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 DetailNodeTreeStringPrinter.class,

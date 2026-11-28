@@ -4744,17 +4744,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/RedundantImportCheck.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>pkgName = null;</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/RedundantImportCheck.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: pkgName</message>
     <lineContent>public RedundantImportCheck() {</lineContent>

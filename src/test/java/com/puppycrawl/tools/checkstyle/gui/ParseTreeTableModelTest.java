@@ -37,7 +37,6 @@ import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
-import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public class ParseTreeTableModelTest extends AbstractPathTestSupport {
@@ -80,7 +79,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         final DetailAST commentContentNode = classDef
                 .findFirstToken(BLOCK_COMMENT_BEGIN).findFirstToken(COMMENT_CONTENT);
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
-        parseTree.setParseMode(ParseMode.JAVA_WITH_COMMENTS);
+        parseTree.setParseMode(MainFrameModel.ParseMode.JAVA_WITH_COMMENTS);
         final int javadocCommentChildCount = parseTree.getChildCount(commentContentNode);
         assertWithMessage("Invalid child count")
             .that(javadocCommentChildCount)
@@ -90,7 +89,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     @Test
     public void testChildCountInJavaAndJavadocMode() {
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
-        parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
+        parseTree.setParseMode(MainFrameModel.ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final int childCount = parseTree.getChildCount(classDef);
         assertWithMessage("Invalid child count")
             .that(childCount)
@@ -100,7 +99,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     @Test
     public void testChildInJavaAndJavadocMode() {
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
-        parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
+        parseTree.setParseMode(MainFrameModel.ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object child = parseTree.getChild(classDef, 1);
         assertWithMessage("Invalid child type")
                 .that(child)
@@ -116,7 +115,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         final DetailAST commentContentNode = classDef
                 .findFirstToken(BLOCK_COMMENT_BEGIN).findFirstToken(COMMENT_CONTENT);
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
-        parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
+        parseTree.setParseMode(MainFrameModel.ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final int commentChildCount = parseTree.getChildCount(commentContentNode);
         assertWithMessage("Invalid child count")
             .that(commentChildCount)
@@ -128,7 +127,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         final DetailAST commentContentNode = classDef
                 .findFirstToken(BLOCK_COMMENT_BEGIN).findFirstToken(COMMENT_CONTENT);
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
-        parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
+        parseTree.setParseMode(MainFrameModel.ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object commentChild = parseTree.getChild(commentContentNode, 0);
         assertWithMessage("Child is not null")
             .that(commentChild)
@@ -144,7 +143,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid child count")
             .that(commentChildCount)
             .isEqualTo(0);
-        parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
+        parseTree.setParseMode(MainFrameModel.ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final int javadocCommentChildCount = parseTree.getChildCount(commentContentNode);
         assertWithMessage("Invalid child count")
             .that(javadocCommentChildCount)
@@ -156,7 +155,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         final DetailAST commentContentNode = classDef
                 .findFirstToken(BLOCK_COMMENT_BEGIN).findFirstToken(COMMENT_CONTENT);
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
-        parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
+        parseTree.setParseMode(MainFrameModel.ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object child = parseTree.getChild(commentContentNode, 0);
         assertWithMessage("Invalid child type")
                 .that(child)
@@ -180,7 +179,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         final DetailAST commentContentNode = classDef
                 .findFirstToken(BLOCK_COMMENT_BEGIN).findFirstToken(COMMENT_CONTENT);
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
-        parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
+        parseTree.setParseMode(MainFrameModel.ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object javadoc = parseTree.getChild(commentContentNode, 0);
         assertWithMessage("Invalid child type")
                 .that(javadoc)
@@ -200,7 +199,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         final DetailAST commentContentNode = classDef
                 .findFirstToken(BLOCK_COMMENT_BEGIN).findFirstToken(COMMENT_CONTENT);
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
-        parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
+        parseTree.setParseMode(MainFrameModel.ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object javadoc = parseTree.getChild(commentContentNode, 0);
         assertWithMessage("Invalid child type")
                 .that(javadoc)
@@ -297,7 +296,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
             .that(commentContentNode.getParent().getText())
             .isEqualTo("/*");
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
-        parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
+        parseTree.setParseMode(MainFrameModel.ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object child = parseTree.getChild(commentContentNode, 0);
 
         assertWithMessage("Child has not to be leaf")

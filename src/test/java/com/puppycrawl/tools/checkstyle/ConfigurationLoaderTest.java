@@ -39,7 +39,6 @@ import org.mockito.MockedConstruction;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.puppycrawl.tools.checkstyle.ConfigurationLoader.IgnoredModulesOptions;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
@@ -300,7 +299,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                 getExpectedThrowable(CheckstyleException.class, () -> {
                     ConfigurationLoader.loadConfiguration(fName,
                             new PropertiesExpander(new Properties()),
-                            IgnoredModulesOptions.EXECUTE);
+                            ConfigurationLoader.IgnoredModulesOptions.EXECUTE);
                 }, "missing property name");
         assertWithMessage("Invalid exception message: %s", exc.getMessage())
             .that(exc.getMessage())
@@ -594,7 +593,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                         getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
-                        new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
+                        new PropertiesExpander(new Properties()),
+                        ConfigurationLoader.IgnoredModulesOptions.OMIT);
 
         final Configuration[] children = config.getChildren();
         final int length = children[0].getChildren().length;
@@ -609,7 +609,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(new InputSource(
                         new File(getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"))
                             .toURI().toString()),
-                        new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
+                        new PropertiesExpander(new Properties()),
+                        ConfigurationLoader.IgnoredModulesOptions.OMIT);
 
         final Configuration[] children = config.getChildren();
         final int length = children[0].getChildren().length;
@@ -623,7 +624,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                         getPath("InputConfigurationLoaderCheckerIgnoreSeverity.xml"),
-                        new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
+                        new PropertiesExpander(new Properties()),
+                        ConfigurationLoader.IgnoredModulesOptions.OMIT);
 
         final Configuration[] children = config.getChildren();
         assertWithMessage("Invalid children count")
@@ -638,7 +640,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                     ConfigurationLoader.loadConfiguration(
                             ";InputConfigurationLoaderModuleIgnoreSeverity.xml",
                             new PropertiesExpander(new Properties()),
-                            IgnoredModulesOptions.OMIT);
+                            ConfigurationLoader.IgnoredModulesOptions.OMIT);
                 }, "Exception is expected");
         assertWithMessage("Invalid exception message")
             .that(exc.getMessage())
@@ -651,7 +653,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                         new InputSource(Files.newInputStream(Path.of(
                             getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml")))),
-                        new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
+                        new PropertiesExpander(new Properties()),
+                        ConfigurationLoader.IgnoredModulesOptions.OMIT);
 
         final Configuration[] children = config.getChildren();
         final int length = children[0].getChildren().length;
@@ -665,7 +668,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                         getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
-                        new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
+                        new PropertiesExpander(new Properties()),
+                        ConfigurationLoader.IgnoredModulesOptions.OMIT);
 
         final Configuration[] children = config.getChildren();
         final int length = children[0].getChildren().length;
@@ -728,7 +732,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                         ConfigurationLoader.loadConfiguration(
                                 getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
                                 new PropertiesExpander(
-                                        new Properties()), IgnoredModulesOptions.OMIT);
+                                        new Properties()),
+                                        ConfigurationLoader.IgnoredModulesOptions.OMIT);
                     });
             final String expectedMessage =
                 "Problem during accessing 'severity' attribute for MemberName";
@@ -759,7 +764,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                             new InputSource(Files.newInputStream(Path.of(
                                     getPath(configFile)))),
                             new PropertiesExpander(new Properties()),
-                            IgnoredModulesOptions.OMIT);
+                            ConfigurationLoader.IgnoredModulesOptions.OMIT);
 
             assertWithMessage("should have properties")
                     .that(config.getPropertyNames()).asList()

@@ -28,7 +28,6 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
@@ -62,7 +61,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     public void testParseErrorMessage() throws Exception {
         final String actual = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                 "getParseErrorMessage", String.class,
-                new ParseErrorMessage(10, MSG_JAVADOC_PARSE_RULE_ERROR,
+                new JavadocDetailNodeParser.ParseErrorMessage(10, MSG_JAVADOC_PARSE_RULE_ERROR,
                         9, "no viable alternative at input ' xyz'", "SOME_JAVADOC_ELEMENT"));
         final LocalizedMessage violation = new LocalizedMessage(
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
@@ -86,7 +85,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 }, "Exception is expected");
         final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                 "getParseErrorMessage", String.class,
-                new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
+                new JavadocDetailNodeParser.ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
                         8, "no viable alternative at input 'see <'", "SEE_TAG"));
         assertWithMessage("Generated and expected parse error messages don't match")
             .that(exc.getMessage())
@@ -103,7 +102,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 }, "Exception is expected");
         final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                 "getParseErrorMessage", String.class,
-                new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
+                new JavadocDetailNodeParser.ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
                         3, "no viable alternative at input '</'", "HTML_ELEMENT"));
         assertWithMessage("Generated and expected parse error messages don't match")
             .that(exc.getMessage())
