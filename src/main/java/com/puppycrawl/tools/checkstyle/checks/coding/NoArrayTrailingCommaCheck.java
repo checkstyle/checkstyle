@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 
 /**
  * <div>
@@ -82,7 +83,7 @@ public class NoArrayTrailingCommaCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST arrayInit) {
-        final DetailAST rcurly = arrayInit.findFirstToken(TokenTypes.RCURLY);
+        final DetailAST rcurly = NullUtil.notNull(arrayInit.findFirstToken(TokenTypes.RCURLY));
         final DetailAST previousSibling = rcurly.getPreviousSibling();
         if (previousSibling != null && previousSibling.getType() == TokenTypes.COMMA) {
             log(previousSibling, MSG_KEY);
