@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 1
 
       - name: Run Qodana Scan
-        uses: JetBrains/qodana-action@3e8d76ff0e0241618abd808682f426afe84bab3f  # v2026.2.2
+        uses: JetBrains/qodana-action@aa698739cd4b8204ad53291bea7e16cd75da3c9f  # v2026.3.1
         with:
           use-caches: false
           use-annotations: false
