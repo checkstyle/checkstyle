@@ -40,7 +40,9 @@ all needed artifacts. From the repository root folder, run:
 Here you can find instructions about importing and debugging the project for IDEs:
 [Eclipse IDE](https://checkstyle.sourceforge.io/eclipse.html),
 [NetBeans IDE](https://checkstyle.sourceforge.io/netbeans.html),
-[IntelliJ IDEA IDE](https://checkstyle.sourceforge.io/idea.html)
+[IntelliJ IDEA IDE](https://checkstyle.sourceforge.io/idea.html),
+[Visual Studio Code IDE](https://checkstyle.sourceforge.io/vscode.html)
+
 
 Community video walk throughs of these instructions are available in SteLeo1602's
 [playlist on YouTube][youtube-playlist].
@@ -175,6 +177,7 @@ You can use any IDE to work on the project, here are some guides to help you set
 - [IntelliJ](https://checkstyle.org/idea.html)
 - [Eclipse](https://checkstyle.org/eclipse.html)
 - [Netbeans](https://checkstyle.org/netbeans.html)
+- [Visual Studio Code](https://checkstyle.org/vscode.html)
 
 Using an IDE is not required, but it is recommended.
 
