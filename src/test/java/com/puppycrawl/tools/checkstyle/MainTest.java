@@ -66,6 +66,7 @@ import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.internal.testmodules.CliAuditListener;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil;
@@ -115,9 +116,11 @@ public class MainTest {
               -E, --executeIgnoredModules
                                         Allows ignored modules to be run.
               -f=<format>               Specifies the output format. Valid values: \
-            xml, sarif, plain for
-                                          XMLLogger, SarifLogger, and \
-            DefaultLogger respectively. Defaults to
+            xml, sarif, plain, none. The
+                                          none format disables the CLI audit listener and \
+            error-count summary,
+                                          but not configured listeners or \
+            failure diagnostics. Defaults to
                                           plain.
               -g, --generate-xpath-suppression
                                         Generates an output xpath suppression XML to use\
@@ -430,7 +433,7 @@ public class MainTest {
             .isEqualTo("");
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
-            .isEqualTo("Invalid value for option '-f': expected one of [XML, SARIF, PLAIN]"
+            .isEqualTo("Invalid value for option '-f': expected one of [XML, SARIF, PLAIN, NONE]"
                     + " (case-insensitive) but was 'xmlp'" + EOL + SHORT_USAGE);
     }
 
@@ -461,6 +464,118 @@ public class MainTest {
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
             .isEqualTo("");
+    }
+
+    @Test
+    public void testNoneOutputCleanFile(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        assertMainReturnCode(0, "-c", getPath("InputMainConfig-classname.xml"),
+                "-f", "none", getPath("InputMain.java"));
+        assertWithMessage("No CLI audit output")
+                .that(systemOut.getCapturedData())
+                .isEmpty();
+        assertWithMessage("No CLI error output")
+                .that(systemErr.getCapturedData())
+                .isEmpty();
+    }
+
+    @Test
+    public void testNoneOutputViolatingFile(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        assertMainReturnCode(1, "-c", getPath("InputMainConfig-classname2-error.xml"),
+                "-f", "NoNe", getPath("InputMain1.java"));
+        assertWithMessage("No CLI audit output")
+                .that(systemOut.getCapturedData())
+                .isEmpty();
+        assertWithMessage("No CLI error-count summary")
+                .that(systemErr.getCapturedData())
+                .isEmpty();
+    }
+
+    @Test
+    public void testNoneOutputConfiguredListener(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        CliAuditListener.clearEvents();
+        assertMainReturnCode(1, "-c", getPath("InputMainConfig-listener.xml"),
+                "-f", "none", getPath("InputMain1.java"));
+        assertWithMessage("Configured listener receives the audit exactly once")
+                .that(CliAuditListener.getEvents())
+                .containsExactly("auditStarted", "fileStarted", "addError",
+                        "fileFinished", "auditFinished")
+                .inOrder();
+        assertWithMessage("No CLI audit output")
+                .that(systemOut.getCapturedData())
+                .isEmpty();
+        assertWithMessage("No CLI error output")
+                .that(systemErr.getCapturedData())
+                .isEmpty();
+    }
+
+    @Test
+    public void testDefaultOutputConfiguredListener(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        CliAuditListener.clearEvents();
+        assertMainReturnCode(1, "-c", getPath("InputMainConfig-listener.xml"),
+                getPath("InputMain1.java"));
+        assertWithMessage("Configured listener remains active with the default format")
+                .that(CliAuditListener.getEvents())
+                .containsExactly("auditStarted", "fileStarted", "addError",
+                        "fileFinished", "auditFinished")
+                .inOrder();
+        assertWithMessage("Default CLI listener still reports violations")
+                .that(systemOut.getCapturedData())
+                .contains("[ERROR]");
+        final LocalizedMessage count = new LocalizedMessage(
+                Definitions.CHECKSTYLE_BUNDLE, Main.class, Main.ERROR_COUNTER, "1");
+        assertWithMessage("Default error-count summary is preserved")
+                .that(systemErr.getCapturedData())
+                .isEqualTo(count.getMessage() + EOL);
+    }
+
+    @Test
+    public void testNoneOutputInvalidCombinations(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        final Path report = temporaryFolder.toPath().resolve("unused-report.xml");
+        for (String option : List.of("-g", "-G", "-o=" + report)) {
+            assertMainReturnCode(-1, "-c", getPath("InputMainConfig-classname.xml"),
+                    "-f", "none", option, getPath("InputMain.java"));
+        }
+        final String message = "Format 'none' cannot be used with '-o', '-g', or '-G'." + EOL;
+        assertWithMessage("Conflicting options are diagnosed")
+                .that(systemOut.getCapturedData())
+                .isEqualTo(message.repeat(3));
+        assertWithMessage("No audit was executed")
+                .that(systemErr.getCapturedData())
+                .isEmpty();
+        assertWithMessage("Invalid combinations must not create a report")
+                .that(Files.exists(report))
+                .isFalse();
+    }
+
+    @Test
+    public void testNoneOutputConfigurationFailure(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        assertMainReturnCode(-2, "-c", getPath("InputMainConfig-non-existent-classname.xml"),
+                "-f", "none", getPath("InputMain.java"));
+        assertWithMessage("Configuration failures remain visible")
+                .that(systemErr.getCapturedData())
+                .contains("cannot initialize module NonExistentClass");
+        assertWithMessage("No audit output")
+                .that(systemOut.getCapturedData())
+                .isEmpty();
+    }
+
+    @Test
+    public void testNoneOutputExitCodeLimit(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        assertMainReturnCode(255, "-c", getPath("InputMainConfig-magicnumber.xml"),
+                "-f", "none", getPath("InputMainMagicNumber256Errors.java"));
+        assertWithMessage("No CLI audit output")
+                .that(systemOut.getCapturedData())
+                .isEmpty();
+        assertWithMessage("No CLI error-count summary")
+                .that(systemErr.getCapturedData())
+                .isEmpty();
     }
 
     @Test
@@ -2094,6 +2209,14 @@ public class MainTest {
         assertWithMessage("listener is DefaultLogger")
                 .that(listener)
                 .isInstanceOf(DefaultLogger.class);
+    }
+
+    @Test
+    public void testNoneOutputFormatDoesNotCreateListener() {
+        getExpectedThrowable(IllegalStateException.class, () -> {
+            Main.OutputFormat.NONE.createListener(new ByteArrayOutputStream(),
+                    OutputStreamOptions.CLOSE);
+        }, "Exception was expected");
     }
 
     @Test

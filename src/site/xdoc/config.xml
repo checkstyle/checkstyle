@@ -861,6 +861,14 @@
 &lt;/module&gt;
       </code></pre></div>
 
+      <p>
+        When running from the command line, use <code>-f none</code> to leave audit output to
+        <code>AuditListener</code>s configured under <code>Checker</code>. This disables only
+        the CLI-created audit listener and routine CLI error-count summary; configured listeners
+        still receive audit events. Validation and process exit status are unchanged. See the
+        <a href="cmdline.html#Specifying_Output_Format">command-line output-format documentation</a>.
+      </p>
+
     </section>
 
     <section name="Custom messages">

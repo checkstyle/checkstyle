@@ -140,13 +140,10 @@ java -jar checkstyle-${projectVersion}-all.jar -D&lt;property&gt;=&lt;value&gt; 
                 </td>
                 <td>
                   Specifies the output format. Valid values: <code>xml</code>,
-                  <code>sarif</code>, <code>plain</code>
-                  for <a href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">
-                  XMLLogger</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/SarifLogger.html">
-                  SarifLogger</a>, and
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">
-                  DefaultLogger</a> respectively. Defaults to <code>plain</code>.
+                  <code>sarif</code>, <code>plain</code>, <code>none</code>.
+                  The none format disables the CLI audit listener and error-count summary,
+                  but not configured listeners or failure diagnostics.
+                  Defaults to <code>plain</code>.
                 </td>
               </tr>
               <tr>
@@ -708,6 +705,13 @@ Checkstyle ends with 1 errors.
 <h4 id="Specifying_Output_Format"><span>
 2. Specifying Output Format (<span class="no-transform">-f, --format</span>)
 </span></h4>
+<p>
+  Use <code>-f none</code> to leave audit output to listeners configured under
+  <code>Checker</code>, or to run without an audit report when no listener is configured.
+  Validation and exit status are unchanged. Argument and configuration failure diagnostics
+  remain visible. This mode cannot be combined with <code>-o</code>, <code>-g</code>,
+  or <code>-G</code>.
+</p>
 <p><strong>Goal:</strong> Output the audit results in a Xml Format
 instead of the default plain text.</p>
 
@@ -1929,9 +1933,10 @@ Checkstyle requires a configuration XML file that configures the checks to apply
                               allowed.
   -E, --executeIgnoredModules
                             Allows ignored modules to be run.
-  -f=&lt;format&gt;               Specifies the output format. Valid values: xml, sarif, plain for
-                              XMLLogger, SarifLogger, and DefaultLogger respectively. Defaults to
-                              plain.
+  -f=&lt;format&gt;               Specifies the output format. Valid values: xml, sarif, plain,
+                              none. The none format disables the CLI audit listener and
+                              error-count summary, but not configured listeners or
+                              failure diagnostics. Defaults to plain.
   -g, --generate-xpath-suppression
                             Generates an output xpath suppression XML to use to suppress all
                               violations from user's config. Instead of printing every violation,
