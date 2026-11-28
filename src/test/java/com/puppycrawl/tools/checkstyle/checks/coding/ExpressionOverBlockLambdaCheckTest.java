@@ -79,4 +79,14 @@ public class ExpressionOverBlockLambdaCheckTest
                 .isNotNull();
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "11:21: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath(
+                "compact/InputExpressionOverBlockLambdaCompactSourceFile.java"),
+                expected);
+    }
+
 }
