@@ -35,6 +35,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -42,8 +43,15 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.OS;
@@ -585,6 +593,58 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
                     .that(externalResourceHashes[0].equals(externalResourceHashes[1]))
                     .isEqualTo(sameException);
         }
+    }
+
+    @Nested
+    public class ConcurrentResourcesTest {
+
+        @Test
+        public void testConcurrentExternalResourceReads() throws Exception {
+            final int workers = 8;
+            final CyclicBarrier barrier = new CyclicBarrier(workers);
+            final List<Callable<Integer>> tasks = new ArrayList<>();
+            for (int index = 0; index < workers; index++) {
+                final Path resource = temporaryFolder.toPath().resolve("resource-" + index);
+                Files.writeString(resource, Integer.toString(index).repeat(131_072));
+                final String expected = externalResourceHash(resource);
+                tasks.add(() -> {
+                    int mismatches = 0;
+                    for (int iteration = 0; iteration < 40; iteration++) {
+                        barrier.await(30, TimeUnit.SECONDS);
+                        if (!expected.equals(externalResourceHash(resource))) {
+                            mismatches++;
+                        }
+                    }
+                    return mismatches;
+                });
+            }
+            int mismatches = 0;
+            try (ExecutorService executor = Executors.newFixedThreadPool(workers)) {
+                for (Future<Integer> result : executor.invokeAll(tasks)) {
+                    mismatches += result.get();
+                }
+            }
+            assertWithMessage("Concurrent reads must preserve the resource hash")
+                .that(mismatches)
+                .isEqualTo(0);
+        }
+
+        /**
+         * Reads an external resource through an independent cache instance.
+         *
+         * @param resource resource to hash
+         * @return cached resource fingerprint
+         * @throws Exception if cache loading fails
+         */
+        private String externalResourceHash(Path resource) throws Exception {
+            final PropertyCacheFile cache = new PropertyCacheFile(
+                    new DefaultConfiguration("Checker"),
+                    temporaryFolder.toPath().resolve("unused-cache").toString());
+            cache.load();
+            cache.putExternalResources(Set.of(resource.toString()));
+            return cache.get(PropertyCacheFile.EXTERNAL_RESOURCE_KEY_PREFIX + resource);
+        }
+
     }
 
 }

@@ -71,9 +71,6 @@ public final class PropertyCacheFile {
     /** Size of default byte array for buffer. */
     private static final int BUFFER_SIZE = 1024;
 
-    /** Default buffer for reading from streams. */
-    private static final byte[] BUFFER = new byte[BUFFER_SIZE];
-
     /** Default number for base 16 encoding. */
     private static final int BASE_16 = 16;
 
@@ -318,15 +315,16 @@ public final class PropertyCacheFile {
      * @throws IOException if there is an error reading the input stream.
      */
     private static byte[] toByteArray(InputStream stream) throws IOException {
+        final byte[] buffer = new byte[BUFFER_SIZE];
         final ByteArrayOutputStream content = new ByteArrayOutputStream();
 
         while (true) {
-            final int size = stream.read(BUFFER);
+            final int size = stream.read(buffer);
             if (size == -1) {
                 break;
             }
 
-            content.write(BUFFER, 0, size);
+            content.write(buffer, 0, size);
         }
 
         return content.toByteArray();
