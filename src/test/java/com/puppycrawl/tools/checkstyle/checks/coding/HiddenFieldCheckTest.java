@@ -743,6 +743,24 @@ public class HiddenFieldCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testHiddenFieldAnonymousClassFields() throws Exception {
+
+        final String[] expected = {
+            "22:27: " + getCheckMessage(MSG_KEY, "count"),
+            "28:17: " + getCheckMessage(MSG_KEY, "count"),
+            "38:26: " + getCheckMessage(MSG_KEY, "count"),
+            "41:45: " + getCheckMessage(MSG_KEY, "shared"),
+            "47:32: " + getCheckMessage(MSG_KEY, "count"),
+            "50:40: " + getCheckMessage(MSG_KEY, "count"),
+            "52:32: " + getCheckMessage(MSG_KEY, "count"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputHiddenFieldAnonymousClassFields.java"),
+                expected);
+    }
+
+    @Test
     public void testHiddenFieldRecordsImplicitlyStaticClassComparison() throws Exception {
 
         final String[] expected = {
