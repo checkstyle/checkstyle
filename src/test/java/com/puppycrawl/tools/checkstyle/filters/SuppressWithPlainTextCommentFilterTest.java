@@ -109,28 +109,18 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
     @Test
     public void testSuppressionCommentsInXmlFile() throws Exception {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        filterCfg.addProperty("offCommentFormat", "CS-OFF");
-        filterCfg.addProperty("onCommentFormat", "CS-ON");
-
-        final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
-        checkCfg.addProperty("eachLine", "true");
-
         final String[] suppressed = {
-            "7:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "17:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         final String[] violationMessages = {
-            "7:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "10:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "17:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "22:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
-        verifySuppressed(
-            "InputSuppressWithPlainTextCommentFilter.xml",
-            removeSuppressed(violationMessages, suppressed),
-            filterCfg, checkCfg
-        );
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithPlainTextCommentFilter.xml"),
+            violationMessages, removeSuppressed(violationMessages, suppressed));
     }
 
     @Test
