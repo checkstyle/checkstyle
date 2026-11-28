@@ -48,8 +48,8 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
                 getPath("InputXpathOverloadMethodsDeclarationOrderDefault.java");
 
         final String[] expectedViolation = {
-            "22:5: " + getCheckMessage(CLAZZ,
-                        OverloadMethodsDeclarationOrderCheck.MSG_KEY, "12"),
+            "23:5: " + getCheckMessage(CLAZZ,
+                        OverloadMethodsDeclarationOrderCheck.MSG_KEY, "13"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -74,8 +74,8 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
                 getPath("InputXpathOverloadMethodsDeclarationOrderAnonymous.java");
 
         final String[] expectedViolation = {
-            "38:9: " + getCheckMessage(CLAZZ,
-                    OverloadMethodsDeclarationOrderCheck.MSG_KEY, "28"),
+            "39:9: " + getCheckMessage(CLAZZ,
+                    OverloadMethodsDeclarationOrderCheck.MSG_KEY, "29"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -106,8 +106,8 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
                 getPath("InputXpathOverloadMethodsDeclarationOrderEnum.java");
 
         final String[] expectedViolation = {
-            "24:5: " + getCheckMessage(CLAZZ,
-                        OverloadMethodsDeclarationOrderCheck.MSG_KEY, "14"),
+            "25:5: " + getCheckMessage(CLAZZ,
+                        OverloadMethodsDeclarationOrderCheck.MSG_KEY, "15"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(

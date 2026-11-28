@@ -10,6 +10,9 @@
  input parameters or type of input parameters or both.
  &lt;/div&gt;</description>
          <properties>
+            <property default-value="" name="modifierGroups" type="java.lang.String[]">
+               <description>Control how different types of overloaded methods can be grouped by their modifiers. Each value defines one group by a space separated list of modifier names, for example &lt;code&gt;"static"&lt;/code&gt; or &lt;code&gt;"public static"&lt;/code&gt;. The order of modifiers in a group does not matter. A method belongs to every group whose modifiers are all present in the explicit modifiers of the method, so methods of one name can form several groups, one per group they belong to. Methods whose modifiers match no group belong to the default group, and methods without explicit modifiers always form a separate group of their own.</description>
+            </property>
             <property default-value="false"
                       name="orderByIncreasingParameterCount"
                       type="boolean">
