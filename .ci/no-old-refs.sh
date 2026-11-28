@@ -27,7 +27,8 @@ grep -IPonr "(after|[Tt]il[l]?) (<a href=\")?$GITHUB_HOST/[\w.-]+/[\w.-]+/issues
 grep -IPonr "[Tt]il[l]? #\d{1,5}" . \
   | sed -e 's/:[a-zA-Z].*#/:checkstyle\/checkstyle\/issues\//' >> $MENTIONED_ISSUES_GREP_OUTPUT
 
-for MENTIONED_ISSUES_GREP_OUTPUT_LINE in $(cat $MENTIONED_ISSUES_GREP_OUTPUT); do
+while IFS= read -r MENTIONED_ISSUES_GREP_OUTPUT_LINE \
+      || [ -n "$MENTIONED_ISSUES_GREP_OUTPUT_LINE" ]; do
   ISSUE=${MENTIONED_ISSUES_GREP_OUTPUT_LINE#*[0-9]:}
 
   FILE_PATH=${MENTIONED_ISSUES_GREP_OUTPUT_LINE%:[0-9]*}
@@ -44,14 +45,14 @@ for MENTIONED_ISSUES_GREP_OUTPUT_LINE in $(cat $MENTIONED_ISSUES_GREP_OUTPUT); d
   if [ "$STATE" = "closed" ]; then
     echo "$LINK" >> $CLOSED_ISSUES
   fi
-  if [ -n "$LINKED_ISSUES" ]; then
-    for LINKED_ISSUE in $(cat "$LINKED_ISSUES"); do
+  if [ -f "$LINKED_ISSUES" ]; then
+    while IFS= read -r LINKED_ISSUE || [ -n "$LINKED_ISSUE" ]; do
       if [ "$LINKED_ISSUE" = "$GITHUB_HOST/$ISSUE" ]; then
         echo "$LINK" >> $LINKED_ISSUES_MENTIONED
       fi
-    done
+    done < "$LINKED_ISSUES"
   fi
-done
+done < "$MENTIONED_ISSUES_GREP_OUTPUT"
 
 EXIT_CODE=0
 
