@@ -44,7 +44,7 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
     @Test
     public void testPrivateClassFields() throws Exception {
         final String[] expectedViolation = {
-            "14:5: " + getCheckMessage(JavadocVariableCheck.class,
+            "15:5: " + getCheckMessage(JavadocVariableCheck.class,
                 JavadocVariableCheck.MSG_JAVADOC_MISSING, "age"),
         };
 
@@ -69,7 +69,7 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
     @Test
     public void testInnerClassFields() throws Exception {
         final String[] expectedViolation = {
-            "15:9: " + getCheckMessage(JavadocVariableCheck.class,
+            "16:9: " + getCheckMessage(JavadocVariableCheck.class,
                 JavadocVariableCheck.MSG_JAVADOC_MISSING, "fData"),
         };
 
@@ -98,7 +98,7 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
     @Test
     public void testEnum() throws Exception {
         final String[] expectedViolation = {
-            "16:5: " + getCheckMessage(JavadocVariableCheck.class,
+            "17:5: " + getCheckMessage(JavadocVariableCheck.class,
                 JavadocVariableCheck.MSG_JAVADOC_MISSING, "count"),
         };
 
