@@ -73,7 +73,8 @@
  &lt;tr&gt;&lt;td&gt;goto label&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;break&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
  &lt;tr&gt;&lt;td&gt;Expressions&lt;/td&gt;
  &lt;td&gt;Number of &amp;amp;&amp;amp; and || operators in expression. No operators - 0&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td&gt;continue&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;return&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;continue&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;return [expr]&lt;/td&gt;&lt;td&gt;NP(expr), or 1 if NP(expr) is 0&lt;/td&gt;&lt;/tr&gt;
  &lt;tr&gt;&lt;td&gt;Statement (even sequential statements)&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
  &lt;tr&gt;&lt;td&gt;Empty block {}&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Function call&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
  &lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Function(Method) declaration or Block&lt;/td&gt;&lt;td&gt;P(i=1:i=N)NP(Statement[i])&lt;/td&gt;&lt;/tr&gt;

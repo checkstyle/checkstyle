@@ -99,7 +99,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <tr><td>goto label</td><td>1</td></tr><tr><td>break</td><td>1</td></tr>
  * <tr><td>Expressions</td>
  * <td>Number of {@literal &&} and || operators in expression. No operators - 0</td></tr>
- * <tr><td>continue</td><td>1</td></tr><tr><td>return</td><td>1</td></tr>
+ * <tr><td>continue</td><td>1</td></tr>
+ * <tr><td>return [expr]</td><td>NP(expr), or 1 if NP(expr) is 0</td></tr>
  * <tr><td>Statement (even sequential statements)</td><td>1</td></tr>
  * <tr><td>Empty block {}</td><td>1</td></tr><tr><td>Function call</td><td>1</td>
  * </tr><tr><td>Function(Method) declaration or Block</td><td>P(i=1:i=N)NP(Statement[i])</td></tr>
