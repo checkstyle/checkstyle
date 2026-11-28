@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
@@ -104,7 +105,7 @@ public class MemberNameCheck extends AbstractAccessControlNameCheck {
     @Override
     protected final boolean mustCheckName(DetailAST ast) {
         final DetailAST modifiersAST =
-            ast.findFirstToken(TokenTypes.MODIFIERS);
+            NullUtil.notNull(ast.findFirstToken(TokenTypes.MODIFIERS));
         final boolean isStatic = modifiersAST.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
 
         return !isStatic && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
