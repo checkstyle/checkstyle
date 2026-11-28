@@ -465,6 +465,7 @@
 
   <!-- If files names are wrapped then they through error at time of report generation -->
   <suppress id="lineLength" files="config/list-of-projects.yml"/>
+  <suppress id="lineLength" files="config/projects-to-test/all-checks-on-all-checkstyle-inputs.yml"/>
 
   <!-- files used for redirection to not break old links -->
   <suppress id="siteXmlFileNaming"

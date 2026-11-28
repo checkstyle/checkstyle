@@ -24,6 +24,7 @@ my @excludes=qw(
   ^config/projects-to-test/openjdk20-excluded\.files$
   ^config/projects-to-test/openjdk25-excluded\.files$
   ^config/list-of-projects\.yml$
+  ^config/projects-to-test/all-checks-on-all-checkstyle-inputs\.yml$
   ^config/jsoref-spellchecker/whitelist.words$
   ^config/jsoref-spellchecker/english.words$
   ^config/checker-framework-suppressions/
