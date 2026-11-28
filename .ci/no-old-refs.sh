@@ -21,11 +21,11 @@ fi
 
 # collect issues where full link is used
 grep -IPonr "(after|[Tt]il[l]?) (<a href=\")?$GITHUB_HOST/[\w.-]+/[\w.-]+/issues/\d{1,5}" . \
-  | sed -e 's/:[a-zA-Z].*github.com\//:/' >> $MENTIONED_ISSUES_GREP_OUTPUT
+  | sed 's/:[a-zA-Z].*github.com\//:/' >> $MENTIONED_ISSUES_GREP_OUTPUT
 
 # collect checkstyle issues where only hash sign is used
 grep -IPonr "[Tt]il[l]? #\d{1,5}" . \
-  | sed -e 's/:[a-zA-Z].*#/:checkstyle\/checkstyle\/issues\//' >> $MENTIONED_ISSUES_GREP_OUTPUT
+  | sed 's/:[a-zA-Z].*#/:checkstyle\/checkstyle\/issues\//' >> $MENTIONED_ISSUES_GREP_OUTPUT
 
 for MENTIONED_ISSUES_GREP_OUTPUT_LINE in $(cat $MENTIONED_ISSUES_GREP_OUTPUT); do
   ISSUE=${MENTIONED_ISSUES_GREP_OUTPUT_LINE#*[0-9]:}
