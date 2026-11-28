@@ -98,8 +98,9 @@ public class ConstructorsDeclarationGroupingCheckTest extends AbstractModuleTest
         final String[] expected = {
             "24:9: " + getCheckMessage(MSG_ORDER),
             "33:9: " + getCheckMessage(MSG_ORDER),
-            "37:9: " + getCheckMessage(MSG_ORDER),
-            "41:9: " + getCheckMessage(MSG_ORDER),
+            "51:9: " + getCheckMessage(MSG_ORDER),
+            "55:9: " + getCheckMessage(MSG_ORDER),
+            "59:9: " + getCheckMessage(MSG_ORDER),
         };
 
         verifyWithInlineConfigParser(
