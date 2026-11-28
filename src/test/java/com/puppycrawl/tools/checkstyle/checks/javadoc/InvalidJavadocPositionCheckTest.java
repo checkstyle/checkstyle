@@ -136,6 +136,29 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInvalidJavadocPositionOnRecordComponents() throws Exception {
+        final String[] expected = {
+            "71:17: " + getCheckMessage(MSG_KEY),
+            "78:19: " + getCheckMessage(MSG_KEY),
+            "87:13: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputInvalidJavadocPositionOnRecordComponents.java"), expected);
+    }
+
+    @Test
+    public void testInvalidJavadocPositionOnRecordComponentsWithAnnotation() throws Exception {
+        final String[] expected = {
+            "50:15: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputInvalidJavadocPositionOnRecordComponentsWithAnnotation.java"),
+                expected);
+    }
+
+    @Test
     public void testInvalidJavadocPositionCompactSourceFile() throws Exception {
         final String[] expected = {
             "42:1: " + getCheckMessage(MSG_KEY),

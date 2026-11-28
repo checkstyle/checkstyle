@@ -89,7 +89,9 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
             new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnRecord.java",
                 BlockCommentPosition::isOnRecord, 3),
             new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnCompactCtor.java",
-                BlockCommentPosition::isOnCompactConstructor, 3)
+                BlockCommentPosition::isOnCompactConstructor, 3),
+            new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnRecordComponent.java",
+                BlockCommentPosition::isOnRecordComponent, 10)
         );
 
         for (BlockCommentPositionTestMetadata metadata : metadataList) {
