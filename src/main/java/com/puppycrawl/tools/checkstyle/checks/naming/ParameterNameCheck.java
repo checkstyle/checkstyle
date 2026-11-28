@@ -71,7 +71,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
      * Creates a new {@code ParameterNameCheck} instance.
      */
     public ParameterNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$", MSG_INVALID_PATTERN);
+        super("^([a-z][a-zA-Z0-9]*|_)$", MSG_INVALID_PATTERN);
     }
 
     /**

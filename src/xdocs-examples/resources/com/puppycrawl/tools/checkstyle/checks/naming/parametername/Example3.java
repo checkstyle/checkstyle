@@ -21,5 +21,5 @@ class Example3 {
   }
 }
 // violation 6 lines above """Name 'V2' must match pattern
-//  '\Q^[a-z][a-zA-Z0-9]*$\E'\."""
+//  '\Q^([a-z][a-zA-Z0-9]*|_)$\E'\."""
 // xdoc section - end
