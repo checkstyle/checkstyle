@@ -124,8 +124,8 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        // abstract class could not have private constructor
-        if (!isAbstract(ast) && !shouldIgnoreClass(ast)) {
+        // abstract or sealed class could not have private constructor
+        if (!isAbstract(ast) && !isSealed(ast) && !shouldIgnoreClass(ast)) {
             final boolean hasStaticModifier = isStatic(ast);
 
             final Details details = new Details(ast);
@@ -162,6 +162,17 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
     private static boolean isAbstract(DetailAST ast) {
         return ast.findFirstToken(TokenTypes.MODIFIERS)
             .findFirstToken(TokenTypes.ABSTRACT) != null;
+    }
+
+    /**
+     * Returns true if given class is sealed or false.
+     *
+     * @param ast class definition for check.
+     * @return true if a given class declared as sealed.
+     */
+    private static boolean isSealed(DetailAST ast) {
+        return ast.findFirstToken(TokenTypes.MODIFIERS)
+            .findFirstToken(TokenTypes.LITERAL_SEALED) != null;
     }
 
     /**
