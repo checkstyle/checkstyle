@@ -1209,7 +1209,6 @@
                     </exclude>
                     <!-- Swing related classes -->
                     <exclude>com.puppycrawl.tools.checkstyle.gui.BaseCellEditor</exclude>
-                    <exclude>com.puppycrawl.tools.checkstyle.gui.CodeSelector</exclude>
                     <exclude>
                              com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper
                     </exclude>
@@ -1273,24 +1272,6 @@
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>0.75</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>com.puppycrawl.tools.checkstyle.gui.CodeSelector</include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.91</minimum>
-                    </limit>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.50</minimum>
                     </limit>
                   </limits>
                 </rule>
