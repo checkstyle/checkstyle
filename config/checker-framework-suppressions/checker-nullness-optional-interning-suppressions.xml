@@ -7431,13 +7431,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/OperatorWrapCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference node.findFirstToken(TokenTypes.COLON)</message>
-    <lineContent>rightNode = node.findFirstToken(TokenTypes.COLON).getPreviousSibling();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ParenPadCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter ast of AbstractParenPadCheck.processLeft.</message>
