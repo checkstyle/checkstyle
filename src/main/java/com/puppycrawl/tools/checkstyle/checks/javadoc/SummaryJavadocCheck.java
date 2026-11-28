@@ -127,7 +127,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * Setter to specify the period symbol. Used to check the first sentence ends with a period.
      * Periods that are not followed by a whitespace character are ignored (e.g. the period in
      * v1.0). Because some periods include whitespace built into the character, if this is set
-     * to anon-default value any period will end the sentence, whether it is followed by
+     * to a non-default value any period will end the sentence, whether it is followed by
      * whitespace or not.
      *
      * @param period period's value.

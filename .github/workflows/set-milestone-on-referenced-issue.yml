@@ -1,5 +1,5 @@
 #############################################################################
-# GitHub action to set latest milestone on issue of merged PR.
+# GitHub Action to set latest milestone on issue of merged PR.
 #
 #############################################################################
 name: 'Milestone issue closed by PR'
