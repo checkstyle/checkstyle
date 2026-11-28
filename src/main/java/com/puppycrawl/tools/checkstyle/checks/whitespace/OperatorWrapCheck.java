@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -267,7 +268,8 @@ public class OperatorWrapCheck extends AbstractCheck {
         else {
             final DetailAST rightNode;
             if (node.getType() == TokenTypes.QUESTION) {
-                rightNode = node.findFirstToken(TokenTypes.COLON).getPreviousSibling();
+                rightNode = NullUtil.notNull(node.findFirstToken(TokenTypes.COLON))
+                    .getPreviousSibling();
             }
             else {
                 rightNode = node.getLastChild();
