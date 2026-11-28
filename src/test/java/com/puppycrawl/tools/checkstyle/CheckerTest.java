@@ -48,6 +48,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
@@ -80,6 +81,7 @@ import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+import com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
@@ -433,6 +435,42 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Error message is not expected")
             .that(exc.getMessage())
             .isEqualTo("unsupported charset: 'UNKNOWN-CHARSET'");
+    }
+
+    @Test
+    public void testCreateCheckerWithRootProperties() {
+        final CheckstyleException exception = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    createChecker(createModuleConfig(TranslationCheck.class),
+                            Map.of("charset", "UNKNOWN-CHARSET"));
+                });
+
+        assertWithMessage("Error message is not expected")
+            .that(exception.getMessage())
+            .isEqualTo("Cannot set property 'charset' to 'UNKNOWN-CHARSET'");
+    }
+
+    @Test
+    public void testCreateCheckerWithRootPropertiesSuccess() throws Exception {
+        final File header = createTempFile("header");
+        final File source = createTempFile("source", ".java");
+        final String content = "// header\n";
+        Files.writeString(header.toPath(), content, StandardCharsets.UTF_16LE);
+        Files.writeString(source.toPath(), content, StandardCharsets.UTF_16LE);
+        final DefaultConfiguration config = createModuleConfig(HeaderCheck.class);
+        config.addProperty("headerFile", header.getAbsolutePath());
+        final Checker checker = createChecker(config,
+                Map.of("charset", StandardCharsets.UTF_16LE.name()));
+
+        try {
+            assertWithMessage("The header and source should use the root charset")
+                .that(checker.process(Collections.singletonList(source)))
+                .isEqualTo(0);
+        }
+        finally {
+            checker.destroy();
+        }
     }
 
     @Test
