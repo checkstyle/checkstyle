@@ -281,10 +281,9 @@ public class JavadocTagContinuationIndentationCheckTest
             "17: " + getCheckMessage(MSG_KEY, 4),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
-                        "compact/InputJavadocTagContinuationIndentationCompactSourceFile"
-                                + "Default.java"),
-                expected);
+            getNonCompilablePath(
+                "compact/InputJavadocTagContinuationIndentationCompactSourceFileDefault.java"),
+            expected);
     }
 
     @Test
@@ -294,10 +293,9 @@ public class JavadocTagContinuationIndentationCheckTest
             "17: " + getCheckMessage(MSG_KEY, 6),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
-                        "compact/InputJavadocTagContinuationIndentationCompactSourceFile"
-                                + "Properties.java"),
-                expected);
+            getNonCompilablePath(
+                "compact/InputJavadocTagContinuationIndentationCompactSourceFileProperties.java"),
+            expected);
     }
 
 }
