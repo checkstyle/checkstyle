@@ -3,7 +3,7 @@
 set -e
 
 # CI environments may change file permissions; only executable bits are checked.
-CHMOD=$(find -type f \
+CHMOD=$(find . -type f \
           -not -path '*/.git/*' \
           -not -path './mvnw' \
           -not -path './.ci-temp/*' \
@@ -21,7 +21,7 @@ if [[ -n $CHMOD ]]; then
 fi
 
 # Check all '.sh' files for missing executable permission
-CHMOD=$(find -type f \
+CHMOD=$(find . -type f \
           -not -path '*/.git/*' \
           -not -path './mvnw' \
           -name '*.sh' \
