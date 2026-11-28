@@ -78,6 +78,16 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSwitchRuleLambdas() throws Exception {
+        final String[] expected = {
+            "17:26: " + getCheckMessage(MSG_KEY, 12, 10),
+            "45:26: " + getCheckMessage(MSG_KEY, 12, 10),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLambdaBodyLengthSwitchRuleLambda.java"), expected);
+    }
+
+    @Test
     public void testMaxLimitIsDifferent() throws Exception {
         final String[] expected = {
             "16:27: " + getCheckMessage(MSG_KEY, 4, 3),
