@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 
 /**
  * <div>
@@ -82,7 +83,7 @@ public class SealedShouldHavePermitsListCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modifiers = NullUtil.notNull(ast.findFirstToken(TokenTypes.MODIFIERS));
         final boolean isSealed = modifiers.findFirstToken(TokenTypes.LITERAL_SEALED) != null;
         final boolean hasPermitsList = ast.findFirstToken(TokenTypes.PERMITS_CLAUSE) != null;
 
