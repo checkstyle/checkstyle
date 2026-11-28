@@ -3209,13 +3209,14 @@ public class XdocsPagesTest {
         missingFromMacro.removeAll(exampleIdsExtractedByMacro);
 
         if (!missingFromMacro.isEmpty()) {
-            failures.add(String.format(Locale.ROOT,
-                    "%s: TOC macro failed to extract the following examples: %s. "
-                            + "The ToC macro could not match these example IDs "
-                            + "with its ANCHOR_PATTERN. "
-                            + "Check that each example has a <p id=\"ExampleN-config\"> or "
-                            + "<p id=\"UseCaseN-config\"> paragraph with proper formatting.",
-                    fileName, missingFromMacro));
+            final String template =
+                """
+                %s: TOC macro failed to extract the following examples: %s. \
+                The ToC macro could not match these example IDs with its ANCHOR_PATTERN. \
+                Check that each example has a <p id="ExampleN-config"> or \
+                <p id="UseCaseN-config"> paragraph with proper formatting.\
+                """;
+            failures.add(String.format(Locale.ROOT, template, fileName, missingFromMacro));
         }
 
         return failures;
