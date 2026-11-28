@@ -104,6 +104,18 @@ public class PreferLiteralJavadocInlineTagCheckTest extends AbstractModuleTestSu
     }
 
     @Test
+    public void testSupplementaryCharacters() throws Exception {
+        final String[] expected = {
+            "14:19: " + getCheckMessage(MSG_KEY, "&lt;"),
+            "21:21: " + getCheckMessage(MSG_KEY, "&lt;"),
+            "30:19: " + getCheckMessage(MSG_KEY, "&lt;"),
+            "30:24: " + getCheckMessage(MSG_KEY, "&gt;"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputPreferLiteralJavadocInlineTagSupplementaryCharacters.java"), expected);
+    }
+
+    @Test
     public void testPreferJavadocInlineTagsCheckInsideInlineTagsSkipped() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
