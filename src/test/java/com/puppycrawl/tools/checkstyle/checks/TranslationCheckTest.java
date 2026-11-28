@@ -378,19 +378,10 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
 
     @Test
     public void testIsNotMessagesBundle() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
-        checkConfig.addProperty("requiredTranslations", "de");
-
-        final File[] propertyFiles = {
-            new File(getPath("app-dev.properties")),
-            new File(getPath("app-stage.properties")),
-        };
-
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(
-            createChecker(checkConfig),
-            propertyFiles,
-            getPath("app-dev.properties"),
+        verifyWithInlineConfigParser(
+            getPath("app-local.properties"),
+            getPath("app-stage.properties"),
             expected);
     }
 
