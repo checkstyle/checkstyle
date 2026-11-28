@@ -70,6 +70,12 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     public static final String MSG_SHOULD_BE_SEPARATED = "empty.line.separator";
 
     /**
+     * A key is pointing to the warning message empty.line.separator.extra.semicolon
+     * in "messages.properties" file.
+     */
+    public static final String MSG_EXTRA_SEMICOLON = "empty.line.separator.extra.semicolon";
+
+    /**
      * A key is pointing to the warning message empty.line.separator.multiple.lines
      *  in "messages.properties" file.
      */
@@ -233,7 +239,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                     }
                 }
                 else if (!hasEmptyLineAfter(ast)) {
-                    log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
+                    logNotSeparated(nextToken);
                 }
             }
         }
@@ -406,6 +412,21 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     }
 
     /**
+     * Logs that the token isn't separated from the previous one. A stray semicolon gets
+     * its own message, because a blank line before it is rarely what the user wants.
+     *
+     * @param token token that follows without an empty line
+     */
+    private void logNotSeparated(DetailAST token) {
+        if (token.getType() == TokenTypes.SEMI) {
+            log(token, MSG_EXTRA_SEMICOLON);
+        }
+        else {
+            log(token, MSG_SHOULD_BE_SEPARATED, token.getText());
+        }
+    }
+
+    /**
      * Process Package.
      *
      * @param ast token
@@ -424,10 +445,10 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         }
         if (isLineEmptyAfterPackage(ast)) {
             final DetailAST elementAst = getViolationAstForPackage(ast);
-            log(elementAst, MSG_SHOULD_BE_SEPARATED, elementAst.getText());
+            logNotSeparated(elementAst);
         }
         else if (nextToken != null && !hasEmptyLineAfter(ast)) {
-            log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
+            logNotSeparated(nextToken);
         }
     }
 
@@ -472,7 +493,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (!TokenUtil.isOfType(nextToken, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT,
                 TokenTypes.MODULE_IMPORT)
             && !hasEmptyLineAfter(ast)) {
-            log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
+            logNotSeparated(nextToken);
         }
     }
 
@@ -485,8 +506,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     private void processVariableDef(DetailAST ast, DetailAST nextToken) {
         if (isTypeField(ast) && !hasEmptyLineAfter(ast)
                 && isViolatingEmptyLineBetweenFieldsPolicy(nextToken)) {
-            log(nextToken, MSG_SHOULD_BE_SEPARATED,
-                    nextToken.getText());
+            logNotSeparated(nextToken);
         }
     }
 
