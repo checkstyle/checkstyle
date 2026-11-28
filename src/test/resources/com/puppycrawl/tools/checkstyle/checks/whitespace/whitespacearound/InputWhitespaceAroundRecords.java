@@ -16,6 +16,7 @@ tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, B
          LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, NOT_EQUAL, PLUS, PLUS_ASSIGN, \
          QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR, SR_ASSIGN, STAR, \
          STAR_ASSIGN, LITERAL_ASSERT, TYPE_EXTENSION_AND, LITERAL_WHEN
+enforceWhitespaceAroundArrayInit = (default)false
 
 */
 
@@ -113,7 +114,6 @@ public class InputWhitespaceAroundRecords {
         public TestRecord9() {
         }
     }
-
     class TestClass2 {
         public TestClass2() { }
     }
