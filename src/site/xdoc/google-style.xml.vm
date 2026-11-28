@@ -34,7 +34,7 @@
             cached page</a>), version of 9 Apr 2026.
         </p>
         <p>
-          <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml">
+          <a href="https://github.com/checkstyle/checkstyle/blob/checkstyle-${projectVersion}/src/main/resources/google_checks.xml">
             Checkstyle configuration for 'Google Java Style'</a>
         </p>
       </subsection>
