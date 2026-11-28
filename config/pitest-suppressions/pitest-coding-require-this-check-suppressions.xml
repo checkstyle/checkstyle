@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>getIdentToLogViolation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getPreviousSibling</description>
+    <lineContent>&amp;&amp; ast.getPreviousSibling() == null</lineContent>
+  </mutation>
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>getIdentToLogViolation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; ast.getPreviousSibling() == null</lineContent>
+  </mutation>
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$ClassFrame</mutatedClass>
+    <mutatedMethod>containsAssignmentToField</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (!result &amp;&amp; !SCOPE_BOUNDARY_TYPES.contains(ast.getType())) {</lineContent>
+  </mutation>
+</suppressedMutations>
