@@ -204,7 +204,8 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
             after = endOfParams.getColumnNo() + 1;
         }
         else {
-            after = ast.getColumnNo() + ast.getText().length();
+            final String text = ast.getText();
+            after = ast.getColumnNo() + text.codePointCount(0, text.length());
         }
         return after;
     }
