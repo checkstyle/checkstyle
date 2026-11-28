@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
@@ -119,8 +120,8 @@ public final class UnnecessarySemicolonAfterTypeMemberDeclarationCheck extends A
         if (!ScopeUtil.isOuterMostType(ast) && isSemicolon(ast.getNextSibling())) {
             log(ast.getNextSibling(), MSG_SEMI);
         }
-        final DetailAST firstMember =
-            ast.findFirstToken(TokenTypes.OBJBLOCK).getFirstChild().getNextSibling();
+        final DetailAST firstMember = NullUtil.notNull(ast.findFirstToken(TokenTypes.OBJBLOCK))
+            .getFirstChild().getNextSibling();
         if (isSemicolon(firstMember) && !ScopeUtil.isInEnumBlock(firstMember)) {
             log(firstMember, MSG_SEMI);
         }

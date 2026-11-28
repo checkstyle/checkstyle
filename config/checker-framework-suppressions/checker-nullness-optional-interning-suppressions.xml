@@ -3523,13 +3523,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessarySemicolonAfterTypeMemberDeclarationCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.OBJBLOCK)</message>
-    <lineContent>ast.findFirstToken(TokenTypes.OBJBLOCK).getFirstChild().getNextSibling();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessarySemicolonInEnumerationCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter enumBlock of UnnecessarySemicolonInEnumerationCheck.hasMembersAfterConstants.</message>
