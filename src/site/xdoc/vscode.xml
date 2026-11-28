@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://apache.org"
+  xmlns:xsi="http://w3.org"
+  xsi:schemaLocation="http://apache.org https://apache.org">
+
+  <head>
+    <title>Importing and debugging in Visual Studio Code IDE</title>
+  </head>
+
+  <body>
+    <section name="Import">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <ul>
+            <li><a href="#Import">Import</a></li>
+            <li><a href="#Debug">Debug</a></li>
+            <li><a href="#Organize_Imports">Organize Imports</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p>
+        Before importing the project into Visual Studio Code, install the
+        <a href="https://visualstudio.com">
+        Extension Pack for Java</a> from the Visual Studio Code Marketplace.
+      </p>
+
+      <p>
+        Open Visual Studio Code and select <b>File -&gt; Open Folder...</b>, then choose the
+        cloned <code>checkstyle</code> repository root directory containing <code>pom.xml</code>.
+        Visual Studio Code will automatically detect the Maven project and import all dependencies.
+      </p>
+      <span class="wrapper block">
+        <img alt="Import Checkstyle project in Visual Studio Code"
+          src="images/gui_screenshot_import_project_vscode.png"/>
+      </span>
+    </section>
+
+    <section name="Debug">
+      <p>
+        Open a Check's source file or unit test file in the Explorer sidebar.<br/>
+        Set a breakpoint by clicking to the left of the line number in the editor gutter.<br/>
+        <span class="wrapper block">
+          <img alt="Set breakpoint in Visual Studio Code"
+            src="images/gui_screenshot_select_check_vscode.png"/>
+        </span>
+      </p>
+      <p>
+        Open the corresponding unit test file (for example, in <code>src/test/java</code>),
+        right-click the test method or click the <b>Debug Test</b> lens above the method
+        to start debugging.<br/>
+        <span class="wrapper block">
+          <img alt="Debug unit test in Visual Studio Code"
+            src="images/gui_screenshot_ut_select_vscode.png"/>
+        </span>
+      </p>
+      <p>
+        Use the Debug toolbar to control execution: <b>Continue (F5)</b>, <b>Step Over (F10)</b>,
+        <b>Step Into (F11)</b>, and <b>Step Out (Shift+F11)</b>.<br/>
+        <span class="wrapper block">
+          <img alt="Debug toolbar in Visual Studio Code"
+            src="images/gui_screenshot_debug_vscode.png"/>
+        </span>
+      </p>
+    </section>
+
+    <section name="Organize Imports">
+      <p>
+        One of the Checkstyle checks we run on our own code requires a specific order of import
+        statements. You can configure Visual Studio Code's Java settings so that Organize Imports
+        follows Checkstyle's import order automatically.
+      </p>
+      <p>
+        Open Settings (<b>Ctrl+,</b> or <b>Cmd+,</b> on macOS), search for
+        <code>java.completion.importOrder</code>, and configure the order groups to match
+        Checkstyle's configuration (static imports first, followed by standard Java and third-party
+        packages). You can then format imports in any file using <b>Shift+Alt+O</b>
+        (<b>Shift+Option+O</b> on macOS).<br/>
+        <span class="wrapper block">
+          <img alt="Organize Imports settings in Visual Studio Code"
+            src="images/gui_screenshot_organize_imports_vscode.png"/>
+        </span>
+      </p>
+    </section>
+  </body>
+</document>

@@ -473,6 +473,7 @@
         <item name="Eclipse IDE" href="eclipse.html"/>
         <item name="NetBeans IDE" href="netbeans.html"/>
         <item name="IntelliJ IDE" href="idea.html"/>
+        <item name="Visual Studio Code IDE" href="vscode.html"/>
       </item>
       <item name="Javadoc" href="apidocs/index.html"/>
     </menu>
