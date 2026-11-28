@@ -37,8 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * while-loops, for-loops, method definitions, class definitions, constructor definitions,
  * instance, static initialization blocks, annotation definitions and enum definitions.
  * For right curly brace of expression blocks of arrays, lambdas and class instances
- * please follow issue
- * <a href="https://github.com/checkstyle/checkstyle/issues/5945">#5945</a>.
+ * please use {@code RightCurlyOfExpression} check.
  * For right curly brace of enum constant please follow issue
  * <a href="https://github.com/checkstyle/checkstyle/issues/7519">#7519</a>.
  * </div>

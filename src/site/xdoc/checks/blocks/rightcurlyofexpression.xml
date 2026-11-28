@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>RightCurlyOfExpression</title>
+  </head>
+
+  <body>
+    <section name="RightCurlyOfExpression">
+      <p>Since Checkstyle 14.5.0</p>
+
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#RightCurlyOfExpression_Description">Description</a></li>
+          <li><a href="#RightCurlyOfExpression_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#RightCurlyOfExpression_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Allow the right curly brace to be on the same line as the previous part of the expression only when the whole expression block is on a single line, and to require it to be on a new line otherwise</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Require the right curly brace to be on the same line as the previous part of the expression</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Require the right curly brace to be on a new line</a></li>
+            </ul>
+          </li>
+          <li><a href="#RightCurlyOfExpression_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#RightCurlyOfExpression_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#RightCurlyOfExpression_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#RightCurlyOfExpression_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+
+      <subsection name="Description" id="RightCurlyOfExpression_Description">
+        <div>
+          Checks the placement of right curly braces (<code>'}'</code>) for expression blocks:
+          array initializers, block-bodied lambda expressions and anonymous classes.
+        </div>
+
+        <p>
+          The right curly brace of an expression block is different from the right curly brace
+          of a code block, because it is always followed by another part of the expression
+          or the statement, for example a semicolon, a closing parenthesis or a method call.
+          For this reason the policies of this check are defined by the position of the right
+          curly brace in relation to the previous part of the expression, and not in relation
+          to the part that follows it. Placement of right curly braces for code blocks
+          is validated by <code>RightCurly</code> check.
+        </p>
+
+        <p>
+          It is possible to enforce three different policies:
+        </p>
+        <ul>
+        <li>
+          <code>on_same_line</code> - The right curly brace must be on the same line as the
+          previous part of the expression:
+        <div class="wrapper"><pre class="prettyprint"><code>
+String[] names = new String[] {"One", "Two", };
+Runnable action = () -&gt; { doSomething(); };
+        </code></pre></div>
+        </li>
+        <li>
+          <code>on_new_line</code> - The right curly brace must be on a new line:
+        <div class="wrapper"><pre class="prettyprint"><code>
+String[] names = new String[] {"One", "Two",
+};
+Runnable action = () -&gt; { doSomething();
+};
+        </code></pre></div>
+        </li>
+        <li>
+          <code>on_new_line_or_singleline</code> - The right curly brace must be on a new line,
+          unless the whole expression block is on a single line:
+        <div class="wrapper"><pre class="prettyprint"><code>
+// Single-line format of block
+String[] names = new String[] {"One", "Two", };
+
+// Multi-line format of block
+String[] names = new String[] {"One", "Two",
+};
+        </code></pre></div>
+        </li>
+        </ul>
+
+        <p>
+          For multi-dimensional arrays only the outer right curly brace is validated.
+          For anonymous classes only the right curly brace of the class body is validated,
+          the right curly brace of an instance initializer inside such class is not
+          an expression brace and is not validated.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="RightCurlyOfExpression_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="option"/><a href="#option">option</a></td>
+              <td>Specify the policy on placement of a right curly brace (<code>'}'</code>) of an expression block.</td>
+              <td><a href="../../property-types.html#RightCurlyOfExpressionOption">RightCurlyOfExpressionOption</a></td>
+              <td><code>on_new_line_or_singleline</code></td>
+              <td>14.5.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="RightCurlyOfExpression_Examples">
+        <p id="Example1-config">
+          To configure the check to allow the right curly brace to be on the same line
+          as the previous part of the expression only when the whole expression block
+          is on a single line, and to require it to be on a new line otherwise:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RightCurlyOfExpression"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          This setting produces a violation for each right curly brace of a multi-line
+          expression block that is not on a new line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+
+  String[] oneLine = new String[] {"One", }; // ok, single-line block
+
+  String[] multiLine = new String[] {"One",
+    "Two", }; // violation ''}' at column 12 should be on a new line'
+
+  String[] multiLineNewLine = new String[] {"One", "Two",
+  }; // ok, right curly brace is on a new line
+
+  Runnable action = () -&gt; {
+    doSomething();
+  }; // ok, right curly brace is on a new line
+
+  void doSomething() {
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to require the right curly brace to be on the same line
+          as the previous part of the expression:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RightCurlyOfExpression"&gt;
+      &lt;property name="option" value="on_same_line"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          This setting produces a violation for each right curly brace
+          that is not on the same line as the previous part of the expression:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 {
+
+  String[] oneLine = new String[] {"One", }; // ok, single-line block
+
+  String[] multiLine = new String[] {"One",
+    "Two", }; // ok, right curly brace is on the same line
+
+  String[] multiLineNewLine = new String[] {"One", "Two",
+  }; // violation ''}' at column 3 should be on the previous line'
+
+  Runnable action = () -&gt; {
+    doSomething();
+  }; // violation ''}' at column 3 should be on the previous line'
+
+  void doSomething() {
+  }
+
+  String[] extraLine = new String[] {"Three", "Four"}; // ok, single-line block
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to require the right curly brace to be on a new line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RightCurlyOfExpression"&gt;
+      &lt;property name="option" value="on_new_line"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+          This setting produces a violation for each right curly brace
+          that is not on a new line, even for single-line expression blocks:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3 {
+
+  String[] oneLine = new String[] {"One", }; // violation 'should be on a new line'
+
+  String[] multiLine = new String[] {"One",
+    "Two", }; // violation ''}' at column 12 should be on a new line'
+
+  String[] multiLineNewLine = new String[] {"One", "Two",
+  }; // ok, right curly brace is on a new line
+
+  Runnable action = () -&gt; {
+    doSomething();
+  }; // ok, right curly brace is on a new line
+
+  void doSomething() {
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="RightCurlyOfExpression_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurlyOfExpression">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="RightCurlyOfExpression_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.new%22">
+              line.new
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.previous%22">
+              line.previous
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="RightCurlyOfExpression_Fully_Qualified_Name">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOfExpressionCheck
+        </p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="RightCurlyOfExpression_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+
+    </section>
+  </body>
+</document>
