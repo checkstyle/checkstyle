@@ -14,6 +14,10 @@
             files="/checks/outertypefilename/package-info.java"/>
   <suppress id="presenceOfCompilationComment"
             files="/checks/coding/unusedprivatefield/InputUnusedPrivateFieldQualifiedThisUnresolvable.java"/>
+  <!-- a record cannot declare a field with the same name as one of its components,
+       so no sanctioned compilation comment phrase is truthful for this file -->
+  <suppress id="presenceOfCompilationComment"
+            files="/checks/coding/hiddenfield/InputHiddenFieldRecordComponentOwnStaticField.java"/>
 
 
   <!--  Intentional suppressions for testing -->
