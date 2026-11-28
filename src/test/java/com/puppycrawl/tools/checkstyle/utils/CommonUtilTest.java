@@ -107,6 +107,18 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testLengthExpandedTabsAfterSupplementaryCharacter() {
+        // the emoji is one code point, so the tab expands from column 1 to 8
+        final String text = "\uD83D\uDE00" + "\tx";
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthExpandedTabs(text, 2, 8))
+            .isEqualTo(8);
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthExpandedTabs(text, 3, 8))
+            .isEqualTo(9);
+    }
+
+    @Test
     public void testCreatePattern() {
         assertWithMessage("invalid pattern")
             .that(CommonUtil.createPattern("Test").pattern())

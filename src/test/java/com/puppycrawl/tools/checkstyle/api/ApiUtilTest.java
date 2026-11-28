@@ -33,4 +33,16 @@ public class ApiUtilTest {
                 .isTrue();
     }
 
+    @Test
+    public void testLengthExpandedTabsAfterSupplementaryCharacter() {
+        // the emoji is one code point, so the tab expands from column 1 to 8
+        final String text = "\uD83D\uDE00" + "\tx";
+        assertWithMessage("Invalid expanded tabs length")
+            .that(ApiUtil.lengthExpandedTabs(text, 2, 8))
+            .isEqualTo(8);
+        assertWithMessage("Invalid expanded tabs length")
+            .that(ApiUtil.lengthExpandedTabs(text, 3, 8))
+            .isEqualTo(9);
+    }
+
 }
