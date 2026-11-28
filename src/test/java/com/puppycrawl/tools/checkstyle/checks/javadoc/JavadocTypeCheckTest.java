@@ -571,7 +571,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocTypeHtml() throws Exception {
         final String[] expected = {
-            "19: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
+            "19:5: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeHtml.java"), expected);
