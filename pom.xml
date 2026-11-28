@@ -1218,7 +1218,6 @@
                     <exclude>
                              com.puppycrawl.tools.checkstyle.gui.TreeTable.TreeTableCellEditor
                     </exclude>
-                    <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableCellRenderer</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter</exclude>
                     <exclude>
                              com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter.UpdatingTreeModelListener
@@ -1367,24 +1366,6 @@
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>0.00</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>com.puppycrawl.tools.checkstyle.gui.TreeTableCellRenderer</include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.46</minimum>
-                    </limit>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.20</minimum>
                     </limit>
                   </limits>
                 </rule>
