@@ -33,6 +33,29 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarnings";
     }
 
+    @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "28:27: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputSuppressWarningsFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "20:27: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED,
+                    "checkstyle:RequireThis"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputSuppressWarningsFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
     /**
      * Tests SuppressWarnings with default regex.
      */
