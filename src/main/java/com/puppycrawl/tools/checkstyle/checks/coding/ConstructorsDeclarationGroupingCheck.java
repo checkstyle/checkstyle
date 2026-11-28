@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 
 /**
  * <div>
@@ -174,7 +175,8 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
      */
     private static List<DetailAST> getChildList(DetailAST ast) {
         final List<DetailAST> children = new ArrayList<>();
-        DetailAST child = ast.findFirstToken(TokenTypes.OBJBLOCK).getFirstChild();
+        DetailAST child =
+            NullUtil.notNull(ast.findFirstToken(TokenTypes.OBJBLOCK)).getFirstChild();
         while (child != null) {
             children.add(child);
             child = child.getNextSibling();

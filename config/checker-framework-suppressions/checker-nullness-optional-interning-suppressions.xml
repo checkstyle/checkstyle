@@ -1820,13 +1820,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ConstructorsDeclarationGroupingCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.OBJBLOCK)</message>
-    <lineContent>DetailAST child = ast.findFirstToken(TokenTypes.OBJBLOCK).getFirstChild();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/CovariantEqualsCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter ast of AbstractCheck.log.</message>
