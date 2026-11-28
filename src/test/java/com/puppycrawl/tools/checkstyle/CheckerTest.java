@@ -42,6 +42,7 @@ import java.io.Serial;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -655,6 +656,132 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Cache file has null path")
             .that(cache.getProperty(tmpFile.getPath()))
             .isNotNull();
+    }
+
+    @Test
+    public void testCacheProcessesOnlyGlobalStatefulChecks() throws Exception {
+        final DefaultConfiguration checkerConfig = createRootConfig(null);
+        checkerConfig.addProperty("cacheFile", createTempFile("cache").getPath());
+        final Checker checker = createChecker(checkerConfig);
+        final GlobalCountingFileSetCheck globalCheck = new GlobalCountingFileSetCheck();
+        final CountingFileSetCheck regularCheck = new CountingFileSetCheck();
+        checker.addFileSetCheck(globalCheck);
+        checker.addFileSetCheck(regularCheck);
+        final File input = createTempFile("input", ".java");
+        final List<File> files = Collections.singletonList(input);
+
+        checker.process(files);
+        checker.process(files);
+        checker.destroy();
+
+        assertWithMessage("Global stateful check did not receive cached file")
+            .that(globalCheck.getProcessedFileCount())
+            .isEqualTo(2);
+        assertWithMessage("Regular check received cached file")
+            .that(regularCheck.getProcessedFileCount())
+            .isEqualTo(1);
+    }
+
+    @Test
+    public void testCacheSkipsRegularCheckWithoutGlobalStatefulCheck() throws Exception {
+        final DefaultConfiguration checkerConfig = createRootConfig(null);
+        checkerConfig.addProperty("cacheFile", createTempFile("cache").getPath());
+        final Checker checker = createChecker(checkerConfig);
+        final CountingFileSetCheck regularCheck = new CountingFileSetCheck();
+        checker.addFileSetCheck(regularCheck);
+        final DefaultLoggerWithCounter listener = new DefaultLoggerWithCounter(
+                OutputStream.nullOutputStream(), OutputStreamOptions.NONE,
+                OutputStream.nullOutputStream(), OutputStreamOptions.NONE);
+        checker.addListener(listener);
+        final List<File> files = Collections.singletonList(createTempFile("input", ".java"));
+
+        checker.process(files);
+        checker.process(files);
+        checker.destroy();
+
+        assertWithMessage("Regular check received cached file")
+            .that(regularCheck.getProcessedFileCount())
+            .isEqualTo(1);
+        assertWithMessage("Cached file received a file-started event")
+            .that(listener.fileStartedCount)
+            .isEqualTo(1);
+        assertWithMessage("Cached file received a file-finished event")
+            .that(listener.fileFinishedCount)
+            .isEqualTo(1);
+    }
+
+    @Test
+    public void testRegularCheckProcessesFileWithoutCache() throws Exception {
+        final Checker checker = createChecker(createRootConfig(null));
+        final CountingFileSetCheck regularCheck = new CountingFileSetCheck();
+        checker.addFileSetCheck(regularCheck);
+
+        checker.process(Collections.singletonList(createTempFile("input", ".java")));
+        checker.destroy();
+
+        assertWithMessage("Regular check did not receive file without cache")
+            .that(regularCheck.getProcessedFileCount())
+            .isEqualTo(1);
+    }
+
+    @Test
+    public void testTranslationCheckWithCacheUsesUnchangedFiles() throws Exception {
+        final DefaultConfiguration translationConfig =
+                createModuleConfig(TranslationCheck.class);
+        translationConfig.addProperty("requiredTranslations", "fr");
+        final DefaultConfiguration checkerConfig = createRootConfig(translationConfig);
+        checkerConfig.addProperty("cacheFile", createTempFile("cache").getPath());
+        final File defaultTranslation = new File(temporaryFolder, "messages.properties");
+        final File frenchTranslation = new File(temporaryFolder, "messages_fr.properties");
+        Files.writeString(defaultTranslation.toPath(), "greeting=Hello\n");
+        Files.writeString(frenchTranslation.toPath(), "greeting=Bonjour\n");
+        final String[] files = {
+            defaultTranslation.getPath(),
+            frenchTranslation.getPath(),
+        };
+        execute(checkerConfig, files);
+        getStream().reset();
+
+        final long originalTimestamp = frenchTranslation.lastModified();
+        Files.writeString(frenchTranslation.toPath(), "greeting=Bonjour!\n");
+        Files.setLastModifiedTime(frenchTranslation.toPath(),
+                FileTime.fromMillis(originalTimestamp + 2_000));
+        execute(checkerConfig, files);
+
+        assertWithMessage("Unchanged default translation was excluded from global check")
+            .that(getStream().toString(StandardCharsets.UTF_8))
+            .doesNotContain("[ERROR]");
+
+        getStream().reset();
+        Files.writeString(frenchTranslation.toPath(), "greeting=Bonjour!\nnew.key=Nouveau\n");
+        Files.setLastModifiedTime(frenchTranslation.toPath(),
+                FileTime.fromMillis(originalTimestamp + 4_000));
+        execute(checkerConfig, files);
+
+        assertWithMessage("Difference from cached default translation was not detected")
+            .that(getStream().toString(StandardCharsets.UTF_8))
+            .contains("Key 'new.key' missing.");
+    }
+
+    @Test
+    public void testTranslationCheckWithCacheDetectsDeletedFile() throws Exception {
+        final DefaultConfiguration translationConfig =
+                createModuleConfig(TranslationCheck.class);
+        translationConfig.addProperty("requiredTranslations", "fr");
+        final DefaultConfiguration checkerConfig = createRootConfig(translationConfig);
+        checkerConfig.addProperty("cacheFile", createTempFile("cache").getPath());
+        final File defaultTranslation = new File(temporaryFolder, "messages.properties");
+        final File frenchTranslation = new File(temporaryFolder, "messages_fr.properties");
+        Files.writeString(defaultTranslation.toPath(), "greeting=Hello\n");
+        Files.writeString(frenchTranslation.toPath(), "greeting=Bonjour\n");
+        execute(checkerConfig, defaultTranslation.getPath(), frenchTranslation.getPath());
+        getStream().reset();
+
+        execute(checkerConfig, frenchTranslation.getPath());
+
+        assertWithMessage("Deleted default translation was not detected")
+            .that(getStream().toString(StandardCharsets.UTF_8))
+            .contains("Properties file 'messages.properties' is missing.");
     }
 
     @Test
@@ -1688,12 +1815,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final List<File> files = List.of(testFile, testFile);
         checker.process(files);
 
-        assertWithMessage("Cached file should not be processed twice")
+        assertWithMessage("Global stateful check should receive cached file")
             .that(loggerWithCounter.fileStartedCount)
-            .isEqualTo(1);
-        assertWithMessage("Cached file should not receive a second completion event")
+            .isEqualTo(2);
+        assertWithMessage("Cached file should receive a completion event")
             .that(loggerWithCounter.fileFinishedCount)
-            .isEqualTo(1);
+            .isEqualTo(2);
 
         checker.destroy();
     }
@@ -1859,6 +1986,28 @@ public class CheckerTest extends AbstractModuleTestSupport {
         public boolean accept(AuditEvent event) {
             return false;
         }
+
+    }
+
+    public static class CountingFileSetCheck extends AbstractFileSetCheck {
+
+        private int processedFileCount;
+
+        @Override
+        protected void processFiltered(File file, FileText fileText) {
+            processedFileCount++;
+        }
+
+        public final int getProcessedFileCount() {
+            return processedFileCount;
+        }
+
+    }
+
+    @GlobalStatefulCheck
+    public static final class GlobalCountingFileSetCheck extends CountingFileSetCheck {
+
+        // No additional behavior is required.
 
     }
 
