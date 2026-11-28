@@ -121,14 +121,14 @@ public final class FileText {
      * @throws NullPointerException if the lines array is null
      */
     public FileText(File file, List<String> lines) {
-        final StringBuilder buf = new StringBuilder(1024);
+        final StringBuilder builder = new StringBuilder(1024);
         for (final String line : lines) {
-            buf.append(line).append('\n');
+            builder.append(line).append('\n');
         }
 
         this.file = file;
         charset = null;
-        fullText = buf.toString();
+        fullText = builder.toString();
         this.lines = lines.toArray(String[]::new);
     }
 
@@ -193,7 +193,7 @@ public final class FileText {
         if (!inputFile.exists()) {
             throw new FileNotFoundException(inputFile.getPath() + " (No such file or directory)");
         }
-        final StringBuilder buf = new StringBuilder(1024);
+        final StringBuilder builder = new StringBuilder(1024);
         final InputStream stream = Files.newInputStream(inputFile.toPath());
         try (Reader reader = new InputStreamReader(stream, decoder)) {
             final char[] chars = new char[READ_BUFFER_SIZE];
@@ -202,10 +202,10 @@ public final class FileText {
                 if (len == -1) {
                     break;
                 }
-                buf.append(chars, 0, len);
+                builder.append(chars, 0, len);
             }
         }
-        return buf.toString();
+        return builder.toString();
     }
 
     /**

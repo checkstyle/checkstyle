@@ -94,10 +94,10 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
      */
     private static StringBuilder initStringBuilderWithOptimalBuffer(AuditEvent event,
             String severityLevelName) {
-        final int bufLen = LENGTH_OF_ALL_SEPARATORS + event.getFileName().length()
+        final int bufferLength = LENGTH_OF_ALL_SEPARATORS + event.getFileName().length()
             + event.getMessage().length() + severityLevelName.length()
             + getCheckShortName(event).length();
-        return new StringBuilder(bufLen);
+        return new StringBuilder(bufferLength);
     }
 
     /**
