@@ -243,7 +243,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "LITERAL_WHILE", "STATIC_INIT").collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("EmptyLineSeparator", Stream.of(
                 // module import declarations are not part of the Google style config token set
-                "MODULE_IMPORT", "ENUM_CONSTANT_DEF").collect(Collectors.toUnmodifiableSet()));
+                // annotation type members are not part of the Google style config token set
+                "MODULE_IMPORT", "ENUM_CONSTANT_DEF", "ANNOTATION_FIELD_DEF")
+                .collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WhitespaceAround", Stream.of(
                 //  allowed via '4.8.3 Arrays'
                 "ARRAY_INIT",
