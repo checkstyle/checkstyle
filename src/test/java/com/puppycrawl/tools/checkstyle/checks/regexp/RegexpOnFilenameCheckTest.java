@@ -199,6 +199,14 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
                         .isEqualTo("unable to create canonical path names for " + file);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParser because the checked file must have no
+     * parent directory. The test passes a {@link MockFile} whose {@code getParent()}
+     * returns {@code null}, and an Input file on disk always has a parent, while the
+     * inline config methods only take the path of a real Input file.
+     *
+     * @throws Exception if an error occurs
+     */
     @Test
     public void testWithFileWithoutParent() throws Exception {
         final DefaultConfiguration moduleConfig = createModuleConfig(RegexpOnFilenameCheck.class);
