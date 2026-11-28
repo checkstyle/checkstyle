@@ -4329,13 +4329,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/InterfaceIsTypeCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference objBlock</message>
-    <lineContent>objBlock.findFirstToken(TokenTypes.METHOD_DEF);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/MutableExceptionCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.IDENT)</message>
