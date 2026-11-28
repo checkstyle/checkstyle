@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
@@ -70,7 +71,7 @@ public abstract class AbstractAccessControlNameCheck extends AbstractNameCheck {
 
     @Override
     protected boolean mustCheckName(DetailAST ast) {
-        return shouldCheckInScope(ast.findFirstToken(TokenTypes.MODIFIERS));
+        return shouldCheckInScope(NullUtil.notNull(ast.findFirstToken(TokenTypes.MODIFIERS)));
     }
 
     /**
