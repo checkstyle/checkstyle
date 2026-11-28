@@ -5,7 +5,9 @@ ignoreConstructorParameter = (default)false
 ignoreSetter = (default)false
 setterCanReturnItsClass = (default)false
 ignoreAbstractMethods = (default)false
-tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
+tokens = (default)VARIABLE_DEF, PARAMETER_DEF, CLASS_DEF, ENUM_DEF, \
+    ENUM_CONSTANT_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_DEF, \
+    RECORD_COMPONENT_DEF, COMPACT_COMPILATION_UNIT
 
 
 */
@@ -27,7 +29,7 @@ public enum InputHiddenField8Enum
         public void doSomething()
         {
             //Should be flagged as hiding enum constant member
-            int hidden = 0;
+            int hidden = 0;  // violation ''hidden' hides a field'
         }
     };
 
@@ -37,33 +39,33 @@ public enum InputHiddenField8Enum
     /**
      * ctor parameter hides member
      */
-    InputHiddenField8Enum(int hidden)
+    InputHiddenField8Enum(int hidden)  // violation ''hidden' hides a field'
     {
     }
 
     public void doSomething()
     {
         //Should be flagged as hiding static member
-        int hidden = 0;
+        int hidden = 0;  // violation ''hidden' hides a field'
     }
 
     public static void doSomethingStatic()
     {
         //Should be flagged as hiding static member
-        int hiddenStatic = 0;
+        int hiddenStatic = 0; // violation ''hiddenStatic' hides a field'
     }
 }
 
 // we should ignore this if user wants (ignoreAbstractMethods is true)
 abstract class InputHiddenFieldBug10845128 {
     String x;
-    public abstract void methodA(String x);
+    public abstract void methodA(String x); // violation ''x' hides a field'
 }
 
 class Bug33709468 {
     private int xAxis;
 
-    public void setxAxis(int xAxis) {
+    public void setxAxis(int xAxis) {  // violation ''xAxis' hides a field'
         this.xAxis = xAxis;
     }
 }
