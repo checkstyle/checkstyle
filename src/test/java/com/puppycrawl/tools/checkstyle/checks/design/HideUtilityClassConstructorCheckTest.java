@@ -114,6 +114,14 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
+    public void testSealedClass() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputHideUtilityClassConstructorSealed.java"),
+                expected);
+    }
+
+    @Test
     public void testEmptyClassWithOnlyPrivateFields() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
