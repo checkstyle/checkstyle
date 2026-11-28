@@ -5,6 +5,8 @@
   "https://checkstyle.org/dtds/suppressions_1_1.dtd">
 
 <suppressions>
+  <suppress checks="PackageDeclarationCheck"
+    files="finalparameters/flexible-constructor-bodies/InputFinalParametersFlexibleConstructorBodies(Custom)?\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclaration"
