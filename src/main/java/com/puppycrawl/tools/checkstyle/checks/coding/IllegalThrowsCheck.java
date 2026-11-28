@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 
 /**
  * <div>
@@ -125,7 +126,8 @@ public final class IllegalThrowsCheck extends AbstractCheck {
      * @return true if method is ignorable.
      */
     private boolean isIgnorableMethod(DetailAST methodDef) {
-        return shouldIgnoreMethod(methodDef.findFirstToken(TokenTypes.IDENT).getText())
+        final DetailAST ident = NullUtil.notNull(methodDef.findFirstToken(TokenTypes.IDENT));
+        return shouldIgnoreMethod(ident.getText())
             || ignoreOverriddenMethods
                && AnnotationUtil.hasOverrideAnnotation(methodDef);
     }
