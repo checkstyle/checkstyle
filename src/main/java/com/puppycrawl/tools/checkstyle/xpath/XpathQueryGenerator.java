@@ -29,7 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
-import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
 
 /**
  * Generates xpath queries. Xpath queries are generated based on received
@@ -156,7 +155,7 @@ public class XpathQueryGenerator {
     @Nullable
     private static DetailAST findChildWithTextAttribute(DetailAST root) {
         return TokenUtil.findFirstTokenByPredicate(root,
-                XpathUtil::supportsTextAttribute).orElse(null);
+                ElementNode::supportsTextAttribute).orElse(null);
     }
 
     /**
@@ -224,7 +223,7 @@ public class XpathQueryGenerator {
      */
     private static boolean isXpathQueryForNodeIsAccurateEnough(DetailAST ast) {
         return !hasAtLeastOneSiblingWithSameTokenType(ast)
-                || XpathUtil.supportsTextAttribute(ast)
+                || ElementNode.supportsTextAttribute(ast)
                 || findChildWithTextAttribute(ast) != null;
     }
 
@@ -265,9 +264,9 @@ public class XpathQueryGenerator {
             final StringBuilder curNodeQueryBuilder = new StringBuilder(256);
             curNodeQueryBuilder.append('/')
                     .append(TokenUtil.getTokenName(cur.getType()));
-            if (XpathUtil.supportsTextAttribute(cur)) {
+            if (ElementNode.supportsTextAttribute(cur)) {
                 curNodeQueryBuilder.append("[@text='")
-                        .append(encode(XpathUtil.getTextAttributeValue(cur)))
+                        .append(encode(ElementNode.getTextAttributeValue(cur)))
                         .append("']");
             }
             else {
@@ -390,7 +389,7 @@ public class XpathQueryGenerator {
      * {@link com.puppycrawl.tools.checkstyle.XMLLogger#encode}. Tab is legal in XML 1.0 and kept as
      * is. Line feed and carriage return never reach here as they are already replaced with the
      * literal {@code \n} and {@code \r} text earlier by
-     * {@link XpathUtil#getTextAttributeValue}.
+     * {@link ElementNode#getTextAttributeValue}.
      *
      * @param chr the character to render.
      * @return the rendered character.
