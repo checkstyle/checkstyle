@@ -1224,8 +1224,6 @@
                              com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter.UpdatingTreeModelListener
                     </exclude>
                     <!-- Metadata Generator related classes -->
-                    <exclude>com.puppycrawl.tools.checkstyle.meta.ModuleDetails*</exclude>
-                    <exclude>com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.XmlMeta*</exclude>
                     <!-- OS specific utility providing class -->
                     <exclude>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</exclude>
@@ -1240,21 +1238,6 @@
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>1.00</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails
-                    </include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.70</minimum>
                     </limit>
                   </limits>
                 </rule>
