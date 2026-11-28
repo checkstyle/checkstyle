@@ -21,11 +21,13 @@ class Example2 {
   }
 
   class Start {
+    // violation below 'Uncommented main method found'
     public void main() {
     }
   }
 
   record MyRecord1() {
+    // violation below 'Uncommented main method found'
     public void main() {
     }
   }
