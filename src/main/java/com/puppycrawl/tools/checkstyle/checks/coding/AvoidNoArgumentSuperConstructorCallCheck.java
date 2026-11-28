@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 
 /**
  * <div>
@@ -71,7 +72,7 @@ public final class AvoidNoArgumentSuperConstructorCallCheck extends AbstractChec
     public void visitToken(DetailAST ast) {
         if (ast.getPreviousSibling() == null
                 && ast.getFirstChild().getType() == TokenTypes.LPAREN
-                && ast.findFirstToken(TokenTypes.ELIST).getChildCount() == 0) {
+                && NullUtil.notNull(ast.findFirstToken(TokenTypes.ELIST)).getChildCount() == 0) {
             log(ast, MSG_CTOR);
         }
     }

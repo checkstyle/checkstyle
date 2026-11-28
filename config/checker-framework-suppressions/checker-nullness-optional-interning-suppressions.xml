@@ -1813,13 +1813,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AvoidNoArgumentSuperConstructorCallCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.ELIST)</message>
-    <lineContent>&amp;&amp; ast.findFirstToken(TokenTypes.ELIST).getChildCount() == 0) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ConstructorsDeclarationGroupingCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.OBJBLOCK)</message>
