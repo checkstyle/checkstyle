@@ -6,10 +6,12 @@ violateExecutionOnNonTightHtml = (default)false
 
 // non-compiled with javac: Compilable with Java25
 
+// ok, a compact source file has no package declaration, and the check
+// only validates the Javadoc of a package declaration.
 /**
- * Invalid Javadoc with inappropriate tags.
- * @return Something invalid.
- * @throws Exception This is also invalid.
+ * Javadoc of a method in a compact source file.
+ * @return Something.
+ * @throws Exception Something else.
  */
-package com.puppycrawl.tools.checkstyle.checks.javadoc.inappropriatejavadocblocktagsonpackage.compact;
-
+void main() throws Exception {
+}
