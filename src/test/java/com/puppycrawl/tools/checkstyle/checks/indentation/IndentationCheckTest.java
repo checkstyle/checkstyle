@@ -221,6 +221,37 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 8, 12),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputIndentationFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "20:11: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 10, 12),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputIndentationFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesStrict() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputIndentationFlexibleConstructorBodiesStrict.java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final IndentationCheck checkObj = new IndentationCheck();
         final int[] requiredTokens = checkObj.getRequiredTokens();
