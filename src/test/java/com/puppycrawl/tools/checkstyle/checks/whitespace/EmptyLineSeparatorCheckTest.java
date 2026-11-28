@@ -966,9 +966,9 @@ public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
     public void testNoViolationsOnEmptyLinesBeforeCommentsInterfaces() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments"
-                        + "Interfaces.java"),
-                expected);
+            getPath(
+                "InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeCommentsInterfaces.java"),
+            expected);
     }
 
     @Test
