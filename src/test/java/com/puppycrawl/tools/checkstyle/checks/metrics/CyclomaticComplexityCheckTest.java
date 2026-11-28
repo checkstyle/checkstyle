@@ -44,6 +44,29 @@ public class CyclomaticComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "17:9: " + getCheckMessage(MSG_KEY, 12, 10),
+            "30:9: " + getCheckMessage(MSG_KEY, 12, 10),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputCyclomaticComplexityFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_KEY, 7, 5),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputCyclomaticComplexityFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testSwitchBlockAsSingleDecisionPointSetToTrue() throws Exception {
 
         final String[] expected = {
