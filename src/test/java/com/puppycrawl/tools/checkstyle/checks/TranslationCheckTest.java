@@ -207,16 +207,8 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
 
     @Test
     public void testOnePropertyFileSet() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        final File[] propertyFiles = {
-            new File(getPath("app-dev.properties")),
-        };
-        verify(
-            createChecker(checkConfig),
-            propertyFiles,
-            getPath("app-dev.properties"),
-            expected);
+        verifyWithInlineConfigParser(getPath("app-single.properties"), expected);
     }
 
     @Test
