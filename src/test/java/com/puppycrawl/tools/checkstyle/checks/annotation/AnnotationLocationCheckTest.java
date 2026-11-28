@@ -37,6 +37,39 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFlexibleConstructorBodies() throws Exception {
+        final String[] expected = {
+            "25:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "30:21: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "44:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputAnnotationLocationFlexibleConstructorBodies.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustomMultiple() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputAnnotationLocationFlexibleConstructorBodiesCustomMultiple.java"),
+                expected);
+    }
+
+    @Test
+    public void testFlexibleConstructorBodiesCustom() throws Exception {
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Deprecated"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("flexible-constructor-bodies/"
+                        + "InputAnnotationLocationFlexibleConstructorBodiesCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final AnnotationLocationCheck checkObj = new AnnotationLocationCheck();
         assertWithMessage(
