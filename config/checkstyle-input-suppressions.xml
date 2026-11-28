@@ -89,8 +89,6 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/22775 -->
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormattingAnnotations\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="[\\/]checks[\\/]suppresswarningsholder[\\/]InputSuppressWarningsHolderAlias6\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="[\\/]checks[\\/]suppresswarningsholder[\\/]InputSuppressWarningsHolderAlias6\.java"/>
